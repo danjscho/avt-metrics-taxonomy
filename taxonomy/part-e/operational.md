@@ -2,7 +2,7 @@
 
 *System performance, adoption, efficiency. Necessary but not sufficient for assurance.*
 
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 2 Tier 2 · 🔵 1 Tier 3
+**Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 1 Tier 3
 
 ### 🟢 Documentation Time per Consultation
 
@@ -43,6 +43,117 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 **Novel Thinking / Implications**
 
 > 💡 'Saved 3 min and maintained >98% PDSQI-9' is meaningful. 'Saved 3 min' alone is not.
+
+---
+
+### 🟡 Pyjama Time / After-Hours EHR Use
+
+Clinician time spent on EHR and documentation work outside of scheduled clinical hours. Standard burnout-adjacent metric from the Sinsky et al. literature. Applied to AVT assessment, it measures whether documentation burden that was shifted from in-consultation to after-consultation (a known pattern with review-before-signing workflows) has simply moved the burden to outside working hours rather than reducing it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Passive Observational |
+| **Lifecycle Phases** | Day Zero Baseline, Continuous |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Distal |
+| **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
+
+**Why this tier?**
+
+> Established methodology. Derivable from EHR audit logs without additional instrumentation. Essential for distinguishing genuine workload reduction from workload redistribution.
+
+**Formal Definition**
+
+```
+Pyjama Time = time spent in EHR outside of scheduled clinic hours per clinician per week. Derived from EHR audit logs (timestamp of user actions vs rostered working hours). Pre/post AVT comparison: ΔPyjama Time = Pyjama_post - Pyjama_pre. A genuine workload reduction shows Pyjama Time decrease; a redistribution shows Pyjama Time stable or increasing even as in-consultation documentation time falls.
+```
+
+**Limitations**
+
+> Audit logs may not capture all EHR activity (mobile access, shadow work in parallel documents). Definition of "working hours" varies by role and contract. Some pyjama time reflects preferred work pattern rather than workload pressure.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that catches the most common AVT failure mode for clinician wellbeing: the system reduces typing time during consultations but creates after-hours review work that the clinician was not previously doing. In-consultation time savings are visible and marketable; after-hours burden is invisible and unpaid. A deployment that shows documentation time saved per consultation should also show pyjama time decreased — if only the first moves, the value proposition is shifted burden, not reduced burden.
+
+---
+
+### 🟡 Note Turnaround Time
+
+Elapsed time from consultation end to note availability in the EPR, measured from the clinician's perspective rather than the pipeline's internal latency. Extends the existing Full-Pipeline Latency Budget (which is a technical metric) into an operational workflow metric that directly affects review quality. If the note arrives after the clinician has started the next patient, review happens later in lower-quality conditions or not at all.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | End-to-End |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | Standard operational workflow metric; extends Full-Pipeline Latency Budget |
+
+**Why this tier?**
+
+> Operational metric derivable from EPR workflow data. Directly affects review quality and therefore safety. Should be continuously monitored and reported.
+
+**Formal Definition**
+
+```
+Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribution: median, P50, P90, P99. Clinically relevant threshold: proportion of notes available before the start of the next patient's consultation. A turnaround time distribution with long tails creates selective review failure — the notes most delayed are the ones most likely to be approved without meaningful review.
+```
+
+**Limitations**
+
+> End of consultation is not always cleanly timestamped. Network conditions, EPR availability, and other operational factors affect turnaround independent of AVT processing time.
+
+**Novel Thinking / Implications**
+
+> 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else — queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
+
+---
+
+### 🟡 Documentation Workload Composite
+
+Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components — which is the number that matters for the value proposition and clinician wellbeing assessment.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Day Zero Baseline, Periodic Audit |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Distal |
+| **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
+
+**Why this tier?**
+
+> Composite metric built from component metrics measured separately. Quarterly rollup enables trajectory reporting to clinical leadership without requiring separate measurement work.
+
+**Formal Definition**
+
+```
+Workload Composite = w1 × Documentation_Time + w2 × Pyjama_Time + w3 × Verification_Burden. Weights reflect relative clinical significance; default equal weights. Per-clinician and aggregate reporting. Change metric: ΔWorkload = Workload_post_AVT - Workload_pre_AVT. Negative ΔWorkload = genuine net reduction; positive = net increase despite in-consultation savings.
+```
+
+**Limitations**
+
+> Aggregation hides component-level patterns. A composite that stays stable may mask simultaneous decrease in documentation time and increase in pyjama time — the stable number obscures the pattern shift. Report composite alongside components, not instead of them.
+
+**Novel Thinking / Implications**
+
+> 💡 The composite is the honest answer to "did AVT reduce workload?" that the individual metrics cannot give alone. A practice reporting "saved 3 minutes per consultation" without composite reporting is answering a convenient question; a practice reporting composite workload change is answering the real one. Clinical leadership and commissioners should request composite reporting rather than selective component reporting.
 
 ---
 
