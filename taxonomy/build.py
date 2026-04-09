@@ -30,6 +30,7 @@ FILES = [
     "part-e/security-adversarial-robustness.md",
     "part-e/privacy-data-governance.md",
     "part-e/operational.md",
+    "part-e/environmental-sustainability.md",
     "part-e/training-competency.md",
     "part-e/vendor-transparency-contractual.md",
     "part-f/meta-evaluation.md",
