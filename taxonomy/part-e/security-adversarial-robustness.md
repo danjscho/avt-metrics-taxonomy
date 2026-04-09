@@ -319,6 +319,41 @@ Audit for: (1) metadata in API responses; (2) timing variations that reveal cont
 
 ---
 
+### 🟡 Cross-Patient Information Leakage Rate
+
+Rate at which content from one patient's encounter contaminates another patient's generated note. Distinct from general PII leakage because cross-patient contamination can occur through context window contamination rather than training data memorisation — the leakage happens at inference time, not at training time, and is therefore invisible to standard privacy testing methodologies such as membership inference attacks.
+
+|Dimension              |Value                                                         |
+|-----------------------|--------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
+|**Measurement Cadence**|Periodic audit                                                |
+|**Pipeline Layer**     |Cross-cutting                                                 |
+|**Assurance Question** |Safety                                                        |
+|**Measurement Method** |Computational                                                 |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Responsible Actors** |Vendor                                                        |
+|**Maturity**           |Emerging                                                      |
+|**Outcome Type**       |Proximal                                                      |
+|**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
+
+**Why this tier?**
+
+> Vendor-side testing required because deployers cannot directly observe cross-encounter contamination. Should be a pre-deployment test and periodic audit requirement. Cross-patient leakage is a catastrophic failure mode — a single incident can affect hundreds of patients.
+
+**Formal Definition**
+
+```
+Leakage Rate = |notes_containing_content_from_different_patient| / |total_notes|. Testing methodology: (1) process a batch of encounters sequentially through the same pipeline; (2) inject distinctive canary content into some encounters; (3) check whether canary content appears in notes from unrelated encounters processed in the same batch. Target: zero. Any non-zero rate indicates architectural failure in context isolation.
+```
+
+**Limitations**
+
+> Requires controlled testing with injected canaries. Production leakage may occur under load conditions that aren't replicated in testing. Cross-patient contamination is rare enough that statistical power requires large test batches.
+
+**Novel Thinking / Implications**
+
+> 💡 Cross-patient leakage is the AVT-specific instantiation of context window contamination in multi-tenant LLM systems. When a single model instance serves multiple encounters in rapid succession, caching, state retention, and async processing all create potential vectors for one patient's content to leak into another's. This is architecturally preventable — strict per-encounter context isolation with explicit state resets — but only if the failure mode is explicitly tested for. Most vendor privacy testing focuses on training data leakage and doesn't cover this.
+
 ### 🟡 Clinician Identity Authentication
 
 Is the system confident that the clinician using AVT is who they claim to be? Voice biometrics could provide this but are rarely deployed. Without strong authentication, AVT outputs may be attributed to clinicians who weren't actually present.
@@ -356,3 +391,39 @@ Authentication strength assessed against: (1) Login mechanism (password, MFA, sm
 
 ---
 
+---
+
+### 🔵 Membership Inference Attack AUC
+
+Standardised privacy testing metric measuring the success rate of adversarial attempts to determine whether a specific patient's data was used in training the AVT model. Higher AUC means the attack is more successful — an AUC of 0.5 indicates attacks are no better than random guessing, while an AUC near 1.0 indicates complete privacy failure. Undefended LLMs show MIA AUC of approximately 0.96; differential privacy training can collapse this to near 0.5.
+
+|Dimension              |Value                                                         |
+|-----------------------|--------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                |
+|**Measurement Cadence**|Periodic audit                                                |
+|**Pipeline Layer**     |Cross-cutting                                                 |
+|**Assurance Question** |Safety                                                        |
+|**Measurement Method** |Computational                                                 |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Responsible Actors** |Vendor, Academic                                              |
+|**Maturity**           |Established                                                   |
+|**Outcome Type**       |Proximal                                                      |
+|**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
+
+**Why this tier?**
+
+> Research-grade privacy testing. Requires specialist ML security expertise. Academic or vendor-side testing, not deployer-implementable. Important for understanding model-level privacy properties but not routinely measurable at deployment.
+
+**Formal Definition**
+
+```
+Standard membership inference attack: attacker trains a classifier to distinguish model outputs on training data from outputs on held-out data. AUC of this classifier is the MIA metric. AUC = 0.5 means attacks fail; AUC > 0.7 indicates concerning leakage; AUC > 0.9 indicates severe privacy failure. Testing should use multiple attack methodologies (shadow model, loss-based, gradient-based) and report the highest AUC as the conservative estimate.
+```
+
+**Limitations**
+
+> MIA methodology has been criticised for evaluation artefacts — the recent Cue-Resistant Memorisation framework (arXiv 2601.03791) showed that previous MIA estimates were inflated by control set selection. Modern MIA requires careful methodology. Mitigations (differential privacy) come with accuracy costs.
+
+**Novel Thinking / Implications**
+
+> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols — if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
