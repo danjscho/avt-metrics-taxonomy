@@ -189,3 +189,74 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 
 ---
 
+### 🟡 FHIR R4 Resource Conformance Rate
+
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats — but retention is not the same as profile conformance.
+
+|Dimension              |Value                                    |
+|-----------------------|-----------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                   |
+|**Measurement Cadence**|Continuous                               |
+|**Pipeline Layer**     |EPR Write-back                           |
+|**Assurance Question** |Fidelity & Accuracy                      |
+|**Measurement Method** |Computational                            |
+|**Lifecycle Phases**   |Pre-deployment, Continuous               |
+|**Responsible Actors** |Vendor                                   |
+|**Maturity**           |Established                              |
+|**Outcome Type**       |Proximal                                 |
+|**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
+
+**Why this tier?**
+
+> Established methodology with open-source validators. Vendor pre-deployment requirement. Should be reported per FHIR profile used (UK Core, INTEROPen, local).
+
+**Formal Definition**
+
+```
+For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) — failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
+```
+
+**Limitations**
+
+> Conformance to a profile does not guarantee clinical correctness — a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
+
+**Novel Thinking / Implications**
+
+> 💡 Profile conformance is a necessary but not sufficient condition for interoperability. The existing Write-back Fidelity metric measures whether content is correct; this metric measures whether the structural container is valid. Both can fail independently. A system that produces valid-but-wrong FHIR is dangerous; a system that produces right-but-invalid FHIR will fail to write-back silently.
+
+---
+
+### 🔵 openEHR Archetype Conformance
+
+Conformance of generated clinical data against openEHR archetypes for NHS trusts using openEHR-based EPR platforms. Less widespread than FHIR in UK primary care but relevant for specific secondary care deployments (particularly in mental health trusts and specialised services).
+
+|Dimension              |Value                                     |
+|-----------------------|------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research            |
+|**Measurement Cadence**|Continuous                                |
+|**Pipeline Layer**     |EPR Write-back                            |
+|**Assurance Question** |Fidelity & Accuracy                       |
+|**Measurement Method** |Computational                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                |
+|**Responsible Actors** |Vendor                                    |
+|**Maturity**           |Established                               |
+|**Outcome Type**       |Proximal                                  |
+|**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
+
+**Why this tier?**
+
+> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms — context adjustment per the "Adapting to Local Context" section.
+
+**Formal Definition**
+
+```
+For each generated composition: validate against the applicable openEHR archetype(s) and template(s). Report: archetype conformance rate (structural), terminology binding conformance (codes map to required terminology subset), cardinality compliance. Must validate both the composition structure and the path-based data bindings.
+```
+
+**Limitations**
+
+> openEHR archetype validation tooling is less mature than FHIR validation. Archetype maintenance varies by trust. Cross-trust conformance may require different archetype versions.
+
+**Novel Thinking / Implications**
+
+> 💡 The UK has bifurcated EPR infrastructure: primary care is standardising on FHIR-based interoperability, while parts of secondary care (particularly the Code4Health-aligned trusts) have significant openEHR investment. AVT vendors focused on primary care may simply not support openEHR, making them structurally unsuitable for some secondary care deployments. This should be a procurement question rather than a post-contract discovery.

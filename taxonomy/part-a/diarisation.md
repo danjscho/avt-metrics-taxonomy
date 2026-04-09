@@ -170,3 +170,193 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 ---
 
+---
+
+### Conversation Analysis sub-cluster
+
+*Multi-role identification, code-switching, turn-taking in overlap, addressee recognition, and clinically weighted attribution. Extends the existing diarisation metrics (which focus on speaker counts and boundaries) into the semantics of multi-party clinical dialogue.*
+
+---
+
+### 🟡 Speaker Role Identification F1
+
+Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
+
+|Dimension              |Value                                                                |
+|-----------------------|---------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
+|**Measurement Cadence**|One-off gate                                                         |
+|**Pipeline Layer**     |Diarisation                                                          |
+|**Assurance Question** |Safety                                                               |
+|**Measurement Method** |Computational                                                        |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                       |
+|**Responsible Actors** |Vendor                                                               |
+|**Maturity**           |Emerging                                                             |
+|**Outcome Type**       |Proximal                                                             |
+|**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
+
+**Why this tier?**
+
+> Safety-relevant whenever AVT is used outside simple dyadic consultations. Interpreter-mediated, family-present, and multidisciplinary scenarios are common in NHS practice. Role identification errors cause medication attribution errors and epistemic status inversions (patient reports vs clinician observes).
+
+**Formal Definition**
+
+```
+Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Require minimum 0.90 F1 for clinician and patient roles; 0.80 for other identified roles.
+```
+
+**Limitations**
+
+> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations — exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
+
+**Novel Thinking / Implications**
+
+> 💡 Role identification is more forgiving than individual speaker identification in one sense (you don't need to track specific individuals across sessions) but less forgiving in another (the consequences of confusing roles are semantic, not just attributional). A system that confuses "clinician" with "family member" in an interpreter-mediated consultation can end up attributing medication instructions to the wrong party.
+
+---
+
+### 🟡 Code-Switching Detection Rate
+
+Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
+
+|Dimension              |Value                                                 |
+|-----------------------|------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Measurement Cadence**|One-off gate                                          |
+|**Pipeline Layer**     |ASR / Transcription                                   |
+|**Assurance Question** |Fairness & Equity                                     |
+|**Measurement Method** |Computational                                         |
+|**Lifecycle Phases**   |Pre-deployment                                        |
+|**Responsible Actors** |Vendor                                                |
+|**Maturity**           |Established                                           |
+|**Outcome Type**       |Proximal                                              |
+|**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
+
+**Why this tier?**
+
+> Vendor pre-deployment characterisation. Important for any NHS deployment serving linguistically diverse populations. Should be a procurement question for practices with significant EAL populations.
+
+**Formal Definition**
+
+```
+Per utterance with code-switching: (1) detected that switching occurred (binary); (2) correctly identified the secondary language (classification); (3) transcribed both-language segments accurately. Detection Rate = |correctly_detected_switches| / |total_switches|. Transcription Accuracy Post-Switch = per-language WER for non-English segments.
+```
+
+**Limitations**
+
+> Requires evaluation data with annotated code-switching, which is rare. Most clinical speech corpora are monolingual. NHS-representative multilingual clinical speech does not exist as a public benchmark.
+
+**Novel Thinking / Implications**
+
+> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications — and the clinician reviewing the note has no signal that anything was lost.
+
+---
+
+### 🟡 Turn-Taking Accuracy in Overlap
+
+Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
+
+|Dimension              |Value                                          |
+|-----------------------|-----------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                         |
+|**Measurement Cadence**|One-off gate                                   |
+|**Pipeline Layer**     |ASR + Diarisation                              |
+|**Assurance Question** |Fidelity & Accuracy                            |
+|**Measurement Method** |Computational                                  |
+|**Lifecycle Phases**   |Pre-deployment                                 |
+|**Responsible Actors** |Vendor                                         |
+|**Maturity**           |Established                                    |
+|**Outcome Type**       |Proximal                                       |
+|**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
+
+**Why this tier?**
+
+> Vendor pre-deployment metric. Important for consultations with interruptions, family participation, or MDT discussions. Deployers should request overlap-specific evaluation results as part of procurement.
+
+**Formal Definition**
+
+```
+TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Report alongside speaker overlap rate to contextualise. Compare with TTA-NonOverlap to quantify overlap-specific degradation: Overlap Degradation = TTA-NonOverlap - TTA-O. Values > 10 percentage points indicate the system handles overlap poorly.
+```
+
+**Limitations**
+
+> Ground truth for overlapping speech is labour-intensive to annotate. Gold-standard transcripts of overlap often disagree among annotators. Detection of overlap segments is itself error-prone.
+
+**Novel Thinking / Implications**
+
+> 💡 Real clinical consultations contain 5-15% overlap. If the system handles overlap poorly and simply attributes the whole overlap to one speaker, the content from the "losing" speaker is silently dropped. A patient's quiet objection during a clinician's explanation ("but I can't afford that") may be lost entirely, with neither the clinician nor the review process aware it happened.
+
+---
+
+### 🔵 Clinical-Perspective HEWER (cpHEWER)
+
+Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
+
+|Dimension              |Value                                       |
+|-----------------------|--------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
+|**Measurement Cadence**|One-off gate                                |
+|**Pipeline Layer**     |ASR + Diarisation                           |
+|**Assurance Question** |Safety                                      |
+|**Measurement Method** |Computational                               |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit              |
+|**Responsible Actors** |Vendor, Academic                            |
+|**Maturity**           |Emerging                                    |
+|**Outcome Type**       |Proximal                                    |
+|**Source**             |mpathic.ai clinical ASR benchmark 2025      |
+
+**Why this tier?**
+
+> Research metric. Requires both role-labelled ground truth and a clinical importance ontology — neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
+
+**Formal Definition**
+
+```
+cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the clinical importance weight for the (speaker role, content type) combination. Weight matrix: clinician medication instruction = 10.0; clinician safety-netting = 10.0; patient red-flag symptom = 9.0; patient history = 5.0; family contextual information = 3.0; small talk = 0.1. Matrix requires clinical consensus.
+```
+
+**Limitations**
+
+> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+
+**Novel Thinking / Implications**
+
+> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies — without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
+
+---
+
+### 🔵 Addressee Recognition Accuracy
+
+In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
+
+|Dimension              |Value                                            |
+|-----------------------|-------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
+|**Measurement Cadence**|One-off gate                                     |
+|**Pipeline Layer**     |Diarisation                                      |
+|**Assurance Question** |Fidelity & Accuracy                              |
+|**Measurement Method** |Computational                                    |
+|**Lifecycle Phases**   |Pre-deployment                                   |
+|**Responsible Actors** |Vendor, Academic                                 |
+|**Maturity**           |Proposed / Novel                                 |
+|**Outcome Type**       |Proximal                                         |
+|**Source**             |Multi-party dialogue research; pragmatics literature|
+
+**Why this tier?**
+
+> Research frontier. No current AVT system explicitly models addressee. Academic research area — cannot be deployed in routine assessment today.
+
+**Formal Definition**
+
+```
+For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family_member_1, family_member_2, clinician, room}. Accuracy = |correctly_identified_addressee| / |total_utterances_in_multi_party_segments|. Requires turn-level annotation of addressee identity.
+```
+
+**Limitations**
+
+> Addressee is often ambiguous even to humans — clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
+
+**Novel Thinking / Implications**
+
+> 💡 Addressee recognition is the pragmatic layer above speaker attribution. When a clinician turns to a family member and says "make sure she takes these at the same time each day", the instruction is for the family member, not the patient. If the AVT attributes this to the patient, the resulting note reads as a patient-directed instruction that the patient may not have even heard clearly. This kind of pragmatic misattribution is invisible to diarisation error rate but directly affects clinical documentation accuracy.

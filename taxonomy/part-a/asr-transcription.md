@@ -303,6 +303,41 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 
 ---
 
+### 🟡 Error Transmission Rate
+
+Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step — a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
+
+|Dimension              |Value                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                 |
+|**Measurement Cadence**|Periodic audit                                                         |
+|**Pipeline Layer**     |ASR + Summarisation                                                    |
+|**Assurance Question** |Fidelity & Accuracy                                                    |
+|**Measurement Method** |Computational                                                          |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                         |
+|**Responsible Actors** |Vendor                                                                 |
+|**Maturity**           |Emerging                                                               |
+|**Outcome Type**       |Proximal                                                               |
+|**Source**             |Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)|
+
+**Why this tier?**
+
+> Vendor metric requiring intermediate output access. Measurable when raw transcript and final note are both available for comparison. Valuable diagnostic because it distinguishes ASR-bottleneck systems from summarisation-bottleneck systems — the intervention is completely different in each case.
+
+**Formal Definition**
+
+```
+ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR = 0 means the summariser corrects every ASR error (unlikely). ETR = 1 means the summariser transmits every error unchanged. ETR > 1 is possible if summariser amplification adds errors beyond the ASR baseline. Compute per error category (numeric, drug name, negation, demographic) — the overall rate obscures category-specific failure modes.
+```
+
+**Limitations**
+
+> Requires access to raw transcript and final note with alignment between the two. Not all vendors expose the intermediate transcript. Error categorisation requires NER infrastructure.
+
+**Novel Thinking / Implications**
+
+> 💡 The OHSU finding that 19.5% of ASR errors reach the final note suggests the summariser provides meaningful but imperfect error correction. The more interesting question is *which* errors transmit: if safety-critical errors transmit at higher rates than stylistic errors, the summariser is learning the wrong patterns. Transmission rate disaggregated by error category is more useful than the aggregate.
+
 ### 🟡 Real-Time Factor (RTF)
 
 Processing speed relative to audio duration. RTF < 1.0 = faster than real-time.
@@ -467,6 +502,41 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 > 💡 If confidence scores are exposed and well-calibrated, downstream systems can route low-confidence segments for human review. If they're miscalibrated or absent, the AVT cannot signal its own uncertainty — which means the clinician must assume everything is equally reliable.
 
 ---
+
+### 🟡 ASR Confidence Exposure
+
+Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers — both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
+
+|Dimension              |Value                                                           |
+|-----------------------|----------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Measurement Cadence**|One-off gate                                                    |
+|**Pipeline Layer**     |ASR / Transcription                                             |
+|**Assurance Question** |Safety                                                          |
+|**Measurement Method** |Human Review                                                    |
+|**Lifecycle Phases**   |Pre-deployment                                                  |
+|**Responsible Actors** |Vendor                                                          |
+|**Maturity**           |Proposed / Novel                                                |
+|**Outcome Type**       |Proximal                                                        |
+|**Source**             |Derived from Abridge Linked Evidence architecture; confidence-based routing literature|
+
+**Why this tier?**
+
+> Pre-deployment architectural question. Should be a procurement requirement for any AVT system where confidence-based review routing or uncertainty display is intended. Without exposure, the rest of the confidence-based safety architecture cannot be built.
+
+**Formal Definition**
+
+```
+Exposure assessed on three levels: (1) Internal — confidence scores exist but are not exposed; (2) Downstream — confidence scores passed to summariser for internal use; (3) Clinician-visible — low-confidence segments highlighted in the review interface. Target: Level 3 for any safety-critical deployment. Binary per level; report highest level achieved.
+```
+
+**Limitations**
+
+> End-to-end neural ASR systems may produce confidence scores that are poorly calibrated (see existing ASR Confidence Calibration metric). Exposure without calibration can be actively misleading — a clinician seeing "95% confidence" on a 70%-accurate segment has worse situational awareness than a clinician seeing no score at all.
+
+**Novel Thinking / Implications**
+
+> 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally — which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
 ### 🟢 Hallucination-Under-Noise Rate
 
