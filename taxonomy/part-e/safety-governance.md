@@ -89,6 +89,158 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
+### Longitudinal Drift & Model Contamination sub-cluster
+
+*Addresses the temporal dimension of model assurance that the current taxonomy handles only partially. Where the existing Model Version Tracking and Model Update Impact Score metrics cover notified changes, these metrics cover silent drift, contamination of future training pipelines by AI-generated content, and the regulatory frameworks (FDA PCCP, NICE ESF 2022 AI updates) that increasingly require pre-specified change control plans.*
+
+---
+
+### 🟡 Performance Degradation Detection Latency
+
+Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation — performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
+
+|Dimension              |Value                                                              |
+|-----------------------|-------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                             |
+|**Measurement Cadence**|Continuous                                                         |
+|**Pipeline Layer**     |Cross-cutting                                                      |
+|**Assurance Question** |Safety                                                             |
+|**Measurement Method** |Computational                                                      |
+|**Lifecycle Phases**   |Continuous                                                         |
+|**Responsible Actors** |Regional (ICB), National Body                                      |
+|**Maturity**           |Proposed / Novel                                                   |
+|**Outcome Type**       |Proximal                                                           |
+|**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
+
+**Why this tier?**
+
+> Regional or national monitoring because detection requires aggregation across sites — single-practice data lacks statistical power to distinguish drift from noise. The detection infrastructure is the binding constraint; the metric itself is straightforward once infrastructure exists.
+
+**Formal Definition**
+
+```
+Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous measurement of sentinel metrics against a stable reference; (2) statistical drift detection (CUSUM, Page-Hinkley, or equivalent sequential testing); (3) pre-specified threshold for declaring drift. Report Latency distribution across detected drift events. Target: detection within 4 weeks of onset for clinically significant degradation.
+```
+
+**Limitations**
+
+> Requires stable reference benchmarks that don't drift with the model. Small drift signals are hidden by consultation case-mix variation. Attribution of detected drift to model changes vs environmental changes is often ambiguous.
+
+**Novel Thinking / Implications**
+
+> 💡 Silent degradation is the failure mode that notified update monitoring cannot catch. A vendor pushing incremental improvements, a cloud infrastructure change that affects inference behaviour, or gradual model quality decay from training data drift — none of these trigger Model Version Tracking but all can cause clinically significant performance change. Detection latency is the metric that tells you whether your monitoring would actually catch a silent failure before it caused harm. A system with excellent monitoring coverage but 6-month detection latency is operationally fragile.
+
+---
+
+### 🟡 Retraining Trigger Threshold Specification
+
+Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) — this metric assesses whether the trigger logic for when updates should occur is even specified.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                            |
+|**Measurement Cadence**|One-off gate                                                      |
+|**Pipeline Layer**     |Cross-cutting                                                     |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Human Review                                                      |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                    |
+|**Responsible Actors** |Vendor                                                            |
+|**Maturity**           |Emerging                                                          |
+|**Outcome Type**       |Proximal                                                          |
+|**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
+
+**Why this tier?**
+
+> Vendor procurement assessment. Should be a Day Zero contractual requirement for any AVT system operating in a regulatory environment that expects PCCP-equivalent change control.
+
+**Formal Definition**
+
+```
+Assessment against specification criteria: (1) Performance thresholds pre-specified for retraining triggers (e.g. "if clinically significant WER on sentinel test exceeds 8%, retrain"); (2) Trigger metrics are quantifiable and automatically monitored; (3) Governance process for executing the trigger is documented; (4) Rollback plan exists if retraining degrades rather than improves performance. Binary per criterion; full compliance requires all four.
+```
+
+**Limitations**
+
+> Well-specified trigger thresholds can still be wrong. Pre-specification often treats the retraining decision as a simple threshold crossing when in practice it requires judgment. Vendor specification is self-reported unless independently audited.
+
+**Novel Thinking / Implications**
+
+> 💡 The FDA PCCP framework represents a regulatory shift from "approve the specific model" to "approve the change control process that governs model evolution". For AVT, where continuous improvement is assumed, this shift is essential — but only works if the change control process is specified, auditable, and followed. A vendor without a PCCP-equivalent framework is effectively promising that their model will never need updating, or that updating decisions will be made ad hoc. Neither is credible for a production clinical system.
+
+---
+
+### 🔵 AI-Generated Data Contamination Rate
+
+The proportion of training or fine-tuning data that is itself AI-generated clinical content — either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
+
+|Dimension              |Value                                                                                            |
+|-----------------------|-------------------------------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                                   |
+|**Measurement Cadence**|Periodic audit                                                                                   |
+|**Pipeline Layer**     |Cross-cutting                                                                                    |
+|**Assurance Question** |Safety                                                                                           |
+|**Measurement Method** |Human Review                                                                                     |
+|**Lifecycle Phases**   |Periodic Audit                                                                                   |
+|**Responsible Actors** |Vendor, National Body                                                                            |
+|**Maturity**           |Emerging                                                                                         |
+|**Outcome Type**       |Distal                                                                                           |
+|**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
+
+**Why this tier?**
+
+> Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility — and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.
+
+**Formal Definition**
+
+```
+Contamination Rate = |training_examples_derived_from_AI_generated_content| / |total_training_examples|. Direct contamination: training data includes AI-generated clinical notes. Indirect contamination: training data includes human-approved notes that were initially AI-drafted (where the AI fingerprint remains). Assessment methodology: (1) vendor attestation of training data provenance; (2) statistical detection of AI fingerprints in training corpora; (3) vocabulary drift analysis comparing successive model generations on stable held-out test sets.
+```
+
+**Limitations**
+
+> Detecting AI-generated content in training data is an unsolved problem — watermarking proposals are not yet standardised. Vendor attestation is self-reported. Longitudinal monitoring requires visibility into vendor training pipelines that is rarely contractually granted.
+
+**Novel Thinking / Implications**
+
+> 💡 Every NHS trust deploying AVT is a data generation site. If vendors fine-tune on deployed clinical data (a common practice for improvement), NHS content flows back into the training pipeline. Over multiple training cycles, this creates a feedback loop where the model is increasingly trained on its own output — the vocabulary collapse and rare-event disappearance finding becomes a direct patient safety risk because rare clinical presentations are exactly where documentation accuracy matters most. This is the AVT-specific version of what the ML literature calls "the curse of recursion", and it's a systemic risk that requires national-level intervention rather than deployer-level monitoring.
+
+---
+
+### 🔵 Concept Drift in Clinical Notes
+
+Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic — that requires human judgment — but it makes drift visible so it can be investigated.
+
+|Dimension              |Value                                                    |
+|-----------------------|----------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                            |
+|**Measurement Cadence**|Continuous                                                |
+|**Pipeline Layer**     |Cross-cutting                                             |
+|**Assurance Question** |Meta-evaluation                                           |
+|**Measurement Method** |Computational                                             |
+|**Lifecycle Phases**   |Continuous                                                |
+|**Responsible Actors** |Regional (ICB), National Body, Academic                   |
+|**Maturity**           |Proposed / Novel                                          |
+|**Outcome Type**       |Distal                                                    |
+|**Source**             |Concept drift literature from ML monitoring applied to clinical NLG|
+
+**Why this tier?**
+
+> Requires statistical infrastructure and cross-site aggregation for meaningful signal. National or regional responsibility.
+
+**Formal Definition**
+
+```
+For each reference time window W_ref and comparison window W_t: compute the distribution of SNOMED concepts (or other structured clinical categories) present in AI-generated notes. Drift = KL divergence or earth mover's distance between distributions. Threshold for investigation: drift > 2σ from historical seasonal variation. Report per concept category — aggregate drift obscures category-specific shifts. Specifically monitor: rare diagnoses, psychosocial content, safety-netting language, safeguarding flags.
+```
+
+**Limitations**
+
+> Distinguishing concept drift from case-mix drift requires population-level context. Seasonal variation (respiratory conditions in winter, mental health referrals in January) creates baseline noise. Rare concepts have high variance even without true drift.
+
+**Novel Thinking / Implications**
+
+> 💡 The most worrying drift signal is concepts that progressively disappear — safeguarding language, mental health content, social context — because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
+
 ### 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
 Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ from 2.0×10⁻⁸ to 2.6×10⁻⁴.
