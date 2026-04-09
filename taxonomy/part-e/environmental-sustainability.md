@@ -1,6 +1,10 @@
 ## Environmental & Sustainability
 
-*Energy, carbon, and water footprint of AVT operation. Not Day Zero priority for clinical safety assurance but increasingly required for NHS procurement (Net Zero commitments) and for EU-market vendors under forthcoming sustainability reporting requirements. All Tier 3 currently because the measurement infrastructure is immature and the metrics are not deployer-actionable — but they are well-defined conceptually and may move to Tier 2 as the NHS Net Zero procurement framework matures.*
+*Energy, carbon, and water footprint of AVT operation. All three current metrics in this group are Tier 3 — not Day Zero priority for clinical safety assurance, but increasingly required for NHS procurement under Net Zero commitments and cascading through EU-market vendor compliance under forthcoming corporate sustainability reporting requirements.*
+
+*The group exists more as placeholder for an expected future than as a cluster of actionable metrics today. The measurement infrastructure is immature: vendors rarely expose per-inference telemetry; cloud providers are not consistent in sustainability reporting; methodology for attributing training emissions to individual inferences is contested; water consumption data is especially limited. None of the current metrics are deployer-measurable — they are vendor-reported, and deployers currently have no independent verification path.*
+
+*All three metrics may move to Tier 2 as the NHS Net Zero procurement framework matures and as vendor sustainability reporting becomes routine. At the scale of potential NHS AVT deployment (millions of consultations per year), even small per-note environmental differences compound into substantial total footprint, and procurement conversations are starting to ask the question even where answers are uneven.*
 
 **Tier breakdown**: 🔵 3 Tier 3
 

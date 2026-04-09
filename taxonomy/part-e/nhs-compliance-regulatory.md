@@ -2,9 +2,13 @@
 
 ## NHS Compliance & Regulatory
 
-*Clusters NHS-specific compliance metrics arising from the January–March 2026 guidance suite (NHSE IG guidance, AVT Supplier Registry, CIO/CCIO guidance v2) alongside international regulatory requirements (FDA PCCP, EU AI Act) that cascade into UK deployment through vendor compliance. Distinct from Safety & Governance — these are process compliance metrics against defined external requirements, not safety performance metrics. Most are binary or near-binary: the deployer is either compliant or not.*
+*Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary — the deployer is compliant or they are not — and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
 
-*Legal/statutory privacy metrics (SAR fulfilment, Right to Erasure, Cross-Border Data Transfer) remain in Privacy & Data Governance to preserve the legal-basis cluster. This group contains regulatory and governance process compliance specifically tied to NHS and medical device guidance.*
+*The group was added to the taxonomy in response to the January–March 2026 NHS guidance suite: NHSE IG guidance on ambient scribing (March 2026), the NHSE AVT Supplier Registry (launched January 2026), and CIO/CCIO guidance v2 (January 2026). Taken together these documents defined a discrete compliance surface that is operationally distinct from clinical safety governance and that deserves its own cluster rather than being scattered across Safety & Governance and Privacy & Data Governance.*
+
+*The group also contains two international regulatory metrics (FDA PCCP-Equivalent Pre-Defined Acceptance Criteria, EU AI Act Event Logging Compliance) because vendor compliance cascades across jurisdictions — an AVT vendor with EU market exposure will typically apply EU AI Act requirements uniformly across their product rather than maintaining jurisdiction-specific variants, which means UK deployments inherit EU requirements through vendor compliance regardless of whether they would otherwise apply.*
+
+*Legal and statutory privacy metrics that pre-date the 2026 NHS guidance (Subject Access Request Fulfilment, Right to Erasure, Cross-Border Data Transfer Compliance, Sub-Processor Transparency) remain in the Privacy & Data Governance group to preserve the legal-basis cluster there. The split between "privacy legal requirements" and "NHS compliance process requirements" is analytical rather than hierarchical — a deployer is obliged to meet both, and neither group has precedence over the other.*
 
 **Tier breakdown**: 🟢 7 Tier 1 · 🟡 3 Tier 2 · 🔵 0 Tier 3
 
