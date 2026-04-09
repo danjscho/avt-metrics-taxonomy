@@ -102,3 +102,7 @@ Pause and ask rather than making an autonomous call if:
 - Summary counts match actual assembled counts; Contents per-group counts match file counts
 - Header reads "214 metrics across 20 groups"
 - Git history: v1 commit (v1.0 tag) → merge commit (v2.0 tag)
+
+## Commit conventions
+
+Start all commit messages with 🦞 (`:lobster:`).

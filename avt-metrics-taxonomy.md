@@ -2,7 +2,7 @@
 
 Comprehensive metrics for NHS ambient voice technology assurance — covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**151 metrics** across **18 groups**, organised in six parts.
+**214 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 2 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions).
 
 ## How to Use This Taxonomy
 
@@ -12,15 +12,15 @@ This taxonomy is designed to serve multiple audiences — from a practice CSO de
 
 Each metric is assigned to one of three priority tiers. The tier reflects a composite judgement across three dimensions: how consequential the metric is for patient safety, whether it is measurable today with existing tools and data, and what governance burden it imposes on the responsible actor. A metric can be critically important but placed in Tier 3 because the infrastructure to measure it does not yet exist — the tier reflects actionability, not importance.
 
-**🟢 Tier 1 — Minimum Viable Assurance** (33 metrics)
+**🟢 Tier 1 — Minimum Viable Assurance** (42 metrics)
 
 The smallest set of metrics that a deployer cannot responsibly skip. Every metric in Tier 1 meets all three criteria: it addresses a safety-critical or governance-essential function, it is measurable today by the responsible actor without requiring infrastructure that doesn't yet exist, and the burden of measurement is proportionate to the risk it monitors. A deployer operating AVT without measuring these metrics is operating without adequate governance — regardless of the vendor's own quality claims.
 
-**🟡 Tier 2 — Recommended Assurance** (59 metrics)
+**🟡 Tier 2 — Recommended Assurance** (87 metrics)
 
 What a deployer or regional body should measure given reasonable governance capacity and vendor cooperation. Tier 2 metrics are important for comprehensive assurance but either require some vendor cooperation that may need contractual enforcement, involve more resource-intensive measurement methods, or provide granularity that strengthens but is not strictly essential for basic safe operation.
 
-**🔵 Tier 3 — Advanced / Research** (59 metrics)
+**🔵 Tier 3 — Advanced / Research** (85 metrics)
 
 Metrics that are important for advancing the field but are not actionable at individual deployer level today. Tier 3 metrics fall into this category for one of three reasons: they require national infrastructure that hasn't been built, they require research methods not yet scalable to routine deployment, or they are vendor-proprietary approaches that inform what a national standard should require but cannot be independently replicated. Tier 3 is not 'unimportant' — several Tier 3 metrics address the most fundamental questions about AVT safety. They are Tier 3 because the answer to 'can a CSO do this tomorrow?' is currently no.
 
@@ -60,31 +60,84 @@ A practice with a high proportion of EAL (English as Additional Language) patien
 
 The principle is: if a Tier 2 or Tier 3 metric addresses a risk that is elevated in your specific context, promote it. The tiers are a starting point, not a ceiling.
 
+A trust with multiple AVT platforms deployed across different services should prioritise Cross-Platform Fairness Consistency as Tier 1 rather than Tier 3 — the fairness concern of different patients receiving different documentation quality depending on which service happens to use which vendor is elevated for multi-platform deployments even where each platform individually performs acceptably on single-axis fairness metrics. For an integrated care system with genuinely uniform platform deployment this metric is Tier 3; for one with a mixed AVT portfolio it is Tier 1.
+
+### ⚠️ Field-wide resource constraint
+
+> **Only two public benchmark datasets exist for ambient scribe evaluation: ACI Bench and PriMock.** This is not a minor inconvenience. It is the single biggest structural limitation on the operationalisation of nearly every metric in this taxonomy.
+>
+> Inter-rater reliability is rarely reported in published AVT evaluation studies, and where it is reported, clinical experts show significant disagreement — which means the notion of a stable "gold standard" against which to measure automated metrics is itself empirically fragile. A metric that claims high correlation with expert judgment can only be as reliable as the experts themselves are with each other, and current evidence suggests that ceiling is lower than published figures imply.
+>
+> The practical consequences for readers of this taxonomy are three-fold:
+>
+> **First, cross-vendor comparisons are usually not what they appear to be.** When two vendors both claim "95% M-WER" or "97% confabulation detection", they have almost certainly used different reference datasets, different significance ontologies, different inter-rater reliability thresholds, and different evaluation protocols. Direct comparison is not meaningful. The honest position is that procurement decisions based on vendor-reported performance metrics are currently closer to vibes-based assessment than to scientific comparison — and making that visible is part of what this taxonomy is for.
+>
+> **Second, the field-wide cost of every unvalidated metric is high.** Because there is no shared infrastructure for validation, every deployer or researcher who wants to use a metric meaningfully must rebuild the validation locally at their own cost. This creates enormous duplication and prevents any given metric from accumulating the cross-study evidence base that would make it trustworthy. ROUGE is the canonical example — it is used almost universally in clinical NLG evaluation despite published evidence that it correlates essentially not at all with clinical judgment, because the alternative would require locally-validated replacement metrics that nobody has resources to build.
+>
+> **Third, this is the single highest-leverage infrastructure intervention the NHS could make.** A national investment in shared clinical encounter datasets — with multi-annotator ground truth across specialties, accents, consultation types, and clinical complexity levels — would transform operationally what nearly every metric in this taxonomy can deliver. It would make vendor-reported metrics comparable for the first time. It would make validation studies tractable for small research groups. It would make the underspecification warnings throughout this taxonomy progressively less necessary as empirical evidence replaces informed speculation. There is no individual deployer, no individual vendor, and no individual academic group that can solve this at the scale required; it is a national body responsibility.
+>
+> **What deployers should do in the interim.** Until shared infrastructure exists, three working practices help make the limitation manageable rather than invisible: (1) always document the reference dataset, protocol, and inter-rater reliability conditions used when reporting any metric from this taxonomy; (2) treat cross-vendor comparison of self-reported metrics with explicit scepticism in procurement documentation; (3) prefer metrics in the taxonomy that are computable against the deployer's own data (Edit Rate, Time-to-Sign Distribution, the NHS Compliance metrics, Concept Extraction Concordance) over those that require reference datasets the deployer does not have, because the former are at least internally consistent even where cross-site comparison is difficult.
+
 ## Summary
 
 ### By Priority Tier
 
-- **🟢 Tier 1 — Minimum Viable Assurance**: 33 metrics — what every deployer must measure to operate safely
-- **🟡 Tier 2 — Recommended Assurance**: 59 metrics — recommended with reasonable governance capacity
-- **🔵 Tier 3 — Advanced / Research**: 59 metrics — advanced, research, or requires infrastructure that doesn't yet exist
+- **🟢 Tier 1 — Minimum Viable Assurance**: 42 metrics — what every deployer must measure to operate safely
+- **🟡 Tier 2 — Recommended Assurance**: 87 metrics — recommended with reasonable governance capacity
+- **🔵 Tier 3 — Advanced / Research**: 85 metrics — advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
-- **Established**: 39 metrics
-- **Emerging**: 32 metrics
+- **Established**: 54 metrics
+- **Emerging**: 48 metrics
 - **Vendor-Proprietary**: 4 metrics
-- **Proposed / Novel**: 76 metrics
+- **Proposed / Novel**: 108 metrics
+
+### By Metric Family
+
+Some groups contain named metric families — clusters of related metrics that measure facets of a shared construct. Family framings appear before the first metric of each family.
+
+- **Clinical Content Fidelity** (Summarisation / NLP): 5 metrics — hallucination, omission, confabulation, negation, uncertainty
+- **Post-Generation Correction** (Human Factors & Workflow): 4 metrics — edit rate, type, location, pattern
+- **Clinical Transcription Accuracy** (ASR / Transcription): 3 metrics — WER, M-WER, CK-ER
+- **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics — ROUGE, BERTScore
+- **Unaffiliated**: 200 metrics — the remainder, not currently grouped into a named family
+
+### By Underspecification Warning
+
+15 existing metrics in the taxonomy carry explicit flags indicating specific measurement-science gaps. Readers should treat these as calls for caution rather than for avoidance.
+
+- **⚠️ Tier A — No established methodology**: 3 metrics
+  - Off-Label Use Detection Rate (Safety & Governance)
+  - Trust Halo Decay Rate (Human Factors & Workflow)
+  - Note Review Fatigue Trajectory (Human Factors & Workflow)
+- **⚠️ Tier B — Concept defined, no AVT-specific validation**: 7 metrics
+  - Hallucination Rate (Summarisation / NLP)
+  - Medical WER (ASR / Transcription)
+  - Clinical Keyword Error Rate (ASR / Transcription)
+  - Cognitive Load Assessment (Human Factors & Workflow)
+  - Trust Calibration Survey (Human Factors & Workflow)
+  - Automation Bias Detection (Human Factors & Workflow)
+  - Clinical Decision Equivalence (End-to-End Pipeline)
+- **⚠️ Tier C — Technically defined, clinical validity unproven or disproven**: 5 metrics
+  - ROUGE Scores (Summarisation / NLP)
+  - BERTScore (Summarisation / NLP)
+  - LLM-as-a-Judge (PDSQI-9 Proxy) (Summarisation / NLP)
+  - Diarisation Error Rate (Diarisation)
+  - Demographic-Disaggregated WER (ASR / Transcription)
 
 ## Tier 1 — Minimum Viable Assurance (Quick Reference)
 
 The smallest set of metrics that a deployer cannot responsibly skip. All are measurable today with existing tools, data, and governance capacity.
 
+**Tier 1 expanded substantially with the January–March 2026 NHS guidance suite.** Nine metrics moved into Tier 1 or were added as new Tier 1 entries reflecting compliance requirements that did not exist when the taxonomy was first drafted: the NHS Compliance & Regulatory cluster (Patient Dissent Recording, Verbal Notification, AI-Generated Content Labelling, AVT Supplier Registry, ICB Engagement, Clinical Safety Case, DPIA Template, Audio Time-to-Deletion, Transcript Retention) plus Code Hallucination Rate. For NHS deployers, the shape of Day Zero minimum assurance has changed materially since early-2025 vendor procurement; re-assess existing deployments against the expanded Tier 1 set.
+
 ### Tier 1 by Responsible Actor
 
-**Deployer** (27 metrics)
+**Deployer** (36 metrics)
 
 - 🚪 **Microphone & Hardware Validation** — Basic pre-deployment hardware check. No AVT should go live without confirming capture hardware meets minimum specifications. Measurable today by any deployer.
-- 🔄 **Hallucination Rate** — Core safety metric. NAS Day Zero SPI with <2% review and ≥5% pause thresholds. Every deployer must measure this through periodic clinical audit even if methodology is manual.
+- 🔄 **Hallucination Rate** ⚠️ — Core safety metric. NAS Day Zero SPI with <2% review and ≥5% pause thresholds. Every deployer must measure this through periodic clinical audit even if methodology is manual. *See underspecification warning in full entry — the term has no universally accepted definition and reported rates across the literature span 1–67% due largely to methodological differences. Document the specific subtype taxonomy and reference dataset used.*
 - 🔄 **Omission Rate** — Arguably more dangerous than hallucination because omissions are invisible to the reviewer. Must be included in periodic clinical note audit alongside hallucination rate.
 - 🔄 **Negation Handling Accuracy** — Safety-critical and well-documented LLM failure mode. Should be tested pre-deployment and periodically re-audited. Negation errors directly cause clinical harm.
 - 🔄 **Uncertainty Marker Preservation** — Safety-critical: certainty inflation creates false diagnostic confidence in the record. Should be tested with adversarial cases as part of pre-deployment and periodic audit.
@@ -110,15 +163,25 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - 🚪 **Right to Erasure Compliance** — Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.
 - 📡 **Clinician Training Completion Rate** — Governance requirement. No clinician should use AVT without completing required training. Binary compliance metric — 100% is the only acceptable target.
 - 📡 **Sub-Processor Transparency** — Legal compliance requirement under UK GDPR Article 28. Must be assessed at procurement and monitored for changes.
+- 🚪 **AVT Supplier Registry Listing Verification** — Procurement gate with trivial verification cost. Must be confirmed before deployment and re-verified at contract renewal. Non-listed vendors should not be deployed.
+- 🚪 **ICB Engagement Documentation** — Pre-deployment compliance gate under CIO/CCIO guidance v2. Documented evidence of regional engagement required before go-live. Absence indicates governance process breakdown.
+- 🔄 **Clinical Safety Case Completeness** — DCB0129/0160 regulatory requirement. The 2025 FOI finding that many NHS digital health deployments lack compliant safety cases makes active monitoring essential, not optional.
+- 🚪 **DPIA Template Completion Rate** — UK GDPR Article 35 legal requirement. Use of the NHSE March 2026 template enables cross-deployment comparison and ensures mandatory considerations aren't missed.
+- 📡 **Patient Dissent Recording Rate** — Per-encounter compliance with the requirement to document and respect objections. Distinct from aggregate opt-out: opt-out is a blanket choice; dissent recording is procedural integrity at the point of care. Target 100%.
+- 🔄 **Verbal Notification Compliance** — Proportion of AVT consultations where verbal notification was delivered at session start. The compliance metric behind the consent model. Periodic audit via patient survey or recording sample.
+- 📡 **AI-Generated Content Labelling Compliance** — Every AI-generated entry must carry the mandatory SNOMED suffix. Automated verification is trivial; non-compliance breaks downstream audit and safety investigation.
+- 📡 **Audio Time-to-Deletion** — NHSE IG guidance March 2026 requires deletion after summary sign-off. Measurement makes the policy operational rather than assertive. Must verify deletion in primary storage, caches, and backups.
+- 📡 **Transcript Retention Compliance** — Parallel to audio deletion but often treated as less sensitive despite being higher-risk (structured, searchable, readily consumable). Explicit retention policy required; compliance measurable continuously.
 
-**Vendor** (19 metrics)
+**Vendor** (20 metrics)
 
 - 🚪 **Hallucination-Under-Noise Rate** — Critical pre-deployment test. Whisper-based systems are documented to hallucinate from silence — this must be tested before clinical use. Tier 1 because the failure mode is well-documented and the test is straightforward.
 - 🚪 **Numeric Accuracy** — Safety-critical and underspecified by current vendor reporting. Should be a Day Zero acceptance criterion. Numeric errors are disproportionately dangerous and should be reported separately from general WER.
-- 🔄 **Hallucination Rate** — Core safety metric. NAS Day Zero SPI with <2% review and ≥5% pause thresholds. Every deployer must measure this through periodic clinical audit even if methodology is manual.
+- 🔄 **Hallucination Rate** ⚠️ — Core safety metric. NAS Day Zero SPI with <2% review and ≥5% pause thresholds. Every deployer must measure this through periodic clinical audit even if methodology is manual. *See underspecification warning in full entry — the term has no universally accepted definition and reported rates across the literature span 1–67% due largely to methodological differences. Document the specific subtype taxonomy and reference dataset used.*
 - 🔄 **Omission Rate** — Arguably more dangerous than hallucination because omissions are invisible to the reviewer. Must be included in periodic clinical note audit alongside hallucination rate.
 - 🔄 **Negation Handling Accuracy** — Safety-critical and well-documented LLM failure mode. Should be tested pre-deployment and periodically re-audited. Negation errors directly cause clinical harm.
 - 🔄 **Uncertainty Marker Preservation** — Safety-critical: certainty inflation creates false diagnostic confidence in the record. Should be tested with adversarial cases as part of pre-deployment and periodic audit.
+- 📡 **Code Hallucination Rate** — Zero-tolerance metric. Any non-zero rate indicates architectural failure in generation constraints. Vendor must demonstrate 0% pre-deployment and maintain continuous monitoring. A vendor who cannot achieve zero has unconstrained code generation, which is a procurement red flag.
 - 🚪 **Write-back Fidelity** — Highest-priority pre-deployment gate. A hallucinated allergy written to the EPR allergy field is a system-level safety failure that propagates to every future clinical decision. Must test per EPR system before go-live.
 - 📡 **Integration Error Rate** — Standard integration monitoring. Automated, low-burden, and catches data pipeline failures that directly affect patient records.
 - 🚪 **Field Mapping Accuracy** — Safety-critical pre-deployment test. Wrong-field placement of safety-critical content (allergies, medications) bypasses downstream safety mechanisms entirely.
@@ -149,38 +212,42 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 **Part A — The Technical Pipeline**
 
 - [Audio Capture & Environment](#audio-capture-environment) (9 metrics — 1 Tier 1)
-- [ASR / Transcription](#asr-transcription) (12 metrics — 2 Tier 1)
-- [Diarisation](#diarisation) (4 metrics)
-- [Summarisation / NLP](#summarisation-nlp) (20 metrics — 4 Tier 1)
-- [Clinical Coding](#clinical-coding) (4 metrics)
-- [EPR Write-back](#epr-write-back) (5 metrics — 4 Tier 1)
+- [ASR / Transcription](#asr-transcription) (14 metrics — 2 Tier 1) *contains Clinical Transcription Accuracy family*
+- [Diarisation](#diarisation) (9 metrics) *contains Conversation Analysis sub-cluster*
+- [Summarisation / NLP](#summarisation-nlp) (24 metrics — 4 Tier 1) *contains Clinical Content Fidelity and Reference-Based Text Similarity families*
+- [Clinical Coding](#clinical-coding) (12 metrics — 1 Tier 1)
+- [EPR Write-back](#epr-write-back) (7 metrics — 4 Tier 1)
 
 **Part B — Pipeline Interactions**
 
 - [Partial-Pipeline](#partial-pipeline) (9 metrics)
-- [End-to-End Pipeline](#end-to-end-pipeline) (11 metrics)
+- [End-to-End Pipeline](#end-to-end-pipeline) (12 metrics)
 
 **Part C — The Human Layer**
 
-- [Human Factors & Workflow](#human-factors-workflow) (15 metrics — 3 Tier 1)
+- [Human Factors & Workflow](#human-factors-workflow) (20 metrics — 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
 
 **Part D — Impact & Outcomes**
 
-- [Patient Experience](#patient-experience) (6 metrics — 1 Tier 1)
-- [Fairness & Equity](#fairness-equity) (5 metrics)
+- [Patient Experience](#patient-experience) (10 metrics — 1 Tier 1) *contains Patient Clinical Outcomes sub-cluster*
+- [Fairness & Equity](#fairness-equity) (8 metrics)
 
 **Part E — System Governance**
 
-- [Safety & Governance](#safety-governance) (13 metrics — 6 Tier 1)
-- [Security & Adversarial Robustness](#security-adversarial-robustness) (9 metrics)
-- [Privacy & Data Governance](#privacy-data-governance) (6 metrics — 5 Tier 1)
-- [Operational](#operational) (6 metrics — 3 Tier 1)
+- [Safety & Governance](#safety-governance) (17 metrics — 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
+- [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics — 7 Tier 1) *NEW GROUP*
+- [Security & Adversarial Robustness](#security-adversarial-robustness) (11 metrics)
+- [Privacy & Data Governance](#privacy-data-governance) (11 metrics — 7 Tier 1)
+- [Operational](#operational) (9 metrics — 3 Tier 1)
+- [Environmental & Sustainability](#environmental-sustainability) (3 metrics) *NEW GROUP*
 - [Training & Competency](#training-competency) (5 metrics — 1 Tier 1)
-- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (7 metrics — 3 Tier 1)
+- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (8 metrics — 3 Tier 1)
 
 **Part F — Evaluation Science**
 
-- [Meta-evaluation](#meta-evaluation) (5 metrics)
+- [Meta-evaluation](#meta-evaluation) (7 metrics)
+
+*Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Family framings appear before the first metric of each family and provide parent-construct context. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation — they are additive context within the existing group structure.*
 
 ---
 
@@ -573,6 +640,35 @@ Track baseline audio quality metrics (SNR, frequency response, noise floor) over
 
 **Tier breakdown**: 🟢 2 Tier 1 · 🟡 6 Tier 2 · 🔵 4 Tier 3
 
+### Family: Clinical Transcription Accuracy
+
+> **Parent construct** — how accurately the ASR layer transcribes the source audio, with clinical significance weighting that reflects the asymmetric cost of errors on clinical vs non-clinical content.
+>
+> The next three metrics form one family of increasing clinical sophistication. Treating them as separate unrelated metrics obscures the progression: each one answers the same fundamental question — *how many words did the ASR get wrong, and how bad were the wrong ones?* — at a different level of clinical awareness.
+>
+> **Three implementation levels of one construct:**
+>
+> 1. **Raw WER** — all word errors weighted equally. A misheard "the" counts the same as a misheard drug name. Technically rigorous and widely reported, but clinically uninformative because a 5% WER could be safe or dangerous depending on which words are wrong. Acceptable as a technical benchmark and for cross-system comparison on common test sets; inadequate as a clinical safety indicator.
+>
+> 2. **Medical WER (M-WER)** — errors weighted by whether the token belongs to a clinically significant class (drug names, dosages, diagnoses, safety-critical terminology). Reveals whether the system preserves the content that matters most, independent of filler and non-clinical speech accuracy. Abridge's **Medical Term Recall (MTR)** and DeepScribe's **Medical Word Hit Rate** are functionally equivalent implementations of the same underlying construct, even though they are reported under different names — a vendor reporting MTR is reporting the same thing as a vendor reporting M-WER, with different clinical term lists and weighting schemes. The **⚠️ Underspecification Warning** applies: no standardised clinical significance ontology exists, so cross-vendor M-WER comparison is not currently meaningful.
+>
+> 3. **Clinical Keyword Error Rate (CK-ER)** — binary per clinical keyword: was each safety-critical term captured correctly, yes or no? A more actionable variant of M-WER that can run as an automated guardrail on every encounter. Better suited to continuous monitoring than to benchmarking because its sensitivity depends entirely on the keyword dictionary used.
+>
+> **Cross-vendor comparability problem.** All three tiers suffer from the same fundamental issue: **without a standardised clinical term list or significance ontology, vendor-reported values are not directly comparable**. A vendor claiming 95% M-WER against one term list is not comparable to another vendor claiming 95% against a different term list. Cross-vendor procurement comparisons should either use a nationally standardised term list (which does not yet exist for NHS) or explicitly require the vendor to publish their term list and provenance alongside the reported value. This is a candidate area for NHS England or equivalent national body specification work — a canonical clinical term list mapped to SNOMED safety-critical concept classes would make the family's metrics meaningful as procurement signals for the first time.
+>
+> **How this family relates to other ASR metrics in the taxonomy.** Three ASR metrics sit outside this family because they measure different things:
+>
+> - **Character Error Rate (CER)** is orthogonal — it measures error rate at character level rather than word level, and is used to detect subword errors in medical terminology (e.g. "amoxicillin" vs "amoxycillin") that WER at the word level misses.
+> - **Demographic-Disaggregated WER** and **Speaker-Stratified WER** are disaggregation axes that can be applied to any of the three metrics in this family. You can compute raw WER disaggregated by accent, or M-WER disaggregated by speaker role, etc.
+> - **Numeric Accuracy** is a category-specific extension that measures accuracy on numbers (dosages, dates, vital signs). Treat it as a mandatory companion metric to Clinical Transcription Accuracy because numeric errors have outsized clinical consequences.
+>
+> **Metrics in this family:**
+> - 🟡 **Word Error Rate (WER)** — level 1, raw. Necessary as a technical benchmark; insufficient alone for clinical safety.
+> - 🔵 **Medical Word Error Rate (M-WER)** — level 2, significance-weighted. Reveals whether clinical content is preserved. Underspecified pending a standardised ontology.
+> - 🔵 **Clinical Keyword Error Rate (CK-ER)** — level 3, per-keyword binary. Usable as an automated guardrail on every encounter. Underspecified pending a standardised keyword dictionary.
+
+---
+
 ### 🟡 Word Error Rate (WER)
 
 Standard ASR accuracy metric. Treats all word errors equally — a misheard 'the' counts the same as a misheard drug name.
@@ -624,6 +720,8 @@ corpus_wer = out.wer  # macro-averaged across utterances
 **Limitations**
 
 > Clinically uninformative — does not weight by clinical significance. A 5% WER could be safe or dangerous depending on which words are wrong.
+
+*See also: Medical WER (M-WER), Clinical Keyword Error Rate (CK-ER) — all members of the Clinical Transcription Accuracy family. Raw WER is level 1 of the family; the other two add clinical weighting but require a standardised significance ontology that does not yet exist.*
 
 ---
 
@@ -694,9 +792,15 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 > No standardised clinical significance ontology exists. Weight assignment is inherently subjective.
 
+**⚠️ Underspecification Warning (Tier B — no standardised weighting ontology)**
+
+> M-WER requires a weighting ontology defining the clinical significance of token classes. **No such ontology is standardised for NHS or international use.** Abridge's Medical Term Recall (MTR) and DeepScribe's Medical Word Hit Rate are functionally equivalent implementations that use different proprietary term lists and different weighting schemes — so a vendor claiming "95% MTR" cannot be directly compared with another claiming "95% M-WER". A national body standard mapping SNOMED safety-critical concept classes to weight values would make vendor benchmarks comparable and is a candidate for NHS England or equivalent commissioning. Until then, require vendors to disclose (a) their term list and provenance, (b) the weighting scheme, and (c) the reference dataset used for M-WER computation. Refuse to compare M-WER values across vendors without this disclosure.
+
 **Novel Thinking / Implications**
 
 > 💡 A national body could define a standardised M-WER weighting ontology mapped to SNOMED safety-critical concept classes, making vendor benchmarks comparable.
+
+*See also: Word Error Rate (WER), Clinical Keyword Error Rate (CK-ER) — all members of the Clinical Transcription Accuracy family. Abridge's Medical Term Recall (MTR) and DeepScribe's Medical Word Hit Rate are functionally equivalent implementations of this metric reported under different names; a vendor reporting any of these is reporting the same construct with different term lists.*
 
 ---
 
@@ -760,9 +864,15 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 > Requires ground-truth keyword annotation. Keyword list must be maintained as terminology evolves.
 
+**⚠️ Underspecification Warning (Tier B — same standardisation gap as M-WER)**
+
+> CK-ER depends on a clinical significance ontology defining which terms are keywords — no standardised ontology exists. The vendor or deployer implementing CK-ER chooses which terms count, and the resulting metric is only as good as that choice. Different keyword lists produce materially different CK-ER values for the same system, which prevents cross-vendor comparison and makes local benchmarks difficult to interpret. This metric sits in the same standardisation gap as M-WER: it is conceptually sound but requires national body specification of a canonical keyword ontology mapped to SNOMED safety-critical concept classes before it can be reported in a comparable way. In the interim, document the keyword dictionary used and its provenance when reporting CK-ER.
+
 **Novel Thinking / Implications**
 
 > 💡 Could run as automated post-transcription guardrail on every encounter without human review.
+
+*See also: Word Error Rate (WER), Medical WER (M-WER) — all members of the Clinical Transcription Accuracy family. CK-ER is the most actionable variant — binary per keyword, suited to running as an automated guardrail — but is most sensitive to the choice of keyword dictionary.*
 
 ---
 
@@ -825,6 +935,10 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 
 > Vendors control test datasets. No independent UK-representative speech corpus exists at scale.
 
+**⚠️ Underspecification Warning (Tier C — well-defined structure, ad hoc categorisation)**
+
+> Published demographic WER reporting uses ad-hoc accent categorisation that has been systematically critiqued. A FAccT 2024 paper identified race-based, geography-based, and native/non-native categories as poor proxies for the actual acoustic variation that affects ASR performance — they are demographically convenient but phonologically arbitrary. No standardised maximum acceptable disparity threshold exists across the field; the NAS 5 percentage point target is a proposed rather than evidence-based threshold. For NHS context, a defensible taxonomy must include at minimum: British regional accents (with meaningful sub-categorisation), South Asian English varieties (distinct from "Indian English" as a single category), West African English, Caribbean English, and Eastern European English — none of which are consistently present in vendor-reported demographic WER data. The accompanying **Accent Taxonomy Standardisation** metric (Fairness & Equity) assesses whether the categorisation itself is defensible before the disaggregation numbers become meaningful.
+
 **Novel Thinking / Implications**
 
 > 💡 A national independent speech corpus reflecting NHS patient demographics would make vendor-reported demographic WER meaningful rather than self-assessed.
@@ -871,6 +985,41 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 > 💡 Misheard patient speech is more dangerous than misheard clinician speech. Speaker-stratified reporting would expose this asymmetry.
 
 ---
+
+### 🟡 Error Transmission Rate
+
+Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step — a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
+
+|Dimension              |Value                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                 |
+|**Measurement Cadence**|Periodic audit                                                         |
+|**Pipeline Layer**     |ASR + Summarisation                                                    |
+|**Assurance Question** |Fidelity & Accuracy                                                    |
+|**Measurement Method** |Computational                                                          |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                         |
+|**Responsible Actors** |Vendor                                                                 |
+|**Maturity**           |Emerging                                                               |
+|**Outcome Type**       |Proximal                                                               |
+|**Source**             |Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)|
+
+**Why this tier?**
+
+> Vendor metric requiring intermediate output access. Measurable when raw transcript and final note are both available for comparison. Valuable diagnostic because it distinguishes ASR-bottleneck systems from summarisation-bottleneck systems — the intervention is completely different in each case.
+
+**Formal Definition**
+
+```
+ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR = 0 means the summariser corrects every ASR error (unlikely). ETR = 1 means the summariser transmits every error unchanged. ETR > 1 is possible if summariser amplification adds errors beyond the ASR baseline. Compute per error category (numeric, drug name, negation, demographic) — the overall rate obscures category-specific failure modes.
+```
+
+**Limitations**
+
+> Requires access to raw transcript and final note with alignment between the two. Not all vendors expose the intermediate transcript. Error categorisation requires NER infrastructure.
+
+**Novel Thinking / Implications**
+
+> 💡 The OHSU finding that 19.5% of ASR errors reach the final note suggests the summariser provides meaningful but imperfect error correction. The more interesting question is *which* errors transmit: if safety-critical errors transmit at higher rates than stylistic errors, the summariser is learning the wrong patterns. Transmission rate disaggregated by error category is more useful than the aggregate.
 
 ### 🟡 Real-Time Factor (RTF)
 
@@ -1036,6 +1185,41 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 > 💡 If confidence scores are exposed and well-calibrated, downstream systems can route low-confidence segments for human review. If they're miscalibrated or absent, the AVT cannot signal its own uncertainty — which means the clinician must assume everything is equally reliable.
 
 ---
+
+### 🟡 ASR Confidence Exposure
+
+Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers — both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
+
+|Dimension              |Value                                                           |
+|-----------------------|----------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Measurement Cadence**|One-off gate                                                    |
+|**Pipeline Layer**     |ASR / Transcription                                             |
+|**Assurance Question** |Safety                                                          |
+|**Measurement Method** |Human Review                                                    |
+|**Lifecycle Phases**   |Pre-deployment                                                  |
+|**Responsible Actors** |Vendor                                                          |
+|**Maturity**           |Proposed / Novel                                                |
+|**Outcome Type**       |Proximal                                                        |
+|**Source**             |Derived from Abridge Linked Evidence architecture; confidence-based routing literature|
+
+**Why this tier?**
+
+> Pre-deployment architectural question. Should be a procurement requirement for any AVT system where confidence-based review routing or uncertainty display is intended. Without exposure, the rest of the confidence-based safety architecture cannot be built.
+
+**Formal Definition**
+
+```
+Exposure assessed on three levels: (1) Internal — confidence scores exist but are not exposed; (2) Downstream — confidence scores passed to summariser for internal use; (3) Clinician-visible — low-confidence segments highlighted in the review interface. Target: Level 3 for any safety-critical deployment. Binary per level; report highest level achieved.
+```
+
+**Limitations**
+
+> End-to-end neural ASR systems may produce confidence scores that are poorly calibrated (see existing ASR Confidence Calibration metric). Exposure without calibration can be actively misleading — a clinician seeing "95% confidence" on a 70%-accurate segment has worse situational awareness than a clinician seeing no score at all.
+
+**Novel Thinking / Implications**
+
+> 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally — which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
 ### 🟢 Hallucination-Under-Noise Rate
 
@@ -1207,6 +1391,10 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 > Challenging in multi-party consultations. Most benchmarks assume two speakers.
 
+**⚠️ Underspecification Warning (Tier C — standard methodology, absent clinical context)**
+
+> DER has a rigorous technical definition (NIST RT evaluation protocol) and established general benchmarks (AMI ~7.2%, CALLHOME ~12.4%), but **no clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality — a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
+
 ---
 
 ### 🟡 Speaker Attribution Accuracy
@@ -1324,11 +1512,228 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 ---
 
+---
+
+### Conversation Analysis sub-cluster
+
+*Multi-role identification, code-switching, turn-taking in overlap, addressee recognition, and clinically weighted attribution. Extends the existing diarisation metrics (which focus on speaker counts and boundaries) into the semantics of multi-party clinical dialogue.*
+
+---
+
+### 🟡 Speaker Role Identification F1
+
+Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
+
+|Dimension              |Value                                                                |
+|-----------------------|---------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
+|**Measurement Cadence**|One-off gate                                                         |
+|**Pipeline Layer**     |Diarisation                                                          |
+|**Assurance Question** |Safety                                                               |
+|**Measurement Method** |Computational                                                        |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                       |
+|**Responsible Actors** |Vendor                                                               |
+|**Maturity**           |Emerging                                                             |
+|**Outcome Type**       |Proximal                                                             |
+|**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
+
+**Why this tier?**
+
+> Safety-relevant whenever AVT is used outside simple dyadic consultations. Interpreter-mediated, family-present, and multidisciplinary scenarios are common in NHS practice. Role identification errors cause medication attribution errors and epistemic status inversions (patient reports vs clinician observes).
+
+**Formal Definition**
+
+```
+Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Require minimum 0.90 F1 for clinician and patient roles; 0.80 for other identified roles.
+```
+
+**Limitations**
+
+> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations — exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
+
+**Novel Thinking / Implications**
+
+> 💡 Role identification is more forgiving than individual speaker identification in one sense (you don't need to track specific individuals across sessions) but less forgiving in another (the consequences of confusing roles are semantic, not just attributional). A system that confuses "clinician" with "family member" in an interpreter-mediated consultation can end up attributing medication instructions to the wrong party.
+
+---
+
+### 🟡 Code-Switching Detection Rate
+
+Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
+
+|Dimension              |Value                                                 |
+|-----------------------|------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Measurement Cadence**|One-off gate                                          |
+|**Pipeline Layer**     |ASR / Transcription                                   |
+|**Assurance Question** |Fairness & Equity                                     |
+|**Measurement Method** |Computational                                         |
+|**Lifecycle Phases**   |Pre-deployment                                        |
+|**Responsible Actors** |Vendor                                                |
+|**Maturity**           |Established                                           |
+|**Outcome Type**       |Proximal                                              |
+|**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
+
+**Why this tier?**
+
+> Vendor pre-deployment characterisation. Important for any NHS deployment serving linguistically diverse populations. Should be a procurement question for practices with significant EAL populations.
+
+**Formal Definition**
+
+```
+Per utterance with code-switching: (1) detected that switching occurred (binary); (2) correctly identified the secondary language (classification); (3) transcribed both-language segments accurately. Detection Rate = |correctly_detected_switches| / |total_switches|. Transcription Accuracy Post-Switch = per-language WER for non-English segments.
+```
+
+**Limitations**
+
+> Requires evaluation data with annotated code-switching, which is rare. Most clinical speech corpora are monolingual. NHS-representative multilingual clinical speech does not exist as a public benchmark.
+
+**Novel Thinking / Implications**
+
+> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications — and the clinician reviewing the note has no signal that anything was lost.
+
+---
+
+### 🟡 Turn-Taking Accuracy in Overlap
+
+Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
+
+|Dimension              |Value                                          |
+|-----------------------|-----------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                         |
+|**Measurement Cadence**|One-off gate                                   |
+|**Pipeline Layer**     |ASR + Diarisation                              |
+|**Assurance Question** |Fidelity & Accuracy                            |
+|**Measurement Method** |Computational                                  |
+|**Lifecycle Phases**   |Pre-deployment                                 |
+|**Responsible Actors** |Vendor                                         |
+|**Maturity**           |Established                                    |
+|**Outcome Type**       |Proximal                                       |
+|**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
+
+**Why this tier?**
+
+> Vendor pre-deployment metric. Important for consultations with interruptions, family participation, or MDT discussions. Deployers should request overlap-specific evaluation results as part of procurement.
+
+**Formal Definition**
+
+```
+TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Report alongside speaker overlap rate to contextualise. Compare with TTA-NonOverlap to quantify overlap-specific degradation: Overlap Degradation = TTA-NonOverlap - TTA-O. Values > 10 percentage points indicate the system handles overlap poorly.
+```
+
+**Limitations**
+
+> Ground truth for overlapping speech is labour-intensive to annotate. Gold-standard transcripts of overlap often disagree among annotators. Detection of overlap segments is itself error-prone.
+
+**Novel Thinking / Implications**
+
+> 💡 Real clinical consultations contain 5-15% overlap. If the system handles overlap poorly and simply attributes the whole overlap to one speaker, the content from the "losing" speaker is silently dropped. A patient's quiet objection during a clinician's explanation ("but I can't afford that") may be lost entirely, with neither the clinician nor the review process aware it happened.
+
+---
+
+### 🔵 Clinical-Perspective HEWER (cpHEWER)
+
+Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
+
+|Dimension              |Value                                       |
+|-----------------------|--------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
+|**Measurement Cadence**|One-off gate                                |
+|**Pipeline Layer**     |ASR + Diarisation                           |
+|**Assurance Question** |Safety                                      |
+|**Measurement Method** |Computational                               |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit              |
+|**Responsible Actors** |Vendor, Academic                            |
+|**Maturity**           |Emerging                                    |
+|**Outcome Type**       |Proximal                                    |
+|**Source**             |mpathic.ai clinical ASR benchmark 2025      |
+
+**Why this tier?**
+
+> Research metric. Requires both role-labelled ground truth and a clinical importance ontology — neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
+
+**Formal Definition**
+
+```
+cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the clinical importance weight for the (speaker role, content type) combination. Weight matrix: clinician medication instruction = 10.0; clinician safety-netting = 10.0; patient red-flag symptom = 9.0; patient history = 5.0; family contextual information = 3.0; small talk = 0.1. Matrix requires clinical consensus.
+```
+
+**Limitations**
+
+> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+
+**Novel Thinking / Implications**
+
+> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies — without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
+
+---
+
+### 🔵 Addressee Recognition Accuracy
+
+In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
+
+|Dimension              |Value                                            |
+|-----------------------|-------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
+|**Measurement Cadence**|One-off gate                                     |
+|**Pipeline Layer**     |Diarisation                                      |
+|**Assurance Question** |Fidelity & Accuracy                              |
+|**Measurement Method** |Computational                                    |
+|**Lifecycle Phases**   |Pre-deployment                                   |
+|**Responsible Actors** |Vendor, Academic                                 |
+|**Maturity**           |Proposed / Novel                                 |
+|**Outcome Type**       |Proximal                                         |
+|**Source**             |Multi-party dialogue research; pragmatics literature|
+
+**Why this tier?**
+
+> Research frontier. No current AVT system explicitly models addressee. Academic research area — cannot be deployed in routine assessment today.
+
+**Formal Definition**
+
+```
+For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family_member_1, family_member_2, clinician, room}. Accuracy = |correctly_identified_addressee| / |total_utterances_in_multi_party_segments|. Requires turn-level annotation of addressee identity.
+```
+
+**Limitations**
+
+> Addressee is often ambiguous even to humans — clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
+
+**Novel Thinking / Implications**
+
+> 💡 Addressee recognition is the pragmatic layer above speaker attribution. When a clinician turns to a family member and says "make sure she takes these at the same time each day", the instruction is for the family member, not the patient. If the AVT attributes this to the patient, the resulting note reads as a patient-directed instruction that the patient may not have even heard clearly. This kind of pragmatic misattribution is invisible to diarisation error rate but directly affects clinical documentation accuracy.
+
 ## Summarisation / NLP
 
 *Transcript → clinical note. Where most safety-critical evaluation science concentrates.*
 
 **Tier breakdown**: 🟢 4 Tier 1 · 🟡 8 Tier 2 · 🔵 8 Tier 3
+
+### Family: Reference-Based Text Similarity
+
+> **Parent construct** — the family of metrics that compare generated text to a reference text and report a similarity score. Technically rigorous; clinically weak.
+>
+> The next two metrics are the most widely reported automated metrics in the clinical NLG literature, and the most dangerously misleading when used in isolation. Grouping them makes explicit what the published evidence has shown repeatedly: **reference-based text similarity is a poor proxy for clinical quality in ambient scribe evaluation.**
+>
+> **Two implementations, one underlying limitation.** ROUGE and BERTScore differ in their matching algorithms — ROUGE uses n-gram overlap, BERTScore uses contextual embedding similarity — but they share the same fundamental weakness: they measure how closely the generated text resembles a reference text, not whether it represents clinical reality. A note can be clinically accurate while differing substantially from the reference (because the reference itself is one of many valid ways to document the encounter), or clinically wrong while closely matching the reference (because the reference was itself generated from a flawed transcript).
+>
+> **The published evidence is clear and damning.** Three specific findings from peer-reviewed clinical evaluation studies should govern how these metrics are used:
+>
+> - **ROUGE-L achieved a Kendall-Tau of 0.080** with human expert clinical judgment on clinical diagnosis generation — indistinguishable from random for practical purposes (ar5iv 2305.17364). Croxford et al. (2025, npj Digital Medicine) confirmed this pattern in clinical summarisation evaluation.
+> - **Catastrophic failure modes for ROUGE** were documented with Spearman ρ between −0.66 and −0.77 in some medical contexts — meaning higher ROUGE scores actively correlated with *worse* human judgments.
+> - **BERTScore-R achieved Pearson 0.62 with omission rate** (Croxford et al. 2025), which is materially better than ROUGE but still insufficient as a standalone quality indicator, and the correlation is with one specific error type rather than with overall clinical quality.
+>
+> The root cause is the same for both: string matching (ROUGE) and semantic similarity (BERTScore) penalise clinically valid paraphrase and reward surface overlap regardless of clinical meaning.
+>
+> **Why the family still exists in the taxonomy.** These metrics retain value in three specific roles: (1) technical benchmarking and regression testing during model development, where the goal is to detect regression in string or semantic overlap against a stable reference; (2) minimum-floor screening at pre-deployment, where a system scoring very badly on both is unlikely to be clinically adequate even if passing is not sufficient; (3) cross-model comparison where the reference is held constant, which controls for the reference-dependence problem. None of these roles justify using the family as the primary quality indicator in deployed clinical assurance.
+>
+> **The architectural rule.** Reference-based similarity metrics must be reported alongside a validated clinical instrument — PDSQI-9, CREOLA error taxonomy, or an LLM-as-a-Judge protocol that has been subjected to bias quantification. They must never be reported in isolation as evidence of clinical quality. A vendor reporting ROUGE or BERTScore as their primary or only quality metric should be treated as a procurement red flag: either they do not understand the measurement-science gap in their own field, or they are choosing the metric that flatters their system regardless of clinical relevance. Neither is compatible with NHS clinical deployment.
+>
+> **Metrics in this family:**
+> - 🟡 **ROUGE Scores** — n-gram overlap. Technically rigorous; Kendall-Tau 0.080 with clinical judgment. Retain for benchmarking only.
+> - 🔵 **BERTScore** — contextual embedding similarity. Better than ROUGE (Pearson 0.62 with omission rate) but still insufficient alone.
+
+---
 
 ### 🟡 ROUGE Scores
 
@@ -1385,9 +1790,15 @@ scores = scorer.score(reference, hypothesis)
 
 > Measures lexical overlap, not clinical accuracy. Continued use as primary vendor marketing metric is a red flag.
 
+**⚠️ Underspecification Warning (Tier C — technically rigorous, clinically invalid)**
+
+> Published evidence demonstrates near-zero correlation between ROUGE and human clinical judgment in clinical summarisation evaluation. Croxford et al. (2025, npj Digital Medicine) reported ROUGE-L Kendall-Tau of just 0.080 with expert clinician scoring on clinical diagnosis generation — indistinguishable from random for practical purposes. A separate investigation of automated metrics for medical note generation (ar5iv 2305.17364) documented catastrophic failure modes with Spearman ρ between −0.66 and −0.77 in some medical contexts, meaning higher ROUGE scores actively correlated with worse human judgments. The root cause is that string matching penalises clinically valid paraphrase and rewards surface overlap regardless of clinical meaning. **ROUGE must not be used as a standalone clinical quality indicator.** Retain only for technical benchmarking, and always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).
+
 **Novel Thinking / Implications**
 
 > 💡 Necessary but not sufficient pre-deployment screen. Tells you almost nothing about clinical safety.
+
+*See also: BERTScore — both members of the Reference-Based Text Similarity family. Both metrics measure surface or semantic similarity to a reference text, not clinical quality. Always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).*
 
 ---
 
@@ -1438,6 +1849,12 @@ P, R, F1 = score(
 **Limitations**
 
 > Linguistic similarity ≠ clinical correctness. Correlates poorly with clinician judgements.
+
+**⚠️ Underspecification Warning (Tier C — better than ROUGE but insufficient alone)**
+
+> BERTScore-R achieves approximately Pearson 0.62 correlation with omission rate in clinical summarisation (Croxford et al. 2025) — materially better than ROUGE but still inadequate as a standalone clinical quality indicator. The underlying limitation is the same as ROUGE: semantic similarity is not clinical correctness. A note can be semantically close to the reference while missing a clinically critical element, or semantically distant while conveying the same clinical meaning through appropriate medical abstraction. BERTScore is useful as one input to a multi-metric assessment but should never be reported as the primary quality finding. Pair with PDSQI-9 or an LLM-as-a-Judge protocol that has been subjected to bias quantification.
+
+*See also: ROUGE Scores — both members of the Reference-Based Text Similarity family. BERTScore is materially better than ROUGE as a text similarity metric but shares the fundamental limitation: semantic closeness to a reference is not clinical correctness. Always report alongside a validated clinical instrument.*
 
 ---
 
@@ -1524,6 +1941,35 @@ Hierarchical taxonomy: L1 — Omission, Addition, Incorrect. L2 sub-types: Omiss
 
 ---
 
+### Family: Clinical Content Fidelity
+
+> **Parent construct** — whether the generated note faithfully represents the clinical content of the source consultation.
+>
+> The next five metrics measure different facets of a single underlying construct. Treating them as unrelated obscures three important things: the existence of distinct error subtypes with different clinical implications, the difference between factuality and faithfulness, and the reason that aggregate rates can mask serious category-specific failures.
+>
+> **Subtypes are not substitutes.** The CREOLA framework (Asgari et al., npj Digital Medicine 2025) and the AutoscriberValidate analysis (medRxiv 2026) identify at least five distinct error subtypes within this family, each with different clinical implications and different mitigations:
+>
+> - **Fabrication** — completely invented clinical content with no basis in the source. CREOLA data attribute 43% of observed hallucinations to this subtype. Fictional examination findings are the canonical example. Most dangerous.
+> - **Context conflation** — content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
+> - **Incorrect negation** — polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
+> - **Speculation or inference beyond source** — plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
+> - **Certainty inflation** — clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the Uncertainty Marker Preservation metric in this family.
+>
+> Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
+>
+> **Factuality and faithfulness are distinct dimensions within the family.** Factuality is world-correctness: does the statement match clinical reality? Faithfulness is source-correctness: does the statement match what was discussed? A note can be factually correct but unfaithful (the summariser inferred a correct diagnosis the clinician never stated) or faithful but factually incorrect (the summariser accurately captured the clinician's mistake). For ambient scribes, **faithfulness is the primary assurance concern** because the scribe's job is to represent the consultation, not to exercise clinical judgment. A system that silently corrects clinician errors or adds information the clinician did not state has exceeded its safe operating scope regardless of whether the resulting statement is factually true.
+>
+> **Recommendation for measurement.** When measuring content fidelity in periodic audit, require subtype reporting rather than aggregate rate only. A single headline number hides the distribution that matters for intervention. Vendors reporting only aggregate rates should be asked to provide the CREOLA subtype breakdown or equivalent.
+>
+> **Metrics in this family:**
+> - 🟢 **Hallucination Rate** — the aggregate rate of generated content unsupported by source. Entry point to the family. *See underspecification warning re: definitional instability.*
+> - 🟢 **Omission Rate** — the silent killer. Arguably more dangerous than hallucination because omissions are invisible to the reviewer looking at a clean-looking note.
+> - 🔵 **Confabulation Detection (Support × Severity)** — vendor-proprietary two-axis approach (Abridge) that stratifies by evidence support and clinical severity. Methodologically superior where available.
+> - 🟢 **Negation Handling Accuracy** — measures the Incorrect Negation subtype as a dedicated metric because of its direct clinical harm potential.
+> - 🟢 **Uncertainty Marker Preservation** — measures the Certainty Inflation subtype as a dedicated metric because certainty inflation is the more dangerous direction of epistemic drift.
+
+---
+
 ### 🟢 Hallucination Rate
 
 Proportion of generated content unsupported by source. Currently defined inconsistently across vendors.
@@ -1584,9 +2030,15 @@ def check_hallucination(source, generated_sentences):
 
 > Definition varies. No standard severity weighting.
 
+**⚠️ Underspecification Warning (Tier B — conceptually central, definitionally unstable)**
+
+> The term "hallucination" has no universally accepted operational definition in clinical NLG. The CREOLA framework (Asgari et al., npj Digital Medicine 2025) explicitly identifies this ambiguity as a fundamental measurement challenge. Reported rates across the published literature range from 1–3% in deployed ambient scribe studies to 43–67% in adversarial LLM clinical benchmarks — a span that largely reflects methodological differences rather than true performance variation. Only two public reference datasets exist for AVT hallucination evaluation (ACI Bench, PriMock), which limits cross-study comparability. Promising recent work: the CHECK framework (arXiv 2506.11129) reduced hallucination from 31% to 0.3% using information-theoretic classification with AUC 0.95–0.96 and is a candidate standard for operational definition. Until a consensus definition emerges, require reporting of: (a) the specific subtype taxonomy used (CREOLA or equivalent); (b) inter-rater reliability on the taxonomy; (c) the reference dataset; (d) the severity classification scheme.
+
 **Novel Thinking / Implications**
 
 > 💡 NAS proposes <2% major hallucination Day Zero SPI, ≥5% pause trigger. 'Major' needs operational definition.
+
+*See also: Omission Rate, Confabulation Detection, Negation Handling Accuracy, Uncertainty Marker Preservation — all members of the Clinical Content Fidelity family. The CREOLA subtype taxonomy (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation) provides the structural decomposition.*
 
 ---
 
@@ -1629,6 +2081,8 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 > 💡 The silent killer. A clean-looking note gives no cue something is missing. Argues for source-linked evidence as structural safeguard.
 
+*See also: Hallucination Rate, Confabulation Detection, Negation Handling Accuracy, Uncertainty Marker Preservation — all members of the Clinical Content Fidelity family. Omission is the faithfulness failure that cannot be detected without source-linked evidence (see Linked Evidence / Provenance Tracing).*
+
 ---
 
 ### 🔵 Confabulation Detection (Support × Severity)
@@ -1669,6 +2123,8 @@ Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Sup
 **Novel Thinking / Implications**
 
 > 💡 Two-axis approach is methodologically superior. National standard should mandate dimensional approach even if implementation varies.
+
+*See also: Hallucination Rate, Omission Rate, Negation Handling Accuracy, Uncertainty Marker Preservation — all members of the Clinical Content Fidelity family. The Support × Severity axes formalise what the aggregate Hallucination Rate metric leaves implicit.*
 
 ---
 
@@ -1774,6 +2230,10 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 **Limitations**
 
 > One LLM evaluating another = correlated failure modes. Evaluation LLM should be different model family.
+
+**⚠️ Underspecification Warning (Tier C — high measured reliability, unknown validity)**
+
+> LLM-as-a-Judge has documented biases that are rarely quantified in published deployment: position bias (prefers the first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family as the judge), and fine-grained scoring unreliability (inconsistent discrimination at the high end of Likert scales). The headline Croxford et al. (2025) finding of GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 should be read alongside a separate Rwanda clinical LLM evaluation study that found LLM judges correlated more strongly with non-expert than expert annotators — apparent reliability that may reflect alignment with a particular class of evaluator rather than with clinical ground truth. This is the most uncomfortable possibility in automated evaluation: high ICC with humans that does not generalise to correctness. Any deployment relying on LLM-as-a-Judge for safety-relevant decisions should run the proposed **LLM-Judge Bias Quantification** metric (see Meta-evaluation section) and document residual uncertainty before treating judge outputs as substitutes for expert review.
 
 **Novel Thinking / Implications**
 
@@ -2025,6 +2485,8 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 > 💡 Negation handling is the single most clinically dangerous LLM failure mode. A summary that drops 'no' from 'no allergies' creates a phantom allergy. A summary that adds 'no' to 'has chest pain' eliminates a presenting symptom. Both can cause direct harm. This deserves dedicated testing with adversarially constructed test cases — sentences specifically designed to challenge negation handling.
 
+*See also: Hallucination Rate, Omission Rate, Confabulation Detection, Uncertainty Marker Preservation — all members of the Clinical Content Fidelity family. Negation failure is one subtype (Incorrect Negation) made explicit as a dedicated metric because of its direct clinical harm potential.*
+
 ---
 
 ### 🟡 Temporal Accuracy
@@ -2064,6 +2526,41 @@ For each temporal expression in reference: Temporal Accuracy = (time reference p
 
 ---
 
+### 🟡 Temporal Event Ordering Accuracy
+
+Accuracy of reconstructing the chronological sequence of clinical events from non-linear conversation. Patients rarely describe symptoms in temporal order — they jump between current symptoms, historical episodes, family history, and future concerns. The summary must impose a coherent timeline. Distinct from the existing Temporal Accuracy metric, which covers tense and time-marker preservation at the sentence level; this metric covers event sequencing across the whole note.
+
+|Dimension              |Value                                                   |
+|-----------------------|--------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                  |
+|**Measurement Cadence**|Periodic audit                                          |
+|**Pipeline Layer**     |Summarisation                                           |
+|**Assurance Question** |Safety                                                  |
+|**Measurement Method** |Hybrid                                                  |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                          |
+|**Responsible Actors** |Vendor, Deployer                                        |
+|**Maturity**           |Emerging                                                |
+|**Outcome Type**       |Proximal                                                |
+|**Source**             |i2b2 2012 temporal challenge (F1 0.876 state of art); clinical temporal reasoning literature|
+
+**Why this tier?**
+
+> Important clinical reasoning dimension. Established benchmark methodology exists (i2b2). Periodic audit feasible with annotated test cases.
+
+**Formal Definition**
+
+```
+Given a set of clinical events E extracted from source, and their true temporal ordering T_ref, compute the summary's inferred ordering T_hyp. Accuracy = Kendall's tau between T_ref and T_hyp. Report: pairwise ordering accuracy (what proportion of event pairs are correctly ordered), plus anchor events accuracy (events with absolute timestamps correctly placed).
+```
+
+**Limitations**
+
+> Ground truth temporal annotation is labour-intensive. Some event orderings are legitimately ambiguous (patient doesn't remember). Automated temporal extraction for evaluation adds its own error.
+
+**Novel Thinking / Implications**
+
+> 💡 Event ordering is the difference between "patient had MI, then developed chest pain" and "patient developed chest pain, then had MI". Same events, completely different clinical meaning. Summarisation LLMs frequently collapse temporal structure when compressing, producing notes where causality is implied by proximity rather than by explicit ordering.
+
 ### 🟡 Quantifier Preservation
 
 Preservation of clinical qualifiers: 'occasional', 'frequent', 'constant', 'mild', 'moderate', 'severe', 'intermittent'. LLMs often drop or paraphrase these, losing diagnostic information that affects clinical reasoning.
@@ -2101,6 +2598,41 @@ For each quantifier in reference: Quantifier Preservation = (quantifier present 
 
 ---
 
+### 🟡 Medication Attribute Extraction F1
+
+Per-attribute accuracy for each component of a medication reference: drug name, dose, route, frequency, duration, indication, and start/stop dates. Each attribute is scored independently with its own F1. The medication as a whole is only fully correct if all attributes are correct — and aggregate medication accuracy masks systematic attribute-level failures (e.g. systems that get drug names right but frequencies wrong).
+
+|Dimension              |Value                                                        |
+|-----------------------|-------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                       |
+|**Measurement Cadence**|Periodic audit                                               |
+|**Pipeline Layer**     |Summarisation                                                |
+|**Assurance Question** |Safety                                                       |
+|**Measurement Method** |Computational                                                |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                               |
+|**Responsible Actors** |Vendor                                                       |
+|**Maturity**           |Established                                                  |
+|**Outcome Type**       |Proximal                                                     |
+|**Source**             |n2c2 shared task benchmarks (attribute-level F1 >0.92 for strong systems)|
+
+**Why this tier?**
+
+> Established methodology. Should be a standard vendor pre-deployment metric. Periodic re-testing captures drug vocabulary currency.
+
+**Formal Definition**
+
+```
+For each medication mention m with attributes A = {name, dose, route, frequency, duration, indication}: per-attribute precision and recall against reference. Composite: full-match rate = |medications_all_attributes_correct| / |total_medications|. Safety-critical: dose accuracy and frequency accuracy should be reported with CIs; any system below 0.95 on these should not deploy without enhanced review.
+```
+
+**Limitations**
+
+> Requires NER infrastructure mapping to dm+d and SNOMED medication concepts. Annotation is labour-intensive. Free-text dosing instructions ("take as needed", "titrate to response") are harder to score than structured doses.
+
+**Novel Thinking / Implications**
+
+> 💡 Aggregate medication accuracy is a misleading single number. A system with 95% medication accuracy could be getting drug names right 99% of the time and doses right 92% of the time — and the 8% dose error rate is the safety-critical finding. Attribute-level breakdown is necessary for safety assurance.
+
 ### 🟢 Uncertainty Marker Preservation
 
 Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggestive of', 'consistent with', 'rule out', 'unlikely to be') rather than collapsing to definitive statements? Loss of uncertainty markers creates false certainty in the record.
@@ -2136,7 +2668,44 @@ For each uncertainty marker in reference: Marker Preservation = (uncertainty mar
 
 > 💡 Certainty inflation is the more dangerous direction. When 'possibly viral, consider antibiotics if no improvement' becomes 'viral, no antibiotics needed' the clinical management plan is fundamentally altered. The summariser has effectively made a diagnostic decision that the clinician explicitly hedged on. This connects to epistemic status preservation but is more granular.
 
+*See also: Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy — all members of the Clinical Content Fidelity family. Certainty Inflation is the subtype most likely to cause diagnostic anchoring in downstream clinicians reading the note.*
+
 ---
+
+### 🟡 Medication Event Classification
+
+Classification of medication *actions* discussed in a consultation: start, stop, increase, decrease, continue, hold, restart, allergy/contraindication. Distinct from medication attribute extraction, which captures what the medication is; event classification captures what is being *done* with it. A medication mentioned as "we'll stop this one" is not the same as "we'll keep this one" — the attributes may be identical but the clinical action is opposite.
+
+|Dimension              |Value                                              |
+|-----------------------|---------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                             |
+|**Measurement Cadence**|Periodic audit                                     |
+|**Pipeline Layer**     |Summarisation                                      |
+|**Assurance Question** |Safety                                             |
+|**Measurement Method** |Computational                                      |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                     |
+|**Responsible Actors** |Vendor                                             |
+|**Maturity**           |Established                                        |
+|**Outcome Type**       |Proximal                                           |
+|**Source**             |n2c2 2018 shared task on medication event classification|
+
+**Why this tier?**
+
+> Established methodology. Safety-critical because event misclassification directly causes prescribing errors. Should be standard vendor pre-deployment reporting.
+
+**Formal Definition**
+
+```
+For each medication event discussed: classification into {start, stop, increase, decrease, continue, hold, restart, contraindication, refuse}. Multiclass F1 per class. Safety-critical confusions: start↔stop and increase↔decrease are the most dangerous failure modes. Report confusion matrix, not just aggregate accuracy.
+```
+
+**Limitations**
+
+> Implicit medication events (not explicitly stated but inferred from context) are harder to classify than explicit statements. Conditional events ("stop this if symptoms worsen") require understanding conditional structure.
+
+**Novel Thinking / Implications**
+
+> 💡 The start↔stop confusion is the canonical AVT safety nightmare. A consultation discussion of "we're going to stop your warfarin and start apixaban instead" that is silently inverted by the summariser produces a note that documents starting warfarin and stopping apixaban — both incorrect, both dangerous, and neither flagged by attribute-level accuracy metrics. Event classification should be a mandatory safety gate.
 
 ### 🔵 Style & Format Consistency
 
@@ -2212,6 +2781,80 @@ Length Ratio = note_length / consultation_duration. Appropriateness = correlatio
 
 ---
 
+---
+
+### 🟡 Stigmatising Language Replication Rate
+
+Proportion of AI-generated notes that reproduce biased or stigmatising language patterns learned from training data. Distinct from the existing Cultural & Linguistic Appropriateness metric, which covers broader sensitivity issues. This metric specifically tracks whether the system has learned to generate language like "drug-seeking", "non-compliant", "frequent flyer", "difficult patient" — terms which research shows appear disproportionately in notes about specific patient populations.
+
+|Dimension              |Value                                                                       |
+|-----------------------|----------------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                      |
+|**Measurement Cadence**|Periodic audit                                                              |
+|**Pipeline Layer**     |Summarisation                                                               |
+|**Assurance Question** |Fairness & Equity                                                           |
+|**Measurement Method** |Computational                                                               |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                              |
+|**Responsible Actors** |Vendor, Deployer                                                            |
+|**Maturity**           |Proposed / Novel                                                            |
+|**Outcome Type**       |Distal                                                                      |
+|**Source**             |Barcelona et al., JAMA Network Open 2025 (Black patients 2.54× odds of negative descriptors)|
+
+**Why this tier?**
+
+> Important fairness dimension, measurable today with a keyword/phrase dictionary plus contextual classification. Should be a standard vendor pre-deployment check and periodic audit.
+
+**Formal Definition**
+
+```
+Stigmatising Language Rate = |notes_containing_stigmatising_terms| / |total_notes|. Dictionary based on published clinical language audit studies, updated periodically. Categories: non-adherence framing, drug-seeking framing, effort/character judgment, difficulty framing, dismissive framing. Disaggregate by patient demographics to detect bias amplification: Bias Ratio = rate_in_minority_population / rate_in_majority_population. Bias Ratio > 1.2 indicates disparate application.
+```
+
+**Code: Stigmatising language detection**
+
+```python
+STIGMATISING_LEXICON = {
+    "non_adherence": ["non-compliant", "non-adherent", "refuses to",
+                       "failed to comply", "poor compliance"],
+    "drug_seeking": ["drug-seeking", "drug seeking", "narcotic seeking",
+                      "opioid seeking"],
+    "difficulty": ["difficult patient", "frequent flyer", "high utiliser",
+                    "heartsink", "demanding"],
+    "effort_judgment": ["not trying", "unmotivated", "poorly motivated",
+                         "refuses to engage"],
+    "dismissive": ["claims", "alleges", "reports pain but",
+                    "supposedly", "apparently"],
+}
+
+def stigmatising_language_rate(notes, demographic_col=None):
+    results = {"total": 0, "flagged": 0, "by_category": {},
+               "by_demographic": {}}
+    for note in notes:
+        results["total"] += 1
+        note_flagged = False
+        for category, terms in STIGMATISING_LEXICON.items():
+            if any(term in note["text"].lower() for term in terms):
+                results["by_category"].setdefault(category, 0)
+                results["by_category"][category] += 1
+                note_flagged = True
+        if note_flagged:
+            results["flagged"] += 1
+            if demographic_col and demographic_col in note:
+                d = note[demographic_col]
+                results["by_demographic"].setdefault(d, 0)
+                results["by_demographic"][d] += 1
+    results["rate"] = results["flagged"] / results["total"]
+    return results
+```
+
+**Limitations**
+
+> Dictionary-based detection misses novel stigmatising phrasings and over-flags legitimate uses (e.g. "non-adherent" may be clinically accurate in some contexts). Context-aware classification would be stronger but requires a trained classifier.
+
+**Novel Thinking / Implications**
+
+> 💡 AVT systems trained on legacy clinical notes have learned the biases present in those notes. When the same system generates notes for similar patient presentations, it reproduces the patterns. This is a quiet failure mode: the AI is faithfully reproducing exactly the language patterns the profession is trying to move away from. Detection is a necessary first step; mitigation requires vendor-side intervention in training data curation.
+
 ## Clinical Coding
 
 *SNOMED/Read code assignment. Individual care + population data quality.*
@@ -2254,6 +2897,202 @@ Precision = |C_correct ∩ C_generated| / |C_generated|. Recall = |C_correct ∩
 > Requires clinician audit. Small samples.
 
 ---
+
+### 🟡 SNOMED CT Concept Mapping Accuracy
+
+Accuracy of the mapping from extracted clinical entities in free-text to the correct SNOMED CT concept ID. Distinct from the existing SNOMED Code Accuracy metric, which measures whether the assigned code is clinically correct. Concept mapping measures whether the system correctly resolves "chest pain" to the correct SNOMED concept (29857009 — chest pain) rather than a near-miss concept (102588006 — chest discomfort). The boundary between correct and near-miss is where most mapping errors occur.
+
+|Dimension              |Value                                                                    |
+|-----------------------|-------------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                   |
+|**Measurement Cadence**|Periodic audit                                                           |
+|**Pipeline Layer**     |Clinical Coding                                                          |
+|**Assurance Question** |Fidelity & Accuracy                                                      |
+|**Measurement Method** |Computational                                                            |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                           |
+|**Responsible Actors** |Vendor                                                                   |
+|**Maturity**           |Established                                                              |
+|**Outcome Type**       |Proximal                                                                 |
+|**Source**             |NLP2FHIR pipeline literature; John Snow Labs FHIR-Ready AI; MedCAT benchmarks|
+
+**Why this tier?**
+
+> Vendor pre-deployment metric. Should be reported alongside SNOMED Code Accuracy. Essential for NHS interoperability as ambient scribes increasingly drive structured data entry.
+
+**Formal Definition**
+
+```
+For each extracted clinical mention m: mapping function M(m) → SNOMED concept ID. Accuracy = |correctly_mapped| / |total_mentions|. Additional measures: (a) Exact Match Rate — mapped to exactly the reference concept; (b) Hierarchical Match Rate — mapped to an ancestor or descendant within 2 levels of reference; (c) Semantic Type Match Rate — mapped to correct semantic category. Report all three because acceptable mapping depth depends on context.
+```
+
+**Limitations**
+
+> "Correct" mapping is context-dependent — sometimes a more general concept is preferable to an over-specific one. Ground truth annotation requires SNOMED expertise. NHS-specific subset mappings add complexity (not all SNOMED concepts are in the UK Edition).
+
+**Novel Thinking / Implications**
+
+> 💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" — but the downstream analytics, safety alerts, and QOF calculations will.
+
+### 🟡 ICD-10 / ICD-11 Full-Specificity Precision
+
+Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity — the difference representing systematic specificity errors that aggregate metrics hide.
+
+|Dimension              |Value                                       |
+|-----------------------|--------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                      |
+|**Measurement Cadence**|Periodic audit                              |
+|**Pipeline Layer**     |Clinical Coding                             |
+|**Assurance Question** |Fidelity & Accuracy                         |
+|**Measurement Method** |Computational                               |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit              |
+|**Responsible Actors** |Vendor                                      |
+|**Maturity**           |Emerging                                    |
+|**Outcome Type**       |Proximal                                    |
+|**Source**             |Hybrid-Code v2 (arXiv 2512.23743); WHO ICD-11 implementation guidance|
+
+**Why this tier?**
+
+> Vendor pre-deployment. Should be reported at multiple specificity levels (3-char, 4-char, full). Important for secondary care deployment and research data quality.
+
+**Formal Definition**
+
+```
+Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. Values > 10 percentage points indicate the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+```
+
+**Limitations**
+
+> Full-specificity coding requires clinical judgement that may exceed what is documented in the consultation. Some codes are legitimately unreachable from the source material — the consultation didn't contain enough information. Distinguishing unreachable codes from model errors requires careful reference construction.
+
+**Novel Thinking / Implications**
+
+> 💡 Over-specific coding is a form of clinical hallucination: the system generates specificity that wasn't present in the source. Under-specific coding is information loss. Both are quality issues, and they require different interventions. Reporting only aggregate accuracy conflates them.
+
+### 🟡 OPCS-4 Procedure Coding Accuracy
+
+Accuracy of OPCS-4 procedure code assignment from consultation documentation. NHS-specific — the OPCS-4 classification (Office of Population Censuses and Surveys, 4th revision) is the mandatory procedure coding standard for NHS secondary care. **No published AI benchmarks currently exist for OPCS-4 coding** despite it being essential for NHS deployment.
+
+|Dimension              |Value                                         |
+|-----------------------|----------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                        |
+|**Measurement Cadence**|Periodic audit                                |
+|**Pipeline Layer**     |Clinical Coding                               |
+|**Assurance Question** |Fidelity & Accuracy                           |
+|**Measurement Method** |Computational                                 |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                |
+|**Responsible Actors** |Vendor                                        |
+|**Maturity**           |Proposed / Novel                              |
+|**Outcome Type**       |Proximal                                      |
+|**Source**             |NHS Digital OPCS-4 coding standards; gap identified in published AVT literature|
+
+**Why this tier?**
+
+> Critical for NHS secondary care deployment. Should be a procurement requirement but cannot currently be assessed against published benchmarks — deployers must require vendor evidence on their specific cases.
+
+**Formal Definition**
+
+```
+Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level (first character), category (first 2 characters), sub-category (3 characters), full code. Report per clinical chapter because procedure complexity varies dramatically (codes in Chapter V — Nervous System — are harder than Chapter W — Bones & Joints).
+```
+
+**Limitations**
+
+> No public NHS-representative benchmark dataset for OPCS-4 coding exists. Vendors must construct their own evaluation, which creates comparability problems. Ground truth annotation requires specialist NHS coding expertise.
+
+**Novel Thinking / Implications**
+
+> 💡 The absence of any published OPCS-4 AI benchmark is itself a diagnostic finding about the state of the field. Ambient scribe vendors focused on the US market optimise for ICD-10 and CPT; NHS-specific standards are an afterthought. This is a strong argument for NHS England to commission a national OPCS-4 benchmark dataset as infrastructure investment — without it, NHS secondary care AVT deployment is operating without evidence.
+
+### 🟡 dm+d Medication Coding Accuracy
+
+Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications discussed in consultations. NHS-specific — dm+d is the mandatory NHS medication terminology, maintained by NHS BSA, and essential for medication safety, interoperability, and prescribing workflows. **Like OPCS-4, no published AI benchmarks exist for dm+d coding**.
+
+|Dimension              |Value                                                     |
+|-----------------------|----------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                    |
+|**Measurement Cadence**|Periodic audit                                            |
+|**Pipeline Layer**     |Clinical Coding                                           |
+|**Assurance Question** |Safety                                                    |
+|**Measurement Method** |Computational                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                                |
+|**Responsible Actors** |Vendor                                                    |
+|**Maturity**           |Proposed / Novel                                          |
+|**Outcome Type**       |Proximal                                                  |
+|**Source**             |NHS BSA dm+d standard; gap identified in published AVT literature|
+
+**Why this tier?**
+
+> Safety-critical for any AVT writing medication data back to the EPR. Should be a procurement requirement with vendor attestation. Monitoring required as dm+d is updated quarterly — a model trained against an old version will systematically fail on newer medications.
+
+**Formal Definition**
+
+```
+Per medication mention: correct mapping to dm+d VMP (Virtual Medicinal Product), AMP (Actual Medicinal Product), VMPP (Virtual Medicinal Product Pack), or AMPP (Actual Medicinal Product Pack) depending on the level required by the EPR write-back. Currency Check: proportion of reference medications that exist in the current dm+d release. Drift = proportion of codes generated that no longer exist in the current dm+d release.
+```
+
+**Limitations**
+
+> Mapping from spoken medication name to dm+d concept involves disambiguation (brand vs generic, different strengths, different formulations). Spoken names rarely contain enough specificity to uniquely identify a dm+d code without additional context.
+
+**Novel Thinking / Implications**
+
+> 💡 dm+d is updated quarterly. Any AVT system with a static model is by definition accumulating vocabulary drift against the current standard. A system trained two years ago has approximately eight releases of drift. Currency should be a contractual requirement — vendors should commit to a maximum acceptable drift against the live dm+d.
+
+---
+
+### 🟢 Code Hallucination Rate
+
+Rate at which the system generates codes that do not exist in the target code set. Distinct from all other coding error metrics because a non-existent code is not a "wrong" code — it is a structural error. The code looks valid syntactically but resolves to nothing. The Hybrid-Code v2 framework explicitly targeted "zero-hallucination coding" because this failure mode is both detectable and unambiguously wrong.
+
+|Dimension              |Value                                                |
+|-----------------------|-----------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                            |
+|**Measurement Cadence**|Continuous                                           |
+|**Pipeline Layer**     |Clinical Coding                                      |
+|**Assurance Question** |Safety                                               |
+|**Measurement Method** |Computational                                        |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                           |
+|**Responsible Actors** |Vendor, Deployer                                     |
+|**Maturity**           |Emerging                                             |
+|**Outcome Type**       |Proximal                                             |
+|**Source**             |Hybrid-Code v2 (arXiv 2512.23743) — neuro-symbolic verification approach|
+
+**Why this tier?**
+
+> Architecturally preventable failure mode — there is no reason a production system should generate non-existent codes. Should be a hard zero-tolerance metric validated pre-deployment and monitored continuously. Automated detection is trivial (lookup against the code set).
+
+**Formal Definition**
+
+```
+Code Hallucination Rate = |generated_codes_not_in_target_code_set| / |total_generated_codes|. Target: 0.0. Any non-zero value indicates architectural failure — the system should be constrained to generate only valid codes via lookup or constrained decoding. Report per code set (SNOMED, ICD, OPCS-4, dm+d) because constraint enforcement may vary.
+```
+
+**Code: Code hallucination check**
+
+```python
+def code_hallucination_rate(generated_codes, code_set):
+    """
+    Returns rate of codes that don't exist in the target code set.
+    Should be 0 for any production system.
+    """
+    valid_codes = set(code_set)
+    hallucinated = [c for c in generated_codes if c not in valid_codes]
+    rate = len(hallucinated) / len(generated_codes) if generated_codes else 0
+    return {
+        "rate": rate,
+        "hallucinated_codes": hallucinated,
+        "alert": rate > 0,
+        "severity": "CRITICAL" if rate > 0 else "OK"
+    }
+```
+
+**Limitations**
+
+> Requires current version of the target code set for lookup. Code set updates may temporarily create false positives (newly valid codes that haven't propagated). Does not detect codes that exist but are clinically wrong — that's captured by SNOMED Code Accuracy.
+
+**Novel Thinking / Implications**
+
+> 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation — the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
 ### 🟡 Coding Inflation Detection
 
@@ -2310,6 +3149,111 @@ def coding_drift_spc(pre_counts, post_counts):
 > 💡 Risk is data quality: systematically different codes corrupt epidemiological data, QOF, population health analytics.
 
 ---
+
+### 🟡 E/M Level Shift Monitoring
+
+Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and post-AVT deployment. In US settings, E/M level shift has been a primary revenue impact channel; in NHS settings, the equivalent concern is SNOMED specificity shift and its effect on QOF, Hospital Episode Statistics, and population health analytics. Extension of the existing Coding Inflation Detection metric with a specific focus on tariff-relevant code distributions.
+
+|Dimension              |Value                                                                                |
+|-----------------------|-------------------------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                               |
+|**Measurement Cadence**|Continuous                                                                           |
+|**Pipeline Layer**     |Clinical Coding                                                                      |
+|**Assurance Question** |Safety                                                                               |
+|**Measurement Method** |Computational                                                                        |
+|**Lifecycle Phases**   |Day Zero Baseline, Continuous                                                        |
+|**Responsible Actors** |Regional (ICB), National Body                                                        |
+|**Maturity**           |Emerging                                                                             |
+|**Outcome Type**       |Distal                                                                               |
+|**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) — documented 3.0→4.1 diagnoses/encounter post-AVT|
+
+**Why this tier?**
+
+> Regional (ICB) and national monitoring. Deployers cannot assess population-level shifts from their own data alone. Requires pre/post AVT baseline and cross-practice aggregation.
+
+**Formal Definition**
+
+```
+For each coding level or tariff-relevant category: compute pre-AVT baseline distribution and post-AVT distribution. Shift Index = KL divergence or earth-mover's distance between distributions. Flag categories with shift > 0.1 (magnitude calibrated to historical coding drift). Disaggregate by demographic and clinical complexity to identify selective amplification.
+```
+
+**Limitations**
+
+> Requires pre-AVT baseline of sufficient duration (minimum 12 months) for seasonal pattern stability. Confounded with independent coding policy changes, QOF updates, and training interventions. Attribution to AVT specifically requires quasi-experimental design.
+
+**Novel Thinking / Implications**
+
+> 💡 The US evidence (14% HCC capture increase, 11% wRVU increase) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently.
+
+### 🟡 Coding Equity Index
+
+Whether AVT-driven changes in coding distribution are equitably spread across patient demographics or systematically benefit some populations more than others. If AVT improves coding completeness more for majority populations than for minority populations, it widens existing inequalities in data quality and downstream resource allocation.
+
+|Dimension              |Value                                                 |
+|-----------------------|------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Measurement Cadence**|Periodic audit                                        |
+|**Pipeline Layer**     |Clinical Coding                                       |
+|**Assurance Question** |Fairness & Equity                                     |
+|**Measurement Method** |Computational                                         |
+|**Lifecycle Phases**   |Periodic Audit                                        |
+|**Responsible Actors** |Regional (ICB), National Body                         |
+|**Maturity**           |Proposed / Novel                                      |
+|**Outcome Type**       |Distal                                                |
+|**Source**             |Extension of existing Deployment Equity Index to coding dimension|
+
+**Why this tier?**
+
+> Regional or national responsibility. Requires demographic-linked coding data aggregated across practices. Important equity dimension currently invisible in AVT evaluation.
+
+**Formal Definition**
+
+```
+For each coding category: compute the pre/post AVT change ratio per demographic group. Equity Ratio = max(change_ratio across groups) / min(change_ratio across groups). Values > 1.5 indicate disparate impact. Specifically monitor: condition coding completeness, severity coding, and comorbidity capture by ethnicity, age, deprivation, and EAL status.
+```
+
+**Limitations**
+
+> Demographic-linked coding analysis requires data aggregation that may raise information governance concerns. Small group sizes at practice level require regional aggregation. Attribution to AVT specifically needs controls for confounders.
+
+**Novel Thinking / Implications**
+
+> 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture — they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
+
+### 🔵 wRVU / Tariff Impact Attribution
+
+Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to PbR tariffs, QOF achievement, and secondary care activity-based funding.
+
+|Dimension              |Value                                        |
+|-----------------------|---------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research               |
+|**Measurement Cadence**|Periodic audit                               |
+|**Pipeline Layer**     |Clinical Coding                              |
+|**Assurance Question** |Meta-evaluation                              |
+|**Measurement Method** |Hybrid                                       |
+|**Lifecycle Phases**   |Periodic Audit                               |
+|**Responsible Actors** |Regional (ICB), National Body, Academic     |
+|**Maturity**           |Proposed / Novel                             |
+|**Outcome Type**       |Distal                                       |
+|**Source**             |Extends E/M Level Shift Monitoring with causal attribution methodology|
+
+**Why this tier?**
+
+> Research-grade metric requiring quasi-experimental design. National or academic responsibility. Not routinely measurable at deployer level.
+
+**Formal Definition**
+
+```
+Using difference-in-differences or synthetic control methodology: compare coding/tariff trajectories of AVT-adopting practices against matched non-adopting practices over the same period. Attribution Coefficient = (ΔAVT - ΔControl) / ΔControl. Positive values indicate AVT-driven shift; magnitude indicates size of effect. Confidence intervals essential given small sample sizes in practice-level comparisons.
+```
+
+**Limitations**
+
+> Practice selection into AVT is not random — early adopters may differ systematically from non-adopters. Matching methodology is contested. Small sample sizes at practice level undermine statistical power.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that answers the governance question: is AVT making the coded data more accurate or more inflated? Without this attribution, every observed coding shift is ambiguous. National evaluation programmes are the only plausible venue for doing this properly — individual deployers cannot.
 
 ### 🔵 Code Specificity Index
 
@@ -2571,6 +3515,78 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 > 💡 When an AVT error is discovered after the note has been signed and written to the EPR, the recovery process matters. Some EPR systems make correction easy (visible audit trail, version history); others make it nearly impossible (correction creates a new entry but the original persists). This affects how quickly and cleanly errors can be addressed when discovered through periodic audit.
 
 ---
+
+### 🟡 FHIR R4 Resource Conformance Rate
+
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats — but retention is not the same as profile conformance.
+
+|Dimension              |Value                                    |
+|-----------------------|-----------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                   |
+|**Measurement Cadence**|Continuous                               |
+|**Pipeline Layer**     |EPR Write-back                           |
+|**Assurance Question** |Fidelity & Accuracy                      |
+|**Measurement Method** |Computational                            |
+|**Lifecycle Phases**   |Pre-deployment, Continuous               |
+|**Responsible Actors** |Vendor                                   |
+|**Maturity**           |Established                              |
+|**Outcome Type**       |Proximal                                 |
+|**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
+
+**Why this tier?**
+
+> Established methodology with open-source validators. Vendor pre-deployment requirement. Should be reported per FHIR profile used (UK Core, INTEROPen, local).
+
+**Formal Definition**
+
+```
+For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) — failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
+```
+
+**Limitations**
+
+> Conformance to a profile does not guarantee clinical correctness — a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
+
+**Novel Thinking / Implications**
+
+> 💡 Profile conformance is a necessary but not sufficient condition for interoperability. The existing Write-back Fidelity metric measures whether content is correct; this metric measures whether the structural container is valid. Both can fail independently. A system that produces valid-but-wrong FHIR is dangerous; a system that produces right-but-invalid FHIR will fail to write-back silently.
+
+---
+
+### 🔵 openEHR Archetype Conformance
+
+Conformance of generated clinical data against openEHR archetypes for NHS trusts using openEHR-based EPR platforms. Less widespread than FHIR in UK primary care but relevant for specific secondary care deployments (particularly in mental health trusts and specialised services).
+
+|Dimension              |Value                                     |
+|-----------------------|------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research            |
+|**Measurement Cadence**|Continuous                                |
+|**Pipeline Layer**     |EPR Write-back                            |
+|**Assurance Question** |Fidelity & Accuracy                       |
+|**Measurement Method** |Computational                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                |
+|**Responsible Actors** |Vendor                                    |
+|**Maturity**           |Established                               |
+|**Outcome Type**       |Proximal                                  |
+|**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
+
+**Why this tier?**
+
+> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms — context adjustment per the "Adapting to Local Context" section.
+
+**Formal Definition**
+
+```
+For each generated composition: validate against the applicable openEHR archetype(s) and template(s). Report: archetype conformance rate (structural), terminology binding conformance (codes map to required terminology subset), cardinality compliance. Must validate both the composition structure and the path-based data bindings.
+```
+
+**Limitations**
+
+> openEHR archetype validation tooling is less mature than FHIR validation. Archetype maintenance varies by trust. Cross-trust conformance may require different archetype versions.
+
+**Novel Thinking / Implications**
+
+> 💡 The UK has bifurcated EPR infrastructure: primary care is standardising on FHIR-based interoperability, while parts of secondary care (particularly the Code4Health-aligned trusts) have significant openEHR investment. AVT vendors focused on primary care may simply not support openEHR, making them structurally unsuitable for some secondary care deployments. This should be a procurement question rather than a post-contract discovery.
 
 # Part B — Pipeline Interactions
 
@@ -3128,6 +4144,41 @@ def source_to_record_concordance(
 
 ---
 
+### 🔵 Cumulative Information Yield
+
+The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
+
+|Dimension              |Value                                                                            |
+|-----------------------|---------------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
+|**Measurement Cadence**|Periodic audit                                                                   |
+|**Pipeline Layer**     |End-to-End                                                                       |
+|**Assurance Question** |Safety                                                                           |
+|**Measurement Method** |Hybrid                                                                           |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                                   |
+|**Responsible Actors** |Academic, National Body                                                          |
+|**Maturity**           |Proposed / Novel                                                                 |
+|**Outcome Type**       |Distal                                                                           |
+|**Source**             |Extension of existing Source-to-Record Concordance with categorical yield decomposition|
+
+**Why this tier?**
+
+> Resource-intensive evaluation requiring expert annotation of source audio, organised into categorical yield rather than binary preservation. Best suited for national evaluation programme. Per-category reporting reveals systematic content bias invisible to aggregate preservation metrics.
+
+**Formal Definition**
+
+```
+For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite — the aggregate obscures category bias.
+```
+
+**Limitations**
+
+> Categorical annotation of source audio is even more labour-intensive than binary annotation. Category boundaries are contested (is "stopped smoking 5 years ago" social context or relevant history?). Weight assignment for the composite is subjective.
+
+**Novel Thinking / Implications**
+
+> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
+
 ### 🔵 Error Propagation / Cascade Analysis
 
 End-to-end: tracking how a single upstream error amplifies or gets corrected through subsequent stages. An ASR misrecognition could be caught by the summariser (correction) or cascade into wrong coding and wrong EPR entry (amplification).
@@ -3536,6 +4587,10 @@ Present note to blinded clinician(s). Clinician makes clinical decisions (diagno
 
 > Extremely resource-intensive: requires blinded clinical decision-making from multiple clinicians. Inter-clinician variation in decision-making adds noise. Simulated decisions may not reflect real-world behaviour.
 
+**⚠️ Underspecification Warning (Tier B — conceptually essential, operationally impractical)**
+
+> Clinical Decision Equivalence is conceptually the most important metric in the taxonomy for distal outcome validation — it directly tests whether AVT-generated notes support the same clinical decisions as direct observation, which is what AVT ultimately needs to do to be safe. But measurement methodology is extremely resource-intensive: blinded clinical decision-making from multiple clinicians per case, inter-clinician variation adding noise, simulated decision contexts differing from real-world behaviour under time pressure. No validated protocol exists. No threshold for "adequate equivalence" has been established. Best interpreted as a target for national or academic evaluation programmes rather than deployer-level assessment. When operationalised, the study design must specify: (a) number of clinicians per case and selection criteria; (b) blinding methodology and how information leakage is prevented; (c) decision categories assessed (diagnostic, therapeutic, safety-netting, follow-up); (d) agreement metric (kappa, per-category accuracy, weighted agreement); (e) clinical complexity stratification; (f) handling of inter-clinician disagreement in the ground-truth condition.
+
 **Novel Thinking / Implications**
 
 > 💡 This is the metric that closes the proximal-distal gap. If a note produced by AVT leads to the same clinical decisions as direct observation, the documentation is functionally safe regardless of WER, ROUGE, or any other proxy metric. This should be the gold-standard validation for any AVT claiming clinical deployment readiness.
@@ -3661,6 +4716,41 @@ Round-Trip Loss = 1 - I(audio; note) / H(audio), where I is mutual information a
 
 **Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 7 Tier 3
 
+### Family: Post-Generation Correction
+
+> **Parent construct** — what clinicians do to AI-generated notes between generation and sign-off, and what that behaviour tells us about both AI quality and human oversight.
+>
+> The next four metrics all measure human correction of AI output but at different levels of resolution. Treating them as independent metrics misses the fact that they form a four-tier family, where each tier adds diagnostic depth at the cost of additional measurement infrastructure. A deployer with limited governance capacity can start at the first tier and add tiers as maturity grows.
+>
+> **Four tiers of increasing resolution:**
+>
+> 1. **Binary — was the note edited at all?** Cheapest to collect from EPR workflow telemetry. System-level monitoring metric. Useful for trending but clinically uninformative in isolation — a low edit rate can mean excellent AI or inadequate review, and only triangulation with other metrics distinguishes them. This is the Edit Rate metric.
+>
+> 2. **Magnitude — how much was edited?** Measured via edit distance (Levenshtein, TER, HTER, or compression-based). Adds signal about the scale of correction effort. Critical refinement: distinguish **semantic edits** (changing clinical meaning — adding a missed symptom, correcting a drug name) from **stylistic edits** (formatting, phrasing preference). Compression-based edit distance (arXiv 2024) has been shown to correlate better with actual human effort than raw Levenshtein because it captures the structural nature of the change. Magnitude is implicit in the Edit Type Classification metric, which decomposes edits into categories that map to magnitude.
+>
+> 3. **Effort and locus — what kind of work, and where in the note?** Measured via Edit Type Classification (additions / deletions / modifications / structural) and Edit Location Distribution (which sections of the note attract the most edits). Tells you which failure modes are active: predominantly additions indicate an omission problem; predominantly deletions indicate a hallucination problem; concentration in the "plan" section indicates the AI extracts facts well but struggles with clinical reasoning. This is where the family becomes diagnostic rather than just descriptive.
+>
+> 4. **Longitudinal pattern — how is the behaviour changing over time?** The Edit-Pattern Monitoring at Scale metric (Abridge, across 1M+ encounters per week) captures fleet-wide edit dynamics and is the most scalable quality signal currently available — but it is locked inside one vendor's proprietary infrastructure. The open research question is whether similar pattern monitoring can be built as an open standard.
+>
+> **A severity taxonomy for edits.** Not all edits carry equal weight. Adapted from CREOLA and edit-pattern disclosures, edits fall into four severity categories:
+>
+> - **Safety-critical correction** — fixing a fabricated medication, corrected allergy, reversed negation, or wrong dose. These are the edits that prevent harm.
+> - **Clinical addition** — adding a missed symptom, examination finding, or plan element. Quality improvement, not harm prevention.
+> - **Stylistic preference** — clinician preference for phrasing, structure, or formatting. Often the majority of edits by count but the minority by safety value.
+> - **Structural reorganisation** — moving content between sections, consolidating or splitting points. Quality improvement.
+>
+> Aggregate edit rate treats all four categories equally. A system with a 30% edit rate consisting mostly of safety-critical corrections is in much worse state than a system with a 60% edit rate consisting mostly of stylistic preference — but the raw numbers invert the assessment. Edit Type Classification is the metric in this family that makes severity visible.
+>
+> **The complacency trajectory.** The family has a temporal dimension that individual measurements miss. At Day Zero, edit rate is a quality signal — higher rates mean more errors being caught. Over months, as clinicians develop trust in the system, edit rate declines — but the decline could reflect either improving AI or increasing complacency, and distinguishing them requires triangulation. This is why Edit Rate is a Tier 1 continuous metric but must be read alongside Review-Before-Signing Rate, Time-to-Sign Distribution, and periodic Automation Bias Detection error injection. Edit rate alone is an ambiguous signal; the family is diagnostic.
+>
+> **Metrics in this family:**
+> - 🟢 **Edit Rate (% Notes Edited)** — tier 1 binary. The entry point; cheapest and most widely measured. Must be triangulated to interpret.
+> - 🟡 **Edit Type Classification** — tier 3 diagnostic decomposition. Reveals failure mode (omission-dominant vs hallucination-dominant vs stylistic).
+> - 🟡 **Edit Location Distribution** — tier 3 locus analysis. Reveals which sections of the note the AI handles well vs poorly.
+> - 🔵 **Edit-Pattern Monitoring at Scale** — tier 4 longitudinal fleet-level monitoring. Vendor-proprietary; informs what a national standard should require of all vendors.
+
+---
+
 ### 🟢 Edit Rate (% Notes Edited)
 
 Percentage of AI notes edited before approval. At Day Zero: quality signal. Declining trajectory: primary complacency indicator.
@@ -3723,6 +4813,8 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 > 💡 Trajectory matters more than absolute value. 60% → 15% in 3 months should trigger review regardless of AI accuracy.
 
+*See also: Edit Type Classification, Edit Location Distribution, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Edit Rate is the binary entry point; the other metrics add diagnostic depth. Interpret alongside Review-Before-Signing Rate and Time-to-Sign Distribution to distinguish improving AI from increasing complacency.*
+
 ---
 
 ### 🟡 Edit Type Classification
@@ -3764,6 +4856,8 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 **Novel Thinking / Implications**
 
 > 💡 Mostly additions = omission problem; mostly deletions = hallucination problem.
+
+*See also: Edit Rate, Edit Location Distribution, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Type classification is where the family becomes diagnostic rather than just descriptive: predominantly additions indicate an omission-dominant failure mode; predominantly deletions indicate a hallucination-dominant mode.*
 
 ---
 
@@ -3900,6 +4994,8 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 > 💡 National standard should require standardised edit-pattern reporting from all vendors.
 
+*See also: Edit Rate, Edit Type Classification, Edit Location Distribution — all members of the Post-Generation Correction family. Pattern monitoring operates at the fleet level to detect shifts invisible to any single deployer; informs what a national standard should require all vendors to provide.*
+
 ---
 
 ### 🟡 Automation Bias Detection (Error Injection)
@@ -3936,6 +5032,10 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 **Limitations**
 
 > Ethical complexity. Must ensure errors intercepted before permanent record.
+
+**⚠️ Underspecification Warning (Tier B — strong concept, ad hoc protocols)**
+
+> Automation bias is well-defined conceptually (Parasuraman & Manzey, *Human Factors* 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds — one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
 
 **Novel Thinking / Implications**
 
@@ -3978,6 +5078,8 @@ For each note section s: Edit Density(s) = |edits_in_s| / |words_in_s|. Compare 
 
 > 💡 Reveals systematic quality patterns invisible to aggregate edit rate. If clinicians always edit the 'plan' section but rarely edit 'history', the AI is good at extracting facts but poor at synthesising clinical reasoning. This guides where vendor improvement should focus and where clinicians should pay particular attention during review.
 
+*See also: Edit Rate, Edit Type Classification, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Locus analysis complements type classification: what kind of edit combined with where in the note identifies specific failure modes that either dimension alone would miss.*
+
 ---
 
 ### 🟡 Trust Calibration Survey
@@ -4014,6 +5116,10 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 **Limitations**
 
 > Self-report bias. Must triangulate with behavioural metrics.
+
+**⚠️ Underspecification Warning (Tier B — concept defined, no AVT-validated instrument)**
+
+> Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, HATAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. A 2024 Dokkyo Medical University review concluded that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS or HATAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
 
 **Novel Thinking / Implications**
 
@@ -4092,6 +5198,10 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 **Limitations**
 
 > Self-report. Adds burden.
+
+**⚠️ Underspecification Warning (Tier B — generic validation, no AVT-specific calibration)**
+
+> NASA-TLX is validated generically with acceptable individual-setting ICC of 0.71–0.81 (lower for group settings). However, for AVT specifically: no subscale selection protocol exists, no consensus on measurement timing (during encounter / immediately after charting / end of day / end of week), no documentation-specific adaptation of the instrument, and no established thresholds for "acceptable" cognitive load in AVT review tasks. The 60.7% reduction in composite cognitive load reported in a 2024 Abridge study is a point estimate with no reference scale for clinical interpretation — "60% less" of an undefined baseline is not directly actionable. Use NASA-TLX as an interim measure, specify the timing and subscale selection used, and avoid comparing raw scores across studies that use different protocols. The proposed **Verification Burden** metric (Human Factors & Workflow) is intended to capture a more specific construct that may ultimately prove more actionable than global cognitive load.
 
 **Novel Thinking / Implications**
 
@@ -4245,6 +5355,10 @@ Longitudinal T(t). After error at t_e, decay rate λ = -dT/dt for t > t_e. Healt
 
 > Longitudinal measurement required.
 
+**⚠️ Underspecification Warning (Tier A — no validated measurement in clinical AI)**
+
+> The trust halo effect is well-established in cognitive psychology but has **not been operationalised for clinical AI or AVT specifically**. The concept substantially overlaps with automation bias, and the empirical boundary between the two constructs is not established — it is unclear whether they should be measured as distinct phenomena or as facets of a common over-reliance construct. No validation studies exist. No measurement instruments have been adapted from cognitive psychology to the clinical AI context. Two viable paths forward: (a) define a specific experimental paradigm (e.g. testing whether positive experience with transcription accuracy transfers uncritically to trust in clinical summarisation accuracy, which is a different capability) and build validation evidence from there, or (b) fold the construct into the broader automation bias / over-reliance family until the measurement science matures enough to distinguish it meaningfully. Until one of these is done, any reported values should carry explicit acknowledgement of the definitional uncertainty.
+
 **Novel Thinking / Implications**
 
 > 💡 Trust halo → off-label use: over-trust drives scope creep. The halo is the mechanism; off-label use is the consequence.
@@ -4282,11 +5396,174 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 > Confounded with case mix variation (afternoon clinics may have different complexity). Requires careful statistical controls.
 
+**⚠️ Underspecification Warning (Tier A — underlying concept unoperationalised)**
+
+> The broader concept of attention drift across a clinician's reviewing session has **no operationalised definition in AVT literature**. The Cognitive Drift Index (Frontiers in Neuroscience 2025) measures information consumers' judgment shifts in unrelated domains, not clinician review vigilance. A 2026 KevinMD essay described "the slow erosion of clinical humility" qualitatively but offered no measurement approach. No published study has established a detection methodology, thresholds, or relationship to patient safety outcomes. Proposed interim operationalisation for this taxonomy — to be treated as a working definition pending empirical validation — is a composite of (a) declining review time per note over a session, (b) reduced edit rate trajectory within sessions, and (c) reduced error detection rate in periodic injection testing stratified by time-of-session. This proposal has not been validated; deployers using it should document the operational definition applied and treat results as exploratory rather than diagnostic.
+
 **Novel Thinking / Implications**
 
 > 💡 If review quality degrades through the session, the safety implications are significant: the last patients of the day get the least rigorous oversight. AVT systems designed assuming consistent reviewer attention are operating outside that assumption for a meaningful fraction of consultations. This argues for fatigue-aware workflow design — perhaps requiring more thorough review for end-of-session notes, or rotating review responsibility.
 
 ---
+
+---
+
+### Sociotechnical & Resilience sub-cluster
+
+*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss — the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
+
+---
+
+### 🔵 Work-as-Imagined vs Work-as-Done Gap
+
+The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
+
+|Dimension              |Value                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
+|**Measurement Cadence**|Periodic audit                                                         |
+|**Pipeline Layer**     |Cross-cutting                                                          |
+|**Assurance Question** |Safety                                                                 |
+|**Measurement Method** |Hybrid                                                                 |
+|**Lifecycle Phases**   |Periodic Audit                                                         |
+|**Responsible Actors** |Deployer, Academic                                                     |
+|**Maturity**           |Proposed / Novel                                                       |
+|**Outcome Type**       |Distal                                                                 |
+|**Source**             |Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations      |
+
+**Why this tier?**
+
+> Research-grade metric requiring ethnographic observation and structured interview methodology. Not routinely measurable at deployer level. Academic or national evaluation programme responsibility.
+
+**Formal Definition**
+
+```
+Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis — categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar — the qualitative detail is what supports intervention.
+```
+
+**Limitations**
+
+> Ethnographic methods are resource-intensive and subjective. WAI is itself often poorly documented. Observer effects shape observed behaviour. Generalisation across practices is limited.
+
+**Novel Thinking / Implications**
+
+> 💡 Every complex sociotechnical system has a WAI/WAD gap — procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
+
+---
+
+### 🟡 Verification Burden
+
+The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
+
+|Dimension              |Value                                                               |
+|-----------------------|--------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
+|**Measurement Cadence**|Periodic audit                                                      |
+|**Pipeline Layer**     |Cross-cutting                                                       |
+|**Assurance Question** |Human Factors                                                       |
+|**Measurement Method** |Hybrid                                                              |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                   |
+|**Responsible Actors** |Deployer, Academic                                                  |
+|**Maturity**           |Emerging                                                            |
+|**Outcome Type**       |Proximal                                                            |
+|**Source**             |JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data  |
+
+**Why this tier?**
+
+> Conceptually important — distinguishes apparent efficiency gain from actual efficiency gain — but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
+
+**Formal Definition**
+
+```
+VB = t_review + t_correction + t_cross_reference, measured per consultation. Baseline pre-AVT: equivalent activities (proofreading own notes, referencing structured fields). Net Verification Cost = VB_AVT - VB_pre-AVT. Efficiency gain = (t_documentation_pre - t_documentation_AVT) - Net Verification Cost. A genuinely efficient system has positive net gain after accounting for verification burden.
+```
+
+**Limitations**
+
+> TimeCat or equivalent time-motion methodology is labour-intensive. Verification activities are often interleaved with other work and hard to isolate. Self-report on verification time is unreliable because the activity is partly automatic.
+
+**Novel Thinking / Implications**
+
+> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency — and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
+
+---
+
+### 🔵 Resilience Capacities Assessment
+
+Structured assessment of the clinician-AVT joint cognitive system against the four Safety-II resilience capacities: **responding** to unexpected events, **monitoring** for signs of degradation, **learning** from experience, and **anticipating** future challenges. From Hollnagel's resilience engineering framework. Applied not to AVT alone but to the combined human-machine system as it operates in context.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Measurement Cadence**|Periodic audit                                                    |
+|**Pipeline Layer**     |Cross-cutting                                                     |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Hybrid                                                            |
+|**Lifecycle Phases**   |Periodic Audit                                                    |
+|**Responsible Actors** |Deployer, National Body, Academic                                 |
+|**Maturity**           |Proposed / Novel                                                  |
+|**Outcome Type**       |Distal                                                            |
+|**Source**             |Hollnagel Safety-II; FRAM methodology; resilience engineering literature|
+
+**Why this tier?**
+
+> Research framework applied at system level. Not a routine metric. National or academic responsibility for maturing the methodology into deployable assessment.
+
+**Formal Definition**
+
+```
+Four capacity dimensions scored via structured scenario-based assessment and qualitative evaluation:
+(1) Responding — when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
+(2) Monitoring — what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
+(3) Learning — when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
+(4) Anticipating — does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
+Score each capacity 1–5 with narrative justification. Composite is a profile, not a single number.
+```
+
+**Limitations**
+
+> Assessment is qualitative and requires trained evaluators. Framework originally developed for complex sociotechnical systems (healthcare, aviation); application to AVT specifically is novel. Scoring inter-rater reliability has not been established for this application.
+
+**Novel Thinking / Implications**
+
+> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle — the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
+
+---
+
+### 🟡 AI-Off Performance Test
+
+Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
+
+|Dimension              |Value                                                                                                 |
+|-----------------------|------------------------------------------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
+|**Measurement Cadence**|Periodic audit                                                                                        |
+|**Pipeline Layer**     |Cross-cutting                                                                                         |
+|**Assurance Question** |Human Factors                                                                                         |
+|**Measurement Method** |Hybrid                                                                                                |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                                                     |
+|**Responsible Actors** |Deployer                                                                                              |
+|**Maturity**           |Proposed / Novel                                                                                      |
+|**Outcome Type**       |Distal                                                                                                |
+|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)|
+
+**Why this tier?**
+
+> Operationally feasible for any deployer willing to commit protected time. More actionable than longitudinal skill attenuation measurement because it provides current state data. Should be scheduled at Day Zero baseline and repeated annually.
+
+**Formal Definition**
+
+```
+Protocol: (1) Schedule defined exercises where clinicians document simulated or real consultations without AVT; (2) Documentation is scored using PDSQI-9 or equivalent validated instrument; (3) Score is compared against the clinician's pre-AVT baseline (if available) and against peer benchmarks. Trajectory Metric = score_current - score_baseline. Cohort Analysis: compare clinicians trained with AVT from day one against those who learned without it.
+```
+
+**Limitations**
+
+> Protected time is expensive. Simulated consultations differ from real consultations. Clinicians who know they are being assessed may perform differently. Pre-AVT baseline is often not available for individual clinicians.
+
+**Novel Thinking / Implications**
+
+> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case — can the practice function during a vendor outage? — is almost sufficient reason to run the test regardless of the deskilling question.
 
 # Part D — Impact & Outcomes
 
@@ -4522,6 +5799,160 @@ Multi-dimensional: (1) PCQ-18 adapted; (2) Clinician engagement scale; (3) Eye c
 
 ---
 
+---
+
+### Patient Clinical Outcomes sub-cluster
+
+*Direct addressing of the Coiera & Fraile-Navarro (JMIR Med Inform February 2026) critique that the AVT evaluation field measures proximal metrics and assumes they correlate with patient outcomes. This sub-cluster makes the distal outcome measurement explicit.*
+
+---
+
+### 🟡 Full Attentiveness Rate
+
+Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI — a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
+
+|Dimension              |Value                                                           |
+|-----------------------|----------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Measurement Cadence**|Periodic audit                                                  |
+|**Pipeline Layer**     |Cross-cutting                                                   |
+|**Assurance Question** |Patient Experience                                              |
+|**Measurement Method** |Passive Observational                                           |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                               |
+|**Responsible Actors** |Deployer, Academic                                              |
+|**Maturity**           |Emerging                                                        |
+|**Outcome Type**       |Proximal                                                        |
+|**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
+
+**Why this tier?**
+
+> Observable with time-motion methodology (TimeCat or equivalent). Day Zero baseline enables pre/post comparison. Important for establishing genuine patient experience improvement rather than self-reported improvement.
+
+**Formal Definition**
+
+```
+Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / t_total_consultation. Measured via TimeCat observation, video analysis, or (where accepted by patients) automated gaze tracking. Baseline pre-AVT vs post-AVT comparison. Report as distribution across consultations, not just mean — the clinically relevant improvement is often in the tail (consultations where the clinician was previously heavily divided between patient and screen).
+```
+
+**Limitations**
+
+> Observation methodology is labour-intensive. Observer effects change clinician behaviour. Eye contact patterns are culturally variable and not always a valid proxy for attention. Patient consent required for video or automated tracking.
+
+**Novel Thinking / Implications**
+
+> 💡 This is probably the strongest candidate for a positive AVT benefit metric that isn't subject to the Coiera critique. Unlike documentation time saved (which says nothing about patient outcome), attentiveness is directly related to the therapeutic alliance, to patient disclosure, and to shared decision-making. If the Stults et al. finding is reproducible, it becomes the primary argument for AVT adoption on quality-of-care grounds rather than efficiency grounds.
+
+---
+
+### 🔵 Patient Comprehension of AI-Generated Summaries
+
+When AI-generated clinical summaries are shared with patients (via NHS App, patient portals, or printed after-visit summaries), do patients actually understand them? Distinct from the existing Patient-Perceived Accuracy metric, which measures recognition ("does this match our conversation?"). Comprehension measures whether the patient can correctly state what the summary says about their condition, medications, and next steps.
+
+|Dimension              |Value                                                                    |
+|-----------------------|-------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                           |
+|**Measurement Cadence**|Periodic audit                                                           |
+|**Pipeline Layer**     |Summarisation                                                            |
+|**Assurance Question** |Patient Experience                                                       |
+|**Measurement Method** |Survey                                                                   |
+|**Lifecycle Phases**   |Periodic Audit                                                           |
+|**Responsible Actors** |Deployer, Academic                                                       |
+|**Maturity**           |Proposed / Novel                                                         |
+|**Outcome Type**       |Distal                                                                   |
+|**Source**             |Health literacy research; growing relevance as patient access to records expands|
+
+**Why this tier?**
+
+> Important as patient-facing summaries become routine. Research-grade measurement methodology required. Best suited for periodic structured study.
+
+**Formal Definition**
+
+```
+Patient Comprehension Test: after receiving an AI-generated summary, patient is asked structured questions about: (1) primary diagnosis or problem identified; (2) medications prescribed and their purpose; (3) follow-up actions required; (4) warning signs requiring re-contact. Comprehension Rate = |correctly_answered_questions| / |total_questions|. Disaggregate by health literacy level, age, language, and education to detect differential comprehension.
+```
+
+**Limitations**
+
+> Requires patient time and willingness. Cultural and language barriers affect comprehension measurement itself. Summaries generated for clinical purposes may use language appropriate for clinicians but inaccessible to patients — this is a separable design question from AVT accuracy.
+
+**Novel Thinking / Implications**
+
+> 💡 With NHS App access making records patient-facing by default, AI-generated summaries written in clinical language become a health literacy barrier. A summary that is technically correct but uses "dyspnoea" instead of "breathlessness" is accurate from an AVT evaluation standpoint but opaque to the patient. Comprehension measurement should drive a design choice: should AVT generate two versions (clinical record + patient summary) or one version written for both audiences?
+
+---
+
+### 🔵 Downstream Diagnostic Accuracy
+
+Whether clinicians making subsequent decisions based on AVT-generated notes arrive at the same diagnostic and management conclusions they would have reached if they had access to the original consultation. Measured through controlled clinical reasoning studies where clinicians work from AVT notes vs verbatim transcripts vs direct observation. The distal outcome metric Coiera & Fraile-Navarro argue is missing from current AVT evaluation.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Measurement Cadence**|Periodic audit                                                    |
+|**Pipeline Layer**     |End-to-End                                                        |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Human Review                                                      |
+|**Lifecycle Phases**   |Periodic Audit                                                    |
+|**Responsible Actors** |Academic, National Body                                           |
+|**Maturity**           |Proposed / Novel                                                  |
+|**Outcome Type**       |Distal                                                            |
+|**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
+
+**Why this tier?**
+
+> Gold-standard distal outcome metric. Extremely resource-intensive. National research programme responsibility. Complements the existing Clinical Decision Equivalence metric by focusing specifically on diagnostic rather than management decisions.
+
+**Formal Definition**
+
+```
+Blinded multi-clinician study design: same clinical case presented in three conditions — (a) clinician observes consultation directly, (b) clinician reads AVT-generated note, (c) clinician reads verbatim transcript. Each clinician makes diagnostic and differential diagnostic choices. Downstream Diagnostic Accuracy = agreement between conditions. Primary metric: κ between AVT condition and direct observation condition. Secondary metric: discrepancies stratified by clinical complexity.
+```
+
+**Limitations**
+
+> Very expensive — requires multiple blinded clinicians per case, clinical reasoning time, and careful study design. Inter-clinician variation in diagnostic reasoning adds noise. Simulated decision-making may not reflect real-world behaviour under time pressure.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that answers the question "does AVT preserve the clinical signal?" If clinicians reading AVT-generated notes make different diagnostic decisions than clinicians who observed the original consultation, all the proximal metrics (WER, edit rate, documentation time) are at best partially informative and at worst misleading. The Coiera critique is that the field has been measuring proxies and assuming they correlate with this — without evidence. This metric is the evidence.
+
+---
+
+### 🔵 Medication Error Rate Differential
+
+Pre/post AVT comparison of medication errors at the practice or trust level, including wrong-drug, wrong-dose, wrong-frequency, allergy-related, and interaction-related errors. The ultimate distal outcome that medication documentation accuracy ultimately serves. If AVT improves medication documentation (per attribute-level metrics) but medication errors don't decrease, the documentation improvement is not reaching the patient.
+
+|Dimension              |Value                                                                |
+|-----------------------|---------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                       |
+|**Measurement Cadence**|Periodic audit                                                       |
+|**Pipeline Layer**     |End-to-End                                                           |
+|**Assurance Question** |Safety                                                               |
+|**Measurement Method** |Hybrid                                                               |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                    |
+|**Responsible Actors** |National Body, Academic                                              |
+|**Maturity**           |Proposed / Novel                                                     |
+|**Outcome Type**       |Distal                                                               |
+|**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
+
+**Why this tier?**
+
+> Longitudinal outcome metric requiring substantial baseline period and statistical controls. Not routinely measurable at single-practice level. National or regional evaluation responsibility.
+
+**Formal Definition**
+
+```
+Medication Error Rate = |medication_errors_reported| / |total_prescriptions|, stratified by error type and severity. Differential = (rate_post_AVT - rate_pre_AVT) / rate_pre_AVT. Requires: (1) minimum 12-month pre-AVT baseline; (2) consistent reporting culture across periods; (3) adjustment for concurrent interventions. Use difference-in-differences against matched non-AVT controls where possible.
+```
+
+**Limitations**
+
+> Medication errors are under-reported; reporting rates vary with safety culture; attribution to AVT requires careful controls. Low baseline rates mean large populations needed for statistical power.
+
+**Novel Thinking / Implications**
+
+> 💡 This closes the loop between AVT documentation accuracy and patient safety outcomes. The implicit theory of change for AVT safety is: better documentation → fewer medication errors → safer patients. Each link in that chain is assumed but not measured. This metric tests the final link directly. If it shows no effect, the proximal metrics need re-examination; if it shows effect, the proximal metrics are validated as meaningful safety signals.
+
 ## Fairness & Equity
 
 *Population-level justice: demographic performance, deployment equity, domain coverage.*
@@ -4564,6 +5995,41 @@ Correlation r(AVT_deployed, IMD_decile). Positive correlation = deployment inequ
 > 💡 If adoption correlates with affluence, technology amplifies inequalities.
 
 ---
+
+### 🟡 Accent Taxonomy Standardisation
+
+Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguistically informed accent taxonomy appropriate for NHS populations, rather than ad-hoc or inappropriate categorisations. The FAccT 2024 critique of ASR accent categorisation highlighted that race-based, geography-based, and native/non-native categories are systematically flawed proxies for the actual acoustic variation that affects ASR performance. For NHS deployment, a meaningful taxonomy must cover British regional accents, South Asian English varieties, West African English, Caribbean English, Eastern European English, and other varieties representative of NHS patient populations.
+
+|Dimension              |Value                                                         |
+|-----------------------|--------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
+|**Measurement Cadence**|One-off gate                                                  |
+|**Pipeline Layer**     |ASR / Transcription                                           |
+|**Assurance Question** |Fairness & Equity                                             |
+|**Measurement Method** |Human Review                                                  |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Responsible Actors** |Vendor, National Body                                         |
+|**Maturity**           |Proposed / Novel                                              |
+|**Outcome Type**       |Proximal                                                      |
+|**Source**             |FAccT 2024 critique of ASR accent categorisation; sociolinguistics literature|
+
+**Why this tier?**
+
+> Prerequisite for meaningful fairness assessment. Without a defensible taxonomy, Demographic-Disaggregated WER numbers are not comparable across vendors and may hide rather than reveal bias.
+
+**Formal Definition**
+
+```
+Assessment against criteria: (1) Sociolinguistic validity — categories correspond to identifiable phonological communities, not political or racial groupings; (2) NHS relevance — categories include varieties actually present in NHS patient populations; (3) Sample adequacy — each category has sufficient evaluation data for stable WER estimation; (4) Documentation — categorisation methodology is transparent and replicable. Binary pass/fail per criterion; composite = all four must pass.
+```
+
+**Limitations**
+
+> Sociolinguistic categorisation is itself contested. Any taxonomy makes choices that can be critiqued. The alternative — no categorisation — is worse because it hides all disparities.
+
+**Novel Thinking / Implications**
+
+> 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system — a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
 
 ### 🟡 Clinical Domain Performance Variance
 
@@ -4639,6 +6105,41 @@ For each intersection of demographic categories (age x ethnicity x language x ge
 
 ---
 
+### 🔵 Intersectional Compound Fairness Score
+
+Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively — that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
+
+|Dimension              |Value                                                                                |
+|-----------------------|-------------------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                       |
+|**Measurement Cadence**|Periodic audit                                                                       |
+|**Pipeline Layer**     |Cross-cutting                                                                        |
+|**Assurance Question** |Fairness & Equity                                                                    |
+|**Measurement Method** |Computational                                                                        |
+|**Lifecycle Phases**   |Periodic Audit                                                                       |
+|**Responsible Actors** |Vendor, National Body, Academic                                                      |
+|**Maturity**           |Emerging                                                                             |
+|**Outcome Type**       |Distal                                                                               |
+|**Source**             |FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)|
+
+**Why this tier?**
+
+> Research-grade methodology requiring substantial demographic-linked data. National evaluation or vendor pre-deployment. Complements rather than replaces single-axis fairness metrics.
+
+**Formal Definition**
+
+```
+For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expected intersection gap under additive model = Σ gap(Aᵢ); actual intersection gap = observed gap at intersection ∩Aᵢ. Compound Fairness Score CFS = actual_gap / expected_additive_gap. CFS > 1 indicates multiplicative compounding (intersection is worse than sum of parts); CFS ≈ 1 indicates additive; CFS < 1 indicates sub-additive. Multiplicative compounding is the warning signal for worst-case population failures.
+```
+
+**Limitations**
+
+> Requires large enough samples at every demographic intersection for stable estimation — often infeasible for rare intersections. Additive model assumption may not hold even in fair systems. Interpretation is statistical rather than mechanistic.
+
+**Novel Thinking / Implications**
+
+> 💡 Single-axis fairness can miss compound disadvantage entirely. A system that performs acceptably on "elderly", "EAL", "female", and "low literacy" as separate categories may perform catastrophically on the intersection. The compound fairness score tests whether this is happening and quantifies how bad it is. For NHS populations where intersectional disadvantage is the rule rather than the exception, single-axis metrics alone are insufficient.
+
 ### 🔵 Rare Presentation Handling
 
 Accuracy on uncommon clinical presentations vs common ones. Long-tail performance matters disproportionately for diagnostic safety — the rare presentation that's missed is the most dangerous one to miss.
@@ -4712,6 +6213,43 @@ Compare accuracy on: (1) patients using clinical terminology; (2) patients using
 > 💡 If AVT performs better when patients use clinical language, the system rewards health literacy and disadvantages patients who describe symptoms in everyday terms. This compounds existing health inequalities — the patients who already face barriers to healthcare get less accurate documentation as well. This is an equity dimension that single-axis demographic metrics miss.
 
 ---
+
+---
+
+### 🔵 Cross-Platform Fairness Consistency
+
+Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern — if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
+
+|Dimension              |Value                                                              |
+|-----------------------|-------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                     |
+|**Measurement Cadence**|Periodic audit                                                     |
+|**Pipeline Layer**     |Cross-cutting                                                      |
+|**Assurance Question** |Fairness & Equity                                                  |
+|**Measurement Method** |Computational                                                      |
+|**Lifecycle Phases**   |Periodic Audit                                                     |
+|**Responsible Actors** |Regional (ICB), National Body                                      |
+|**Maturity**           |Proposed / Novel                                                   |
+|**Outcome Type**       |Distal                                                             |
+|**Source**             |Extension of existing Cross-Practice Variance Coefficient into equity dimension|
+
+**Why this tier?**
+
+> Regional or national metric. Requires cross-vendor evaluation on equivalent test data. Only meaningful where multiple platforms are deployed across an integrated care system.
+
+**Formal Definition**
+
+```
+For each vendor v in the ICB's deployed platforms: compute demographic-disaggregated performance profile P_v. Cross-Platform Fairness Consistency = variance of P_v across vendors for each demographic group. High variance = patients experience differential fairness depending on which practice (and which vendor) they attend. Report per demographic group; worst-case group determines the equity-consistency floor for the ICB.
+```
+
+**Limitations**
+
+> Requires standardised test data available for use against multiple vendors — which currently doesn't exist for NHS. Vendors may resist independent cross-comparison. Aggregation across practices raises information governance questions.
+
+**Novel Thinking / Implications**
+
+> 💡 The current NHS AVT landscape allows ICBs to have multiple vendors deployed across their patch. If those vendors have different fairness profiles, the ICB is effectively running an uncontrolled experiment where patient outcomes depend on which GP they happened to register with. This is invisible to single-vendor fairness metrics and can only be detected by cross-platform comparison. Commissioning should consider fairness consistency as a portfolio-level property, not just a single-vendor property.
 
 # Part E — System Governance
 
@@ -4803,6 +6341,158 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 > 💡 Benchmark suite should be nationally standardised for cross-site comparison.
 
 ---
+
+### Longitudinal Drift & Model Contamination sub-cluster
+
+*Addresses the temporal dimension of model assurance that the current taxonomy handles only partially. Where the existing Model Version Tracking and Model Update Impact Score metrics cover notified changes, these metrics cover silent drift, contamination of future training pipelines by AI-generated content, and the regulatory frameworks (FDA PCCP, NICE ESF 2022 AI updates) that increasingly require pre-specified change control plans.*
+
+---
+
+### 🟡 Performance Degradation Detection Latency
+
+Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation — performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
+
+|Dimension              |Value                                                              |
+|-----------------------|-------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                             |
+|**Measurement Cadence**|Continuous                                                         |
+|**Pipeline Layer**     |Cross-cutting                                                      |
+|**Assurance Question** |Safety                                                             |
+|**Measurement Method** |Computational                                                      |
+|**Lifecycle Phases**   |Continuous                                                         |
+|**Responsible Actors** |Regional (ICB), National Body                                      |
+|**Maturity**           |Proposed / Novel                                                   |
+|**Outcome Type**       |Proximal                                                           |
+|**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
+
+**Why this tier?**
+
+> Regional or national monitoring because detection requires aggregation across sites — single-practice data lacks statistical power to distinguish drift from noise. The detection infrastructure is the binding constraint; the metric itself is straightforward once infrastructure exists.
+
+**Formal Definition**
+
+```
+Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous measurement of sentinel metrics against a stable reference; (2) statistical drift detection (CUSUM, Page-Hinkley, or equivalent sequential testing); (3) pre-specified threshold for declaring drift. Report Latency distribution across detected drift events. Target: detection within 4 weeks of onset for clinically significant degradation.
+```
+
+**Limitations**
+
+> Requires stable reference benchmarks that don't drift with the model. Small drift signals are hidden by consultation case-mix variation. Attribution of detected drift to model changes vs environmental changes is often ambiguous.
+
+**Novel Thinking / Implications**
+
+> 💡 Silent degradation is the failure mode that notified update monitoring cannot catch. A vendor pushing incremental improvements, a cloud infrastructure change that affects inference behaviour, or gradual model quality decay from training data drift — none of these trigger Model Version Tracking but all can cause clinically significant performance change. Detection latency is the metric that tells you whether your monitoring would actually catch a silent failure before it caused harm. A system with excellent monitoring coverage but 6-month detection latency is operationally fragile.
+
+---
+
+### 🟡 Retraining Trigger Threshold Specification
+
+Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) — this metric assesses whether the trigger logic for when updates should occur is even specified.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                            |
+|**Measurement Cadence**|One-off gate                                                      |
+|**Pipeline Layer**     |Cross-cutting                                                     |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Human Review                                                      |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                    |
+|**Responsible Actors** |Vendor                                                            |
+|**Maturity**           |Emerging                                                          |
+|**Outcome Type**       |Proximal                                                          |
+|**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
+
+**Why this tier?**
+
+> Vendor procurement assessment. Should be a Day Zero contractual requirement for any AVT system operating in a regulatory environment that expects PCCP-equivalent change control.
+
+**Formal Definition**
+
+```
+Assessment against specification criteria: (1) Performance thresholds pre-specified for retraining triggers (e.g. "if clinically significant WER on sentinel test exceeds 8%, retrain"); (2) Trigger metrics are quantifiable and automatically monitored; (3) Governance process for executing the trigger is documented; (4) Rollback plan exists if retraining degrades rather than improves performance. Binary per criterion; full compliance requires all four.
+```
+
+**Limitations**
+
+> Well-specified trigger thresholds can still be wrong. Pre-specification often treats the retraining decision as a simple threshold crossing when in practice it requires judgment. Vendor specification is self-reported unless independently audited.
+
+**Novel Thinking / Implications**
+
+> 💡 The FDA PCCP framework represents a regulatory shift from "approve the specific model" to "approve the change control process that governs model evolution". For AVT, where continuous improvement is assumed, this shift is essential — but only works if the change control process is specified, auditable, and followed. A vendor without a PCCP-equivalent framework is effectively promising that their model will never need updating, or that updating decisions will be made ad hoc. Neither is credible for a production clinical system.
+
+---
+
+### 🔵 AI-Generated Data Contamination Rate
+
+The proportion of training or fine-tuning data that is itself AI-generated clinical content — either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
+
+|Dimension              |Value                                                                                            |
+|-----------------------|-------------------------------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                                   |
+|**Measurement Cadence**|Periodic audit                                                                                   |
+|**Pipeline Layer**     |Cross-cutting                                                                                    |
+|**Assurance Question** |Safety                                                                                           |
+|**Measurement Method** |Human Review                                                                                     |
+|**Lifecycle Phases**   |Periodic Audit                                                                                   |
+|**Responsible Actors** |Vendor, National Body                                                                            |
+|**Maturity**           |Emerging                                                                                         |
+|**Outcome Type**       |Distal                                                                                           |
+|**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
+
+**Why this tier?**
+
+> Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility — and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.
+
+**Formal Definition**
+
+```
+Contamination Rate = |training_examples_derived_from_AI_generated_content| / |total_training_examples|. Direct contamination: training data includes AI-generated clinical notes. Indirect contamination: training data includes human-approved notes that were initially AI-drafted (where the AI fingerprint remains). Assessment methodology: (1) vendor attestation of training data provenance; (2) statistical detection of AI fingerprints in training corpora; (3) vocabulary drift analysis comparing successive model generations on stable held-out test sets.
+```
+
+**Limitations**
+
+> Detecting AI-generated content in training data is an unsolved problem — watermarking proposals are not yet standardised. Vendor attestation is self-reported. Longitudinal monitoring requires visibility into vendor training pipelines that is rarely contractually granted.
+
+**Novel Thinking / Implications**
+
+> 💡 Every NHS trust deploying AVT is a data generation site. If vendors fine-tune on deployed clinical data (a common practice for improvement), NHS content flows back into the training pipeline. Over multiple training cycles, this creates a feedback loop where the model is increasingly trained on its own output — the vocabulary collapse and rare-event disappearance finding becomes a direct patient safety risk because rare clinical presentations are exactly where documentation accuracy matters most. This is the AVT-specific version of what the ML literature calls "the curse of recursion", and it's a systemic risk that requires national-level intervention rather than deployer-level monitoring.
+
+---
+
+### 🔵 Concept Drift in Clinical Notes
+
+Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic — that requires human judgment — but it makes drift visible so it can be investigated.
+
+|Dimension              |Value                                                    |
+|-----------------------|----------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                            |
+|**Measurement Cadence**|Continuous                                                |
+|**Pipeline Layer**     |Cross-cutting                                             |
+|**Assurance Question** |Meta-evaluation                                           |
+|**Measurement Method** |Computational                                             |
+|**Lifecycle Phases**   |Continuous                                                |
+|**Responsible Actors** |Regional (ICB), National Body, Academic                   |
+|**Maturity**           |Proposed / Novel                                          |
+|**Outcome Type**       |Distal                                                    |
+|**Source**             |Concept drift literature from ML monitoring applied to clinical NLG|
+
+**Why this tier?**
+
+> Requires statistical infrastructure and cross-site aggregation for meaningful signal. National or regional responsibility.
+
+**Formal Definition**
+
+```
+For each reference time window W_ref and comparison window W_t: compute the distribution of SNOMED concepts (or other structured clinical categories) present in AI-generated notes. Drift = KL divergence or earth mover's distance between distributions. Threshold for investigation: drift > 2σ from historical seasonal variation. Report per concept category — aggregate drift obscures category-specific shifts. Specifically monitor: rare diagnoses, psychosocial content, safety-netting language, safeguarding flags.
+```
+
+**Limitations**
+
+> Distinguishing concept drift from case-mix drift requires population-level context. Seasonal variation (respiratory conditions in winter, mental health referrals in January) creates baseline noise. Rare concepts have high variance even without true drift.
+
+**Novel Thinking / Implications**
+
+> 💡 The most worrying drift signal is concepts that progressively disappear — safeguarding language, mental health content, social context — because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
 
 ### 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
@@ -4961,6 +6651,10 @@ Validated envelope V = set of (domain, type, population, setting) tuples. Bounda
 **Limitations**
 
 > Requires clear validated envelope definition.
+
+**⚠️ Underspecification Warning (Tier A — no established methodology)**
+
+> Off-label use of AVT has **no established detection methodology** in the published literature. The concept borrows from pharmaceutical regulation, but AVT "indicated use" boundaries are rarely defined precisely enough to determine when specific use is off-label. A 2025 Morgan Lewis legal analysis highlighted the liability risk but provided no detection framework. No use-case taxonomy exists to define intended vs off-label boundaries. No monitoring approach has been proposed in peer-reviewed literature. This metric requires definitional work before operational implementation is possible: deployers should, in collaboration with vendors, specify the validated use envelope (specialties, patient populations, acuity levels, languages, consultation modes) and build usage-pattern monitoring against that envelope rather than attempting to measure "off-label use" as an isolated concept. Consider operationalising as the proposed **Work-as-Imagined vs Work-as-Done Gap** metric (Human Factors & Workflow) which provides a more structured framework for detecting adaptation, workaround, and scope creep.
 
 **Novel Thinking / Implications**
 
@@ -5234,6 +6928,413 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 > 💡 DCB0129 hazard logs are often written once at deployment and forgotten. As operational monitoring discovers new failure modes (through edit pattern analysis, near-miss reporting, incident investigation), these should be added to the hazard log with mitigations. A hazard log that hasn't been updated in 6 months is either a perfect system or a compliance failure — and almost certainly the latter.
 
 ---
+
+# Part E — System Governance
+
+## NHS Compliance & Regulatory
+
+*Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary — the deployer is compliant or they are not — and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
+
+*The group was added to the taxonomy in response to the January–March 2026 NHS guidance suite: NHSE IG guidance on ambient scribing (March 2026), the NHSE AVT Supplier Registry (launched January 2026), and CIO/CCIO guidance v2 (January 2026). Taken together these documents defined a discrete compliance surface that is operationally distinct from clinical safety governance and that deserves its own cluster rather than being scattered across Safety & Governance and Privacy & Data Governance.*
+
+*The group also contains two international regulatory metrics (FDA PCCP-Equivalent Pre-Defined Acceptance Criteria, EU AI Act Event Logging Compliance) because vendor compliance cascades across jurisdictions — an AVT vendor with EU market exposure will typically apply EU AI Act requirements uniformly across their product rather than maintaining jurisdiction-specific variants, which means UK deployments inherit EU requirements through vendor compliance regardless of whether they would otherwise apply.*
+
+*Legal and statutory privacy metrics that pre-date the 2026 NHS guidance (Subject Access Request Fulfilment, Right to Erasure, Cross-Border Data Transfer Compliance, Sub-Processor Transparency) remain in the Privacy & Data Governance group to preserve the legal-basis cluster there. The split between "privacy legal requirements" and "NHS compliance process requirements" is analytical rather than hierarchical — a deployer is obliged to meet both, and neither group has precedence over the other.*
+
+**Tier breakdown**: 🟢 7 Tier 1 · 🟡 3 Tier 2 · 🔵 0 Tier 3
+
+---
+
+### 🟢 Patient Dissent Recording Rate
+
+Per-encounter rate at which patient objections or dissent to AVT use are recorded and respected. Distinct from the existing Patient Opt-Out Rate, which is aggregate and applies at the registration or consent level. Patient Dissent Recording is the per-encounter process compliance metric: when a patient objects at the point of care, is that objection documented, is AVT actually paused for that encounter, and is the objection respected in subsequent encounters without re-litigation.
+
+|Dimension              |Value                                                  |
+|-----------------------|--------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                              |
+|**Measurement Cadence**|Continuous                                              |
+|**Pipeline Layer**     |Cross-cutting                                           |
+|**Assurance Question** |Patient Experience                                      |
+|**Measurement Method** |Passive Observational                                   |
+|**Lifecycle Phases**   |Continuous                                              |
+|**Responsible Actors** |Deployer                                                |
+|**Maturity**           |Established                                             |
+|**Outcome Type**       |Proximal                                                |
+|**Source**             |NHSE IG guidance on ambient scribing (March 2026)       |
+
+**Why this tier?**
+
+> Direct compliance requirement under NHSE IG guidance. Deployer-measurable from workflow records. Binary compliance — a patient dissent not recorded and respected is a regulatory and ethical failure.
+
+**Formal Definition**
+
+```
+Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total_dissent_events|. Target: 100%. Sub-metrics: (a) dissent documentation rate (was it recorded?); (b) dissent respect rate (was AVT paused?); (c) dissent persistence rate (was it respected in subsequent encounters?). Any sub-metric below 100% indicates compliance failure.
+```
+
+**Limitations**
+
+> Detection of dissent events requires clinician reporting or structured capture in the EPR workflow. Silent non-compliance (clinician uses AVT despite patient objection) is invisible to passive observation.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the per-encounter teeth behind the aggregate opt-out metric. Opt-out gives the patient a blanket choice; dissent recording ensures the choice is honoured at each specific consultation where it matters. The two metrics measure different things: opt-out measures consent model acceptance; dissent recording measures procedural integrity at the point of care. Both are necessary for a coherent consent architecture.
+
+---
+
+### 🟢 Verbal Notification Compliance
+
+Proportion of AVT-using consultations where verbal notification was delivered to the patient at session start, as required by NHSE IG guidance (March 2026). Consent model in NHS primary care relies on informing patients before AVT activation, but the "informing" step is often poorly observed in busy practice. This metric measures the actual delivery of notification, not just the existence of a notification policy.
+
+|Dimension              |Value                                                    |
+|-----------------------|----------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit                                            |
+|**Pipeline Layer**     |Cross-cutting                                             |
+|**Assurance Question** |Patient Experience                                        |
+|**Measurement Method** |Hybrid                                                    |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                         |
+|**Responsible Actors** |Deployer                                                  |
+|**Maturity**           |Established                                               |
+|**Outcome Type**       |Proximal                                                  |
+|**Source**             |NHSE IG guidance on ambient scribing (March 2026); CQC Mythbuster 109 context|
+
+**Why this tier?**
+
+> Direct compliance requirement. Measurable via patient survey sampling, consultation audit, or (with appropriate consent) recording sampling. Binary compliance — notification either happened or it didn't.
+
+**Formal Definition**
+
+```
+Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AVT_consultations|. Measurement methods in order of increasing rigour: (a) clinician self-report at end of session; (b) patient survey sampling asking whether notification was delivered; (c) audit of audio recordings (where retention allows) for notification language. Target: 100%. Values below 95% indicate systematic compliance failure requiring intervention.
+```
+
+**Limitations**
+
+> Self-report over-estimates compliance. Patient recall is imperfect. Audio audit is resource-intensive and depends on retention policies that may conflict with data minimisation.
+
+**Novel Thinking / Implications**
+
+> 💡 The gap between policy and practice on patient notification is the compliance equivalent of the consent understanding gap. A practice can have a 100% notification policy and a 60% actual notification rate — and the 40% gap is where the consent model breaks down. Periodic audit is the only way to know which side of the gap a deployer is on. A practice that refuses to audit is implicitly choosing not to know.
+
+---
+
+### 🟢 AI-Generated Content Labelling Compliance
+
+Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content — essential for audit, safety investigation, and future training data curation.
+
+|Dimension              |Value                                                     |
+|-----------------------|-----------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                 |
+|**Measurement Cadence**|Continuous                                                 |
+|**Pipeline Layer**     |EPR Write-back                                             |
+|**Assurance Question** |Meta-evaluation                                            |
+|**Measurement Method** |Computational                                              |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                                 |
+|**Responsible Actors** |Vendor, Deployer                                           |
+|**Maturity**           |Established                                                |
+|**Outcome Type**       |Proximal                                                   |
+|**Source**             |NHSE IG guidance on ambient scribing (March 2026)          |
+
+**Why this tier?**
+
+> Automated compliance check with trivial implementation cost. Should be a pre-deployment gate and continuous monitoring metric. Non-compliance is both a governance failure and a downstream data quality problem.
+
+**Formal Definition**
+
+```
+Labelling Rate = |AI_generated_entries_with_correct_suffix| / |total_AI_generated_entries|. Target: 100%. Zero-tolerance — every AI-generated entry must be labelled. Automated verification is feasible because the suffix is a fixed SNOMED concept that either appears or doesn't. Report non-compliance instances for immediate remediation.
+```
+
+**Code: Labelling compliance check**
+
+```python
+AVT_LABEL_SUFFIX = "24771000000105"  # Audio Dictation SNOMED concept
+
+def check_labelling_compliance(epr_entries):
+    """
+    Verify every AI-generated entry carries the mandatory suffix.
+    """
+    ai_entries = [e for e in epr_entries if e.get("source") == "AVT"]
+    compliant = [e for e in ai_entries
+                 if AVT_LABEL_SUFFIX in e.get("content", "")
+                 or e.get("label_code") == AVT_LABEL_SUFFIX]
+    non_compliant = [e for e in ai_entries if e not in compliant]
+    return {
+        "rate": len(compliant) / len(ai_entries) if ai_entries else 1.0,
+        "non_compliant_count": len(non_compliant),
+        "non_compliant_entries": non_compliant,
+        "alert": len(non_compliant) > 0,
+        "severity": "CRITICAL" if non_compliant else "OK"
+    }
+```
+
+**Limitations**
+
+> Assumes the vendor's write-back system supports the suffix — some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.
+
+**Novel Thinking / Implications**
+
+> 💡 Without reliable labelling, every downstream system that consumes clinical records is operating without knowing which content is AI-generated. This matters for: safety investigation (was the error in a human-written or AI-generated entry?); training data curation (if AI-generated records are fed back into training, the labelling is necessary to detect and exclude them); audit trails (which clinicians rely on AI assistance and how frequently). Non-labelling is an infrastructure failure with cascading consequences.
+
+---
+
+### 🟢 AVT Supplier Registry Listing Verification
+
+Procurement and ongoing verification that the deployed AVT system is listed on the NHS England AVT Supplier Registry and remains listed throughout the deployment lifecycle. The Registry (launched January 2026) is the NHS-level mechanism for self-certified minimum standards, and registry status is expected to become a procurement precondition.
+
+|Dimension              |Value                                                 |
+|-----------------------|------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
+|**Measurement Cadence**|Continuous                                            |
+|**Pipeline Layer**     |Cross-cutting                                         |
+|**Assurance Question** |Safety                                                |
+|**Measurement Method** |Human Review                                          |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                            |
+|**Responsible Actors** |Deployer, Vendor                                      |
+|**Maturity**           |Established                                           |
+|**Outcome Type**       |Proximal                                              |
+|**Source**             |NHSE AVT Supplier Registry (January 2026)             |
+
+**Why this tier?**
+
+> Procurement gate with trivial verification cost. Should be confirmed at procurement and re-verified at contract renewal and on notification of vendor compliance events.
+
+**Formal Definition**
+
+```
+Listing Verification: at procurement, confirm vendor is on the live Registry. Quarterly re-verification during deployment. Binary: listed or not listed. Where not listed, deployment should not proceed (pre-deployment) or should trigger formal risk review (during deployment). Also track: date of most recent vendor compliance attestation, scope of attested compliance (which AVT products are covered).
+```
+
+**Limitations**
+
+> Registry is self-certified — listing indicates vendor attestation rather than independent verification. Listing scope may not cover all deployed AVT modules from a vendor with multiple products.
+
+**Novel Thinking / Implications**
+
+> 💡 The Registry's value depends on NHS bodies treating listing as a procurement precondition. If deployments proceed with non-listed vendors, the Registry becomes advisory rather than normative and loses its governance function. Making Registry verification a Tier 1 metric supports the norm that listing is expected — and creates visible data on deployment-to-listing alignment that can inform Registry policy over time.
+
+---
+
+### 🟢 ICB Engagement Documentation
+
+Documented evidence that the deployer engaged with their ICB digital team (or equivalent regional body) before AVT deployment, as required by the CIO/CCIO guidance (v2, January 2026). The ICB engagement requirement exists to prevent uncoordinated deployment across an integrated care system and to ensure regional intelligence about AVT risks and mitigations is applied consistently.
+
+|Dimension              |Value                                                       |
+|-----------------------|-------------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                   |
+|**Measurement Cadence**|One-off gate                                                 |
+|**Pipeline Layer**     |Cross-cutting                                                |
+|**Assurance Question** |Meta-evaluation                                              |
+|**Measurement Method** |Human Review                                                 |
+|**Lifecycle Phases**   |Pre-deployment                                               |
+|**Responsible Actors** |Deployer, Regional (ICB)                                     |
+|**Maturity**           |Established                                                  |
+|**Outcome Type**       |Proximal                                                     |
+|**Source**             |CIO/CCIO guidance v2 (January 2026); NHS CIO priority notification|
+
+**Why this tier?**
+
+> Pre-deployment compliance requirement. Should be a documented gate before go-live. Failure indicates a governance process breakdown that deserves immediate correction.
+
+**Formal Definition**
+
+```
+Engagement documentation includes: (1) formal notification to ICB digital team dated before go-live; (2) ICB response acknowledging notification; (3) any conditions or recommendations from ICB on file. Binary compliance: all three present = compliant. Missing ICB response is a flag for follow-up, not automatic non-compliance, because ICB capacity constraints may prevent timely response.
+```
+
+**Limitations**
+
+> ICB engagement quality varies — some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality.
+
+**Novel Thinking / Implications**
+
+> 💡 ICB engagement is the mechanism that prevents NHS AVT deployment from being a series of disconnected practice-level decisions with no regional coordination. It only works if it is actually happening — and practices deploying AVT without ICB engagement are a visible symptom of governance friction, ICB capacity constraints, or deployment urgency overriding process. Tracking the metric is a diagnostic tool for that friction as much as it is a compliance check.
+
+---
+
+### 🟢 Clinical Safety Case Completeness
+
+Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case for the AVT deployment. Distinct from the existing Hazard Log Completeness metric, which covers log currency. Safety Case Completeness is the broader document: hazard identification, risk analysis, mitigations, residual risk acceptance, and governance arrangements. A 2025 FOI-based study (PubMed 41172285) found widespread non-compliance with DCB0129 requirements among NHS digital health deployments.
+
+|Dimension              |Value                                                                                            |
+|-----------------------|-------------------------------------------------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                                                        |
+|**Measurement Cadence**|Periodic audit                                                                                   |
+|**Pipeline Layer**     |Cross-cutting                                                                                    |
+|**Assurance Question** |Safety                                                                                           |
+|**Measurement Method** |Human Review                                                                                     |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                                                   |
+|**Responsible Actors** |Deployer                                                                                         |
+|**Maturity**           |Established                                                                                      |
+|**Outcome Type**       |Proximal                                                                                         |
+|**Source**             |DCB0129/0160 regulatory requirement; PubMed 41172285 FOI study of NHS digital safety standard compliance|
+
+**Why this tier?**
+
+> Direct regulatory requirement. Non-compliance is both a legal and a safety issue. The 2025 FOI study found widespread non-compliance, making this a known high-risk area requiring active monitoring.
+
+**Formal Definition**
+
+```
+Completeness assessed against DCB0129 standard sections: (1) safety management system; (2) hazard identification; (3) hazard analysis and evaluation; (4) hazard control; (5) hazard log; (6) safety case report; (7) safety incident management; (8) issue resolution. Each section binary (present and current / missing or out-of-date). Full compliance requires all sections. Currency: major update triggered by significant system change, model version change, or new hazard identification.
+```
+
+**Limitations**
+
+> Compliance with structure does not guarantee quality of content. Safety cases are often written to satisfy the standard rather than to genuinely analyse system safety — the "compliance theatre" problem. External independent review is the only reliable check.
+
+**Novel Thinking / Implications**
+
+> 💡 The 2025 FOI finding that many NHS digital health deployments lack DCB0129 compliance is a structural warning about regulatory enforcement gaps. AVT deployment is happening faster than safety case development in many places. Making Safety Case Completeness a Tier 1 metric both highlights the compliance obligation and creates visible data on how widespread the gap is — which is itself a governance intervention.
+
+---
+
+### 🟢 DPIA Template Completion Rate
+
+Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure — but the template only helps if it's actually used and completed.
+
+|Dimension              |Value                                                 |
+|-----------------------|------------------------------------------------------|
+|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
+|**Measurement Cadence**|Periodic audit                                        |
+|**Pipeline Layer**     |Cross-cutting                                         |
+|**Assurance Question** |Safety                                                |
+|**Measurement Method** |Human Review                                          |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                        |
+|**Responsible Actors** |Deployer                                              |
+|**Maturity**           |Established                                           |
+|**Outcome Type**       |Proximal                                              |
+|**Source**             |UK GDPR Article 35; NHSE IG guidance template (March 2026)|
+
+**Why this tier?**
+
+> Legal requirement. Pre-deployment gate. Template completion is measurable and binary.
+
+**Formal Definition**
+
+```
+Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_deployments|. Template mandatory sections: processing description, lawful basis, data flows, risks identified, mitigations, residual risk acceptance, DPO sign-off, review schedule. Each section binary; complete DPIA requires all sections. Review cadence: minimum annually or on significant processing change.
+```
+
+**Limitations**
+
+> Template compliance doesn't guarantee substantive risk analysis. "Completed" DPIAs that list "no residual risks identified" for a novel AVT deployment are likely inadequate regardless of template adherence.
+
+**Novel Thinking / Implications**
+
+> 💡 The NHSE template provides common structure across deployments, which has three benefits: (1) makes comparison possible across sites, (2) ensures mandatory considerations aren't missed, (3) creates an evidence base for national-level risk analysis. Template non-use isn't necessarily non-compliance with UK GDPR (bespoke DPIAs can be legitimate) but it loses the aggregation benefit. Tracking template use rate is a proxy for how consistently the governance infrastructure is being built.
+
+---
+
+### 🟡 DSPA Status
+
+Existence and currency of Data Sharing/Processing Agreements with all data processors involved in AVT operation. UK GDPR Article 28 requires written agreements with processors, and cloud-hosted AVT typically involves multiple processors (primary vendor, cloud provider, model provider, annotation services). Related to the existing Sub-Processor Transparency metric but specifically focuses on the contractual agreements rather than the disclosure of sub-processors.
+
+|Dimension              |Value                                         |
+|-----------------------|----------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                        |
+|**Measurement Cadence**|Periodic audit                                |
+|**Pipeline Layer**     |Cross-cutting                                 |
+|**Assurance Question** |Safety                                        |
+|**Measurement Method** |Human Review                                  |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                |
+|**Responsible Actors** |Deployer, Vendor                              |
+|**Maturity**           |Established                                   |
+|**Outcome Type**       |Proximal                                      |
+|**Source**             |UK GDPR Article 28; NHS data protection guidance|
+
+**Why this tier?**
+
+> Legal compliance requirement. Annual audit recommended. Slightly lower tier than DPIA because absence of DSPA is more commonly an oversight than a structural governance failure — but still a legal requirement.
+
+**Formal Definition**
+
+```
+DSPA Status per processor: (a) agreement in place (binary); (b) agreement currency (signed within last 2 years or since last significant change); (c) agreement covers all processing activities actually performed by that processor; (d) UK GDPR Article 28 mandatory clauses present. Full compliance requires all four per processor. Aggregate metric: |processors_fully_compliant| / |total_processors|.
+```
+
+**Limitations**
+
+> Agreement existence doesn't guarantee processor compliance with the agreement. Cross-border processors may have limited enforceability. Complex sub-processor chains make coverage verification difficult.
+
+**Novel Thinking / Implications**
+
+> 💡 DSPAs are where the legal rubber meets the road. A deployer with a DPIA but no DSPAs has documented the risks without contractually binding the processors to manage them. This is a common gap because DPIAs are visible in NHS audit processes while DSPAs are often handled by legal departments outside the IG team's line of sight.
+
+---
+
+### 🟡 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria
+
+Whether the vendor has pre-specified quantitative acceptance criteria that any model update must meet before being deployed to production. FDA Predetermined Change Control Plans (finalised December 2024) require this for US-market medical device AI. Even in UK-only deployments, it matters because: (1) EU-market vendors cascade similar requirements through the EU AI Act, and (2) the existence of pre-defined acceptance criteria is a proxy for mature change control regardless of regulatory jurisdiction.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                   |
+|**Measurement Cadence**|One-off gate                                             |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                           |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Source**             |FDA PCCP guidance (December 2024); EU AI Act Article 15; NICE ESF 2022 AI updates|
+
+**Why this tier?**
+
+> Procurement assessment. Should be standard due diligence for any AVT acquisition. Vendors without PCCP-equivalent frameworks are a higher governance risk.
+
+**Formal Definition**
+
+```
+Assessment against criteria: (1) Performance acceptance thresholds pre-specified and quantitative; (2) Regression test suite defined and maintained; (3) Fairness/equity criteria included in acceptance testing; (4) Rollback procedure specified if update fails acceptance post-deployment; (5) Documentation of acceptance decisions available for audit. Binary per criterion; full compliance = all five.
+```
+
+**Limitations**
+
+> Vendors may claim PCCP equivalence without independent verification. The substantive quality of acceptance criteria matters more than their existence — a criterion like "WER not more than 20% worse" technically exists but provides no meaningful safety floor.
+
+**Novel Thinking / Implications**
+
+> 💡 PCCP is a structural shift in how AI medical devices are regulated — from approving specific models to approving the change control process. For AVT specifically, this is essential because continuous model improvement is expected, and ad-hoc change control makes every update a regulatory event. NHS procurement should treat PCCP-equivalent frameworks as the baseline expectation, not a differentiator, even though the formal PCCP framework applies to US-market devices.
+
+---
+
+### 🟡 EU AI Act Event Logging Compliance
+
+Compliance with EU AI Act Article 12 automatic event logging requirements for high-risk AI systems. High-risk provisions became effective August 2026. Applies to any AVT vendor with EU market exposure, and cascades into UK deployment because vendors typically apply the strictest applicable regulatory regime uniformly across their product rather than maintaining jurisdiction-specific variants.
+
+|Dimension              |Value                                              |
+|-----------------------|----------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                              |
+|**Measurement Cadence**|Continuous                                          |
+|**Pipeline Layer**     |Cross-cutting                                       |
+|**Assurance Question** |Safety                                              |
+|**Measurement Method** |Computational                                       |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                          |
+|**Responsible Actors** |Vendor                                              |
+|**Maturity**           |Emerging                                            |
+|**Outcome Type**       |Proximal                                            |
+|**Source**             |EU AI Act Article 12 (high-risk provisions effective August 2026)|
+
+**Why this tier?**
+
+> Vendor-side regulatory requirement. Deployer should verify event logging infrastructure exists and receive logs for foreseeable-misuse investigation. Important for incident investigation capability.
+
+**Formal Definition**
+
+```
+Event logging must capture: (1) period of use (start, duration, stop per session); (2) reference database used; (3) input data that led to output; (4) natural persons involved in verification of output. Logging must be automatic, not opt-in. Retention period specified in vendor policy and aligned with EU AI Act minimums. Deployer verification: can the vendor provide a complete event log for any given encounter on request within a reasonable timeframe?
+```
+
+**Limitations**
+
+> Full logging creates large data volumes and storage costs. Logging of input data conflicts with data minimisation principles — resolving this requires careful policy design. Deployer verification is manual and sample-based.
+
+**Novel Thinking / Implications**
+
+> 💡 Event logging is the infrastructure that supports retrospective incident investigation. Without it, when an AVT error causes harm six months after the fact, the investigation has nothing to work with — the clinician may not remember the encounter, the patient certainly won't remember the AI's behaviour, and the vendor has no logs to reconstruct what happened. The EU AI Act requirement is essentially mandating the infrastructure for forensic investigation of AI clinical systems, which is a governance improvement regardless of jurisdiction.
 
 ## Security & Adversarial Robustness
 
@@ -5556,6 +7657,41 @@ Audit for: (1) metadata in API responses; (2) timing variations that reveal cont
 
 ---
 
+### 🟡 Cross-Patient Information Leakage Rate
+
+Rate at which content from one patient's encounter contaminates another patient's generated note. Distinct from general PII leakage because cross-patient contamination can occur through context window contamination rather than training data memorisation — the leakage happens at inference time, not at training time, and is therefore invisible to standard privacy testing methodologies such as membership inference attacks.
+
+|Dimension              |Value                                                         |
+|-----------------------|--------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
+|**Measurement Cadence**|Periodic audit                                                |
+|**Pipeline Layer**     |Cross-cutting                                                 |
+|**Assurance Question** |Safety                                                        |
+|**Measurement Method** |Computational                                                 |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Responsible Actors** |Vendor                                                        |
+|**Maturity**           |Emerging                                                      |
+|**Outcome Type**       |Proximal                                                      |
+|**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
+
+**Why this tier?**
+
+> Vendor-side testing required because deployers cannot directly observe cross-encounter contamination. Should be a pre-deployment test and periodic audit requirement. Cross-patient leakage is a catastrophic failure mode — a single incident can affect hundreds of patients.
+
+**Formal Definition**
+
+```
+Leakage Rate = |notes_containing_content_from_different_patient| / |total_notes|. Testing methodology: (1) process a batch of encounters sequentially through the same pipeline; (2) inject distinctive canary content into some encounters; (3) check whether canary content appears in notes from unrelated encounters processed in the same batch. Target: zero. Any non-zero rate indicates architectural failure in context isolation.
+```
+
+**Limitations**
+
+> Requires controlled testing with injected canaries. Production leakage may occur under load conditions that aren't replicated in testing. Cross-patient contamination is rare enough that statistical power requires large test batches.
+
+**Novel Thinking / Implications**
+
+> 💡 Cross-patient leakage is the AVT-specific instantiation of context window contamination in multi-tenant LLM systems. When a single model instance serves multiple encounters in rapid succession, caching, state retention, and async processing all create potential vectors for one patient's content to leak into another's. This is architecturally preventable — strict per-encounter context isolation with explicit state resets — but only if the failure mode is explicitly tested for. Most vendor privacy testing focuses on training data leakage and doesn't cover this.
+
 ### 🟡 Clinician Identity Authentication
 
 Is the system confident that the clinician using AVT is who they claim to be? Voice biometrics could provide this but are rarely deployed. Without strong authentication, AVT outputs may be attributed to clinicians who weren't actually present.
@@ -5593,11 +7729,48 @@ Authentication strength assessed against: (1) Login mechanism (password, MFA, sm
 
 ---
 
+---
+
+### 🔵 Membership Inference Attack AUC
+
+Standardised privacy testing metric measuring the success rate of adversarial attempts to determine whether a specific patient's data was used in training the AVT model. Higher AUC means the attack is more successful — an AUC of 0.5 indicates attacks are no better than random guessing, while an AUC near 1.0 indicates complete privacy failure. Undefended LLMs show MIA AUC of approximately 0.96; differential privacy training can collapse this to near 0.5.
+
+|Dimension              |Value                                                         |
+|-----------------------|--------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                |
+|**Measurement Cadence**|Periodic audit                                                |
+|**Pipeline Layer**     |Cross-cutting                                                 |
+|**Assurance Question** |Safety                                                        |
+|**Measurement Method** |Computational                                                 |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Responsible Actors** |Vendor, Academic                                              |
+|**Maturity**           |Established                                                   |
+|**Outcome Type**       |Proximal                                                      |
+|**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
+
+**Why this tier?**
+
+> Research-grade privacy testing. Requires specialist ML security expertise. Academic or vendor-side testing, not deployer-implementable. Important for understanding model-level privacy properties but not routinely measurable at deployment.
+
+**Formal Definition**
+
+```
+Standard membership inference attack: attacker trains a classifier to distinguish model outputs on training data from outputs on held-out data. AUC of this classifier is the MIA metric. AUC = 0.5 means attacks fail; AUC > 0.7 indicates concerning leakage; AUC > 0.9 indicates severe privacy failure. Testing should use multiple attack methodologies (shadow model, loss-based, gradient-based) and report the highest AUC as the conservative estimate.
+```
+
+**Limitations**
+
+> MIA methodology has been criticised for evaluation artefacts — the recent Cue-Resistant Memorisation framework (arXiv 2601.03791) showed that previous MIA estimates were inflated by control set selection. Modern MIA requires careful methodology. Mitigations (differential privacy) come with accuracy costs.
+
+**Novel Thinking / Implications**
+
+> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols — if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
+
 ## Privacy & Data Governance
 
 *Audio retention, data minimisation, consent verification, and compliance with UK GDPR and NHSE IG requirements.*
 
-**Tier breakdown**: 🟢 5 Tier 1 · 🟡 1 Tier 2
+**Tier breakdown**: 🟢 7 Tier 1 · 🟡 4 Tier 2
 
 ### 🟢 Audio Retention Compliance
 
@@ -5636,6 +7809,80 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 ---
 
+### 🟢 Audio Time-to-Deletion
+
+Measured time from consultation end to verified deletion of the captured audio. Operational implementation of the existing Audio Retention Compliance metric. NHS England's March 2026 IG guidance requires deletion of audio after the summary is signed off, unless explicitly retained for safety monitoring with documented justification. This metric measures whether the deletion is actually happening in the timeframe the policy claims.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) storage limitation |
+
+**Why this tier?**
+
+> Direct compliance requirement. Measurable through vendor-provided deletion telemetry. Binary-ish: deletion within policy timeframe or not. Should be continuously monitored rather than periodically audited.
+
+**Formal Definition**
+
+```
+Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution: median, P95, P99, and count of encounters exceeding policy threshold. Verification requirement: deletion confirmed in primary storage, caches, backups, and any downstream analytic systems. Policy threshold per deployer: typically 24 hours to 7 days depending on DPIA. Compliance = proportion of encounters with verified deletion within threshold.
+```
+
+**Limitations**
+
+> Verification across all storage locations is technically difficult — backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
+
+**Novel Thinking / Implications**
+
+> 💡 "Audio is deleted after sign-off" is a policy statement that only has governance value if it's actually measured. The gap between policy and practice on deletion is often substantial — audio persists in backup systems, error logs, annotation pipelines, and quality monitoring infrastructure long after the "deletion" event. Making time-to-deletion a measured metric rather than a policy assertion is the minimum required for the NHS IG guidance to have operational effect.
+
+---
+
+### 🟢 Transcript Retention Compliance
+
+Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio — and therefore retained longer — but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) |
+
+**Why this tier?**
+
+> Direct compliance requirement. Should be measured in parallel with Audio Time-to-Deletion. Often more operationally tractable because transcripts are typically held in vendor-controlled systems rather than distributed storage.
+
+**Formal Definition**
+
+```
+For each transcript: retention duration = t_current - t_consultation_end. Retention policy specifies maximum duration for each purpose: summary generation (typically hours), review support (typically days), quality monitoring (variable, documented in DPIA). Compliance = |transcripts_retained_within_policy| / |total_transcripts|. Report per retention purpose — aggregating different retention justifications obscures policy adherence.
+```
+
+**Limitations**
+
+> Retention for "quality monitoring" is often a catch-all that effectively keeps transcripts indefinitely. Tightening this requires specific retention periods per monitoring purpose. Cross-system retention (transcript in vendor system, derived metadata in deployer analytics, redacted version in research database) creates a tangled retention picture.
+
+**Novel Thinking / Implications**
+
+> 💡 Transcripts are the highest-value/highest-risk intermediate representation in AVT. They contain everything said, in structured form, searchable, and often retained for longer than either the audio or the final note. An attacker who compromises transcript storage has far more exposure than one who compromises the final clinical records. Retention minimisation for transcripts is arguably more important than for audio, but it's rarely treated that way in DPIAs.
+
+---
+
 ### 🟡 Data Minimisation Score
 
 Whether the AVT system processes only the minimum data necessary for its function. Includes: does the system transmit full audio to cloud when local processing would suffice? Does it retain intermediate outputs (full transcript) when only the summary is needed?
@@ -5670,6 +7917,117 @@ DMS = data_necessary / data_processed. Ideal DMS = 1.0. Track per data type: aud
 **Novel Thinking / Implications**
 
 > 💡 The DGX Spark and similar edge AI hardware create a genuine architectural choice: local processing minimises data exposure but may limit model capability. The data minimisation score should drive architectural decisions — if local processing meets quality thresholds, cloud transmission of full audio is unnecessary and non-compliant with minimisation principles.
+
+---
+
+### 🟡 PII Extraction Attack Success Rate
+
+Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric — MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Academic |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Source** | IEEE S&P 2023 LLM PII leakage study; OWASP LLM Top 10 (Sensitive Information Disclosure) |
+
+**Why this tier?**
+
+> Vendor-side red-team testing requirement. Deployers cannot independently test model-internal privacy properties. Should be a procurement requirement with results provided by vendor or independent assessor.
+
+**Formal Definition**
+
+```
+Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attack categories: (1) direct prompting ("what did the patient say about their family history?"); (2) completion-based extraction (prompting partial records and measuring reconstruction); (3) inversion attacks on embeddings; (4) canary extraction using known inserted content. Report per attack category — aggregate success rate obscures category-specific weaknesses.
+```
+
+**Limitations**
+
+> Defining the attack surface is itself contested. A test suite that looks adequate today may be outdated tomorrow. Vendors may resist third-party red-teaming on competitive grounds. Extraction that is theoretically possible but requires massive query budgets may or may not be a practical concern depending on threat model.
+
+**Novel Thinking / Implications**
+
+> 💡 The OWASP LLM Top 10 lists Sensitive Information Disclosure as a standard vulnerability class, but most AVT vendors have not engaged with it as a distinct security category — privacy is typically treated as "we don't train on customer data" rather than as an active red-teaming target. The shift from passive privacy posture to adversarial privacy testing is the maturity marker. A vendor who has never had their system red-teamed for PII extraction should not be deployed into NHS clinical settings.
+
+---
+
+### 🟡 Re-identification Risk Assessment
+
+Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation — anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Deployer, Vendor |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | ICO anonymisation code of practice; NIST privacy framework |
+
+**Why this tier?**
+
+> Standard privacy methodology. Should be part of any DPIA for secondary uses. Periodic reassessment required as new data are added and as re-identification techniques evolve.
+
+**Formal Definition**
+
+```
+Per retained dataset: assess re-identification risk against standard criteria — (1) direct identifiers present or removed? (2) quasi-identifiers (age, postcode, date, rare condition) combinable to identify individuals? (3) k-anonymity achieved and at what k? (4) l-diversity for sensitive attributes? (5) differential privacy applied? (6) motivated intruder test — could a determined attacker re-identify individuals given reasonably available auxiliary information? Overall risk rating: low / medium / high / unacceptable. Threshold for retention: risk must be low or medium with explicit justification.
+```
+
+**Limitations**
+
+> Re-identification risk is probabilistic and depends on what auxiliary information an attacker has access to. Small clinical populations (rare conditions, small practices) are re-identifiable from very little information. "De-identified" is not the same as "anonymous".
+
+**Novel Thinking / Implications**
+
+> 💡 A single NHS practice with 5,000 patients has very few patients with any given rare condition — sometimes just one. A "de-identified" transcript mentioning that condition is trivially re-identifiable by anyone with access to the practice's patient list. Re-identification risk assessment forces this question into visibility during DPIA rather than treating de-identification as a technical checkbox.
+
+---
+
+### 🟡 Training Data Inclusion Status
+
+Clear documentation of whether deployer audio, transcripts, or notes are used by the vendor for model training or fine-tuning. Distinct from the existing Sub-Processor Transparency metric (which covers processing activity) and from privacy policies (which often hedge this question). This metric requires an explicit binary answer: is NHS data flowing into the vendor's training pipeline, yes or no, with documented consent basis if yes.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | One-off gate |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Proximal |
+| **Source** | UK GDPR transparency requirements; derived from emerging AVT procurement practice |
+
+**Why this tier?**
+
+> Procurement gate. Should be explicitly answered in vendor contracts, not left to policy ambiguity. Annual reassessment on contract renewal.
+
+**Formal Definition**
+
+```
+Status recorded as: (a) No — deployer data not used for any training or fine-tuning; (b) Yes — used for training with specified consent basis and opt-out mechanism; (c) Derived — used for aggregated statistics or distilled features without retaining source data. Each status has different governance implications. Documentation must specify which model components may be trained (ASR, summariser, coder) and which data types (audio, transcripts, notes, metadata). Vendor attestation required; independent verification is not currently feasible.
+```
+
+**Limitations**
+
+> Verification relies on vendor attestation. The distinction between "training" and "quality improvement" can be blurred by vendors in ways that obscure actual data flows. Aggregate statistics derived from training data may themselves carry privacy risk.
+
+**Novel Thinking / Implications**
+
+> 💡 Many NHS AVT contracts are ambiguous about training data flows because vendors benefit from keeping the option open and deployers often don't ask explicitly. Making this a Tier 2 procurement metric forces the question into contract negotiations. The patient-level consequence is that AVT-using consultations may effectively contribute to training the next generation of commercial AI systems — and patients should know this if it's happening. This is a transparency obligation the existing taxonomy's consent metrics don't capture.
 
 ---
 
@@ -5829,7 +8187,7 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 *System performance, adoption, efficiency. Necessary but not sufficient for assurance.*
 
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 2 Tier 2 · 🔵 1 Tier 3
+**Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 1 Tier 3
 
 ### 🟢 Documentation Time per Consultation
 
@@ -5870,6 +8228,117 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 **Novel Thinking / Implications**
 
 > 💡 'Saved 3 min and maintained >98% PDSQI-9' is meaningful. 'Saved 3 min' alone is not.
+
+---
+
+### 🟡 Pyjama Time / After-Hours EHR Use
+
+Clinician time spent on EHR and documentation work outside of scheduled clinical hours. Standard burnout-adjacent metric from the Sinsky et al. literature. Applied to AVT assessment, it measures whether documentation burden that was shifted from in-consultation to after-consultation (a known pattern with review-before-signing workflows) has simply moved the burden to outside working hours rather than reducing it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Passive Observational |
+| **Lifecycle Phases** | Day Zero Baseline, Continuous |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Distal |
+| **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
+
+**Why this tier?**
+
+> Established methodology. Derivable from EHR audit logs without additional instrumentation. Essential for distinguishing genuine workload reduction from workload redistribution.
+
+**Formal Definition**
+
+```
+Pyjama Time = time spent in EHR outside of scheduled clinic hours per clinician per week. Derived from EHR audit logs (timestamp of user actions vs rostered working hours). Pre/post AVT comparison: ΔPyjama Time = Pyjama_post - Pyjama_pre. A genuine workload reduction shows Pyjama Time decrease; a redistribution shows Pyjama Time stable or increasing even as in-consultation documentation time falls.
+```
+
+**Limitations**
+
+> Audit logs may not capture all EHR activity (mobile access, shadow work in parallel documents). Definition of "working hours" varies by role and contract. Some pyjama time reflects preferred work pattern rather than workload pressure.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that catches the most common AVT failure mode for clinician wellbeing: the system reduces typing time during consultations but creates after-hours review work that the clinician was not previously doing. In-consultation time savings are visible and marketable; after-hours burden is invisible and unpaid. A deployment that shows documentation time saved per consultation should also show pyjama time decreased — if only the first moves, the value proposition is shifted burden, not reduced burden.
+
+---
+
+### 🟡 Note Turnaround Time
+
+Elapsed time from consultation end to note availability in the EPR, measured from the clinician's perspective rather than the pipeline's internal latency. Extends the existing Full-Pipeline Latency Budget (which is a technical metric) into an operational workflow metric that directly affects review quality. If the note arrives after the clinician has started the next patient, review happens later in lower-quality conditions or not at all.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | End-to-End |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | Standard operational workflow metric; extends Full-Pipeline Latency Budget |
+
+**Why this tier?**
+
+> Operational metric derivable from EPR workflow data. Directly affects review quality and therefore safety. Should be continuously monitored and reported.
+
+**Formal Definition**
+
+```
+Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribution: median, P50, P90, P99. Clinically relevant threshold: proportion of notes available before the start of the next patient's consultation. A turnaround time distribution with long tails creates selective review failure — the notes most delayed are the ones most likely to be approved without meaningful review.
+```
+
+**Limitations**
+
+> End of consultation is not always cleanly timestamped. Network conditions, EPR availability, and other operational factors affect turnaround independent of AVT processing time.
+
+**Novel Thinking / Implications**
+
+> 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else — queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
+
+---
+
+### 🟡 Documentation Workload Composite
+
+Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components — which is the number that matters for the value proposition and clinician wellbeing assessment.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Day Zero Baseline, Periodic Audit |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Distal |
+| **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
+
+**Why this tier?**
+
+> Composite metric built from component metrics measured separately. Quarterly rollup enables trajectory reporting to clinical leadership without requiring separate measurement work.
+
+**Formal Definition**
+
+```
+Workload Composite = w1 × Documentation_Time + w2 × Pyjama_Time + w3 × Verification_Burden. Weights reflect relative clinical significance; default equal weights. Per-clinician and aggregate reporting. Change metric: ΔWorkload = Workload_post_AVT - Workload_pre_AVT. Negative ΔWorkload = genuine net reduction; positive = net increase despite in-consultation savings.
+```
+
+**Limitations**
+
+> Aggregation hides component-level patterns. A composite that stays stable may mask simultaneous decrease in documentation time and increase in pyjama time — the stable number obscures the pattern shift. Report composite alongside components, not instead of them.
+
+**Novel Thinking / Implications**
+
+> 💡 The composite is the honest answer to "did AVT reduce workload?" that the individual metrics cannot give alone. A practice reporting "saved 3 minutes per consultation" without composite reporting is answering a convenient question; a practice reporting composite workload change is answering the real one. Clinical leadership and commissioners should request composite reporting rather than selective component reporting.
 
 ---
 
@@ -6047,6 +8516,127 @@ Initial Training = hours required to reach minimum competency. Refresher Trainin
 **Limitations**
 
 > Vendor-claimed training time often differs from actual time required.
+
+---
+
+## Environmental & Sustainability
+
+*Energy, carbon, and water footprint of AVT operation. All three current metrics in this group are Tier 3 — not Day Zero priority for clinical safety assurance, but increasingly required for NHS procurement under Net Zero commitments and cascading through EU-market vendor compliance under forthcoming corporate sustainability reporting requirements.*
+
+*The group exists more as placeholder for an expected future than as a cluster of actionable metrics today. The measurement infrastructure is immature: vendors rarely expose per-inference telemetry; cloud providers are not consistent in sustainability reporting; methodology for attributing training emissions to individual inferences is contested; water consumption data is especially limited. None of the current metrics are deployer-measurable — they are vendor-reported, and deployers currently have no independent verification path.*
+
+*All three metrics may move to Tier 2 as the NHS Net Zero procurement framework matures and as vendor sustainability reporting becomes routine. At the scale of potential NHS AVT deployment (millions of consultations per year), even small per-note environmental differences compound into substantial total footprint, and procurement conversations are starting to ask the question even where answers are uneven.*
+
+**Tier breakdown**: 🔵 3 Tier 3
+
+### 🔵 Energy Consumption per Clinical Note
+
+Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts — a 70× range that makes provider choice consequential for total energy footprint.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Periodic Audit |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Source** | Jegham et al., arXiv 2505.09598 (2025) — "How Hungry is AI?" |
+
+**Why this tier?**
+
+> Vendor-side measurement. Not deployer-actionable today but reportable. NHS procurement will increasingly ask this question as Net Zero commitments mature.
+
+**Formal Definition**
+
+```
+Energy per Note (Wh) = total_inference_energy / number_of_notes_generated. Measured at the inference infrastructure level. Per-model reporting required because architecture choice dominates the metric. Break down into: ASR energy, summarisation energy, coding energy. Scale: multiply by annual note volume to estimate annual energy cost of deployment.
+```
+
+**Limitations**
+
+> Vendor access to per-note energy telemetry is typically not exposed to customers. Hosting infrastructure varies, making direct vendor comparison difficult. Published benchmarks use standardised prompts that don't reflect real clinical usage patterns.
+
+**Novel Thinking / Implications**
+
+> 💡 At the NHS scale (potentially millions of consultations per year using AVT), even small per-note energy differences compound into substantial total footprint. An NHS-wide AVT deployment using a 29 Wh/note model consumes ~70× more energy than the same deployment on a 0.42 Wh/note model. This is not a dominant clinical assurance question but it is a material procurement question under NHS Net Zero — and reporting it creates the data visibility that lets procurement use it.
+
+---
+
+### 🔵 Carbon Emissions per Inference
+
+Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalent. Distinct from energy consumption because carbon intensity depends on the hosting region's electricity grid — the same model hosted in a coal-heavy grid vs a renewable-heavy grid has very different carbon footprint despite identical energy use. Relevant to NHS Net Zero procurement and to EU-market vendors under corporate sustainability reporting requirements.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Periodic Audit |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Source** | Mistral AI lifecycle assessment; Jegham et al. 2025 — grid carbon intensity adjustment |
+
+**Why this tier?**
+
+> Vendor-reported metric. NHS Net Zero relevant for procurement. Cannot be measured by deployers.
+
+**Formal Definition**
+
+```
+gCO₂e per Note = energy_per_note × grid_carbon_intensity(hosting_region, time). Report: (a) current grid intensity at hosting location; (b) marginal emissions (electricity that would not have been consumed without this inference); (c) embodied emissions amortised over model lifetime. NHS procurement comparison: total annual gCO₂e = gCO₂e_per_note × annual_note_volume. Compare against NHS trust carbon budgets to contextualise.
+```
+
+**Limitations**
+
+> Grid carbon intensity data are approximate and vary by time of day. Marginal vs average emissions methodology is contested. Embodied emissions from model training are difficult to attribute to individual inferences.
+
+**Novel Thinking / Implications**
+
+> 💡 Hosting region choice is a lever NHS procurement could use: a vendor hosted in regions with lower-carbon grids has lower per-note emissions for identical models. This creates a potential procurement criterion distinct from clinical performance — and may create pressure for vendors to offer UK or low-carbon hosting options as a Net Zero differentiator. Whether NHS procurement will actually weight this remains to be seen.
+
+---
+
+### 🔵 Water Consumption per Query
+
+Water consumed by data centre cooling infrastructure per clinical note inference. Measured in millilitres. Increasingly required for NHS Net Zero procurement given water stress considerations in parts of the UK and in cloud hosting regions globally. Less visible than energy and carbon but material at AVT-deployment scale.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Periodic Audit |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Source** | Jegham et al. 2025; Li et al. "Making AI Less Thirsty" |
+
+**Why this tier?**
+
+> Vendor-reported. Least mature of the environmental metrics but increasingly appearing in sustainability frameworks.
+
+**Formal Definition**
+
+```
+mL per Note = data_centre_water_usage_effectiveness (WUE) × energy_per_note. Direct water (cooling) and indirect water (electricity generation). Report per-note and annual total. Compare against regional water stress indices for hosting locations.
+```
+
+**Limitations**
+
+> Water consumption data are rarely reported by cloud providers. Estimation methodology is in early development. Indirect water (electricity generation) typically dominates direct water, so attribution is complex.
+
+**Novel Thinking / Implications**
+
+> 💡 Water consumption is the sustainability metric that feels abstract until it becomes locally consequential. An AVT deployment drawing on a data centre in a water-stressed region is indirectly connected to water policy there. NHS sustainability frameworks are still developing their position on this, but it will become a procurement question over the next few years as water stress visibility increases.
 
 ---
 
@@ -6245,7 +8835,7 @@ Training Currency = days since last update of training materials. Coverage of re
 
 *Whether vendors provide the access, telemetry, and transparency needed for independent assurance. The meta-prerequisite for most other metrics.*
 
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
+**Tier breakdown**: 🟢 3 Tier 1 · 🟡 4 Tier 2 · 🔵 1 Tier 3
 
 ### 🟢 Model Change Notification Compliance
 
@@ -6518,13 +9108,50 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 ---
 
+### 🟡 Intermediate Output Access
+
+Whether the vendor provides contractual access to intermediate pipeline outputs — the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores — rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | One-off gate |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Proximal |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; Stanford monitoring framework |
+
+**Why this tier?**
+
+> Procurement gate. Should be contractually specified. Required for any deployer intending to run Error Attribution Analysis, Chain of Custody traces, or Safety-Critical Information Chain of Custody (which is Tier 2 in the existing taxonomy but depends on intermediate output access to be executable).
+
+**Formal Definition**
+
+```
+Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript with speaker labels; (3) pre-summarisation processing outputs; (4) generated summary before coding; (5) coding suggestions before selection; (6) final output; (7) model confidence scores per stage. Access granularity: on-demand for individual encounters (required for incident investigation); bulk export for audit (required for Error Attribution Analysis); real-time streaming (optional, useful for monitoring). Binary per stage; target is full access to stages 1–6 on demand, with confidence scores (7) as advanced capability.
+```
+
+**Limitations**
+
+> Vendors resist intermediate output access on commercial grounds — the intermediate outputs reveal pipeline architecture and model choices. Contractual access may be granted at high cost or with usage restrictions. Without independent verification, deployers cannot confirm that the "intermediate outputs" provided are authentic rather than reconstructions.
+
+**Novel Thinking / Implications**
+
+> 💡 Many of the highest-value metrics in this taxonomy — Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis — depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
+
+---
+
 # Part F — Evaluation Science
 
 ## Meta-evaluation
 
 *Are we measuring what matters? Structural critique of proximal vs distal outcomes and evaluation science itself.*
 
-**Tier breakdown**: 🟡 1 Tier 2 · 🔵 4 Tier 3
+**Tier breakdown**: 🟡 1 Tier 2 · 🔵 6 Tier 3
 
 ### 🔵 Proximal vs Distal Outcome Distinction
 
@@ -6718,5 +9345,79 @@ For each incident or near-miss: identify which metrics would have detected it. C
 **Novel Thinking / Implications**
 
 > 💡 The taxonomy is not static. As AVT evolves and new failure modes emerge, the taxonomy must evolve to cover them. Coverage gap analysis is the mechanism for this evolution — every incident should prompt the question 'would our metrics have caught this?' If not, that's a gap to fill.
+
+---
+
+### 🔵 LLM-Judge Bias Quantification
+
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Academic, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Source** | Croxford et al. 2025 (npj Digital Medicine); Rwanda clinical LLM evaluation study |
+
+**Why this tier?**
+
+> Research-grade meta-evaluation. Academic and national body responsibility. Not routinely performed but necessary for anyone relying on LLM-as-a-Judge outputs for safety-critical decisions.
+
+**Formal Definition**
+
+```
+Bias tests: (1) Position bias — reverse pairwise ordering and measure agreement with original judgment (perfect judge = 100% consistency under reversal); (2) Verbosity bias — compare judgments on pairs matched on quality but varying in length; (3) Self-enhancement — test judge on outputs from its own model family vs other families; (4) Score range reliability — measure inter-rater agreement at high scores (e.g. 4 vs 5 on Likert) vs across full range. Composite: bias-adjusted reliability = raw reliability corrected for each bias type.
+```
+
+**Limitations**
+
+> Bias testing requires carefully constructed adversarial test sets. Results don't transfer across judge models or domains. Bias adjustments are approximations, not corrections.
+
+**Novel Thinking / Implications**
+
+> 💡 The Rwanda finding is the uncomfortable one: LLM judges may correlate well with human evaluators while correlating poorly with ground truth. This is the worst failure mode for evaluation — apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
+
+---
+
+### 🔵 Automated-Human Metric Concordance
+
+Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Hybrid |
+| **Lifecycle Phases** | Periodic Audit |
+| **Responsible Actors** | National Body, Academic |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Source** | Standard meta-evaluation methodology; Croxford et al. 2025 (ROUGE Kendall-Tau 0.080) |
+
+**Why this tier?**
+
+> Meta-evaluation requiring paired automated and human assessment data. National evaluation programme responsibility. Establishes the evidence base for treating automated metrics as trustworthy proxies.
+
+**Formal Definition**
+
+```
+For each automated metric m in deployed use: collect a sample of N encounters scored by both m and by expert human evaluators using a validated instrument (e.g. PDSQI-9, CREOLA taxonomy). Compute correlation (Pearson, Spearman, Kendall's tau). Concordance Threshold: metric is "adequate as proxy" only if correlation > 0.5. Metrics with correlation < 0.3 should not be used as standalone quality indicators regardless of technical sophistication. Report concordance per metric with confidence intervals.
+```
+
+**Limitations**
+
+> Requires paired human-automated scoring, which is expensive. Inter-human agreement is itself imperfect, creating a ceiling on achievable concordance. Results may not transfer across deployment contexts (a metric that concords well in primary care may fail in secondary care).
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that polices the other metrics. Without concordance data, the taxonomy's automated metrics are running on an unverified assumption that they measure what human experts measure. The ROUGE finding is the canonical example of that assumption failing — a metric in widespread use has essentially zero correlation with clinical judgment and is used anyway because it's easy to compute. Periodic concordance measurement should be a national evaluation programme responsibility, and any metric with concordance < 0.3 should be explicitly flagged in the taxonomy as inadequate as a standalone indicator.
 
 ---
