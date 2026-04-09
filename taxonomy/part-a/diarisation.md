@@ -53,6 +53,10 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 > Challenging in multi-party consultations. Most benchmarks assume two speakers.
 
+**⚠️ Underspecification Warning (Tier C — standard methodology, absent clinical context)**
+
+> DER has a rigorous technical definition (NIST RT evaluation protocol) and established general benchmarks (AMI ~7.2%, CALLHOME ~12.4%), but **no clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality — a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
+
 ---
 
 ### 🟡 Speaker Attribution Accuracy

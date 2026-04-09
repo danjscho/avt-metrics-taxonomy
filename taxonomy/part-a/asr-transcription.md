@@ -156,6 +156,10 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 > No standardised clinical significance ontology exists. Weight assignment is inherently subjective.
 
+**⚠️ Underspecification Warning (Tier B — no standardised weighting ontology)**
+
+> M-WER requires a weighting ontology defining the clinical significance of token classes. **No such ontology is standardised for NHS or international use.** Abridge's Medical Term Recall (MTR) and DeepScribe's Medical Word Hit Rate are functionally equivalent implementations that use different proprietary term lists and different weighting schemes — so a vendor claiming "95% MTR" cannot be directly compared with another claiming "95% M-WER". A national body standard mapping SNOMED safety-critical concept classes to weight values would make vendor benchmarks comparable and is a candidate for NHS England or equivalent commissioning. Until then, require vendors to disclose (a) their term list and provenance, (b) the weighting scheme, and (c) the reference dataset used for M-WER computation. Refuse to compare M-WER values across vendors without this disclosure.
+
 **Novel Thinking / Implications**
 
 > 💡 A national body could define a standardised M-WER weighting ontology mapped to SNOMED safety-critical concept classes, making vendor benchmarks comparable.
@@ -224,6 +228,10 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 > Requires ground-truth keyword annotation. Keyword list must be maintained as terminology evolves.
 
+**⚠️ Underspecification Warning (Tier B — same standardisation gap as M-WER)**
+
+> CK-ER depends on a clinical significance ontology defining which terms are keywords — no standardised ontology exists. The vendor or deployer implementing CK-ER chooses which terms count, and the resulting metric is only as good as that choice. Different keyword lists produce materially different CK-ER values for the same system, which prevents cross-vendor comparison and makes local benchmarks difficult to interpret. This metric sits in the same standardisation gap as M-WER: it is conceptually sound but requires national body specification of a canonical keyword ontology mapped to SNOMED safety-critical concept classes before it can be reported in a comparable way. In the interim, document the keyword dictionary used and its provenance when reporting CK-ER.
+
 **Novel Thinking / Implications**
 
 > 💡 Could run as automated post-transcription guardrail on every encounter without human review.
@@ -290,6 +298,10 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 **Limitations**
 
 > Vendors control test datasets. No independent UK-representative speech corpus exists at scale.
+
+**⚠️ Underspecification Warning (Tier C — well-defined structure, ad hoc categorisation)**
+
+> Published demographic WER reporting uses ad-hoc accent categorisation that has been systematically critiqued. A FAccT 2024 paper identified race-based, geography-based, and native/non-native categories as poor proxies for the actual acoustic variation that affects ASR performance — they are demographically convenient but phonologically arbitrary. No standardised maximum acceptable disparity threshold exists across the field; the NAS 5 percentage point target is a proposed rather than evidence-based threshold. For NHS context, a defensible taxonomy must include at minimum: British regional accents (with meaningful sub-categorisation), South Asian English varieties (distinct from "Indian English" as a single category), West African English, Caribbean English, and Eastern European English — none of which are consistently present in vendor-reported demographic WER data. The accompanying **Accent Taxonomy Standardisation** metric (Fairness & Equity) assesses whether the categorisation itself is defensible before the disaggregation numbers become meaningful.
 
 **Novel Thinking / Implications**
 
