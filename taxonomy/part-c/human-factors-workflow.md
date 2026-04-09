@@ -633,3 +633,161 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 ---
 
+---
+
+### Sociotechnical & Resilience sub-cluster
+
+*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss — the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
+
+---
+
+### 🔵 Work-as-Imagined vs Work-as-Done Gap
+
+The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
+
+|Dimension              |Value                                                                  |
+|-----------------------|-----------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
+|**Measurement Cadence**|Periodic audit                                                         |
+|**Pipeline Layer**     |Cross-cutting                                                          |
+|**Assurance Question** |Safety                                                                 |
+|**Measurement Method** |Hybrid                                                                 |
+|**Lifecycle Phases**   |Periodic Audit                                                         |
+|**Responsible Actors** |Deployer, Academic                                                     |
+|**Maturity**           |Proposed / Novel                                                       |
+|**Outcome Type**       |Distal                                                                 |
+|**Source**             |Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations      |
+
+**Why this tier?**
+
+> Research-grade metric requiring ethnographic observation and structured interview methodology. Not routinely measurable at deployer level. Academic or national evaluation programme responsibility.
+
+**Formal Definition**
+
+```
+Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis — categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar — the qualitative detail is what supports intervention.
+```
+
+**Limitations**
+
+> Ethnographic methods are resource-intensive and subjective. WAI is itself often poorly documented. Observer effects shape observed behaviour. Generalisation across practices is limited.
+
+**Novel Thinking / Implications**
+
+> 💡 Every complex sociotechnical system has a WAI/WAD gap — procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
+
+---
+
+### 🟡 Verification Burden
+
+The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
+
+|Dimension              |Value                                                               |
+|-----------------------|--------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
+|**Measurement Cadence**|Periodic audit                                                      |
+|**Pipeline Layer**     |Cross-cutting                                                       |
+|**Assurance Question** |Human Factors                                                       |
+|**Measurement Method** |Hybrid                                                              |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                   |
+|**Responsible Actors** |Deployer, Academic                                                  |
+|**Maturity**           |Emerging                                                            |
+|**Outcome Type**       |Proximal                                                            |
+|**Source**             |JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data  |
+
+**Why this tier?**
+
+> Conceptually important — distinguishes apparent efficiency gain from actual efficiency gain — but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
+
+**Formal Definition**
+
+```
+VB = t_review + t_correction + t_cross_reference, measured per consultation. Baseline pre-AVT: equivalent activities (proofreading own notes, referencing structured fields). Net Verification Cost = VB_AVT - VB_pre-AVT. Efficiency gain = (t_documentation_pre - t_documentation_AVT) - Net Verification Cost. A genuinely efficient system has positive net gain after accounting for verification burden.
+```
+
+**Limitations**
+
+> TimeCat or equivalent time-motion methodology is labour-intensive. Verification activities are often interleaved with other work and hard to isolate. Self-report on verification time is unreliable because the activity is partly automatic.
+
+**Novel Thinking / Implications**
+
+> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency — and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
+
+---
+
+### 🔵 Resilience Capacities Assessment
+
+Structured assessment of the clinician-AVT joint cognitive system against the four Safety-II resilience capacities: **responding** to unexpected events, **monitoring** for signs of degradation, **learning** from experience, and **anticipating** future challenges. From Hollnagel's resilience engineering framework. Applied not to AVT alone but to the combined human-machine system as it operates in context.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Measurement Cadence**|Periodic audit                                                    |
+|**Pipeline Layer**     |Cross-cutting                                                     |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Hybrid                                                            |
+|**Lifecycle Phases**   |Periodic Audit                                                    |
+|**Responsible Actors** |Deployer, National Body, Academic                                 |
+|**Maturity**           |Proposed / Novel                                                  |
+|**Outcome Type**       |Distal                                                            |
+|**Source**             |Hollnagel Safety-II; FRAM methodology; resilience engineering literature|
+
+**Why this tier?**
+
+> Research framework applied at system level. Not a routine metric. National or academic responsibility for maturing the methodology into deployable assessment.
+
+**Formal Definition**
+
+```
+Four capacity dimensions scored via structured scenario-based assessment and qualitative evaluation:
+(1) Responding — when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
+(2) Monitoring — what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
+(3) Learning — when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
+(4) Anticipating — does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
+Score each capacity 1–5 with narrative justification. Composite is a profile, not a single number.
+```
+
+**Limitations**
+
+> Assessment is qualitative and requires trained evaluators. Framework originally developed for complex sociotechnical systems (healthcare, aviation); application to AVT specifically is novel. Scoring inter-rater reliability has not been established for this application.
+
+**Novel Thinking / Implications**
+
+> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle — the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
+
+---
+
+### 🟡 AI-Off Performance Test
+
+Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
+
+|Dimension              |Value                                                                                                 |
+|-----------------------|------------------------------------------------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
+|**Measurement Cadence**|Periodic audit                                                                                        |
+|**Pipeline Layer**     |Cross-cutting                                                                                         |
+|**Assurance Question** |Human Factors                                                                                         |
+|**Measurement Method** |Hybrid                                                                                                |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                                                     |
+|**Responsible Actors** |Deployer                                                                                              |
+|**Maturity**           |Proposed / Novel                                                                                      |
+|**Outcome Type**       |Distal                                                                                                |
+|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)|
+
+**Why this tier?**
+
+> Operationally feasible for any deployer willing to commit protected time. More actionable than longitudinal skill attenuation measurement because it provides current state data. Should be scheduled at Day Zero baseline and repeated annually.
+
+**Formal Definition**
+
+```
+Protocol: (1) Schedule defined exercises where clinicians document simulated or real consultations without AVT; (2) Documentation is scored using PDSQI-9 or equivalent validated instrument; (3) Score is compared against the clinician's pre-AVT baseline (if available) and against peer benchmarks. Trajectory Metric = score_current - score_baseline. Cohort Analysis: compare clinicians trained with AVT from day one against those who learned without it.
+```
+
+**Limitations**
+
+> Protected time is expensive. Simulated consultations differ from real consultations. Clinicians who know they are being assessed may perform differently. Pre-AVT baseline is often not available for individual clinicians.
+
+**Novel Thinking / Implications**
+
+> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case — can the practice function during a vendor outage? — is almost sufficient reason to run the test regardless of the deskilling question.

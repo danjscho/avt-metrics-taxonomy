@@ -86,6 +86,41 @@ def source_to_record_concordance(
 
 ---
 
+### 🔵 Cumulative Information Yield
+
+The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
+
+|Dimension              |Value                                                                            |
+|-----------------------|---------------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
+|**Measurement Cadence**|Periodic audit                                                                   |
+|**Pipeline Layer**     |End-to-End                                                                       |
+|**Assurance Question** |Safety                                                                           |
+|**Measurement Method** |Hybrid                                                                           |
+|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                                   |
+|**Responsible Actors** |Academic, National Body                                                          |
+|**Maturity**           |Proposed / Novel                                                                 |
+|**Outcome Type**       |Distal                                                                           |
+|**Source**             |Extension of existing Source-to-Record Concordance with categorical yield decomposition|
+
+**Why this tier?**
+
+> Resource-intensive evaluation requiring expert annotation of source audio, organised into categorical yield rather than binary preservation. Best suited for national evaluation programme. Per-category reporting reveals systematic content bias invisible to aggregate preservation metrics.
+
+**Formal Definition**
+
+```
+For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite — the aggregate obscures category bias.
+```
+
+**Limitations**
+
+> Categorical annotation of source audio is even more labour-intensive than binary annotation. Category boundaries are contested (is "stopped smoking 5 years ago" social context or relevant history?). Weight assignment for the composite is subjective.
+
+**Novel Thinking / Implications**
+
+> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
+
 ### 🔵 Error Propagation / Cascade Analysis
 
 End-to-end: tracking how a single upstream error amplifies or gets corrected through subsequent stages. An ASR misrecognition could be caught by the summariser (correction) or cascade into wrong coding and wrong EPR entry (amplification).

@@ -232,3 +232,156 @@ Multi-dimensional: (1) PCQ-18 adapted; (2) Clinician engagement scale; (3) Eye c
 
 ---
 
+---
+
+### Patient Clinical Outcomes sub-cluster
+
+*Direct addressing of the Coiera & Fraile-Navarro (JMIR Med Inform February 2026) critique that the AVT evaluation field measures proximal metrics and assumes they correlate with patient outcomes. This sub-cluster makes the distal outcome measurement explicit.*
+
+---
+
+### 🟡 Full Attentiveness Rate
+
+Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI — a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
+
+|Dimension              |Value                                                           |
+|-----------------------|----------------------------------------------------------------|
+|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Measurement Cadence**|Periodic audit                                                  |
+|**Pipeline Layer**     |Cross-cutting                                                   |
+|**Assurance Question** |Patient Experience                                              |
+|**Measurement Method** |Passive Observational                                           |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                               |
+|**Responsible Actors** |Deployer, Academic                                              |
+|**Maturity**           |Emerging                                                        |
+|**Outcome Type**       |Proximal                                                        |
+|**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
+
+**Why this tier?**
+
+> Observable with time-motion methodology (TimeCat or equivalent). Day Zero baseline enables pre/post comparison. Important for establishing genuine patient experience improvement rather than self-reported improvement.
+
+**Formal Definition**
+
+```
+Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / t_total_consultation. Measured via TimeCat observation, video analysis, or (where accepted by patients) automated gaze tracking. Baseline pre-AVT vs post-AVT comparison. Report as distribution across consultations, not just mean — the clinically relevant improvement is often in the tail (consultations where the clinician was previously heavily divided between patient and screen).
+```
+
+**Limitations**
+
+> Observation methodology is labour-intensive. Observer effects change clinician behaviour. Eye contact patterns are culturally variable and not always a valid proxy for attention. Patient consent required for video or automated tracking.
+
+**Novel Thinking / Implications**
+
+> 💡 This is probably the strongest candidate for a positive AVT benefit metric that isn't subject to the Coiera critique. Unlike documentation time saved (which says nothing about patient outcome), attentiveness is directly related to the therapeutic alliance, to patient disclosure, and to shared decision-making. If the Stults et al. finding is reproducible, it becomes the primary argument for AVT adoption on quality-of-care grounds rather than efficiency grounds.
+
+---
+
+### 🔵 Patient Comprehension of AI-Generated Summaries
+
+When AI-generated clinical summaries are shared with patients (via NHS App, patient portals, or printed after-visit summaries), do patients actually understand them? Distinct from the existing Patient-Perceived Accuracy metric, which measures recognition ("does this match our conversation?"). Comprehension measures whether the patient can correctly state what the summary says about their condition, medications, and next steps.
+
+|Dimension              |Value                                                                    |
+|-----------------------|-------------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                           |
+|**Measurement Cadence**|Periodic audit                                                           |
+|**Pipeline Layer**     |Summarisation                                                            |
+|**Assurance Question** |Patient Experience                                                       |
+|**Measurement Method** |Survey                                                                   |
+|**Lifecycle Phases**   |Periodic Audit                                                           |
+|**Responsible Actors** |Deployer, Academic                                                       |
+|**Maturity**           |Proposed / Novel                                                         |
+|**Outcome Type**       |Distal                                                                   |
+|**Source**             |Health literacy research; growing relevance as patient access to records expands|
+
+**Why this tier?**
+
+> Important as patient-facing summaries become routine. Research-grade measurement methodology required. Best suited for periodic structured study.
+
+**Formal Definition**
+
+```
+Patient Comprehension Test: after receiving an AI-generated summary, patient is asked structured questions about: (1) primary diagnosis or problem identified; (2) medications prescribed and their purpose; (3) follow-up actions required; (4) warning signs requiring re-contact. Comprehension Rate = |correctly_answered_questions| / |total_questions|. Disaggregate by health literacy level, age, language, and education to detect differential comprehension.
+```
+
+**Limitations**
+
+> Requires patient time and willingness. Cultural and language barriers affect comprehension measurement itself. Summaries generated for clinical purposes may use language appropriate for clinicians but inaccessible to patients — this is a separable design question from AVT accuracy.
+
+**Novel Thinking / Implications**
+
+> 💡 With NHS App access making records patient-facing by default, AI-generated summaries written in clinical language become a health literacy barrier. A summary that is technically correct but uses "dyspnoea" instead of "breathlessness" is accurate from an AVT evaluation standpoint but opaque to the patient. Comprehension measurement should drive a design choice: should AVT generate two versions (clinical record + patient summary) or one version written for both audiences?
+
+---
+
+### 🔵 Downstream Diagnostic Accuracy
+
+Whether clinicians making subsequent decisions based on AVT-generated notes arrive at the same diagnostic and management conclusions they would have reached if they had access to the original consultation. Measured through controlled clinical reasoning studies where clinicians work from AVT notes vs verbatim transcripts vs direct observation. The distal outcome metric Coiera & Fraile-Navarro argue is missing from current AVT evaluation.
+
+|Dimension              |Value                                                             |
+|-----------------------|------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Measurement Cadence**|Periodic audit                                                    |
+|**Pipeline Layer**     |End-to-End                                                        |
+|**Assurance Question** |Safety                                                            |
+|**Measurement Method** |Human Review                                                      |
+|**Lifecycle Phases**   |Periodic Audit                                                    |
+|**Responsible Actors** |Academic, National Body                                           |
+|**Maturity**           |Proposed / Novel                                                  |
+|**Outcome Type**       |Distal                                                            |
+|**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
+
+**Why this tier?**
+
+> Gold-standard distal outcome metric. Extremely resource-intensive. National research programme responsibility. Complements the existing Clinical Decision Equivalence metric by focusing specifically on diagnostic rather than management decisions.
+
+**Formal Definition**
+
+```
+Blinded multi-clinician study design: same clinical case presented in three conditions — (a) clinician observes consultation directly, (b) clinician reads AVT-generated note, (c) clinician reads verbatim transcript. Each clinician makes diagnostic and differential diagnostic choices. Downstream Diagnostic Accuracy = agreement between conditions. Primary metric: κ between AVT condition and direct observation condition. Secondary metric: discrepancies stratified by clinical complexity.
+```
+
+**Limitations**
+
+> Very expensive — requires multiple blinded clinicians per case, clinical reasoning time, and careful study design. Inter-clinician variation in diagnostic reasoning adds noise. Simulated decision-making may not reflect real-world behaviour under time pressure.
+
+**Novel Thinking / Implications**
+
+> 💡 This is the metric that answers the question "does AVT preserve the clinical signal?" If clinicians reading AVT-generated notes make different diagnostic decisions than clinicians who observed the original consultation, all the proximal metrics (WER, edit rate, documentation time) are at best partially informative and at worst misleading. The Coiera critique is that the field has been measuring proxies and assuming they correlate with this — without evidence. This metric is the evidence.
+
+---
+
+### 🔵 Medication Error Rate Differential
+
+Pre/post AVT comparison of medication errors at the practice or trust level, including wrong-drug, wrong-dose, wrong-frequency, allergy-related, and interaction-related errors. The ultimate distal outcome that medication documentation accuracy ultimately serves. If AVT improves medication documentation (per attribute-level metrics) but medication errors don't decrease, the documentation improvement is not reaching the patient.
+
+|Dimension              |Value                                                                |
+|-----------------------|---------------------------------------------------------------------|
+|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                       |
+|**Measurement Cadence**|Periodic audit                                                       |
+|**Pipeline Layer**     |End-to-End                                                           |
+|**Assurance Question** |Safety                                                               |
+|**Measurement Method** |Hybrid                                                               |
+|**Lifecycle Phases**   |Day Zero Baseline, Periodic Audit                                    |
+|**Responsible Actors** |National Body, Academic                                              |
+|**Maturity**           |Proposed / Novel                                                     |
+|**Outcome Type**       |Distal                                                               |
+|**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
+
+**Why this tier?**
+
+> Longitudinal outcome metric requiring substantial baseline period and statistical controls. Not routinely measurable at single-practice level. National or regional evaluation responsibility.
+
+**Formal Definition**
+
+```
+Medication Error Rate = |medication_errors_reported| / |total_prescriptions|, stratified by error type and severity. Differential = (rate_post_AVT - rate_pre_AVT) / rate_pre_AVT. Requires: (1) minimum 12-month pre-AVT baseline; (2) consistent reporting culture across periods; (3) adjustment for concurrent interventions. Use difference-in-differences against matched non-AVT controls where possible.
+```
+
+**Limitations**
+
+> Medication errors are under-reported; reporting rates vary with safety culture; attribution to AVT requires careful controls. Low baseline rates mean large populations needed for statistical power.
+
+**Novel Thinking / Implications**
+
+> 💡 This closes the loop between AVT documentation accuracy and patient safety outcomes. The implicit theory of change for AVT safety is: better documentation → fewer medication errors → safer patients. Each link in that chain is assumed but not measured. This metric tests the final link directly. If it shows no effect, the proximal metrics need re-examination; if it shows effect, the proximal metrics are validated as meaningful safety signals.
