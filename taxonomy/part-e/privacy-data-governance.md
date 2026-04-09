@@ -2,7 +2,7 @@
 
 *Audio retention, data minimisation, consent verification, and compliance with UK GDPR and NHSE IG requirements.*
 
-**Tier breakdown**: 🟢 5 Tier 1 · 🟡 1 Tier 2
+**Tier breakdown**: 🟢 7 Tier 1 · 🟡 4 Tier 2
 
 ### 🟢 Audio Retention Compliance
 
@@ -41,6 +41,80 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 ---
 
+### 🟢 Audio Time-to-Deletion
+
+Measured time from consultation end to verified deletion of the captured audio. Operational implementation of the existing Audio Retention Compliance metric. NHS England's March 2026 IG guidance requires deletion of audio after the summary is signed off, unless explicitly retained for safety monitoring with documented justification. This metric measures whether the deletion is actually happening in the timeframe the policy claims.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) storage limitation |
+
+**Why this tier?**
+
+> Direct compliance requirement. Measurable through vendor-provided deletion telemetry. Binary-ish: deletion within policy timeframe or not. Should be continuously monitored rather than periodically audited.
+
+**Formal Definition**
+
+```
+Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution: median, P95, P99, and count of encounters exceeding policy threshold. Verification requirement: deletion confirmed in primary storage, caches, backups, and any downstream analytic systems. Policy threshold per deployer: typically 24 hours to 7 days depending on DPIA. Compliance = proportion of encounters with verified deletion within threshold.
+```
+
+**Limitations**
+
+> Verification across all storage locations is technically difficult — backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
+
+**Novel Thinking / Implications**
+
+> 💡 "Audio is deleted after sign-off" is a policy statement that only has governance value if it's actually measured. The gap between policy and practice on deletion is often substantial — audio persists in backup systems, error logs, annotation pipelines, and quality monitoring infrastructure long after the "deletion" event. Making time-to-deletion a measured metric rather than a policy assertion is the minimum required for the NHS IG guidance to have operational effect.
+
+---
+
+### 🟢 Transcript Retention Compliance
+
+Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio — and therefore retained longer — but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) |
+
+**Why this tier?**
+
+> Direct compliance requirement. Should be measured in parallel with Audio Time-to-Deletion. Often more operationally tractable because transcripts are typically held in vendor-controlled systems rather than distributed storage.
+
+**Formal Definition**
+
+```
+For each transcript: retention duration = t_current - t_consultation_end. Retention policy specifies maximum duration for each purpose: summary generation (typically hours), review support (typically days), quality monitoring (variable, documented in DPIA). Compliance = |transcripts_retained_within_policy| / |total_transcripts|. Report per retention purpose — aggregating different retention justifications obscures policy adherence.
+```
+
+**Limitations**
+
+> Retention for "quality monitoring" is often a catch-all that effectively keeps transcripts indefinitely. Tightening this requires specific retention periods per monitoring purpose. Cross-system retention (transcript in vendor system, derived metadata in deployer analytics, redacted version in research database) creates a tangled retention picture.
+
+**Novel Thinking / Implications**
+
+> 💡 Transcripts are the highest-value/highest-risk intermediate representation in AVT. They contain everything said, in structured form, searchable, and often retained for longer than either the audio or the final note. An attacker who compromises transcript storage has far more exposure than one who compromises the final clinical records. Retention minimisation for transcripts is arguably more important than for audio, but it's rarely treated that way in DPIAs.
+
+---
+
 ### 🟡 Data Minimisation Score
 
 Whether the AVT system processes only the minimum data necessary for its function. Includes: does the system transmit full audio to cloud when local processing would suffice? Does it retain intermediate outputs (full transcript) when only the summary is needed?
@@ -75,6 +149,117 @@ DMS = data_necessary / data_processed. Ideal DMS = 1.0. Track per data type: aud
 **Novel Thinking / Implications**
 
 > 💡 The DGX Spark and similar edge AI hardware create a genuine architectural choice: local processing minimises data exposure but may limit model capability. The data minimisation score should drive architectural decisions — if local processing meets quality thresholds, cloud transmission of full audio is unnecessary and non-compliant with minimisation principles.
+
+---
+
+### 🟡 PII Extraction Attack Success Rate
+
+Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric — MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Academic |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Source** | IEEE S&P 2023 LLM PII leakage study; OWASP LLM Top 10 (Sensitive Information Disclosure) |
+
+**Why this tier?**
+
+> Vendor-side red-team testing requirement. Deployers cannot independently test model-internal privacy properties. Should be a procurement requirement with results provided by vendor or independent assessor.
+
+**Formal Definition**
+
+```
+Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attack categories: (1) direct prompting ("what did the patient say about their family history?"); (2) completion-based extraction (prompting partial records and measuring reconstruction); (3) inversion attacks on embeddings; (4) canary extraction using known inserted content. Report per attack category — aggregate success rate obscures category-specific weaknesses.
+```
+
+**Limitations**
+
+> Defining the attack surface is itself contested. A test suite that looks adequate today may be outdated tomorrow. Vendors may resist third-party red-teaming on competitive grounds. Extraction that is theoretically possible but requires massive query budgets may or may not be a practical concern depending on threat model.
+
+**Novel Thinking / Implications**
+
+> 💡 The OWASP LLM Top 10 lists Sensitive Information Disclosure as a standard vulnerability class, but most AVT vendors have not engaged with it as a distinct security category — privacy is typically treated as "we don't train on customer data" rather than as an active red-teaming target. The shift from passive privacy posture to adversarial privacy testing is the maturity marker. A vendor who has never had their system red-teamed for PII extraction should not be deployed into NHS clinical settings.
+
+---
+
+### 🟡 Re-identification Risk Assessment
+
+Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation — anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Deployer, Vendor |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Source** | ICO anonymisation code of practice; NIST privacy framework |
+
+**Why this tier?**
+
+> Standard privacy methodology. Should be part of any DPIA for secondary uses. Periodic reassessment required as new data are added and as re-identification techniques evolve.
+
+**Formal Definition**
+
+```
+Per retained dataset: assess re-identification risk against standard criteria — (1) direct identifiers present or removed? (2) quasi-identifiers (age, postcode, date, rare condition) combinable to identify individuals? (3) k-anonymity achieved and at what k? (4) l-diversity for sensitive attributes? (5) differential privacy applied? (6) motivated intruder test — could a determined attacker re-identify individuals given reasonably available auxiliary information? Overall risk rating: low / medium / high / unacceptable. Threshold for retention: risk must be low or medium with explicit justification.
+```
+
+**Limitations**
+
+> Re-identification risk is probabilistic and depends on what auxiliary information an attacker has access to. Small clinical populations (rare conditions, small practices) are re-identifiable from very little information. "De-identified" is not the same as "anonymous".
+
+**Novel Thinking / Implications**
+
+> 💡 A single NHS practice with 5,000 patients has very few patients with any given rare condition — sometimes just one. A "de-identified" transcript mentioning that condition is trivially re-identifiable by anyone with access to the practice's patient list. Re-identification risk assessment forces this question into visibility during DPIA rather than treating de-identification as a technical checkbox.
+
+---
+
+### 🟡 Training Data Inclusion Status
+
+Clear documentation of whether deployer audio, transcripts, or notes are used by the vendor for model training or fine-tuning. Distinct from the existing Sub-Processor Transparency metric (which covers processing activity) and from privacy policies (which often hedge this question). This metric requires an explicit binary answer: is NHS data flowing into the vendor's training pipeline, yes or no, with documented consent basis if yes.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | One-off gate |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Proximal |
+| **Source** | UK GDPR transparency requirements; derived from emerging AVT procurement practice |
+
+**Why this tier?**
+
+> Procurement gate. Should be explicitly answered in vendor contracts, not left to policy ambiguity. Annual reassessment on contract renewal.
+
+**Formal Definition**
+
+```
+Status recorded as: (a) No — deployer data not used for any training or fine-tuning; (b) Yes — used for training with specified consent basis and opt-out mechanism; (c) Derived — used for aggregated statistics or distilled features without retaining source data. Each status has different governance implications. Documentation must specify which model components may be trained (ASR, summariser, coder) and which data types (audio, transcripts, notes, metadata). Vendor attestation required; independent verification is not currently feasible.
+```
+
+**Limitations**
+
+> Verification relies on vendor attestation. The distinction between "training" and "quality improvement" can be blurred by vendors in ways that obscure actual data flows. Aggregate statistics derived from training data may themselves carry privacy risk.
+
+**Novel Thinking / Implications**
+
+> 💡 Many NHS AVT contracts are ambiguous about training data flows because vendors benefit from keeping the option open and deployers often don't ask explicitly. Making this a Tier 2 procurement metric forces the question into contract negotiations. The patient-level consequence is that AVT-using consultations may effectively contribute to training the next generation of commercial AI systems — and patients should know this if it's happening. This is a transparency obligation the existing taxonomy's consent metrics don't capture.
 
 ---
 

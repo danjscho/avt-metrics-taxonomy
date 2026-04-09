@@ -2,7 +2,7 @@
 
 *Whether vendors provide the access, telemetry, and transparency needed for independent assurance. The meta-prerequisite for most other metrics.*
 
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
+**Tier breakdown**: 🟢 3 Tier 1 · 🟡 4 Tier 2 · 🔵 1 Tier 3
 
 ### 🟢 Model Change Notification Compliance
 
@@ -275,3 +275,39 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 ---
 
+### 🟡 Intermediate Output Access
+
+Whether the vendor provides contractual access to intermediate pipeline outputs — the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores — rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Measurement Cadence** | One-off gate |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Proposed / Novel |
+| **Outcome Type** | Proximal |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; Stanford monitoring framework |
+
+**Why this tier?**
+
+> Procurement gate. Should be contractually specified. Required for any deployer intending to run Error Attribution Analysis, Chain of Custody traces, or Safety-Critical Information Chain of Custody (which is Tier 2 in the existing taxonomy but depends on intermediate output access to be executable).
+
+**Formal Definition**
+
+```
+Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript with speaker labels; (3) pre-summarisation processing outputs; (4) generated summary before coding; (5) coding suggestions before selection; (6) final output; (7) model confidence scores per stage. Access granularity: on-demand for individual encounters (required for incident investigation); bulk export for audit (required for Error Attribution Analysis); real-time streaming (optional, useful for monitoring). Binary per stage; target is full access to stages 1–6 on demand, with confidence scores (7) as advanced capability.
+```
+
+**Limitations**
+
+> Vendors resist intermediate output access on commercial grounds — the intermediate outputs reveal pipeline architecture and model choices. Contractual access may be granted at high cost or with usage restrictions. Without independent verification, deployers cannot confirm that the "intermediate outputs" provided are authentic rather than reconstructions.
+
+**Novel Thinking / Implications**
+
+> 💡 Many of the highest-value metrics in this taxonomy — Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis — depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
+
+---
