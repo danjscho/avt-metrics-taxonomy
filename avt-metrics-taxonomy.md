@@ -6929,8 +6929,6 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 ---
 
-# Part E — System Governance
-
 ## NHS Compliance & Regulatory
 
 *Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary — the deployer is compliant or they are not — and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
