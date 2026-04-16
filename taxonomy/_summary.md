@@ -2,9 +2,9 @@
 
 ### By Priority Tier
 
-- **🟢 Tier 1 — Minimum Viable Assurance**: 42 metrics — what every deployer must measure to operate safely
-- **🟡 Tier 2 — Recommended Assurance**: 87 metrics — recommended with reasonable governance capacity
-- **🔵 Tier 3 — Advanced / Research**: 85 metrics — advanced, research, or requires infrastructure that doesn't yet exist
+- **🟢 Tier 1 — Minimum Viable Assurance**: 43 metrics — what every deployer must measure to operate safely
+- **🟡 Tier 2 — Recommended Assurance**: 92 metrics — recommended with reasonable governance capacity
+- **🔵 Tier 3 — Advanced / Research**: 79 metrics — advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
@@ -21,7 +21,9 @@ Some groups contain named metric families — clusters of related metrics that m
 - **Post-Generation Correction** (Human Factors & Workflow): 4 metrics — edit rate, type, location, pattern
 - **Clinical Transcription Accuracy** (ASR / Transcription): 3 metrics — WER, M-WER, CK-ER
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics — ROUGE, BERTScore
-- **Unaffiliated**: 200 metrics — the remainder, not currently grouped into a named family
+- **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics — attribute extraction, event classification, dm+d coding, medication error differential
+- **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics — demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
+- **Unaffiliated**: 189 metrics — the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 

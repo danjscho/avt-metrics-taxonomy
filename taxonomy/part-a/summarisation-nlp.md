@@ -30,12 +30,13 @@
 
 ---
 
-### 🟡 ROUGE Scores
+### TP.SN-1 🟡 ROUGE Scores
 
 N-gram overlap between generated and reference text. Demonstrably inadequate for clinical safety evaluation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Summarisation |
@@ -97,12 +98,13 @@ scores = scorer.score(reference, hypothesis)
 
 ---
 
-### 🔵 BERTScore
+### TP.SN-2 🔵 BERTScore
 
 Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but still linguistic, not clinical.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Summarisation |
@@ -153,12 +155,13 @@ P, R, F1 = score(
 
 ---
 
-### 🟡 PDSQI-9 (Physician Documentation Quality Instrument)
+### TP.SN-3 🟡 PDSQI-9 (Physician Documentation Quality Instrument)
 
 Nine-item validated rubric. Gold standard for human evaluation — now automatable via LLM-as-a-Judge.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -195,12 +198,13 @@ Nine dimensions scored 1–5 Likert: Up-to-date, Accurate, Thorough, Useful, Org
 
 ---
 
-### 🟡 CREOLA Error Taxonomy Scores
+### TP.SN-4 🟡 CREOLA Error Taxonomy Scores
 
 Structured error categories: omission, addition, incorrect — with sub-types. 12,999 annotated sentences. Now underpins Tortus automated guardrails.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -265,12 +269,13 @@ Hierarchical taxonomy: L1 — Omission, Addition, Incorrect. L2 sub-types: Omiss
 
 ---
 
-### 🟢 Hallucination Rate
+### TP.SN-5 🟢 Hallucination Rate
 
 Proportion of generated content unsupported by source. Currently defined inconsistently across vendors.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -337,12 +342,13 @@ def check_hallucination(source, generated_sentences):
 
 ---
 
-### 🟢 Omission Rate
+### TP.SN-6 🟢 Omission Rate
 
 Clinically relevant source content absent from note. More dangerous than hallucination — omissions are invisible to the reviewer.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-6 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -380,12 +386,13 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 ---
 
-### 🔵 Confabulation Detection (Support × Severity)
+### TP.SN-7 🔵 Confabulation Detection (Support × Severity)
 
 Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -423,12 +430,13 @@ Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Sup
 
 ---
 
-### 🔵 VeriFact Factual Verification
+### TP.SN-8 🔵 VeriFact Factual Verification
 
 Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -491,12 +499,13 @@ for prop in props:
 
 ---
 
-### 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+### TP.SN-9 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
 
 Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -536,12 +545,13 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 ---
 
-### 🔵 MedHELM LLM-Jury
+### TP.SN-10 🔵 MedHELM LLM-Jury
 
 121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-10 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -577,12 +587,13 @@ Holistic Evaluation of Language Models for Medicine. LLM-jury: panel of LLMs ind
 
 ---
 
-### 🔵 MEDIC Cross-Examination
+### TP.SN-11 🔵 MEDIC Cross-Examination
 
 One LLM interrogates another to detect hallucinations without references. Identifies the 'knowledge-execution gap'.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -618,12 +629,13 @@ Examiner LLM probes claims in target output, evaluates consistency. Knowledge-ex
 
 ---
 
-### 🟡 Linked Evidence / Provenance Tracing
+### TP.SN-12 🟡 Linked Evidence / Provenance Tracing
 
 Every text span linked to source audio. Architectural safety property — transforms review from 'looks right?' to 'is this supported?'
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-12 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -659,12 +671,13 @@ For each span sᵢ, mapping M(sᵢ) → {(t_start, t_end)}. Requirements: Covera
 
 ---
 
-### 🔵 SCRIBE Framework Composite
+### TP.SN-13 🔵 SCRIBE Framework Composite
 
 First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-13 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -700,12 +713,13 @@ Four modalities: (1) Simulated encounters with ground truth; (2) Computational m
 
 ---
 
-### 🟡 Template Modification Underspecification Score
+### TP.SN-14 🟡 Template Modification Underspecification Score
 
 INSYTE underspecification delta when clinicians modify AVT templates. Every modification potentially invalidates the safety case.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-14 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -741,12 +755,13 @@ For default template T₀ with INSYTE underspecification U₀, modified template
 
 ---
 
-### 🟢 Negation Handling Accuracy
+### TP.SN-15 🟢 Negation Handling Accuracy
 
 Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' is a clinically critical distinction that LLMs commonly mishandle, particularly when negation is far from the negated concept.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-15 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -784,12 +799,13 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 ---
 
-### 🟡 Temporal Accuracy
+### TP.SN-16 🟡 Temporal Accuracy
 
 Preservation of when things happened. 'Patient had chest pain three weeks ago' vs 'patient has chest pain' is the difference between historical and presenting complaint. LLMs frequently collapse temporal markers when summarising.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-16 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -821,12 +837,13 @@ For each temporal expression in reference: Temporal Accuracy = (time reference p
 
 ---
 
-### 🟡 Temporal Event Ordering Accuracy
+### TP.SN-17 🟡 Temporal Event Ordering Accuracy
 
 Accuracy of reconstructing the chronological sequence of clinical events from non-linear conversation. Patients rarely describe symptoms in temporal order — they jump between current symptoms, historical episodes, family history, and future concerns. The summary must impose a coherent timeline. Distinct from the existing Temporal Accuracy metric, which covers tense and time-marker preservation at the sentence level; this metric covers event sequencing across the whole note.
 
 |Dimension              |Value                                                   |
 |-----------------------|--------------------------------------------------------|
+| **Reference** | TP.SN-17 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                  |
 |**Measurement Cadence**|Periodic audit                                          |
 |**Pipeline Layer**     |Summarisation                                           |
@@ -856,12 +873,13 @@ Given a set of clinical events E extracted from source, and their true temporal 
 
 > 💡 Event ordering is the difference between "patient had MI, then developed chest pain" and "patient developed chest pain, then had MI". Same events, completely different clinical meaning. Summarisation LLMs frequently collapse temporal structure when compressing, producing notes where causality is implied by proximity rather than by explicit ordering.
 
-### 🟡 Quantifier Preservation
+### TP.SN-18 🟡 Quantifier Preservation
 
 Preservation of clinical qualifiers: 'occasional', 'frequent', 'constant', 'mild', 'moderate', 'severe', 'intermittent'. LLMs often drop or paraphrase these, losing diagnostic information that affects clinical reasoning.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-18 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -893,12 +911,27 @@ For each quantifier in reference: Quantifier Preservation = (quantifier present 
 
 ---
 
-### 🟡 Medication Attribute Extraction F1
+### Family: Medication Safety Thread
+
+> **Parent construct** — the family of metrics that track medication information accuracy across the full pipeline, from spoken consultation to structured EPR record. Medication errors are the canonical safety-critical failure mode in clinical documentation AI.
+>
+> Unlike the other families in this taxonomy, the Medication Safety Thread spans multiple pipeline layers and multiple groups: extraction and event classification at the summarisation layer, terminology coding at the clinical coding layer, and downstream outcome monitoring at the patient experience layer. The family exists because a medication error can originate at any of these stages, and measuring only one stage gives false assurance about the others.
+>
+> **The safety argument.** A medication mentioned in consultation passes through at least four processing stages before it affects patient care: (1) ASR must transcribe the drug name, dose, and frequency correctly; (2) the summariser must extract these attributes and classify the medication event (start, stop, change); (3) the clinical coder must map to the correct dm+d concept; (4) the EPR write-back must place the medication data in the correct structured field. An error at any stage propagates — and the stages are tested by different metrics in different groups. The family framing makes the end-to-end thread visible.
+>
+> **Metrics in this family:**
+> - 🟡 **Medication Attribute Extraction F1** (Summarisation / NLP) — per-attribute accuracy for drug name, dose, route, frequency, duration, indication
+> - 🟡 **Medication Event Classification** (Summarisation / NLP) — classification of medication actions: start, stop, increase, decrease, continue
+> - 🟡 **dm+d Medication Coding Accuracy** (Clinical Coding) — mapping to NHS dm+d terminology; currency against quarterly updates
+> - 🔵 **Medication Error Rate Differential** (Patient Experience) — downstream outcome: pre/post AVT medication error rates
+
+### TP.SN-19 🟡 Medication Attribute Extraction F1
 
 Per-attribute accuracy for each component of a medication reference: drug name, dose, route, frequency, duration, indication, and start/stop dates. Each attribute is scored independently with its own F1. The medication as a whole is only fully correct if all attributes are correct — and aggregate medication accuracy masks systematic attribute-level failures (e.g. systems that get drug names right but frequencies wrong).
 
 |Dimension              |Value                                                        |
 |-----------------------|-------------------------------------------------------------|
+| **Reference** | TP.SN-19 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                       |
 |**Measurement Cadence**|Periodic audit                                               |
 |**Pipeline Layer**     |Summarisation                                                |
@@ -928,12 +961,13 @@ For each medication mention m with attributes A = {name, dose, route, frequency,
 
 > 💡 Aggregate medication accuracy is a misleading single number. A system with 95% medication accuracy could be getting drug names right 99% of the time and doses right 92% of the time — and the 8% dose error rate is the safety-critical finding. Attribute-level breakdown is necessary for safety assurance.
 
-### 🟢 Uncertainty Marker Preservation
+### TP.SN-20 🟢 Uncertainty Marker Preservation
 
 Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggestive of', 'consistent with', 'rule out', 'unlikely to be') rather than collapsing to definitive statements? Loss of uncertainty markers creates false certainty in the record.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-20 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -967,12 +1001,13 @@ For each uncertainty marker in reference: Marker Preservation = (uncertainty mar
 
 ---
 
-### 🟡 Medication Event Classification
+### TP.SN-21 🟡 Medication Event Classification
 
 Classification of medication *actions* discussed in a consultation: start, stop, increase, decrease, continue, hold, restart, allergy/contraindication. Distinct from medication attribute extraction, which captures what the medication is; event classification captures what is being *done* with it. A medication mentioned as "we'll stop this one" is not the same as "we'll keep this one" — the attributes may be identical but the clinical action is opposite.
 
 |Dimension              |Value                                              |
 |-----------------------|---------------------------------------------------|
+| **Reference** | TP.SN-21 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                             |
 |**Measurement Cadence**|Periodic audit                                     |
 |**Pipeline Layer**     |Summarisation                                      |
@@ -1002,12 +1037,13 @@ For each medication event discussed: classification into {start, stop, increase,
 
 > 💡 The start↔stop confusion is the canonical AVT safety nightmare. A consultation discussion of "we're going to stop your warfarin and start apixaban instead" that is silently inverted by the summariser produces a note that documents starting warfarin and stopping apixaban — both incorrect, both dangerous, and neither flagged by attribute-level accuracy metrics. Event classification should be a mandatory safety gate.
 
-### 🔵 Style & Format Consistency
+### TP.SN-22 🔵 Style & Format Consistency
 
 Does the system produce notes in the same structure each time? Inconsistency increases cognitive load for review and makes it harder for clinicians to develop efficient review patterns.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-22 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -1039,12 +1075,13 @@ Structural similarity across notes from the same template/configuration. Section
 
 ---
 
-### 🔵 Length Appropriateness
+### TP.SN-23 🔵 Length Appropriateness
 
 Over-summarisation (losing detail) vs under-summarisation (verbatim transcript). Should be calibrated to consultation complexity — a 5-minute follow-up needs less than a 30-minute new patient assessment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-23 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -1078,12 +1115,13 @@ Length Ratio = note_length / consultation_duration. Appropriateness = correlatio
 
 ---
 
-### 🟡 Stigmatising Language Replication Rate
+### TP.SN-24 🟡 Stigmatising Language Replication Rate
 
 Proportion of AI-generated notes that reproduce biased or stigmatising language patterns learned from training data. Distinct from the existing Cultural & Linguistic Appropriateness metric, which covers broader sensitivity issues. This metric specifically tracks whether the system has learned to generate language like "drug-seeking", "non-compliant", "frequent flyer", "difficult patient" — terms which research shows appear disproportionately in notes about specific patient populations.
 
 |Dimension              |Value                                                                       |
 |-----------------------|----------------------------------------------------------------------------|
+| **Reference** | TP.SN-24 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                      |
 |**Measurement Cadence**|Periodic audit                                                              |
 |**Pipeline Layer**     |Summarisation                                                               |

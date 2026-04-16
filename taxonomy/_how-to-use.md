@@ -6,15 +6,15 @@ This taxonomy is designed to serve multiple audiences — from a practice CSO de
 
 Each metric is assigned to one of three priority tiers. The tier reflects a composite judgement across three dimensions: how consequential the metric is for patient safety, whether it is measurable today with existing tools and data, and what governance burden it imposes on the responsible actor. A metric can be critically important but placed in Tier 3 because the infrastructure to measure it does not yet exist — the tier reflects actionability, not importance.
 
-**🟢 Tier 1 — Minimum Viable Assurance** (42 metrics)
+**🟢 Tier 1 — Minimum Viable Assurance** (43 metrics)
 
 The smallest set of metrics that a deployer cannot responsibly skip. Every metric in Tier 1 meets all three criteria: it addresses a safety-critical or governance-essential function, it is measurable today by the responsible actor without requiring infrastructure that doesn't yet exist, and the burden of measurement is proportionate to the risk it monitors. A deployer operating AVT without measuring these metrics is operating without adequate governance — regardless of the vendor's own quality claims.
 
-**🟡 Tier 2 — Recommended Assurance** (87 metrics)
+**🟡 Tier 2 — Recommended Assurance** (92 metrics)
 
 What a deployer or regional body should measure given reasonable governance capacity and vendor cooperation. Tier 2 metrics are important for comprehensive assurance but either require some vendor cooperation that may need contractual enforcement, involve more resource-intensive measurement methods, or provide granularity that strengthens but is not strictly essential for basic safe operation.
 
-**🔵 Tier 3 — Advanced / Research** (85 metrics)
+**🔵 Tier 3 — Advanced / Research** (79 metrics)
 
 Metrics that are important for advancing the field but are not actionable at individual deployer level today. Tier 3 metrics fall into this category for one of three reasons: they require national infrastructure that hasn't been built, they require research methods not yet scalable to routine deployment, or they are vendor-proprietary approaches that inform what a national standard should require but cannot be independently replicated. Tier 3 is not 'unimportant' — several Tier 3 metrics address the most fundamental questions about AVT safety. They are Tier 3 because the answer to 'can a CSO do this tomorrow?' is currently no.
 
@@ -45,6 +45,46 @@ Each metric identifies who should measure it. The same metric may appear under m
 **Academic** — responsible for developing and validating new metrics, conducting the resource-intensive evaluations (clinical decision equivalence, chilling effect, skill attenuation), and providing independent evidence that is not conflicted by vendor or deployer interests.
 
 A metric listed under 'Vendor, Deployer' typically means the vendor must provide the data or infrastructure, and the deployer must use it for governance — for example, model version tracking requires the vendor to log versions but the deployer to monitor for changes and trigger re-evaluation.
+
+### Reference IDs
+
+Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}` — for example, `TP.AC-1` is the first metric in Audio Capture within The Technical Pipeline. Reference IDs appear in both the metric heading and the dimensions table.
+
+**Part abbreviations:**
+
+| Abbreviation | Part |
+|-------------|------|
+| TP | The Technical Pipeline |
+| PI | Pipeline Interactions |
+| HL | The Human Layer |
+| IO | Impact & Outcomes |
+| GV | System Governance |
+| ES | Evaluation Science |
+
+**Group abbreviations:**
+
+| Abbreviation | Group | Part |
+|-------------|-------|------|
+| AC | Audio Capture & Environment | TP |
+| ASR | ASR / Transcription | TP |
+| DI | Diarisation | TP |
+| SN | Summarisation / NLP | TP |
+| CC | Clinical Coding | TP |
+| WB | EPR Write-back | TP |
+| PP | Partial-Pipeline | PI |
+| E2E | End-to-End Pipeline | PI |
+| HF | Human Factors & Workflow | HL |
+| PX | Patient Experience | IO |
+| FE | Fairness & Equity | IO |
+| SG | Safety & Governance | GV |
+| CR | NHS Compliance & Regulatory | GV |
+| SC | Security & Adversarial Robustness | GV |
+| PD | Privacy & Data Governance | GV |
+| OP | Operational | GV |
+| EN | Environmental & Sustainability | GV |
+| TC | Training & Competency | GV |
+| VT | Vendor Transparency & Contractual | GV |
+| ME | Meta-evaluation | ES |
 
 ### Adapting to Local Context
 

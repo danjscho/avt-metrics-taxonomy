@@ -33,12 +33,13 @@
 
 ---
 
-### 🟡 Word Error Rate (WER)
+### TP.ASR-1 🟡 Word Error Rate (WER)
 
 Standard ASR accuracy metric. Treats all word errors equally — a misheard 'the' counts the same as a misheard drug name.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -89,12 +90,13 @@ corpus_wer = out.wer  # macro-averaged across utterances
 
 ---
 
-### 🔵 Medical Word Error Rate (M-WER)
+### TP.ASR-2 🔵 Medical Word Error Rate (M-WER)
 
 Weighted WER where errors on clinically significant tokens carry higher penalty. Requires a clinical significance ontology to define token weights.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -168,12 +170,13 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 ---
 
-### 🔵 Clinical Keyword Error Rate (CK-ER)
+### TP.ASR-3 🔵 Clinical Keyword Error Rate (CK-ER)
 
 Focused accuracy for high-stakes clinical terminology. Binary: was the keyword captured correctly or not?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | ASR / Transcription |
@@ -240,12 +243,30 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 ---
 
-### 🟡 Demographic-Disaggregated WER
+### Family: Demographic Equity Disaggregation
+
+> **Parent construct** — the family of metrics that apply demographic disaggregation to pipeline performance, measuring whether system quality varies across population subgroups. The underlying principle is the same at every layer: compute the base metric separately for each demographic group, then quantify the gap.
+>
+> This family spans the full pipeline because equity failures can originate at any stage. ASR accuracy may vary by accent; summarisation quality may vary by consultation style correlated with ethnicity; coding completeness may systematically differ across patient populations. Measuring equity at only one layer provides false assurance — a system that transcribes equitably may still summarise or code inequitably.
+>
+> **The disaggregation axes.** Most metrics in this family operate on the same set of demographic variables: accent/dialect, first language, age band, sex, ethnicity, deprivation quintile, and speech characteristics (rate, volume, disorder). The specific axes depend on the base metric and available data. The NAS framework proposes a maximum 5 percentage-point gap across groups as a starting threshold.
+>
+> **Metrics in this family:**
+> - 🟡 **Demographic-Disaggregated WER** (ASR / Transcription) — WER by accent, language, age, speech characteristics
+> - 🔵 **Speaker-Stratified WER** (ASR / Transcription) — WER by speaker role (clinician vs patient)
+> - 🟡 **Coding Equity Index** (Clinical Coding) — whether AVT-driven coding changes are equitable across demographics
+> - 🔵 **Compound Demographic Performance** (End-to-End Pipeline) — intersectional performance at full-pipeline level
+> - 🟡 **Accent Taxonomy Standardisation** (Fairness & Equity) — standardised accent/dialect categorisation for disaggregation
+> - 🔵 **Intersectional Performance** (Fairness & Equity) — performance at demographic intersections
+> - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) — formal intersectional fairness quantification
+
+### TP.ASR-4 🟡 Demographic-Disaggregated WER
 
 WER by accent group, first language, age band, and speech characteristics. NAS proposes max 5pp gap across groups.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -309,12 +330,13 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 
 ---
 
-### 🔵 Speaker-Stratified WER
+### TP.ASR-5 🔵 Speaker-Stratified WER
 
 Separate WER for clinician vs patient speech. Patient speech is more diagnostically important and typically harder to transcribe.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -350,12 +372,13 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 
 ---
 
-### 🟡 Error Transmission Rate
+### TP.ASR-6 🟡 Error Transmission Rate
 
 Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step — a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
+| **Reference** | TP.ASR-6 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                 |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |ASR + Summarisation                                                    |
@@ -385,12 +408,13 @@ ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR =
 
 > 💡 The OHSU finding that 19.5% of ASR errors reach the final note suggests the summariser provides meaningful but imperfect error correction. The more interesting question is *which* errors transmit: if safety-critical errors transmit at higher rates than stylistic errors, the summariser is learning the wrong patterns. Transmission rate disaggregated by error category is more useful than the aggregate.
 
-### 🟡 Real-Time Factor (RTF)
+### TP.ASR-7 🟡 Real-Time Factor (RTF)
 
 Processing speed relative to audio duration. RTF < 1.0 = faster than real-time.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | ASR / Transcription |
@@ -418,12 +442,13 @@ RTF = T_processing / T_audio. For streaming ASR, report both first-token latency
 
 ---
 
-### 🟡 Character Error Rate (CER)
+### TP.ASR-8 🟡 Character Error Rate (CER)
 
 Character-level edit distance between reference and hypothesis. More sensitive than WER for medical terminology where subword errors are common: 'amoxicillin' vs 'amoxycillin' has WER=1 but CER=1/12. Particularly important for drug names, anatomical terms, and proper nouns.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -472,12 +497,13 @@ char_error_rate = cer(reference, hypothesis)
 
 ---
 
-### 🟡 Out-of-Vocabulary (OOV) Rate
+### TP.ASR-9 🟡 Out-of-Vocabulary (OOV) Rate
 
 Proportion of tokens the ASR model doesn't recognise as valid vocabulary. New drug names, novel diagnoses, proper nouns, and recently approved medications are systematically OOV in older models. High OOV rate predicts systematic clinical accuracy gaps.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -509,12 +535,13 @@ OOV Rate = |tokens_not_in_vocab| / |total_tokens|. Compute against the ASR's lex
 
 ---
 
-### 🟡 ASR Confidence Calibration
+### TP.ASR-10 🟡 ASR Confidence Calibration
 
 Whether the ASR's stated confidence scores correlate with actual accuracy. A poorly-calibrated ASR that reports 95% confidence on 70%-accurate output is dangerous because downstream consumers (summariser, clinician) trust the output inappropriately.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -550,12 +577,13 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 ---
 
-### 🟡 ASR Confidence Exposure
+### TP.ASR-11 🟡 ASR Confidence Exposure
 
 Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers — both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
+| **Reference** | TP.ASR-11 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
 |**Measurement Cadence**|One-off gate                                                    |
 |**Pipeline Layer**     |ASR / Transcription                                             |
@@ -585,12 +613,13 @@ Exposure assessed on three levels: (1) Internal — confidence scores exist but 
 
 > 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally — which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
-### 🟢 Hallucination-Under-Noise Rate
+### TP.ASR-12 🟢 Hallucination-Under-Noise Rate
 
 Rate at which the ASR generates plausible-sounding but fabricated text when fed noise, silence, or non-speech audio. Whisper is famously prone to this — it can produce coherent-looking transcriptions of pure silence. A distinct failure mode from substitution errors that creates content from nothing.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-12 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -626,12 +655,13 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 
 ---
 
-### 🟢 Numeric Accuracy
+### TP.ASR-13 🟢 Numeric Accuracy
 
 Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durations. Numbers fail differently from words and have outsized clinical importance. '15mg' vs '50mg' is a tenfold dosing error invisible to standard WER weighting.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-13 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -663,12 +693,13 @@ Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Com
 
 ---
 
-### 🔵 Punctuation & Capitalisation Accuracy
+### TP.ASR-14 🔵 Punctuation & Capitalisation Accuracy
 
 Accuracy of sentence boundary detection, punctuation, and capitalisation. Affects readability and downstream NLP. Misplaced sentence boundaries can completely change clinical meaning: 'no chest pain. Shortness of breath' vs 'no chest pain, shortness of breath' have different clinical implications.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-14 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |

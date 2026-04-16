@@ -2,14 +2,19 @@
 
 *SNOMED/Read code assignment. Individual care + population data quality.*
 
-**Tier breakdown**: 🟡 2 Tier 2 · 🔵 2 Tier 3
+**Tier breakdown**: 🟢 1 Tier 1 · 🟡 8 Tier 2 · 🔵 3 Tier 3
 
-### 🟡 SNOMED Code Accuracy
+### Coding Fidelity sub-cluster
+
+*Accuracy of individual code assignment across NHS terminology systems — SNOMED CT, ICD-10/11, OPCS-4, and dm+d. Each metric addresses a different coding standard or a different failure mode (wrong code, non-existent code, wrong specificity level, wrong concept mapping). Together they answer the question: when the system assigns a code, is it the right code at the right level of specificity in the right terminology?*
+
+### TP.CC-1 🟡 SNOMED Code Accuracy
 
 AI-suggested code correctness. Precision, recall, and F1 reported separately for diagnosis, medication, procedure codes.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Clinical Coding |
@@ -41,12 +46,13 @@ Precision = |C_correct ∩ C_generated| / |C_generated|. Recall = |C_correct ∩
 
 ---
 
-### 🟡 SNOMED CT Concept Mapping Accuracy
+### TP.CC-2 🟡 SNOMED CT Concept Mapping Accuracy
 
 Accuracy of the mapping from extracted clinical entities in free-text to the correct SNOMED CT concept ID. Distinct from the existing SNOMED Code Accuracy metric, which measures whether the assigned code is clinically correct. Concept mapping measures whether the system correctly resolves "chest pain" to the correct SNOMED concept (29857009 — chest pain) rather than a near-miss concept (102588006 — chest discomfort). The boundary between correct and near-miss is where most mapping errors occur.
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
+| **Reference** | TP.CC-2 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                   |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                          |
@@ -76,12 +82,13 @@ For each extracted clinical mention m: mapping function M(m) → SNOMED concept 
 
 > 💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" — but the downstream analytics, safety alerts, and QOF calculations will.
 
-### 🟡 ICD-10 / ICD-11 Full-Specificity Precision
+### TP.CC-3 🟡 ICD-10 / ICD-11 Full-Specificity Precision
 
 Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity — the difference representing systematic specificity errors that aggregate metrics hide.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
+| **Reference** | TP.CC-3 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                      |
 |**Measurement Cadence**|Periodic audit                              |
 |**Pipeline Layer**     |Clinical Coding                             |
@@ -111,12 +118,13 @@ Report precision at each specificity level independently: P_3char, P_4char, P_fu
 
 > 💡 Over-specific coding is a form of clinical hallucination: the system generates specificity that wasn't present in the source. Under-specific coding is information loss. Both are quality issues, and they require different interventions. Reporting only aggregate accuracy conflates them.
 
-### 🟡 OPCS-4 Procedure Coding Accuracy
+### TP.CC-4 🟡 OPCS-4 Procedure Coding Accuracy
 
 Accuracy of OPCS-4 procedure code assignment from consultation documentation. NHS-specific — the OPCS-4 classification (Office of Population Censuses and Surveys, 4th revision) is the mandatory procedure coding standard for NHS secondary care. **No published AI benchmarks currently exist for OPCS-4 coding** despite it being essential for NHS deployment.
 
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
+| **Reference** | TP.CC-4 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Clinical Coding                               |
@@ -146,12 +154,13 @@ Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level
 
 > 💡 The absence of any published OPCS-4 AI benchmark is itself a diagnostic finding about the state of the field. Ambient scribe vendors focused on the US market optimise for ICD-10 and CPT; NHS-specific standards are an afterthought. This is a strong argument for NHS England to commission a national OPCS-4 benchmark dataset as infrastructure investment — without it, NHS secondary care AVT deployment is operating without evidence.
 
-### 🟡 dm+d Medication Coding Accuracy
+### TP.CC-5 🟡 dm+d Medication Coding Accuracy
 
 Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications discussed in consultations. NHS-specific — dm+d is the mandatory NHS medication terminology, maintained by NHS BSA, and essential for medication safety, interoperability, and prescribing workflows. **Like OPCS-4, no published AI benchmarks exist for dm+d coding**.
 
 |Dimension              |Value                                                     |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | TP.CC-5 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                    |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Clinical Coding                                           |
@@ -183,12 +192,13 @@ Per medication mention: correct mapping to dm+d VMP (Virtual Medicinal Product),
 
 ---
 
-### 🟢 Code Hallucination Rate
+### TP.CC-6 🟢 Code Hallucination Rate
 
 Rate at which the system generates codes that do not exist in the target code set. Distinct from all other coding error metrics because a non-existent code is not a "wrong" code — it is a structural error. The code looks valid syntactically but resolves to nothing. The Hybrid-Code v2 framework explicitly targeted "zero-hallucination coding" because this failure mode is both detectable and unambiguously wrong.
 
 |Dimension              |Value                                                |
 |-----------------------|-----------------------------------------------------|
+| **Reference** | TP.CC-6 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                            |
 |**Measurement Cadence**|Continuous                                           |
 |**Pipeline Layer**     |Clinical Coding                                      |
@@ -237,12 +247,13 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation — the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### 🟡 Coding Inflation Detection
+### TP.CC-7 🟡 Coding Inflation Detection
 
 Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality corruption of epidemiological data, QOF, and population health.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Clinical Coding |
@@ -293,12 +304,13 @@ def coding_drift_spc(pre_counts, post_counts):
 
 ---
 
-### 🟡 E/M Level Shift Monitoring
+### TP.CC-8 🟡 E/M Level Shift Monitoring
 
 Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and post-AVT deployment. In US settings, E/M level shift has been a primary revenue impact channel; in NHS settings, the equivalent concern is SNOMED specificity shift and its effect on QOF, Hospital Episode Statistics, and population health analytics. Extension of the existing Coding Inflation Detection metric with a specific focus on tariff-relevant code distributions.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
+| **Reference** | TP.CC-8 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                               |
 |**Measurement Cadence**|Continuous                                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                                      |
@@ -328,12 +340,13 @@ For each coding level or tariff-relevant category: compute pre-AVT baseline dist
 
 > 💡 The US evidence (14% HCC capture increase, 11% wRVU increase) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently.
 
-### 🟡 Coding Equity Index
+### TP.CC-9 🟡 Coding Equity Index
 
 Whether AVT-driven changes in coding distribution are equitably spread across patient demographics or systematically benefit some populations more than others. If AVT improves coding completeness more for majority populations than for minority populations, it widens existing inequalities in data quality and downstream resource allocation.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | TP.CC-9 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Clinical Coding                                       |
@@ -363,12 +376,13 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture — they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### 🔵 wRVU / Tariff Impact Attribution
+### TP.CC-10 🔵 wRVU / Tariff Impact Attribution
 
 Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to PbR tariffs, QOF achievement, and secondary care activity-based funding.
 
 |Dimension              |Value                                        |
 |-----------------------|---------------------------------------------|
+| **Reference** | TP.CC-10 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research               |
 |**Measurement Cadence**|Periodic audit                               |
 |**Pipeline Layer**     |Clinical Coding                              |
@@ -398,12 +412,13 @@ Using difference-in-differences or synthetic control methodology: compare coding
 
 > 💡 This is the metric that answers the governance question: is AVT making the coded data more accurate or more inflated? Without this attribution, every observed coding shift is ambiguous. National evaluation programmes are the only plausible venue for doing this properly — individual deployers cannot.
 
-### 🔵 Code Specificity Index
+### TP.CC-11 🔵 Code Specificity Index
 
 Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple specificity levels for the same concept; AI may default to over-general (loses detail) or over-specific (introduces false precision) codes inappropriately.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Clinical Coding |
@@ -435,12 +450,13 @@ For each suggested code, compute hierarchical distance from clinically appropria
 
 ---
 
-### 🔵 Code Suggestion Latency
+### TP.CC-12 🔵 Code Suggestion Latency
 
 Time from note generation to code suggestion availability. Affects coding workflow integration — if coding suggestions arrive too late, clinicians have moved on to the next patient and won't engage with them.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Clinical Coding |
