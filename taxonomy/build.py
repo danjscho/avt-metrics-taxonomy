@@ -14,6 +14,8 @@ FILES = [
     "_summary.md",
     "_tier-1-quick-reference.md",
     "_contents.md",
+    "_applicability.md",
+    "_standards-mapping.md",
     "part-a/audio-capture.md",
     "part-a/asr-transcription.md",
     "part-a/diarisation.md",
