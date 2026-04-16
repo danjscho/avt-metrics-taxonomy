@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Clinician Training Completion Rate
+### GV.TC-1 🟢 Clinician Training Completion Rate
 
 Percentage of AVT-using clinicians who have completed required training modules: vendor product training, local induction (review-before-signing, known failure modes, error reporting, opt-out processes), and periodic refresher training.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -41,12 +42,13 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 
 ---
 
-### 🟡 Failure Mode Awareness Score
+### GV.TC-2 🟡 Failure Mode Awareness Score
 
 Clinician knowledge of AVT-specific failure modes: can they identify hallucination, omission, speaker misattribution, and coding errors? Tested via scenario-based assessment, not self-report.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -78,12 +80,13 @@ FMAS = |failure_modes_correctly_identified| / |failure_modes_presented|. Tested 
 
 ---
 
-### 🟡 Refresher Training & CPD Compliance
+### GV.TC-3 🟡 Refresher Training & CPD Compliance
 
 Ongoing competency maintenance: are clinicians completing periodic refresher training that incorporates new failure modes discovered through operational monitoring and incident reports?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -115,12 +118,13 @@ Compliance = |clinicians_current_on_refresher| / |clinicians_using_AVT|. Refresh
 
 ---
 
-### 🔵 Trainee Impact Assessment
+### GV.TC-4 🔵 Trainee Impact Assessment
 
 Does AVT use during training affect junior clinician skill development? GMC educational standards consideration. If trainees learn to consult with AVT from day one, they may not develop documentation skills the profession traditionally relied on.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -152,12 +156,13 @@ Compare documentation skills of: (1) trainees who learned with AVT from start; (
 
 ---
 
-### 🟡 Training Material Currency
+### GV.TC-5 🟡 Training Material Currency
 
 Is training content updated to reflect newly discovered failure modes from operational monitoring? Static training that doesn't incorporate lessons from incidents misses opportunities to prevent recurrence.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |

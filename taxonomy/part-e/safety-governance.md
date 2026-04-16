@@ -6,12 +6,13 @@
 
 **Tier breakdown**: 🟢 6 Tier 1 · 🟡 5 Tier 2 · 🔵 2 Tier 3
 
-### 🟢 Model Version Tracking
+### GV.SG-1 🟢 Model Version Tracking
 
 Logging which model version produces each output. Foundation for all continuous metrics — without it, performance changes are uninterpretable.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -47,12 +48,13 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 ---
 
-### 🟡 Model Update Impact Score
+### GV.SG-2 🟡 Model Update Impact Score
 
 Standardised before/after on update. Governance: vendor notifies → regional benchmark → local monitoring.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -95,12 +97,13 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
-### 🟡 Performance Degradation Detection Latency
+### GV.SG-3 🟡 Performance Degradation Detection Latency
 
 Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation — performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
+| **Reference** | GV.SG-3 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
@@ -132,12 +135,13 @@ Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous 
 
 ---
 
-### 🟡 Retraining Trigger Threshold Specification
+### GV.SG-4 🟡 Retraining Trigger Threshold Specification
 
 Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) — this metric assesses whether the trigger logic for when updates should occur is even specified.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | GV.SG-4 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                            |
 |**Measurement Cadence**|One-off gate                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                     |
@@ -169,12 +173,13 @@ Assessment against specification criteria: (1) Performance thresholds pre-specif
 
 ---
 
-### 🔵 AI-Generated Data Contamination Rate
+### GV.SG-5 🔵 AI-Generated Data Contamination Rate
 
 The proportion of training or fine-tuning data that is itself AI-generated clinical content — either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
+| **Reference** | GV.SG-5 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                                   |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
@@ -206,12 +211,13 @@ Contamination Rate = |training_examples_derived_from_AI_generated_content| / |to
 
 ---
 
-### 🔵 Concept Drift in Clinical Notes
+### GV.SG-6 🔵 Concept Drift in Clinical Notes
 
 Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic — that requires human judgment — but it makes drift visible so it can be investigated.
 
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | GV.SG-6 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                            |
 |**Measurement Cadence**|Continuous                                                |
 |**Pipeline Layer**     |Cross-cutting                                             |
@@ -241,12 +247,13 @@ For each reference time window W_ref and comparison window W_t: compute the dist
 
 > 💡 The most worrying drift signal is concepts that progressively disappear — safeguarding language, mental health content, social context — because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
 
-### 🔵 Probabilistic Risk Quantification (P₁/P₂)
+### GV.SG-7 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
 Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ from 2.0×10⁻⁸ to 2.6×10⁻⁴.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -282,12 +289,13 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 ---
 
-### 🔵 DeepScore (Defect-Free Rate)
+### GV.SG-8 🔵 DeepScore (Defect-Free Rate)
 
 Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sound approach but proprietary definitions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -323,12 +331,13 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 ---
 
-### 🟢 Safety Performance Indicators with Thresholds (DSCMS)
+### GV.SG-9 🟢 Safety Performance Indicators with Thresholds (DSCMS)
 
 Metrics + thresholds + escalation = governance. A metric without a threshold is information; with a threshold and action it becomes governance.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-9 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -364,12 +373,13 @@ For SPI s: measurement M(s), threshold T(s), action A(s). If M(s) > T(s) for dur
 
 ---
 
-### 🟡 Off-Label Use Detection Rate
+### GV.SG-10 🟡 Off-Label Use Detection Rate
 
 AVT use outside validated contexts. Well-intentioned scope creep — each boundary crossing compounds risk.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -409,12 +419,13 @@ Validated envelope V = set of (domain, type, population, setting) tuples. Bounda
 
 ---
 
-### 🟢 Adverse Event / Incident Rate (LFPSE)
+### GV.SG-11 🟢 Adverse Event / Incident Rate (LFPSE)
 
 National patient safety reporting. Ultimate lagging indicator. No specific LFPSE category for AI/AVT incidents exists.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-11 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -450,12 +461,13 @@ IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxono
 
 ---
 
-### 🟡 Cross-Practice Variance Coefficient
+### GV.SG-12 🟡 Cross-Practice Variance Coefficient
 
 Performance variation across practices within ICB. High variance = context-dependent performance. Justifies regional assurance tier.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-12 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -487,12 +499,13 @@ CV_m = σ(m across practices) / μ(m). High CV (>0.3) = context-dependent. ANOVA
 
 ---
 
-### 🟢 Assurance Debt Accumulation Rate
+### GV.SG-13 🟢 Assurance Debt Accumulation Rate
 
 Gap between required and completed assurance. The honest metric — better visible and managed than hidden until incident.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-13 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -524,12 +537,13 @@ AD(t) = |A_due(t)| - |A_completed(t)|. Decompose: clinical audit, SPI review, tr
 
 ---
 
-### 🟢 Near-Miss Reporting Rate
+### GV.SG-14 🟢 Near-Miss Reporting Rate
 
 Incidents caught by clinician review before reaching the EPR. The leading indicator that LFPSE rate is the lagging indicator of. A high near-miss rate with low LFPSE rate suggests the human review layer is functioning; a low near-miss rate may indicate either an excellent system or inadequate review.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-14 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -561,12 +575,13 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 
 ---
 
-### 🟡 Time-to-Correct
+### GV.SG-15 🟡 Time-to-Correct
 
 When an AVT error is detected, how quickly is it corrected and the lessons disseminated? Measures the responsiveness of the governance loop from detection to action.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-15 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -598,12 +613,13 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 ---
 
-### 🟡 SPI Escalation Response Time
+### GV.SG-16 🟡 SPI Escalation Response Time
 
 When an SPI threshold is breached, how quickly does the governance response actually occur? Measures whether the SPI framework is operationally functional or just a paper exercise.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-16 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -635,12 +651,13 @@ Escalation Response Time = t_governance_action - t_SPI_breach. Track per escalat
 
 ---
 
-### 🟢 Hazard Log Completeness
+### GV.SG-17 🟢 Hazard Log Completeness
 
 DCB0129 requires a hazard log. Is it actually maintained and updated as new failure modes are discovered operationally? A static hazard log written at deployment and never updated is a compliance failure with safety implications.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-17 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |

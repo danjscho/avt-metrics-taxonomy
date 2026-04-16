@@ -6,12 +6,13 @@
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🔵 5 Tier 3
 
-### 🟢 Patient Opt-Out Rate
+### IO.PX-1 🟢 Patient Opt-Out Rate
 
 Percentage declining AVT. Disaggregate by demographics to reveal equity issues in consent model.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -47,12 +48,13 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 ---
 
-### 🔵 Patient-Perceived Accuracy
+### IO.PX-2 🔵 Patient-Perceived Accuracy
 
 When patients are shown their AVT-generated notes, do they recognise the consultation? Distinct from clinician-judged accuracy — patients may identify omissions or distortions that clinicians miss because they were the speakers.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -84,12 +86,13 @@ Patient survey after note generation: 'Does this note accurately reflect our con
 
 ---
 
-### 🔵 Emotional Content Preservation
+### IO.PX-3 🔵 Emotional Content Preservation
 
 Does the note capture the patient's emotional state when clinically relevant? AVT systems trained on standard clinical notes may strip affective content that matters for mental health, end-of-life care, safeguarding, and complex consultations.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -121,12 +124,13 @@ For consultations involving emotional content (annotated): proportion of clinica
 
 ---
 
-### 🔵 Cultural & Linguistic Appropriateness
+### IO.PX-4 🔵 Cultural & Linguistic Appropriateness
 
 Does the note use language that respects the patient's cultural and linguistic context? Important for shared records that patients can access. Includes avoiding stigmatising language and respecting how patients describe their own conditions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -158,12 +162,13 @@ Audit for: (1) stigmatising language ('drug-seeking', 'non-compliant', 'frequent
 
 ---
 
-### 🔵 Chilling Effect Assessment
+### IO.PX-5 🔵 Chilling Effect Assessment
 
 Whether AVT suppresses sensitive disclosures. Most under-researched risk — population-level safety issue if record becomes systematically biased.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -195,12 +200,13 @@ Disclosure Rate Ratio DRR = DR_AVT / DR_noAVT for sensitive categories (mental h
 
 ---
 
-### 🔵 Therapeutic Relationship Impact
+### IO.PX-6 🔵 Therapeutic Relationship Impact
 
 How AVT affects consultation quality. Net impact depends on whether review is in-consultation or post-consultation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -240,12 +246,13 @@ Multi-dimensional: (1) PCQ-18 adapted; (2) Clinician engagement scale; (3) Eye c
 
 ---
 
-### 🟡 Full Attentiveness Rate
+### IO.PX-7 🟡 Full Attentiveness Rate
 
 Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI — a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
+| **Reference** | IO.PX-7 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
 |**Measurement Cadence**|Periodic audit                                                  |
 |**Pipeline Layer**     |Cross-cutting                                                   |
@@ -277,12 +284,13 @@ Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / 
 
 ---
 
-### 🔵 Patient Comprehension of AI-Generated Summaries
+### IO.PX-8 🔵 Patient Comprehension of AI-Generated Summaries
 
 When AI-generated clinical summaries are shared with patients (via NHS App, patient portals, or printed after-visit summaries), do patients actually understand them? Distinct from the existing Patient-Perceived Accuracy metric, which measures recognition ("does this match our conversation?"). Comprehension measures whether the patient can correctly state what the summary says about their condition, medications, and next steps.
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
+| **Reference** | IO.PX-8 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                           |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Summarisation                                                            |
@@ -314,12 +322,13 @@ Patient Comprehension Test: after receiving an AI-generated summary, patient is 
 
 ---
 
-### 🔵 Downstream Diagnostic Accuracy
+### IO.PX-9 🔵 Downstream Diagnostic Accuracy
 
 Whether clinicians making subsequent decisions based on AVT-generated notes arrive at the same diagnostic and management conclusions they would have reached if they had access to the original consultation. Measured through controlled clinical reasoning studies where clinicians work from AVT notes vs verbatim transcripts vs direct observation. The distal outcome metric Coiera & Fraile-Navarro argue is missing from current AVT evaluation.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | IO.PX-9 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |End-to-End                                                        |
@@ -351,12 +360,13 @@ Blinded multi-clinician study design: same clinical case presented in three cond
 
 ---
 
-### 🔵 Medication Error Rate Differential
+### IO.PX-10 🔵 Medication Error Rate Differential
 
 Pre/post AVT comparison of medication errors at the practice or trust level, including wrong-drug, wrong-dose, wrong-frequency, allergy-related, and interaction-related errors. The ultimate distal outcome that medication documentation accuracy ultimately serves. If AVT improves medication documentation (per attribute-level metrics) but medication errors don't decrease, the documentation improvement is not reaching the patient.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
+| **Reference** | IO.PX-10 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                       |
 |**Measurement Cadence**|Periodic audit                                                       |
 |**Pipeline Layer**     |End-to-End                                                           |

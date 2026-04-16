@@ -6,12 +6,13 @@
 
 **Tier breakdown**: 🟡 3 Tier 2 · 🔵 6 Tier 3
 
-### 🔵 Speaker-Attributed Transcript Accuracy
+### PI.PP-1 🔵 Speaker-Attributed Transcript Accuracy
 
 Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this — a transcript can have low WER and low DER but still misattribute a critical utterance.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -76,12 +77,13 @@ def speaker_attributed_accuracy(utterances):
 
 ---
 
-### 🟡 Multi-Party Conversation Robustness
+### PI.PP-2 🟡 Multi-Party Conversation Robustness
 
 Combined ASR + diarisation degradation when >2 speakers present: interpreter, family member, student, MDT. Most benchmarks assume dyadic (2-speaker) encounters.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -113,12 +115,13 @@ Robustness(n) = SATA(n speakers) / SATA(2 speakers). Values < 1.0 indicate multi
 
 ---
 
-### 🔵 Information Extraction Yield
+### PI.PP-3 🔵 Information Extraction Yield
 
 Spans ASR + summarisation: what proportion of clinically relevant content in source audio survives through transcription AND into the generated note? Captures the combined loss from ASR errors and summarisation omissions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR + Summarisation |
@@ -178,12 +181,13 @@ def information_extraction_yield(
 
 ---
 
-### 🔵 Noise-to-Note Resilience
+### PI.PP-4 🔵 Noise-to-Note Resilience
 
 Spans ASR + summarisation: how gracefully does the final note quality degrade as audio quality worsens? Tests whether the summarisation layer can compensate for degraded transcription.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Summarisation |
@@ -215,12 +219,13 @@ Resilience(SNR) = NoteQuality(SNR) / NoteQuality(clean). Tested across audio qua
 
 ---
 
-### 🔵 Epistemic Status Preservation
+### PI.PP-5 🔵 Epistemic Status Preservation
 
 Spans diarisation + summarisation: does the note correctly distinguish what was reported by the patient vs observed by the clinician vs inferred by the AI? 'Patient reports headache' vs 'headache noted' vs 'headache' have different clinical meanings.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Diarisation + Summarisation |
@@ -286,12 +291,13 @@ def epistemic_preservation_rate(ref_assertions, gen_assertions):
 
 ---
 
-### 🔵 Diarisation-Stratified WER
+### PI.PP-6 🔵 Diarisation-Stratified WER
 
 WER computed separately for each speaker after diarisation. Captures the compound effect of diarisation errors on per-speaker accuracy measurement. A speaker whose utterances are frequently misattributed will have artificially inflated WER even if the underlying ASR is accurate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -323,12 +329,13 @@ For each speaker s: WER_s = standard WER on utterances correctly attributed to s
 
 ---
 
-### 🟡 Concept Extraction Concordance
+### PI.PP-7 🟡 Concept Extraction Concordance
 
 Spans summarisation + coding: do the SNOMED codes match the clinical concepts in the free-text note? An internal consistency check that doesn't need source audio — the note and its codes should agree.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Coding |
@@ -392,12 +399,13 @@ def concept_concordance(note_text: str, assigned_codes: set[str]):
 
 ---
 
-### 🔵 End-of-Utterance Timing Accuracy
+### PI.PP-8 🔵 End-of-Utterance Timing Accuracy
 
 Whether the system correctly identifies where an utterance ends. Affects both diarisation (turn boundaries) and summarisation (sentence boundaries). Misalignment causes content fragmentation across utterances or merging of distinct utterances.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -429,12 +437,13 @@ EOU Timing Error = mean temporal error (ms) between predicted and actual utteran
 
 ---
 
-### 🟡 Structured/Free-Text Consistency
+### PI.PP-9 🟡 Structured/Free-Text Consistency
 
 Spans summarisation + write-back: does the coded allergy entry agree with allergies mentioned in the free-text note? Does the medication list match medications discussed in the narrative?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Write-back |

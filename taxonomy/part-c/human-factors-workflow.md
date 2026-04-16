@@ -41,12 +41,13 @@
 
 ---
 
-### 🟢 Edit Rate (% Notes Edited)
+### HL.HF-1 🟢 Edit Rate (% Notes Edited)
 
 Percentage of AI notes edited before approval. At Day Zero: quality signal. Declining trajectory: primary complacency indicator.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -107,12 +108,13 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 ---
 
-### 🟡 Edit Type Classification
+### HL.HF-2 🟡 Edit Type Classification
 
 Categorising edits: additions (omission fix), deletions (hallucination fix), modifications, structural. Distribution diagnoses failure mode.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -151,12 +153,13 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 ---
 
-### 🟢 Review-Before-Signing Rate
+### HL.HF-3 🟢 Review-Before-Signing Rate
 
 Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause trigger.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-3 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -192,12 +195,13 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 ---
 
-### 🟢 Time-to-Sign Distribution
+### HL.HF-4 🟢 Time-to-Sign Distribution
 
 Duration between generation and approval. Model as distribution — tail of very-fast approvals is safety-critical.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-4 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -245,12 +249,13 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ---
 
-### 🔵 Edit-Pattern Monitoring at Scale
+### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
 Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal — locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -288,12 +293,13 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 ---
 
-### 🟡 Automation Bias Detection (Error Injection)
+### HL.HF-6 🟡 Automation Bias Detection (Error Injection)
 
 Deliberately seeded errors to test clinician catch rate. The only metric directly measuring human oversight. All others are proxies.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -333,12 +339,13 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 
 ---
 
-### 🟡 Edit Location Distribution
+### HL.HF-7 🟡 Edit Location Distribution
 
 Where in the note do clinicians make edits? Concentration in specific sections (history, examination, plan) reveals which sections the AI handles poorly. A diagnostic that complements edit type classification.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -372,12 +379,13 @@ For each note section s: Edit Density(s) = |edits_in_s| / |words_in_s|. Compare 
 
 ---
 
-### 🟡 Trust Calibration Survey
+### HL.HF-8 🟡 Trust Calibration Survey
 
 Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. Gap between stated and behavioural trust is itself a metric.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -417,12 +425,13 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 ---
 
-### 🟡 Re-record / Abandonment Rate
+### HL.HF-9 🟡 Re-record / Abandonment Rate
 
 Frequency of clinicians abandoning AVT mid-consultation and starting again, or abandoning the AVT-generated note entirely and writing manually. Strong dissatisfaction signal indicating either technical failure or fundamental quality issues.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -454,12 +463,13 @@ Re-record Rate = |consultations_with_restart| / |total_consultations|. Abandonme
 
 ---
 
-### 🔵 Cognitive Load Assessment
+### HL.HF-10 🔵 Cognitive Load Assessment
 
 Mental effort for review. Target: 'effortful but efficient' — enough to catch errors, not so much that time savings disappear.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-10 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -499,12 +509,13 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 
 ---
 
-### 🔵 Inter-Clinician Edit Variance
+### HL.HF-11 🔵 Inter-Clinician Edit Variance
 
 Do different clinicians edit the same AI output similarly? High variance suggests either ambiguous AI output (different clinicians read it differently) or inconsistent quality standards across clinicians. Both are governance issues.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -536,12 +547,13 @@ For sample of identical AI outputs reviewed by multiple clinicians: variance in 
 
 ---
 
-### 🔵 Clinical Documentation Skill Attenuation
+### HL.HF-12 🔵 Clinical Documentation Skill Attenuation
 
 Longitudinal ability to document without AI. Sleeper risk — if a generation trains with AVT, baseline capability degrades.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -577,12 +589,13 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 ---
 
-### 🔵 Cognitive Offloading Rate
+### HL.HF-13 🔵 Cognitive Offloading Rate
 
 Proportion of clinicians who report relying on AI for content recall ('I don't need to remember, the AI will catch it'). Different from automation bias — this is active delegation rather than passive trust. Predicts skill attenuation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-13 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -614,12 +627,13 @@ Survey-based: 'I rely on the AVT system to capture details I might otherwise nee
 
 ---
 
-### 🔵 Trust Halo Decay Rate
+### HL.HF-14 🔵 Trust Halo Decay Rate
 
 Whether initial high trust persists after errors. Absent decay = dangerous over-trust. Trust halo drives off-label scope creep.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-14 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -655,12 +669,13 @@ Longitudinal T(t). After error at t_e, decay rate λ = -dT/dt for t > t_e. Healt
 
 ---
 
-### 🔵 Note Review Fatigue Trajectory
+### HL.HF-15 🔵 Note Review Fatigue Trajectory
 
 Review quality degradation over a clinical session. The 9am note review may be different from the 5pm note review, and AVT may amplify end-of-session fatigue effects by adding documentation review burden to existing clinical fatigue.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-15 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -704,12 +719,13 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 ---
 
-### 🔵 Work-as-Imagined vs Work-as-Done Gap
+### HL.HF-16 🔵 Work-as-Imagined vs Work-as-Done Gap
 
 The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
+| **Reference** | HL.HF-16 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                          |
@@ -741,12 +757,13 @@ Three-step methodology: (1) Document WAI from training materials, SOPs, vendor g
 
 ---
 
-### 🟡 Verification Burden
+### HL.HF-17 🟡 Verification Burden
 
 The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
 
 |Dimension              |Value                                                               |
 |-----------------------|--------------------------------------------------------------------|
+| **Reference** | HL.HF-17 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
 |**Measurement Cadence**|Periodic audit                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                       |
@@ -778,12 +795,13 @@ VB = t_review + t_correction + t_cross_reference, measured per consultation. Bas
 
 ---
 
-### 🔵 Resilience Capacities Assessment
+### HL.HF-18 🔵 Resilience Capacities Assessment
 
 Structured assessment of the clinician-AVT joint cognitive system against the four Safety-II resilience capacities: **responding** to unexpected events, **monitoring** for signs of degradation, **learning** from experience, and **anticipating** future challenges. From Hollnagel's resilience engineering framework. Applied not to AVT alone but to the combined human-machine system as it operates in context.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | HL.HF-18 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |Cross-cutting                                                     |
@@ -820,12 +838,13 @@ Score each capacity 1–5 with narrative justification. Composite is a profile, 
 
 ---
 
-### 🟡 AI-Off Performance Test
+### HL.HF-19 🟡 AI-Off Performance Test
 
 Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
 
 |Dimension              |Value                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------|
+| **Reference** | HL.HF-19 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
 |**Measurement Cadence**|Periodic audit                                                                                        |
 |**Pipeline Layer**     |Cross-cutting                                                                                         |

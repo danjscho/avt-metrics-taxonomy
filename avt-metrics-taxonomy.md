@@ -12,15 +12,15 @@ This taxonomy is designed to serve multiple audiences — from a practice CSO de
 
 Each metric is assigned to one of three priority tiers. The tier reflects a composite judgement across three dimensions: how consequential the metric is for patient safety, whether it is measurable today with existing tools and data, and what governance burden it imposes on the responsible actor. A metric can be critically important but placed in Tier 3 because the infrastructure to measure it does not yet exist — the tier reflects actionability, not importance.
 
-**🟢 Tier 1 — Minimum Viable Assurance** (42 metrics)
+**🟢 Tier 1 — Minimum Viable Assurance** (43 metrics)
 
 The smallest set of metrics that a deployer cannot responsibly skip. Every metric in Tier 1 meets all three criteria: it addresses a safety-critical or governance-essential function, it is measurable today by the responsible actor without requiring infrastructure that doesn't yet exist, and the burden of measurement is proportionate to the risk it monitors. A deployer operating AVT without measuring these metrics is operating without adequate governance — regardless of the vendor's own quality claims.
 
-**🟡 Tier 2 — Recommended Assurance** (87 metrics)
+**🟡 Tier 2 — Recommended Assurance** (92 metrics)
 
 What a deployer or regional body should measure given reasonable governance capacity and vendor cooperation. Tier 2 metrics are important for comprehensive assurance but either require some vendor cooperation that may need contractual enforcement, involve more resource-intensive measurement methods, or provide granularity that strengthens but is not strictly essential for basic safe operation.
 
-**🔵 Tier 3 — Advanced / Research** (85 metrics)
+**🔵 Tier 3 — Advanced / Research** (79 metrics)
 
 Metrics that are important for advancing the field but are not actionable at individual deployer level today. Tier 3 metrics fall into this category for one of three reasons: they require national infrastructure that hasn't been built, they require research methods not yet scalable to routine deployment, or they are vendor-proprietary approaches that inform what a national standard should require but cannot be independently replicated. Tier 3 is not 'unimportant' — several Tier 3 metrics address the most fundamental questions about AVT safety. They are Tier 3 because the answer to 'can a CSO do this tomorrow?' is currently no.
 
@@ -52,6 +52,46 @@ Each metric identifies who should measure it. The same metric may appear under m
 
 A metric listed under 'Vendor, Deployer' typically means the vendor must provide the data or infrastructure, and the deployer must use it for governance — for example, model version tracking requires the vendor to log versions but the deployer to monitor for changes and trigger re-evaluation.
 
+### Reference IDs
+
+Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}` — for example, `TP.AC-1` is the first metric in Audio Capture within The Technical Pipeline. Reference IDs appear in both the metric heading and the dimensions table.
+
+**Part abbreviations:**
+
+| Abbreviation | Part |
+|-------------|------|
+| TP | The Technical Pipeline |
+| PI | Pipeline Interactions |
+| HL | The Human Layer |
+| IO | Impact & Outcomes |
+| GV | System Governance |
+| ES | Evaluation Science |
+
+**Group abbreviations:**
+
+| Abbreviation | Group | Part |
+|-------------|-------|------|
+| AC | Audio Capture & Environment | TP |
+| ASR | ASR / Transcription | TP |
+| DI | Diarisation | TP |
+| SN | Summarisation / NLP | TP |
+| CC | Clinical Coding | TP |
+| WB | EPR Write-back | TP |
+| PP | Partial-Pipeline | PI |
+| E2E | End-to-End Pipeline | PI |
+| HF | Human Factors & Workflow | HL |
+| PX | Patient Experience | IO |
+| FE | Fairness & Equity | IO |
+| SG | Safety & Governance | GV |
+| CR | NHS Compliance & Regulatory | GV |
+| SC | Security & Adversarial Robustness | GV |
+| PD | Privacy & Data Governance | GV |
+| OP | Operational | GV |
+| EN | Environmental & Sustainability | GV |
+| TC | Training & Competency | GV |
+| VT | Vendor Transparency & Contractual | GV |
+| ME | Meta-evaluation | ES |
+
 ### Adapting to Local Context
 
 Tier assignments reflect a general assessment of priority and actionability. Local context should adjust them:
@@ -82,9 +122,9 @@ A trust with multiple AVT platforms deployed across different services should pr
 
 ### By Priority Tier
 
-- **🟢 Tier 1 — Minimum Viable Assurance**: 42 metrics — what every deployer must measure to operate safely
-- **🟡 Tier 2 — Recommended Assurance**: 87 metrics — recommended with reasonable governance capacity
-- **🔵 Tier 3 — Advanced / Research**: 85 metrics — advanced, research, or requires infrastructure that doesn't yet exist
+- **🟢 Tier 1 — Minimum Viable Assurance**: 43 metrics — what every deployer must measure to operate safely
+- **🟡 Tier 2 — Recommended Assurance**: 92 metrics — recommended with reasonable governance capacity
+- **🔵 Tier 3 — Advanced / Research**: 79 metrics — advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
@@ -101,7 +141,9 @@ Some groups contain named metric families — clusters of related metrics that m
 - **Post-Generation Correction** (Human Factors & Workflow): 4 metrics — edit rate, type, location, pattern
 - **Clinical Transcription Accuracy** (ASR / Transcription): 3 metrics — WER, M-WER, CK-ER
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics — ROUGE, BERTScore
-- **Unaffiliated**: 200 metrics — the remainder, not currently grouped into a named family
+- **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics — attribute extraction, event classification, dm+d coding, medication error differential
+- **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics — demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
+- **Unaffiliated**: 189 metrics — the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -212,11 +254,11 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 **Part A — The Technical Pipeline**
 
 - [Audio Capture & Environment](#audio-capture-environment) (9 metrics — 1 Tier 1)
-- [ASR / Transcription](#asr-transcription) (14 metrics — 2 Tier 1) *contains Clinical Transcription Accuracy family*
+- [ASR / Transcription](#asr-transcription) (14 metrics — 2 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
 - [Diarisation](#diarisation) (9 metrics) *contains Conversation Analysis sub-cluster*
-- [Summarisation / NLP](#summarisation-nlp) (24 metrics — 4 Tier 1) *contains Clinical Content Fidelity and Reference-Based Text Similarity families*
-- [Clinical Coding](#clinical-coding) (12 metrics — 1 Tier 1)
-- [EPR Write-back](#epr-write-back) (7 metrics — 4 Tier 1)
+- [Summarisation / NLP](#summarisation-nlp) (24 metrics — 4 Tier 1) *contains Clinical Content Fidelity, Reference-Based Text Similarity, and Medication Safety Thread families*
+- [Clinical Coding](#clinical-coding) (12 metrics — 1 Tier 1) *contains Coding Fidelity sub-cluster*
+- [EPR Write-back](#epr-write-back) (7 metrics — 4 Tier 1) *contains Write-back Safety sub-cluster*
 
 **Part B — Pipeline Interactions**
 
@@ -225,7 +267,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 **Part C — The Human Layer**
 
-- [Human Factors & Workflow](#human-factors-workflow) (20 metrics — 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
+- [Human Factors & Workflow](#human-factors-workflow) (19 metrics — 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
 
 **Part D — Impact & Outcomes**
 
@@ -247,9 +289,706 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 - [Meta-evaluation](#meta-evaluation) (7 metrics)
 
-*Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Family framings appear before the first metric of each family and provide parent-construct context. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation — they are additive context within the existing group structure.*
+**Cross-cutting**
+
+- [Applicability Classification](#applicability-classification) — which metrics are AVT-specific, which apply to any healthcare AI system
+- [Standards Mapping](#standards-mapping) — assertion-level mapping to DTAC, DSPT, DCB0129/0160, NHS LLM Evaluation Framework
+
+*Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Some families are cross-cutting, spanning multiple groups and pipeline layers (e.g. Medication Safety Thread spans Summarisation, Clinical Coding, and Patient Experience). Family framings appear before the first metric of each family and provide parent-construct context. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation — they are additive context within the existing group structure.*
 
 ---
+
+## Applicability Classification
+
+This section classifies each metric by whether it is specific to Ambient Voice Technology (AVT) or applicable to healthcare AI systems more broadly. The classification helps readers identify which parts of the taxonomy are transferable to other clinical AI contexts (diagnostic imaging AI, predictive analytics, clinical decision support) and which are meaningful only in the context of an audio-to-clinical-record pipeline.
+
+### Classification Values
+
+- **AVT-Specific** — the metric is meaningful only in the context of an audio capture, speech recognition, or speaker attribution pipeline. Removing the audio layer removes the need for the metric entirely. *Example: Signal-to-Noise Ratio Monitoring measures audio input quality — irrelevant to a text-based clinical AI system.*
+
+- **General Healthcare AI** — the metric applies to any clinical AI system regardless of input modality. The definition, measurement method, and assurance question are independent of whether the system processes audio, text, images, or structured data. *Example: Consent Verification Accuracy applies equally to an ambient scribe, a diagnostic imaging AI, or an EHR predictive model.*
+
+- **AVT-Contextualised** — the underlying concept is general (applicable to any clinical AI) but the specific definition, threshold, or measurement method in this taxonomy is tuned for AVT. Adapting the metric to another modality would require redefining the formal definition while preserving the assurance question. *Example: Hallucination Rate measures fabricated content in AI output — a general concern — but the formal definition here references transcript-to-note fidelity, speaker attribution errors, and audio-derived confabulation, which are AVT-specific failure modes.*
+
+### Summary
+
+| Classification | Count | Percentage |
+|----------------|-------|------------|
+| AVT-Specific | 48 | 22% |
+| AVT-Contextualised | 77 | 36% |
+| General Healthcare AI | 89 | 42% |
+| **Total** | **214** | **100%** |
+
+### By Part
+
+| Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
+|------|-------------|--------------------|--------------------|-------|
+| A — Technical Pipeline | 33 | 42 | 0 | 75 |
+| B — Pipeline Interactions | 8 | 13 | 0 | 21 |
+| C — The Human Layer | 0 | 16 | 3 | 19 |
+| D — Impact & Outcomes | 1 | 6 | 11 | 18 |
+| E — System Governance | 6 | 0 | 68 | 74 |
+| F — Evaluation Science | 0 | 0 | 7 | 7 |
+| **Total** | **48** | **77** | **89** | **214** |
+
+
+### Full Classification
+
+#### Part A — The Technical Pipeline
+
+**Audio Capture & Environment** (9 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.AC-1 | Signal-to-Noise Ratio (SNR) Monitoring | 🟡 Tier 2 | AVT-Specific |
+| TP.AC-2 | Voice Activity Detection (VAD) Accuracy | 🔵 Tier 3 | AVT-Specific |
+| TP.AC-3 | Acoustic Environment Profiling | 🟡 Tier 2 | AVT-Specific |
+| TP.AC-4 | Bystander Voice Detection Rate | 🔵 Tier 3 | AVT-Specific |
+| TP.AC-5 | Microphone & Hardware Validation | 🟢 Tier 1 | AVT-Specific |
+| TP.AC-6 | Speaker Overlap Rate | 🔵 Tier 3 | AVT-Specific |
+| TP.AC-7 | Audio Clipping / Saturation Rate | 🟡 Tier 2 | AVT-Specific |
+| TP.AC-8 | Codec & Sampling Rate Compliance | 🟡 Tier 2 | AVT-Specific |
+| TP.AC-9 | Microphone Drift Detection | 🔵 Tier 3 | AVT-Specific |
+
+**ASR / Transcription** (14 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.ASR-1 | Word Error Rate (WER) | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-2 | Medical Word Error Rate (M-WER) | 🔵 Tier 3 | AVT-Specific |
+| TP.ASR-3 | Clinical Keyword Error Rate (CK-ER) | 🔵 Tier 3 | AVT-Specific |
+| TP.ASR-4 | Demographic-Disaggregated WER | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-5 | Speaker-Stratified WER | 🔵 Tier 3 | AVT-Specific |
+| TP.ASR-6 | Error Transmission Rate | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-7 | Real-Time Factor (RTF) | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-8 | Character Error Rate (CER) | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-9 | Out-of-Vocabulary (OOV) Rate | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-10 | ASR Confidence Calibration | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-11 | ASR Confidence Exposure | 🟡 Tier 2 | AVT-Specific |
+| TP.ASR-12 | Hallucination-Under-Noise Rate | 🟢 Tier 1 | AVT-Specific |
+| TP.ASR-13 | Numeric Accuracy | 🟢 Tier 1 | AVT-Specific |
+| TP.ASR-14 | Punctuation & Capitalisation Accuracy | 🔵 Tier 3 | AVT-Specific |
+
+**Diarisation** (9 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.DI-1 | Diarisation Error Rate (DER) | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-2 | Speaker Attribution Accuracy | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-3 | Speaker Count Accuracy | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-4 | Speaker Boundary Precision | 🔵 Tier 3 | AVT-Specific |
+| TP.DI-5 | Speaker Role Identification F1 | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-6 | Code-Switching Detection Rate | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-7 | Turn-Taking Accuracy in Overlap | 🟡 Tier 2 | AVT-Specific |
+| TP.DI-8 | Clinical-Perspective HEWER (cpHEWER) | 🔵 Tier 3 | AVT-Specific |
+| TP.DI-9 | Addressee Recognition Accuracy | 🔵 Tier 3 | AVT-Specific |
+
+**Summarisation / NLP** (24 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.SN-1 | ROUGE Scores | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-2 | BERTScore | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-3 | PDSQI-9 (Physician Documentation Quality Instrument) | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-4 | CREOLA Error Taxonomy Scores | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-5 | Hallucination Rate | 🟢 Tier 1 | AVT-Contextualised |
+| TP.SN-6 | Omission Rate | 🟢 Tier 1 | AVT-Contextualised |
+| TP.SN-7 | Confabulation Detection (Support × Severity) | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-8 | VeriFact Factual Verification | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-9 | LLM-as-a-Judge (PDSQI-9 Proxy) | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-10 | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-11 | MEDIC Cross-Examination | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-12 | Linked Evidence / Provenance Tracing | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-13 | SCRIBE Framework Composite | 🔵 Tier 3 | AVT-Specific |
+| TP.SN-14 | Template Modification Underspecification Score | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-15 | Negation Handling Accuracy | 🟢 Tier 1 | AVT-Contextualised |
+| TP.SN-16 | Temporal Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-17 | Temporal Event Ordering Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-18 | Quantifier Preservation | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-19 | Medication Attribute Extraction F1 | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-20 | Uncertainty Marker Preservation | 🟢 Tier 1 | AVT-Contextualised |
+| TP.SN-21 | Medication Event Classification | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-22 | Style & Format Consistency | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-23 | Length Appropriateness | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-24 | Stigmatising Language Replication Rate | 🟡 Tier 2 | AVT-Contextualised |
+
+**Clinical Coding** (12 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.CC-1 | SNOMED Code Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-2 | SNOMED CT Concept Mapping Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-3 | ICD-10 / ICD-11 Full-Specificity Precision | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-4 | OPCS-4 Procedure Coding Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-5 | dm+d Medication Coding Accuracy | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-6 | Code Hallucination Rate | 🟢 Tier 1 | AVT-Contextualised |
+| TP.CC-7 | Coding Inflation Detection | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-8 | E/M Level Shift Monitoring | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-9 | Coding Equity Index | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-10 | wRVU / Tariff Impact Attribution | 🔵 Tier 3 | AVT-Contextualised |
+| TP.CC-11 | Code Specificity Index | 🔵 Tier 3 | AVT-Contextualised |
+| TP.CC-12 | Code Suggestion Latency | 🔵 Tier 3 | AVT-Contextualised |
+
+**EPR Write-back** (7 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| TP.WB-1 | Write-back Fidelity | 🟢 Tier 1 | AVT-Contextualised |
+| TP.WB-2 | Integration Error Rate | 🟢 Tier 1 | AVT-Contextualised |
+| TP.WB-3 | Field Mapping Accuracy | 🟢 Tier 1 | AVT-Contextualised |
+| TP.WB-4 | Update vs Append Behaviour | 🟢 Tier 1 | AVT-Contextualised |
+| TP.WB-5 | Write-back Rollback Capability | 🟡 Tier 2 | AVT-Contextualised |
+| TP.WB-6 | FHIR R4 Resource Conformance Rate | 🟡 Tier 2 | AVT-Contextualised |
+| TP.WB-7 | openEHR Archetype Conformance | 🔵 Tier 3 | AVT-Contextualised |
+
+#### Part B — Pipeline Interactions
+
+**Partial-Pipeline** (9 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| PI.PP-1 | Speaker-Attributed Transcript Accuracy | 🔵 Tier 3 | AVT-Specific |
+| PI.PP-2 | Multi-Party Conversation Robustness | 🟡 Tier 2 | AVT-Specific |
+| PI.PP-3 | Information Extraction Yield | 🔵 Tier 3 | AVT-Contextualised |
+| PI.PP-4 | Noise-to-Note Resilience | 🔵 Tier 3 | AVT-Specific |
+| PI.PP-5 | Epistemic Status Preservation | 🔵 Tier 3 | AVT-Contextualised |
+| PI.PP-6 | Diarisation-Stratified WER | 🔵 Tier 3 | AVT-Specific |
+| PI.PP-7 | Concept Extraction Concordance | 🟡 Tier 2 | AVT-Contextualised |
+| PI.PP-8 | End-of-Utterance Timing Accuracy | 🔵 Tier 3 | AVT-Specific |
+| PI.PP-9 | Structured/Free-Text Consistency | 🟡 Tier 2 | AVT-Contextualised |
+
+**End-to-End Pipeline** (12 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| PI.E2E-1 | Source-to-Record Concordance | 🔵 Tier 3 | AVT-Contextualised |
+| PI.E2E-2 | Cumulative Information Yield | 🔵 Tier 3 | AVT-Contextualised |
+| PI.E2E-3 | Error Propagation / Cascade Analysis | 🔵 Tier 3 | AVT-Specific |
+| PI.E2E-4 | Safety-Critical Information Chain of Custody | 🟡 Tier 2 | AVT-Contextualised |
+| PI.E2E-5 | Compound Demographic Performance | 🔵 Tier 3 | AVT-Contextualised |
+| PI.E2E-6 | Semantic Drift Accumulation | 🔵 Tier 3 | AVT-Specific |
+| PI.E2E-7 | Pipeline Non-Determinism / Reproducibility | 🟡 Tier 2 | AVT-Contextualised |
+| PI.E2E-8 | Error Attribution Analysis | 🔵 Tier 3 | AVT-Contextualised |
+| PI.E2E-9 | Clinical Decision Equivalence | 🔵 Tier 3 | AVT-Contextualised |
+| PI.E2E-10 | Full-Pipeline Latency Budget | 🟡 Tier 2 | AVT-Contextualised |
+| PI.E2E-11 | Pipeline Failure Recovery | 🟡 Tier 2 | AVT-Contextualised |
+| PI.E2E-12 | Round-Trip Information Loss | 🔵 Tier 3 | AVT-Specific |
+
+#### Part C — The Human Layer
+
+**Human Factors & Workflow** (19 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| HL.HF-1 | Edit Rate (% Notes Edited) | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-2 | Edit Type Classification | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-3 | Review-Before-Signing Rate | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-4 | Time-to-Sign Distribution | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-5 | Edit-Pattern Monitoring at Scale | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-6 | Automation Bias Detection (Error Injection) | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-7 | Edit Location Distribution | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-8 | Trust Calibration Survey | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-9 | Re-record / Abandonment Rate | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-10 | Cognitive Load Assessment | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-11 | Inter-Clinician Edit Variance | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-12 | Clinical Documentation Skill Attenuation | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-13 | Cognitive Offloading Rate | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-14 | Trust Halo Decay Rate | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-15 | Note Review Fatigue Trajectory | 🔵 Tier 3 | AVT-Contextualised |
+| HL.HF-16 | Work-as-Imagined vs Work-as-Done Gap | 🔵 Tier 3 | General Healthcare AI |
+| HL.HF-17 | Verification Burden | 🟡 Tier 2 | AVT-Contextualised |
+| HL.HF-18 | Resilience Capacities Assessment | 🔵 Tier 3 | General Healthcare AI |
+| HL.HF-19 | AI-Off Performance Test | 🟡 Tier 2 | General Healthcare AI |
+
+
+#### Part D — Impact & Outcomes
+
+**Patient Experience** (10 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| IO.PX-1 | Patient Opt-Out Rate | 🟢 Tier 1 | AVT-Contextualised |
+| IO.PX-2 | Patient-Perceived Accuracy | 🔵 Tier 3 | AVT-Contextualised |
+| IO.PX-3 | Emotional Content Preservation | 🔵 Tier 3 | AVT-Contextualised |
+| IO.PX-4 | Cultural & Linguistic Appropriateness | 🔵 Tier 3 | General Healthcare AI |
+| IO.PX-5 | Chilling Effect Assessment | 🔵 Tier 3 | AVT-Contextualised |
+| IO.PX-6 | Therapeutic Relationship Impact | 🔵 Tier 3 | AVT-Contextualised |
+| IO.PX-7 | Full Attentiveness Rate | 🟡 Tier 2 | AVT-Contextualised |
+| IO.PX-8 | Patient Comprehension of AI-Generated Summaries | 🔵 Tier 3 | General Healthcare AI |
+| IO.PX-9 | Downstream Diagnostic Accuracy | 🔵 Tier 3 | General Healthcare AI |
+| IO.PX-10 | Medication Error Rate Differential | 🔵 Tier 3 | General Healthcare AI |
+
+**Fairness & Equity** (8 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| IO.FE-1 | Deployment Equity Index | 🟡 Tier 2 | General Healthcare AI |
+| IO.FE-2 | Accent Taxonomy Standardisation | 🟡 Tier 2 | AVT-Specific |
+| IO.FE-3 | Clinical Domain Performance Variance | 🟡 Tier 2 | General Healthcare AI |
+| IO.FE-4 | Intersectional Performance | 🔵 Tier 3 | General Healthcare AI |
+| IO.FE-5 | Intersectional Compound Fairness Score | 🔵 Tier 3 | General Healthcare AI |
+| IO.FE-6 | Rare Presentation Handling | 🔵 Tier 3 | General Healthcare AI |
+| IO.FE-7 | Health Literacy Performance Variation | 🔵 Tier 3 | General Healthcare AI |
+| IO.FE-8 | Cross-Platform Fairness Consistency | 🔵 Tier 3 | General Healthcare AI |
+
+#### Part E — System Governance
+
+**Safety & Governance** (17 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.SG-1 | Model Version Tracking | 🟢 Tier 1 | General Healthcare AI |
+| GV.SG-2 | Model Update Impact Score | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-3 | Performance Degradation Detection Latency | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-4 | Retraining Trigger Threshold Specification | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-5 | AI-Generated Data Contamination Rate | 🔵 Tier 3 | General Healthcare AI |
+| GV.SG-6 | Concept Drift in Clinical Notes | 🔵 Tier 3 | General Healthcare AI |
+| GV.SG-7 | Probabilistic Risk Quantification (P₁/P₂) | 🔵 Tier 3 | General Healthcare AI |
+| GV.SG-8 | DeepScore (Defect-Free Rate) | 🔵 Tier 3 | General Healthcare AI |
+| GV.SG-9 | Safety Performance Indicators with Thresholds (DSCMS) | 🟢 Tier 1 | General Healthcare AI |
+| GV.SG-10 | Off-Label Use Detection Rate | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-11 | Adverse Event / Incident Rate (LFPSE) | 🟢 Tier 1 | General Healthcare AI |
+| GV.SG-12 | Cross-Practice Variance Coefficient | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-13 | Assurance Debt Accumulation Rate | 🟢 Tier 1 | General Healthcare AI |
+| GV.SG-14 | Near-Miss Reporting Rate | 🟢 Tier 1 | General Healthcare AI |
+| GV.SG-15 | Time-to-Correct | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-16 | SPI Escalation Response Time | 🟡 Tier 2 | General Healthcare AI |
+| GV.SG-17 | Hazard Log Completeness | 🟢 Tier 1 | General Healthcare AI |
+
+**NHS Compliance & Regulatory** (10 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.CR-1 | Patient Dissent Recording Rate | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-2 | Verbal Notification Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-3 | AI-Generated Content Labelling Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-4 | AVT Supplier Registry Listing Verification | 🟢 Tier 1 | AVT-Specific |
+| GV.CR-5 | ICB Engagement Documentation | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-6 | Clinical Safety Case Completeness | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-7 | DPIA Template Completion Rate | 🟢 Tier 1 | General Healthcare AI |
+| GV.CR-8 | DSPA Status | 🟡 Tier 2 | General Healthcare AI |
+| GV.CR-9 | FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 Tier 2 | General Healthcare AI |
+| GV.CR-10 | EU AI Act Event Logging Compliance | 🟡 Tier 2 | General Healthcare AI |
+
+**Security & Adversarial Robustness** (11 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.SC-1 | Prompt Injection Resistance Rate | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-2 | Jailbreak Resistance Score | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-3 | Adversarial Audio Detection Rate | 🔵 Tier 3 | AVT-Specific |
+| GV.SC-4 | Data Poisoning Resilience | 🔵 Tier 3 | General Healthcare AI |
+| GV.SC-5 | Output Safety Classifier Coverage | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-6 | Template Injection Vulnerability Assessment | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-7 | Voice Cloning / Deepfake Detection | 🔵 Tier 3 | AVT-Specific |
+| GV.SC-8 | Side-Channel Data Leakage | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-9 | Cross-Patient Information Leakage Rate | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-10 | Clinician Identity Authentication | 🟡 Tier 2 | General Healthcare AI |
+| GV.SC-11 | Membership Inference Attack AUC | 🔵 Tier 3 | General Healthcare AI |
+
+**Privacy & Data Governance** (11 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.PD-1 | Audio Retention Compliance | 🟢 Tier 1 | AVT-Specific |
+| GV.PD-2 | Audio Time-to-Deletion | 🟢 Tier 1 | AVT-Specific |
+| GV.PD-3 | Transcript Retention Compliance | 🟢 Tier 1 | AVT-Specific |
+| GV.PD-4 | Data Minimisation Score | 🟡 Tier 2 | General Healthcare AI |
+| GV.PD-5 | PII Extraction Attack Success Rate | 🟡 Tier 2 | General Healthcare AI |
+| GV.PD-6 | Re-identification Risk Assessment | 🟡 Tier 2 | General Healthcare AI |
+| GV.PD-7 | Training Data Inclusion Status | 🟡 Tier 2 | General Healthcare AI |
+| GV.PD-8 | Consent Verification Accuracy | 🟢 Tier 1 | General Healthcare AI |
+| GV.PD-9 | Cross-Border Data Transfer Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.PD-10 | Subject Access Request Fulfilment | 🟢 Tier 1 | General Healthcare AI |
+| GV.PD-11 | Right to Erasure Compliance | 🟢 Tier 1 | General Healthcare AI |
+
+**Operational** (9 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.OP-1 | Documentation Time per Consultation | 🟢 Tier 1 | General Healthcare AI |
+| GV.OP-2 | Pyjama Time / After-Hours EHR Use | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-3 | Note Turnaround Time | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-4 | Documentation Workload Composite | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-5 | System Availability / Uptime | 🟢 Tier 1 | General Healthcare AI |
+| GV.OP-6 | Adoption Rate & Selective Use Patterns | 🟢 Tier 1 | General Healthcare AI |
+| GV.OP-7 | Cost per Consultation | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-8 | Governance & Maintenance Burden | 🔵 Tier 3 | General Healthcare AI |
+| GV.OP-9 | Training Time per Clinician | 🟡 Tier 2 | General Healthcare AI |
+
+**Environmental & Sustainability** (3 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.EN-1 | Energy Consumption per Clinical Note | 🔵 Tier 3 | General Healthcare AI |
+| GV.EN-2 | Carbon Emissions per Inference | 🔵 Tier 3 | General Healthcare AI |
+| GV.EN-3 | Water Consumption per Query | 🔵 Tier 3 | General Healthcare AI |
+
+**Training & Competency** (5 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.TC-1 | Clinician Training Completion Rate | 🟢 Tier 1 | General Healthcare AI |
+| GV.TC-2 | Failure Mode Awareness Score | 🟡 Tier 2 | General Healthcare AI |
+| GV.TC-3 | Refresher Training & CPD Compliance | 🟡 Tier 2 | General Healthcare AI |
+| GV.TC-4 | Trainee Impact Assessment | 🔵 Tier 3 | General Healthcare AI |
+| GV.TC-5 | Training Material Currency | 🟡 Tier 2 | General Healthcare AI |
+
+**Vendor Transparency & Contractual** (8 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| GV.VT-1 | Model Change Notification Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.VT-2 | Telemetry Provision Completeness | 🟡 Tier 2 | General Healthcare AI |
+| GV.VT-3 | Benchmark & Evaluation Data Accessibility | 🔵 Tier 3 | General Healthcare AI |
+| GV.VT-4 | Audit Trail Completeness | 🟡 Tier 2 | General Healthcare AI |
+| GV.VT-5 | Incident Disclosure Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.VT-6 | Exit & Data Portability Provisions | 🟡 Tier 2 | General Healthcare AI |
+| GV.VT-7 | Sub-Processor Transparency | 🟢 Tier 1 | General Healthcare AI |
+| GV.VT-8 | Intermediate Output Access | 🟡 Tier 2 | General Healthcare AI |
+
+#### Part F — Evaluation Science
+
+**Meta-evaluation** (7 metrics)
+
+| Ref | Metric | Tier | Applicability |
+|-----|--------|------|---------------|
+| ES.ME-1 | Proximal vs Distal Outcome Distinction | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-2 | Inter-Rater Reliability Baseline | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-3 | Metric Interaction Analysis | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-4 | Goodhart's Law Monitoring | 🟡 Tier 2 | General Healthcare AI |
+| ES.ME-5 | Coverage Gap Analysis | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-6 | LLM-Judge Bias Quantification | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-7 | Automated-Human Metric Concordance | 🔵 Tier 3 | General Healthcare AI |
+
+## Standards Mapping
+
+This section maps the taxonomy's 214 metrics against four NHS/regulatory frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
+
+Where a standard criterion has no corresponding taxonomy metric, this is flagged as a **gap**. Where the taxonomy provides coverage beyond the standard's scope, this is noted as **taxonomy extends**.
+
+---
+
+### DTAC (Digital Technology Assessment Criteria) v2.0
+
+DTAC is the NHS assessment framework for digital health technologies. It has four assessed sections (C1–C4) and one comparative section (D1). DTAC v2.0 (February 2026) explicitly names Ambient Voice Technologies as potentially requiring additional assurance beyond DTAC.
+
+#### C1 — Clinical Safety
+
+| DTAC Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| C1.1.1 | Software / AI as Medical Device classification | *Process criterion — no metric equivalent; informs scope* | — |
+| C1.2.2 | DCB0129 Clinical Risk Management compliance | Clinical Safety Case Completeness | 🟢 1 |
+| C1.2.3 | Clinical risk management system detail | Hazard Log Completeness | 🟢 1 |
+| C1.2.4 | Clinical Safety Case Report and Hazard Log | Clinical Safety Case Completeness, Hazard Log Completeness | 🟢 1 |
+| C1.2.5 | Named Clinical Safety Officer | *Process criterion — no metric equivalent* | — |
+
+**Taxonomy extends:** Safety Performance Indicators with Thresholds (DSCMS), Adverse Event / Incident Rate (LFPSE), Near-Miss Reporting Rate, Probabilistic Risk Quantification (P₁/P₂) — the taxonomy provides ongoing safety monitoring metrics that DTAC does not assess.
+
+#### C2 — Data Protection
+
+| DTAC Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| C2.1 | DSPT compliance | DSPA Status | 🟡 2 |
+| C2.2.1 | ICO registration | *Process criterion — no metric equivalent* | — |
+| C2.2.2 | Data Protection Impact Assessment | DPIA Template Completion Rate | 🟢 1 |
+| C2.2.3 | Transparency information / privacy notice | Patient Dissent Recording Rate, Verbal Notification Compliance | 🟢 1 |
+| C2.2.4 | Terms and conditions | *Process criterion — no metric equivalent* | — |
+| C2.2.5 | Data storage and processing location | Cross-Border Data Transfer Compliance | 🟢 1 |
+| C2.2.6 | Cross-border legislative compliance | Cross-Border Data Transfer Compliance | 🟢 1 |
+
+**Taxonomy extends:** Audio Retention Compliance, Audio Time-to-Deletion, Transcript Retention Compliance, Data Minimisation Score, Right to Erasure Compliance, Subject Access Request Fulfilment, Consent Verification Accuracy — extensive AVT-specific privacy metrics beyond DTAC's data protection scope.
+
+#### C3 — Technical Security
+
+| DTAC Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| C3.1 | Cyber Essentials certification | *Certification criterion — no metric equivalent* | — |
+| C3.3 | Penetration testing (OWASP top 10) | Prompt Injection Resistance Rate, Jailbreak Resistance Score, Template Injection Vulnerability Assessment | 🟡 2 |
+| C3.4 | Software Security Code of Practice | Output Safety Classifier Coverage | 🟡 2 |
+| C3.5 | Multi-factor authentication | Clinician Identity Authentication | 🟡 2 |
+| C3.6 | Logging and reporting | Audit Trail Completeness, EU AI Act Event Logging Compliance | 🟡 2 |
+
+**Taxonomy extends:** Adversarial Audio Detection Rate, Data Poisoning Resilience, Voice Cloning / Deepfake Detection, Side-Channel Data Leakage, Cross-Patient Information Leakage Rate, Membership Inference Attack AUC — AVT-specific adversarial robustness metrics beyond DTAC's general security scope.
+
+#### C4 — Interoperability
+
+| DTAC Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| C4.1.1 | API interoperability standards | FHIR R4 Resource Conformance Rate, openEHR Archetype Conformance | 🟡 2 / 🔵 3 |
+| C4.1.2 | Open API documentation | *Process criterion — no metric equivalent* | — |
+| C4.2.1 | NHS number for patient identification | Field Mapping Accuracy (EPR integration) | 🟢 1 |
+| C4.2.2 | PDS / local record integration | Integration Error Rate | 🟢 1 |
+
+**Taxonomy extends:** Write-back Fidelity, Update vs Append Behaviour, Write-back Rollback Capability, Structured/Free-Text Consistency — the taxonomy has extensive EPR write-back safety metrics that go far beyond DTAC's interoperability questions.
+
+#### D1 — Usability and Accessibility
+
+| DTAC Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| D1.1 | User journey / care pathway fit | Work-as-Imagined vs Work-as-Done Gap | 🔵 3 |
+| D1.2 | User testing | Trust Calibration Survey, Full Attentiveness Rate | 🟡 2 |
+| D1.3 | Accessible Information Standard | *Gap — no accessibility metric in taxonomy* | — |
+| D1.4.1 | WCAG 2.2 AA compliance | *Gap — no accessibility metric in taxonomy* | — |
+| D1.5 | Service availability | System Availability / Uptime | 🟢 1 |
+
+**Gaps:** The taxonomy has no web accessibility (WCAG) or Accessible Information Standard metrics. These are relevant for AVT user interfaces but not for the clinical AI pipeline itself.
+
+---
+
+### DSPT (Data Security and Protection Toolkit) — NDG Standards
+
+DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions and evidence items. This mapping covers the Category 2 (IT Supplier) variant, which is most relevant to AVT vendors. Only assertions with AI/AVT-relevant content are mapped.
+
+#### Standard 1 — Personal Confidential Data
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 1.1.1 | ICO registration | *Process criterion — no metric equivalent* | — |
+| 1.1.2 | Documented personal data holdings | Data Minimisation Score, Training Data Inclusion Status | 🟡 2 |
+| 1.1.3 | Privacy information published | Verbal Notification Compliance, Patient Dissent Recording Rate | 🟢 1 |
+| 1.1.6 | Consent to share reviewed | Consent Verification Accuracy | 🟢 1 |
+| 1.2.2 | Handling objection to processing | Patient Opt-Out Rate, Patient Dissent Recording Rate | 🟢 1 |
+| 1.2.3 | Subject access request process | Subject Access Request Fulfilment | 🟢 1 |
+| 1.2.4 | National data opt-out compliance | Patient Opt-Out Rate | 🟢 1 |
+| 1.3.5 | Data security risk register | Assurance Debt Accumulation Rate | 🟢 1 |
+| 1.3.7 | Data protection by design | Data Minimisation Score, PII Extraction Attack Success Rate | 🟡 2 |
+| 1.3.8 | DPIA process linked to risk management | DPIA Template Completion Rate | 🟢 1 |
+| 1.4.1 | Records management including retention | Audio Retention Compliance, Transcript Retention Compliance, Audio Time-to-Deletion | 🟢 1 |
+
+#### Standard 2 — Staff Responsibilities
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 2.2.1 | Contracts contain data security requirements | *Process criterion — no metric equivalent* | — |
+
+#### Standard 3 — Training
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 3.1.1 | Training needs analysis | Training Material Currency | 🟡 2 |
+| 3.1.2 | Training activities implemented | Clinician Training Completion Rate | 🟢 1 |
+| 3.1.3 | Evaluation of training | Failure Mode Awareness Score | 🟡 2 |
+| 3.2.1 | IG/cyber prioritised by board | *Process criterion — no metric equivalent* | — |
+
+#### Standard 4 — Managing Access
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 4.2.3 | Logs retained and searchable | Audit Trail Completeness | 🟡 2 |
+| 4.3.2 | Users/systems authenticated before access | Clinician Identity Authentication | 🟡 2 |
+| 4.4.1 | Privileged account logs tamper-proof | Audit Trail Completeness | 🟡 2 |
+| 4.5.3 | MFA enforced on remote/privileged access | Clinician Identity Authentication | 🟡 2 |
+
+#### Standard 5 — Process Reviews
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 5.1.1 | Root cause analysis after incidents | Time-to-Correct, Adverse Event / Incident Rate (LFPSE) | 🟡 2 / 🟢 1 |
+
+#### Standard 6 — Responding to Incidents
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 6.1.1 | Incidents reported by staff | Near-Miss Reporting Rate, Adverse Event / Incident Rate (LFPSE) | 🟢 1 |
+| 6.1.2 | Board informed of reportable breaches | SPI Escalation Response Time | 🟡 2 |
+| 6.1.3 | Affected individuals informed | Incident Disclosure Compliance | 🟢 1 |
+| 6.3.3 | Proportionate monitoring for security events | Performance Degradation Detection Latency, Output Safety Classifier Coverage | 🟡 2 |
+
+#### Standard 7 — Continuity Planning
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 7.1.2 | Service continuity during incidents | Pipeline Failure Recovery, System Availability / Uptime | 🟡 2 / 🟢 1 |
+| 7.3.4 | Backups of essential service data | Write-back Rollback Capability | 🟡 2 |
+
+#### Standard 8 — Unsupported Systems
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 8.1.1 | Software asset tracking | Model Version Tracking | 🟢 1 |
+| 8.3.1 | System update frequency | Model Update Impact Score, Model Change Notification Compliance | 🟡 2 / 🟢 1 |
+
+#### Standard 9 — IT Protection
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 9.2.1 | Annual penetration test | Prompt Injection Resistance Rate, Jailbreak Resistance Score | 🟡 2 |
+| 9.3.1 | Web applications protected (OWASP) | Template Injection Vulnerability Assessment | 🟡 2 |
+| 9.3.6 | Data in transit protected | Cross-Border Data Transfer Compliance | 🟢 1 |
+| 9.5.11 | Software per Security Code of Practice | Output Safety Classifier Coverage | 🟡 2 |
+
+#### Standard 10 — Accountable Suppliers
+
+| DSPT Assertion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| 10.1.1 | Supplier list with risk identification | Sub-Processor Transparency, AVT Supplier Registry Listing Verification | 🟢 1 |
+| 10.2.1 | Supplier certification | AVT Supplier Registry Listing Verification | 🟢 1 |
+| 10.2.4 | Outsourced service security | Sub-Processor Transparency | 🟢 1 |
+
+---
+
+### DCB0129 / DCB0160 — Clinical Risk Management Standards
+
+DCB0129 applies to manufacturers of health IT systems; DCB0160 applies to deploying organisations. Both follow the same clinical safety lifecycle. This mapping shows which taxonomy metrics provide evidence for each lifecycle stage.
+
+#### Stage 1: Clinical Risk Management System
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Appoint Clinical Safety Officer | Manufacturer / Deployer | Clinical Safety Case Completeness (evidences CSO sign-off) | 🟢 1 |
+| Document Clinical Risk Management Plan | Manufacturer / Deployer | *Process artefact — no metric equivalent* | — |
+| Define risk management scope | Manufacturer / Deployer | Coverage Gap Analysis (identifies where measurement is absent) | 🔵 3 |
+
+#### Stage 2: Hazard Identification
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Systematic hazard identification | Both | Hazard Log Completeness | 🟢 1 |
+| Consider intended use and foreseeable misuse | Both | Off-Label Use Detection Rate | 🟡 2 |
+| Document hazards in Hazard Log | Both | Hazard Log Completeness | 🟢 1 |
+| Consider failure modes | Both | Error Propagation / Cascade Analysis, Pipeline Failure Recovery | 🔵 3 / 🟡 2 |
+| Consider interactions with other systems | Both | Integration Error Rate, Structured/Free-Text Consistency | 🟢 1 / 🟡 2 |
+| Consider user interface issues | Both | Automation Bias Detection (Error Injection), Trust Calibration Survey | 🟡 2 |
+
+**Taxonomy extends for AVT-specific hazards:**
+- Hallucination Rate, Omission Rate (content fabrication/loss)
+- Speaker Attribution Accuracy (misattribution)
+- Write-back Fidelity, Field Mapping Accuracy (EPR integration failures)
+- Code Hallucination Rate (non-existent code generation)
+- Bystander Voice Detection Rate (consent/privacy failures)
+
+#### Stage 3: Risk Assessment
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Severity × likelihood risk estimation | Both | Probabilistic Risk Quantification (P₁/P₂), Safety Performance Indicators with Thresholds (DSCMS) | 🔵 3 / 🟢 1 |
+| Risk classification (acceptable → unacceptable) | Both | Assurance Debt Accumulation Rate (tracks tolerable risk accumulation) | 🟢 1 |
+| Record initial and residual risk | Both | Hazard Log Completeness | 🟢 1 |
+
+#### Stage 4: Risk Control
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Inherent safety by design | Manufacturer | Code Hallucination Rate (constrained generation = inherent safety) | 🟢 1 |
+| Protective measures within system | Manufacturer | Output Safety Classifier Coverage, Prompt Injection Resistance Rate | 🟡 2 |
+| Information for safety (warnings, guidance) | Manufacturer | Uncertainty Marker Preservation, ASR Confidence Exposure | 🟢 1 / 🟡 2 |
+| Verify risk control effectiveness | Both | All Tier 1 metrics collectively evidence risk control effectiveness | 🟢 1 |
+| Ensure no new hazards from controls | Both | Metric Interaction Analysis | 🔵 3 |
+
+#### Stage 5: Clinical Safety Case
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Clinical Safety Case Report | Both | Clinical Safety Case Completeness | 🟢 1 |
+| Residual risk summary | Both | Assurance Debt Accumulation Rate | 🟢 1 |
+| Release decision sign-off | Both | *Process criterion — no metric equivalent* | — |
+
+#### Stage 6: Monitoring and Review
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Post-market surveillance | Manufacturer | Performance Degradation Detection Latency, Cross-Practice Variance Coefficient | 🟡 2 |
+| Monitor safety through incident analysis | Both | Adverse Event / Incident Rate (LFPSE), Near-Miss Reporting Rate | 🟢 1 |
+| Review Hazard Log on modification | Both | Model Update Impact Score, Retraining Trigger Threshold Specification | 🟡 2 |
+| Periodic safety reviews | Both | Safety Performance Indicators with Thresholds (DSCMS) | 🟢 1 |
+| Manage safety through change | Manufacturer | Model Change Notification Compliance, FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟢 1 / 🟡 2 |
+| Monitor for unexpected clinical impacts | Deployer | Downstream Diagnostic Accuracy, Medication Error Rate Differential | 🔵 3 |
+
+#### Stage 7: Incident Management
+
+| Requirement | Actor | Taxonomy Metrics | Tier |
+|-------------|-------|-----------------|------|
+| Incident management procedures | Both | Adverse Event / Incident Rate (LFPSE), SPI Escalation Response Time | 🟢 1 / 🟡 2 |
+| Root cause investigation | Both | Error Attribution Analysis, Time-to-Correct | 🔵 3 / 🟡 2 |
+| Corrective actions | Both | Time-to-Correct | 🟡 2 |
+| Safety notices / field corrective actions | Manufacturer | Incident Disclosure Compliance, Model Change Notification Compliance | 🟢 1 |
+| Report to MHRA if medical device | Manufacturer | *Process criterion — no metric equivalent* | — |
+| Report through LFPSE | Deployer | Adverse Event / Incident Rate (LFPSE) | 🟢 1 |
+
+---
+
+### NHS England LLM Evaluation and Monitoring Framework (v0.2.2)
+
+> **⚠️ Draft framework.** This mapping is against v0.2.2 (August 2025), which is experimental and subject to change. Dimensions marked with 🔄 appear provisional — their scope or measurement approach may evolve significantly before v1.0. This mapping should be reviewed when the framework reaches v1.0.
+
+The framework has 30 evaluation dimensions across three groups. All dimensions in Suitability in Context and Wider Impact use manual monitoring; Quantifiable Changes dimensions use automatic continuous monitoring with manual review.
+
+#### Group 1: Suitability in Context (11 dimensions)
+
+| LLM Framework Dimension | Taxonomy Metrics | Tier | Notes |
+|--------------------------|-----------------|------|-------|
+| **Accountability** | Clinical Safety Case Completeness, ICB Engagement Documentation, Incident Disclosure Compliance | 🟢 1 | Taxonomy provides specific metrics for the accountability chain |
+| **Concept drift** | Concept Drift in Clinical Notes, Performance Degradation Detection Latency, AI-Generated Data Contamination Rate | 🔵 3 / 🟡 2 | Taxonomy's Longitudinal Drift & Model Contamination sub-cluster maps directly |
+| **Cost** 🔄 | Cost per Consultation, Governance & Maintenance Burden | 🟡 2 / 🔵 3 | **Partial gap** — taxonomy lacks total cost of ownership or cost-effectiveness metric |
+| **Data governance** | DPIA Template Completion Rate, Audio Retention Compliance, Transcript Retention Compliance, Data Minimisation Score, Training Data Inclusion Status | 🟢 1 / 🟡 2 | Strong coverage through Privacy & Data Governance group |
+| **Expected outcomes** | Clinical Decision Equivalence, Downstream Diagnostic Accuracy, Documentation Time per Consultation | 🔵 3 / 🟢 1 | Taxonomy addresses clinical outcomes; framework's "is an LLM the right solution?" question has no metric equivalent |
+| **Explainability** 🔄 | Linked Evidence / Provenance Tracing, Intermediate Output Access, ASR Confidence Exposure | 🟡 2 | Taxonomy provides provenance tracing rather than model interpretability |
+| **Fairness and edge cases** | Demographic-Disaggregated WER, Intersectional Performance, Rare Presentation Handling, Health Literacy Performance Variation, Coding Equity Index | 🟡 2 / 🔵 3 | Extensive coverage through Demographic Equity Disaggregation family + Fairness & Equity group |
+| **Privacy** | PII Extraction Attack Success Rate, Re-identification Risk Assessment, Cross-Patient Information Leakage Rate, Membership Inference Attack AUC | 🟡 2 / 🔵 3 | Strong coverage for model-level privacy; audio/transcript privacy in separate group |
+| **Safety assessment** | Safety Performance Indicators with Thresholds (DSCMS), Hazard Log Completeness, Clinical Safety Case Completeness | 🟢 1 | Maps directly to DCB0129/0160 requirements |
+| **Subject matter expert involvement** 🔄 | *Gap — no metric for SME participation in evaluation* | — | Taxonomy assigns Responsible Actors but does not measure SME involvement depth |
+| **Uncertainty communication** | Uncertainty Marker Preservation, ASR Confidence Exposure, ASR Confidence Calibration | 🟢 1 / 🟡 2 | Strong coverage for output uncertainty; automation bias addresses user response |
+
+#### Group 2: Wider Impact (11 dimensions)
+
+| LLM Framework Dimension | Taxonomy Metrics | Tier | Notes |
+|--------------------------|-----------------|------|-------|
+| **Accessibility of healthcare** | Deployment Equity Index, Adoption Rate & Selective Use Patterns | 🟡 2 / 🟢 1 | Taxonomy addresses deployment equity; does not address health literacy access |
+| **Documentation** | Telemetry Provision Completeness, Benchmark & Evaluation Data Accessibility, Model Change Notification Compliance | 🟡 2 / 🟢 1 | Good coverage through Vendor Transparency group |
+| **Ethics** 🔄 | Stigmatising Language Replication Rate, Emotional Content Preservation, Chilling Effect Assessment | 🟡 2 / 🔵 3 | Taxonomy addresses specific ethical dimensions; no general ethics framework metric |
+| **Feedback mechanism** | Near-Miss Reporting Rate, Re-record / Abandonment Rate | 🟢 1 / 🟡 2 | Taxonomy covers incident/feedback reporting but not structured staff feedback mechanisms |
+| **Human oversight** | Review-Before-Signing Rate, Edit Rate, Automation Bias Detection, Verification Burden | 🟢 1 / 🟡 2 | Strong coverage through Post-Generation Correction family + human factors metrics |
+| **Intentional misuse** | Prompt Injection Resistance Rate, Jailbreak Resistance Score, Adversarial Audio Detection Rate, Template Injection Vulnerability Assessment | 🟡 2 / 🔵 3 | Strong coverage through Security & Adversarial Robustness group |
+| **Natural environment** | Energy Consumption per Clinical Note, Carbon Emissions per Inference, Water Consumption per Query | 🔵 3 | Direct mapping to Environmental & Sustainability group |
+| **Regulations** | Clinical Safety Case Completeness, DPIA Template Completion Rate, EU AI Act Event Logging Compliance, FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟢 1 / 🟡 2 | Strong coverage through NHS Compliance & Regulatory group |
+| **Society** 🔄 | Clinical Documentation Skill Attenuation, Cognitive Offloading Rate, Therapeutic Relationship Impact | 🔵 3 | Taxonomy addresses skill/wellbeing impacts; no job security metric |
+| **Third-party audit** | Audit Trail Completeness, Benchmark & Evaluation Data Accessibility | 🟡 2 / 🔵 3 | Taxonomy provides audit infrastructure metrics |
+| **Unintentional misuse** | Clinician Training Completion Rate, Failure Mode Awareness Score, Off-Label Use Detection Rate | 🟢 1 / 🟡 2 | Good coverage through Training & Competency group |
+
+#### Group 3: Quantifiable Changes (8 dimensions)
+
+| LLM Framework Dimension | Taxonomy Metrics | Tier | Notes |
+|--------------------------|-----------------|------|-------|
+| **Benchmark relevance** 🔄 | Goodhart's Law Monitoring, Coverage Gap Analysis, Inter-Rater Reliability Baseline | 🟡 2 / 🔵 3 | **Partial gap** — taxonomy lacks explicit benchmark relevance decay metric |
+| **Bias — in-context learning** 🔄 | *Gap — no metric for few-shot prompt bias* | — | Not directly applicable to most AVT systems (pipeline-based, not prompt-based) |
+| **Bias analysis — error rates** | Demographic-Disaggregated WER, Intersectional Performance, Intersectional Compound Fairness Score, Compound Demographic Performance | 🟡 2 / 🔵 3 | Strong coverage through Demographic Equity Disaggregation family |
+| **Changes to the system** | Model Version Tracking, Model Update Impact Score, Model Change Notification Compliance | 🟢 1 / 🟡 2 | Direct mapping — taxonomy has strong change management metrics |
+| **Data drift** | Performance Degradation Detection Latency, Concept Drift in Clinical Notes, Retraining Trigger Threshold Specification | 🟡 2 / 🔵 3 | Good coverage; taxonomy distinguishes concept drift from data drift |
+| **Evaluation techniques for ongoing monitoring** | PDSQI-9, CREOLA Error Taxonomy, LLM-as-a-Judge, Automated-Human Metric Concordance | 🟡 2 / 🔵 3 | Strong coverage; taxonomy extensively addresses clinical evaluation methodology |
+| **Scalability** 🔄 | Full-Pipeline Latency Budget, System Availability / Uptime | 🟡 2 / 🟢 1 | **Partial gap** — taxonomy lacks explicit scalability / concurrency metric |
+| **System for monitoring** | Safety Performance Indicators with Thresholds (DSCMS), Goodhart's Law Monitoring | 🟢 1 / 🟡 2 | Taxonomy provides the metrics; framework asks whether monitoring infrastructure exists |
+
+---
+
+### Gap Summary
+
+Gaps where the taxonomy has no coverage against a standard's requirements:
+
+| Gap | Relevant Standard(s) | Severity |
+|-----|----------------------|----------|
+| **Web accessibility (WCAG 2.2 AA)** | DTAC D1.4.1 | Low — UI concern, not clinical AI pipeline |
+| **Accessible Information Standard** | DTAC D1.3 | Low — UI concern, not clinical AI pipeline |
+| **Total cost of ownership / cost-effectiveness** | LLM Framework (Cost) | Medium — relevant to deployment decisions |
+| **Benchmark relevance decay** | LLM Framework (Benchmark relevance) | Medium — implicit in Meta-evaluation but not explicit |
+| **Scalability / concurrency testing** | LLM Framework (Scalability) | Medium — partially covered by latency and uptime |
+| **SME involvement depth** | LLM Framework (SME involvement) | Low — taxonomy assigns Responsible Actors but doesn't quantify SME engagement |
+| **Few-shot prompt bias** | LLM Framework (Bias — in-context learning) | Low — not applicable to pipeline-based AVT systems |
+| **Structured staff feedback mechanism** | LLM Framework (Feedback mechanism) | Low — partially covered by incident reporting |
+| **Job security / workforce impact** | LLM Framework (Society) | Low — partially covered by skill attenuation metrics |
+
+Gaps where the taxonomy provides coverage that no standard addresses:
+
+| Taxonomy Coverage | Notes |
+|-------------------|-------|
+| Audio capture pipeline (9 metrics) | No standard addresses audio quality assurance |
+| ASR accuracy and equity (14 metrics) | No standard addresses speech recognition quality |
+| Diarisation (9 metrics) | No standard addresses speaker attribution |
+| Clinical content fidelity family (5 metrics) | No standard addresses hallucination/omission in clinical AI |
+| Post-generation correction family (4 metrics) | No standard addresses human-AI interaction in clinical documentation |
+| EPR write-back safety sub-cluster (4 metrics) | DTAC addresses interoperability but not write-back safety semantics |
+| Medication Safety Thread family (4 metrics) | No standard addresses medication accuracy across the AI pipeline |
+| Meta-evaluation (7 metrics) | No standard addresses measurement science quality |
 
 # Part A — The Technical Pipeline
 
@@ -259,12 +998,13 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🟡 4 Tier 2 · 🔵 4 Tier 3
 
-### 🟡 Signal-to-Noise Ratio (SNR) Monitoring
+### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
 Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably — the system may continue producing confident-looking but degraded output without alerting the clinician.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -326,12 +1066,13 @@ def estimate_snr(audio_path, sr=16000, frame_length=2048):
 
 ---
 
-### 🔵 Voice Activity Detection (VAD) Accuracy
+### TP.AC-2 🔵 Voice Activity Detection (VAD) Accuracy
 
 Accuracy of detecting when speech is occurring vs silence/noise. VAD errors cause missed speech (content lost) or false activations (noise processed as speech, potentially generating hallucinated content from non-speech audio).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -363,12 +1104,13 @@ VAD Precision = |true_speech_detected| / |all_detected_as_speech|. VAD Recall = 
 
 ---
 
-### 🟡 Acoustic Environment Profiling
+### TP.AC-3 🟡 Acoustic Environment Profiling
 
 Characterisation of the deployment acoustic environment against the vendor's validated acoustic conditions. Gap between validated and actual environment = unquantified risk.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -400,12 +1142,13 @@ Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, sp
 
 ---
 
-### 🔵 Bystander Voice Detection Rate
+### TP.AC-4 🔵 Bystander Voice Detection Rate
 
 Ability to detect and flag speech from individuals who have not consented to AVT processing: patients in adjacent rooms, reception staff audible through walls, family members who arrive mid-consultation without being informed.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -437,12 +1180,13 @@ Detection rate = |bystander_speech_detected| / |total_bystander_speech|. False p
 
 ---
 
-### 🟢 Microphone & Hardware Validation
+### TP.AC-5 🟢 Microphone & Hardware Validation
 
 Verification that the capture hardware meets minimum specifications for the AVT system. Includes microphone frequency response, placement distance, device compatibility, and Bluetooth/connectivity reliability.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -470,12 +1214,13 @@ Hardware compliance checklist: (1) Frequency response 100Hz–8kHz minimum; (2) 
 
 ---
 
-### 🔵 Speaker Overlap Rate
+### TP.AC-6 🔵 Speaker Overlap Rate
 
 Proportion of audio time with simultaneous speech from multiple speakers. Common in real consultations (interruptions, agreement utterances, talking over) and most ASR/diarisation systems handle overlap poorly — often dropping content from one speaker entirely.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -507,12 +1252,13 @@ Overlap Rate = T_overlap / T_total_speech, where T_overlap is the duration where
 
 ---
 
-### 🟡 Audio Clipping / Saturation Rate
+### TP.AC-7 🟡 Audio Clipping / Saturation Rate
 
 Frequency of audio level exceeding the dynamic range of the capture system, causing waveform distortion. Different from SNR — clipping is a hardware/gain issue that destroys content even in quiet environments. Commonly caused by mic too close, gain set too high, or sudden loud sounds.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -560,12 +1306,13 @@ def detect_clipping(audio_samples, threshold_pct=0.1):
 
 ---
 
-### 🟡 Codec & Sampling Rate Compliance
+### TP.AC-8 🟡 Codec & Sampling Rate Compliance
 
 Whether audio meets minimum bit depth and sample rate specifications for the AVT system. Telephone audio at 8kHz degrades ASR significantly compared to 16kHz studio quality. Compressed codecs (e.g. heavily lossy Bluetooth audio) introduce artifacts.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -597,12 +1344,13 @@ Compliance check per encounter: (1) sample_rate >= vendor_minimum (typically 16k
 
 ---
 
-### 🔵 Microphone Drift Detection
+### TP.AC-9 🔵 Microphone Drift Detection
 
 Detection of gradual hardware degradation over time: declining battery performance, mechanical wear, positioning shift, accumulated debris, Bluetooth interference patterns. Different from initial validation — this catches problems that develop after deployment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-9 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -669,12 +1417,13 @@ Track baseline audio quality metrics (SNR, frequency response, noise floor) over
 
 ---
 
-### 🟡 Word Error Rate (WER)
+### TP.ASR-1 🟡 Word Error Rate (WER)
 
 Standard ASR accuracy metric. Treats all word errors equally — a misheard 'the' counts the same as a misheard drug name.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -725,12 +1474,13 @@ corpus_wer = out.wer  # macro-averaged across utterances
 
 ---
 
-### 🔵 Medical Word Error Rate (M-WER)
+### TP.ASR-2 🔵 Medical Word Error Rate (M-WER)
 
 Weighted WER where errors on clinically significant tokens carry higher penalty. Requires a clinical significance ontology to define token weights.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -804,12 +1554,13 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 ---
 
-### 🔵 Clinical Keyword Error Rate (CK-ER)
+### TP.ASR-3 🔵 Clinical Keyword Error Rate (CK-ER)
 
 Focused accuracy for high-stakes clinical terminology. Binary: was the keyword captured correctly or not?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | ASR / Transcription |
@@ -876,12 +1627,30 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 ---
 
-### 🟡 Demographic-Disaggregated WER
+### Family: Demographic Equity Disaggregation
+
+> **Parent construct** — the family of metrics that apply demographic disaggregation to pipeline performance, measuring whether system quality varies across population subgroups. The underlying principle is the same at every layer: compute the base metric separately for each demographic group, then quantify the gap.
+>
+> This family spans the full pipeline because equity failures can originate at any stage. ASR accuracy may vary by accent; summarisation quality may vary by consultation style correlated with ethnicity; coding completeness may systematically differ across patient populations. Measuring equity at only one layer provides false assurance — a system that transcribes equitably may still summarise or code inequitably.
+>
+> **The disaggregation axes.** Most metrics in this family operate on the same set of demographic variables: accent/dialect, first language, age band, sex, ethnicity, deprivation quintile, and speech characteristics (rate, volume, disorder). The specific axes depend on the base metric and available data. The NAS framework proposes a maximum 5 percentage-point gap across groups as a starting threshold.
+>
+> **Metrics in this family:**
+> - 🟡 **Demographic-Disaggregated WER** (ASR / Transcription) — WER by accent, language, age, speech characteristics
+> - 🔵 **Speaker-Stratified WER** (ASR / Transcription) — WER by speaker role (clinician vs patient)
+> - 🟡 **Coding Equity Index** (Clinical Coding) — whether AVT-driven coding changes are equitable across demographics
+> - 🔵 **Compound Demographic Performance** (End-to-End Pipeline) — intersectional performance at full-pipeline level
+> - 🟡 **Accent Taxonomy Standardisation** (Fairness & Equity) — standardised accent/dialect categorisation for disaggregation
+> - 🔵 **Intersectional Performance** (Fairness & Equity) — performance at demographic intersections
+> - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) — formal intersectional fairness quantification
+
+### TP.ASR-4 🟡 Demographic-Disaggregated WER
 
 WER by accent group, first language, age band, and speech characteristics. NAS proposes max 5pp gap across groups.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -945,12 +1714,13 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 
 ---
 
-### 🔵 Speaker-Stratified WER
+### TP.ASR-5 🔵 Speaker-Stratified WER
 
 Separate WER for clinician vs patient speech. Patient speech is more diagnostically important and typically harder to transcribe.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -986,12 +1756,13 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 
 ---
 
-### 🟡 Error Transmission Rate
+### TP.ASR-6 🟡 Error Transmission Rate
 
 Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step — a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
+| **Reference** | TP.ASR-6 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                 |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |ASR + Summarisation                                                    |
@@ -1021,12 +1792,13 @@ ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR =
 
 > 💡 The OHSU finding that 19.5% of ASR errors reach the final note suggests the summariser provides meaningful but imperfect error correction. The more interesting question is *which* errors transmit: if safety-critical errors transmit at higher rates than stylistic errors, the summariser is learning the wrong patterns. Transmission rate disaggregated by error category is more useful than the aggregate.
 
-### 🟡 Real-Time Factor (RTF)
+### TP.ASR-7 🟡 Real-Time Factor (RTF)
 
 Processing speed relative to audio duration. RTF < 1.0 = faster than real-time.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1054,12 +1826,13 @@ RTF = T_processing / T_audio. For streaming ASR, report both first-token latency
 
 ---
 
-### 🟡 Character Error Rate (CER)
+### TP.ASR-8 🟡 Character Error Rate (CER)
 
 Character-level edit distance between reference and hypothesis. More sensitive than WER for medical terminology where subword errors are common: 'amoxicillin' vs 'amoxycillin' has WER=1 but CER=1/12. Particularly important for drug names, anatomical terms, and proper nouns.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1108,12 +1881,13 @@ char_error_rate = cer(reference, hypothesis)
 
 ---
 
-### 🟡 Out-of-Vocabulary (OOV) Rate
+### TP.ASR-9 🟡 Out-of-Vocabulary (OOV) Rate
 
 Proportion of tokens the ASR model doesn't recognise as valid vocabulary. New drug names, novel diagnoses, proper nouns, and recently approved medications are systematically OOV in older models. High OOV rate predicts systematic clinical accuracy gaps.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1145,12 +1919,13 @@ OOV Rate = |tokens_not_in_vocab| / |total_tokens|. Compute against the ASR's lex
 
 ---
 
-### 🟡 ASR Confidence Calibration
+### TP.ASR-10 🟡 ASR Confidence Calibration
 
 Whether the ASR's stated confidence scores correlate with actual accuracy. A poorly-calibrated ASR that reports 95% confidence on 70%-accurate output is dangerous because downstream consumers (summariser, clinician) trust the output inappropriately.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1186,12 +1961,13 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 ---
 
-### 🟡 ASR Confidence Exposure
+### TP.ASR-11 🟡 ASR Confidence Exposure
 
 Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers — both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
+| **Reference** | TP.ASR-11 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
 |**Measurement Cadence**|One-off gate                                                    |
 |**Pipeline Layer**     |ASR / Transcription                                             |
@@ -1221,12 +1997,13 @@ Exposure assessed on three levels: (1) Internal — confidence scores exist but 
 
 > 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally — which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
-### 🟢 Hallucination-Under-Noise Rate
+### TP.ASR-12 🟢 Hallucination-Under-Noise Rate
 
 Rate at which the ASR generates plausible-sounding but fabricated text when fed noise, silence, or non-speech audio. Whisper is famously prone to this — it can produce coherent-looking transcriptions of pure silence. A distinct failure mode from substitution errors that creates content from nothing.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-12 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1262,12 +2039,13 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 
 ---
 
-### 🟢 Numeric Accuracy
+### TP.ASR-13 🟢 Numeric Accuracy
 
 Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durations. Numbers fail differently from words and have outsized clinical importance. '15mg' vs '50mg' is a tenfold dosing error invisible to standard WER weighting.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-13 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1299,12 +2077,13 @@ Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Com
 
 ---
 
-### 🔵 Punctuation & Capitalisation Accuracy
+### TP.ASR-14 🔵 Punctuation & Capitalisation Accuracy
 
 Accuracy of sentence boundary detection, punctuation, and capitalisation. Affects readability and downstream NLP. Misplaced sentence boundaries can completely change clinical meaning: 'no chest pain. Shortness of breath' vs 'no chest pain, shortness of breath' have different clinical implications.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.ASR-14 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR / Transcription |
@@ -1342,12 +2121,13 @@ Sentence boundary F1 = harmonic mean of precision and recall on sentence boundar
 
 **Tier breakdown**: 🟡 3 Tier 2 · 🔵 1 Tier 3
 
-### 🟡 Diarisation Error Rate (DER)
+### TP.DI-1 🟡 Diarisation Error Rate (DER)
 
 Proportion of audio time with incorrect speaker labels. Combines missed speech, false alarm, and speaker confusion.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -1397,12 +2177,13 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 ---
 
-### 🟡 Speaker Attribution Accuracy
+### TP.DI-2 🟡 Speaker Attribution Accuracy
 
 Percentage of utterances assigned to correct speaker. Misattributed medication instructions directly cause prescribing errors.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -1438,12 +2219,13 @@ SAA = |U_correct| / |U_total|. Unlike DER (time-based), SAA is utterance-based. 
 
 ---
 
-### 🟡 Speaker Count Accuracy
+### TP.DI-3 🟡 Speaker Count Accuracy
 
 Does the system correctly identify how many speakers are present? Particularly important for distinguishing 2-speaker (validated) from 3+-speaker (out-of-envelope) consultations. Over-counting fragments single speakers; under-counting merges distinct speakers.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -1475,12 +2257,13 @@ Speaker Count Accuracy = |encounters_with_correct_count| / |total_encounters|. D
 
 ---
 
-### 🔵 Speaker Boundary Precision
+### TP.DI-4 🔵 Speaker Boundary Precision
 
 Temporal accuracy of where one speaker stops and another starts. Affects attribution at turn boundaries — words at the edge of a turn may be attributed to the wrong speaker.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -1520,12 +2303,13 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 ---
 
-### 🟡 Speaker Role Identification F1
+### TP.DI-5 🟡 Speaker Role Identification F1
 
 Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
+| **Reference** | TP.DI-5 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
 |**Measurement Cadence**|One-off gate                                                         |
 |**Pipeline Layer**     |Diarisation                                                          |
@@ -1557,12 +2341,13 @@ Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_m
 
 ---
 
-### 🟡 Code-Switching Detection Rate
+### TP.DI-6 🟡 Code-Switching Detection Rate
 
 Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | TP.DI-6 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                |
 |**Measurement Cadence**|One-off gate                                          |
 |**Pipeline Layer**     |ASR / Transcription                                   |
@@ -1594,12 +2379,13 @@ Per utterance with code-switching: (1) detected that switching occurred (binary)
 
 ---
 
-### 🟡 Turn-Taking Accuracy in Overlap
+### TP.DI-7 🟡 Turn-Taking Accuracy in Overlap
 
 Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
 
 |Dimension              |Value                                          |
 |-----------------------|-----------------------------------------------|
+| **Reference** | TP.DI-7 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                         |
 |**Measurement Cadence**|One-off gate                                   |
 |**Pipeline Layer**     |ASR + Diarisation                              |
@@ -1631,12 +2417,13 @@ TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Repo
 
 ---
 
-### 🔵 Clinical-Perspective HEWER (cpHEWER)
+### TP.DI-8 🔵 Clinical-Perspective HEWER (cpHEWER)
 
 Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
+| **Reference** | TP.DI-8 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
 |**Measurement Cadence**|One-off gate                                |
 |**Pipeline Layer**     |ASR + Diarisation                           |
@@ -1668,12 +2455,13 @@ cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the
 
 ---
 
-### 🔵 Addressee Recognition Accuracy
+### TP.DI-9 🔵 Addressee Recognition Accuracy
 
 In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
 
 |Dimension              |Value                                            |
 |-----------------------|-------------------------------------------------|
+| **Reference** | TP.DI-9 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
 |**Measurement Cadence**|One-off gate                                     |
 |**Pipeline Layer**     |Diarisation                                      |
@@ -1735,12 +2523,13 @@ For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family
 
 ---
 
-### 🟡 ROUGE Scores
+### TP.SN-1 🟡 ROUGE Scores
 
 N-gram overlap between generated and reference text. Demonstrably inadequate for clinical safety evaluation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Summarisation |
@@ -1802,12 +2591,13 @@ scores = scorer.score(reference, hypothesis)
 
 ---
 
-### 🔵 BERTScore
+### TP.SN-2 🔵 BERTScore
 
 Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but still linguistic, not clinical.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Summarisation |
@@ -1858,12 +2648,13 @@ P, R, F1 = score(
 
 ---
 
-### 🟡 PDSQI-9 (Physician Documentation Quality Instrument)
+### TP.SN-3 🟡 PDSQI-9 (Physician Documentation Quality Instrument)
 
 Nine-item validated rubric. Gold standard for human evaluation — now automatable via LLM-as-a-Judge.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -1900,12 +2691,13 @@ Nine dimensions scored 1–5 Likert: Up-to-date, Accurate, Thorough, Useful, Org
 
 ---
 
-### 🟡 CREOLA Error Taxonomy Scores
+### TP.SN-4 🟡 CREOLA Error Taxonomy Scores
 
 Structured error categories: omission, addition, incorrect — with sub-types. 12,999 annotated sentences. Now underpins Tortus automated guardrails.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -1970,12 +2762,13 @@ Hierarchical taxonomy: L1 — Omission, Addition, Incorrect. L2 sub-types: Omiss
 
 ---
 
-### 🟢 Hallucination Rate
+### TP.SN-5 🟢 Hallucination Rate
 
 Proportion of generated content unsupported by source. Currently defined inconsistently across vendors.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2042,12 +2835,13 @@ def check_hallucination(source, generated_sentences):
 
 ---
 
-### 🟢 Omission Rate
+### TP.SN-6 🟢 Omission Rate
 
 Clinically relevant source content absent from note. More dangerous than hallucination — omissions are invisible to the reviewer.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-6 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2085,12 +2879,13 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 ---
 
-### 🔵 Confabulation Detection (Support × Severity)
+### TP.SN-7 🔵 Confabulation Detection (Support × Severity)
 
 Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2128,12 +2923,13 @@ Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Sup
 
 ---
 
-### 🔵 VeriFact Factual Verification
+### TP.SN-8 🔵 VeriFact Factual Verification
 
 Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2196,12 +2992,13 @@ for prop in props:
 
 ---
 
-### 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+### TP.SN-9 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
 
 Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2241,12 +3038,13 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 ---
 
-### 🔵 MedHELM LLM-Jury
+### TP.SN-10 🔵 MedHELM LLM-Jury
 
 121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-10 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -2282,12 +3080,13 @@ Holistic Evaluation of Language Models for Medicine. LLM-jury: panel of LLMs ind
 
 ---
 
-### 🔵 MEDIC Cross-Examination
+### TP.SN-11 🔵 MEDIC Cross-Examination
 
 One LLM interrogates another to detect hallucinations without references. Identifies the 'knowledge-execution gap'.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2323,12 +3122,13 @@ Examiner LLM probes claims in target output, evaluates consistency. Knowledge-ex
 
 ---
 
-### 🟡 Linked Evidence / Provenance Tracing
+### TP.SN-12 🟡 Linked Evidence / Provenance Tracing
 
 Every text span linked to source audio. Architectural safety property — transforms review from 'looks right?' to 'is this supported?'
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-12 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2364,12 +3164,13 @@ For each span sᵢ, mapping M(sᵢ) → {(t_start, t_end)}. Requirements: Covera
 
 ---
 
-### 🔵 SCRIBE Framework Composite
+### TP.SN-13 🔵 SCRIBE Framework Composite
 
 First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-13 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -2405,12 +3206,13 @@ Four modalities: (1) Simulated encounters with ground truth; (2) Computational m
 
 ---
 
-### 🟡 Template Modification Underspecification Score
+### TP.SN-14 🟡 Template Modification Underspecification Score
 
 INSYTE underspecification delta when clinicians modify AVT templates. Every modification potentially invalidates the safety case.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-14 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2446,12 +3248,13 @@ For default template T₀ with INSYTE underspecification U₀, modified template
 
 ---
 
-### 🟢 Negation Handling Accuracy
+### TP.SN-15 🟢 Negation Handling Accuracy
 
 Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' is a clinically critical distinction that LLMs commonly mishandle, particularly when negation is far from the negated concept.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-15 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2489,12 +3292,13 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 ---
 
-### 🟡 Temporal Accuracy
+### TP.SN-16 🟡 Temporal Accuracy
 
 Preservation of when things happened. 'Patient had chest pain three weeks ago' vs 'patient has chest pain' is the difference between historical and presenting complaint. LLMs frequently collapse temporal markers when summarising.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-16 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2526,12 +3330,13 @@ For each temporal expression in reference: Temporal Accuracy = (time reference p
 
 ---
 
-### 🟡 Temporal Event Ordering Accuracy
+### TP.SN-17 🟡 Temporal Event Ordering Accuracy
 
 Accuracy of reconstructing the chronological sequence of clinical events from non-linear conversation. Patients rarely describe symptoms in temporal order — they jump between current symptoms, historical episodes, family history, and future concerns. The summary must impose a coherent timeline. Distinct from the existing Temporal Accuracy metric, which covers tense and time-marker preservation at the sentence level; this metric covers event sequencing across the whole note.
 
 |Dimension              |Value                                                   |
 |-----------------------|--------------------------------------------------------|
+| **Reference** | TP.SN-17 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                  |
 |**Measurement Cadence**|Periodic audit                                          |
 |**Pipeline Layer**     |Summarisation                                           |
@@ -2561,12 +3366,13 @@ Given a set of clinical events E extracted from source, and their true temporal 
 
 > 💡 Event ordering is the difference between "patient had MI, then developed chest pain" and "patient developed chest pain, then had MI". Same events, completely different clinical meaning. Summarisation LLMs frequently collapse temporal structure when compressing, producing notes where causality is implied by proximity rather than by explicit ordering.
 
-### 🟡 Quantifier Preservation
+### TP.SN-18 🟡 Quantifier Preservation
 
 Preservation of clinical qualifiers: 'occasional', 'frequent', 'constant', 'mild', 'moderate', 'severe', 'intermittent'. LLMs often drop or paraphrase these, losing diagnostic information that affects clinical reasoning.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-18 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2598,12 +3404,27 @@ For each quantifier in reference: Quantifier Preservation = (quantifier present 
 
 ---
 
-### 🟡 Medication Attribute Extraction F1
+### Family: Medication Safety Thread
+
+> **Parent construct** — the family of metrics that track medication information accuracy across the full pipeline, from spoken consultation to structured EPR record. Medication errors are the canonical safety-critical failure mode in clinical documentation AI.
+>
+> Unlike the other families in this taxonomy, the Medication Safety Thread spans multiple pipeline layers and multiple groups: extraction and event classification at the summarisation layer, terminology coding at the clinical coding layer, and downstream outcome monitoring at the patient experience layer. The family exists because a medication error can originate at any of these stages, and measuring only one stage gives false assurance about the others.
+>
+> **The safety argument.** A medication mentioned in consultation passes through at least four processing stages before it affects patient care: (1) ASR must transcribe the drug name, dose, and frequency correctly; (2) the summariser must extract these attributes and classify the medication event (start, stop, change); (3) the clinical coder must map to the correct dm+d concept; (4) the EPR write-back must place the medication data in the correct structured field. An error at any stage propagates — and the stages are tested by different metrics in different groups. The family framing makes the end-to-end thread visible.
+>
+> **Metrics in this family:**
+> - 🟡 **Medication Attribute Extraction F1** (Summarisation / NLP) — per-attribute accuracy for drug name, dose, route, frequency, duration, indication
+> - 🟡 **Medication Event Classification** (Summarisation / NLP) — classification of medication actions: start, stop, increase, decrease, continue
+> - 🟡 **dm+d Medication Coding Accuracy** (Clinical Coding) — mapping to NHS dm+d terminology; currency against quarterly updates
+> - 🔵 **Medication Error Rate Differential** (Patient Experience) — downstream outcome: pre/post AVT medication error rates
+
+### TP.SN-19 🟡 Medication Attribute Extraction F1
 
 Per-attribute accuracy for each component of a medication reference: drug name, dose, route, frequency, duration, indication, and start/stop dates. Each attribute is scored independently with its own F1. The medication as a whole is only fully correct if all attributes are correct — and aggregate medication accuracy masks systematic attribute-level failures (e.g. systems that get drug names right but frequencies wrong).
 
 |Dimension              |Value                                                        |
 |-----------------------|-------------------------------------------------------------|
+| **Reference** | TP.SN-19 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                       |
 |**Measurement Cadence**|Periodic audit                                               |
 |**Pipeline Layer**     |Summarisation                                                |
@@ -2633,12 +3454,13 @@ For each medication mention m with attributes A = {name, dose, route, frequency,
 
 > 💡 Aggregate medication accuracy is a misleading single number. A system with 95% medication accuracy could be getting drug names right 99% of the time and doses right 92% of the time — and the 8% dose error rate is the safety-critical finding. Attribute-level breakdown is necessary for safety assurance.
 
-### 🟢 Uncertainty Marker Preservation
+### TP.SN-20 🟢 Uncertainty Marker Preservation
 
 Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggestive of', 'consistent with', 'rule out', 'unlikely to be') rather than collapsing to definitive statements? Loss of uncertainty markers creates false certainty in the record.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-20 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -2672,12 +3494,13 @@ For each uncertainty marker in reference: Marker Preservation = (uncertainty mar
 
 ---
 
-### 🟡 Medication Event Classification
+### TP.SN-21 🟡 Medication Event Classification
 
 Classification of medication *actions* discussed in a consultation: start, stop, increase, decrease, continue, hold, restart, allergy/contraindication. Distinct from medication attribute extraction, which captures what the medication is; event classification captures what is being *done* with it. A medication mentioned as "we'll stop this one" is not the same as "we'll keep this one" — the attributes may be identical but the clinical action is opposite.
 
 |Dimension              |Value                                              |
 |-----------------------|---------------------------------------------------|
+| **Reference** | TP.SN-21 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                             |
 |**Measurement Cadence**|Periodic audit                                     |
 |**Pipeline Layer**     |Summarisation                                      |
@@ -2707,12 +3530,13 @@ For each medication event discussed: classification into {start, stop, increase,
 
 > 💡 The start↔stop confusion is the canonical AVT safety nightmare. A consultation discussion of "we're going to stop your warfarin and start apixaban instead" that is silently inverted by the summariser produces a note that documents starting warfarin and stopping apixaban — both incorrect, both dangerous, and neither flagged by attribute-level accuracy metrics. Event classification should be a mandatory safety gate.
 
-### 🔵 Style & Format Consistency
+### TP.SN-22 🔵 Style & Format Consistency
 
 Does the system produce notes in the same structure each time? Inconsistency increases cognitive load for review and makes it harder for clinicians to develop efficient review patterns.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-22 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2744,12 +3568,13 @@ Structural similarity across notes from the same template/configuration. Section
 
 ---
 
-### 🔵 Length Appropriateness
+### TP.SN-23 🔵 Length Appropriateness
 
 Over-summarisation (losing detail) vs under-summarisation (verbatim transcript). Should be calibrated to consultation complexity — a 5-minute follow-up needs less than a 30-minute new patient assessment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.SN-23 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -2783,12 +3608,13 @@ Length Ratio = note_length / consultation_duration. Appropriateness = correlatio
 
 ---
 
-### 🟡 Stigmatising Language Replication Rate
+### TP.SN-24 🟡 Stigmatising Language Replication Rate
 
 Proportion of AI-generated notes that reproduce biased or stigmatising language patterns learned from training data. Distinct from the existing Cultural & Linguistic Appropriateness metric, which covers broader sensitivity issues. This metric specifically tracks whether the system has learned to generate language like "drug-seeking", "non-compliant", "frequent flyer", "difficult patient" — terms which research shows appear disproportionately in notes about specific patient populations.
 
 |Dimension              |Value                                                                       |
 |-----------------------|----------------------------------------------------------------------------|
+| **Reference** | TP.SN-24 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                      |
 |**Measurement Cadence**|Periodic audit                                                              |
 |**Pipeline Layer**     |Summarisation                                                               |
@@ -2859,14 +3685,19 @@ def stigmatising_language_rate(notes, demographic_col=None):
 
 *SNOMED/Read code assignment. Individual care + population data quality.*
 
-**Tier breakdown**: 🟡 2 Tier 2 · 🔵 2 Tier 3
+**Tier breakdown**: 🟢 1 Tier 1 · 🟡 8 Tier 2 · 🔵 3 Tier 3
 
-### 🟡 SNOMED Code Accuracy
+### Coding Fidelity sub-cluster
+
+*Accuracy of individual code assignment across NHS terminology systems — SNOMED CT, ICD-10/11, OPCS-4, and dm+d. Each metric addresses a different coding standard or a different failure mode (wrong code, non-existent code, wrong specificity level, wrong concept mapping). Together they answer the question: when the system assigns a code, is it the right code at the right level of specificity in the right terminology?*
+
+### TP.CC-1 🟡 SNOMED Code Accuracy
 
 AI-suggested code correctness. Precision, recall, and F1 reported separately for diagnosis, medication, procedure codes.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Clinical Coding |
@@ -2898,12 +3729,13 @@ Precision = |C_correct ∩ C_generated| / |C_generated|. Recall = |C_correct ∩
 
 ---
 
-### 🟡 SNOMED CT Concept Mapping Accuracy
+### TP.CC-2 🟡 SNOMED CT Concept Mapping Accuracy
 
 Accuracy of the mapping from extracted clinical entities in free-text to the correct SNOMED CT concept ID. Distinct from the existing SNOMED Code Accuracy metric, which measures whether the assigned code is clinically correct. Concept mapping measures whether the system correctly resolves "chest pain" to the correct SNOMED concept (29857009 — chest pain) rather than a near-miss concept (102588006 — chest discomfort). The boundary between correct and near-miss is where most mapping errors occur.
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
+| **Reference** | TP.CC-2 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                   |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                          |
@@ -2933,12 +3765,13 @@ For each extracted clinical mention m: mapping function M(m) → SNOMED concept 
 
 > 💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" — but the downstream analytics, safety alerts, and QOF calculations will.
 
-### 🟡 ICD-10 / ICD-11 Full-Specificity Precision
+### TP.CC-3 🟡 ICD-10 / ICD-11 Full-Specificity Precision
 
 Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity — the difference representing systematic specificity errors that aggregate metrics hide.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
+| **Reference** | TP.CC-3 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                      |
 |**Measurement Cadence**|Periodic audit                              |
 |**Pipeline Layer**     |Clinical Coding                             |
@@ -2968,12 +3801,13 @@ Report precision at each specificity level independently: P_3char, P_4char, P_fu
 
 > 💡 Over-specific coding is a form of clinical hallucination: the system generates specificity that wasn't present in the source. Under-specific coding is information loss. Both are quality issues, and they require different interventions. Reporting only aggregate accuracy conflates them.
 
-### 🟡 OPCS-4 Procedure Coding Accuracy
+### TP.CC-4 🟡 OPCS-4 Procedure Coding Accuracy
 
 Accuracy of OPCS-4 procedure code assignment from consultation documentation. NHS-specific — the OPCS-4 classification (Office of Population Censuses and Surveys, 4th revision) is the mandatory procedure coding standard for NHS secondary care. **No published AI benchmarks currently exist for OPCS-4 coding** despite it being essential for NHS deployment.
 
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
+| **Reference** | TP.CC-4 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Clinical Coding                               |
@@ -3003,12 +3837,13 @@ Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level
 
 > 💡 The absence of any published OPCS-4 AI benchmark is itself a diagnostic finding about the state of the field. Ambient scribe vendors focused on the US market optimise for ICD-10 and CPT; NHS-specific standards are an afterthought. This is a strong argument for NHS England to commission a national OPCS-4 benchmark dataset as infrastructure investment — without it, NHS secondary care AVT deployment is operating without evidence.
 
-### 🟡 dm+d Medication Coding Accuracy
+### TP.CC-5 🟡 dm+d Medication Coding Accuracy
 
 Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications discussed in consultations. NHS-specific — dm+d is the mandatory NHS medication terminology, maintained by NHS BSA, and essential for medication safety, interoperability, and prescribing workflows. **Like OPCS-4, no published AI benchmarks exist for dm+d coding**.
 
 |Dimension              |Value                                                     |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | TP.CC-5 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                    |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Clinical Coding                                           |
@@ -3040,12 +3875,13 @@ Per medication mention: correct mapping to dm+d VMP (Virtual Medicinal Product),
 
 ---
 
-### 🟢 Code Hallucination Rate
+### TP.CC-6 🟢 Code Hallucination Rate
 
 Rate at which the system generates codes that do not exist in the target code set. Distinct from all other coding error metrics because a non-existent code is not a "wrong" code — it is a structural error. The code looks valid syntactically but resolves to nothing. The Hybrid-Code v2 framework explicitly targeted "zero-hallucination coding" because this failure mode is both detectable and unambiguously wrong.
 
 |Dimension              |Value                                                |
 |-----------------------|-----------------------------------------------------|
+| **Reference** | TP.CC-6 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                            |
 |**Measurement Cadence**|Continuous                                           |
 |**Pipeline Layer**     |Clinical Coding                                      |
@@ -3094,12 +3930,13 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation — the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### 🟡 Coding Inflation Detection
+### TP.CC-7 🟡 Coding Inflation Detection
 
 Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality corruption of epidemiological data, QOF, and population health.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Clinical Coding |
@@ -3150,12 +3987,13 @@ def coding_drift_spc(pre_counts, post_counts):
 
 ---
 
-### 🟡 E/M Level Shift Monitoring
+### TP.CC-8 🟡 E/M Level Shift Monitoring
 
 Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and post-AVT deployment. In US settings, E/M level shift has been a primary revenue impact channel; in NHS settings, the equivalent concern is SNOMED specificity shift and its effect on QOF, Hospital Episode Statistics, and population health analytics. Extension of the existing Coding Inflation Detection metric with a specific focus on tariff-relevant code distributions.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
+| **Reference** | TP.CC-8 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                               |
 |**Measurement Cadence**|Continuous                                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                                      |
@@ -3185,12 +4023,13 @@ For each coding level or tariff-relevant category: compute pre-AVT baseline dist
 
 > 💡 The US evidence (14% HCC capture increase, 11% wRVU increase) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently.
 
-### 🟡 Coding Equity Index
+### TP.CC-9 🟡 Coding Equity Index
 
 Whether AVT-driven changes in coding distribution are equitably spread across patient demographics or systematically benefit some populations more than others. If AVT improves coding completeness more for majority populations than for minority populations, it widens existing inequalities in data quality and downstream resource allocation.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | TP.CC-9 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Clinical Coding                                       |
@@ -3220,12 +4059,13 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture — they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### 🔵 wRVU / Tariff Impact Attribution
+### TP.CC-10 🔵 wRVU / Tariff Impact Attribution
 
 Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to PbR tariffs, QOF achievement, and secondary care activity-based funding.
 
 |Dimension              |Value                                        |
 |-----------------------|---------------------------------------------|
+| **Reference** | TP.CC-10 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research               |
 |**Measurement Cadence**|Periodic audit                               |
 |**Pipeline Layer**     |Clinical Coding                              |
@@ -3255,12 +4095,13 @@ Using difference-in-differences or synthetic control methodology: compare coding
 
 > 💡 This is the metric that answers the governance question: is AVT making the coded data more accurate or more inflated? Without this attribution, every observed coding shift is ambiguous. National evaluation programmes are the only plausible venue for doing this properly — individual deployers cannot.
 
-### 🔵 Code Specificity Index
+### TP.CC-11 🔵 Code Specificity Index
 
 Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple specificity levels for the same concept; AI may default to over-general (loses detail) or over-specific (introduces false precision) codes inappropriately.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Clinical Coding |
@@ -3292,12 +4133,13 @@ For each suggested code, compute hierarchical distance from clinically appropria
 
 ---
 
-### 🔵 Code Suggestion Latency
+### TP.CC-12 🔵 Code Suggestion Latency
 
 Time from note generation to code suggestion availability. Affects coding workflow integration — if coding suggestions arrive too late, clinicians have moved on to the next patient and won't engage with them.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.CC-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Clinical Coding |
@@ -3329,14 +4171,19 @@ Latency = t_codes_available - t_note_generated. Report distribution. Threshold: 
 
 *Data to permanent record. Where errors become patient safety events.*
 
-**Tier breakdown**: 🟢 4 Tier 1 · 🟡 1 Tier 2
+**Tier breakdown**: 🟢 4 Tier 1 · 🟡 2 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Write-back Fidelity
+### Write-back Safety sub-cluster
+
+*The four Tier 1 metrics that must pass before any AVT system writes to a live patient record. Each addresses a distinct failure mode at the EPR integration boundary: content correctness (Write-back Fidelity), pipeline reliability (Integration Error Rate), field routing (Field Mapping Accuracy), and data update semantics (Update vs Append Behaviour). All are pre-deployment gates; all are safety-critical.*
+
+### TP.WB-1 🟢 Write-back Fidelity
 
 Data transfer accuracy to EPR structured fields. Where errors become patient safety events — hallucinated allergy in allergy field propagates to all future decisions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.WB-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
@@ -3372,12 +4219,13 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 
 ---
 
-### 🟢 Integration Error Rate
+### TP.WB-2 🟢 Integration Error Rate
 
 AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.WB-2 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | EPR Write-back |
@@ -3405,12 +4253,13 @@ IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 
 ---
 
-### 🟢 Field Mapping Accuracy
+### TP.WB-3 🟢 Field Mapping Accuracy
 
 Does content land in the correct EPR field even when content is correct? A correctly transcribed allergy written to the free-text consultation field rather than the allergies field is a system failure with safety implications — the allergy won't trigger drug interaction checks.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.WB-3 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
@@ -3442,12 +4291,13 @@ For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapp
 
 ---
 
-### 🟢 Update vs Append Behaviour
+### TP.WB-4 🟢 Update vs Append Behaviour
 
 Does the system correctly handle existing structured data? Overwriting an existing allergy list vs appending to it has different safety implications. Overwriting can erase critical historical information; inappropriate appending can create duplicates and inconsistencies.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.WB-4 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
@@ -3479,12 +4329,13 @@ For each structured data update: behaviour in {overwrite, append, merge, skip}. 
 
 ---
 
-### 🟡 Write-back Rollback Capability
+### TP.WB-5 🟡 Write-back Rollback Capability
 
 When errors are detected, can the write-back be reversed cleanly? Particularly important for coded data that triggers downstream processes (alerts, prescribing rules, audit trails).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.WB-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
@@ -3516,12 +4367,13 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 
 ---
 
-### 🟡 FHIR R4 Resource Conformance Rate
+### TP.WB-6 🟡 FHIR R4 Resource Conformance Rate
 
 Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats — but retention is not the same as profile conformance.
 
 |Dimension              |Value                                    |
 |-----------------------|-----------------------------------------|
+| **Reference** | TP.WB-6 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                   |
 |**Measurement Cadence**|Continuous                               |
 |**Pipeline Layer**     |EPR Write-back                           |
@@ -3553,12 +4405,13 @@ For each generated FHIR resource: validate against the applicable profile using 
 
 ---
 
-### 🔵 openEHR Archetype Conformance
+### TP.WB-7 🔵 openEHR Archetype Conformance
 
 Conformance of generated clinical data against openEHR archetypes for NHS trusts using openEHR-based EPR platforms. Less widespread than FHIR in UK primary care but relevant for specific secondary care deployments (particularly in mental health trusts and specialised services).
 
 |Dimension              |Value                                     |
 |-----------------------|------------------------------------------|
+| **Reference** | TP.WB-7 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research            |
 |**Measurement Cadence**|Continuous                                |
 |**Pipeline Layer**     |EPR Write-back                            |
@@ -3596,12 +4449,13 @@ For each generated composition: validate against the applicable openEHR archetyp
 
 **Tier breakdown**: 🟡 3 Tier 2 · 🔵 6 Tier 3
 
-### 🔵 Speaker-Attributed Transcript Accuracy
+### PI.PP-1 🔵 Speaker-Attributed Transcript Accuracy
 
 Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this — a transcript can have low WER and low DER but still misattribute a critical utterance.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -3666,12 +4520,13 @@ def speaker_attributed_accuracy(utterances):
 
 ---
 
-### 🟡 Multi-Party Conversation Robustness
+### PI.PP-2 🟡 Multi-Party Conversation Robustness
 
 Combined ASR + diarisation degradation when >2 speakers present: interpreter, family member, student, MDT. Most benchmarks assume dyadic (2-speaker) encounters.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -3703,12 +4558,13 @@ Robustness(n) = SATA(n speakers) / SATA(2 speakers). Values < 1.0 indicate multi
 
 ---
 
-### 🔵 Information Extraction Yield
+### PI.PP-3 🔵 Information Extraction Yield
 
 Spans ASR + summarisation: what proportion of clinically relevant content in source audio survives through transcription AND into the generated note? Captures the combined loss from ASR errors and summarisation omissions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR + Summarisation |
@@ -3768,12 +4624,13 @@ def information_extraction_yield(
 
 ---
 
-### 🔵 Noise-to-Note Resilience
+### PI.PP-4 🔵 Noise-to-Note Resilience
 
 Spans ASR + summarisation: how gracefully does the final note quality degrade as audio quality worsens? Tests whether the summarisation layer can compensate for degraded transcription.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Summarisation |
@@ -3805,12 +4662,13 @@ Resilience(SNR) = NoteQuality(SNR) / NoteQuality(clean). Tested across audio qua
 
 ---
 
-### 🔵 Epistemic Status Preservation
+### PI.PP-5 🔵 Epistemic Status Preservation
 
 Spans diarisation + summarisation: does the note correctly distinguish what was reported by the patient vs observed by the clinician vs inferred by the AI? 'Patient reports headache' vs 'headache noted' vs 'headache' have different clinical meanings.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Diarisation + Summarisation |
@@ -3876,12 +4734,13 @@ def epistemic_preservation_rate(ref_assertions, gen_assertions):
 
 ---
 
-### 🔵 Diarisation-Stratified WER
+### PI.PP-6 🔵 Diarisation-Stratified WER
 
 WER computed separately for each speaker after diarisation. Captures the compound effect of diarisation errors on per-speaker accuracy measurement. A speaker whose utterances are frequently misattributed will have artificially inflated WER even if the underlying ASR is accurate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -3913,12 +4772,13 @@ For each speaker s: WER_s = standard WER on utterances correctly attributed to s
 
 ---
 
-### 🟡 Concept Extraction Concordance
+### PI.PP-7 🟡 Concept Extraction Concordance
 
 Spans summarisation + coding: do the SNOMED codes match the clinical concepts in the free-text note? An internal consistency check that doesn't need source audio — the note and its codes should agree.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Coding |
@@ -3982,12 +4842,13 @@ def concept_concordance(note_text: str, assigned_codes: set[str]):
 
 ---
 
-### 🔵 End-of-Utterance Timing Accuracy
+### PI.PP-8 🔵 End-of-Utterance Timing Accuracy
 
 Whether the system correctly identifies where an utterance ends. Affects both diarisation (turn boundaries) and summarisation (sentence boundaries). Misalignment causes content fragmentation across utterances or merging of distinct utterances.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
@@ -4019,12 +4880,13 @@ EOU Timing Error = mean temporal error (ms) between predicted and actual utteran
 
 ---
 
-### 🟡 Structured/Free-Text Consistency
+### PI.PP-9 🟡 Structured/Free-Text Consistency
 
 Spans summarisation + write-back: does the coded allergy entry agree with allergies mentioned in the free-text note? Does the medication list match medications discussed in the narrative?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.PP-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Write-back |
@@ -4062,12 +4924,13 @@ For each structured field category f ∈ {allergies, medications, diagnoses}: Co
 
 **Tier breakdown**: 🟡 4 Tier 2 · 🔵 7 Tier 3
 
-### 🔵 Source-to-Record Concordance
+### PI.E2E-1 🔵 Source-to-Record Concordance
 
 End-to-end: comparing original consultation audio directly against the final EPR entry, bypassing all intermediate representations. This is what actually matters for patient safety.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4144,12 +5007,13 @@ def source_to_record_concordance(
 
 ---
 
-### 🔵 Cumulative Information Yield
+### PI.E2E-2 🔵 Cumulative Information Yield
 
 The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
 
 |Dimension              |Value                                                                            |
 |-----------------------|---------------------------------------------------------------------------------|
+| **Reference** | PI.E2E-2 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
 |**Measurement Cadence**|Periodic audit                                                                   |
 |**Pipeline Layer**     |End-to-End                                                                       |
@@ -4179,12 +5043,13 @@ For each clinical category c ∈ C = {medications, allergies, diagnoses, symptom
 
 > 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
 
-### 🔵 Error Propagation / Cascade Analysis
+### PI.E2E-3 🔵 Error Propagation / Cascade Analysis
 
 End-to-end: tracking how a single upstream error amplifies or gets corrected through subsequent stages. An ASR misrecognition could be caught by the summariser (correction) or cascade into wrong coding and wrong EPR entry (amplification).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -4250,12 +5115,13 @@ def trace_error_cascade(
 
 ---
 
-### 🟡 Safety-Critical Information Chain of Custody
+### PI.E2E-4 🟡 Safety-Critical Information Chain of Custody
 
 End-to-end per-item trace for highest-risk content: did this specific allergy survive ASR → diarisation → summarisation → coding → EPR field? A per-item trace, not a statistical rate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4329,12 +5195,13 @@ result = chain_of_custody(
 
 ---
 
-### 🔵 Compound Demographic Performance
+### PI.E2E-5 🔵 Compound Demographic Performance
 
 End-to-end: demographic performance gap measured at the final output, not just at ASR. ASR bias against an accent might be corrected by summarisation (context inference) or amplified (hallucination to fill gaps).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4366,12 +5233,13 @@ For demographic group g: E2E_gap = Quality(g_majority) - Quality(g_minority) mea
 
 ---
 
-### 🔵 Semantic Drift Accumulation
+### PI.E2E-6 🔵 Semantic Drift Accumulation
 
 End-to-end: measuring cumulative meaning transformation across stages. Each stage subtly transforms meaning — 'occasional chest tightness on stairs' → 'chest pain on exertion'. Each individual transformation may be defensible; the cumulative drift may not be.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4440,12 +5308,13 @@ def measure_semantic_drift(stage_texts: dict) -> dict:
 
 ---
 
-### 🟡 Pipeline Non-Determinism / Reproducibility
+### PI.E2E-7 🟡 Pipeline Non-Determinism / Reproducibility
 
 End-to-end: if you re-process the same audio, do you get the same output? Each stochastic component introduces variance. Compound variance could mean the same consultation produces materially different notes on different runs.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -4519,12 +5388,13 @@ def test_reproducibility(audio_path: str, pipeline, n_runs: int = 10):
 
 ---
 
-### 🔵 Error Attribution Analysis
+### PI.E2E-8 🔵 Error Attribution Analysis
 
 End-to-end: when an error appears in the final output, which stage introduced it? Essential for improvement but requires intermediate output logging most vendors don't expose.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4556,12 +5426,13 @@ For each error e in final output: Attribution(e) = stage s where e first appears
 
 ---
 
-### 🔵 Clinical Decision Equivalence
+### PI.E2E-9 🔵 Clinical Decision Equivalence
 
 End-to-end: does the final note support the same clinical decisions a clinician present at the consultation would make? The ultimate distal outcome metric connecting documentation to patient safety.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-9 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4597,12 +5468,13 @@ Present note to blinded clinician(s). Clinician makes clinical decisions (diagno
 
 ---
 
-### 🟡 Full-Pipeline Latency Budget
+### PI.E2E-10 🟡 Full-Pipeline Latency Budget
 
 End-to-end: total time from consultation end to note availability in EPR, broken down by stage. Not just ASR RTF — the full wait before a clinician can review.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
@@ -4634,12 +5506,13 @@ L_total = Σ L_stage for stages ∈ {ASR, diarisation, summarisation, coding, wr
 
 ---
 
-### 🟡 Pipeline Failure Recovery
+### PI.E2E-11 🟡 Pipeline Failure Recovery
 
 When one stage fails (e.g. diarisation crashes), what does the system produce? Graceful degradation vs catastrophic failure. Most metrics assume the pipeline runs to completion — but partial failures are common in production.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-11 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -4671,12 +5544,13 @@ For each pipeline stage, simulate failure and assess: (1) Does the system produc
 
 ---
 
-### 🔵 Round-Trip Information Loss
+### PI.E2E-12 🔵 Round-Trip Information Loss
 
 If the AVT-generated note were used to reconstruct the original consultation, how much would be lost? An information-theoretic complement to source-to-record concordance — measures total information preserved through the pipeline.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -4751,12 +5625,13 @@ Round-Trip Loss = 1 - I(audio; note) / H(audio), where I is mutual information a
 
 ---
 
-### 🟢 Edit Rate (% Notes Edited)
+### HL.HF-1 🟢 Edit Rate (% Notes Edited)
 
 Percentage of AI notes edited before approval. At Day Zero: quality signal. Declining trajectory: primary complacency indicator.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -4817,12 +5692,13 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 ---
 
-### 🟡 Edit Type Classification
+### HL.HF-2 🟡 Edit Type Classification
 
 Categorising edits: additions (omission fix), deletions (hallucination fix), modifications, structural. Distribution diagnoses failure mode.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -4861,12 +5737,13 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 ---
 
-### 🟢 Review-Before-Signing Rate
+### HL.HF-3 🟢 Review-Before-Signing Rate
 
 Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause trigger.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-3 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -4902,12 +5779,13 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 ---
 
-### 🟢 Time-to-Sign Distribution
+### HL.HF-4 🟢 Time-to-Sign Distribution
 
 Duration between generation and approval. Model as distribution — tail of very-fast approvals is safety-critical.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-4 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -4955,12 +5833,13 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ---
 
-### 🔵 Edit-Pattern Monitoring at Scale
+### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
 Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal — locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -4998,12 +5877,13 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 ---
 
-### 🟡 Automation Bias Detection (Error Injection)
+### HL.HF-6 🟡 Automation Bias Detection (Error Injection)
 
 Deliberately seeded errors to test clinician catch rate. The only metric directly measuring human oversight. All others are proxies.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5043,12 +5923,13 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 
 ---
 
-### 🟡 Edit Location Distribution
+### HL.HF-7 🟡 Edit Location Distribution
 
 Where in the note do clinicians make edits? Concentration in specific sections (history, examination, plan) reveals which sections the AI handles poorly. A diagnostic that complements edit type classification.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -5082,12 +5963,13 @@ For each note section s: Edit Density(s) = |edits_in_s| / |words_in_s|. Compare 
 
 ---
 
-### 🟡 Trust Calibration Survey
+### HL.HF-8 🟡 Trust Calibration Survey
 
 Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. Gap between stated and behavioural trust is itself a metric.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5127,12 +6009,13 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 ---
 
-### 🟡 Re-record / Abandonment Rate
+### HL.HF-9 🟡 Re-record / Abandonment Rate
 
 Frequency of clinicians abandoning AVT mid-consultation and starting again, or abandoning the AVT-generated note entirely and writing manually. Strong dissatisfaction signal indicating either technical failure or fundamental quality issues.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -5164,12 +6047,13 @@ Re-record Rate = |consultations_with_restart| / |total_consultations|. Abandonme
 
 ---
 
-### 🔵 Cognitive Load Assessment
+### HL.HF-10 🔵 Cognitive Load Assessment
 
 Mental effort for review. Target: 'effortful but efficient' — enough to catch errors, not so much that time savings disappear.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-10 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5209,12 +6093,13 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 
 ---
 
-### 🔵 Inter-Clinician Edit Variance
+### HL.HF-11 🔵 Inter-Clinician Edit Variance
 
 Do different clinicians edit the same AI output similarly? High variance suggests either ambiguous AI output (different clinicians read it differently) or inconsistent quality standards across clinicians. Both are governance issues.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-11 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5246,12 +6131,13 @@ For sample of identical AI outputs reviewed by multiple clinicians: variance in 
 
 ---
 
-### 🔵 Clinical Documentation Skill Attenuation
+### HL.HF-12 🔵 Clinical Documentation Skill Attenuation
 
 Longitudinal ability to document without AI. Sleeper risk — if a generation trains with AVT, baseline capability degrades.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5287,12 +6173,13 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 ---
 
-### 🔵 Cognitive Offloading Rate
+### HL.HF-13 🔵 Cognitive Offloading Rate
 
 Proportion of clinicians who report relying on AI for content recall ('I don't need to remember, the AI will catch it'). Different from automation bias — this is active delegation rather than passive trust. Predicts skill attenuation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-13 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5324,12 +6211,13 @@ Survey-based: 'I rely on the AVT system to capture details I might otherwise nee
 
 ---
 
-### 🔵 Trust Halo Decay Rate
+### HL.HF-14 🔵 Trust Halo Decay Rate
 
 Whether initial high trust persists after errors. Absent decay = dangerous over-trust. Trust halo drives off-label scope creep.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-14 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5365,12 +6253,13 @@ Longitudinal T(t). After error at t_e, decay rate λ = -dT/dt for t > t_e. Healt
 
 ---
 
-### 🔵 Note Review Fatigue Trajectory
+### HL.HF-15 🔵 Note Review Fatigue Trajectory
 
 Review quality degradation over a clinical session. The 9am note review may be different from the 5pm note review, and AVT may amplify end-of-session fatigue effects by adding documentation review burden to existing clinical fatigue.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | HL.HF-15 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5414,12 +6303,13 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 ---
 
-### 🔵 Work-as-Imagined vs Work-as-Done Gap
+### HL.HF-16 🔵 Work-as-Imagined vs Work-as-Done Gap
 
 The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
+| **Reference** | HL.HF-16 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                          |
@@ -5451,12 +6341,13 @@ Three-step methodology: (1) Document WAI from training materials, SOPs, vendor g
 
 ---
 
-### 🟡 Verification Burden
+### HL.HF-17 🟡 Verification Burden
 
 The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
 
 |Dimension              |Value                                                               |
 |-----------------------|--------------------------------------------------------------------|
+| **Reference** | HL.HF-17 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
 |**Measurement Cadence**|Periodic audit                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                       |
@@ -5488,12 +6379,13 @@ VB = t_review + t_correction + t_cross_reference, measured per consultation. Bas
 
 ---
 
-### 🔵 Resilience Capacities Assessment
+### HL.HF-18 🔵 Resilience Capacities Assessment
 
 Structured assessment of the clinician-AVT joint cognitive system against the four Safety-II resilience capacities: **responding** to unexpected events, **monitoring** for signs of degradation, **learning** from experience, and **anticipating** future challenges. From Hollnagel's resilience engineering framework. Applied not to AVT alone but to the combined human-machine system as it operates in context.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | HL.HF-18 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |Cross-cutting                                                     |
@@ -5530,12 +6422,13 @@ Score each capacity 1–5 with narrative justification. Composite is a profile, 
 
 ---
 
-### 🟡 AI-Off Performance Test
+### HL.HF-19 🟡 AI-Off Performance Test
 
 Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
 
 |Dimension              |Value                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------|
+| **Reference** | HL.HF-19 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
 |**Measurement Cadence**|Periodic audit                                                                                        |
 |**Pipeline Layer**     |Cross-cutting                                                                                         |
@@ -5573,12 +6466,13 @@ Protocol: (1) Schedule defined exercises where clinicians document simulated or 
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🔵 5 Tier 3
 
-### 🟢 Patient Opt-Out Rate
+### IO.PX-1 🟢 Patient Opt-Out Rate
 
 Percentage declining AVT. Disaggregate by demographics to reveal equity issues in consent model.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -5614,12 +6508,13 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 ---
 
-### 🔵 Patient-Perceived Accuracy
+### IO.PX-2 🔵 Patient-Perceived Accuracy
 
 When patients are shown their AVT-generated notes, do they recognise the consultation? Distinct from clinician-judged accuracy — patients may identify omissions or distortions that clinicians miss because they were the speakers.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5651,12 +6546,13 @@ Patient survey after note generation: 'Does this note accurately reflect our con
 
 ---
 
-### 🔵 Emotional Content Preservation
+### IO.PX-3 🔵 Emotional Content Preservation
 
 Does the note capture the patient's emotional state when clinically relevant? AVT systems trained on standard clinical notes may strip affective content that matters for mental health, end-of-life care, safeguarding, and complex consultations.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -5688,12 +6584,13 @@ For consultations involving emotional content (annotated): proportion of clinica
 
 ---
 
-### 🔵 Cultural & Linguistic Appropriateness
+### IO.PX-4 🔵 Cultural & Linguistic Appropriateness
 
 Does the note use language that respects the patient's cultural and linguistic context? Important for shared records that patients can access. Includes avoiding stigmatising language and respecting how patients describe their own conditions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -5725,12 +6622,13 @@ Audit for: (1) stigmatising language ('drug-seeking', 'non-compliant', 'frequent
 
 ---
 
-### 🔵 Chilling Effect Assessment
+### IO.PX-5 🔵 Chilling Effect Assessment
 
 Whether AVT suppresses sensitive disclosures. Most under-researched risk — population-level safety issue if record becomes systematically biased.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5762,12 +6660,13 @@ Disclosure Rate Ratio DRR = DR_AVT / DR_noAVT for sensitive categories (mental h
 
 ---
 
-### 🔵 Therapeutic Relationship Impact
+### IO.PX-6 🔵 Therapeutic Relationship Impact
 
 How AVT affects consultation quality. Net impact depends on whether review is in-consultation or post-consultation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.PX-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -5807,12 +6706,13 @@ Multi-dimensional: (1) PCQ-18 adapted; (2) Clinician engagement scale; (3) Eye c
 
 ---
 
-### 🟡 Full Attentiveness Rate
+### IO.PX-7 🟡 Full Attentiveness Rate
 
 Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI — a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
+| **Reference** | IO.PX-7 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
 |**Measurement Cadence**|Periodic audit                                                  |
 |**Pipeline Layer**     |Cross-cutting                                                   |
@@ -5844,12 +6744,13 @@ Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / 
 
 ---
 
-### 🔵 Patient Comprehension of AI-Generated Summaries
+### IO.PX-8 🔵 Patient Comprehension of AI-Generated Summaries
 
 When AI-generated clinical summaries are shared with patients (via NHS App, patient portals, or printed after-visit summaries), do patients actually understand them? Distinct from the existing Patient-Perceived Accuracy metric, which measures recognition ("does this match our conversation?"). Comprehension measures whether the patient can correctly state what the summary says about their condition, medications, and next steps.
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
+| **Reference** | IO.PX-8 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                           |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Summarisation                                                            |
@@ -5881,12 +6782,13 @@ Patient Comprehension Test: after receiving an AI-generated summary, patient is 
 
 ---
 
-### 🔵 Downstream Diagnostic Accuracy
+### IO.PX-9 🔵 Downstream Diagnostic Accuracy
 
 Whether clinicians making subsequent decisions based on AVT-generated notes arrive at the same diagnostic and management conclusions they would have reached if they had access to the original consultation. Measured through controlled clinical reasoning studies where clinicians work from AVT notes vs verbatim transcripts vs direct observation. The distal outcome metric Coiera & Fraile-Navarro argue is missing from current AVT evaluation.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | IO.PX-9 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |End-to-End                                                        |
@@ -5918,12 +6820,13 @@ Blinded multi-clinician study design: same clinical case presented in three cond
 
 ---
 
-### 🔵 Medication Error Rate Differential
+### IO.PX-10 🔵 Medication Error Rate Differential
 
 Pre/post AVT comparison of medication errors at the practice or trust level, including wrong-drug, wrong-dose, wrong-frequency, allergy-related, and interaction-related errors. The ultimate distal outcome that medication documentation accuracy ultimately serves. If AVT improves medication documentation (per attribute-level metrics) but medication errors don't decrease, the documentation improvement is not reaching the patient.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
+| **Reference** | IO.PX-10 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                       |
 |**Measurement Cadence**|Periodic audit                                                       |
 |**Pipeline Layer**     |End-to-End                                                           |
@@ -5959,12 +6862,13 @@ Medication Error Rate = |medication_errors_reported| / |total_prescriptions|, st
 
 **Tier breakdown**: 🟡 2 Tier 2 · 🔵 3 Tier 3
 
-### 🟡 Deployment Equity Index
+### IO.FE-1 🟡 Deployment Equity Index
 
 Whether AVT creates two-tier documentation quality across practices. Track against deprivation indices.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.FE-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -5996,12 +6900,13 @@ Correlation r(AVT_deployed, IMD_decile). Positive correlation = deployment inequ
 
 ---
 
-### 🟡 Accent Taxonomy Standardisation
+### IO.FE-2 🟡 Accent Taxonomy Standardisation
 
 Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguistically informed accent taxonomy appropriate for NHS populations, rather than ad-hoc or inappropriate categorisations. The FAccT 2024 critique of ASR accent categorisation highlighted that race-based, geography-based, and native/non-native categories are systematically flawed proxies for the actual acoustic variation that affects ASR performance. For NHS deployment, a meaningful taxonomy must cover British regional accents, South Asian English varieties, West African English, Caribbean English, Eastern European English, and other varieties representative of NHS patient populations.
 
 |Dimension              |Value                                                         |
 |-----------------------|--------------------------------------------------------------|
+| **Reference** | IO.FE-2 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
 |**Measurement Cadence**|One-off gate                                                  |
 |**Pipeline Layer**     |ASR / Transcription                                           |
@@ -6031,12 +6936,13 @@ Assessment against criteria: (1) Sociolinguistic validity — categories corresp
 
 > 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system — a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
 
-### 🟡 Clinical Domain Performance Variance
+### IO.FE-3 🟡 Clinical Domain Performance Variance
 
 Accuracy variation across specialties and complexity. Compound boundary risk: degradation multiplies across dimensions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.FE-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -6068,12 +6974,13 @@ Accuracy A(d) per clinical domain d. PV = Var(A(d)). Compound risk: performance 
 
 ---
 
-### 🔵 Intersectional Performance
+### IO.FE-4 🔵 Intersectional Performance
 
 Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women). Single-axis disaggregation misses compound disadvantage — a system may perform adequately on each dimension separately but fail badly at intersections.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.FE-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -6105,12 +7012,13 @@ For each intersection of demographic categories (age x ethnicity x language x ge
 
 ---
 
-### 🔵 Intersectional Compound Fairness Score
+### IO.FE-5 🔵 Intersectional Compound Fairness Score
 
 Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively — that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
+| **Reference** | IO.FE-5 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                       |
 |**Measurement Cadence**|Periodic audit                                                                       |
 |**Pipeline Layer**     |Cross-cutting                                                                        |
@@ -6140,12 +7048,13 @@ For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expe
 
 > 💡 Single-axis fairness can miss compound disadvantage entirely. A system that performs acceptably on "elderly", "EAL", "female", and "low literacy" as separate categories may perform catastrophically on the intersection. The compound fairness score tests whether this is happening and quantifies how bad it is. For NHS populations where intersectional disadvantage is the rule rather than the exception, single-axis metrics alone are insufficient.
 
-### 🔵 Rare Presentation Handling
+### IO.FE-6 🔵 Rare Presentation Handling
 
 Accuracy on uncommon clinical presentations vs common ones. Long-tail performance matters disproportionately for diagnostic safety — the rare presentation that's missed is the most dangerous one to miss.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.FE-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -6177,12 +7086,13 @@ Stratify test data by presentation frequency. Compute accuracy for: common (top 
 
 ---
 
-### 🔵 Health Literacy Performance Variation
+### IO.FE-7 🔵 Health Literacy Performance Variation
 
 Does AVT performance vary with patient health literacy level? Medically sophisticated patients use clinical terminology that ASR handles well; patients describing symptoms in lay terms may be harder to transcribe and summarise accurately.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | IO.FE-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -6216,12 +7126,13 @@ Compare accuracy on: (1) patients using clinical terminology; (2) patients using
 
 ---
 
-### 🔵 Cross-Platform Fairness Consistency
+### IO.FE-8 🔵 Cross-Platform Fairness Consistency
 
 Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern — if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
+| **Reference** | IO.FE-8 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                     |
 |**Measurement Cadence**|Periodic audit                                                     |
 |**Pipeline Layer**     |Cross-cutting                                                      |
@@ -6259,12 +7170,13 @@ For each vendor v in the ICB's deployed platforms: compute demographic-disaggreg
 
 **Tier breakdown**: 🟢 6 Tier 1 · 🟡 5 Tier 2 · 🔵 2 Tier 3
 
-### 🟢 Model Version Tracking
+### GV.SG-1 🟢 Model Version Tracking
 
 Logging which model version produces each output. Foundation for all continuous metrics — without it, performance changes are uninterpretable.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6300,12 +7212,13 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 ---
 
-### 🟡 Model Update Impact Score
+### GV.SG-2 🟡 Model Update Impact Score
 
 Standardised before/after on update. Governance: vendor notifies → regional benchmark → local monitoring.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6348,12 +7261,13 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
-### 🟡 Performance Degradation Detection Latency
+### GV.SG-3 🟡 Performance Degradation Detection Latency
 
 Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation — performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
+| **Reference** | GV.SG-3 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
@@ -6385,12 +7299,13 @@ Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous 
 
 ---
 
-### 🟡 Retraining Trigger Threshold Specification
+### GV.SG-4 🟡 Retraining Trigger Threshold Specification
 
 Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) — this metric assesses whether the trigger logic for when updates should occur is even specified.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
+| **Reference** | GV.SG-4 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                            |
 |**Measurement Cadence**|One-off gate                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                     |
@@ -6422,12 +7337,13 @@ Assessment against specification criteria: (1) Performance thresholds pre-specif
 
 ---
 
-### 🔵 AI-Generated Data Contamination Rate
+### GV.SG-5 🔵 AI-Generated Data Contamination Rate
 
 The proportion of training or fine-tuning data that is itself AI-generated clinical content — either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
+| **Reference** | GV.SG-5 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                                   |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
@@ -6459,12 +7375,13 @@ Contamination Rate = |training_examples_derived_from_AI_generated_content| / |to
 
 ---
 
-### 🔵 Concept Drift in Clinical Notes
+### GV.SG-6 🔵 Concept Drift in Clinical Notes
 
 Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic — that requires human judgment — but it makes drift visible so it can be investigated.
 
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | GV.SG-6 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                            |
 |**Measurement Cadence**|Continuous                                                |
 |**Pipeline Layer**     |Cross-cutting                                             |
@@ -6494,12 +7411,13 @@ For each reference time window W_ref and comparison window W_t: compute the dist
 
 > 💡 The most worrying drift signal is concepts that progressively disappear — safeguarding language, mental health content, social context — because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
 
-### 🔵 Probabilistic Risk Quantification (P₁/P₂)
+### GV.SG-7 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
 Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ from 2.0×10⁻⁸ to 2.6×10⁻⁴.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -6535,12 +7453,13 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 ---
 
-### 🔵 DeepScore (Defect-Free Rate)
+### GV.SG-8 🔵 DeepScore (Defect-Free Rate)
 
 Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sound approach but proprietary definitions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -6576,12 +7495,13 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 ---
 
-### 🟢 Safety Performance Indicators with Thresholds (DSCMS)
+### GV.SG-9 🟢 Safety Performance Indicators with Thresholds (DSCMS)
 
 Metrics + thresholds + escalation = governance. A metric without a threshold is information; with a threshold and action it becomes governance.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-9 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6617,12 +7537,13 @@ For SPI s: measurement M(s), threshold T(s), action A(s). If M(s) > T(s) for dur
 
 ---
 
-### 🟡 Off-Label Use Detection Rate
+### GV.SG-10 🟡 Off-Label Use Detection Rate
 
 AVT use outside validated contexts. Well-intentioned scope creep — each boundary crossing compounds risk.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6662,12 +7583,13 @@ Validated envelope V = set of (domain, type, population, setting) tuples. Bounda
 
 ---
 
-### 🟢 Adverse Event / Incident Rate (LFPSE)
+### GV.SG-11 🟢 Adverse Event / Incident Rate (LFPSE)
 
 National patient safety reporting. Ultimate lagging indicator. No specific LFPSE category for AI/AVT incidents exists.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-11 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6703,12 +7625,13 @@ IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxono
 
 ---
 
-### 🟡 Cross-Practice Variance Coefficient
+### GV.SG-12 🟡 Cross-Practice Variance Coefficient
 
 Performance variation across practices within ICB. High variance = context-dependent performance. Justifies regional assurance tier.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-12 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6740,12 +7663,13 @@ CV_m = σ(m across practices) / μ(m). High CV (>0.3) = context-dependent. ANOVA
 
 ---
 
-### 🟢 Assurance Debt Accumulation Rate
+### GV.SG-13 🟢 Assurance Debt Accumulation Rate
 
 Gap between required and completed assurance. The honest metric — better visible and managed than hidden until incident.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-13 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6777,12 +7701,13 @@ AD(t) = |A_due(t)| - |A_completed(t)|. Decompose: clinical audit, SPI review, tr
 
 ---
 
-### 🟢 Near-Miss Reporting Rate
+### GV.SG-14 🟢 Near-Miss Reporting Rate
 
 Incidents caught by clinician review before reaching the EPR. The leading indicator that LFPSE rate is the lagging indicator of. A high near-miss rate with low LFPSE rate suggests the human review layer is functioning; a low near-miss rate may indicate either an excellent system or inadequate review.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-14 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6814,12 +7739,13 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 
 ---
 
-### 🟡 Time-to-Correct
+### GV.SG-15 🟡 Time-to-Correct
 
 When an AVT error is detected, how quickly is it corrected and the lessons disseminated? Measures the responsiveness of the governance loop from detection to action.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-15 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6851,12 +7777,13 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 ---
 
-### 🟡 SPI Escalation Response Time
+### GV.SG-16 🟡 SPI Escalation Response Time
 
 When an SPI threshold is breached, how quickly does the governance response actually occur? Measures whether the SPI framework is operationally functional or just a paper exercise.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-16 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6888,12 +7815,13 @@ Escalation Response Time = t_governance_action - t_SPI_breach. Track per escalat
 
 ---
 
-### 🟢 Hazard Log Completeness
+### GV.SG-17 🟢 Hazard Log Completeness
 
 DCB0129 requires a hazard log. Is it actually maintained and updated as new failure modes are discovered operationally? A static hazard log written at deployment and never updated is a compliance failure with safety implications.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SG-17 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -6943,12 +7871,13 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 ---
 
-### 🟢 Patient Dissent Recording Rate
+### GV.CR-1 🟢 Patient Dissent Recording Rate
 
 Per-encounter rate at which patient objections or dissent to AVT use are recorded and respected. Distinct from the existing Patient Opt-Out Rate, which is aggregate and applies at the registration or consent level. Patient Dissent Recording is the per-encounter process compliance metric: when a patient objects at the point of care, is that objection documented, is AVT actually paused for that encounter, and is the objection respected in subsequent encounters without re-litigation.
 
 |Dimension              |Value                                                  |
 |-----------------------|--------------------------------------------------------|
+| **Reference** | GV.CR-1 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                              |
 |**Measurement Cadence**|Continuous                                              |
 |**Pipeline Layer**     |Cross-cutting                                           |
@@ -6980,12 +7909,13 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 
 ---
 
-### 🟢 Verbal Notification Compliance
+### GV.CR-2 🟢 Verbal Notification Compliance
 
 Proportion of AVT-using consultations where verbal notification was delivered to the patient at session start, as required by NHSE IG guidance (March 2026). Consent model in NHS primary care relies on informing patients before AVT activation, but the "informing" step is often poorly observed in busy practice. This metric measures the actual delivery of notification, not just the existence of a notification policy.
 
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | GV.CR-2 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Cross-cutting                                             |
@@ -7017,12 +7947,13 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 ---
 
-### 🟢 AI-Generated Content Labelling Compliance
+### GV.CR-3 🟢 AI-Generated Content Labelling Compliance
 
 Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content — essential for audit, safety investigation, and future training data curation.
 
 |Dimension              |Value                                                     |
 |-----------------------|-----------------------------------------------------------|
+| **Reference** | GV.CR-3 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                 |
 |**Measurement Cadence**|Continuous                                                 |
 |**Pipeline Layer**     |EPR Write-back                                             |
@@ -7077,12 +8008,13 @@ def check_labelling_compliance(epr_entries):
 
 ---
 
-### 🟢 AVT Supplier Registry Listing Verification
+### GV.CR-4 🟢 AVT Supplier Registry Listing Verification
 
 Procurement and ongoing verification that the deployed AVT system is listed on the NHS England AVT Supplier Registry and remains listed throughout the deployment lifecycle. The Registry (launched January 2026) is the NHS-level mechanism for self-certified minimum standards, and registry status is expected to become a procurement precondition.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | GV.CR-4 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
 |**Measurement Cadence**|Continuous                                            |
 |**Pipeline Layer**     |Cross-cutting                                         |
@@ -7114,12 +8046,13 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 ---
 
-### 🟢 ICB Engagement Documentation
+### GV.CR-5 🟢 ICB Engagement Documentation
 
 Documented evidence that the deployer engaged with their ICB digital team (or equivalent regional body) before AVT deployment, as required by the CIO/CCIO guidance (v2, January 2026). The ICB engagement requirement exists to prevent uncoordinated deployment across an integrated care system and to ensure regional intelligence about AVT risks and mitigations is applied consistently.
 
 |Dimension              |Value                                                       |
 |-----------------------|-------------------------------------------------------------|
+| **Reference** | GV.CR-5 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                   |
 |**Measurement Cadence**|One-off gate                                                 |
 |**Pipeline Layer**     |Cross-cutting                                                |
@@ -7151,12 +8084,13 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 
 ---
 
-### 🟢 Clinical Safety Case Completeness
+### GV.CR-6 🟢 Clinical Safety Case Completeness
 
 Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case for the AVT deployment. Distinct from the existing Hazard Log Completeness metric, which covers log currency. Safety Case Completeness is the broader document: hazard identification, risk analysis, mitigations, residual risk acceptance, and governance arrangements. A 2025 FOI-based study (PubMed 41172285) found widespread non-compliance with DCB0129 requirements among NHS digital health deployments.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
+| **Reference** | GV.CR-6 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                                                        |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
@@ -7188,12 +8122,13 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 ---
 
-### 🟢 DPIA Template Completion Rate
+### GV.CR-7 🟢 DPIA Template Completion Rate
 
 Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure — but the template only helps if it's actually used and completed.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | GV.CR-7 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Cross-cutting                                         |
@@ -7225,12 +8160,13 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 
 ---
 
-### 🟡 DSPA Status
+### GV.CR-8 🟡 DSPA Status
 
 Existence and currency of Data Sharing/Processing Agreements with all data processors involved in AVT operation. UK GDPR Article 28 requires written agreements with processors, and cloud-hosted AVT typically involves multiple processors (primary vendor, cloud provider, model provider, annotation services). Related to the existing Sub-Processor Transparency metric but specifically focuses on the contractual agreements rather than the disclosure of sub-processors.
 
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
+| **Reference** | GV.CR-8 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Cross-cutting                                 |
@@ -7262,12 +8198,13 @@ DSPA Status per processor: (a) agreement in place (binary); (b) agreement curren
 
 ---
 
-### 🟡 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria
+### GV.CR-9 🟡 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria
 
 Whether the vendor has pre-specified quantitative acceptance criteria that any model update must meet before being deployed to production. FDA Predetermined Change Control Plans (finalised December 2024) require this for US-market medical device AI. Even in UK-only deployments, it matters because: (1) EU-market vendors cascade similar requirements through the EU AI Act, and (2) the existence of pre-defined acceptance criteria is a proxy for mature change control regardless of regulatory jurisdiction.
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-9 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                   |
 |**Measurement Cadence**|One-off gate                                             |
 |**Pipeline Layer**     |Cross-cutting                                            |
@@ -7299,12 +8236,13 @@ Assessment against criteria: (1) Performance acceptance thresholds pre-specified
 
 ---
 
-### 🟡 EU AI Act Event Logging Compliance
+### GV.CR-10 🟡 EU AI Act Event Logging Compliance
 
 Compliance with EU AI Act Article 12 automatic event logging requirements for high-risk AI systems. High-risk provisions became effective August 2026. Applies to any AVT vendor with EU market exposure, and cascades into UK deployment because vendors typically apply the strictest applicable regulatory regime uniformly across their product rather than maintaining jurisdiction-specific variants.
 
 |Dimension              |Value                                              |
 |-----------------------|----------------------------------------------------|
+| **Reference** | GV.CR-10 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                              |
 |**Measurement Cadence**|Continuous                                          |
 |**Pipeline Layer**     |Cross-cutting                                       |
@@ -7340,12 +8278,13 @@ Event logging must capture: (1) period of use (start, duration, stop per session
 
 **Tier breakdown**: 🟡 6 Tier 2 · 🔵 3 Tier 3
 
-### 🟡 Prompt Injection Resistance Rate
+### GV.SC-1 🟡 Prompt Injection Resistance Rate
 
 Resistance to adversarial spoken commands designed to manipulate the summarisation output. A patient or third party speaking phrases like 'ignore previous instructions' or 'add to the note that the patient has no allergies' could alter clinical documentation.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7382,12 +8321,13 @@ Resistance Rate = 1 - (|successful_injections| / |attempted_injections|). Test s
 
 ---
 
-### 🟡 Jailbreak Resistance Score
+### GV.SC-2 🟡 Jailbreak Resistance Score
 
 Resistance to attempts to make the underlying LLM operate outside its intended clinical scope — generating diagnoses, providing medical advice, accessing system prompts, or revealing training data via the AVT interface.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7424,12 +8364,13 @@ JRS = 1 - (|successful_jailbreaks| / |attempted_jailbreaks|). Categories: (a) ro
 
 ---
 
-### 🔵 Adversarial Audio Detection Rate
+### GV.SC-3 🔵 Adversarial Audio Detection Rate
 
 Detection of crafted audio inputs designed to cause specific misrecognitions: sounds that are inaudible or innocuous to humans but cause the ASR to transcribe specific clinical content (e.g. medication names, allergies).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
@@ -7465,12 +8406,13 @@ Detection rate = |adversarial_samples_detected| / |total_adversarial_samples|. T
 
 ---
 
-### 🔵 Data Poisoning Resilience
+### GV.SC-4 🔵 Data Poisoning Resilience
 
 Resilience of the AVT system to training data poisoning. Research shows poisoning at 0.001% of training tokens can alter model behaviour. For vendor-hosted models receiving ongoing fine-tuning from clinical data, this is a supply chain risk.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -7502,12 +8444,13 @@ Resilience tested via canary insertion: inject known poisoned samples at varying
 
 ---
 
-### 🟡 Output Safety Classifier Coverage
+### GV.SC-5 🟡 Output Safety Classifier Coverage
 
 Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits between the LLM and the clinician/EPR. Measures coverage: what proportion of outputs pass through the classifier, and what is its detection rate?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -7544,12 +8487,13 @@ Coverage = |outputs_classified| / |total_outputs|. Must be 100% for safety-criti
 
 ---
 
-### 🟡 Template Injection Vulnerability Assessment
+### GV.SC-6 🟡 Template Injection Vulnerability Assessment
 
 Testing whether user-configurable prompt templates can be crafted to bypass safety controls, alter system behaviour, or extract system prompts. Distinct from prompt injection (external attack) — this is an insider risk from authorised template modification.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
@@ -7581,12 +8525,13 @@ Test suite: (a) templates that override safety instructions; (b) templates that 
 
 ---
 
-### 🔵 Voice Cloning / Deepfake Detection
+### GV.SC-7 🔵 Voice Cloning / Deepfake Detection
 
 Given rapid maturation of voice cloning, can the system detect synthetic audio attempting to inject content? Increasingly relevant threat model as voice cloning becomes accessible.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Audio Capture |
@@ -7618,12 +8563,13 @@ Test against known voice cloning systems (commercial and open-source). Detection
 
 ---
 
-### 🟡 Side-Channel Data Leakage
+### GV.SC-8 🟡 Side-Channel Data Leakage
 
 Does the system leak information through metadata, timing, error messages, or processing artifacts that could reveal patient information to unauthorised parties? A common security failure mode that's distinct from direct data exposure.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7655,12 +8601,13 @@ Audit for: (1) metadata in API responses; (2) timing variations that reveal cont
 
 ---
 
-### 🟡 Cross-Patient Information Leakage Rate
+### GV.SC-9 🟡 Cross-Patient Information Leakage Rate
 
 Rate at which content from one patient's encounter contaminates another patient's generated note. Distinct from general PII leakage because cross-patient contamination can occur through context window contamination rather than training data memorisation — the leakage happens at inference time, not at training time, and is therefore invisible to standard privacy testing methodologies such as membership inference attacks.
 
 |Dimension              |Value                                                         |
 |-----------------------|--------------------------------------------------------------|
+| **Reference** | GV.SC-9 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
 |**Measurement Cadence**|Periodic audit                                                |
 |**Pipeline Layer**     |Cross-cutting                                                 |
@@ -7690,12 +8637,13 @@ Leakage Rate = |notes_containing_content_from_different_patient| / |total_notes|
 
 > 💡 Cross-patient leakage is the AVT-specific instantiation of context window contamination in multi-tenant LLM systems. When a single model instance serves multiple encounters in rapid succession, caching, state retention, and async processing all create potential vectors for one patient's content to leak into another's. This is architecturally preventable — strict per-encounter context isolation with explicit state resets — but only if the failure mode is explicitly tested for. Most vendor privacy testing focuses on training data leakage and doesn't cover this.
 
-### 🟡 Clinician Identity Authentication
+### GV.SC-10 🟡 Clinician Identity Authentication
 
 Is the system confident that the clinician using AVT is who they claim to be? Voice biometrics could provide this but are rarely deployed. Without strong authentication, AVT outputs may be attributed to clinicians who weren't actually present.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.SC-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -7729,12 +8677,13 @@ Authentication strength assessed against: (1) Login mechanism (password, MFA, sm
 
 ---
 
-### 🔵 Membership Inference Attack AUC
+### GV.SC-11 🔵 Membership Inference Attack AUC
 
 Standardised privacy testing metric measuring the success rate of adversarial attempts to determine whether a specific patient's data was used in training the AVT model. Higher AUC means the attack is more successful — an AUC of 0.5 indicates attacks are no better than random guessing, while an AUC near 1.0 indicates complete privacy failure. Undefended LLMs show MIA AUC of approximately 0.96; differential privacy training can collapse this to near 0.5.
 
 |Dimension              |Value                                                         |
 |-----------------------|--------------------------------------------------------------|
+| **Reference** | GV.SC-11 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                |
 |**Measurement Cadence**|Periodic audit                                                |
 |**Pipeline Layer**     |Cross-cutting                                                 |
@@ -7770,12 +8719,13 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 
 **Tier breakdown**: 🟢 7 Tier 1 · 🟡 4 Tier 2
 
-### 🟢 Audio Retention Compliance
+### GV.PD-1 🟢 Audio Retention Compliance
 
 Whether audio recordings are retained, for how long, and whether retention complies with the stated DPIA and privacy notice. Includes monitoring for unauthorised retention beyond stated periods.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -7807,12 +8757,13 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 ---
 
-### 🟢 Audio Time-to-Deletion
+### GV.PD-2 🟢 Audio Time-to-Deletion
 
 Measured time from consultation end to verified deletion of the captured audio. Operational implementation of the existing Audio Retention Compliance metric. NHS England's March 2026 IG guidance requires deletion of audio after the summary is signed off, unless explicitly retained for safety monitoring with documented justification. This metric measures whether the deletion is actually happening in the timeframe the policy claims.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-2 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -7844,12 +8795,13 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 ---
 
-### 🟢 Transcript Retention Compliance
+### GV.PD-3 🟢 Transcript Retention Compliance
 
 Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio — and therefore retained longer — but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-3 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -7881,12 +8833,13 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 
 ---
 
-### 🟡 Data Minimisation Score
+### GV.PD-4 🟡 Data Minimisation Score
 
 Whether the AVT system processes only the minimum data necessary for its function. Includes: does the system transmit full audio to cloud when local processing would suffice? Does it retain intermediate outputs (full transcript) when only the summary is needed?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7918,12 +8871,13 @@ DMS = data_necessary / data_processed. Ideal DMS = 1.0. Track per data type: aud
 
 ---
 
-### 🟡 PII Extraction Attack Success Rate
+### GV.PD-5 🟡 PII Extraction Attack Success Rate
 
 Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric — MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7955,12 +8909,13 @@ Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attac
 
 ---
 
-### 🟡 Re-identification Risk Assessment
+### GV.PD-6 🟡 Re-identification Risk Assessment
 
 Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation — anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -7992,12 +8947,13 @@ Per retained dataset: assess re-identification risk against standard criteria �
 
 ---
 
-### 🟡 Training Data Inclusion Status
+### GV.PD-7 🟡 Training Data Inclusion Status
 
 Clear documentation of whether deployer audio, transcripts, or notes are used by the vendor for model training or fine-tuning. Distinct from the existing Sub-Processor Transparency metric (which covers processing activity) and from privacy policies (which often hedge this question). This metric requires an explicit binary answer: is NHS data flowing into the vendor's training pipeline, yes or no, with documented consent basis if yes.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -8029,12 +8985,13 @@ Status recorded as: (a) No — deployer data not used for any training or fine-t
 
 ---
 
-### 🟢 Consent Verification Accuracy
+### GV.PD-8 🟢 Consent Verification Accuracy
 
 Whether patients are actually informed about AVT use as required by CQC Mythbuster 109 (implied consent is sufficient, but patients must be informed). Measures both process compliance and patient understanding.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-8 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8066,12 +9023,13 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 
 ---
 
-### 🟢 Cross-Border Data Transfer Compliance
+### GV.PD-9 🟢 Cross-Border Data Transfer Compliance
 
 Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requires appropriate safeguards for international transfers. Cloud-hosted AVT vendors may process data in US or other jurisdictions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-9 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -8107,12 +9065,13 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 ---
 
-### 🟢 Subject Access Request Fulfilment
+### GV.PD-10 🟢 Subject Access Request Fulfilment
 
 Can the deployer fulfil patient SAR requests for AVT-related data within statutory timeframes (one calendar month under UK GDPR)? Includes audio if retained, transcripts, intermediate outputs, and the final note.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-10 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -8144,12 +9103,13 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 ---
 
-### 🟢 Right to Erasure Compliance
+### GV.PD-11 🟢 Right to Erasure Compliance
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-11 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -8187,12 +9147,13 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 **Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Documentation Time per Consultation
+### GV.OP-1 🟢 Documentation Time per Consultation
 
 Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless — pair with quality.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8229,12 +9190,13 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 ---
 
-### 🟡 Pyjama Time / After-Hours EHR Use
+### GV.OP-2 🟡 Pyjama Time / After-Hours EHR Use
 
 Clinician time spent on EHR and documentation work outside of scheduled clinical hours. Standard burnout-adjacent metric from the Sinsky et al. literature. Applied to AVT assessment, it measures whether documentation burden that was shifted from in-consultation to after-consultation (a known pattern with review-before-signing workflows) has simply moved the burden to outside working hours rather than reducing it.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8266,12 +9228,13 @@ Pyjama Time = time spent in EHR outside of scheduled clinic hours per clinician 
 
 ---
 
-### 🟡 Note Turnaround Time
+### GV.OP-3 🟡 Note Turnaround Time
 
 Elapsed time from consultation end to note availability in the EPR, measured from the clinician's perspective rather than the pipeline's internal latency. Extends the existing Full-Pipeline Latency Budget (which is a technical metric) into an operational workflow metric that directly affects review quality. If the note arrives after the clinician has started the next patient, review happens later in lower-quality conditions or not at all.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
@@ -8303,12 +9266,13 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 
 ---
 
-### 🟡 Documentation Workload Composite
+### GV.OP-4 🟡 Documentation Workload Composite
 
 Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components — which is the number that matters for the value proposition and clinician wellbeing assessment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8340,12 +9304,13 @@ Workload Composite = w1 × Documentation_Time + w2 × Pyjama_Time + w3 × Verifi
 
 ---
 
-### 🟢 System Availability / Uptime
+### GV.OP-5 🟢 System Availability / Uptime
 
 Percentage operational. NAS: ≥99.5% during consultation hours.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8373,12 +9338,13 @@ A = (T_operational - T_down) / T_operational × 100. Include degraded: A_eff = (
 
 ---
 
-### 🟢 Adoption Rate & Selective Use Patterns
+### GV.OP-6 🟢 Adoption Rate & Selective Use Patterns
 
 Who uses AVT and for which consultations. Selective patterns reveal practical system boundaries.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-6 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8410,12 +9376,13 @@ AR_clinician = |C_active| / |C_eligible|. AR_encounter = |E_AVT| / |E_total|. Se
 
 ---
 
-### 🟡 Cost per Consultation
+### GV.OP-7 🟡 Cost per Consultation
 
 Total cost including licence, infrastructure, training, and governance overhead. Often under-reported by vendors who quote licence costs only without including operational burden.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8447,12 +9414,13 @@ Total Cost = vendor_licence + infrastructure + training_time + governance_overhe
 
 ---
 
-### 🔵 Governance & Maintenance Burden
+### GV.OP-8 🔵 Governance & Maintenance Burden
 
 Clinician and admin time spent on AVT-related tasks: template updates, error reporting, incident investigation, audit, training delivery. Per week per clinician using AVT.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8484,12 +9452,13 @@ Maintenance Burden = total time spent on AVT governance activities / number of A
 
 ---
 
-### 🟡 Training Time per Clinician
+### GV.OP-9 🟡 Training Time per Clinician
 
 Initial and refresher training hours required per clinician. Affects both adoption (high training burden = slow adoption) and ongoing operational cost.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8527,12 +9496,13 @@ Initial Training = hours required to reach minimum competency. Refresher Trainin
 
 **Tier breakdown**: 🔵 3 Tier 3
 
-### 🔵 Energy Consumption per Clinical Note
+### GV.EN-1 🔵 Energy Consumption per Clinical Note
 
 Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts — a 70× range that makes provider choice consequential for total energy footprint.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8564,12 +9534,13 @@ Energy per Note (Wh) = total_inference_energy / number_of_notes_generated. Measu
 
 ---
 
-### 🔵 Carbon Emissions per Inference
+### GV.EN-2 🔵 Carbon Emissions per Inference
 
 Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalent. Distinct from energy consumption because carbon intensity depends on the hosting region's electricity grid — the same model hosted in a coal-heavy grid vs a renewable-heavy grid has very different carbon footprint despite identical energy use. Relevant to NHS Net Zero procurement and to EU-market vendors under corporate sustainability reporting requirements.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8601,12 +9572,13 @@ gCO₂e per Note = energy_per_note × grid_carbon_intensity(hosting_region, time
 
 ---
 
-### 🔵 Water Consumption per Query
+### GV.EN-3 🔵 Water Consumption per Query
 
 Water consumed by data centre cooling infrastructure per clinical note inference. Measured in millilitres. Increasingly required for NHS Net Zero procurement given water stress considerations in parts of the UK and in cloud hosting regions globally. Less visible than energy and carbon but material at AVT-deployment scale.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8644,12 +9616,13 @@ mL per Note = data_centre_water_usage_effectiveness (WUE) × energy_per_note. Di
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Clinician Training Completion Rate
+### GV.TC-1 🟢 Clinician Training Completion Rate
 
 Percentage of AVT-using clinicians who have completed required training modules: vendor product training, local induction (review-before-signing, known failure modes, error reporting, opt-out processes), and periodic refresher training.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8681,12 +9654,13 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 
 ---
 
-### 🟡 Failure Mode Awareness Score
+### GV.TC-2 🟡 Failure Mode Awareness Score
 
 Clinician knowledge of AVT-specific failure modes: can they identify hallucination, omission, speaker misattribution, and coding errors? Tested via scenario-based assessment, not self-report.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8718,12 +9692,13 @@ FMAS = |failure_modes_correctly_identified| / |failure_modes_presented|. Tested 
 
 ---
 
-### 🟡 Refresher Training & CPD Compliance
+### GV.TC-3 🟡 Refresher Training & CPD Compliance
 
 Ongoing competency maintenance: are clinicians completing periodic refresher training that incorporates new failure modes discovered through operational monitoring and incident reports?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8755,12 +9730,13 @@ Compliance = |clinicians_current_on_refresher| / |clinicians_using_AVT|. Refresh
 
 ---
 
-### 🔵 Trainee Impact Assessment
+### GV.TC-4 🔵 Trainee Impact Assessment
 
 Does AVT use during training affect junior clinician skill development? GMC educational standards consideration. If trainees learn to consult with AVT from day one, they may not develop documentation skills the profession traditionally relied on.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -8792,12 +9768,13 @@ Compare documentation skills of: (1) trainees who learned with AVT from start; (
 
 ---
 
-### 🟡 Training Material Currency
+### GV.TC-5 🟡 Training Material Currency
 
 Is training content updated to reflect newly discovered failure modes from operational monitoring? Static training that doesn't incorporate lessons from incidents misses opportunities to prevent recurrence.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.TC-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8835,12 +9812,13 @@ Training Currency = days since last update of training materials. Coverage of re
 
 **Tier breakdown**: 🟢 3 Tier 1 · 🟡 4 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Model Change Notification Compliance
+### GV.VT-1 🟢 Model Change Notification Compliance
 
 Whether the vendor notifies deployers of model updates before deployment, with sufficient detail to assess impact. Stanford framework finding: 'many vendors do not yet provide the access or telemetry necessary.'
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8876,12 +9854,13 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 ---
 
-### 🟡 Telemetry Provision Completeness
+### GV.VT-2 🟡 Telemetry Provision Completeness
 
 Whether the vendor provides the operational data needed for deployer-side monitoring: per-inference logging, confidence scores, model version per output, intermediate outputs for error attribution, and demographic performance data.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8917,12 +9896,13 @@ Completeness = |telemetry_fields_provided| / |telemetry_fields_required|. Requir
 
 ---
 
-### 🔵 Benchmark & Evaluation Data Accessibility
+### GV.VT-3 🔵 Benchmark & Evaluation Data Accessibility
 
 Whether the vendor provides access to benchmarking infrastructure: test datasets, evaluation scripts, baseline results, and the ability for deployers to run independent evaluations.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -8954,12 +9934,13 @@ Accessibility score across dimensions: (a) test dataset availability, (b) evalua
 
 ---
 
-### 🟡 Audit Trail Completeness
+### GV.VT-4 🟡 Audit Trail Completeness
 
 Whether the system maintains a complete, tamper-evident audit trail from audio input to EPR output — sufficient for retrospective incident investigation, complaint resolution, and regulatory inspection.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -8991,12 +9972,13 @@ Completeness = audit trail covers all stages (audio capture → ASR → diarisat
 
 ---
 
-### 🟢 Incident Disclosure Compliance
+### GV.VT-5 🟢 Incident Disclosure Compliance
 
 Does the vendor disclose security incidents, model failures, and known issues to deployers in a timely manner? Includes both incidents at the vendor and incidents discovered at other deployer sites that may affect this deployer.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -9028,12 +10010,13 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 
 ---
 
-### 🟡 Exit & Data Portability Provisions
+### GV.VT-6 🟡 Exit & Data Portability Provisions
 
 When a deployer terminates their contract, can they export their data, audit trails, and configurations in usable formats? Vendor lock-in is a governance risk that affects switching costs and competitive procurement.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -9065,12 +10048,13 @@ Portability assessed across: (1) Patient data export (audio, transcripts, notes)
 
 ---
 
-### 🟢 Sub-Processor Transparency
+### GV.VT-7 🟢 Sub-Processor Transparency
 
 Does the vendor disclose all third parties with access to data: cloud providers, model providers, annotation services, support contractors? UK GDPR Article 28 requires this. Each sub-processor is a potential data exposure point.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-7 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -9106,12 +10090,13 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 ---
 
-### 🟡 Intermediate Output Access
+### GV.VT-8 🟡 Intermediate Output Access
 
 Whether the vendor provides contractual access to intermediate pipeline outputs — the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores — rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -9151,12 +10136,13 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 
 **Tier breakdown**: 🟡 1 Tier 2 · 🔵 6 Tier 3
 
-### 🔵 Proximal vs Distal Outcome Distinction
+### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -9193,12 +10179,13 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 ---
 
-### 🔵 Inter-Rater Reliability Baseline
+### ES.ME-2 🔵 Inter-Rater Reliability Baseline
 
 Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automated metrics beat humans, what does that mean?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -9235,12 +10222,13 @@ Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. VeriFact:
 
 ---
 
-### 🔵 Metric Interaction Analysis
+### ES.ME-3 🔵 Metric Interaction Analysis
 
 Do the metrics in the taxonomy correlate or conflict? A system optimised for low edit rate might achieve it through over-summarisation that increases omission rate. Multi-metric monitoring requires understanding interactions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -9272,12 +10260,13 @@ For each pair of metrics (m1, m2): compute correlation across deployments. Ident
 
 ---
 
-### 🟡 Goodhart's Law Monitoring
+### ES.ME-4 🟡 Goodhart's Law Monitoring
 
 When a metric becomes a target, does it cease to be a good measure? Specifically tracking whether metrics are being gamed — optimised in ways that satisfy the metric without achieving the underlying goal.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -9309,12 +10298,13 @@ For each Tier 1 metric: identify gaming strategies that could satisfy the metric
 
 ---
 
-### 🔵 Coverage Gap Analysis
+### ES.ME-5 🔵 Coverage Gap Analysis
 
 What failure modes are not captured by any metric in the taxonomy? Periodic review of incidents to identify metric blindspots. The taxonomy itself must evolve as new failure modes emerge.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -9346,12 +10336,13 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ---
 
-### 🔵 LLM-Judge Bias Quantification
+### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
 Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -9383,12 +10374,13 @@ Bias tests: (1) Position bias — reverse pairwise ordering and measure agreemen
 
 ---
 
-### 🔵 Automated-Human Metric Concordance
+### ES.ME-7 🔵 Automated-Human Metric Concordance
 
 Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |

@@ -8,12 +8,13 @@
 
 **Tier breakdown**: 🔵 3 Tier 3
 
-### 🔵 Energy Consumption per Clinical Note
+### GV.EN-1 🔵 Energy Consumption per Clinical Note
 
 Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts — a 70× range that makes provider choice consequential for total energy footprint.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -45,12 +46,13 @@ Energy per Note (Wh) = total_inference_energy / number_of_notes_generated. Measu
 
 ---
 
-### 🔵 Carbon Emissions per Inference
+### GV.EN-2 🔵 Carbon Emissions per Inference
 
 Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalent. Distinct from energy consumption because carbon intensity depends on the hosting region's electricity grid — the same model hosted in a coal-heavy grid vs a renewable-heavy grid has very different carbon footprint despite identical energy use. Relevant to NHS Net Zero procurement and to EU-market vendors under corporate sustainability reporting requirements.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -82,12 +84,13 @@ gCO₂e per Note = energy_per_note × grid_carbon_intensity(hosting_region, time
 
 ---
 
-### 🔵 Water Consumption per Query
+### GV.EN-3 🔵 Water Consumption per Query
 
 Water consumed by data centre cooling infrastructure per clinical note inference. Measured in millilitres. Increasingly required for NHS Net Zero procurement given water stress considerations in parts of the UK and in cloud hosting regions globally. Less visible than energy and carbon but material at AVT-deployment scale.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.EN-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |

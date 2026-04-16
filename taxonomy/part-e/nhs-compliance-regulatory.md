@@ -12,12 +12,13 @@
 
 ---
 
-### 🟢 Patient Dissent Recording Rate
+### GV.CR-1 🟢 Patient Dissent Recording Rate
 
 Per-encounter rate at which patient objections or dissent to AVT use are recorded and respected. Distinct from the existing Patient Opt-Out Rate, which is aggregate and applies at the registration or consent level. Patient Dissent Recording is the per-encounter process compliance metric: when a patient objects at the point of care, is that objection documented, is AVT actually paused for that encounter, and is the objection respected in subsequent encounters without re-litigation.
 
 |Dimension              |Value                                                  |
 |-----------------------|--------------------------------------------------------|
+| **Reference** | GV.CR-1 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                              |
 |**Measurement Cadence**|Continuous                                              |
 |**Pipeline Layer**     |Cross-cutting                                           |
@@ -49,12 +50,13 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 
 ---
 
-### 🟢 Verbal Notification Compliance
+### GV.CR-2 🟢 Verbal Notification Compliance
 
 Proportion of AVT-using consultations where verbal notification was delivered to the patient at session start, as required by NHSE IG guidance (March 2026). Consent model in NHS primary care relies on informing patients before AVT activation, but the "informing" step is often poorly observed in busy practice. This metric measures the actual delivery of notification, not just the existence of a notification policy.
 
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
+| **Reference** | GV.CR-2 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Cross-cutting                                             |
@@ -86,12 +88,13 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 ---
 
-### 🟢 AI-Generated Content Labelling Compliance
+### GV.CR-3 🟢 AI-Generated Content Labelling Compliance
 
 Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content — essential for audit, safety investigation, and future training data curation.
 
 |Dimension              |Value                                                     |
 |-----------------------|-----------------------------------------------------------|
+| **Reference** | GV.CR-3 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                 |
 |**Measurement Cadence**|Continuous                                                 |
 |**Pipeline Layer**     |EPR Write-back                                             |
@@ -146,12 +149,13 @@ def check_labelling_compliance(epr_entries):
 
 ---
 
-### 🟢 AVT Supplier Registry Listing Verification
+### GV.CR-4 🟢 AVT Supplier Registry Listing Verification
 
 Procurement and ongoing verification that the deployed AVT system is listed on the NHS England AVT Supplier Registry and remains listed throughout the deployment lifecycle. The Registry (launched January 2026) is the NHS-level mechanism for self-certified minimum standards, and registry status is expected to become a procurement precondition.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | GV.CR-4 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
 |**Measurement Cadence**|Continuous                                            |
 |**Pipeline Layer**     |Cross-cutting                                         |
@@ -183,12 +187,13 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 ---
 
-### 🟢 ICB Engagement Documentation
+### GV.CR-5 🟢 ICB Engagement Documentation
 
 Documented evidence that the deployer engaged with their ICB digital team (or equivalent regional body) before AVT deployment, as required by the CIO/CCIO guidance (v2, January 2026). The ICB engagement requirement exists to prevent uncoordinated deployment across an integrated care system and to ensure regional intelligence about AVT risks and mitigations is applied consistently.
 
 |Dimension              |Value                                                       |
 |-----------------------|-------------------------------------------------------------|
+| **Reference** | GV.CR-5 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                   |
 |**Measurement Cadence**|One-off gate                                                 |
 |**Pipeline Layer**     |Cross-cutting                                                |
@@ -220,12 +225,13 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 
 ---
 
-### 🟢 Clinical Safety Case Completeness
+### GV.CR-6 🟢 Clinical Safety Case Completeness
 
 Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case for the AVT deployment. Distinct from the existing Hazard Log Completeness metric, which covers log currency. Safety Case Completeness is the broader document: hazard identification, risk analysis, mitigations, residual risk acceptance, and governance arrangements. A 2025 FOI-based study (PubMed 41172285) found widespread non-compliance with DCB0129 requirements among NHS digital health deployments.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
+| **Reference** | GV.CR-6 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                                                        |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
@@ -257,12 +263,13 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 ---
 
-### 🟢 DPIA Template Completion Rate
+### GV.CR-7 🟢 DPIA Template Completion Rate
 
 Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure — but the template only helps if it's actually used and completed.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | GV.CR-7 |
 |**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Cross-cutting                                         |
@@ -294,12 +301,13 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 
 ---
 
-### 🟡 DSPA Status
+### GV.CR-8 🟡 DSPA Status
 
 Existence and currency of Data Sharing/Processing Agreements with all data processors involved in AVT operation. UK GDPR Article 28 requires written agreements with processors, and cloud-hosted AVT typically involves multiple processors (primary vendor, cloud provider, model provider, annotation services). Related to the existing Sub-Processor Transparency metric but specifically focuses on the contractual agreements rather than the disclosure of sub-processors.
 
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
+| **Reference** | GV.CR-8 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Cross-cutting                                 |
@@ -331,12 +339,13 @@ DSPA Status per processor: (a) agreement in place (binary); (b) agreement curren
 
 ---
 
-### 🟡 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria
+### GV.CR-9 🟡 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria
 
 Whether the vendor has pre-specified quantitative acceptance criteria that any model update must meet before being deployed to production. FDA Predetermined Change Control Plans (finalised December 2024) require this for US-market medical device AI. Even in UK-only deployments, it matters because: (1) EU-market vendors cascade similar requirements through the EU AI Act, and (2) the existence of pre-defined acceptance criteria is a proxy for mature change control regardless of regulatory jurisdiction.
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-9 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                   |
 |**Measurement Cadence**|One-off gate                                             |
 |**Pipeline Layer**     |Cross-cutting                                            |
@@ -368,12 +377,13 @@ Assessment against criteria: (1) Performance acceptance thresholds pre-specified
 
 ---
 
-### 🟡 EU AI Act Event Logging Compliance
+### GV.CR-10 🟡 EU AI Act Event Logging Compliance
 
 Compliance with EU AI Act Article 12 automatic event logging requirements for high-risk AI systems. High-risk provisions became effective August 2026. Applies to any AVT vendor with EU market exposure, and cascades into UK deployment because vendors typically apply the strictest applicable regulatory regime uniformly across their product rather than maintaining jurisdiction-specific variants.
 
 |Dimension              |Value                                              |
 |-----------------------|----------------------------------------------------|
+| **Reference** | GV.CR-10 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                              |
 |**Measurement Cadence**|Continuous                                          |
 |**Pipeline Layer**     |Cross-cutting                                       |

@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Documentation Time per Consultation
+### GV.OP-1 🟢 Documentation Time per Consultation
 
 Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless — pair with quality.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -46,12 +47,13 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 ---
 
-### 🟡 Pyjama Time / After-Hours EHR Use
+### GV.OP-2 🟡 Pyjama Time / After-Hours EHR Use
 
 Clinician time spent on EHR and documentation work outside of scheduled clinical hours. Standard burnout-adjacent metric from the Sinsky et al. literature. Applied to AVT assessment, it measures whether documentation burden that was shifted from in-consultation to after-consultation (a known pattern with review-before-signing workflows) has simply moved the burden to outside working hours rather than reducing it.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -83,12 +85,13 @@ Pyjama Time = time spent in EHR outside of scheduled clinic hours per clinician 
 
 ---
 
-### 🟡 Note Turnaround Time
+### GV.OP-3 🟡 Note Turnaround Time
 
 Elapsed time from consultation end to note availability in the EPR, measured from the clinician's perspective rather than the pipeline's internal latency. Extends the existing Full-Pipeline Latency Budget (which is a technical metric) into an operational workflow metric that directly affects review quality. If the note arrives after the clinician has started the next patient, review happens later in lower-quality conditions or not at all.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
@@ -120,12 +123,13 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 
 ---
 
-### 🟡 Documentation Workload Composite
+### GV.OP-4 🟡 Documentation Workload Composite
 
 Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components — which is the number that matters for the value proposition and clinician wellbeing assessment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -157,12 +161,13 @@ Workload Composite = w1 × Documentation_Time + w2 × Pyjama_Time + w3 × Verifi
 
 ---
 
-### 🟢 System Availability / Uptime
+### GV.OP-5 🟢 System Availability / Uptime
 
 Percentage operational. NAS: ≥99.5% during consultation hours.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -190,12 +195,13 @@ A = (T_operational - T_down) / T_operational × 100. Include degraded: A_eff = (
 
 ---
 
-### 🟢 Adoption Rate & Selective Use Patterns
+### GV.OP-6 🟢 Adoption Rate & Selective Use Patterns
 
 Who uses AVT and for which consultations. Selective patterns reveal practical system boundaries.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-6 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -227,12 +233,13 @@ AR_clinician = |C_active| / |C_eligible|. AR_encounter = |E_AVT| / |E_total|. Se
 
 ---
 
-### 🟡 Cost per Consultation
+### GV.OP-7 🟡 Cost per Consultation
 
 Total cost including licence, infrastructure, training, and governance overhead. Often under-reported by vendors who quote licence costs only without including operational burden.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -264,12 +271,13 @@ Total Cost = vendor_licence + infrastructure + training_time + governance_overhe
 
 ---
 
-### 🔵 Governance & Maintenance Burden
+### GV.OP-8 🔵 Governance & Maintenance Burden
 
 Clinician and admin time spent on AVT-related tasks: template updates, error reporting, incident investigation, audit, training delivery. Per week per clinician using AVT.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -301,12 +309,13 @@ Maintenance Burden = total time spent on AVT governance activities / number of A
 
 ---
 
-### 🟡 Training Time per Clinician
+### GV.OP-9 🟡 Training Time per Clinician
 
 Initial and refresher training hours required per clinician. Affects both adoption (high training burden = slow adoption) and ongoing operational cost.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.OP-9 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |

@@ -6,12 +6,13 @@
 
 **Tier breakdown**: 🟢 1 Tier 1 · 🟡 4 Tier 2 · 🔵 4 Tier 3
 
-### 🟡 Signal-to-Noise Ratio (SNR) Monitoring
+### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
 Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably — the system may continue producing confident-looking but degraded output without alerting the clinician.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -73,12 +74,13 @@ def estimate_snr(audio_path, sr=16000, frame_length=2048):
 
 ---
 
-### 🔵 Voice Activity Detection (VAD) Accuracy
+### TP.AC-2 🔵 Voice Activity Detection (VAD) Accuracy
 
 Accuracy of detecting when speech is occurring vs silence/noise. VAD errors cause missed speech (content lost) or false activations (noise processed as speech, potentially generating hallucinated content from non-speech audio).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -110,12 +112,13 @@ VAD Precision = |true_speech_detected| / |all_detected_as_speech|. VAD Recall = 
 
 ---
 
-### 🟡 Acoustic Environment Profiling
+### TP.AC-3 🟡 Acoustic Environment Profiling
 
 Characterisation of the deployment acoustic environment against the vendor's validated acoustic conditions. Gap between validated and actual environment = unquantified risk.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -147,12 +150,13 @@ Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, sp
 
 ---
 
-### 🔵 Bystander Voice Detection Rate
+### TP.AC-4 🔵 Bystander Voice Detection Rate
 
 Ability to detect and flag speech from individuals who have not consented to AVT processing: patients in adjacent rooms, reception staff audible through walls, family members who arrive mid-consultation without being informed.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -184,12 +188,13 @@ Detection rate = |bystander_speech_detected| / |total_bystander_speech|. False p
 
 ---
 
-### 🟢 Microphone & Hardware Validation
+### TP.AC-5 🟢 Microphone & Hardware Validation
 
 Verification that the capture hardware meets minimum specifications for the AVT system. Includes microphone frequency response, placement distance, device compatibility, and Bluetooth/connectivity reliability.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -217,12 +222,13 @@ Hardware compliance checklist: (1) Frequency response 100Hz–8kHz minimum; (2) 
 
 ---
 
-### 🔵 Speaker Overlap Rate
+### TP.AC-6 🔵 Speaker Overlap Rate
 
 Proportion of audio time with simultaneous speech from multiple speakers. Common in real consultations (interruptions, agreement utterances, talking over) and most ASR/diarisation systems handle overlap poorly — often dropping content from one speaker entirely.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
@@ -254,12 +260,13 @@ Overlap Rate = T_overlap / T_total_speech, where T_overlap is the duration where
 
 ---
 
-### 🟡 Audio Clipping / Saturation Rate
+### TP.AC-7 🟡 Audio Clipping / Saturation Rate
 
 Frequency of audio level exceeding the dynamic range of the capture system, causing waveform distortion. Different from SNR — clipping is a hardware/gain issue that destroys content even in quiet environments. Commonly caused by mic too close, gain set too high, or sudden loud sounds.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -307,12 +314,13 @@ def detect_clipping(audio_samples, threshold_pct=0.1):
 
 ---
 
-### 🟡 Codec & Sampling Rate Compliance
+### TP.AC-8 🟡 Codec & Sampling Rate Compliance
 
 Whether audio meets minimum bit depth and sample rate specifications for the AVT system. Telephone audio at 8kHz degrades ASR significantly compared to 16kHz studio quality. Compressed codecs (e.g. heavily lossy Bluetooth audio) introduce artifacts.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
@@ -344,12 +352,13 @@ Compliance check per encounter: (1) sample_rate >= vendor_minimum (typically 16k
 
 ---
 
-### 🔵 Microphone Drift Detection
+### TP.AC-9 🔵 Microphone Drift Detection
 
 Detection of gradual hardware degradation over time: declining battery performance, mechanical wear, positioning shift, accumulated debris, Bluetooth interference patterns. Different from initial validation — this catches problems that develop after deployment.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.AC-9 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |

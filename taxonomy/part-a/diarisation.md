@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟡 3 Tier 2 · 🔵 1 Tier 3
 
-### 🟡 Diarisation Error Rate (DER)
+### TP.DI-1 🟡 Diarisation Error Rate (DER)
 
 Proportion of audio time with incorrect speaker labels. Combines missed speech, false alarm, and speaker confusion.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-1 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -59,12 +60,13 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 ---
 
-### 🟡 Speaker Attribution Accuracy
+### TP.DI-2 🟡 Speaker Attribution Accuracy
 
 Percentage of utterances assigned to correct speaker. Misattributed medication instructions directly cause prescribing errors.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -100,12 +102,13 @@ SAA = |U_correct| / |U_total|. Unlike DER (time-based), SAA is utterance-based. 
 
 ---
 
-### 🟡 Speaker Count Accuracy
+### TP.DI-3 🟡 Speaker Count Accuracy
 
 Does the system correctly identify how many speakers are present? Particularly important for distinguishing 2-speaker (validated) from 3+-speaker (out-of-envelope) consultations. Over-counting fragments single speakers; under-counting merges distinct speakers.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-3 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -137,12 +140,13 @@ Speaker Count Accuracy = |encounters_with_correct_count| / |total_encounters|. D
 
 ---
 
-### 🔵 Speaker Boundary Precision
+### TP.DI-4 🔵 Speaker Boundary Precision
 
 Temporal accuracy of where one speaker stops and another starts. Affects attribution at turn boundaries — words at the edge of a turn may be attributed to the wrong speaker.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | TP.DI-4 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
@@ -182,12 +186,13 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 ---
 
-### 🟡 Speaker Role Identification F1
+### TP.DI-5 🟡 Speaker Role Identification F1
 
 Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
+| **Reference** | TP.DI-5 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
 |**Measurement Cadence**|One-off gate                                                         |
 |**Pipeline Layer**     |Diarisation                                                          |
@@ -219,12 +224,13 @@ Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_m
 
 ---
 
-### 🟡 Code-Switching Detection Rate
+### TP.DI-6 🟡 Code-Switching Detection Rate
 
 Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
+| **Reference** | TP.DI-6 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                                |
 |**Measurement Cadence**|One-off gate                                          |
 |**Pipeline Layer**     |ASR / Transcription                                   |
@@ -256,12 +262,13 @@ Per utterance with code-switching: (1) detected that switching occurred (binary)
 
 ---
 
-### 🟡 Turn-Taking Accuracy in Overlap
+### TP.DI-7 🟡 Turn-Taking Accuracy in Overlap
 
 Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
 
 |Dimension              |Value                                          |
 |-----------------------|-----------------------------------------------|
+| **Reference** | TP.DI-7 |
 |**Priority Tier**      |🟡 Tier 2 — Recommended                         |
 |**Measurement Cadence**|One-off gate                                   |
 |**Pipeline Layer**     |ASR + Diarisation                              |
@@ -293,12 +300,13 @@ TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Repo
 
 ---
 
-### 🔵 Clinical-Perspective HEWER (cpHEWER)
+### TP.DI-8 🔵 Clinical-Perspective HEWER (cpHEWER)
 
 Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
+| **Reference** | TP.DI-8 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
 |**Measurement Cadence**|One-off gate                                |
 |**Pipeline Layer**     |ASR + Diarisation                           |
@@ -330,12 +338,13 @@ cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the
 
 ---
 
-### 🔵 Addressee Recognition Accuracy
+### TP.DI-9 🔵 Addressee Recognition Accuracy
 
 In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
 
 |Dimension              |Value                                            |
 |-----------------------|-------------------------------------------------|
+| **Reference** | TP.DI-9 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
 |**Measurement Cadence**|One-off gate                                     |
 |**Pipeline Layer**     |Diarisation                                      |

@@ -6,12 +6,13 @@
 
 **Tier breakdown**: 🟡 1 Tier 2 · 🔵 6 Tier 3
 
-### 🔵 Proximal vs Distal Outcome Distinction
+### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -48,12 +49,13 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 ---
 
-### 🔵 Inter-Rater Reliability Baseline
+### ES.ME-2 🔵 Inter-Rater Reliability Baseline
 
 Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automated metrics beat humans, what does that mean?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-2 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -90,12 +92,13 @@ Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. VeriFact:
 
 ---
 
-### 🔵 Metric Interaction Analysis
+### ES.ME-3 🔵 Metric Interaction Analysis
 
 Do the metrics in the taxonomy correlate or conflict? A system optimised for low edit rate might achieve it through over-summarisation that increases omission rate. Multi-metric monitoring requires understanding interactions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -127,12 +130,13 @@ For each pair of metrics (m1, m2): compute correlation across deployments. Ident
 
 ---
 
-### 🟡 Goodhart's Law Monitoring
+### ES.ME-4 🟡 Goodhart's Law Monitoring
 
 When a metric becomes a target, does it cease to be a good measure? Specifically tracking whether metrics are being gamed — optimised in ways that satisfy the metric without achieving the underlying goal.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -164,12 +168,13 @@ For each Tier 1 metric: identify gaming strategies that could satisfy the metric
 
 ---
 
-### 🔵 Coverage Gap Analysis
+### ES.ME-5 🔵 Coverage Gap Analysis
 
 What failure modes are not captured by any metric in the taxonomy? Periodic review of incidents to identify metric blindspots. The taxonomy itself must evolve as new failure modes emerge.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -201,12 +206,13 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ---
 
-### 🔵 LLM-Judge Bias Quantification
+### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
 Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -238,12 +244,13 @@ Bias tests: (1) Position bias — reverse pairwise ordering and measure agreemen
 
 ---
 
-### 🔵 Automated-Human Metric Concordance
+### ES.ME-7 🔵 Automated-Human Metric Concordance
 
 Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | ES.ME-7 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |

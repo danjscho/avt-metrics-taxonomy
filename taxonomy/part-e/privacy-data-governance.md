@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟢 7 Tier 1 · 🟡 4 Tier 2
 
-### 🟢 Audio Retention Compliance
+### GV.PD-1 🟢 Audio Retention Compliance
 
 Whether audio recordings are retained, for how long, and whether retention complies with the stated DPIA and privacy notice. Includes monitoring for unauthorised retention beyond stated periods.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -41,12 +42,13 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 ---
 
-### 🟢 Audio Time-to-Deletion
+### GV.PD-2 🟢 Audio Time-to-Deletion
 
 Measured time from consultation end to verified deletion of the captured audio. Operational implementation of the existing Audio Retention Compliance metric. NHS England's March 2026 IG guidance requires deletion of audio after the summary is signed off, unless explicitly retained for safety monitoring with documented justification. This metric measures whether the deletion is actually happening in the timeframe the policy claims.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-2 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -78,12 +80,13 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 ---
 
-### 🟢 Transcript Retention Compliance
+### GV.PD-3 🟢 Transcript Retention Compliance
 
 Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio — and therefore retained longer — but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-3 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -115,12 +118,13 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 
 ---
 
-### 🟡 Data Minimisation Score
+### GV.PD-4 🟡 Data Minimisation Score
 
 Whether the AVT system processes only the minimum data necessary for its function. Includes: does the system transmit full audio to cloud when local processing would suffice? Does it retain intermediate outputs (full transcript) when only the summary is needed?
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -152,12 +156,13 @@ DMS = data_necessary / data_processed. Ideal DMS = 1.0. Track per data type: aud
 
 ---
 
-### 🟡 PII Extraction Attack Success Rate
+### GV.PD-5 🟡 PII Extraction Attack Success Rate
 
 Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric — MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-5 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -189,12 +194,13 @@ Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attac
 
 ---
 
-### 🟡 Re-identification Risk Assessment
+### GV.PD-6 🟡 Re-identification Risk Assessment
 
 Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation — anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
@@ -226,12 +232,13 @@ Per retained dataset: assess re-identification risk against standard criteria �
 
 ---
 
-### 🟡 Training Data Inclusion Status
+### GV.PD-7 🟡 Training Data Inclusion Status
 
 Clear documentation of whether deployer audio, transcripts, or notes are used by the vendor for model training or fine-tuning. Distinct from the existing Sub-Processor Transparency metric (which covers processing activity) and from privacy policies (which often hedge this question). This metric requires an explicit binary answer: is NHS data flowing into the vendor's training pipeline, yes or no, with documented consent basis if yes.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -263,12 +270,13 @@ Status recorded as: (a) No — deployer data not used for any training or fine-t
 
 ---
 
-### 🟢 Consent Verification Accuracy
+### GV.PD-8 🟢 Consent Verification Accuracy
 
 Whether patients are actually informed about AVT use as required by CQC Mythbuster 109 (implied consent is sufficient, but patients must be informed). Measures both process compliance and patient understanding.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-8 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -300,12 +308,13 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 
 ---
 
-### 🟢 Cross-Border Data Transfer Compliance
+### GV.PD-9 🟢 Cross-Border Data Transfer Compliance
 
 Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requires appropriate safeguards for international transfers. Cloud-hosted AVT vendors may process data in US or other jurisdictions.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-9 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -341,12 +350,13 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 ---
 
-### 🟢 Subject Access Request Fulfilment
+### GV.PD-10 🟢 Subject Access Request Fulfilment
 
 Can the deployer fulfil patient SAR requests for AVT-related data within statutory timeframes (one calendar month under UK GDPR)? Includes audio if retained, transcripts, intermediate outputs, and the final note.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-10 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -378,12 +388,13 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 ---
 
-### 🟢 Right to Erasure Compliance
+### GV.PD-11 🟢 Right to Erasure Compliance
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.PD-11 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |

@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟢 3 Tier 1 · 🟡 4 Tier 2 · 🔵 1 Tier 3
 
-### 🟢 Model Change Notification Compliance
+### GV.VT-1 🟢 Model Change Notification Compliance
 
 Whether the vendor notifies deployers of model updates before deployment, with sufficient detail to assess impact. Stanford framework finding: 'many vendors do not yet provide the access or telemetry necessary.'
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-1 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -45,12 +46,13 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 ---
 
-### 🟡 Telemetry Provision Completeness
+### GV.VT-2 🟡 Telemetry Provision Completeness
 
 Whether the vendor provides the operational data needed for deployer-side monitoring: per-inference logging, confidence scores, model version per output, intermediate outputs for error attribution, and demographic performance data.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-2 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -86,12 +88,13 @@ Completeness = |telemetry_fields_provided| / |telemetry_fields_required|. Requir
 
 ---
 
-### 🔵 Benchmark & Evaluation Data Accessibility
+### GV.VT-3 🔵 Benchmark & Evaluation Data Accessibility
 
 Whether the vendor provides access to benchmarking infrastructure: test datasets, evaluation scripts, baseline results, and the ability for deployers to run independent evaluations.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -123,12 +126,13 @@ Accessibility score across dimensions: (a) test dataset availability, (b) evalua
 
 ---
 
-### 🟡 Audit Trail Completeness
+### GV.VT-4 🟡 Audit Trail Completeness
 
 Whether the system maintains a complete, tamper-evident audit trail from audio input to EPR output — sufficient for retrospective incident investigation, complaint resolution, and regulatory inspection.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -160,12 +164,13 @@ Completeness = audit trail covers all stages (audio capture → ASR → diarisat
 
 ---
 
-### 🟢 Incident Disclosure Compliance
+### GV.VT-5 🟢 Incident Disclosure Compliance
 
 Does the vendor disclose security incidents, model failures, and known issues to deployers in a timely manner? Includes both incidents at the vendor and incidents discovered at other deployer sites that may affect this deployer.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-5 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -197,12 +202,13 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 
 ---
 
-### 🟡 Exit & Data Portability Provisions
+### GV.VT-6 🟡 Exit & Data Portability Provisions
 
 When a deployer terminates their contract, can they export their data, audit trails, and configurations in usable formats? Vendor lock-in is a governance risk that affects switching costs and competitive procurement.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-6 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -234,12 +240,13 @@ Portability assessed across: (1) Patient data export (audio, transcripts, notes)
 
 ---
 
-### 🟢 Sub-Processor Transparency
+### GV.VT-7 🟢 Sub-Processor Transparency
 
 Does the vendor disclose all third parties with access to data: cloud providers, model providers, annotation services, support contractors? UK GDPR Article 28 requires this. Each sub-processor is a potential data exposure point.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-7 |
 | **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -275,12 +282,13 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 ---
 
-### 🟡 Intermediate Output Access
+### GV.VT-8 🟡 Intermediate Output Access
 
 Whether the vendor provides contractual access to intermediate pipeline outputs — the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores — rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | GV.VT-8 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |

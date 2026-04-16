@@ -4,12 +4,13 @@
 
 **Tier breakdown**: 🟡 4 Tier 2 · 🔵 7 Tier 3
 
-### 🔵 Source-to-Record Concordance
+### PI.E2E-1 🔵 Source-to-Record Concordance
 
 End-to-end: comparing original consultation audio directly against the final EPR entry, bypassing all intermediate representations. This is what actually matters for patient safety.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-1 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -86,12 +87,13 @@ def source_to_record_concordance(
 
 ---
 
-### 🔵 Cumulative Information Yield
+### PI.E2E-2 🔵 Cumulative Information Yield
 
 The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
 
 |Dimension              |Value                                                                            |
 |-----------------------|---------------------------------------------------------------------------------|
+| **Reference** | PI.E2E-2 |
 |**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
 |**Measurement Cadence**|Periodic audit                                                                   |
 |**Pipeline Layer**     |End-to-End                                                                       |
@@ -121,12 +123,13 @@ For each clinical category c ∈ C = {medications, allergies, diagnoses, symptom
 
 > 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
 
-### 🔵 Error Propagation / Cascade Analysis
+### PI.E2E-3 🔵 Error Propagation / Cascade Analysis
 
 End-to-end: tracking how a single upstream error amplifies or gets corrected through subsequent stages. An ASR misrecognition could be caught by the summariser (correction) or cascade into wrong coding and wrong EPR entry (amplification).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-3 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -192,12 +195,13 @@ def trace_error_cascade(
 
 ---
 
-### 🟡 Safety-Critical Information Chain of Custody
+### PI.E2E-4 🟡 Safety-Critical Information Chain of Custody
 
 End-to-end per-item trace for highest-risk content: did this specific allergy survive ASR → diarisation → summarisation → coding → EPR field? A per-item trace, not a statistical rate.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-4 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -271,12 +275,13 @@ result = chain_of_custody(
 
 ---
 
-### 🔵 Compound Demographic Performance
+### PI.E2E-5 🔵 Compound Demographic Performance
 
 End-to-end: demographic performance gap measured at the final output, not just at ASR. ASR bias against an accent might be corrected by summarisation (context inference) or amplified (hallucination to fill gaps).
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-5 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -308,12 +313,13 @@ For demographic group g: E2E_gap = Quality(g_majority) - Quality(g_minority) mea
 
 ---
 
-### 🔵 Semantic Drift Accumulation
+### PI.E2E-6 🔵 Semantic Drift Accumulation
 
 End-to-end: measuring cumulative meaning transformation across stages. Each stage subtly transforms meaning — 'occasional chest tightness on stairs' → 'chest pain on exertion'. Each individual transformation may be defensible; the cumulative drift may not be.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-6 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -382,12 +388,13 @@ def measure_semantic_drift(stage_texts: dict) -> dict:
 
 ---
 
-### 🟡 Pipeline Non-Determinism / Reproducibility
+### PI.E2E-7 🟡 Pipeline Non-Determinism / Reproducibility
 
 End-to-end: if you re-process the same audio, do you get the same output? Each stochastic component introduces variance. Compound variance could mean the same consultation produces materially different notes on different runs.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-7 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -461,12 +468,13 @@ def test_reproducibility(audio_path: str, pipeline, n_runs: int = 10):
 
 ---
 
-### 🔵 Error Attribution Analysis
+### PI.E2E-8 🔵 Error Attribution Analysis
 
 End-to-end: when an error appears in the final output, which stage introduced it? Essential for improvement but requires intermediate output logging most vendors don't expose.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-8 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -498,12 +506,13 @@ For each error e in final output: Attribution(e) = stage s where e first appears
 
 ---
 
-### 🔵 Clinical Decision Equivalence
+### PI.E2E-9 🔵 Clinical Decision Equivalence
 
 End-to-end: does the final note support the same clinical decisions a clinician present at the consultation would make? The ultimate distal outcome metric connecting documentation to patient safety.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-9 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
@@ -539,12 +548,13 @@ Present note to blinded clinician(s). Clinician makes clinical decisions (diagno
 
 ---
 
-### 🟡 Full-Pipeline Latency Budget
+### PI.E2E-10 🟡 Full-Pipeline Latency Budget
 
 End-to-end: total time from consultation end to note availability in EPR, broken down by stage. Not just ASR RTF — the full wait before a clinician can review.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-10 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
@@ -576,12 +586,13 @@ L_total = Σ L_stage for stages ∈ {ASR, diarisation, summarisation, coding, wr
 
 ---
 
-### 🟡 Pipeline Failure Recovery
+### PI.E2E-11 🟡 Pipeline Failure Recovery
 
 When one stage fails (e.g. diarisation crashes), what does the system produce? Graceful degradation vs catastrophic failure. Most metrics assume the pipeline runs to completion — but partial failures are common in production.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-11 |
 | **Priority Tier** | 🟡 Tier 2 — Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
@@ -613,12 +624,13 @@ For each pipeline stage, simulate failure and assess: (1) Does the system produc
 
 ---
 
-### 🔵 Round-Trip Information Loss
+### PI.E2E-12 🔵 Round-Trip Information Loss
 
 If the AVT-generated note were used to reconstruct the original consultation, how much would be lost? An information-theoretic complement to source-to-record concordance — measures total information preserved through the pipeline.
 
 | Dimension | Value |
 |-----------|-------|
+| **Reference** | PI.E2E-12 |
 | **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
