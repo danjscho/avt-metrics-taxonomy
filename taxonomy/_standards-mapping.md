@@ -539,6 +539,201 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 ---
 
+### CQC Assessment for AI
+
+**Publisher:** Care Quality Commission (CQC)
+**Scope:** Deployer-side regulatory inspection covering the Five Key Questions (Safe, Effective, Caring, Responsive, Well-led) under the Single Assessment Framework, with AI-specific guidance in GP Mythbuster 109 and emerging quality statements.
+**Mandatory status:** CQC inspection is mandatory for all registered providers; CQC ratings are public and directly affect commissioning.
+**AVT relevance:** CQC regulates the *provider using the tool*, not the tool itself. Clinical responsibility is non-delegable to the AI. This mapping covers what CQC inspectors are likely to ask about an AVT deployment.
+
+**⚠️ Emerging area (2025–26):** GP Mythbuster 109 is the published baseline. Formal CQC quality statements specific to AI in primary and secondary care are evolving. This mapping will need review when the CQC AI-specific assessment framework is finalised.
+
+**Key dimensions and taxonomy coverage:**
+
+- **GP Mythbuster 109 baseline assertions:**
+  - CQC regulates providers not tools — provider remains accountable for AI output
+  - Clinical responsibility non-delegable — clinician must review/sign off before the record is final → covered by HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate
+  - Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (no specific "record quality" composite metric)
+  - AVT consent — implied consent acceptable if patients informed and can dissent → covered by GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance, IO.PX-1 Patient Opt-Out Rate
+  - Medical device classification considerations → cross-reference to MHRA SaMD section
+  - DCB0129/DCB0160 clinical safety case → covered by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness
+  - DTAC compliance pre-procurement → cross-reference to DTAC section
+  - Staff training on AI limitations → covered by GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score
+
+- **Safe (Five Key Questions)**: Covered extensively by Safety & Governance group — GV.SG-17 Hazard Log Completeness, GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate, GV.SG-9 Safety Performance Indicators with Thresholds. Bias audits covered by IO.FE-3 Clinical Domain Performance Variance, TP.ASR-4 Demographic-Disaggregated WER. Rollback capability covered by TP.WB-5 Write-back Rollback Capability.
+
+- **Effective**: Partial — clinical accuracy benchmarking covered by TP.ASR-1 WER, TP.SN-5 Hallucination Rate, TP.CC-1 SNOMED Code Accuracy. Outcome monitoring vs pre-AI baseline partially covered by GV.SG-3 Performance Degradation Detection Latency, IO.PX-9 Downstream Diagnostic Accuracy. Clinician review/sign-off covered by HL.HF-3 Review-Before-Signing Rate. NICE alignment cross-references NICE ESF section.
+
+- **Caring**: Covered by IO.PX-1 Patient Opt-Out Rate, IO.PX-2 Patient-Perceived Accuracy, IO.PX-6 Therapeutic Relationship Impact, IO.PX-7 Full Attentiveness Rate, GV.CR-2 Verbal Notification Compliance. Dignity during recording — gap (no specific metric).
+
+- **Responsive**: Partial — accessibility covered by IO.FE-2 Accent Taxonomy Standardisation, IO.FE-7 Health Literacy Performance Variation. Language coverage covered by TP.DI-6 Code-Switching Detection Rate. Equity audit covered by IO.FE-1 Deployment Equity Index, TP.CC-9 Coding Equity Index. Complaint routes specific to AI — gap.
+
+- **Well-led**: Partial — board-level AI governance — gap. Named accountable director — gap. CSO role covered by GV.CR-6 Clinical Safety Case Completeness. Audit trail covered by GV.VT-4 Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register — partial via GV.SG-13 Assurance Debt Accumulation Rate.
+
+- **CSO expectations**: Registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live. Covered procedurally by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness. CSO capacity for AI oversight is a gap (no metric).
+
+**Overall position:** CQC assessment is structurally broader than any single standard because it covers the whole provider operation. The taxonomy provides strong measurement coverage for the Safe and Caring dimensions, partial coverage for Effective and Responsive, and weakest coverage for Well-led (board-level governance, named accountability, AI-specific complaint handling). The gaps are concentrated in provider-organisation-level governance mechanisms rather than clinical-AI performance.
+
+**Gaps:**
+- Board-level AI governance mechanism
+- Named accountable director for AI
+- CSO capacity for AI oversight (separate from CSO sign-off)
+- Patient complaint handling specific to AI outputs
+- Dignity during recording
+- AI-specific equity of access auditing (language/accessibility composite)
+- Record quality composite (Regulation 17 alignment)
+
+---
+
+### Patient Safety Incident Response Framework (PSIRF)
+
+**Publisher:** NHS England
+**Scope:** Systems-based, proportionate response to patient safety incidents, replacing the 2015 Serious Incident Framework.
+**Mandatory status:** Mandatory for acute, ambulance, mental health, and community NHS providers since autumn 2023; primary care and independent-sector rollout 2024–26.
+**AVT relevance:** PSIRF applies when AI-generated documentation contributes to patient harm. The response should be proportionate and system-based, looking at the whole sociotechnical pipeline (audio → ASR → summariser → clinician review → EPR) rather than blaming the clinician who signed off.
+
+**Key dimensions and taxonomy coverage:**
+
+- **Four PSIRF principles:**
+  - **Compassionate engagement** — Gap (no metric for engagement with those affected by AI-related harm)
+  - **Systems-based learning** — Partial — PI.E2E-3 Error Propagation / Cascade Analysis, PI.E2E-8 Error Attribution Analysis provide pipeline-level analysis but not the organisation-level learning response
+  - **Proportionate response** — Partial — GV.SG-16 SPI Escalation Response Time addresses timeliness but not proportionality
+  - **Supportive oversight** — Gap (no metric for board/ICB oversight of AI-related safety learning)
+
+- **Key components:**
+  - Patient Safety Incident Response Policy — Process artefact, no metric
+  - Patient Safety Incident Response Plan (PSIRP, 12–18 month forward plan) — Process artefact, no metric
+  - Patient Safety Incident Response Standards — Process artefact, no metric
+  - Patient Safety Incident Investigation (PSII) — Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-15 Time-to-Correct
+
+- **Learning response types:**
+  - After Action Review (AAR) — Gap
+  - MDT Review — Gap
+  - PSII (deepest response) — Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE), PI.E2E-8 Error Attribution Analysis
+  - SEIPS-informed analysis — Gap (no metric for whole-system analysis of AI incidents)
+  - Swarm huddle / thematic review / horizon scanning — Gap
+
+- **Engagement requirements:**
+  - Patients/families (early contact, named liaison, updates, draft review, access to final report) — Gap
+  - Staff (psychological support, Just Culture, protection from blame) — Gap
+  - Community (thematic issues) — Gap
+
+- **Board oversight:**
+  - Named executive lead for patient safety — Gap
+  - Quarterly reports on safety themes and learning — Gap
+  - PSIRP board sign-off — Gap
+  - LFPSE integration — Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE)
+
+- **Differences from old SI Framework:** PSIRF moves from blame-based RCA to systems thinking; from prescribed investigations to proportionate response; from transactional commissioner sign-off to supportive ICB/NHSE oversight. The taxonomy's existing incident metrics (GV.SG-11, GV.SG-14) capture that an incident occurred but not the organisation's systems-learning response.
+
+**Overall position:** PSIRF complements DCB0129 Stage 7 Incident Management (already mapped). DCB0129 is about documenting the technical safety lifecycle; PSIRF is about organisation-level systems learning from live incidents. The taxonomy captures incident occurrence (GV.SG-11 LFPSE, GV.SG-14 Near-Miss Reporting Rate) and technical attribution (PI.E2E-8 Error Attribution Analysis) but not the PSIRF-required engagement, learning, and oversight responses. This is the clearest governance gap in the existing taxonomy.
+
+**Gaps:**
+- Systems-based root cause analysis readiness (SEIPS-informed)
+- Compassionate engagement with affected patients/families
+- Staff support and Just Culture protection
+- Learning implementation tracking (did the learning actually change practice?)
+- Board-level patient safety reporting on AI incidents
+- Proportionate response type selection (when is AAR appropriate vs PSII?)
+
+---
+
+### PRSB Clinical Documentation Standards
+
+**Publisher:** Professional Record Standards Body (community interest company, endorsed by Royal Colleges)
+**Scope:** Semantic structure of clinical records — what information must be recorded and how it relates. Distinct from FHIR/openEHR which define technical transport.
+**Mandatory status:** Increasingly expected for NHS-commissioned systems; referenced in NHS Standard Contract. Not yet formally mandatory but becoming de facto standard.
+**AVT relevance:** AVT systems generating clinical notes must map their outputs to PRSB structures to ensure interoperability and clinical completeness. PRSB defines the "what" (mandatory information elements); FHIR UK Core defines the "how" (wire format).
+
+**Key dimensions and taxonomy coverage:**
+
+- **Main PRSB standards:**
+  - Core Information Standard (CIS) — foundational; gap (no semantic-completeness metric)
+  - GP Connect Access Record — gap
+  - Outpatient Letter Standard — gap
+  - Discharge Summary Standard — gap
+  - Mental Health Inpatient Discharge Summary — gap
+  - Emergency Care Discharge Summary — gap
+  - Transfer of Care Around Medicines (ToCAM) — partial via TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification
+  - About Me — gap
+  - End of Life Care — gap
+  - Maternity Record Standard — gap
+  - Palliative and End of Life Care — gap
+
+- **Common header set (across standards):**
+  - Patient demographics + NHS Number — covered by TP.WB-3 Field Mapping Accuracy
+  - Allergies and adverse reactions — covered by TP.WB-1 Write-back Fidelity (specifically flagged), TP.WB-4 Update vs Append Behaviour
+  - Medications (current, changes, reason) — covered by TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification, TP.CC-5 dm+d Medication Coding Accuracy
+  - Problems / diagnoses (SNOMED) — covered by TP.CC-1 SNOMED Code Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy
+  - Procedures (OPCS) — covered by TP.CC-4 OPCS-4 Procedure Coding Accuracy
+  - Observations / vital signs — partial via TP.WB-3 Field Mapping Accuracy
+  - Communication needs (AIS flags, interpreter needs) — gap
+  - Consent and preferences — partial via GV.PD-8 Consent Verification Accuracy
+  - Legal status (MHA, DoLS, LPA, advance decisions) — gap
+  - Clinical narrative (history, examination, assessment, plan) — partial via TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-20 Uncertainty Marker Preservation
+  - Safety netting — gap
+
+- **Narrative vs structured trade-off:** PRSB explicitly preserves narrative text as valuable and does not mandate full structurisation. The taxonomy captures aspects of this — TP.SN-22 Style & Format Consistency, TP.SN-23 Length Appropriateness — but not the narrative-preservation-vs-structurisation trade-off directly. An AVT that over-structures at the expense of narrative fails the PRSB spirit; an AVT that preserves narrative but fails to populate required coded fields also fails.
+
+- **Cardinality (Mandatory / Required-if-known / Optional):** Every data item in a PRSB standard has cardinality. The taxonomy has no metric for "is mandatory information present in the AVT output?"
+
+- **Royal College endorsement:** AoMRC, RCGP, RCP, RCS, RCEM, RCPsych, RCPCH, RCOG, RCR, RCPath, RCA, RCN, RPS, AHP federation, patient groups. Process criterion, no metric.
+
+- **Relationship to FHIR UK Core:** PRSB data items are explicitly mapped to FHIR UK Core resources/elements in published mapping tables. TP.WB-6 FHIR R4 Resource Conformance Rate partially covers this, but conformance to the wire format doesn't guarantee PRSB semantic completeness.
+
+**Overall position:** PRSB is the clearest gap across all seven new standards. The taxonomy has strong technical integration metrics (TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-6 FHIR R4 Resource Conformance) and strong content fidelity metrics (TP.SN-5 Hallucination, TP.SN-6 Omission) but no metric for "does the AVT output include all PRSB-mandatory information elements for the applicable standard?" A PRSB-aware AVT should be able to report per-standard compliance (CIS, Outpatient Letter, Discharge Summary, etc.) as a procurement signal.
+
+**Gaps:**
+- PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)
+- Mandatory information element coverage
+- Professional narrative preservation (narrative vs over-structurisation trade-off)
+- Communication needs (AIS) information capture
+- Legal status information capture (MHA, DoLS, advance decisions)
+- Safety netting information capture
+
+---
+
+### Caldicott Principles (2020 revision)
+
+**Publisher:** National Data Guardian (originally Caldicott Report 1997; 2020 revision added Principle 8)
+**Scope:** Eight principles governing the use of confidential patient information. Foundational to NHS information governance and the legal basis for DSPT operationalisation.
+**Mandatory status:** Not statutory but operationalised through Common Law Duty of Confidentiality, UK GDPR, CQC Regulation 17, and DSPT. Every NHS organisation must have a Caldicott Guardian (mandatory since 1999).
+**AVT relevance:** Each Caldicott principle has a direct AVT application — purpose justification in DPIA, minimum necessary data processing, Principle 8 inform-patient obligation mapping to verbal notification and dissent recording.
+
+**Key dimensions and taxonomy coverage:**
+
+- **Principle 1 — Justify the purpose(s)**: Partial — GV.CR-7 DPIA Template Completion Rate evidences purpose documentation, but "justify" is judgement-based. Gap: DPIA justification quality metric.
+
+- **Principle 2 — Use confidential information only when it is necessary**: Partial — GV.PD-4 Data Minimisation Score partially addresses this. Gap: "necessity" judgement metric for AVT processing of specific consultation types (e.g. should AVT be used for safeguarding or mental health consultations?).
+
+- **Principle 3 — Use the minimum necessary confidential information**: Partial — GV.PD-4 Data Minimisation Score addresses aggregate minimisation. Gap: per-data-item necessity documentation.
+
+- **Principle 4 — Access on a strict need-to-know basis**: Covered by GV.VT-7 Sub-Processor Transparency, GV.SC-9 Cross-Patient Information Leakage Rate, GV.VT-4 Audit Trail Completeness.
+
+- **Principle 5 — Everyone aware of their responsibilities**: Covered by GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.TC-3 Refresher Training & CPD Compliance.
+
+- **Principle 6 — Comply with the law**: Covered by GV.CR-6 Clinical Safety Case Completeness, GV.CR-7 DPIA Template Completion Rate, GV.PD-9 Cross-Border Data Transfer Compliance, GV.PD-10 Subject Access Request Fulfilment, GV.PD-11 Right to Erasure Compliance.
+
+- **Principle 7 — Duty to share for individual care**: Covered by TP.WB-1 Write-back Fidelity (ensures generated records flow into EPR for continuity of care), TP.WB-2 Integration Error Rate. The principle is that "AI-generated" is not an excuse to withhold information — the taxonomy ensures the information flows correctly.
+
+- **Principle 8 — Inform patients and service users** *(added 2020)*: Directly covered by GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance, GV.CR-3 AI-Generated Content Labelling Compliance, IO.PX-1 Patient Opt-Out Rate. This is the clearest direct mapping between a Caldicott principle and existing taxonomy metrics.
+
+- **Caldicott Guardian role:** Senior person in every NHS organisation, UKCGC-trained, advises on complex IG decisions, represents confidentiality at board level. Distinct from DPO (statutory UK GDPR role) and SIRO (risk ownership). Process role, no metric for Guardian's AI-specific engagement.
+
+- **Relationship to UK GDPR and Common Law Duty of Confidentiality**: Three overlapping regimes. UK GDPR lawful basis does not automatically satisfy the Common Law Duty of Confidentiality; both must be met. Caldicott operationalises the CLDC inside health and care. Existing DSPT mapping covers the statutory floor; Caldicott is the ethical/professional framework on top.
+
+- **National Data Guardian role:** Statutory (Health and Social Care (National Data Guardian) Act 2018). Publishes guidance with "have regard to" obligation. Publications directly relevant: 2020 Caldicott Principles, NDG Data Security Standards (underpin DSPT), public benefit test.
+
+**Overall position:** Caldicott is largely operationalised by DSPT (already mapped). This section makes the strategic governance layer explicit for readers who come from an IG/ethics perspective rather than an operational security one. Principle 8 is the strongest direct mapping to existing metrics; Principles 4–7 are well covered; Principles 1–3 have partial coverage because judgement-based "justification" and "necessity" don't reduce to single metrics.
+
+**Gaps:**
+- DPIA justification quality under Principle 1
+- Consultation-type appropriateness under Principle 2 (e.g. AVT in safeguarding/MH consultations)
+- Per-data-item necessity documentation under Principle 3
+- Caldicott Guardian AI-specific engagement (review of AVT deployment by the Guardian)
+
+---
+
 ### Gap Summary
 
 Gaps where the taxonomy has no coverage against a standard's requirements:
