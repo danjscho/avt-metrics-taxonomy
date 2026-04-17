@@ -1,5 +1,60 @@
 # Changelog
 
+## v3.1 (unreleased)
+
+### Extended Standards Mapping
+
+Added assertion-level or higher-level mapping for seven additional NHS/UK standards. Mapping only — no new metrics added to taxonomy; gaps flagged for future consideration.
+
+**Assertion-level (formal standards):**
+- **MHRA SaMD / AIaMD** — Change Programme workstreams (WP1–WP11), SI 2024 No. 1368 Post-Market Surveillance (in force June 2025), Transparency Guiding Principles (June 2024), GMLP 10 principles (Oct 2021)
+- **NICE Evidence Standards Framework for DHTs (ECD7)** — all 21 numbered standards across 5 lifecycle areas, Tier A/B/C classification, AI-specific provisions (Standards 4, 5, 6, 15, 16)
+- **FHIR UK Core / INTEROPen** — STU1/STU2/STU3 release status, per-profile conformance, UK-specific extensions (NHS Number verification, Ethnic Category, etc.), refinement of TP.WB-6 to mean UK Core not generic FHIR R4
+
+**Higher-level summary:**
+- **CQC Assessment for AI** — GP Mythbuster 109 baseline assertions, Five Key Questions (Safe/Effective/Caring/Responsive/Well-led), CSO expectations (flagged as emerging 2025–26)
+- **Patient Safety Incident Response Framework (PSIRF)** — four PSIRF principles, response types (AAR, PSII, SEIPS), engagement and board oversight requirements
+- **PRSB Clinical Documentation Standards** — Core Information Standard, Outpatient Letter, Discharge, etc.; common header set; narrative vs structured trade-off; relationship to FHIR UK Core
+- **Caldicott Principles (2020 revision)** — all 8 principles with direct metric mapping (Principle 8 maps directly to existing GV.CR-1/2/3), Caldicott Guardian role, NDG statutory context
+
+### Proposed New Metrics (Not Yet Implemented)
+
+28 candidate metrics flagged across the 7 new standards to close identified gaps:
+- 5 from MHRA (classification, PCCP, PMS reports, transparency, training data)
+- 5 from NICE ESF (tier classification, silent mode, subgroup drift, cost-effectiveness, budget impact)
+- 3 from FHIR UK Core (per-resource conformance, UK extensions, STU version targeting)
+- 4 from CQC (board governance, CSO capacity, AI complaints, Reg 17 record quality)
+- 4 from PSIRF (SEIPS analysis, compassionate engagement, Just Culture, learning tracking)
+- 4 from PRSB (semantic completeness, narrative preservation, AIS capture, legal status)
+- 3 from Caldicott (DPIA justification, consultation appropriateness, per-item necessity)
+
+Distribution: 6 × Tier 1, 19 × Tier 2, 3 × Tier 3. Highest-leverage addition: **TP.WB-11 PRSB Semantic Completeness** (appears as gap across multiple standards).
+
+### New Responsible AI Lens Document
+
+New cross-cutting file `taxonomy/_responsible-ai-lens.md` providing a policy-intent view of the taxonomy complementary to standards mapping and applicability classification.
+
+**Part A: DSIT AI Playbook for the UK Government (Feb 2025) — 10 principles:**
+- P1 (Know AI and its limitations), P2 (Lawful/ethical), P3 (Security), P4 (Meaningful human control), P5 (Lifecycle management), P6 (Right tool for the job), P7 (Open and collaborative), P8 (Commercial colleagues), P9 (Skills and expertise), P10 (Organisation policies and assurance)
+- Each principle has narrative + metric table + gap notes
+
+**Part B: Six Responsible AI Ethical Themes** (AI Regulation White Paper five + Playbook-added sixth):
+- T1 (Safety, Security and Robustness), T2 (Transparency and Explainability), T3 (Fairness), T4 (Accountability and Governance), T5 (Contestability and Redress), T6 (Societal Wellbeing and Public Good)
+- Each theme has narrative + metric table + trade-off notes
+
+**Part C: Coverage Matrix** — 25 policy-lever metrics that cross-cut 3+ principles/themes simultaneously. Five "megas" cross 5–6 axes: GV.SG-11 (Adverse Event/LFPSE), GV.VT-4 (Audit Trail), GV.CR-3 (AI Content Labelling), HL.HF-1 (Edit Rate), IO.PX-1 (Patient Opt-Out).
+
+**Part D: Gaps** — 20 principle-level + 18 theme-level gaps identified; cross-referenced to Proposed New Metrics. Societal Wellbeing (T6) has highest gap concentration; P6 (Right tool) and P7 (Openness) weakest principles.
+
+### Build
+
+- `build.py` now assembles from 28 files (was 27) — added `_responsible-ai-lens.md`
+- All 214 metric reference IDs preserved; no existing metrics changed
+- Tier counts unchanged: 43 Tier 1 / 92 Tier 2 / 79 Tier 3
+- All metric references in new sections validated against assembled taxonomy
+
+---
+
 ## v3.0 (unreleased)
 
 ### Reference IDs
