@@ -16,6 +16,7 @@ FILES = [
     "_contents.md",
     "_applicability.md",
     "_standards-mapping.md",
+    "_responsible-ai-lens.md",
     "part-a/audio-capture.md",
     "part-a/asr-transcription.md",
     "part-a/diarisation.md",

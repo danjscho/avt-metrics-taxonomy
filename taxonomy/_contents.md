@@ -41,7 +41,8 @@
 **Cross-cutting**
 
 - [Applicability Classification](#applicability-classification) — which metrics are AVT-specific, which apply to any healthcare AI system
-- [Standards Mapping](#standards-mapping) — assertion-level mapping to DTAC, DSPT, DCB0129/0160, NHS LLM Evaluation Framework
+- [Standards Mapping](#standards-mapping) — assertion-level mapping to DTAC, DSPT, DCB0129/0160, NHS LLM Evaluation Framework, MHRA SaMD/AIaMD, NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, and Caldicott Principles
+- [Responsible AI Lens](#responsible-ai-lens) — policy-intent view against the DSIT AI Playbook's 10 principles and the six Responsible AI ethical themes
 
 *Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Some families are cross-cutting, spanning multiple groups and pipeline layers (e.g. Medication Safety Thread spans Summarisation, Clinical Coding, and Patient Experience). Family framings appear before the first metric of each family and provide parent-construct context. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation — they are additive context within the existing group structure.*
 
