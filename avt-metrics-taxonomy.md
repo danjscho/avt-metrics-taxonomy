@@ -1405,13 +1405,43 @@ Gaps where the taxonomy has no coverage against a standard's requirements:
 |-----|----------------------|----------|
 | **Web accessibility (WCAG 2.2 AA)** | DTAC D1.4.1 | Low — UI concern, not clinical AI pipeline |
 | **Accessible Information Standard** | DTAC D1.3 | Low — UI concern, not clinical AI pipeline |
-| **Total cost of ownership / cost-effectiveness** | LLM Framework (Cost) | Medium — relevant to deployment decisions |
+| **Total cost of ownership / cost-effectiveness** | LLM Framework (Cost), NICE ESF Standard 18 | Medium — relevant to deployment and commissioning decisions |
 | **Benchmark relevance decay** | LLM Framework (Benchmark relevance) | Medium — implicit in Meta-evaluation but not explicit |
-| **Scalability / concurrency testing** | LLM Framework (Scalability) | Medium — partially covered by latency and uptime |
+| **Scalability / concurrency testing** | LLM Framework (Scalability), NICE ESF Standard 21 | Medium — partially covered by latency and uptime |
 | **SME involvement depth** | LLM Framework (SME involvement) | Low — taxonomy assigns Responsible Actors but doesn't quantify SME engagement |
 | **Few-shot prompt bias** | LLM Framework (Bias — in-context learning) | Low — not applicable to pipeline-based AVT systems |
 | **Structured staff feedback mechanism** | LLM Framework (Feedback mechanism) | Low — partially covered by incident reporting |
 | **Job security / workforce impact** | LLM Framework (Society) | Low — partially covered by skill attenuation metrics |
+| **Medical device classification documentation** | MHRA WP1/WP2 | Medium — process documentation, not performance |
+| **PCCP documentation for adaptive algorithms** | MHRA WP11, WP4-04 | Medium — critical for adaptive AVT |
+| **PMSR/PSUR report completeness** | MHRA SI 2024 No. 1368 | Medium — regulatory reporting artefact |
+| **MHRA Transparency WHAT content items** | MHRA Transparency Principles (June 2024) | Medium — partial coverage; no composite |
+| **Silent mode evaluation evidence** | NICE ESF Standard 15 (AI best practice) | Medium — key AI-specific provision |
+| **Subgroup drift monitoring composite** | NICE ESF Standard 16 (AI best practice) | Medium — metrics exist but not assembled |
+| **Cost-effectiveness / QALY** | NICE ESF Standard 18 | High for Tier C AVT — required for NICE appraisal |
+| **Budget impact analysis composite** | NICE ESF Standard 17 | Medium — GV.OP-7 is partial |
+| **Per-profile UK Core conformance stratification** | FHIR UK Core | High — aggregate TP.WB-6 is too coarse |
+| **UK-specific FHIR extension conformance** | FHIR UK Core | Medium — NHS Number, Ethnic Category, etc. |
+| **STU version targeting documentation** | FHIR UK Core | Medium — STU1 cannot write Composition/Condition/Observation |
+| **Board-level AI governance mechanism** | CQC Well-led, PSIRF board oversight | High — named accountability |
+| **Named accountable director for AI** | CQC Well-led | High — regulatory inspection point |
+| **CSO capacity for AI oversight** | CQC Well-led, DCB0129 | Medium — distinct from CSO sign-off |
+| **AI-specific patient complaint handling** | CQC Responsive | Medium — emerging inspection requirement |
+| **Record quality composite (Reg 17)** | CQC Safe / Well-led (Mythbuster 109) | Medium — Regulation 17 alignment |
+| **Systems-based root cause analysis (SEIPS)** | PSIRF | High — PSIRF mandatory approach |
+| **Compassionate engagement with affected patients/families** | PSIRF | High — PSIRF principle |
+| **Staff Just Culture protection** | PSIRF | Medium — organisation-level |
+| **Learning implementation tracking** | PSIRF | Medium — did learning change practice? |
+| **PRSB semantic completeness per standard** | PRSB (all standards) | High — clearest gap; no existing metric |
+| **Mandatory information element coverage** | PRSB | High — cardinality not measured |
+| **Professional narrative preservation** | PRSB | Medium — narrative vs over-structurisation trade-off |
+| **Communication needs (AIS) capture** | PRSB | Medium — accessibility information |
+| **Legal status information capture** | PRSB | Medium — MHA, DoLS, advance decisions |
+| **Safety netting information capture** | PRSB | Medium — safety-critical handoff |
+| **DPIA justification quality** | Caldicott Principle 1 | Medium — judgement-based |
+| **Consultation-type appropriateness for AVT** | Caldicott Principle 2 | Medium — safeguarding/MH considerations |
+| **Per-data-item necessity documentation** | Caldicott Principle 3 | Medium — minimum necessary |
+| **Caldicott Guardian AI engagement** | Caldicott (Guardian role) | Low — process, not metric |
 
 Gaps where the taxonomy provides coverage that no standard addresses:
 
@@ -1424,7 +1454,94 @@ Gaps where the taxonomy provides coverage that no standard addresses:
 | Post-generation correction family (4 metrics) | No standard addresses human-AI interaction in clinical documentation |
 | EPR write-back safety sub-cluster (4 metrics) | DTAC addresses interoperability but not write-back safety semantics |
 | Medication Safety Thread family (4 metrics) | No standard addresses medication accuracy across the AI pipeline |
+| Demographic Equity Disaggregation family (7 metrics) | Standards require fairness but don't prescribe disaggregation method |
 | Meta-evaluation (7 metrics) | No standard addresses measurement science quality |
+
+---
+
+### Proposed New Metrics (Not Yet Implemented)
+
+The mapping exercise identified gaps where the taxonomy could be extended with new metrics to close assurance gaps. These are **informational only** — no metrics have been added to the taxonomy in this round. Each candidate gives a proposed reference ID slot (the next available number in the relevant group), a short description, the source standard(s) that would be satisfied, and a priority tier rationale.
+
+If adopted in a future round, metrics would need full dimensions-table entries matching the existing format (Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phases, Responsible Actors, Maturity, Outcome Type, Source).
+
+#### From MHRA SaMD/AIaMD
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| GV.CR-11 | Medical Device Classification Documentation | Whether the AVT system's SaMD classification (Class I/IIa/IIb/III) is documented with justification | MHRA WP1/WP2 | 🟢 1 — deployer must know the regulatory status before go-live |
+| GV.SG-18 | PCCP Documentation Completeness | Whether Predetermined Change Control Plans cover model updates, thresholds, and rollback | MHRA WP11, WP4-04 | 🟡 2 — required for adaptive/retrained models |
+| GV.VT-9 | Post-Market Surveillance Report Currency | PMSR (Class I/IIa) availability on demand; PSUR (Class IIb/III) annual currency | MHRA SI 2024 No. 1368 | 🟡 2 — regulatory reporting cadence |
+| GV.VT-10 | MHRA Transparency Content Completeness | Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle) | MHRA Transparency Principles | 🟡 2 — composite of several partial areas |
+| GV.PD-12 | Training Data Representativeness Documentation | Evidence that training data covers intended patient population (age, ethnicity, accent, comorbidity) | MHRA GMLP-3 | 🟡 2 — foundational for bias mitigation |
+
+#### From NICE Evidence Standards Framework
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| ES.ME-8 | NICE ESF Tier Classification Documentation | Whether the AVT deployment is classified as Tier A / B / C with justification | NICE ESF Section B | 🟢 1 — required before evidence assembly |
+| ES.ME-9 | Silent Mode Evaluation Coverage | Evidence that AVT was run in silent mode on local data before go-live | NICE ESF Standard 15 (best practice) | 🟡 2 — key AI-specific provision |
+| ES.ME-10 | Subgroup Drift Monitoring Plan | Documented plan for monitoring performance drift across demographic subgroups post-deployment | NICE ESF Standard 16 (best practice) | 🟡 2 — composite of existing drift metrics |
+| GV.OP-10 | Cost-Effectiveness Analysis Availability | For Tier C AVT: CEA with QALY or cost-consequences | NICE ESF Standard 18 | 🔵 3 — research-grade for most deployments |
+| GV.OP-11 | Budget Impact Analysis Completeness | Direct and indirect costs; NHS reference costs; sensitivity analysis | NICE ESF Standard 17 | 🟡 2 — extends existing GV.OP-7 |
+
+#### From FHIR UK Core
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| TP.WB-8 | Per-Resource UK Core Conformance | Stratified conformance by resource type (Composition, Condition, AllergyIntolerance, etc.) | FHIR UK Core STU2+ | 🟡 2 — required for NHS interoperability |
+| TP.WB-9 | UK Core Extension Conformance | NHS Number verification status, Ethnic Category, Birth Sex, Death Notification extensions | FHIR UK Core | 🟡 2 — UK-specific data quality |
+| TP.WB-10 | STU Version Targeting Declaration | Vendor declaration of which UK Core STU version(s) supported | FHIR UK Core | 🟢 1 — procurement requirement |
+
+#### From CQC Assessment
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| GV.CR-12 | Board-Level AI Governance Mechanism | Named board committee / director with AI oversight responsibility | CQC Well-led | 🟢 1 — CQC inspection point |
+| GV.CR-13 | CSO AI Oversight Capacity | Protected time / budget for CSO to oversee AI safety (not just sign-off) | CQC Safe / Well-led, DCB0129 | 🟡 2 — operational capacity |
+| IO.PX-11 | AI-Specific Complaint Handling Rate | Rate of complaints received about AI-generated records and their resolution time | CQC Responsive | 🟡 2 — patient experience dimension |
+| GV.OP-12 | Record Quality Composite (Reg 17) | Composite of content accuracy, completeness, and timeliness against Reg 17 good-governance standard | CQC Safe, Regulation 17 | 🟡 2 — regulatory alignment |
+
+#### From PSIRF
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| GV.SG-19 | Systems-Based Incident Analysis Rate | Proportion of AI-related safety incidents receiving SEIPS-informed systems analysis | PSIRF principle 2 | 🟡 2 — organisation capability |
+| IO.PX-12 | Compassionate Engagement with Affected Patients | Rate at which patients/families affected by AI-related harm received early contact, named liaison, and draft report review | PSIRF principle 1 | 🟡 2 — rights-based metric |
+| GV.TC-6 | Staff Just Culture Protection | Staff survey on whether they feel supported vs blamed after AI-related incidents | PSIRF principle 1 | 🔵 3 — organisational culture |
+| GV.SG-20 | Learning Implementation Tracking | Did identified learning actually change practice? (closure rate on systemic actions) | PSIRF principle 4 | 🟡 2 — assurance outcome |
+
+#### From PRSB
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| TP.WB-11 | PRSB Semantic Completeness | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.) | PRSB (all standards) | 🟢 1 — clearest measurement gap across all new standards |
+| TP.SN-25 | Professional Narrative Preservation | Ratio of free-text narrative vs structured extraction; flags over-structurisation and loss of clinical nuance | PRSB narrative principle | 🟡 2 — qualitative trade-off |
+| TP.WB-12 | Communication Needs (AIS) Capture | Whether Accessible Information Standard flags (interpreter, BSL, etc.) are captured and preserved | PRSB common header, AIS | 🟡 2 — accessibility-critical |
+| TP.WB-13 | Legal Status Information Capture | Whether MHA status, DoLS, LPA, advance decisions are preserved when present | PRSB common header | 🟡 2 — clinical-legal critical |
+
+#### From Caldicott Principles
+
+| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
+|--------------|----------------------|-------------------|--------|----------------|
+| GV.PD-13 | DPIA Justification Quality | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion | Caldicott Principle 1 | 🟡 2 — extends GV.CR-7 completion metric |
+| GV.CR-14 | Consultation-Type Appropriateness Assessment | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams) | Caldicott Principle 2 | 🟢 1 — high-risk carve-outs |
+| GV.PD-14 | Per-Data-Item Necessity Documentation | DPIA-level documentation of why each data element processed is necessary | Caldicott Principle 3 | 🔵 3 — granular and burdensome but thorough |
+
+#### Summary
+
+| Source Standard | Proposed Metrics | Priority Tier Distribution |
+|-----------------|------------------|------------------------------|
+| MHRA SaMD/AIaMD | 5 | 1 × Tier 1, 4 × Tier 2 |
+| NICE ESF | 5 | 1 × Tier 1, 3 × Tier 2, 1 × Tier 3 |
+| FHIR UK Core | 3 | 1 × Tier 1, 2 × Tier 2 |
+| CQC Assessment | 4 | 1 × Tier 1, 3 × Tier 2 |
+| PSIRF | 4 | 3 × Tier 2, 1 × Tier 3 |
+| PRSB | 4 | 1 × Tier 1, 3 × Tier 2 |
+| Caldicott | 3 | 1 × Tier 1, 1 × Tier 2, 1 × Tier 3 |
+| **Total** | **28** | **6 × Tier 1, 19 × Tier 2, 3 × Tier 3** |
+
+If all 28 proposed metrics were adopted, the taxonomy would grow from 214 to 242 metrics (49 Tier 1, 111 Tier 2, 82 Tier 3). The highest-leverage single addition is **TP.WB-11 PRSB Semantic Completeness** — it appears as a gap across multiple standards (PRSB directly, PRSB via FHIR UK Core, CQC record quality) and has no partial coverage in the existing taxonomy.
 
 # Part A — The Technical Pipeline
 
