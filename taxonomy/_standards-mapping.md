@@ -298,6 +298,247 @@ The framework has 30 evaluation dimensions across three groups. All dimensions i
 
 ---
 
+### MHRA Software and AI as a Medical Device (SaMD / AIaMD)
+
+The MHRA's regulatory position on software and AI as medical devices is delivered through the **Change Programme** (workstreams WP1–WP11), the **joint FDA/Health Canada Guiding Principles**, and the **Post-Market Surveillance Regulations 2024** (SI 2024 No. 1368, in force 16 June 2025). This mapping covers the assessable criteria most relevant to AVT systems.
+
+**Publisher:** Medicines and Healthcare products Regulatory Agency (MHRA)
+**Mandatory status:** Mandatory for systems classified as medical devices under UK MDR 2002; cascades to AVT deployments via vendor compliance obligations
+**AVT relevance:** AVT systems with clinical decision-support components may qualify as SaMD/AIaMD. Documentation-only systems may not, but the AI RIG and Transparency principles are widely applied as best practice regardless of classification.
+
+#### Change Programme — Classification (WP1, WP2)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP1-01 | What qualifies as SaMD | *Process criterion — no metric equivalent; informs scope* | — |
+| WP1-02 | Crafting intended purpose | *Process criterion — documentation requirement* | — |
+| WP1-03 | Manufacturer definition | *Process criterion — legal determination* | — |
+| WP2-01 | Classification rules (UK MDR 2002, IMDRF-aligned) | GV.CR-6 Clinical Safety Case Completeness (evidences classification) | 🟢 1 |
+| WP2-02 | Regulatory "airlock" sandbox | *Process route — no metric equivalent* | — |
+| WP2-03 | Classification rule interpretation | *Process criterion* | — |
+
+#### Change Programme — Premarket (WP3)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP3-02 | Best-practice SaMD development | GV.VT-2 Telemetry Provision Completeness, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟡 2 / 🔵 3 |
+| WP3-04 | Data-driven SaMD (joint with HRA) | GV.PD-7 Training Data Inclusion Status, TP.ASR-4 Demographic-Disaggregated WER | 🟡 2 |
+| WP3-05 | Human-centred SaMD | HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate, HL.HF-6 Automation Bias Detection | 🟢 1 / 🟡 2 |
+
+#### Change Programme — Post-Market Surveillance (WP4 + SI 2024 No. 1368)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| PMS Plan | Signal detection, complaints handling, literature review, field experience | GV.SG-3 Performance Degradation Detection Latency, GV.SG-12 Cross-Practice Variance Coefficient | 🟡 2 |
+| PMSR (Class I/IIa, on demand) | Periodic non-implantable reporting | *No metric equivalent — reporting artefact* | — |
+| PSUR (Class IIb/III, annually) | Periodic Safety Update Report | *No metric equivalent — reporting artefact* | — |
+| WP4-02 Reportable incidents (including indirect harm) | Documentation errors causing downstream clinical harm | GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate | 🟢 1 |
+| Trend reporting | Statistically significant increases in non-serious incidents | GV.SG-12 Cross-Practice Variance Coefficient | 🟡 2 |
+| WP4-03 Change management | Post-deployment changes and their re-evaluation | GV.SG-2 Model Update Impact Score, GV.VT-1 Model Change Notification Compliance | 🟡 2 / 🟢 1 |
+| WP4-04 Predetermined Change Control Plans | PCCPs for AIaMD | GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
+| Field Safety Corrective Action (FSCA) | Corrective action execution | GV.SG-15 Time-to-Correct, GV.VT-5 Incident Disclosure Compliance | 🟡 2 / 🟢 1 |
+| Field Safety Notices (FSN) | Targeted notifications | GV.VT-5 Incident Disclosure Compliance | 🟢 1 |
+| Reporting timelines (2/10/15 working days) | Serious threat / death / other serious incidents | GV.SG-16 SPI Escalation Response Time | 🟡 2 |
+
+#### Change Programme — Cybersecurity (WP5)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP5-01 / 02 | Cybersecurity legislation and guidance | GV.SC-1 Prompt Injection Resistance Rate, GV.SC-2 Jailbreak Resistance Score | 🟡 2 |
+| WP5-03 | Unsupported software | GV.SG-1 Model Version Tracking | 🟢 1 |
+| WP5-04 | Vulnerability reporting | GV.VT-5 Incident Disclosure Compliance | 🟢 1 |
+
+#### Change Programme — AI Rigour (WP9)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP9-01 | GMLP guiding principles (Oct 2021) | *Cross-references 10 GMLP principles below* | — |
+| WP9-05 | "AIaMD for all" — bias across populations | TP.ASR-4 Demographic-Disaggregated WER, IO.FE-4 Intersectional Performance, TP.CC-9 Coding Equity Index | 🟡 2 / 🔵 3 |
+| WP9-06 | Bias identification standards | IO.FE-3 Clinical Domain Performance Variance, IO.FE-5 Intersectional Compound Fairness Score | 🟡 2 / 🔵 3 |
+| WP9-07 | Experimental bias detection / mitigation | IO.FE-2 Accent Taxonomy Standardisation, TP.ASR-5 Speaker-Stratified WER | 🟡 2 / 🔵 3 |
+
+#### Change Programme — Glass Box / Interpretability (WP10)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP10-01 | Human-centred AIaMD | TP.ASR-11 ASR Confidence Exposure, TP.SN-20 Uncertainty Marker Preservation, TP.SN-12 Linked Evidence / Provenance Tracing | 🟡 2 / 🟢 1 |
+| WP10-02 | Trustworthy AIaMD standards | HL.HF-8 Trust Calibration Survey, HL.HF-6 Automation Bias Detection | 🟡 2 |
+
+#### Change Programme — Ship of Theseus / Adaptivity (WP11)
+
+| MHRA Criterion | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| WP11-01 | Adaptivity guiding principles (static/batch/individualised/continuous) | GV.SG-1 Model Version Tracking, GV.SG-2 Model Update Impact Score | 🟢 1 / 🟡 2 |
+| WP11-02 | Concept drift and significant-change detection | GV.SG-6 Concept Drift in Clinical Notes, GV.SG-3 Performance Degradation Detection Latency | 🔵 3 / 🟡 2 |
+| WP11-03 | PCCPs for AIaMD | GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
+
+#### Transparency Guiding Principles (June 2024, joint MHRA/FDA/Health Canada)
+
+Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contains the most assessable content items:
+
+| Transparency Dimension | Content Items | Taxonomy Metrics | Tier |
+|------------------------|---------------|-----------------|------|
+| **WHAT — Device characterisation** | Medical purpose, disease/condition, intended users, use environments, target populations | *Partial gap — no specific "device characterisation completeness" metric* | — |
+| **WHAT — Workflow integration** | How device fits workflow, intended inputs/outputs | HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate | 🟢 1 |
+| **WHAT — Performance & safety** | Performance details, benefits/risks, bias-management, clinical study summaries | TP.ASR-1 WER, TP.SN-5 Hallucination Rate, GV.SG-9 Safety Performance Indicators | 🟡 2 / 🟢 1 |
+| **WHAT — Model logic & development** | Output logic, ML approach, training/testing data characterisation | GV.PD-7 Training Data Inclusion Status, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟡 2 / 🔵 3 |
+| **WHAT — Limitations** | Known biases, failure modes, confidence intervals, data gaps, validation envelope | TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.ASR-10 ASR Confidence Calibration, TP.AC-3 Acoustic Environment Profiling | 🟢 1 / 🟡 2 |
+| **WHAT — Lifecycle** | Local acceptance testing, ongoing monitoring, change-management, vulnerability mitigation | GV.SG-3 Performance Degradation Detection Latency, GV.SG-1 Model Version Tracking | 🟡 2 / 🟢 1 |
+
+#### Good Machine Learning Practice (GMLP) — 10 Principles (Oct 2021)
+
+| GMLP Principle | Description | Taxonomy Metrics | Tier |
+|----------------|-------------|-----------------|------|
+| GMLP-1 | Multi-Disciplinary Expertise | *Organisational requirement — no direct metric* | — |
+| GMLP-2 | Good Software and Engineering Practices | GV.SC-1/2 security metrics, GV.VT-4 Audit Trail Completeness | 🟡 2 |
+| GMLP-3 | Representative Datasets | TP.ASR-4 Demographic-Disaggregated WER, GV.PD-7 Training Data Inclusion Status | 🟡 2 |
+| GMLP-4 | Training Data Independent from Test Data | *No metric equivalent — methodology check* | — |
+| GMLP-5 | Best Available Reference Datasets | GV.VT-3 Benchmark & Evaluation Data Accessibility | 🔵 3 |
+| GMLP-6 | Model Design Tailored to Data and Intended Use | ES.ME-1 Proximal vs Distal Outcome Distinction | 🔵 3 |
+| GMLP-7 | Focus on Human-AI Team Performance | HL.HF-1 Edit Rate, HL.HF-6 Automation Bias Detection, HL.HF-8 Trust Calibration Survey | 🟢 1 / 🟡 2 |
+| GMLP-8 | Testing in Clinically Relevant Conditions | TP.AC-3 Acoustic Environment Profiling, PI.E2E-9 Clinical Decision Equivalence | 🟡 2 / 🔵 3 |
+| GMLP-9 | Users Provided Clear Essential Information | TP.ASR-11 ASR Confidence Exposure, TP.SN-20 Uncertainty Marker Preservation | 🟡 2 / 🟢 1 |
+| GMLP-10 | Deployed Models Monitored, Retraining Risks Managed | GV.SG-3 Performance Degradation Detection Latency, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-5 AI-Generated Data Contamination Rate | 🟡 2 / 🔵 3 |
+
+**Gaps:**
+- Medical device classification documentation (no metric)
+- PCCP documentation for adaptive algorithms (partial — GV.CR-9 is about acceptance criteria, not the PCCP itself)
+- PMSR / PSUR report completeness (reporting artefacts, no metric)
+- Transparency documentation for all WHAT content items as a composite
+- Device characterisation completeness
+
+**Taxonomy extends:** Strong coverage through Safety & Governance (incident detection and response), Security & Adversarial Robustness, Privacy & Data Governance, and Vendor Transparency groups. MHRA guidance is process-heavy; the taxonomy provides the measurement substrate that MHRA assumes exists.
+
+---
+
+### NICE Evidence Standards Framework for Digital Health Technologies (ECD7)
+
+**Publisher:** National Institute for Health and Care Excellence (NICE)
+**Version:** ECD7 published 10 December 2018; last substantive update 9 August 2022 (AI provisions)
+**Mandatory status:** Not formally mandatory but de facto required for any DHT claiming NHS clinical benefit; referenced in NICE appraisal, procurement, and ICS commissioning.
+**AVT relevance:** AVT systems typically sit in Tier B1 (Communicating) or Tier C1/C2 (Clinical Management) depending on write-back configuration. A pure transcription tool that does not influence clinical decisions is Tier B1; a tool whose output drives structured coding or decision-support is Tier C1/C2.
+
+ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **minimum** and **best practice** levels across **Tier A/B/C** functional classification. AI-specific provisions are concentrated in Standards 4, 5, 6, 15, and 16.
+
+#### Standards 1–9: Design Factors
+
+| NICE Standard | Description | Taxonomy Metrics | Tier |
+|--------------|-------------|-----------------|------|
+| 1 — Safety & Quality Compliance | UKCA/CE, GDPR, CQC (min); ISO 13485, IEC 82304-1, BS EN 62304 (best) | GV.CR-6 Clinical Safety Case Completeness, GV.CR-7 DPIA Template Completion Rate | 🟢 1 |
+| 2 — User Acceptability | Users in design/testing (min); IEC 62366-1 usability engineering (best) | HL.HF-8 Trust Calibration Survey, IO.PX-7 Full Attentiveness Rate | 🟡 2 |
+| 3 — Environmental Sustainability | Narrative (min); NHS net-zero alignment, quantified GHG (best) | GV.EN-1 Energy Consumption per Clinical Note, GV.EN-2 Carbon Emissions per Inference | 🔵 3 |
+| **4 — Inequalities & Bias Mitigation** ⭐ AI-specific | Describe considerations (min); **document algorithmic bias mitigation** (best) | IO.FE-1 Deployment Equity Index, TP.ASR-4 Demographic-Disaggregated WER, TP.CC-9 Coding Equity Index, IO.FE-5 Intersectional Compound Fairness Score | 🟡 2 / 🔵 3 |
+| **5 — Data Practices** ⭐ AI-specific | Identify datasets (min); **follow MHRA GMLP, dataset diversity** (best) | GV.PD-7 Training Data Inclusion Status, GV.PD-4 Data Minimisation Score | 🟡 2 |
+| **6 — Professional Oversight** ⭐ AI-specific | Articulate oversight level (min); proportionate oversight, override tracking (best) | HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate, HL.HF-6 Automation Bias Detection | 🟢 1 / 🟡 2 |
+| 7 — Health Information Reliability | Validity processes (min); expert review at intervals (best) | TP.SN-3 PDSQI-9, TP.SN-4 CREOLA Error Taxonomy Scores | 🟡 2 |
+| 8 — UK Professional Credibility | Professional involvement (min); expert-group utility evidence (best) | *Process criterion — no metric equivalent* | — |
+| 9 — Safeguarding | Access controls, moderation (min); documented agreements, qualified oversight (best) | GV.PD-8 Consent Verification Accuracy, TP.AC-4 Bystander Voice Detection Rate | 🟢 1 / 🔵 3 |
+
+#### Standards 10–13: Describing Value
+
+| NICE Standard | Description | Taxonomy Metrics | Tier |
+|--------------|-------------|-----------------|------|
+| 10 — Intended Purpose & Target Population | Inclusion/exclusion (min); subgroup variation (best) | IO.FE-3 Clinical Domain Performance Variance, IO.FE-6 Rare Presentation Handling | 🟡 2 / 🔵 3 |
+| 11 — Current Pathway | Clinical guidelines + consultation (min) | *Process criterion — no metric equivalent* | — |
+| 12 — Proposed Pathway | Differences from current care (min); workforce changes, boundaries crossed (best) | GV.OP-1 Documentation Time per Consultation, GV.OP-6 Adoption Rate & Selective Use Patterns | 🟢 1 |
+| 13 — Expected Impacts | Compare benefits/costs (min); confidence intervals, sensitivity analysis (best) | IO.PX-9 Downstream Diagnostic Accuracy, PI.E2E-9 Clinical Decision Equivalence | 🔵 3 |
+
+#### Standards 14–16: Demonstrating Performance
+
+| NICE Standard | Description | Taxonomy Metrics | Tier |
+|--------------|-------------|-----------------|------|
+| 14 — Effectiveness Evidence *(Tier C only)* | Clinical-mgmt: real-world evaluations; Diagnostic: accuracy vs reference; Treatment: RCTs preferred | PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, IO.PX-10 Medication Error Rate Differential | 🔵 3 |
+| **15 — Real-World Evidence** ⭐ AI-specific | Pilot site statement (min); **"silent mode" evaluation for AI on local data** (best) | GV.SG-12 Cross-Practice Variance Coefficient, GV.OP-6 Adoption Rate & Selective Use Patterns | 🟡 2 / 🟢 1 |
+| **16 — Performance Monitoring Plan** ⭐ AI-specific | Usage vs expected (min); **AI/ML: post-deployment reporting, retraining schedules, subgroup drift** (best) | GV.SG-3 Performance Degradation Detection Latency, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-6 Concept Drift in Clinical Notes | 🟡 2 / 🔵 3 |
+
+#### Standards 17–18: Delivering Value
+
+| NICE Standard | Description | Taxonomy Metrics | Tier |
+|--------------|-------------|-----------------|------|
+| 17 — Budget Impact Analysis | Direct costs vs comparator (min); indirect costs, NHS reference costs (best) | GV.OP-7 Cost per Consultation | 🟡 2 |
+| 18 — Cost-Effectiveness Analysis | Cost-utility or cost-consequences (min); EQ-5D for QALYs, sensitivity/scenario analyses (best) | *Gap — taxonomy lacks cost-effectiveness or QALY metric* | — |
+
+#### Standards 19–21: Deployment
+
+| NICE Standard | Description | Taxonomy Metrics | Tier |
+|--------------|-------------|-----------------|------|
+| 19 — Deployment Transparency | Data dictionary, input description, infrastructure (min); tolerance for incomplete data, DICOM etc. (best) | GV.VT-2 Telemetry Provision Completeness, TP.WB-6 FHIR R4 Resource Conformance Rate | 🟡 2 |
+| 20 — Communication, Consent & Training | Describe outputs (min); model cards, training approaches (best) | GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.CR-3 AI-Generated Content Labelling Compliance | 🟢 1 / 🟡 2 |
+| 21 — Scalability | Load testing (min); documented methodology vs projected users (best) | GV.OP-5 System Availability / Uptime, PI.E2E-10 Full-Pipeline Latency Budget | 🟢 1 / 🟡 2 |
+
+**Gaps:**
+- Tier A/B/C functional classification documentation for specific AVT deployments
+- "Silent mode" evaluation evidence (Standard 15 best practice) — partial coverage via GV.OP-6 but no dedicated metric
+- Subgroup drift monitoring as a composite (Standard 16 best practice) — metrics exist but not assembled
+- Cost-effectiveness analysis / QALY (Standard 18) — no metric
+- Budget impact analysis composite (Standard 17) — GV.OP-7 is partial
+- Real-world performance data plan documentation (Standard 15)
+
+**Taxonomy extends:** Standards 14–16 (Performance) are well covered. Part A (Technical Pipeline) and Part B (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.
+
+---
+
+### FHIR UK Core / INTEROPen
+
+**Publisher:** NHS England Digital, with HL7 UK; INTEROPen community contribution
+**Scope:** UK-specific FHIR R4 profiles for health and care data exchange. Successor to CareConnect (STU3).
+**Mandatory status:** De facto mandatory for NHS system interoperability; referenced in NHS Standard Contract and procurement.
+**AVT relevance:** AVT systems writing back to EPRs must conform to UK Core profiles, not generic FHIR R4. Different STU versions expose different resources: STU1 is foundational only (no Composition/Condition/Observation); STU2 adds the clinical content profiles AVT actually needs; STU3 adds specialised observations.
+
+#### Release Status
+
+| Release | Base | Status | Relevance for AVT |
+|---------|------|--------|-------------------|
+| **STU1 (1.0.0)** | FHIR R4 | Published | 12 foundational profiles (Patient, Practitioner, Medication*, AllergyIntolerance) — insufficient alone for clinical note write-back |
+| **STU2 (2.0.2)** | FHIR R4 | Released 28 May 2024 (current) | 33 profiles including Composition, Condition, Encounter, Observation, Procedure — the baseline for AVT write-back |
+| **STU3** | FHIR R4 | In development ("Sequence") | ~52 profiles adding specialised vital-sign Observations (NEWS2, blood glucose, alcohol consumption, vital signs) |
+
+#### Assertion-level profile conformance (STU2+ baseline for AVT)
+
+| UK Core Profile | STU | AVT Write-back Relevance | Taxonomy Metrics | Tier |
+|-----------------|-----|--------------------------|-----------------|------|
+| UKCore-Composition | 2+ | Clinical note container; assembles sections | TP.WB-6 FHIR R4 Resource Conformance Rate *(refined: means UK Core, not generic FHIR R4)* | 🟡 2 |
+| UKCore-Encounter | 2+ | Binds note to consultation event | TP.WB-6 FHIR R4 Resource Conformance Rate | 🟡 2 |
+| UKCore-Condition | 2+ | Extracted diagnoses / problems | TP.WB-3 Field Mapping Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy | 🟢 1 / 🟡 2 |
+| UKCore-AllergyIntolerance | 1+ | Extracted allergies (safety-critical) | TP.WB-1 Write-back Fidelity, TP.WB-4 Update vs Append Behaviour | 🟢 1 |
+| UKCore-MedicationStatement | 1+ | Current medications | TP.CC-5 dm+d Medication Coding Accuracy, TP.WB-1 Write-back Fidelity | 🟡 2 / 🟢 1 |
+| UKCore-MedicationRequest | 1+ | New prescriptions | TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification | 🟡 2 |
+| UKCore-Observation | 2+ | Structured vitals from consultation | TP.WB-3 Field Mapping Accuracy | 🟢 1 |
+| UKCore-Procedure | 2+ | Procedures performed/planned | TP.CC-4 OPCS-4 Procedure Coding Accuracy | 🟡 2 |
+| UKCore-ServiceRequest | 2+ | Referrals, tests ordered | TP.WB-3 Field Mapping Accuracy | 🟢 1 |
+| UKCore-Patient | 1+ | Patient demographics | TP.WB-3 Field Mapping Accuracy | 🟢 1 |
+
+#### UK-specific Extensions and Terminology Bindings
+
+| UK Core Extension / Binding | Description | Taxonomy Metrics | Tier |
+|------------------------------|-------------|-----------------|------|
+| NHS Number + NHSNumberVerificationStatus | Primary patient identifier with verification state | TP.WB-3 Field Mapping Accuracy | 🟢 1 |
+| EthnicCategory | UK census code system on Patient | *Gap — no specific ethnic category binding metric* | — |
+| BirthSex extension | UK-specific sex at birth | *Process criterion — no metric equivalent* | — |
+| DeathNotificationStatus | PDS integration | *Gap — no PDS integration metric* | — |
+| ResidentialStatus | UK-specific residential state | *Process criterion* | — |
+| SNOMED CT primary terminology binding | With CodingSCTDescDisplay extension | TP.CC-1 SNOMED Code Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy | 🟡 2 |
+| dm+d for medicinal products | Medication terminology | TP.CC-5 dm+d Medication Coding Accuracy | 🟡 2 |
+| NHS Data Dictionary codes | Administrative data | *Process criterion* | — |
+
+**Refinement of existing metrics (interpretation clarification, not content change):**
+
+| Existing Metric | Refinement |
+|-----------------|-----------|
+| TP.WB-6 FHIR R4 Resource Conformance Rate | "FHIR conformance" for NHS deployment means **UK Core profiles**, not generic FHIR R4. Vendors claiming STU1 compliance cannot write back Composition / Condition / Observation — that is STU2+ capability. Stratify conformance reporting by STU version. |
+| TP.WB-7 openEHR Archetype Conformance | openEHR is the alternative to FHIR in some NHS trusts (particularly mental health). Relevance depends on target EPR. |
+
+**Gaps:**
+- Per-profile UK Core conformance stratification (aggregate TP.WB-6 doesn't distinguish Composition vs Condition vs Observation conformance)
+- UK-specific extension conformance (NHS Number verification status, Ethnic Category, Death Notification, Residential Status)
+- STU version targeting documentation (vendors must declare which STU version they support)
+- INTEROPen-defined extension conformance (beyond UK Core base)
+- PDS integration depth
+
+**Taxonomy extends:** Write-back Safety sub-cluster (TP.WB-1 through TP.WB-4) addresses safety semantics that UK Core profile conformance alone doesn't guarantee. A valid-but-wrong FHIR resource passes conformance but fails fidelity.
+
+---
+
 ### Gap Summary
 
 Gaps where the taxonomy has no coverage against a standard's requirements:
