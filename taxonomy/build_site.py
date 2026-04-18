@@ -204,6 +204,8 @@ def main() -> None:
         text = add_metric_anchors(text)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)
+        if dst_rel == "gaps.md":
+            text = _inject_roadmap_prelude(text)
         if dst_rel == "index.md":
             # Root index page — replace the source h1 and the repeated
             # summary prose with a concise landing block; keep the source's
@@ -532,6 +534,61 @@ def build_crosscuts() -> int:
     total = 1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total
+
+
+def _inject_roadmap_prelude(text: str) -> str:
+    """Insert a 'Near-term priorities' panel at the top of the gaps page,
+    driven by parsed gap data (Tier 1 candidates + High-severity RAI gaps).
+    The source file stays editorial; this is a derived view.
+    """
+    gaps = parse_src.parse_gaps()
+    tier_1 = [g for g in gaps if g.tier == 1]
+    rai_high = [g for g in gaps if g.severity == "High"]
+
+    # Build a compact table of the Tier 1 candidates — the accepted/proposed
+    # set a deployer or standards body would want to tackle first.
+    lines = [
+        "!!! tip \"Near-term priorities\"",
+        "    These candidates combine **Tier 1 classification** (where assigned) "
+        "and **High severity** (Responsible AI lens). They are the highest-leverage "
+        "adds for any future metric round.",
+        "",
+        "### Tier 1 candidates",
+        "",
+    ]
+    if tier_1:
+        lines.append("| ID | Title | Origin |")
+        lines.append("|----|-------|--------|")
+        for g in sorted(tier_1, key=lambda x: (x.origin, x.gap_id or "")):
+            gid = g.gap_id or "—"
+            lines.append(f"| {gid} | {g.title} | {g.origin} |")
+    else:
+        lines.append("_(no Tier 1 candidates currently — earlier rounds promoted all available.)_")
+    lines.append("")
+
+    lines += [
+        "### High-severity policy gaps (RAI lens)",
+        "",
+    ]
+    if rai_high:
+        lines.append("| Origin | Title | Cross-reference |")
+        lines.append("|--------|-------|-----------------|")
+        for g in rai_high:
+            lines.append(f"| {g.origin} | {g.title} | {g.notes} |")
+    else:
+        lines.append("_(no High-severity gaps recorded.)_")
+    lines.append("")
+    lines.append("---")
+    lines.append("")
+
+    # Insert the prelude immediately after the first "## Gaps..." heading + intro
+    # paragraph, which ends at the "---" separator on line 13 in the source.
+    # The post-promotion text starts with "# Gaps & Proposed Metrics (Roadmap)".
+    # Place the prelude right after the first "---" line.
+    pieces = text.split("\n---\n", 1)
+    if len(pieces) == 2:
+        return pieces[0] + "\n\n" + "\n".join(lines) + "\n" + pieces[1]
+    return text + "\n\n" + "\n".join(lines) + "\n"
 
 
 def _landing_page(header_body: str) -> str:
