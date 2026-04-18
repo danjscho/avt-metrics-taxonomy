@@ -392,6 +392,8 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
+**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the UK GDPR exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right (NHSE IG guidance Mar-2026). The capability must still exist for cases where erasure does apply — secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations — which is why this remains a pre-deployment gate.
+
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-11 |
@@ -404,11 +406,11 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
-| **Source** | UK GDPR Article 17 right to erasure |
+| **Source** | UK GDPR Article 17 right to erasure; NHSE IG guidance on ambient scribing (Mar-2026) for individual-care exemption scope |
 
 **Why this tier?**
 
-> Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.
+> Pre-deployment gate to establish the scope, Article 17 applicability exemptions, and technical limitations of erasure. The statutory right is narrowly applicable for individual-care AVT processing but the capability must exist for cases where it does apply (secondary use, training-data withdrawal, dispute resolution). Tier 1 because understanding what erasure *can* and *cannot* deliver is a mandatory input to the DPIA and the privacy notice.
 
 **Formal Definition**
 

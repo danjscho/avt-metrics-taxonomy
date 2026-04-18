@@ -751,11 +751,13 @@ DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions a
 | 1.1.6 | Consent to share reviewed | Consent Verification Accuracy | 🟢 1 |
 | 1.2.2 | Handling objection to processing | Patient Opt-Out Rate, Patient Dissent Recording Rate | 🟢 1 |
 | 1.2.3 | Subject access request process | Subject Access Request Fulfilment | 🟢 1 |
-| 1.2.4 | National data opt-out compliance | Patient Opt-Out Rate | 🟢 1 |
+| 1.2.4 | National data opt-out compliance | *Does not apply to AVT processing for individual care (NHSE IG guidance Mar-2026). NDOO applies only to secondary uses (research, planning, commissioning).* | — |
 | 1.3.5 | Data security risk register | Assurance Debt Accumulation Rate | 🟢 1 |
 | 1.3.7 | Data protection by design | Data Minimisation Score, PII Extraction Attack Success Rate | 🟡 2 |
 | 1.3.8 | DPIA process linked to risk management | DPIA Template Completion Rate | 🟢 1 |
 | 1.4.1 | Records management including retention | Audio Retention Compliance, Transcript Retention Compliance, Audio Time-to-Deletion | 🟢 1 |
+
+> **Note on the National Data Opt-Out (assertion 1.2.4):** NHS England's March 2026 IG guidance for ambient scribing is explicit that the NDOO does *not* apply when AVT is used for individual care. It applies only to secondary uses of confidential patient information (research, planning, commissioning). Deployers must not configure AVT to suppress use based on NDOO flags; patient-level AVT opt-out and per-encounter dissent are separate mechanisms, measured by IO.PX-1 Patient Opt-Out Rate and GV.CR-1 Patient Dissent Recording Rate respectively.
 
 #### Standard 2 — Staff Responsibilities
 
@@ -10214,6 +10216,8 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
+**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the UK GDPR exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right (NHSE IG guidance Mar-2026). The capability must still exist for cases where erasure does apply — secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations — which is why this remains a pre-deployment gate.
+
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-11 |
@@ -10226,11 +10230,11 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
-| **Source** | UK GDPR Article 17 right to erasure |
+| **Source** | UK GDPR Article 17 right to erasure; NHSE IG guidance on ambient scribing (Mar-2026) for individual-care exemption scope |
 
 **Why this tier?**
 
-> Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.
+> Pre-deployment gate to establish the scope, Article 17 applicability exemptions, and technical limitations of erasure. The statutory right is narrowly applicable for individual-care AVT processing but the capability must exist for cases where it does apply (secondary use, training-data withdrawal, dispute resolution). Tier 1 because understanding what erasure *can* and *cannot* deliver is a mandatory input to the DPIA and the privacy notice.
 
 **Formal Definition**
 

@@ -87,11 +87,13 @@ DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions a
 | 1.1.6 | Consent to share reviewed | Consent Verification Accuracy | 🟢 1 |
 | 1.2.2 | Handling objection to processing | Patient Opt-Out Rate, Patient Dissent Recording Rate | 🟢 1 |
 | 1.2.3 | Subject access request process | Subject Access Request Fulfilment | 🟢 1 |
-| 1.2.4 | National data opt-out compliance | Patient Opt-Out Rate | 🟢 1 |
+| 1.2.4 | National data opt-out compliance | *Does not apply to AVT processing for individual care (NHSE IG guidance Mar-2026). NDOO applies only to secondary uses (research, planning, commissioning).* | — |
 | 1.3.5 | Data security risk register | Assurance Debt Accumulation Rate | 🟢 1 |
 | 1.3.7 | Data protection by design | Data Minimisation Score, PII Extraction Attack Success Rate | 🟡 2 |
 | 1.3.8 | DPIA process linked to risk management | DPIA Template Completion Rate | 🟢 1 |
 | 1.4.1 | Records management including retention | Audio Retention Compliance, Transcript Retention Compliance, Audio Time-to-Deletion | 🟢 1 |
+
+> **Note on the National Data Opt-Out (assertion 1.2.4):** NHS England's March 2026 IG guidance for ambient scribing is explicit that the NDOO does *not* apply when AVT is used for individual care. It applies only to secondary uses of confidential patient information (research, planning, commissioning). Deployers must not configure AVT to suppress use based on NDOO flags; patient-level AVT opt-out and per-encounter dissent are separate mechanisms, measured by IO.PX-1 Patient Opt-Out Rate and GV.CR-1 Patient Dissent Recording Rate respectively.
 
 #### Standard 2 — Staff Responsibilities
 
