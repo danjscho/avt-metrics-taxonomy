@@ -1,5 +1,7 @@
 # Build artefacts — derived from taxonomy/ source, not authored
 dist/
+docs/
+site/
 
 # Python
 __pycache__/

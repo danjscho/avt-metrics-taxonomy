@@ -1,0 +1,99 @@
+site_name: AVT Metrics Taxonomy
+site_description: Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings
+site_url: https://example.invalid/avt-taxonomy/
+repo_url: https://github.com/
+edit_uri: ""
+
+docs_dir: docs
+site_dir: site
+
+theme:
+  name: material
+  features:
+    - navigation.tabs
+    - navigation.tabs.sticky
+    - navigation.sections
+    - navigation.indexes
+    - navigation.top
+    - toc.follow
+    - search.suggest
+    - search.highlight
+    - search.share
+    - content.code.copy
+    - content.tabs.link
+    - content.tooltips
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-night
+        name: Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/weather-sunny
+        name: Light mode
+
+plugins:
+  - search
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.highlight:
+      anchor_linenums: true
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+
+nav:
+  - Home: index.md
+  - How to use: how-to-use.md
+  - Quick start (Tier 1): tier-1-quick-reference.md
+  - Browse metrics:
+    - Contents: contents.md
+    - A — Technical Pipeline:
+      - Audio Capture & Environment: groups/audio-capture.md
+      - ASR / Transcription: groups/asr-transcription.md
+      - Diarisation: groups/diarisation.md
+      - Summarisation / NLP: groups/summarisation-nlp.md
+      - Clinical Coding: groups/clinical-coding.md
+      - EPR Write-back: groups/epr-write-back.md
+    - B — Pipeline Interactions:
+      - Partial-Pipeline: groups/partial-pipeline.md
+      - End-to-End Pipeline: groups/end-to-end-pipeline.md
+    - C — The Human Layer:
+      - Human Factors & Workflow: groups/human-factors-workflow.md
+    - D — Impact & Outcomes:
+      - Patient Experience: groups/patient-experience.md
+      - Fairness & Equity: groups/fairness-equity.md
+    - E — System Governance:
+      - Safety & Governance: groups/safety-governance.md
+      - NHS Compliance & Regulatory: groups/nhs-compliance-regulatory.md
+      - Security & Adversarial Robustness: groups/security-adversarial-robustness.md
+      - Privacy & Data Governance: groups/privacy-data-governance.md
+      - Operational: groups/operational.md
+      - Environmental & Sustainability: groups/environmental-sustainability.md
+      - Training & Competency: groups/training-competency.md
+      - Vendor Transparency & Contractual: groups/vendor-transparency-contractual.md
+    - F — Evaluation Science:
+      - Meta-Evaluation: groups/meta-evaluation.md
+  - Cross-cutting:
+    - Applicability: applicability.md
+    - Standards Mapping: standards-mapping.md
+    - Responsible AI Lens: responsible-ai-lens.md
+  - Roadmap (Gaps): gaps.md
+  - Changelog: changelog.md
