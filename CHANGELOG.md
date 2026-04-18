@@ -1,6 +1,25 @@
 # Changelog
 
-## v3.1 (unreleased)
+## v3.1 (2026-04-18)
+
+### Source Audit Tool
+
+New `taxonomy/audit.py` — parses every group file and verifies:
+
+- Every metric heading has a matching **Reference** row in its dimension table
+- Heading tier icon matches the **Priority Tier** row
+- Reference-ID prefix matches the group file (e.g. `TP.AC-*` only in `audio-capture.md`)
+- No duplicate reference IDs; numbering is contiguous per group
+- Tier totals reconcile with `_summary.md` declarations (43 / 92 / 79)
+- 214 total metrics across 20 group files
+- `_applicability.md` counts sum to 214 (48 + 77 + 89)
+- Every metric listed in `_tier-1-quick-reference.md` exists and is still Tier 1
+- "See also" cross-references resolve to a known metric (by name or abbreviation)
+- All 8 required dimensions present on every metric
+
+Baseline audit at v3.1 tag: **zero findings**. Run `python taxonomy/audit.py` before any future content change.
+
+
 
 ### Extended Standards Mapping
 
