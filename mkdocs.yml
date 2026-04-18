@@ -159,4 +159,5 @@ nav:
       - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
   - Roadmap (Gaps): gaps.md
   - Downloads: downloads.md
+  - Glossary: glossary.md
   - Changelog: changelog.md

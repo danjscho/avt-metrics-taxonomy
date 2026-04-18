@@ -28,6 +28,7 @@ MAPPING: dict[str, str] = {
     "_standards-mapping.md":                       "standards-mapping.md",
     "_responsible-ai-lens.md":                     "responsible-ai-lens.md",
     "_gaps.md":                                    "gaps.md",
+    "_glossary.md":                                "glossary.md",
     "part-a/audio-capture.md":                     "groups/audio-capture.md",
     "part-a/asr-transcription.md":                 "groups/asr-transcription.md",
     "part-a/diarisation.md":                       "groups/diarisation.md",
