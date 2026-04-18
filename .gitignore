@@ -1,0 +1,11 @@
+# Build artefacts — derived from taxonomy/ source, not authored
+dist/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
+.vscode/
+*.swp
