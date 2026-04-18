@@ -319,6 +319,94 @@ def parse_gaps() -> list[Gap]:
 
 
 # ---------------------------------------------------------------------------
+# Responsible AI lens — per-principle and per-theme membership tables
+# ---------------------------------------------------------------------------
+
+# The source file has one table per principle (P1..P10) and per theme (T1..T6).
+# Each is preceded by a heading that names the principle/theme. We extract the
+# table body (Ref | Metric | Group | Tier | Aspect) and return a map from
+# principle/theme code to a list of entries.
+
+_RAI_SECTION = re.compile(
+    r"^###\s+(?:Principle\s+(?P<pnum>\d+):\s*(?P<pname>.+?)|"
+    r"Theme\s+(?P<tnum>\d+)[\s—:–-]+(?P<tname>.+?))\s*$",
+    re.MULTILINE,
+)
+_TABLE_ROW = re.compile(
+    r"^\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]+?)\s*\|\s*([^|]*?)\s*\|"
+)
+
+
+@dataclass
+class RaiEntry:
+    ref_id: str
+    name: str
+    group: str
+    tier_icon: str
+    aspect: str
+
+
+def _parse_rai_section(body: str) -> list[RaiEntry]:
+    entries: list[RaiEntry] = []
+    for line in body.splitlines():
+        m = _TABLE_ROW.match(line)
+        if not m:
+            continue
+        ref_id, name, grp, tier, aspect = (g.strip() for g in m.groups())
+        # Header row may fall through if "Ref" wasn't exactly matched; skip if
+        # this doesn't look like a real ref.
+        if not re.match(r"^[A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+$", ref_id):
+            continue
+        entries.append(RaiEntry(
+            ref_id=ref_id, name=name, group=grp, tier_icon=tier, aspect=aspect,
+        ))
+    return entries
+
+
+def parse_rai_principle_membership() -> dict[str, tuple[str, list[RaiEntry]]]:
+    """Returns {'P1': ('principle title', [RaiEntry...]), ...}."""
+    text = (ROOT / "_responsible-ai-lens.md").read_text()
+    sections: dict[str, tuple[str, list[RaiEntry]]] = {}
+    matches = list(_RAI_SECTION.finditer(text))
+    for i, m in enumerate(matches):
+        if m.group("pnum") is None:
+            continue
+        code = f"P{m.group('pnum')}"
+        name = m.group("pname").strip()
+        start = m.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        sections[code] = (name, _parse_rai_section(text[start:end]))
+    return sections
+
+
+def parse_rai_theme_membership() -> dict[str, tuple[str, list[RaiEntry]]]:
+    text = (ROOT / "_responsible-ai-lens.md").read_text()
+    sections: dict[str, tuple[str, list[RaiEntry]]] = {}
+    matches = list(_RAI_SECTION.finditer(text))
+    for i, m in enumerate(matches):
+        if m.group("tnum") is None:
+            continue
+        code = f"T{m.group('tnum')}"
+        name = m.group("tname").strip()
+        start = m.end()
+        end = matches[i + 1].start() if i + 1 < len(matches) else len(text)
+        sections[code] = (name, _parse_rai_section(text[start:end]))
+    return sections
+
+
+# ---------------------------------------------------------------------------
+# Applicability membership (derived from already-parsed metrics)
+# ---------------------------------------------------------------------------
+
+def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        key = m.applicability or "Unclassified"
+        out.setdefault(key, []).append(m)
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Convenience
 # ---------------------------------------------------------------------------
 

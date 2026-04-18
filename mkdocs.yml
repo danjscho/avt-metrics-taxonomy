@@ -107,6 +107,30 @@ nav:
     - Applicability: applicability.md
     - Standards Mapping: standards-mapping.md
     - Responsible AI Lens: responsible-ai-lens.md
+  - Cross-cut views:
+    - Overview: crosscuts/index.md
+    - By applicability:
+      - AVT-Specific: crosscuts/by-applicability/avt-specific.md
+      - AVT-Contextualised: crosscuts/by-applicability/avt-contextualised.md
+      - General Healthcare AI: crosscuts/by-applicability/general.md
+    - By Playbook principle:
+      - P1 — Limitations: crosscuts/by-principle/p1.md
+      - P2 — Lawful/ethical: crosscuts/by-principle/p2.md
+      - P3 — Security: crosscuts/by-principle/p3.md
+      - P4 — Human control: crosscuts/by-principle/p4.md
+      - P5 — Lifecycle: crosscuts/by-principle/p5.md
+      - P6 — Right tool: crosscuts/by-principle/p6.md
+      - P7 — Openness: crosscuts/by-principle/p7.md
+      - P8 — Commercial: crosscuts/by-principle/p8.md
+      - P9 — Skills: crosscuts/by-principle/p9.md
+      - P10 — Org assurance: crosscuts/by-principle/p10.md
+    - By ethical theme:
+      - T1 — Safety, Security, Robustness: crosscuts/by-theme/t1.md
+      - T2 — Transparency & Explainability: crosscuts/by-theme/t2.md
+      - T3 — Fairness: crosscuts/by-theme/t3.md
+      - T4 — Accountability & Governance: crosscuts/by-theme/t4.md
+      - T5 — Contestability & Redress: crosscuts/by-theme/t5.md
+      - T6 — Societal Wellbeing: crosscuts/by-theme/t6.md
   - Roadmap (Gaps): gaps.md
   - Downloads: downloads.md
   - Changelog: changelog.md

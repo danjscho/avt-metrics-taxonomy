@@ -12,6 +12,8 @@ import pathlib
 import re
 import shutil
 
+import parse as parse_src
+
 ROOT = pathlib.Path(__file__).parent
 REPO = ROOT.parent
 DOCS = REPO / "docs"
@@ -188,7 +190,10 @@ def main() -> None:
     (DOCS / "downloads.md").write_text(_downloads_page())
     _mirror_downloads()
 
-    print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2} pages.")
+    # Cross-cut auto-generated pages (applicability / principle / theme).
+    crosscut_count = build_crosscuts()
+
+    print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2 + crosscut_count} pages.")
 
 
 def _mirror_downloads() -> None:
@@ -208,6 +213,190 @@ def _mirror_downloads() -> None:
     md_src = REPO / "avt-metrics-taxonomy.md"
     if md_src.exists():
         shutil.copy2(md_src, target / "avt-metrics-taxonomy.txt")
+
+
+# ---------------------------------------------------------------------------
+# Cross-cut auto-generated pages
+#
+# Generates pages under docs/crosscuts/ from parsed source:
+#   - by-applicability/avt-specific.md, avt-contextualised.md, general.md
+#   - by-principle/p1.md … p10.md
+#   - by-theme/t1.md … t6.md
+# Per-standard cross-cut pages are deferred — standards-mapping tables have
+# heterogeneous shapes per standard; needs a dedicated extractor round.
+# ---------------------------------------------------------------------------
+
+CROSSCUT_DIR = "crosscuts"
+
+SRC_GROUP_FILE_TO_PAGE = {
+    "part-a/audio-capture.md": "groups/audio-capture.md",
+    "part-a/asr-transcription.md": "groups/asr-transcription.md",
+    "part-a/diarisation.md": "groups/diarisation.md",
+    "part-a/summarisation-nlp.md": "groups/summarisation-nlp.md",
+    "part-a/clinical-coding.md": "groups/clinical-coding.md",
+    "part-a/epr-write-back.md": "groups/epr-write-back.md",
+    "part-b/partial-pipeline.md": "groups/partial-pipeline.md",
+    "part-b/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
+    "part-c/human-factors-workflow.md": "groups/human-factors-workflow.md",
+    "part-d/patient-experience.md": "groups/patient-experience.md",
+    "part-d/fairness-equity.md": "groups/fairness-equity.md",
+    "part-e/safety-governance.md": "groups/safety-governance.md",
+    "part-e/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
+    "part-e/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
+    "part-e/privacy-data-governance.md": "groups/privacy-data-governance.md",
+    "part-e/operational.md": "groups/operational.md",
+    "part-e/environmental-sustainability.md": "groups/environmental-sustainability.md",
+    "part-e/training-competency.md": "groups/training-competency.md",
+    "part-e/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
+    "part-f/meta-evaluation.md": "groups/meta-evaluation.md",
+}
+
+
+def _metric_page_link(ref_id: str, name: str, group_file: str) -> str:
+    """Return a Markdown link like [name](../groups/<group>.md#tp-ac-1)."""
+    slug = ref_id.lower().replace(".", "-")
+    page = SRC_GROUP_FILE_TO_PAGE.get(group_file, "")
+    if not page:
+        return name
+    # From crosscuts/by-X/page.md, the group pages are at ../../groups/*.md.
+    # Use Markdown-style .md#slug path so MkDocs validates and rewrites it.
+    return f"[{name}](../../{page}#{slug})"
+
+
+def _tier_icon(t: int) -> str:
+    return {1: "🟢", 2: "🟡", 3: "🔵"}[t]
+
+
+def _crosscut_index_page(applicability_counts: dict[str, int],
+                          principle_counts: dict[str, int],
+                          theme_counts: dict[str, int]) -> str:
+    lines = [
+        "# Cross-cut views",
+        "",
+        "Auto-generated views that slice the 214-metric catalogue along three additional axes. "
+        "Each view links back to individual metric pages — nothing here is authoritative, "
+        "just a different way to read the same source.",
+        "",
+        "## By applicability",
+        "",
+        "Which metrics are AVT-specific vs transferable to any healthcare AI.",
+        "",
+    ]
+    for label, path in (
+        ("AVT-Specific", "by-applicability/avt-specific.md"),
+        ("AVT-Contextualised", "by-applicability/avt-contextualised.md"),
+        ("General Healthcare AI", "by-applicability/general.md"),
+    ):
+        count = applicability_counts.get(label, 0)
+        lines.append(f"- [{label}]({path}) — {count} metrics")
+    lines += [
+        "",
+        "## By DSIT AI Playbook principle",
+        "",
+        "The 10 Playbook principles that the taxonomy supports. Counts below include only "
+        "metrics that genuinely operationalise the principle (not metrics that merely touch on it).",
+        "",
+    ]
+    for code in sorted(principle_counts, key=lambda c: int(c[1:])):
+        count = principle_counts[code]
+        lines.append(f"- [{code} — principle membership](by-principle/{code.lower()}.md) — {count} metrics")
+    lines += [
+        "",
+        "## By Responsible AI ethical theme",
+        "",
+        "Six cross-cutting themes from the Responsible AI literature, mapped to the metric catalogue.",
+        "",
+    ]
+    for code in sorted(theme_counts, key=lambda c: int(c[1:])):
+        count = theme_counts[code]
+        lines.append(f"- [{code} — theme membership](by-theme/{code.lower()}.md) — {count} metrics")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _applicability_page(label: str, metrics: list) -> str:
+    lines = [
+        f"# Applicability: {label}",
+        "",
+        f"{len(metrics)} metrics classified as **{label}**.",
+        "",
+        "| Ref | Metric | Group | Tier |",
+        "|-----|--------|-------|------|",
+    ]
+    for m in sorted(metrics, key=lambda x: (x.part, x.group, x.ref_id)):
+        link = _metric_page_link(m.ref_id, m.name, m.group_file)
+        lines.append(f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _principle_or_theme_page(kind: str, code: str, label: str, entries: list) -> str:
+    header = "Playbook principle" if kind == "principle" else "Ethical theme"
+    lines = [
+        f"# {header} {code}: {label}",
+        "",
+        f"{len(entries)} metrics operationalise this {kind}. Each entry links to the metric's full definition on its group page.",
+        "",
+        "| Ref | Metric | Group | Tier | Aspect |",
+        "|-----|--------|-------|------|--------|",
+    ]
+    # Resolve ref_id -> group_file via a quick lookup through parsed metrics.
+    all_metrics = parse_src.parse_all_metrics()
+    ref_to_group_file = {m.ref_id: m.group_file for m in all_metrics}
+    for e in entries:
+        gf = ref_to_group_file.get(e.ref_id, "")
+        link = _metric_page_link(e.ref_id, e.name, gf) if gf else e.name
+        lines.append(f"| {e.ref_id} | {link} | {e.group} | {e.tier_icon} | {e.aspect} |")
+    lines.append("")
+    return "\n".join(lines)
+
+
+def build_crosscuts() -> int:
+    """Emit applicability / principle / theme cross-cut pages. Returns page count."""
+    metrics = parse_src.annotate_applicability(parse_src.parse_all_metrics())
+    apps = parse_src.group_metrics_by_applicability(metrics)
+    principles = parse_src.parse_rai_principle_membership()
+    themes = parse_src.parse_rai_theme_membership()
+
+    base = DOCS / CROSSCUT_DIR
+    (base / "by-applicability").mkdir(parents=True, exist_ok=True)
+    (base / "by-principle").mkdir(parents=True, exist_ok=True)
+    (base / "by-theme").mkdir(parents=True, exist_ok=True)
+
+    # Index page for the section
+    (base / "index.md").write_text(_crosscut_index_page(
+        applicability_counts={k: len(v) for k, v in apps.items()},
+        principle_counts={k: len(v) for k, (_, v) in principles.items()},
+        theme_counts={k: len(v) for k, (_, v) in themes.items()},
+    ))
+
+    # Applicability pages
+    applicability_slugs = {
+        "AVT-Specific": "avt-specific.md",
+        "AVT-Contextualised": "avt-contextualised.md",
+        "General Healthcare AI": "general.md",
+    }
+    for label, slug in applicability_slugs.items():
+        if label in apps:
+            (base / "by-applicability" / slug).write_text(
+                _applicability_page(label, apps[label])
+            )
+
+    # Principle pages
+    for code, (name, entries) in principles.items():
+        (base / "by-principle" / f"{code.lower()}.md").write_text(
+            _principle_or_theme_page("principle", code, name, entries)
+        )
+
+    # Theme pages
+    for code, (name, entries) in themes.items():
+        (base / "by-theme" / f"{code.lower()}.md").write_text(
+            _principle_or_theme_page("theme", code, name, entries)
+        )
+
+    total = 1 + len(applicability_slugs) + len(principles) + len(themes)
+    print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
+    return total
 
 
 def _downloads_page() -> str:
