@@ -206,6 +206,8 @@ def main() -> None:
             text = link_tier1_quickref(text)
         if dst_rel == "gaps.md":
             text = _inject_roadmap_prelude(text)
+        if dst_rel.startswith("groups/"):
+            text = _add_related_metrics_footers(text, dst_rel)
         if dst_rel == "index.md":
             # Root index page — replace the source h1 and the repeated
             # summary prose with a concise landing block; keep the source's
@@ -534,6 +536,119 @@ def build_crosscuts() -> int:
     total = 1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total
+
+
+_RAI_MEMBERSHIP_CACHE: dict[str, list[tuple[str, str]]] | None = None
+
+
+def _rai_membership_by_ref_id() -> dict[str, list[tuple[str, str]]]:
+    """Return {ref_id: [(axis, code), ...]} where axis is 'Principle' or 'Theme'."""
+    global _RAI_MEMBERSHIP_CACHE
+    if _RAI_MEMBERSHIP_CACHE is not None:
+        return _RAI_MEMBERSHIP_CACHE
+    out: dict[str, list[tuple[str, str]]] = {}
+    for code, (_name, entries) in parse_src.parse_rai_principle_membership().items():
+        for e in entries:
+            out.setdefault(e.ref_id, []).append(("Principle", code))
+    for code, (_name, entries) in parse_src.parse_rai_theme_membership().items():
+        for e in entries:
+            out.setdefault(e.ref_id, []).append(("Theme", code))
+    _RAI_MEMBERSHIP_CACHE = out
+    return out
+
+
+def _add_related_metrics_footers(text: str, current_page: str) -> str:
+    """Append a compact "Related metrics" list after each metric entry on a
+    group page. Related = other metrics sharing at least one Playbook
+    principle or ethical theme from the Responsible AI lens.
+
+    Works by matching each `### REF ICON Name` heading, computing the set
+    of co-memberships, and injecting the block before the next metric
+    heading or before the final `---` / EOF.
+    """
+    if not current_page.startswith("groups/"):
+        return text
+    membership = _rai_membership_by_ref_id()
+    ref_to_metric = {m.ref_id: m for m in parse_src.parse_all_metrics()}
+
+    # Build a reverse lookup: axis-code -> list of ref_ids
+    by_axis: dict[tuple[str, str], list[str]] = {}
+    for rid, axes in membership.items():
+        for ax in axes:
+            by_axis.setdefault(ax, []).append(rid)
+
+    # Walk the page: find metric heading lines, collect their co-members.
+    lines = text.splitlines()
+    out_lines: list[str] = []
+    i = 0
+    # Pattern: our headings include the explicit {#slug} suffix added earlier.
+    heading_re = re.compile(
+        r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+[🟢🟡🔵]\s+.+?\s+\{\s*#[a-z0-9-]+\s*\}\s*$"
+    )
+    # For each metric, find the range ending before the next `###` or `---` at col 1.
+    metric_heading_line_nums: list[tuple[int, str]] = []
+    for idx, line in enumerate(lines):
+        m = heading_re.match(line)
+        if m:
+            metric_heading_line_nums.append((idx, m.group(1)))
+
+    if not metric_heading_line_nums:
+        return text
+
+    # Compute bounds for each metric: ends at next metric heading or a standalone '---'.
+    bounds: list[tuple[int, int, str]] = []
+    for i, (line_num, rid) in enumerate(metric_heading_line_nums):
+        end = metric_heading_line_nums[i + 1][0] if i + 1 < len(metric_heading_line_nums) else len(lines)
+        bounds.append((line_num, end, rid))
+
+    # Build an insert map: index -> block text
+    inserts: dict[int, str] = {}
+    for start, end, rid in bounds:
+        axes = membership.get(rid, [])
+        if not axes:
+            continue
+        related_ids: set[str] = set()
+        for ax in axes:
+            related_ids.update(by_axis.get(ax, []))
+        related_ids.discard(rid)
+        if not related_ids:
+            continue
+        # Cap at 6 most-shared first (sort by co-axis count).
+        def co_count(r: str) -> int:
+            other = set(membership.get(r, []))
+            return len(set(axes) & other)
+        ranked = sorted(related_ids, key=lambda r: (-co_count(r), r))[:6]
+        items = []
+        for r in ranked:
+            target = ref_to_metric.get(r)
+            if target is None:
+                continue
+            page = SRC_GROUP_FILE_TO_PAGE.get(target.group_file, "")
+            same_page = page == current_page
+            slug = r.lower().replace(".", "-")
+            # Markdown-style link so mkdocs validates and rewrites.
+            # From groups/<this>.md, sibling group pages are at ./<name>.md.
+            href = f"#{slug}" if same_page else f"{pathlib.Path(page).name}#{slug}"
+            items.append(f"[{r} {target.name}]({href})")
+        if not items:
+            continue
+        # Find the last content line before the next metric heading — place
+        # before any trailing `---` separator.
+        insert_at = end
+        while insert_at > start and lines[insert_at - 1].strip() in ("", "---"):
+            insert_at -= 1
+        block = "\n\n**Related metrics** *(shared Playbook principles / ethical themes):* " + " · ".join(items) + "\n"
+        inserts[insert_at] = block
+
+    # Assemble output with inserts.
+    for idx, line in enumerate(lines):
+        if idx in inserts:
+            out_lines.append(inserts[idx])
+        out_lines.append(line)
+    # Any inserts at EOF
+    if len(lines) in inserts:
+        out_lines.append(inserts[len(lines)])
+    return "\n".join(out_lines)
 
 
 def _inject_roadmap_prelude(text: str) -> str:
