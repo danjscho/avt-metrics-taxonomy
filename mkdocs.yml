@@ -135,6 +135,14 @@ nav:
       - T4 — Accountability & Governance: crosscuts/by-theme/t4.md
       - T5 — Contestability & Redress: crosscuts/by-theme/t5.md
       - T6 — Societal Wellbeing: crosscuts/by-theme/t6.md
+    - By standard:
+      - DTAC v2.0: crosscuts/by-standard/dtac-digital-technology-assessment-criteria-v2-0.md
+      - DSPT (NDG): crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
+      - DCB0129 / DCB0160: crosscuts/by-standard/dcb0129-dcb0160.md
+      - NHS LLM Framework: crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2.md
+      - MHRA SaMD/AIaMD: crosscuts/by-standard/mhra-software-and-ai-as-a-medical-device-samd-aiamd.md
+      - NICE ESF (ECD7): crosscuts/by-standard/nice-evidence-standards-framework-for-digital-health-technologies-ecd7.md
+      - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
   - Roadmap (Gaps): gaps.md
   - Downloads: downloads.md
   - Changelog: changelog.md

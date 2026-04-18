@@ -395,6 +395,234 @@ def parse_rai_theme_membership() -> dict[str, tuple[str, list[RaiEntry]]]:
 
 
 # ---------------------------------------------------------------------------
+# Standards mapping — per-standard assertion → metric rows
+# ---------------------------------------------------------------------------
+
+# Standards each live under an `### Standard Name` heading in
+# _standards-mapping.md. Within that, subsections are `#### Section Name`.
+# Tables have a consistent 4-column shape:
+#   | Criterion | Description | Taxonomy Metrics | Tier |
+# Some rows list metrics by name only (comma-separated); some prefix the
+# reference ID. We extract both shapes and resolve names against the
+# parsed metric catalogue.
+
+@dataclass
+class StandardRow:
+    criterion: str           # e.g. "C1.2.2" or "WP3-05"
+    description: str
+    metric_refs: list[str]   # resolved reference IDs (may be empty)
+    metric_names: list[str]  # original names, useful for fallback display
+    tier_cell: str           # raw tier cell (e.g. "🟢 1" or "🟢 1 / 🟡 2" or "—")
+
+
+@dataclass
+class StandardSection:
+    code: str                # unique code e.g. "dtac-c1"
+    standard: str            # top-level standard heading text
+    subsection: str          # `#### ...` heading text (may be empty)
+    rows: list[StandardRow]
+
+
+# Heading patterns
+_STD_H3 = re.compile(r"^###\s+(.+?)\s*$", re.MULTILINE)
+_STD_H4 = re.compile(r"^####\s+(.+?)\s*$", re.MULTILINE)
+
+_PIPE_ROW = re.compile(r"^\|(.+)\|\s*$")
+
+
+def _split_cells(line: str) -> list[str]:
+    # Strip leading and trailing pipe, then split.
+    inner = line.strip().strip("|")
+    return [c.strip() for c in inner.split("|")]
+
+
+def _is_separator(cells: list[str]) -> bool:
+    return all(re.match(r"^[:\-]+$", c or "-") for c in cells)
+
+
+def _tables_in(body: str) -> list[list[list[str]]]:
+    """Return a list of tables (each a list of rows, each a list of cells)
+    found in the given markdown body. Tables are detected as runs of lines
+    starting with `|` separated by non-pipe gaps."""
+    tables: list[list[list[str]]] = []
+    current: list[list[str]] = []
+    for line in body.splitlines():
+        if line.startswith("|"):
+            m = _PIPE_ROW.match(line)
+            if m:
+                current.append(_split_cells(line))
+                continue
+        if current:
+            tables.append(current)
+            current = []
+    if current:
+        tables.append(current)
+    return tables
+
+
+_NAME_TO_METRIC_CACHE: dict[str, Metric] | None = None
+
+
+def _name_to_metric_idx() -> dict[str, Metric]:
+    global _NAME_TO_METRIC_CACHE
+    if _NAME_TO_METRIC_CACHE is None:
+        idx: dict[str, Metric] = {}
+        for m in parse_all_metrics():
+            idx[m.name] = m
+            # Base name without parenthesised suffix
+            stripped = re.sub(r"\s*\([^)]*\)\s*", "", m.name).strip()
+            if stripped and stripped not in idx:
+                idx[stripped] = m
+            # Abbreviations inside parens (e.g. "WER" from "Word Error Rate (WER)")
+            for abbr in re.findall(r"\(([^)]+)\)", m.name):
+                abbr = abbr.strip()
+                if abbr and abbr not in idx:
+                    idx[abbr] = m
+        _NAME_TO_METRIC_CACHE = idx
+    return _NAME_TO_METRIC_CACHE
+
+
+def _extract_metric_refs(cell: str) -> tuple[list[str], list[str]]:
+    """Given a standards-table 'Taxonomy Metrics' cell, return (ref_ids,
+    display_names). The cell may be:
+      - italic process note: `*Process criterion — no metric equivalent*`
+      - a comma-separated list of names, optionally prefixed with ref IDs
+      - empty or "—"
+    """
+    if not cell or cell.strip() in {"—", "-"}:
+        return [], []
+    # Strip italic wrapper if present; if the whole cell is italic process
+    # text we return nothing.
+    stripped = cell.strip()
+    if stripped.startswith("*") and stripped.endswith("*"):
+        return [], []
+    # Remove bold/italic markers so regex and name matching work
+    cleaned = re.sub(r"\*+", "", stripped)
+    # Split on commas at top level (metric names don't contain commas by
+    # current convention).
+    parts = [p.strip() for p in cleaned.split(",") if p.strip()]
+    idx = _name_to_metric_idx()
+    ref_ids: list[str] = []
+    names: list[str] = []
+    for part in parts:
+        # Try "TP.SN-3 Metric Name" prefix form first.
+        m = re.match(r"^([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+(.+)$", part)
+        if m:
+            ref_ids.append(m.group(1))
+            names.append(m.group(2).strip())
+            continue
+        # Otherwise look up by full / base / abbreviation.
+        hit = idx.get(part)
+        if hit is None:
+            base = re.sub(r"\s*\([^)]*\)\s*", "", part).strip()
+            hit = idx.get(base)
+        if hit is not None:
+            ref_ids.append(hit.ref_id)
+            names.append(hit.name)
+        else:
+            names.append(part)  # unresolved — preserve for display
+    return ref_ids, names
+
+
+def _standard_code(heading: str) -> str:
+    """Shortest stable slug for a standard heading."""
+    # Keep only alnum and hyphens from the first word or two.
+    text = heading.lower()
+    # Clip to just before the em dash / colon
+    for sep in (" — ", " – ", ": "):
+        if sep in text:
+            text = text.split(sep, 1)[0]
+            break
+    # Squash non-alnum → hyphen
+    return re.sub(r"[^a-z0-9]+", "-", text).strip("-")
+
+
+def parse_standards_mapping() -> list[StandardSection]:
+    path = ROOT / "_standards-mapping.md"
+    if not path.exists():
+        return []
+    text = path.read_text()
+
+    # Find every ### block.
+    h3s = [(m.start(), m.group(1).strip()) for m in _STD_H3.finditer(text)]
+    # Add terminator
+    h3s_bounds = [(h3s[i][0], h3s[i][1], h3s[i + 1][0] if i + 1 < len(h3s) else len(text)) for i in range(len(h3s))]
+
+    sections: list[StandardSection] = []
+    for start, heading, end in h3s_bounds:
+        block = text[start:end]
+        # Identify subsections
+        h4_matches = list(_STD_H4.finditer(block))
+        segments: list[tuple[str, str]] = []
+        if h4_matches:
+            # Segment before first h4 (rare — usually intro only, skip)
+            intro_end = h4_matches[0].start()
+            for i, h4 in enumerate(h4_matches):
+                seg_start = h4.end()
+                seg_end = h4_matches[i + 1].start() if i + 1 < len(h4_matches) else len(block)
+                segments.append((h4.group(1).strip(), block[seg_start:seg_end]))
+        else:
+            segments.append(("", block[len(heading) + 4:]))  # after `### <heading>\n`
+
+        for sub_heading, body in segments:
+            all_rows: list[StandardRow] = []
+            for table in _tables_in(body):
+                if len(table) < 2:
+                    continue
+                # Rows beyond the header and separator.
+                data_rows = [r for r in table if not _is_separator(r)]
+                if not data_rows:
+                    continue
+                header_cells = [c.lower() for c in data_rows[0]]
+                # Require "taxonomy metrics" column presence
+                try:
+                    metric_col = next(i for i, c in enumerate(header_cells) if "taxonomy metric" in c or "metrics" == c)
+                except StopIteration:
+                    continue
+                # Locate other columns heuristically
+                desc_col = next((i for i, c in enumerate(header_cells) if c in {"description", "item", "principle", "assertion", "clause"} or "description" in c), 1 if len(header_cells) > 1 else None)
+                tier_col = next((i for i, c in enumerate(header_cells) if c == "tier"), None)
+                # Treat the first column as criterion regardless.
+                crit_col = 0
+                for row in data_rows[1:]:
+                    if len(row) <= metric_col:
+                        continue
+                    criterion = row[crit_col] if crit_col < len(row) else ""
+                    description = row[desc_col] if (desc_col is not None and desc_col < len(row)) else ""
+                    metric_cell = row[metric_col]
+                    tier_cell = row[tier_col] if (tier_col is not None and tier_col < len(row)) else ""
+                    ref_ids, names = _extract_metric_refs(metric_cell)
+                    all_rows.append(StandardRow(
+                        criterion=criterion,
+                        description=description,
+                        metric_refs=ref_ids,
+                        metric_names=names,
+                        tier_cell=tier_cell,
+                    ))
+            if all_rows:
+                sections.append(StandardSection(
+                    code=_standard_code(heading) + (("-" + _standard_code(sub_heading)) if sub_heading else ""),
+                    standard=heading,
+                    subsection=sub_heading,
+                    rows=all_rows,
+                ))
+    return sections
+
+
+def parse_standards_grouped() -> dict[str, dict]:
+    """Return {standard_heading: {'code': slug, 'sections': [StandardSection...]}}.
+    Groups sub-sections of the same standard together, so each standard
+    gets one page."""
+    out: dict[str, dict] = {}
+    for section in parse_standards_mapping():
+        out.setdefault(section.standard, {
+            "code": _standard_code(section.standard),
+            "sections": [],
+        })["sections"].append(section)
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Applicability membership (derived from already-parsed metrics)
 # ---------------------------------------------------------------------------
 

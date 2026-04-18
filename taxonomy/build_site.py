@@ -312,7 +312,8 @@ def _tier_icon(t: int) -> str:
 
 def _crosscut_index_page(applicability_counts: dict[str, int],
                           principle_counts: dict[str, int],
-                          theme_counts: dict[str, int]) -> str:
+                          theme_counts: dict[str, int],
+                          standards: dict[str, dict] | None = None) -> str:
     lines = [
         "# Cross-cut views",
         "",
@@ -343,6 +344,24 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
     for code in sorted(principle_counts, key=lambda c: int(c[1:])):
         count = principle_counts[code]
         lines.append(f"- [{code} — principle membership](by-principle/{code.lower()}.md) — {count} metrics")
+    lines += [
+        "",
+        "## By standard",
+        "",
+        "Auto-generated assertion-level pages for standards whose source "
+        "tables map directly to metric IDs. Four additional standards "
+        "(CQC, PSIRF, PRSB, Caldicott) use narrative prose rather than "
+        "structured tables; they are summarised on the main "
+        "[Standards Mapping](../standards-mapping.md) page.",
+        "",
+    ]
+    if standards:
+        for std, info in standards.items():
+            total = sum(len(s.rows) for s in info["sections"])
+            resolved = sum(len(r.metric_refs) for s in info["sections"] for r in s.rows)
+            lines.append(
+                f"- [{std}](by-standard/{info['code']}.md) — {total} assertions, {resolved} metric mappings"
+            )
     lines += [
         "",
         "## By Responsible AI ethical theme",
@@ -394,6 +413,70 @@ def _principle_or_theme_page(kind: str, code: str, label: str, entries: list) ->
     return "\n".join(lines)
 
 
+def _standard_page(standard: str, sections: list) -> str:
+    lines = [f"# Coverage: {standard}", ""]
+    lines.append(
+        f"Assertion-level mapping of this standard to the metric catalogue. "
+        f"Each metric link jumps to the full definition on its group page. "
+        f"See the full [Standards Mapping](../../standards-mapping.md) for "
+        f"overview, publisher, and scope of this standard."
+    )
+    lines.append("")
+    ref_to_group_file = {m.ref_id: m.group_file for m in parse_src.parse_all_metrics()}
+    for section in sections:
+        if section.subsection:
+            lines.append(f"## {section.subsection}")
+            lines.append("")
+        lines.append("| Criterion | Description | Metrics | Tier |")
+        lines.append("|-----------|-------------|---------|------|")
+        for row in section.rows:
+            metric_md = _render_metric_refs(row.metric_refs, row.metric_names, ref_to_group_file)
+            lines.append(
+                f"| {row.criterion} | {row.description} | {metric_md} | {row.tier_cell or '—'} |"
+            )
+        lines.append("")
+    return "\n".join(lines)
+
+
+def _render_metric_refs(ref_ids: list[str], names: list[str], ref_to_group_file: dict) -> str:
+    if not ref_ids and not names:
+        return "*Process criterion — no metric equivalent*"
+    parts: list[str] = []
+    # Walk ref_ids in order, falling back to names that didn't resolve.
+    seen = set()
+    for rid in ref_ids:
+        if rid in seen:
+            continue
+        seen.add(rid)
+        gf = ref_to_group_file.get(rid, "")
+        if gf:
+            slug = rid.lower().replace(".", "-")
+            page = SRC_GROUP_FILE_TO_PAGE.get(gf, "")
+            # Find the metric's display name
+            display = None
+            for name, hit in parse_src._name_to_metric_idx().items():
+                if hit.ref_id == rid and name == hit.name:
+                    display = name
+                    break
+            display = display or rid
+            if page:
+                parts.append(f"[{rid} {display}](../../{page}#{slug})")
+            else:
+                parts.append(f"{rid} {display}")
+        else:
+            parts.append(rid)
+    # Any unresolved textual names
+    for name in names:
+        if name in seen:
+            continue
+        # Skip names we already resolved by ref
+        already = any(name in p for p in parts)
+        if already:
+            continue
+        parts.append(f"*{name}*")
+    return "<br>".join(parts)  # <br> keeps cells readable inside Markdown tables
+
+
 def build_crosscuts() -> int:
     """Emit applicability / principle / theme cross-cut pages. Returns page count."""
     metrics = parse_src.annotate_applicability(parse_src.parse_all_metrics())
@@ -405,12 +488,21 @@ def build_crosscuts() -> int:
     (base / "by-applicability").mkdir(parents=True, exist_ok=True)
     (base / "by-principle").mkdir(parents=True, exist_ok=True)
     (base / "by-theme").mkdir(parents=True, exist_ok=True)
+    (base / "by-standard").mkdir(parents=True, exist_ok=True)
+
+    # Per-standard pages (only those with table-based assertion mappings).
+    standards = parse_src.parse_standards_grouped()
+    for standard, info in standards.items():
+        (base / "by-standard" / f"{info['code']}.md").write_text(
+            _standard_page(standard, info["sections"])
+        )
 
     # Index page for the section
     (base / "index.md").write_text(_crosscut_index_page(
         applicability_counts={k: len(v) for k, v in apps.items()},
         principle_counts={k: len(v) for k, (_, v) in principles.items()},
         theme_counts={k: len(v) for k, (_, v) in themes.items()},
+        standards=standards,
     ))
 
     # Applicability pages
@@ -437,7 +529,7 @@ def build_crosscuts() -> int:
             _principle_or_theme_page("theme", code, name, entries)
         )
 
-    total = 1 + len(applicability_slugs) + len(principles) + len(themes)
+    total = 1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total
 
