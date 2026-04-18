@@ -96,6 +96,56 @@ _METRIC_HEADING = re.compile(
 )
 
 
+# Link every bolded metric name on the Tier-1 Quick Reference page to its
+# source page. The source file (`_tier-1-quick-reference.md`) is authored
+# prose — we don't edit it at source, we transform it on the way into the
+# site. Each bullet is of the form:
+#   - 🚪 **Metric Name** — rationale...
+# We match `**Metric Name**` tokens (optionally followed by `⚠️`), look the
+# name up in the parsed catalogue, and rewrite to a link.
+_BOLD_METRIC_TOKEN = re.compile(r"\*\*([^*]+?)\*\*")
+
+
+def _metric_name_index() -> dict[str, "parse_src.Metric"]:
+    metrics = parse_src.parse_all_metrics()
+    idx: dict[str, parse_src.Metric] = {}
+    for m in metrics:
+        idx[m.name] = m
+        stripped = re.sub(r"\s*\([^)]*\)\s*", "", m.name).strip()
+        if stripped and stripped not in idx:
+            idx[stripped] = m
+    return idx
+
+
+def link_tier1_quickref(text: str) -> str:
+    """Convert `**Name**` → `[Name](../groups/<group>.md#ref-id)` when the
+    bolded text matches a known Tier-1 metric. Non-metric bold phrases (e.g.
+    **Deployer** actor subsection headings) are left untouched because they
+    don't match the name index.
+    """
+    idx = _metric_name_index()
+
+    def sub(m: re.Match) -> str:
+        raw = m.group(1).strip()
+        candidate = raw.rstrip(" ⚠️").strip()
+        hit = idx.get(candidate)
+        if hit is None:
+            # Try base name (strip parenthetical)
+            base = re.sub(r"\s*\([^)]*\)\s*", "", candidate).strip()
+            hit = idx.get(base)
+        if hit is None or hit.tier != 1:
+            return m.group(0)  # not a Tier-1 metric, leave as-is
+        slug = hit.ref_id.lower().replace(".", "-")
+        page = SRC_GROUP_FILE_TO_PAGE.get(hit.group_file, "")
+        if not page:
+            return m.group(0)
+        # Keep the warning suffix outside the link if present.
+        suffix = " ⚠️" if raw.endswith("⚠️") else ""
+        return f"[**{candidate}**]({page}#{slug}){suffix}"
+
+    return _BOLD_METRIC_TOKEN.sub(sub, text)
+
+
 def add_metric_anchors(text: str) -> str:
     def sub(m: re.Match) -> str:
         prefix, ref_id, tail = m.group(1), m.group(2), m.group(3)
@@ -152,28 +202,21 @@ def main() -> None:
         text = src.read_text()
         text = rewrite_anchors(text, dst_rel)
         text = add_metric_anchors(text)
+        if dst_rel == "tier-1-quick-reference.md":
+            text = link_tier1_quickref(text)
         if dst_rel == "index.md":
-            # Root index page — replace the source h1 with a landing block
-            # that includes a brief lead before the header content.
+            # Root index page — replace the source h1 and the repeated
+            # summary prose with a concise landing block; keep the source's
+            # "Acknowledgements / Sources / Structure" content below the
+            # new jumping-off section.
             promoted = promote_h2_to_h1(text)
-            # Strip the original h1 if present; we'll provide our own.
             promoted_lines = promoted.splitlines()
             if promoted_lines and promoted_lines[0].startswith("# "):
                 promoted_lines = promoted_lines[1:]
-            # Also trim any immediately-following blank line to avoid a double break.
             while promoted_lines and not promoted_lines[0].strip():
                 promoted_lines = promoted_lines[1:]
             promoted = "\n".join(promoted_lines)
-            text = (
-                "# AVT Metrics Taxonomy\n\n"
-                "A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology in NHS and comparable settings. "
-                "214 metrics across 20 groups, mapped to 11 standards and the DSIT AI Playbook. "
-                "v3.1 tagged 2026-04-18.\n\n"
-                "Browse metrics by part in the navigation, or jump to the "
-                "[Tier 1 Quick Reference](tier-1-quick-reference.md) for a deployer's Day Zero set.\n\n"
-                "---\n\n"
-                + promoted + "\n"
-            )
+            text = _landing_page(promoted)
         else:
             text = promote_h2_to_h1(text)
         dst.write_text(text)
@@ -397,6 +440,83 @@ def build_crosscuts() -> int:
     total = 1 + len(applicability_slugs) + len(principles) + len(themes)
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total
+
+
+def _landing_page(header_body: str) -> str:
+    """Generate the site landing page with live counts and jump links."""
+    summary = parse_src.summary()
+    metric_count = summary["metric_count"]
+    group_count = summary["group_count"]
+    t1 = summary["tier_counts"].get("1", 0)
+    t2 = summary["tier_counts"].get("2", 0)
+    t3 = summary["tier_counts"].get("3", 0)
+    gap_count = summary["gap_count"]
+    return f"""# AVT Metrics Taxonomy
+
+!!! info "v3.1 — {metric_count} metrics across {group_count} groups"
+    A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology
+    in NHS and comparable settings. Each metric carries a formal definition,
+    priority tier, responsible actors, and mappings to 11 healthcare and
+    AI standards.
+
+## At a glance
+
+<div class="grid cards" markdown>
+
+-   :material-scale:{{ .lg .middle }} **Three priority tiers**
+
+    ---
+
+    🟢 **{t1}** Tier 1 — minimum viable assurance, measurable today
+    🟡 **{t2}** Tier 2 — recommended for any AVT deployment
+    🔵 **{t3}** Tier 3 — advanced / research-grade
+
+    [Jump to Tier 1 quick reference](tier-1-quick-reference.md)
+
+-   :material-clipboard-check-outline:{{ .lg .middle }} **Standards coverage**
+
+    ---
+
+    Mapped to DTAC, DSPT, DCB0129/0160, NHS LLM Framework, MHRA SaMD,
+    NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, and Caldicott Principles.
+
+    [Full standards mapping](standards-mapping.md)
+
+-   :material-eye-outline:{{ .lg .middle }} **Policy lens**
+
+    ---
+
+    Mapped to the DSIT AI Playbook's 10 principles and the six
+    Responsible AI ethical themes. Includes a coverage matrix of
+    high-leverage "policy-lever" metrics.
+
+    [Responsible AI lens](responsible-ai-lens.md)
+
+-   :material-map-marker-path:{{ .lg .middle }} **Roadmap**
+
+    ---
+
+    {gap_count} gap candidates pending review, drawn from external
+    coverage audits (RSET, NHSE IG), standards mapping, and the
+    policy lens.
+
+    [Browse roadmap](gaps.md)
+
+</div>
+
+## Ways in
+
+- **First time here?** Read [How to use the taxonomy](how-to-use.md) to understand tiers, cadence, and responsible actors.
+- **Deploying AVT?** Start with the [Tier 1 Quick Reference](tier-1-quick-reference.md) — the Day Zero set.
+- **Evaluating products?** Jump to the [Applicability classification](applicability.md) and the [AVT-Specific cross-cut](crosscuts/by-applicability/avt-specific.md).
+- **Setting procurement criteria?** Work through [Standards Mapping](standards-mapping.md) and the [per-principle cross-cuts](crosscuts/index.md).
+- **Building a metric?** Every metric has a stable reference ID. Cite as `TP.AC-1` → `/groups/audio-capture/#tp-ac-1`.
+- **Want raw data?** See [Downloads](downloads.md) for CSV, JSON, and the monolithic Markdown archival copy.
+
+---
+
+{header_body}
+"""
 
 
 def _downloads_page() -> str:
