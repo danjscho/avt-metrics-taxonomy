@@ -47,12 +47,26 @@ theme:
 
 plugins:
   - search
+  - rss:
+      match_path: "changelog\\.md"
+      date_from_meta:
+        as_creation: git
+        as_update: git
+      comments_path: ""
+      length: 20
 
 extra:
   version:
     provider: mike
     default: latest
     alias: true
+  social:
+    - icon: fontawesome/solid/rss
+      link: /avt-metrics-taxonomy/feed_rss_updated.xml
+      name: RSS — CHANGELOG updates
+    - icon: fontawesome/brands/github
+      link: https://github.com/danjscho/avt-metrics-taxonomy
+      name: Source on GitHub
 
 markdown_extensions:
   - admonition
