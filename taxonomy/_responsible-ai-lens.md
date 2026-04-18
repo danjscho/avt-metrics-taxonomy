@@ -487,55 +487,7 @@ These five metrics are the "policy-lever megas" — implementing and monitoring 
 
 ## Part D — Gaps
 
-This section lists gaps where neither the existing 214 metrics nor the standards mappings clearly operationalise a Playbook principle or ethical theme for AVT. Where a gap has already been flagged in the [Proposed New Metrics](#proposed-new-metrics-not-yet-implemented) section of the standards mapping document, this is cross-referenced.
-
-### Gaps organised by Playbook principle
-
-| Principle | Gap | Severity | Cross-reference |
-|-----------|-----|----------|-----------------|
-| P1 — Limitations | Patient-facing disclosure of AVT limitations (not just clinician-facing) | Medium | — |
-| P1 — Limitations | Running tally of encountered failure modes over deployment time | Medium | Partial via GV.SG-11 / GV.SG-14 |
-| P2 — Lawful/ethical | IP status of training data (copyright, consent) | Medium | — |
-| P2 — Lawful/ethical | Proportionality review (is AVT the right intervention?) | Medium | See P6 too; partial via ES.ME-1 |
-| P3 — Security | Supply-chain security for model weights and dependencies | Medium | — |
-| P3 — Security | AI-specific red-teaming cadence | Medium | — |
-| P4 — Human control | Formal escalation paths when AI output is rejected | Medium | — |
-| P4 — Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
-| P5 — Lifecycle | Decommissioning plan | Medium | — |
-| P5 — Lifecycle | Model retirement criteria | Low | — |
-| P6 — Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
-| P6 — Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
-| P7 — Openness | ATRS publication completeness (where applicable) | Low | Cascades via Standards Mapping (ATRS referenced but not mapped) |
-| P7 — Openness | Patient-facing plain-language AVT documentation | Medium | — |
-| P8 — Commercial | Contractual SLA enforcement (actual enforcement, not just contract clauses) | Medium | — |
-| P8 — Commercial | Exit-clause testing (has the exit clause been exercised?) | Medium | GV.VT-6 is about provisions; gap is on testing |
-| P9 — Skills | SRO / board-level AI literacy assessment | Medium | — |
-| P9 — Skills | Deployer-side data science / engineering skills | Low | — |
-| P10 — Org assurance | AI review board effectiveness metric | Medium | — |
-| P10 — Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
-
-### Gaps organised by ethical theme
-
-| Theme | Gap | Severity | Cross-reference |
-|-------|-----|----------|-----------------|
-| T1 — Safety/Security/Robustness | Systems-based root cause analysis (SEIPS) for AI incidents | High | [PSIRF gap in standards mapping](#proposed-new-metrics-not-yet-implemented): GV.SG-19 proposed |
-| T1 — Safety | Catastrophic failure mode planning (what if AVT silently fails on 5% of notes?) | Medium | — |
-| T2 — Transparency | Patient-facing explanation of AI decision-making in the record | High | Related to PRSB gap: TP.WB-11 proposed |
-| T2 — Transparency | Model card / system card publication | Medium | Partial via GV.VT-2 Telemetry Provision Completeness |
-| T2 — Transparency | Audience-proportionate explanation (regulator vs clinician vs patient vs lay public) | Medium | — |
-| T3 — Fairness | Fairness during deployment ramp (equity of *who gets AVT first*) | Medium | Partial via IO.FE-1 Deployment Equity Index |
-| T3 — Fairness | Intersectional fairness at small-group level (statistical power issues) | High | IO.FE-4 and IO.FE-5 address intersectional but small-group power is unresolved |
-| T4 — Accountability | Board-level AI governance mechanism | High | [CQC gap in standards mapping](#proposed-new-metrics-not-yet-implemented): GV.CR-12 proposed |
-| T4 — Accountability | Named accountable director for AI | High | [CQC gap](#proposed-new-metrics-not-yet-implemented): covered under GV.CR-12 |
-| T4 — Accountability | Clear role distinction: CSO, DPO, SIRO, Caldicott Guardian in AI context | Medium | — |
-| T5 — Contestability | Patient route to challenge AI-generated note content (beyond SAR) | High | Related to IO.PX-11 AI-Specific Complaint Handling Rate proposed |
-| T5 — Contestability | Affected-third-party contestability (e.g. relative mentioned in a note) | Medium | — |
-| T5 — Contestability | Redress mechanism for population-level AVT harm | Medium | — |
-| T6 — Societal Wellbeing | Workforce displacement / role change assessment | High | HL.HF-12 Clinical Documentation Skill Attenuation is partial |
-| T6 — Societal Wellbeing | Equity of benefit distribution across practices | High | IO.FE-1 Deployment Equity Index is partial |
-| T6 — Societal Wellbeing | Patient trust at population level (cumulative effect of AI on healthcare relationship) | High | IO.PX-5, IO.PX-6 are partial |
-| T6 — Societal Wellbeing | Long-term sustainability of AVT adoption (what happens at 5-year review?) | Medium | — |
-| T6 — Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged as low severity in Standards Mapping |
+Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed Metrics](#gaps-proposed-metrics-roadmap) § 3 (Responsible AI Lens). 38 candidates are tracked there: 20 organised by Playbook principle, 18 organised by ethical theme. Cross-references to standards-mapping gaps (e.g. PSIRF → GV.SG-19, CQC → GV.CR-12) are preserved in the roadmap. Highest-severity cross-cutting findings are summarised below.
 
 ### Summary
 

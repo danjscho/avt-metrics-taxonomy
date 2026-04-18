@@ -800,77 +800,12 @@ Gaps where the taxonomy provides coverage that no standard addresses:
 
 ### Proposed New Metrics (Not Yet Implemented)
 
-The mapping exercise identified gaps where the taxonomy could be extended with new metrics to close assurance gaps. These are **informational only** — no metrics have been added to the taxonomy in this round. Each candidate gives a proposed reference ID slot (the next available number in the relevant group), a short description, the source standard(s) that would be satisfied, and a priority tier rationale.
+The mapping exercise identified 28 gap candidates where the taxonomy could be extended with new metrics to close assurance gaps. These are consolidated into the roadmap at [Gaps & Proposed Metrics](#gaps-proposed-metrics-roadmap) alongside gaps from external coverage audits (RSET, NHSE IG) and the Responsible AI lens. The roadmap is the single source of truth; detailed per-standard tables are not duplicated here.
 
-If adopted in a future round, metrics would need full dimensions-table entries matching the existing format (Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phases, Responsible Actors, Maturity, Outcome Type, Source).
+**Quick summary** (28 standards-derived candidates):
 
-#### From MHRA SaMD/AIaMD
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| GV.CR-11 | Medical Device Classification Documentation | Whether the AVT system's SaMD classification (Class I/IIa/IIb/III) is documented with justification | MHRA WP1/WP2 | 🟢 1 — deployer must know the regulatory status before go-live |
-| GV.SG-18 | PCCP Documentation Completeness | Whether Predetermined Change Control Plans cover model updates, thresholds, and rollback | MHRA WP11, WP4-04 | 🟡 2 — required for adaptive/retrained models |
-| GV.VT-9 | Post-Market Surveillance Report Currency | PMSR (Class I/IIa) availability on demand; PSUR (Class IIb/III) annual currency | MHRA SI 2024 No. 1368 | 🟡 2 — regulatory reporting cadence |
-| GV.VT-10 | MHRA Transparency Content Completeness | Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle) | MHRA Transparency Principles | 🟡 2 — composite of several partial areas |
-| GV.PD-12 | Training Data Representativeness Documentation | Evidence that training data covers intended patient population (age, ethnicity, accent, comorbidity) | MHRA GMLP-3 | 🟡 2 — foundational for bias mitigation |
-
-#### From NICE Evidence Standards Framework
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| ES.ME-8 | NICE ESF Tier Classification Documentation | Whether the AVT deployment is classified as Tier A / B / C with justification | NICE ESF Section B | 🟢 1 — required before evidence assembly |
-| ES.ME-9 | Silent Mode Evaluation Coverage | Evidence that AVT was run in silent mode on local data before go-live | NICE ESF Standard 15 (best practice) | 🟡 2 — key AI-specific provision |
-| ES.ME-10 | Subgroup Drift Monitoring Plan | Documented plan for monitoring performance drift across demographic subgroups post-deployment | NICE ESF Standard 16 (best practice) | 🟡 2 — composite of existing drift metrics |
-| GV.OP-10 | Cost-Effectiveness Analysis Availability | For Tier C AVT: CEA with QALY or cost-consequences | NICE ESF Standard 18 | 🔵 3 — research-grade for most deployments |
-| GV.OP-11 | Budget Impact Analysis Completeness | Direct and indirect costs; NHS reference costs; sensitivity analysis | NICE ESF Standard 17 | 🟡 2 — extends existing GV.OP-7 |
-
-#### From FHIR UK Core
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| TP.WB-8 | Per-Resource UK Core Conformance | Stratified conformance by resource type (Composition, Condition, AllergyIntolerance, etc.) | FHIR UK Core STU2+ | 🟡 2 — required for NHS interoperability |
-| TP.WB-9 | UK Core Extension Conformance | NHS Number verification status, Ethnic Category, Birth Sex, Death Notification extensions | FHIR UK Core | 🟡 2 — UK-specific data quality |
-| TP.WB-10 | STU Version Targeting Declaration | Vendor declaration of which UK Core STU version(s) supported | FHIR UK Core | 🟢 1 — procurement requirement |
-
-#### From CQC Assessment
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| GV.CR-12 | Board-Level AI Governance Mechanism | Named board committee / director with AI oversight responsibility | CQC Well-led | 🟢 1 — CQC inspection point |
-| GV.CR-13 | CSO AI Oversight Capacity | Protected time / budget for CSO to oversee AI safety (not just sign-off) | CQC Safe / Well-led, DCB0129 | 🟡 2 — operational capacity |
-| IO.PX-11 | AI-Specific Complaint Handling Rate | Rate of complaints received about AI-generated records and their resolution time | CQC Responsive | 🟡 2 — patient experience dimension |
-| GV.OP-12 | Record Quality Composite (Reg 17) | Composite of content accuracy, completeness, and timeliness against Reg 17 good-governance standard | CQC Safe, Regulation 17 | 🟡 2 — regulatory alignment |
-
-#### From PSIRF
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| GV.SG-19 | Systems-Based Incident Analysis Rate | Proportion of AI-related safety incidents receiving SEIPS-informed systems analysis | PSIRF principle 2 | 🟡 2 — organisation capability |
-| IO.PX-12 | Compassionate Engagement with Affected Patients | Rate at which patients/families affected by AI-related harm received early contact, named liaison, and draft report review | PSIRF principle 1 | 🟡 2 — rights-based metric |
-| GV.TC-6 | Staff Just Culture Protection | Staff survey on whether they feel supported vs blamed after AI-related incidents | PSIRF principle 1 | 🔵 3 — organisational culture |
-| GV.SG-20 | Learning Implementation Tracking | Did identified learning actually change practice? (closure rate on systemic actions) | PSIRF principle 4 | 🟡 2 — assurance outcome |
-
-#### From PRSB
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| TP.WB-11 | PRSB Semantic Completeness | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.) | PRSB (all standards) | 🟢 1 — clearest measurement gap across all new standards |
-| TP.SN-25 | Professional Narrative Preservation | Ratio of free-text narrative vs structured extraction; flags over-structurisation and loss of clinical nuance | PRSB narrative principle | 🟡 2 — qualitative trade-off |
-| TP.WB-12 | Communication Needs (AIS) Capture | Whether Accessible Information Standard flags (interpreter, BSL, etc.) are captured and preserved | PRSB common header, AIS | 🟡 2 — accessibility-critical |
-| TP.WB-13 | Legal Status Information Capture | Whether MHA status, DoLS, LPA, advance decisions are preserved when present | PRSB common header | 🟡 2 — clinical-legal critical |
-
-#### From Caldicott Principles
-
-| Proposed Ref | Proposed Metric Name | What It Measures | Source | Tier Rationale |
-|--------------|----------------------|-------------------|--------|----------------|
-| GV.PD-13 | DPIA Justification Quality | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion | Caldicott Principle 1 | 🟡 2 — extends GV.CR-7 completion metric |
-| GV.CR-14 | Consultation-Type Appropriateness Assessment | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams) | Caldicott Principle 2 | 🟢 1 — high-risk carve-outs |
-| GV.PD-14 | Per-Data-Item Necessity Documentation | DPIA-level documentation of why each data element processed is necessary | Caldicott Principle 3 | 🔵 3 — granular and burdensome but thorough |
-
-#### Summary
-
-| Source Standard | Proposed Metrics | Priority Tier Distribution |
-|-----------------|------------------|------------------------------|
+| Source Standard | Proposed Metrics | Tier Distribution |
+|-----------------|------------------|-------------------|
 | MHRA SaMD/AIaMD | 5 | 1 × Tier 1, 4 × Tier 2 |
 | NICE ESF | 5 | 1 × Tier 1, 3 × Tier 2, 1 × Tier 3 |
 | FHIR UK Core | 3 | 1 × Tier 1, 2 × Tier 2 |
@@ -880,4 +815,4 @@ If adopted in a future round, metrics would need full dimensions-table entries m
 | Caldicott | 3 | 1 × Tier 1, 1 × Tier 2, 1 × Tier 3 |
 | **Total** | **28** | **6 × Tier 1, 19 × Tier 2, 3 × Tier 3** |
 
-If all 28 proposed metrics were adopted, the taxonomy would grow from 214 to 242 metrics (49 Tier 1, 111 Tier 2, 82 Tier 3). The highest-leverage single addition is **TP.WB-11 PRSB Semantic Completeness** — it appears as a gap across multiple standards (PRSB directly, PRSB via FHIR UK Core, CQC record quality) and has no partial coverage in the existing taxonomy.
+Highest-leverage single addition: **TP.WB-11 PRSB Semantic Completeness** — surfaces as a gap across PRSB directly, FHIR UK Core, and CQC record quality with no partial coverage in the existing taxonomy. See the roadmap § 2 for full per-standard entries.
