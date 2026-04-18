@@ -1,11 +1,17 @@
 site_name: AVT Metrics Taxonomy
 site_description: Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings
-site_url: https://example.invalid/avt-taxonomy/
-repo_url: https://github.com/
-edit_uri: ""
+site_url: https://danjscho.github.io/avt-metrics-taxonomy/
+repo_url: https://github.com/danjscho/avt-metrics-taxonomy
+repo_name: danjscho/avt-metrics-taxonomy
+edit_uri: edit/main/taxonomy/
 
 docs_dir: docs
 site_dir: site
+
+# Machine-readable downloads (CSV, JSON) live in docs/downloads/ and are
+# copied verbatim by mkdocs. The monolithic Markdown archival copy is
+# injected into site/downloads/ after mkdocs build so it's a pure download
+# rather than getting treated as another page to render.
 
 theme:
   name: material
@@ -96,4 +102,5 @@ nav:
     - Standards Mapping: standards-mapping.md
     - Responsible AI Lens: responsible-ai-lens.md
   - Roadmap (Gaps): gaps.md
+  - Downloads: downloads.md
   - Changelog: changelog.md

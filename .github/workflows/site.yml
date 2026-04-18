@@ -1,0 +1,85 @@
+name: Build and deploy site
+
+on:
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          cache: pip
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install mkdocs-material
+
+      - name: Run audit (fail build on any finding)
+        run: python taxonomy/audit.py
+
+      - name: Build monolithic MD + CSV/JSON artefacts
+        run: python taxonomy/build.py
+
+      - name: Populate docs/ from taxonomy source
+        run: python taxonomy/build_site.py
+
+      - name: Copy CSV/JSON downloads into docs
+        run: |
+          mkdir -p docs/downloads
+          cp dist/metrics.csv docs/downloads/
+          cp dist/metrics.json docs/downloads/
+          cp dist/gaps.json docs/downloads/
+          cp dist/summary.json docs/downloads/
+
+      - name: Build site with MkDocs
+        # Not strict: the downloads page intentionally links to files
+        # injected post-build (CSV/JSON in a step above, monolithic MD
+        # in the step below), which MkDocs' strict link validator can't
+        # see. Audit + build steps above already validate source integrity.
+        run: mkdocs build
+
+      - name: Inject monolithic MD archival download into site output
+        # Served with .txt extension so MkDocs doesn't render it as a
+        # page source; the downloads page link carries `download="...md"`
+        # so browsers save it with the expected .md filename.
+        run: cp avt-metrics-taxonomy.md site/downloads/avt-metrics-taxonomy.txt
+
+      - uses: actions/upload-pages-artifact@v3
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+        with:
+          path: site
+
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

@@ -181,7 +181,63 @@ def main() -> None:
     if cl_src.exists():
         (DOCS / "changelog.md").write_text(cl_src.read_text())
 
-    print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 1} pages.")
+    # Downloads landing page — links resolve in CI where dist/* is copied
+    # into docs/downloads/ before mkdocs build (see .github/workflows/site.yml).
+    # For local preview, also mirror dist/* into docs/downloads/ here so
+    # `mkdocs serve` shows the downloads as working links.
+    (DOCS / "downloads.md").write_text(_downloads_page())
+    _mirror_downloads()
+
+    print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2} pages.")
+
+
+def _mirror_downloads() -> None:
+    dist = REPO / "dist"
+    if not dist.exists():
+        return  # build.py hasn't been run; skip
+    target = DOCS / "downloads"
+    target.mkdir(exist_ok=True)
+    for name in ("metrics.csv", "metrics.json", "gaps.json", "summary.json"):
+        src = dist / name
+        if src.exists():
+            shutil.copy2(src, target / name)
+    # Copy the monolithic MD for local preview parity with CI — but with
+    # a `.txt` extension so MkDocs doesn't treat it as a page source.
+    # The Downloads page link carries `download="avt-metrics-taxonomy.md"`
+    # so browsers save it with the expected filename.
+    md_src = REPO / "avt-metrics-taxonomy.md"
+    if md_src.exists():
+        shutil.copy2(md_src, target / "avt-metrics-taxonomy.txt")
+
+
+def _downloads_page() -> str:
+    return """# Downloads
+
+Machine-readable and archival exports of the taxonomy, regenerated on every release.
+
+## Structured data
+
+- [metrics.csv](downloads/metrics.csv) — all 214 metrics as a flat spreadsheet (17 columns: reference ID, name, tier, part, group, applicability, 8 dimension fields, source, pointer to source file).
+- [metrics.json](downloads/metrics.json) — same metrics with full dimension dictionary preserved per entry. Stable for programmatic consumption.
+- [gaps.json](downloads/gaps.json) — 83 roadmap candidates (accepted + deferred), partitioned by origin (RSET, NHSE IG, standards mapping, Responsible AI lens).
+- [summary.json](downloads/summary.json) — headline counts (metric count, tier distribution, group count, gap count).
+
+## Archival Markdown
+
+- <a href="downloads/avt-metrics-taxonomy.txt" download="avt-metrics-taxonomy.md">avt-metrics-taxonomy.md</a> — the full monolithic document. Same content as the site, assembled into a single file for offline reading, PDF printing, or citation. Served with a `.txt` extension so MkDocs treats it as a static download; the link triggers a `.md` save filename in the browser.
+
+## Citing
+
+Cite the taxonomy as:
+
+> AVT Metrics Taxonomy v3.1 (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
+
+For a specific metric, use its reference ID (e.g. `TP.AC-1`) — these are stable across versions. Individual metric pages carry anchor links of the form `/groups/<group>/#tp-ac-1` suitable for deep citation.
+
+## Earlier versions
+
+Versioned historical builds will appear here once the `mike` plugin is wired up. For now, this page shows the current tagged release.
+"""
 
 
 if __name__ == "__main__":
