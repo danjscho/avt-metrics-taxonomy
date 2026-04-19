@@ -322,6 +322,31 @@ def _mirror_downloads() -> None:
 
 CROSSCUT_DIR = "crosscuts"
 
+# Short labels that match the left-nav hand-written names in mkdocs.yml,
+# used wherever we link to a principle/theme page (index, landing, per-metric
+# references). Kept in one place so a nav rename stays in sync.
+PRINCIPLE_SHORT = {
+    "P1":  "P1 — Limitations",
+    "P2":  "P2 — Lawful/ethical",
+    "P3":  "P3 — Security",
+    "P4":  "P4 — Human control",
+    "P5":  "P5 — Lifecycle",
+    "P6":  "P6 — Right tool",
+    "P7":  "P7 — Openness",
+    "P8":  "P8 — Commercial",
+    "P9":  "P9 — Skills",
+    "P10": "P10 — Org assurance",
+}
+
+THEME_SHORT = {
+    "T1": "T1 — Safety, Security, Robustness",
+    "T2": "T2 — Transparency & Explainability",
+    "T3": "T3 — Fairness",
+    "T4": "T4 — Accountability & Governance",
+    "T5": "T5 — Contestability & Redress",
+    "T6": "T6 — Societal Wellbeing",
+}
+
 SRC_GROUP_FILE_TO_PAGE = {
     "part-a/audio-capture.md": "groups/audio-capture.md",
     "part-a/asr-transcription.md": "groups/asr-transcription.md",
@@ -394,7 +419,8 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
     ]
     for code in sorted(principle_counts, key=lambda c: int(c[1:])):
         count = principle_counts[code]
-        lines.append(f"- [{code} — principle membership](by-principle/{code.lower()}.md) — {count} metrics")
+        label = PRINCIPLE_SHORT.get(code, f"{code} — principle membership")
+        lines.append(f"- [{label}](by-principle/{code.lower()}.md) — {count} metrics")
     lines += [
         "",
         "## By standard",
@@ -422,7 +448,8 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
     ]
     for code in sorted(theme_counts, key=lambda c: int(c[1:])):
         count = theme_counts[code]
-        lines.append(f"- [{code} — theme membership](by-theme/{code.lower()}.md) — {count} metrics")
+        label = THEME_SHORT.get(code, f"{code} — theme membership")
+        lines.append(f"- [{label}](by-theme/{code.lower()}.md) — {count} metrics")
     lines.append("")
     return "\n".join(lines)
 
