@@ -1,8 +1,8 @@
-/* AVT Metrics Taxonomy — custom Material overrides.
+/* AVT Metrics Taxonomy - custom Material overrides.
  * Targeted polish only, not a redesign.
  */
 
-/* Wider content area on desktop — the default 61rem feels cramped for
+/* Wider content area on desktop - the default 61rem feels cramped for
  * the long dimensions tables that appear on every metric. */
 @media screen and (min-width: 76.25em) {
   .md-grid {
@@ -10,7 +10,7 @@
   }
 }
 
-/* Draft banner — use a warning-yellow tint rather than the Material default
+/* Draft banner - use a warning-yellow tint rather than the Material default
  * primary colour, so the "this is draft" signal is visually distinct from
  * the brand colour. */
 .md-banner {
@@ -25,7 +25,7 @@
   color: inherit;
 }
 
-/* Dimensions tables — subtler header shading + clearer row separation.
+/* Dimensions tables - subtler header shading + clearer row separation.
  * The default Material table is fine in isolation but every metric has
  * one so the pages read as rows-of-boxes, which is noisy. */
 .md-typeset table:not([class]) th {
@@ -40,7 +40,7 @@
   background: var(--md-default-fg-color--lightest);
 }
 
-/* Part kicker under the h1 — make it small and tag-like so it reads as
+/* Part kicker under the h1 - make it small and tag-like so it reads as
  * breadcrumb context, not competing prose. */
 .md-content h1 + p > em:only-child {
   display: inline-block;
@@ -55,7 +55,7 @@
   margin-top: -0.5em;
 }
 
-/* Applicability badge — one-line callout under each metric's dimensions
+/* Applicability badge - one-line callout under each metric's dimensions
  * table. Restrained look: left border accent, no box. */
 .md-content p > strong:first-child + span,
 .md-content p:has(> strong:first-child:where(:contains("Applicability:"))) {
@@ -66,13 +66,13 @@
 .md-typeset p strong:first-child {
   /* not targeted enough; use a class instead if this becomes fragile */
 }
-/* Related-metrics footer — light rule separator so it reads as a footer,
+/* Related-metrics footer - light rule separator so it reads as a footer,
  * not as more body copy. */
 .md-typeset p em:first-child:first-of-type {
-  /* cosmetic only — matched by the "Related metrics" italic intro */
+  /* cosmetic only - matched by the "Related metrics" italic intro */
 }
 
-/* Grid cards on the landing page — slightly tighter padding, consistent
+/* Grid cards on the landing page - slightly tighter padding, consistent
  * icon alignment. */
 .md-typeset .grid.cards > * {
   padding: 0.9em 1em;
@@ -82,7 +82,7 @@
   vertical-align: -0.15em;
 }
 
-/* Tier icon rendering — give the emoji tier markers a consistent baseline
+/* Tier icon rendering - give the emoji tier markers a consistent baseline
  * so `🟢 1` aligns with surrounding text in tables and headings. */
 .md-typeset h3 .twemoji,
 .md-typeset td .twemoji {
@@ -91,7 +91,7 @@
   height: 1.1em;
 }
 
-/* Md-button row on the contents page — space buttons so they read as a
+/* Md-button row on the contents page - space buttons so they read as a
  * horizontal bar rather than stacked lines. */
 .md-typeset .md-button + .md-button {
   margin-left: 0.3em;

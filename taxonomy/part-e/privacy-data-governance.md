@@ -11,7 +11,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -38,7 +38,7 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 **Novel Thinking / Implications**
 
-> 💡 Audio is the most sensitive data AVT processes — it captures everything said in the consultation, including content that doesn't make it into the note. Retention policy must distinguish between audio needed for review-before-signing (minutes) and audio retained for quality improvement or dispute resolution (potentially months). The DPIA must address both.
+> 💡 Audio is the most sensitive data AVT processes - it captures everything said in the consultation, including content that doesn't make it into the note. Retention policy must distinguish between audio needed for review-before-signing (minutes) and audio retained for quality improvement or dispute resolution (potentially months). The DPIA must address both.
 
 ---
 
@@ -49,7 +49,7 @@ Measured time from consultation end to verified deletion of the captured audio. 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-2 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -72,22 +72,22 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 **Limitations**
 
-> Verification across all storage locations is technically difficult — backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
+> Verification across all storage locations is technically difficult - backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
 
 **Novel Thinking / Implications**
 
-> 💡 "Audio is deleted after sign-off" is a policy statement that only has governance value if it's actually measured. The gap between policy and practice on deletion is often substantial — audio persists in backup systems, error logs, annotation pipelines, and quality monitoring infrastructure long after the "deletion" event. Making time-to-deletion a measured metric rather than a policy assertion is the minimum required for the NHS IG guidance to have operational effect.
+> 💡 "Audio is deleted after sign-off" is a policy statement that only has governance value if it's actually measured. The gap between policy and practice on deletion is often substantial - audio persists in backup systems, error logs, annotation pipelines, and quality monitoring infrastructure long after the "deletion" event. Making time-to-deletion a measured metric rather than a policy assertion is the minimum required for the NHS IG guidance to have operational effect.
 
 ---
 
 ### GV.PD-3 🟢 Transcript Retention Compliance
 
-Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio — and therefore retained longer — but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
+Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as less sensitive than audio - and therefore retained longer - but transcripts are in many ways more risky because they are structured, searchable, and readily consumable by downstream systems. A transcript of a consultation discussing mental health, substance use, or safeguarding concerns is arguably more sensitive than the audio because it removes the friction of listening and enables programmatic analysis.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-3 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -105,7 +105,7 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 **Formal Definition**
 
 ```
-For each transcript: retention duration = t_current - t_consultation_end. Retention policy specifies maximum duration for each purpose: summary generation (typically hours), review support (typically days), quality monitoring (variable, documented in DPIA). Compliance = |transcripts_retained_within_policy| / |total_transcripts|. Report per retention purpose — aggregating different retention justifications obscures policy adherence.
+For each transcript: retention duration = t_current - t_consultation_end. Retention policy specifies maximum duration for each purpose: summary generation (typically hours), review support (typically days), quality monitoring (variable, documented in DPIA). Compliance = |transcripts_retained_within_policy| / |total_transcripts|. Report per retention purpose - aggregating different retention justifications obscures policy adherence.
 ```
 
 **Limitations**
@@ -125,7 +125,7 @@ Whether the AVT system processes only the minimum data necessary for its functio
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-4 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -148,22 +148,22 @@ DMS = data_necessary / data_processed. Ideal DMS = 1.0. Track per data type: aud
 
 **Limitations**
 
-> Defining 'necessary' is contested — vendors argue cloud processing is necessary for quality; privacy advocates argue local processing is sufficient for many use cases.
+> Defining 'necessary' is contested - vendors argue cloud processing is necessary for quality; privacy advocates argue local processing is sufficient for many use cases.
 
 **Novel Thinking / Implications**
 
-> 💡 The DGX Spark and similar edge AI hardware create a genuine architectural choice: local processing minimises data exposure but may limit model capability. The data minimisation score should drive architectural decisions — if local processing meets quality thresholds, cloud transmission of full audio is unnecessary and non-compliant with minimisation principles.
+> 💡 The DGX Spark and similar edge AI hardware create a genuine architectural choice: local processing minimises data exposure but may limit model capability. The data minimisation score should drive architectural decisions - if local processing meets quality thresholds, cloud transmission of full audio is unnecessary and non-compliant with minimisation principles.
 
 ---
 
 ### GV.PD-5 🟡 PII Extraction Attack Success Rate
 
-Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric — MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
+Adversarial privacy testing: the rate at which a determined attacker can extract patient personal data from the deployed AVT system through model interaction. Includes prompt-based extraction (crafted queries that coax the model to reproduce training content), inversion attacks (reconstructing inputs from outputs), and side-channel extraction. Complements the Membership Inference Attack AUC metric - MIA tells you whether a specific patient was in training; PII extraction tells you what content about them can be recovered.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-5 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -181,7 +181,7 @@ Adversarial privacy testing: the rate at which a determined attacker can extract
 **Formal Definition**
 
 ```
-Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attack categories: (1) direct prompting ("what did the patient say about their family history?"); (2) completion-based extraction (prompting partial records and measuring reconstruction); (3) inversion attacks on embeddings; (4) canary extraction using known inserted content. Report per attack category — aggregate success rate obscures category-specific weaknesses.
+Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attack categories: (1) direct prompting ("what did the patient say about their family history?"); (2) completion-based extraction (prompting partial records and measuring reconstruction); (3) inversion attacks on embeddings; (4) canary extraction using known inserted content. Report per attack category - aggregate success rate obscures category-specific weaknesses.
 ```
 
 **Limitations**
@@ -190,18 +190,18 @@ Success Rate = |PII_items_successfully_extracted| / |PII_items_attempted|. Attac
 
 **Novel Thinking / Implications**
 
-> 💡 The OWASP LLM Top 10 lists Sensitive Information Disclosure as a standard vulnerability class, but most AVT vendors have not engaged with it as a distinct security category — privacy is typically treated as "we don't train on customer data" rather than as an active red-teaming target. The shift from passive privacy posture to adversarial privacy testing is the maturity marker. A vendor who has never had their system red-teamed for PII extraction should not be deployed into NHS clinical settings.
+> 💡 The OWASP LLM Top 10 lists Sensitive Information Disclosure as a standard vulnerability class, but most AVT vendors have not engaged with it as a distinct security category - privacy is typically treated as "we don't train on customer data" rather than as an active red-teaming target. The shift from passive privacy posture to adversarial privacy testing is the maturity marker. A vendor who has never had their system red-teamed for PII extraction should not be deployed into NHS clinical settings.
 
 ---
 
 ### GV.PD-6 🟡 Re-identification Risk Assessment
 
-Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation — anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
+Structured assessment of the risk that de-identified data retained for quality improvement, research, or secondary use can be re-identified. Applies to any dataset derived from AVT operation - anonymised transcripts for model quality review, de-identified notes for research, aggregate statistics that may become identifying at small sample sizes. Standard privacy methodology applied to AVT-specific data flows.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-6 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -219,7 +219,7 @@ Structured assessment of the risk that de-identified data retained for quality i
 **Formal Definition**
 
 ```
-Per retained dataset: assess re-identification risk against standard criteria — (1) direct identifiers present or removed? (2) quasi-identifiers (age, postcode, date, rare condition) combinable to identify individuals? (3) k-anonymity achieved and at what k? (4) l-diversity for sensitive attributes? (5) differential privacy applied? (6) motivated intruder test — could a determined attacker re-identify individuals given reasonably available auxiliary information? Overall risk rating: low / medium / high / unacceptable. Threshold for retention: risk must be low or medium with explicit justification.
+Per retained dataset: assess re-identification risk against standard criteria - (1) direct identifiers present or removed? (2) quasi-identifiers (age, postcode, date, rare condition) combinable to identify individuals? (3) k-anonymity achieved and at what k? (4) l-diversity for sensitive attributes? (5) differential privacy applied? (6) motivated intruder test - could a determined attacker re-identify individuals given reasonably available auxiliary information? Overall risk rating: low / medium / high / unacceptable. Threshold for retention: risk must be low or medium with explicit justification.
 ```
 
 **Limitations**
@@ -228,7 +228,7 @@ Per retained dataset: assess re-identification risk against standard criteria �
 
 **Novel Thinking / Implications**
 
-> 💡 A single NHS practice with 5,000 patients has very few patients with any given rare condition — sometimes just one. A "de-identified" transcript mentioning that condition is trivially re-identifiable by anyone with access to the practice's patient list. Re-identification risk assessment forces this question into visibility during DPIA rather than treating de-identification as a technical checkbox.
+> 💡 A single NHS practice with 5,000 patients has very few patients with any given rare condition - sometimes just one. A "de-identified" transcript mentioning that condition is trivially re-identifiable by anyone with access to the practice's patient list. Re-identification risk assessment forces this question into visibility during DPIA rather than treating de-identification as a technical checkbox.
 
 ---
 
@@ -239,7 +239,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -257,7 +257,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 **Formal Definition**
 
 ```
-Status recorded as: (a) No — deployer data not used for any training or fine-tuning; (b) Yes — used for training with specified consent basis and opt-out mechanism; (c) Derived — used for aggregated statistics or distilled features without retaining source data. Each status has different governance implications. Documentation must specify which model components may be trained (ASR, summariser, coder) and which data types (audio, transcripts, notes, metadata). Vendor attestation required; independent verification is not currently feasible.
+Status recorded as: (a) No - deployer data not used for any training or fine-tuning; (b) Yes - used for training with specified consent basis and opt-out mechanism; (c) Derived - used for aggregated statistics or distilled features without retaining source data. Each status has different governance implications. Documentation must specify which model components may be trained (ASR, summariser, coder) and which data types (audio, transcripts, notes, metadata). Vendor attestation required; independent verification is not currently feasible.
 ```
 
 **Limitations**
@@ -266,7 +266,7 @@ Status recorded as: (a) No — deployer data not used for any training or fine-t
 
 **Novel Thinking / Implications**
 
-> 💡 Many NHS AVT contracts are ambiguous about training data flows because vendors benefit from keeping the option open and deployers often don't ask explicitly. Making this a Tier 2 procurement metric forces the question into contract negotiations. The patient-level consequence is that AVT-using consultations may effectively contribute to training the next generation of commercial AI systems — and patients should know this if it's happening. This is a transparency obligation the existing taxonomy's consent metrics don't capture.
+> 💡 Many NHS AVT contracts are ambiguous about training data flows because vendors benefit from keeping the option open and deployers often don't ask explicitly. Making this a Tier 2 procurement metric forces the question into contract negotiations. The patient-level consequence is that AVT-using consultations may effectively contribute to training the next generation of commercial AI systems - and patients should know this if it's happening. This is a transparency obligation the existing taxonomy's consent metrics don't capture.
 
 ---
 
@@ -277,7 +277,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-8 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Patient Experience |
@@ -315,7 +315,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-9 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -338,7 +338,7 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 46 — appropriate safeguards for international transfers
+- **UK GDPR**: UK GDPR Article 46 - appropriate safeguards for international transfers
 
 **Limitations**
 
@@ -346,7 +346,7 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 **Novel Thinking / Implications**
 
-> 💡 Cloud-hosted AVT often involves transfers to US-based hyperscaler infrastructure. The Schrems II ruling complicates US transfers significantly. Many AVT vendors don't fully document their data flows — a compliance gap that becomes a deployer liability under UK GDPR.
+> 💡 Cloud-hosted AVT often involves transfers to US-based hyperscaler infrastructure. The Schrems II ruling complicates US transfers significantly. Many AVT vendors don't fully document their data flows - a compliance gap that becomes a deployer liability under UK GDPR.
 
 ---
 
@@ -357,7 +357,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-10 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -392,12 +392,12 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
-**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the UK GDPR exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right (NHSE IG guidance Mar-2026). The capability must still exist for cases where erasure does apply — secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations — which is why this remains a pre-deployment gate.
+**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the UK GDPR exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right (NHSE IG guidance Mar-2026). The capability must still exist for cases where erasure does apply - secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations - which is why this remains a pre-deployment gate.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.PD-11 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -424,7 +424,7 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 **Novel Thinking / Implications**
 
-> 💡 The hard case: if audio from a patient was used to fine-tune the vendor's model, can that influence be removed? Probably not — and this should be disclosed in the privacy notice. Patients should know that consenting to AVT may include effectively irreversible inclusion of their voice in model training. This is a transparency obligation that current AVT consent processes rarely address.
+> 💡 The hard case: if audio from a patient was used to fine-tune the vendor's model, can that influence be removed? Probably not - and this should be disclosed in the privacy notice. Patients should know that consenting to AVT may include effectively irreversible inclusion of their voice in model training. This is a transparency obligation that current AVT consent processes rarely address.
 
 ---
 

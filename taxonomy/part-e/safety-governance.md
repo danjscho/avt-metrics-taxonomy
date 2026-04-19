@@ -1,4 +1,4 @@
-# Part E — System Governance
+# Part E - System Governance
 
 ## Safety & Governance
 
@@ -8,12 +8,12 @@
 
 ### GV.SG-1 🟢 Model Version Tracking
 
-Logging which model version produces each output. Foundation for all continuous metrics — without it, performance changes are uninterpretable.
+Logging which model version produces each output. Foundation for all continuous metrics - without it, performance changes are uninterpretable.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -55,7 +55,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -99,12 +99,12 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ### GV.SG-3 🟡 Performance Degradation Detection Latency
 
-Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation — performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
+Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation - performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
 | **Reference** | GV.SG-3 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                             |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Safety                                                             |
@@ -117,7 +117,7 @@ Time delay between the onset of model performance degradation and its detection 
 
 **Why this tier?**
 
-> Regional or national monitoring because detection requires aggregation across sites — single-practice data lacks statistical power to distinguish drift from noise. The detection infrastructure is the binding constraint; the metric itself is straightforward once infrastructure exists.
+> Regional or national monitoring because detection requires aggregation across sites - single-practice data lacks statistical power to distinguish drift from noise. The detection infrastructure is the binding constraint; the metric itself is straightforward once infrastructure exists.
 
 **Formal Definition**
 
@@ -131,18 +131,18 @@ Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous 
 
 **Novel Thinking / Implications**
 
-> 💡 Silent degradation is the failure mode that notified update monitoring cannot catch. A vendor pushing incremental improvements, a cloud infrastructure change that affects inference behaviour, or gradual model quality decay from training data drift — none of these trigger Model Version Tracking but all can cause clinically significant performance change. Detection latency is the metric that tells you whether your monitoring would actually catch a silent failure before it caused harm. A system with excellent monitoring coverage but 6-month detection latency is operationally fragile.
+> 💡 Silent degradation is the failure mode that notified update monitoring cannot catch. A vendor pushing incremental improvements, a cloud infrastructure change that affects inference behaviour, or gradual model quality decay from training data drift - none of these trigger Model Version Tracking but all can cause clinically significant performance change. Detection latency is the metric that tells you whether your monitoring would actually catch a silent failure before it caused harm. A system with excellent monitoring coverage but 6-month detection latency is operationally fragile.
 
 ---
 
 ### GV.SG-4 🟡 Retraining Trigger Threshold Specification
 
-Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) — this metric assesses whether the trigger logic for when updates should occur is even specified.
+Pre-defined, quantitative criteria specifying the conditions under which a model must be retrained or recalibrated. Required by FDA Predetermined Change Control Plans (PCCP, December 2024) for AI-enabled medical devices, and aligned with NICE ESF 2022's AI-specific requirements. Distinct from the existing Model Update Impact Score (which measures impact of executed updates) - this metric assesses whether the trigger logic for when updates should occur is even specified.
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
 | **Reference** | GV.SG-4 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                            |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                            |
 |**Measurement Cadence**|One-off gate                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                     |
 |**Assurance Question** |Safety                                                            |
@@ -169,18 +169,18 @@ Assessment against specification criteria: (1) Performance thresholds pre-specif
 
 **Novel Thinking / Implications**
 
-> 💡 The FDA PCCP framework represents a regulatory shift from "approve the specific model" to "approve the change control process that governs model evolution". For AVT, where continuous improvement is assumed, this shift is essential — but only works if the change control process is specified, auditable, and followed. A vendor without a PCCP-equivalent framework is effectively promising that their model will never need updating, or that updating decisions will be made ad hoc. Neither is credible for a production clinical system.
+> 💡 The FDA PCCP framework represents a regulatory shift from "approve the specific model" to "approve the change control process that governs model evolution". For AVT, where continuous improvement is assumed, this shift is essential - but only works if the change control process is specified, auditable, and followed. A vendor without a PCCP-equivalent framework is effectively promising that their model will never need updating, or that updating decisions will be made ad hoc. Neither is credible for a production clinical system.
 
 ---
 
 ### GV.SG-5 🔵 AI-Generated Data Contamination Rate
 
-The proportion of training or fine-tuning data that is itself AI-generated clinical content — either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
+The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
 | **Reference** | GV.SG-5 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                                   |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                                                   |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
 |**Assurance Question** |Safety                                                                                           |
@@ -193,7 +193,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 
 **Why this tier?**
 
-> Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility — and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.
+> Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility - and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.
 
 **Formal Definition**
 
@@ -203,22 +203,22 @@ Contamination Rate = |training_examples_derived_from_AI_generated_content| / |to
 
 **Limitations**
 
-> Detecting AI-generated content in training data is an unsolved problem — watermarking proposals are not yet standardised. Vendor attestation is self-reported. Longitudinal monitoring requires visibility into vendor training pipelines that is rarely contractually granted.
+> Detecting AI-generated content in training data is an unsolved problem - watermarking proposals are not yet standardised. Vendor attestation is self-reported. Longitudinal monitoring requires visibility into vendor training pipelines that is rarely contractually granted.
 
 **Novel Thinking / Implications**
 
-> 💡 Every NHS trust deploying AVT is a data generation site. If vendors fine-tune on deployed clinical data (a common practice for improvement), NHS content flows back into the training pipeline. Over multiple training cycles, this creates a feedback loop where the model is increasingly trained on its own output — the vocabulary collapse and rare-event disappearance finding becomes a direct patient safety risk because rare clinical presentations are exactly where documentation accuracy matters most. This is the AVT-specific version of what the ML literature calls "the curse of recursion", and it's a systemic risk that requires national-level intervention rather than deployer-level monitoring.
+> 💡 Every NHS trust deploying AVT is a data generation site. If vendors fine-tune on deployed clinical data (a common practice for improvement), NHS content flows back into the training pipeline. Over multiple training cycles, this creates a feedback loop where the model is increasingly trained on its own output - the vocabulary collapse and rare-event disappearance finding becomes a direct patient safety risk because rare clinical presentations are exactly where documentation accuracy matters most. This is the AVT-specific version of what the ML literature calls "the curse of recursion", and it's a systemic risk that requires national-level intervention rather than deployer-level monitoring.
 
 ---
 
 ### GV.SG-6 🔵 Concept Drift in Clinical Notes
 
-Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic — that requires human judgment — but it makes drift visible so it can be investigated.
+Statistical detection of drift in the distribution of clinical concepts present in AI-generated notes over time. Concept drift can occur for legitimate reasons (true population shifts, new conditions, changed coding practice) or problematic reasons (model degradation, training data contamination, prompt drift). The metric doesn't distinguish legitimate from problematic - that requires human judgment - but it makes drift visible so it can be investigated.
 
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
 | **Reference** | GV.SG-6 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                            |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                            |
 |**Measurement Cadence**|Continuous                                                |
 |**Pipeline Layer**     |Cross-cutting                                             |
 |**Assurance Question** |Meta-evaluation                                           |
@@ -236,7 +236,7 @@ Statistical detection of drift in the distribution of clinical concepts present 
 **Formal Definition**
 
 ```
-For each reference time window W_ref and comparison window W_t: compute the distribution of SNOMED concepts (or other structured clinical categories) present in AI-generated notes. Drift = KL divergence or earth mover's distance between distributions. Threshold for investigation: drift > 2σ from historical seasonal variation. Report per concept category — aggregate drift obscures category-specific shifts. Specifically monitor: rare diagnoses, psychosocial content, safety-netting language, safeguarding flags.
+For each reference time window W_ref and comparison window W_t: compute the distribution of SNOMED concepts (or other structured clinical categories) present in AI-generated notes. Drift = KL divergence or earth mover's distance between distributions. Threshold for investigation: drift > 2σ from historical seasonal variation. Report per concept category - aggregate drift obscures category-specific shifts. Specifically monitor: rare diagnoses, psychosocial content, safety-netting language, safeguarding flags.
 ```
 
 **Limitations**
@@ -245,7 +245,7 @@ For each reference time window W_ref and comparison window W_t: compute the dist
 
 **Novel Thinking / Implications**
 
-> 💡 The most worrying drift signal is concepts that progressively disappear — safeguarding language, mental health content, social context — because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
+> 💡 The most worrying drift signal is concepts that progressively disappear - safeguarding language, mental health content, social context - because the disappearance may indicate the model has learned to deprioritise these categories over time through training data feedback loops. If an AVT system in year 3 documents less psychosocial content than the same system in year 1 despite similar patient populations, something has shifted in what the system considers "clinical content worth recording". This is exactly the kind of drift that aggregate performance metrics cannot detect.
 
 ### GV.SG-7 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
@@ -254,7 +254,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-7 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -277,7 +277,7 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 **References**
 
-- **Preprint**: medRxiv, Nov 2025 — 14 open-source LLMs
+- **Preprint**: medRxiv, Nov 2025 - 14 open-source LLMs
 
 **Limitations**
 
@@ -296,7 +296,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-8 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
 | **Assurance Question** | Safety |
@@ -314,7 +314,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 **Formal Definition**
 
 ```
-MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-specific severity definitions — not aligned to external standard.
+MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-specific severity definitions - not aligned to external standard.
 ```
 
 **References**
@@ -338,7 +338,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-9 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -375,12 +375,12 @@ For SPI s: measurement M(s), threshold T(s), action A(s). If M(s) > T(s) for dur
 
 ### GV.SG-10 🟡 Off-Label Use Detection Rate
 
-AVT use outside validated contexts. Well-intentioned scope creep — each boundary crossing compounds risk.
+AVT use outside validated contexts. Well-intentioned scope creep - each boundary crossing compounds risk.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-10 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -409,7 +409,7 @@ Validated envelope V = set of (domain, type, population, setting) tuples. Bounda
 
 > Requires clear validated envelope definition.
 
-**⚠️ Underspecification Warning (Tier A — no established methodology)**
+**⚠️ Underspecification Warning (Tier A - no established methodology)**
 
 > Off-label use of AVT has **no established detection methodology** in the published literature. The concept borrows from pharmaceutical regulation, but AVT "indicated use" boundaries are rarely defined precisely enough to determine when specific use is off-label. A 2025 Morgan Lewis legal analysis highlighted the liability risk but provided no detection framework. No use-case taxonomy exists to define intended vs off-label boundaries. No monitoring approach has been proposed in peer-reviewed literature. This metric requires definitional work before operational implementation is possible: deployers should, in collaboration with vendors, specify the validated use envelope (specialties, patient populations, acuity levels, languages, consultation modes) and build usage-pattern monitoring against that envelope rather than attempting to measure "off-label use" as an isolated concept. Consider operationalising as the proposed **Work-as-Imagined vs Work-as-Done Gap** metric (Human Factors & Workflow) which provides a more structured framework for detecting adaptation, workaround, and scope creep.
 
@@ -426,7 +426,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-11 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -439,12 +439,12 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 
 **Why this tier?**
 
-> Established national reporting. The ultimate lagging indicator — by the time this metric moves, harm has occurred. Needs dedicated LFPSE category for AI/AVT incidents.
+> Established national reporting. The ultimate lagging indicator - by the time this metric moves, harm has occurred. Needs dedicated LFPSE category for AI/AVT incidents.
 
 **Formal Definition**
 
 ```
-IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxonomy code for AI/AVT — coded under general documentation errors.
+IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxonomy code for AI/AVT - coded under general documentation errors.
 ```
 
 **References**
@@ -468,7 +468,7 @@ Performance variation across practices within ICB. High variance = context-depen
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-12 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -501,12 +501,12 @@ CV_m = σ(m across practices) / μ(m). High CV (>0.3) = context-dependent. ANOVA
 
 ### GV.SG-13 🟢 Assurance Debt Accumulation Rate
 
-Gap between required and completed assurance. The honest metric — better visible and managed than hidden until incident.
+Gap between required and completed assurance. The honest metric - better visible and managed than hidden until incident.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-13 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -544,7 +544,7 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-14 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -571,7 +571,7 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 
 **Novel Thinking / Implications**
 
-> 💡 The leading indicator: by the time LFPSE moves, harm has occurred. Near-miss reporting catches errors before they cause harm — but only if there's a low-friction reporting mechanism and a no-blame culture. The ratio of near-miss to actual incidents is itself diagnostic of safety culture.
+> 💡 The leading indicator: by the time LFPSE moves, harm has occurred. Near-miss reporting catches errors before they cause harm - but only if there's a low-friction reporting mechanism and a no-blame culture. The ratio of near-miss to actual incidents is itself diagnostic of safety culture.
 
 ---
 
@@ -582,7 +582,7 @@ When an AVT error is detected, how quickly is it corrected and the lessons disse
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-15 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -609,7 +609,7 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 **Novel Thinking / Implications**
 
-> 💡 A long time-to-correct means errors persist in the system and may affect multiple patients before resolution. This is operationally important — a single error is bad, but a single error that took 3 weeks to correct is a governance failure.
+> 💡 A long time-to-correct means errors persist in the system and may affect multiple patients before resolution. This is operationally important - a single error is bad, but a single error that took 3 weeks to correct is a governance failure.
 
 ---
 
@@ -620,7 +620,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-16 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -658,7 +658,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.SG-17 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -685,11 +685,11 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 **Limitations**
 
-> Requires connecting operational monitoring to hazard log update process — often disconnected in current practice.
+> Requires connecting operational monitoring to hazard log update process - often disconnected in current practice.
 
 **Novel Thinking / Implications**
 
-> 💡 DCB0129 hazard logs are often written once at deployment and forgotten. As operational monitoring discovers new failure modes (through edit pattern analysis, near-miss reporting, incident investigation), these should be added to the hazard log with mitigations. A hazard log that hasn't been updated in 6 months is either a perfect system or a compliance failure — and almost certainly the latter.
+> 💡 DCB0129 hazard logs are often written once at deployment and forgotten. As operational monitoring discovers new failure modes (through edit pattern analysis, near-miss reporting, incident investigation), these should be added to the hazard log with mitigations. A hazard log that hasn't been updated in 6 months is either a perfect system or a compliance failure - and almost certainly the latter.
 
 ---
 

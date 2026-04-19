@@ -4,14 +4,14 @@
 
 The existing [taxonomy/_standards-mapping.md](taxonomy/_standards-mapping.md) covers four NHS/regulatory frameworks: DTAC v2.0, DSPT v8, DCB0129/0160, and the NHS LLM Evaluation & Monitoring Framework v0.2.2. This plan extends the taxonomy's assurance coverage in two complementary ways:
 
-**Part 1 — Seven additional NHS/UK standards** mapped into the existing standards-mapping document (mixed granularity)
+**Part 1 - Seven additional NHS/UK standards** mapped into the existing standards-mapping document (mixed granularity)
 
-**Part 2 — A new cross-cutting Responsible AI lens document** (`_responsible-ai-lens.md`) that tags metrics against:
+**Part 2 - A new cross-cutting Responsible AI lens document** (`_responsible-ai-lens.md`) that tags metrics against:
 - The **10 principles** from the DSIT AI Playbook for the UK Government (Feb 2025)
 - The **6 ethical themes** of responsible AI (the AI Regulation White Paper's five principles + Societal Wellbeing as the sixth, as articulated in the Playbook ethics chapter)
 
 **Why the two-part approach:**
-Standards and principles are categorically different. The 7 standards (Part 1) prescribe *what artefacts/processes/criteria must exist* — they fit the existing assertion-level tables. The Playbook principles and ethical themes (Part 2) are *policy lenses* — every metric hits multiple principles/themes, the Playbook itself acknowledges trade-offs between them, and the value is cross-tagging not 1:1 mapping. A separate lens document mirrors the existing `_applicability.md` pattern and keeps the standards-mapping doc coherent.
+Standards and principles are categorically different. The 7 standards (Part 1) prescribe *what artefacts/processes/criteria must exist* - they fit the existing assertion-level tables. The Playbook principles and ethical themes (Part 2) are *policy lenses* - every metric hits multiple principles/themes, the Playbook itself acknowledges trade-offs between them, and the value is cross-tagging not 1:1 mapping. A separate lens document mirrors the existing `_applicability.md` pattern and keeps the standards-mapping doc coherent.
 
 **Why Part 1 additions:** Deployers, vendors, and assurance teams need coverage of the full NHS regulatory landscape. The selected additions close genuine gaps:
 - **MHRA SaMD/AIaMD** adds the regulatory classification pathway (distinct from DCB0129 clinical risk management)
@@ -22,13 +22,13 @@ Standards and principles are categorically different. The 7 standards (Part 1) p
 - **Caldicott Principles** adds the strategic governance layer that DSPT operationalises
 - **FHIR UK Core** refines existing FHIR mapping with UK-specific constraints
 
-**Why Part 2 additions:** UK Government AI assurance is increasingly framed through the Playbook principles and six themes. ICB boards, assurance teams, and ethicists coming from the policy side need a view of the taxonomy through that lens. The NHS LLM Evaluation Framework's three groups (already mapped) are an operationalisation layer — the Playbook themes give the policy-intent axes, and the NHS framework gives the measurement-method axes. Both are needed.
+**Why Part 2 additions:** UK Government AI assurance is increasingly framed through the Playbook principles and six themes. ICB boards, assurance teams, and ethicists coming from the policy side need a view of the taxonomy through that lens. The NHS LLM Evaluation Framework's three groups (already mapped) are an operationalisation layer - the Playbook themes give the policy-intent axes, and the NHS framework gives the measurement-method axes. Both are needed.
 
 **Decisions locked in** (from user clarification):
 - **Scope**: 7 selected NHS standards + DSIT Playbook 10 principles + 6 ethical themes
 - **Part 1 granularity**: assertion-level for formal standards (MHRA, NICE ESF, FHIR UK Core), higher-level summary for less formal ones (CQC, PSIRF, PRSB, Caldicott)
-- **Part 1 scope**: mapping + flagged gaps — map existing metrics against new standards, include a "Proposed new metrics" section listing what would close identified gaps, but **do not add new metrics in this round**
-- **Part 2 shape**: new document `_responsible-ai-lens.md` (Option B from design discussion) — separate from standards mapping, consistent with `_applicability.md` pattern
+- **Part 1 scope**: mapping + flagged gaps - map existing metrics against new standards, include a "Proposed new metrics" section listing what would close identified gaps, but **do not add new metrics in this round**
+- **Part 2 shape**: new document `_responsible-ai-lens.md` (Option B from design discussion) - separate from standards mapping, consistent with `_applicability.md` pattern
 - **Sequencing**: all in one extended plan (Option a), but broken into subtasks for separate commits
 - **EU AI Act**: not re-extended (already covered via GV.CR-10 at current depth)
 
@@ -40,19 +40,19 @@ Standards and principles are categorically different. The 7 standards (Part 1) p
 
 | # | Standard | Granularity | Publisher | Status |
 |---|----------|-------------|-----------|--------|
-| 1 | **MHRA SaMD / AIaMD** — Change Programme WPs + SI 2024 No. 1368 PMS + Transparency Guiding Principles (June 2024) + GMLP (Oct 2021) | Assertion-level | MHRA | Mandatory for devices; cascading via vendors |
-| 2 | **NICE Evidence Standards Framework for DHTs (ECD7)** — 21 standards × A/B/C tiers × min/best; AI provisions in Standards 4, 5, 6, 15, 16 | Assertion-level | NICE | De facto mandatory for commissioning |
-| 3 | **FHIR UK Core / INTEROPen** — STU1/STU2/STU3 profiles + UK extensions | Assertion-level (refines TP.WB-6/7) | NHS England Digital / INTEROPen | De facto interop standard |
-| 4 | **CQC Assessment for AI** — GP Mythbuster 109 + Single Assessment Framework quality statements under 5 key questions | Higher-level summary | CQC | Mandatory inspection |
-| 5 | **Patient Safety Incident Response Framework (PSIRF)** — 4 principles + response types (AAR/PSII/SEIPS) + engagement/oversight | Higher-level summary | NHS England | Mandatory for most NHS providers (full rollout by end 2023; primary care 2025–26) |
-| 6 | **PRSB Clinical Documentation Standards** — Core Information Standard + Outpatient Letter + Discharge + others; relationship to UK Core | Higher-level summary | PRSB | Emerging de facto |
+| 1 | **MHRA SaMD / AIaMD** - Change Programme WPs + SI 2024 No. 1368 PMS + Transparency Guiding Principles (June 2024) + GMLP (Oct 2021) | Assertion-level | MHRA | Mandatory for devices; cascading via vendors |
+| 2 | **NICE Evidence Standards Framework for DHTs (ECD7)** - 21 standards × A/B/C tiers × min/best; AI provisions in Standards 4, 5, 6, 15, 16 | Assertion-level | NICE | De facto mandatory for commissioning |
+| 3 | **FHIR UK Core / INTEROPen** - STU1/STU2/STU3 profiles + UK extensions | Assertion-level (refines TP.WB-6/7) | NHS England Digital / INTEROPen | De facto interop standard |
+| 4 | **CQC Assessment for AI** - GP Mythbuster 109 + Single Assessment Framework quality statements under 5 key questions | Higher-level summary | CQC | Mandatory inspection |
+| 5 | **Patient Safety Incident Response Framework (PSIRF)** - 4 principles + response types (AAR/PSII/SEIPS) + engagement/oversight | Higher-level summary | NHS England | Mandatory for most NHS providers (full rollout by end 2023; primary care 2025–26) |
+| 6 | **PRSB Clinical Documentation Standards** - Core Information Standard + Outpatient Letter + Discharge + others; relationship to UK Core | Higher-level summary | PRSB | Emerging de facto |
 | 7 | **Caldicott Principles** (8 principles, 2020 revision) | Higher-level summary | National Data Guardian | Foundational (CLDC + CQC Reg 17) |
 
 ### Part 2: Responsible AI lens document
 
 New file `taxonomy/_responsible-ai-lens.md` tags existing metrics against:
 
-**A. DSIT AI Playbook for the UK Government — 10 Principles** (Feb 2025):
+**A. DSIT AI Playbook for the UK Government - 10 Principles** (Feb 2025):
 1. You know what AI is and what its limitations are
 2. You use AI lawfully, ethically and responsibly
 3. You know how to use AI securely
@@ -74,10 +74,10 @@ New file `taxonomy/_responsible-ai-lens.md` tags existing metrics against:
 
 ### Out of scope for this round
 
-- **No new metrics** — gaps flagged in both Part 1 and Part 2 but not filled
-- **No existing metric changes** — all 214 metrics stay as-is
+- **No new metrics** - gaps flagged in both Part 1 and Part 2 but not filled
+- **No existing metric changes** - all 214 metrics stay as-is
 - **EU AI Act** not extended beyond existing GV.CR-10
-- Royal College guidance, ORCHA, CCS RM6200, HRA AI ethics, DAPB 3051 — not selected
+- Royal College guidance, ORCHA, CCS RM6200, HRA AI ethics, DAPB 3051 - not selected
 - AI Regulation White Paper not mapped separately (subsumed by Playbook's six themes)
 - Data Ethics Framework, ATRS mentioned but not separately mapped
 
@@ -87,11 +87,11 @@ New file `taxonomy/_responsible-ai-lens.md` tags existing metrics against:
 
 ### Files to modify / create
 
-- **Modify:** `taxonomy/_standards-mapping.md` — extend with 7 new standards (Part 1)
-- **Create:** `taxonomy/_responsible-ai-lens.md` — new cross-cutting lens document (Part 2)
-- **Modify:** `taxonomy/build.py` — add `_responsible-ai-lens.md` to build order (after `_standards-mapping.md`)
-- **Modify:** `taxonomy/_contents.md` — add entry for the new lens document
-- **Modify:** `CHANGELOG.md` — add v3.1 entry at the end
+- **Modify:** `taxonomy/_standards-mapping.md` - extend with 7 new standards (Part 1)
+- **Create:** `taxonomy/_responsible-ai-lens.md` - new cross-cutting lens document (Part 2)
+- **Modify:** `taxonomy/build.py` - add `_responsible-ai-lens.md` to build order (after `_standards-mapping.md`)
+- **Modify:** `taxonomy/_contents.md` - add entry for the new lens document
+- **Modify:** `CHANGELOG.md` - add v3.1 entry at the end
 
 ### Part 1 section structure per standard
 
@@ -122,8 +122,8 @@ New file `taxonomy/_responsible-ai-lens.md` tags existing metrics against:
 **Key dimensions and taxonomy coverage:**
 
 - **{Dimension 1}**: Covered by {TP.AC-1, GV.SG-3, ...}. {One-line commentary}
-- **{Dimension 2}**: Partial — {coverage notes + gap}
-- **{Dimension 3}**: Not covered — {what would be needed}
+- **{Dimension 2}**: Partial - {coverage notes + gap}
+- **{Dimension 3}**: Not covered - {what would be needed}
 
 **Overall position:** {One paragraph on how the taxonomy relates to this standard overall}
 ```
@@ -137,9 +137,9 @@ New file `taxonomy/_responsible-ai-lens.md` tags existing metrics against:
 
 {Intro: explains the lens approach, why it sits alongside standards mapping,
 relationship to NHS LLM Evaluation Framework three groups, Playbook
-trade-offs acknowledgement — principles and themes overlap intentionally}
+trade-offs acknowledgement - principles and themes overlap intentionally}
 
-### Part A — DSIT AI Playbook: 10 Principles
+### Part A - DSIT AI Playbook: 10 Principles
 
 For each of the 10 principles:
 
@@ -156,7 +156,7 @@ For each of the 10 principles:
 
 **Gaps / areas not addressed:** {narrative}
 
-### Part B — Six Ethical Themes
+### Part B - Six Ethical Themes
 
 For each of the 6 themes (same structure as Part A):
 
@@ -170,13 +170,13 @@ For each of the 6 themes (same structure as Part A):
 
 **Relationship to other themes:** {where this theme overlaps/trades off with others}
 
-### Part C — Coverage Matrix
+### Part C - Coverage Matrix
 
 Summary table showing which metrics address multiple principles/themes
-(highlights cross-cutting metrics — the ones that serve as policy-lever
+(highlights cross-cutting metrics - the ones that serve as policy-lever
 metrics for multiple principles simultaneously).
 
-### Part D — Gaps
+### Part D - Gaps
 
 Areas where neither the taxonomy nor existing metrics clearly address a
 principle/theme, cross-referenced to the Proposed New Metrics section
@@ -187,12 +187,12 @@ in _standards-mapping.md where relevant.
 - Most metrics will tag to 2–4 principles and 1–3 themes (Playbook explicitly acknowledges trade-offs)
 - Playbook principles 7–10 (openness, commercial, skills, org assurance) concentrate in Part E of the taxonomy
 - Ethical theme 6 (Societal Wellbeing) concentrates in Part D (Patient Experience, Fairness) and Environmental & Sustainability
-- Don't try to tag every metric against every principle — only meaningful tags (i.e., where the metric genuinely operationalises that principle)
+- Don't try to tag every metric against every principle - only meaningful tags (i.e., where the metric genuinely operationalises that principle)
 
 ### Proposed new metrics section (Part 1)
 
 Add a new top-level section at the end of `_standards-mapping.md` (after the existing Gap Summary) titled **"Proposed New Metrics (Not Yet Implemented)"**. This lists candidate metrics that would close gaps identified during the mapping, organised by source standard. Each entry gives:
-- Proposed reference ID slot (e.g. "GV.CR-11" — next available in the relevant group)
+- Proposed reference ID slot (e.g. "GV.CR-11" - next available in the relevant group)
 - Proposed metric name
 - Short description of what it would measure
 - Source standard and criterion it would satisfy
@@ -200,18 +200,18 @@ Add a new top-level section at the end of `_standards-mapping.md` (after the exi
 
 Gaps identified in Part 2 (Responsible AI lens) that warrant new metrics are also added here, cross-referenced.
 
-This section is **informational only** — no metrics are added to the taxonomy in this round.
+This section is **informational only** - no metrics are added to the taxonomy in this round.
 
 ### Reference IDs in mapping tables
 
-All existing standards-mapping entries already use reference IDs (e.g. `TP.WB-1`, `GV.CR-7`). New sections use the same convention — this was locked in by the recent reference-ID commit.
+All existing standards-mapping entries already use reference IDs (e.g. `TP.WB-1`, `GV.CR-7`). New sections use the same convention - this was locked in by the recent reference-ID commit.
 
 ### Draft status flagging
 
-- **NHS LLM Framework** is already flagged as v0.2.2 draft — no change
-- **CQC emerging quality statements** — flag as "emerging (2025–26)" where referenced, since formal criteria not yet published
-- **FHIR UK Core STU2/STU3** — flag STU2 as current (released May 2024), STU3 as "in development (sequence build)"
-- **DSIT AI Playbook** — flag as "published Feb 2025; may be superseded by future iterations"
+- **NHS LLM Framework** is already flagged as v0.2.2 draft - no change
+- **CQC emerging quality statements** - flag as "emerging (2025–26)" where referenced, since formal criteria not yet published
+- **FHIR UK Core STU2/STU3** - flag STU2 as current (released May 2024), STU3 as "in development (sequence build)"
+- **DSIT AI Playbook** - flag as "published Feb 2025; may be superseded by future iterations"
 
 ---
 
@@ -222,15 +222,15 @@ All existing standards-mapping entries already use reference IDs (e.g. `TP.WB-1`
 #### 1. MHRA SaMD / AIaMD (assertion-level)
 
 **Sub-sections to map:**
-- **Classification (WP1, WP2)** — what qualifies as SaMD, intended purpose, manufacturer definition, UK MDR 2002 classification rules (most SaMD now Class IIa; higher-risk clinical decision tools IIb/III)
-- **Premarket (WP3)** — best-practice SaMD development, data-driven SaMD (joint with HRA), human-centred SaMD
-- **Post-Market Surveillance (WP4 + SI 2024 No. 1368, in force 16 June 2025)** — PMS Plan, PMSR (Class I/IIa on demand), PSUR (Class IIb/III annually), trend reporting, FSCA, Field Safety Notices, reporting timelines (2/10/15 working days), indirect harm reporting
-- **Cybersecurity (WP5)** — legislation, guidance, vulnerability reporting
-- **AI RIG (WP9)** — GMLP principles, bias across populations, bias identification/mitigation standards
-- **Glass Box / Interpretability (WP10)** — human-centred AIaMD, trustworthy AIaMD standards
-- **Ship of Theseus / Adaptivity (WP11)** — static/batch-trained/individualised/continuous learning categories, PCCPs for AIaMD
-- **Transparency Guiding Principles (June 2024)** — WHO/WHY/WHAT/WHERE/WHEN/HOW framework with specific content items under WHAT (device characterisation, workflow integration, performance/safety, model logic, limitations, lifecycle)
-- **GMLP 10 principles (Oct 2021)** — the full 10 including multi-disciplinary expertise, representative datasets, training/test independence, human-AI team focus, clinically relevant testing, deployment monitoring
+- **Classification (WP1, WP2)** - what qualifies as SaMD, intended purpose, manufacturer definition, UK MDR 2002 classification rules (most SaMD now Class IIa; higher-risk clinical decision tools IIb/III)
+- **Premarket (WP3)** - best-practice SaMD development, data-driven SaMD (joint with HRA), human-centred SaMD
+- **Post-Market Surveillance (WP4 + SI 2024 No. 1368, in force 16 June 2025)** - PMS Plan, PMSR (Class I/IIa on demand), PSUR (Class IIb/III annually), trend reporting, FSCA, Field Safety Notices, reporting timelines (2/10/15 working days), indirect harm reporting
+- **Cybersecurity (WP5)** - legislation, guidance, vulnerability reporting
+- **AI RIG (WP9)** - GMLP principles, bias across populations, bias identification/mitigation standards
+- **Glass Box / Interpretability (WP10)** - human-centred AIaMD, trustworthy AIaMD standards
+- **Ship of Theseus / Adaptivity (WP11)** - static/batch-trained/individualised/continuous learning categories, PCCPs for AIaMD
+- **Transparency Guiding Principles (June 2024)** - WHO/WHY/WHAT/WHERE/WHEN/HOW framework with specific content items under WHAT (device characterisation, workflow integration, performance/safety, model logic, limitations, lifecycle)
+- **GMLP 10 principles (Oct 2021)** - the full 10 including multi-disciplinary expertise, representative datasets, training/test independence, human-AI team focus, clinically relevant testing, deployment monitoring
 
 **Expected taxonomy extends:** Strong coverage through Safety & Governance, NHS Compliance, Security, and Privacy & Data Governance groups.
 
@@ -257,21 +257,21 @@ Each standard has **minimum** and **best practice** levels across **Tier A/B/C**
 - Tier classification documentation for the specific AVT deployment
 - Silent mode evaluation evidence (Standard 15 best practice)
 - Subgroup drift monitoring in deployment (Standard 16)
-- Cost-effectiveness analysis (Standard 18) — no existing metric
-- Budget impact analysis (Standard 17) — no existing metric
+- Cost-effectiveness analysis (Standard 18) - no existing metric
+- Budget impact analysis (Standard 17) - no existing metric
 
 #### 3. FHIR UK Core / INTEROPen (assertion-level refinement)
 
 **Sub-sections to map:**
-- **Governance** — NHS England Digital + HL7 UK; INTEROPen community contribution; successor to CareConnect
-- **STU1 (1.0.0, current)** — 12 foundational profiles (Patient, Practitioner, PractitionerRole, Organization, Location, AllergyIntolerance, Immunization, Medication, MedicationRequest, MedicationStatement, MedicationDispense, MedicationAdministration) + ~21 extensions
-- **STU2 (2.0.2, released May 2024)** — 33 profiles adding clinical resources critical for AVT: Composition, Condition, Encounter, Observation, Procedure, ServiceRequest, DiagnosticReport
-- **STU3 (in development sequence)** — ~52 profiles adding specialised Observation profiles (vital signs, NEWS2, blood glucose, alcohol, tobacco, etc.)
-- **UK-specific constraints** — NHS Number + NHSNumberVerificationStatus extension; EthnicCategory; BirthSex; DeathNotificationStatus; ResidentialStatus; SNOMED CT primary terminology; dm+d for medicinal products
+- **Governance** - NHS England Digital + HL7 UK; INTEROPen community contribution; successor to CareConnect
+- **STU1 (1.0.0, current)** - 12 foundational profiles (Patient, Practitioner, PractitionerRole, Organization, Location, AllergyIntolerance, Immunization, Medication, MedicationRequest, MedicationStatement, MedicationDispense, MedicationAdministration) + ~21 extensions
+- **STU2 (2.0.2, released May 2024)** - 33 profiles adding clinical resources critical for AVT: Composition, Condition, Encounter, Observation, Procedure, ServiceRequest, DiagnosticReport
+- **STU3 (in development sequence)** - ~52 profiles adding specialised Observation profiles (vital signs, NEWS2, blood glucose, alcohol, tobacco, etc.)
+- **UK-specific constraints** - NHS Number + NHSNumberVerificationStatus extension; EthnicCategory; BirthSex; DeathNotificationStatus; ResidentialStatus; SNOMED CT primary terminology; dm+d for medicinal products
 
 **Refinement of existing metrics:**
-- `TP.WB-6` (FHIR R4 Resource Conformance Rate) — clarify "FHIR conformance" means UK Core profiles for NHS deployment, not generic FHIR R4
-- `TP.WB-7` (openEHR Archetype Conformance) — similar clarification
+- `TP.WB-6` (FHIR R4 Resource Conformance Rate) - clarify "FHIR conformance" means UK Core profiles for NHS deployment, not generic FHIR R4
+- `TP.WB-7` (openEHR Archetype Conformance) - similar clarification
 
 **Expected gaps flagged:**
 - Per-resource UK Core conformance (Composition, Encounter, Condition, AllergyIntolerance, MedicationStatement, Observation)
@@ -284,12 +284,12 @@ Each standard has **minimum** and **best practice** levels across **Tier A/B/C**
 **Key dimensions to cover:**
 - **Mythbuster 109 assertions:** CQC regulates providers not tools; clinical responsibility non-delegable; record-keeping (Reg 17); AVT consent (display signage, privacy notices, opt-out); medical device classification; DCB0129/0160; DTAC pre-procurement; monitoring/audit; staff training
 - **Five key questions (Single Assessment Framework):**
-  - **Safe** — hazard log, risk management, clinician oversight, rollback, CSO sign-off, fallback, near-miss reporting, bias audits
-  - **Effective** — clinical accuracy benchmarking, outcome monitoring vs pre-AI baseline, clinician review/sign-off, NICE alignment
-  - **Caring** — patient awareness/consent, opt-out uptake, dignity during recording
-  - **Responsive** — accessibility (accent, speech impairments), language coverage, equity audit, complaint routes
-  - **Well-led** — board-level AI oversight, named accountable director, CSO role, audit trail, vendor management, risk register
-- **CSO expectations** — registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live
+  - **Safe** - hazard log, risk management, clinician oversight, rollback, CSO sign-off, fallback, near-miss reporting, bias audits
+  - **Effective** - clinical accuracy benchmarking, outcome monitoring vs pre-AI baseline, clinician review/sign-off, NICE alignment
+  - **Caring** - patient awareness/consent, opt-out uptake, dignity during recording
+  - **Responsive** - accessibility (accent, speech impairments), language coverage, equity audit, complaint routes
+  - **Well-led** - board-level AI oversight, named accountable director, CSO role, audit trail, vendor management, risk register
+- **CSO expectations** - registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live
 
 **Prominent note:** Full CQC quality statements for AI are emerging (2025–26); mapping will need review when formal criteria published.
 
@@ -322,10 +322,10 @@ Each standard has **minimum** and **best practice** levels across **Tier A/B/C**
 **Key dimensions to cover:**
 - **Main standards:** Core Information Standard (CIS); GP Connect Access Record; Outpatient Letter Standard; Discharge Summary Standard; Mental Health Inpatient Discharge; Emergency Care Discharge; Transfer of Care Around Medicines (ToCAM); About Me; End of Life Care; Maternity Record Standard; Palliative and End of Life Care
 - **Common header set:** patient demographics + NHS Number; next of kin/carer; GP/care team; allergies/adverse reactions; medications; problems/diagnoses (SNOMED); procedures; investigations/results; observations/vital signs; social context; communication needs; consent/preferences; legal status; clinical narrative; safety netting
-- **Narrative vs structured** — PRSB preserves narrative text as valuable; does not mandate full structurisation
-- **Cardinality** — Mandatory / Required-if-known / Optional per data item
-- **Royal College endorsement** — AoMRC, RCGP, RCP, etc.
-- **Relationship to FHIR UK Core** — PRSB defines what, UK Core defines how
+- **Narrative vs structured** - PRSB preserves narrative text as valuable; does not mandate full structurisation
+- **Cardinality** - Mandatory / Required-if-known / Optional per data item
+- **Royal College endorsement** - AoMRC, RCGP, RCP, etc.
+- **Relationship to FHIR UK Core** - PRSB defines what, UK Core defines how
 
 **Overall position:** The taxonomy has technical integration metrics (TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy) but no semantic-completeness metric for "does the AVT output include all PRSB-mandatory information elements." This is the clearest gap across all the new standards.
 
@@ -346,9 +346,9 @@ Each standard has **minimum** and **best practice** levels across **Tier A/B/C**
   6. Comply with the law
   7. The duty to share for individual care is as important as the duty to protect
   8. Inform patients and service users about how their information is used *(added 2020)*
-- **Caldicott Guardian role** — senior person in every NHS org, UKCGC-trained, advises on IG decisions, represents confidentiality at board
-- **Relationship to UK GDPR + Common Law Duty of Confidentiality** — three overlapping regimes; lawful basis doesn't automatically satisfy CLDC
-- **National Data Guardian role** — statutory (HSC Act 2018); publishes guidance with "have regard to" obligation
+- **Caldicott Guardian role** - senior person in every NHS org, UKCGC-trained, advises on IG decisions, represents confidentiality at board
+- **Relationship to UK GDPR + Common Law Duty of Confidentiality** - three overlapping regimes; lawful basis doesn't automatically satisfy CLDC
+- **National Data Guardian role** - statutory (HSC Act 2018); publishes guidance with "have regard to" obligation
 
 **Overall position:** Caldicott is operationalised by DSPT (already mapped). This section makes the strategic governance layer explicit. Principle 8 (inform patients) maps directly to Verbal Notification Compliance (GV.CR-2) and Patient Dissent Recording (GV.CR-1).
 
@@ -359,7 +359,7 @@ Each standard has **minimum** and **best practice** levels across **Tier A/B/C**
 
 ### Part 2: Responsible AI Lens
 
-#### A. DSIT AI Playbook — 10 Principles (content sketch)
+#### A. DSIT AI Playbook - 10 Principles (content sketch)
 
 For each principle, lens document will include:
 - One-paragraph narrative explaining the principle and its AVT application
@@ -368,16 +368,16 @@ For each principle, lens document will include:
 - Gap note where coverage is thin
 
 **Expected metric concentration:**
-- P1 (limitations) — Summarisation/NLP hallucination/confabulation metrics, ASR error rates
-- P2 (lawful/ethical) — Privacy & Data Governance, NHS Compliance groups
-- P3 (security) — Security & Adversarial Robustness group
-- P4 (human control) — Human Factors & Workflow (edit rate, review before signing, AI-off performance test)
-- P5 (lifecycle) — Safety & Governance (drift detection, model version tracking)
-- P6 (right tool) — Meta-evaluation (proximal/distal distinction), operational metrics
-- P7 (openness) — Vendor Transparency, Sub-Processor Transparency, Model Change Notification
-- P8 (commercial) — Vendor Transparency & Contractual group
-- P9 (skills) — Training & Competency group
-- P10 (org assurance) — Safety & Governance (Clinical Safety Case), NHS Compliance
+- P1 (limitations) - Summarisation/NLP hallucination/confabulation metrics, ASR error rates
+- P2 (lawful/ethical) - Privacy & Data Governance, NHS Compliance groups
+- P3 (security) - Security & Adversarial Robustness group
+- P4 (human control) - Human Factors & Workflow (edit rate, review before signing, AI-off performance test)
+- P5 (lifecycle) - Safety & Governance (drift detection, model version tracking)
+- P6 (right tool) - Meta-evaluation (proximal/distal distinction), operational metrics
+- P7 (openness) - Vendor Transparency, Sub-Processor Transparency, Model Change Notification
+- P8 (commercial) - Vendor Transparency & Contractual group
+- P9 (skills) - Training & Competency group
+- P10 (org assurance) - Safety & Governance (Clinical Safety Case), NHS Compliance
 
 #### B. Six Ethical Themes (content sketch)
 
@@ -388,12 +388,12 @@ For each theme, lens document will include:
 - Note on trade-offs with other themes (Playbook acknowledges tension)
 
 **Expected metric concentration:**
-- T1 (Safety, Security and Robustness) — Part A content fidelity + Part E Safety & Security groups
-- T2 (Transparency and Explainability) — ASR Confidence Exposure, Uncertainty Marker Preservation, Linked Evidence/Provenance Tracing, Vendor Transparency metrics
-- T3 (Fairness) — Demographic Equity Disaggregation family, Fairness & Equity group
-- T4 (Accountability and Governance) — NHS Compliance & Regulatory, Safety & Governance groups
-- T5 (Contestability and Redress) — Patient Opt-Out Rate, Time-to-Correct, Incident Disclosure, Verification Burden
-- T6 (Societal Wellbeing) — Environmental & Sustainability, Clinical Documentation Skill Attenuation, Chilling Effect Assessment, Therapeutic Relationship Impact, Deployment Equity Index
+- T1 (Safety, Security and Robustness) - Part A content fidelity + Part E Safety & Security groups
+- T2 (Transparency and Explainability) - ASR Confidence Exposure, Uncertainty Marker Preservation, Linked Evidence/Provenance Tracing, Vendor Transparency metrics
+- T3 (Fairness) - Demographic Equity Disaggregation family, Fairness & Equity group
+- T4 (Accountability and Governance) - NHS Compliance & Regulatory, Safety & Governance groups
+- T5 (Contestability and Redress) - Patient Opt-Out Rate, Time-to-Correct, Incident Disclosure, Verification Burden
+- T6 (Societal Wellbeing) - Environmental & Sustainability, Clinical Documentation Skill Attenuation, Chilling Effect Assessment, Therapeutic Relationship Impact, Deployment Equity Index
 
 #### C. Coverage Matrix
 
@@ -411,11 +411,11 @@ Areas where neither taxonomy metrics nor standards coverage clearly addresses a 
 
 ## Critical files
 
-- **Modify:** [taxonomy/_standards-mapping.md](taxonomy/_standards-mapping.md) — 7 new standards + Proposed New Metrics section + Gap Summary update
-- **Create:** `taxonomy/_responsible-ai-lens.md` — new cross-cutting lens document
-- **Modify:** [taxonomy/build.py](taxonomy/build.py) — add new file to build order
-- **Modify:** [taxonomy/_contents.md](taxonomy/_contents.md) — add lens document to cross-cutting list
-- **Modify:** [CHANGELOG.md](CHANGELOG.md) — v3.1 entry
+- **Modify:** [taxonomy/_standards-mapping.md](taxonomy/_standards-mapping.md) - 7 new standards + Proposed New Metrics section + Gap Summary update
+- **Create:** `taxonomy/_responsible-ai-lens.md` - new cross-cutting lens document
+- **Modify:** [taxonomy/build.py](taxonomy/build.py) - add new file to build order
+- **Modify:** [taxonomy/_contents.md](taxonomy/_contents.md) - add lens document to cross-cutting list
+- **Modify:** [CHANGELOG.md](CHANGELOG.md) - v3.1 entry
 
 ---
 
@@ -434,7 +434,7 @@ Each subtask is a logical commit unit. The 7 standards can be grouped where they
   - [ ] AI RIG (WP9) sub-section
   - [ ] Glass Box / Interpretability (WP10) sub-section
   - [ ] Ship of Theseus / Adaptivity (WP11) sub-section
-  - [ ] Transparency Guiding Principles (June 2024) — WHO/WHY/WHAT/WHERE/WHEN/HOW
+  - [ ] Transparency Guiding Principles (June 2024) - WHO/WHY/WHAT/WHERE/WHEN/HOW
   - [ ] GMLP 10 principles (Oct 2021)
   - [ ] Gaps + Taxonomy extends blocks
 - [ ] **NICE Evidence Standards Framework section**
@@ -517,23 +517,23 @@ Each subtask is a logical commit unit. The 7 standards can be grouped where they
   - [ ] Relationship to NHS LLM Evaluation Framework three groups
   - [ ] Playbook trade-offs acknowledgement
 - [ ] **Part A: DSIT AI Playbook 10 Principles**
-  - [ ] Principle 1 (limitations) — narrative + metrics table
-  - [ ] Principle 2 (lawful/ethical) — narrative + metrics table
-  - [ ] Principle 3 (security) — narrative + metrics table
-  - [ ] Principle 4 (human control) — narrative + metrics table
-  - [ ] Principle 5 (lifecycle) — narrative + metrics table
-  - [ ] Principle 6 (right tool) — narrative + metrics table
-  - [ ] Principle 7 (openness / ATRS) — narrative + metrics table
-  - [ ] Principle 8 (commercial) — narrative + metrics table
-  - [ ] Principle 9 (skills) — narrative + metrics table
-  - [ ] Principle 10 (org assurance) — narrative + metrics table
+  - [ ] Principle 1 (limitations) - narrative + metrics table
+  - [ ] Principle 2 (lawful/ethical) - narrative + metrics table
+  - [ ] Principle 3 (security) - narrative + metrics table
+  - [ ] Principle 4 (human control) - narrative + metrics table
+  - [ ] Principle 5 (lifecycle) - narrative + metrics table
+  - [ ] Principle 6 (right tool) - narrative + metrics table
+  - [ ] Principle 7 (openness / ATRS) - narrative + metrics table
+  - [ ] Principle 8 (commercial) - narrative + metrics table
+  - [ ] Principle 9 (skills) - narrative + metrics table
+  - [ ] Principle 10 (org assurance) - narrative + metrics table
 - [ ] **Part B: Six Ethical Themes**
-  - [ ] Theme 1 (Safety, Security and Robustness) — narrative + metrics table + trade-offs note
-  - [ ] Theme 2 (Transparency and Explainability) — narrative + metrics table + trade-offs note
-  - [ ] Theme 3 (Fairness) — narrative + metrics table + trade-offs note
-  - [ ] Theme 4 (Accountability and Governance) — narrative + metrics table + trade-offs note
-  - [ ] Theme 5 (Contestability and Redress) — narrative + metrics table + trade-offs note
-  - [ ] Theme 6 (Societal Wellbeing) — narrative + metrics table + trade-offs note
+  - [ ] Theme 1 (Safety, Security and Robustness) - narrative + metrics table + trade-offs note
+  - [ ] Theme 2 (Transparency and Explainability) - narrative + metrics table + trade-offs note
+  - [ ] Theme 3 (Fairness) - narrative + metrics table + trade-offs note
+  - [ ] Theme 4 (Accountability and Governance) - narrative + metrics table + trade-offs note
+  - [ ] Theme 5 (Contestability and Redress) - narrative + metrics table + trade-offs note
+  - [ ] Theme 6 (Societal Wellbeing) - narrative + metrics table + trade-offs note
 - [ ] Add `_responsible-ai-lens.md` to `build.py` FILES list (after `_standards-mapping.md`)
 - [ ] Add entry to `_contents.md` cross-cutting section
 - [ ] **Verification**

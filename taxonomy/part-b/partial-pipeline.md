@@ -1,4 +1,4 @@
-# Part B — Pipeline Interactions
+# Part B - Pipeline Interactions
 
 ## Partial-Pipeline
 
@@ -8,12 +8,12 @@
 
 ### PI.PP-1 🔵 Speaker-Attributed Transcript Accuracy
 
-Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this — a transcript can have low WER and low DER but still misattribute a critical utterance.
+Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this - a transcript can have low WER and low DER but still misattribute a critical utterance.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-1 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -22,7 +22,7 @@ Combined ASR + diarisation: was the right text assigned to the right person? Nei
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Identified as compound metric gap — neither WER nor DER alone captures this |
+| **Source** | Identified as compound metric gap - neither WER nor DER alone captures this |
 
 **Why this tier?**
 
@@ -84,7 +84,7 @@ Combined ASR + diarisation degradation when >2 speakers present: interpreter, fa
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Safety |
@@ -93,7 +93,7 @@ Combined ASR + diarisation degradation when >2 speakers present: interpreter, fa
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Identified in NHS consultation pattern analysis — interpreter-mediated, family-present, and MDT consultations are common |
+| **Source** | Identified in NHS consultation pattern analysis - interpreter-mediated, family-present, and MDT consultations are common |
 
 **Why this tier?**
 
@@ -122,7 +122,7 @@ Spans ASR + summarisation: what proportion of clinically relevant content in sou
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-3 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR + Summarisation |
 | **Assurance Question** | Safety |
@@ -131,11 +131,11 @@ Spans ASR + summarisation: what proportion of clinically relevant content in sou
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Identified as structural gap — component metrics don't capture cross-stage information loss |
+| **Source** | Identified as structural gap - component metrics don't capture cross-stage information loss |
 
 **Why this tier?**
 
-> Requires expert annotation of source audio — expensive. Best suited for national evaluation programme or academic pilot.
+> Requires expert annotation of source audio - expensive. Best suited for national evaluation programme or academic pilot.
 
 **Formal Definition**
 
@@ -177,7 +177,7 @@ def information_extraction_yield(
 
 **Novel Thinking / Implications**
 
-> 💡 The key insight: summarisation can sometimes compensate for ASR errors (inferring the right drug from context), or it can amplify them (hallucinating a plausible but wrong drug to fill the gap). IEY captures both — the net yield is what matters clinically.
+> 💡 The key insight: summarisation can sometimes compensate for ASR errors (inferring the right drug from context), or it can amplify them (hallucinating a plausible but wrong drug to fill the gap). IEY captures both - the net yield is what matters clinically.
 
 ---
 
@@ -188,7 +188,7 @@ Spans ASR + summarisation: how gracefully does the final note quality degrade as
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-4 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Summarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -197,7 +197,7 @@ Spans ASR + summarisation: how gracefully does the final note quality degrade as
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed for pre-deployment testing — NHS clinical environments have variable acoustics |
+| **Source** | Proposed for pre-deployment testing - NHS clinical environments have variable acoustics |
 
 **Why this tier?**
 
@@ -226,7 +226,7 @@ Spans diarisation + summarisation: does the note correctly distinguish what was 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-5 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Diarisation + Summarisation |
 | **Assurance Question** | Safety |
@@ -283,7 +283,7 @@ def epistemic_preservation_rate(ref_assertions, gen_assertions):
 
 **Limitations**
 
-> Epistemic status annotation requires clinical expertise. Automated classification via markers is crude — many assertions lack explicit markers.
+> Epistemic status annotation requires clinical expertise. Automated classification via markers is crude - many assertions lack explicit markers.
 
 **Novel Thinking / Implications**
 
@@ -298,7 +298,7 @@ WER computed separately for each speaker after diarisation. Captures the compoun
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-6 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -331,12 +331,12 @@ For each speaker s: WER_s = standard WER on utterances correctly attributed to s
 
 ### PI.PP-7 🟡 Concept Extraction Concordance
 
-Spans summarisation + coding: do the SNOMED codes match the clinical concepts in the free-text note? An internal consistency check that doesn't need source audio — the note and its codes should agree.
+Spans summarisation + coding: do the SNOMED codes match the clinical concepts in the free-text note? An internal consistency check that doesn't need source audio - the note and its codes should agree.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Coding |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -345,7 +345,7 @@ Spans summarisation + coding: do the SNOMED codes match the clinical concepts in
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed as automated internal consistency check — no ground truth needed |
+| **Source** | Proposed as automated internal consistency check - no ground truth needed |
 
 **Why this tier?**
 
@@ -395,7 +395,7 @@ def concept_concordance(note_text: str, assigned_codes: set[str]):
 
 **Novel Thinking / Implications**
 
-> 💡 This is uniquely valuable because it requires no ground truth — it's a self-consistency check that can run on every encounter. An orphan code (coded but not mentioned in text) is a strong signal for hallucinated coding. A missing code (mentioned but not coded) is a completeness gap. Both can be detected without human review.
+> 💡 This is uniquely valuable because it requires no ground truth - it's a self-consistency check that can run on every encounter. An orphan code (coded but not mentioned in text) is a strong signal for hallucinated coding. A missing code (mentioned but not coded) is a completeness gap. Both can be detected without human review.
 
 ---
 
@@ -406,7 +406,7 @@ Whether the system correctly identifies where an utterance ends. Affects both di
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-8 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -424,7 +424,7 @@ Whether the system correctly identifies where an utterance ends. Affects both di
 **Formal Definition**
 
 ```
-EOU Timing Error = mean temporal error (ms) between predicted and actual utterance boundaries. Different from speaker boundary precision — EOU timing is within-speaker pauses that should/shouldn't be treated as utterance breaks.
+EOU Timing Error = mean temporal error (ms) between predicted and actual utterance boundaries. Different from speaker boundary precision - EOU timing is within-speaker pauses that should/shouldn't be treated as utterance breaks.
 ```
 
 **Limitations**
@@ -444,7 +444,7 @@ Spans summarisation + write-back: does the coded allergy entry agree with allerg
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.PP-9 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation + Write-back |
 | **Assurance Question** | Safety |
@@ -462,7 +462,7 @@ Spans summarisation + write-back: does the coded allergy entry agree with allerg
 **Formal Definition**
 
 ```
-For each structured field category f ∈ {allergies, medications, diagnoses}: Consistency(f) = |items_in_structured(f) ∩ items_in_freetext| / |items_in_structured(f) ∪ items_in_freetext|. Inconsistencies: (a) in structured but not free text — unexplained entries; (b) in free text but not structured — missed structuring.
+For each structured field category f ∈ {allergies, medications, diagnoses}: Consistency(f) = |items_in_structured(f) ∩ items_in_freetext| / |items_in_structured(f) ∪ items_in_freetext|. Inconsistencies: (a) in structured but not free text - unexplained entries; (b) in free text but not structured - missed structuring.
 ```
 
 **Limitations**
@@ -471,7 +471,7 @@ For each structured field category f ∈ {allergies, medications, diagnoses}: Co
 
 **Novel Thinking / Implications**
 
-> 💡 This is a post-write-back guardrail that can run automatically. If the allergy field says 'penicillin' but the note never mentions penicillin, something has gone wrong — either the note omitted it (summarisation failure) or the structured entry is hallucinated (coding/write-back failure). Either way, it needs review.
+> 💡 This is a post-write-back guardrail that can run automatically. If the allergy field says 'penicillin' but the note never mentions penicillin, something has gone wrong - either the note omitted it (summarisation failure) or the structured entry is hallucinated (coding/write-back failure). Either way, it needs review.
 
 ---
 

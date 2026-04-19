@@ -1,28 +1,28 @@
-# AVT Metrics Taxonomy — New Metric Entries (Batch 2)
+# AVT Metrics Taxonomy - New Metric Entries (Batch 2)
 
 Batch 2 covers the remainder of Part B and all of Parts C and D.
 
 **Contents**
-- End-to-End Pipeline — 1 new metric
-- Human Factors & Workflow → new **Sociotechnical & Resilience** sub-cluster — 4 new metrics
-- Patient Experience → new **Patient Clinical Outcomes** sub-cluster — 4 new metrics
-- Fairness & Equity — 3 new metrics
+- End-to-End Pipeline - 1 new metric
+- Human Factors & Workflow → new **Sociotechnical & Resilience** sub-cluster - 4 new metrics
+- Patient Experience → new **Patient Clinical Outcomes** sub-cluster - 4 new metrics
+- Fairness & Equity - 3 new metrics
 
 **Total this batch: 12 entries**
 
 ---
 
-# Part B — Pipeline Interactions additions
+# Part B - Pipeline Interactions additions
 
 ## End-to-End Pipeline (+1)
 
 ### 🔵 Cumulative Information Yield
 
-The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
+The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories - so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
 
 |Dimension              |Value                                                                            |
 |-----------------------|---------------------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                                   |
 |**Measurement Cadence**|Periodic audit                                                                   |
 |**Pipeline Layer**     |End-to-End                                                                       |
 |**Assurance Question** |Safety                                                                           |
@@ -40,7 +40,7 @@ The positive framing of source-to-record concordance: what proportion of the cli
 **Formal Definition**
 
 ```
-For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite — the aggregate obscures category bias.
+For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite - the aggregate obscures category bias.
 ```
 
 **Limitations**
@@ -49,23 +49,23 @@ For each clinical category c ∈ C = {medications, allergies, diagnoses, symptom
 
 **Novel Thinking / Implications**
 
-> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
+> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally - but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
 
 -----
 
-# Part C — Human Layer additions
+# Part C - Human Layer additions
 
-## Human Factors & Workflow — new Sociotechnical & Resilience sub-cluster (+4)
+## Human Factors & Workflow - new Sociotechnical & Resilience sub-cluster (+4)
 
-*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss — the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
+*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss - the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
 
 ### 🔵 Work-as-Imagined vs Work-as-Done Gap
 
-The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
+The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric - not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                         |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                          |
 |**Assurance Question** |Safety                                                                 |
@@ -83,7 +83,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 **Formal Definition**
 
 ```
-Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis — categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar — the qualitative detail is what supports intervention.
+Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis - categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar - the qualitative detail is what supports intervention.
 ```
 
 **Limitations**
@@ -92,17 +92,17 @@ Three-step methodology: (1) Document WAI from training materials, SOPs, vendor g
 
 **Novel Thinking / Implications**
 
-> 💡 Every complex sociotechnical system has a WAI/WAD gap — procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
+> 💡 Every complex sociotechnical system has a WAI/WAD gap - procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
 
 -----
 
 ### 🟡 Verification Burden
 
-The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
+The additional workload created by the need to verify AI-generated content against clinical reality - reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
 
 |Dimension              |Value                                                               |
 |-----------------------|--------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                              |
 |**Measurement Cadence**|Periodic audit                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                       |
 |**Assurance Question** |Human Factors                                                       |
@@ -115,7 +115,7 @@ The additional workload created by the need to verify AI-generated content again
 
 **Why this tier?**
 
-> Conceptually important — distinguishes apparent efficiency gain from actual efficiency gain — but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
+> Conceptually important - distinguishes apparent efficiency gain from actual efficiency gain - but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
 
 **Formal Definition**
 
@@ -129,7 +129,7 @@ VB = t_review + t_correction + t_cross_reference, measured per consultation. Bas
 
 **Novel Thinking / Implications**
 
-> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency — and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
+> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency - and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
 
 -----
 
@@ -139,7 +139,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |Cross-cutting                                                     |
 |**Assurance Question** |Safety                                                            |
@@ -158,10 +158,10 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 
 ```
 Four capacity dimensions scored via structured scenario-based assessment and qualitative evaluation:
-(1) Responding — when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
-(2) Monitoring — what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
-(3) Learning — when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
-(4) Anticipating — does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
+(1) Responding - when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
+(2) Monitoring - what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
+(3) Learning - when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
+(4) Anticipating - does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
 Score each capacity 1–5 with narrative justification. Composite is a profile, not a single number.
 ```
 
@@ -171,17 +171,17 @@ Score each capacity 1–5 with narrative justification. Composite is a profile, 
 
 **Novel Thinking / Implications**
 
-> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle — the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
+> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle - the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
 
 -----
 
 ### 🟡 AI-Off Performance Test
 
-Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
+Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept - instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
 
 |Dimension              |Value                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                                                |
 |**Measurement Cadence**|Periodic audit                                                                                        |
 |**Pipeline Layer**     |Cross-cutting                                                                                         |
 |**Assurance Question** |Human Factors                                                                                         |
@@ -208,23 +208,23 @@ Protocol: (1) Schedule defined exercises where clinicians document simulated or 
 
 **Novel Thinking / Implications**
 
-> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case — can the practice function during a vendor outage? — is almost sufficient reason to run the test regardless of the deskilling question.
+> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case - can the practice function during a vendor outage? - is almost sufficient reason to run the test regardless of the deskilling question.
 
 -----
 
-# Part D — Impact & Outcomes additions
+# Part D - Impact & Outcomes additions
 
-## Patient Experience — new Patient Clinical Outcomes sub-cluster (+4)
+## Patient Experience - new Patient Clinical Outcomes sub-cluster (+4)
 
 *Direct addressing of the Coiera & Fraile-Navarro (JMIR Med Inform February 2026) critique that the AVT evaluation field measures proximal metrics and assumes they correlate with patient outcomes. This sub-cluster makes the distal outcome measurement explicit.*
 
 ### 🟡 Full Attentiveness Rate
 
-Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI — a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
+Proportion of consultation time during which the clinician is fully attentive to the patient, measured objectively rather than through self-report. Distinct from the existing Therapeutic Relationship Impact metric, which captures subjective perception. Stults et al. (2025) reported an increase from 57.9% to 93.0% with ambient AI - a large effect size that, if reproducible, represents one of the strongest AVT benefit signals currently available.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                          |
 |**Measurement Cadence**|Periodic audit                                                  |
 |**Pipeline Layer**     |Cross-cutting                                                   |
 |**Assurance Question** |Patient Experience                                              |
@@ -242,7 +242,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 **Formal Definition**
 
 ```
-Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / t_total_consultation. Measured via TimeCat observation, video analysis, or (where accepted by patients) automated gaze tracking. Baseline pre-AVT vs post-AVT comparison. Report as distribution across consultations, not just mean — the clinically relevant improvement is often in the tail (consultations where the clinician was previously heavily divided between patient and screen).
+Full Attentiveness = t_eye_contact + t_active_listening + t_direct_engagement / t_total_consultation. Measured via TimeCat observation, video analysis, or (where accepted by patients) automated gaze tracking. Baseline pre-AVT vs post-AVT comparison. Report as distribution across consultations, not just mean - the clinically relevant improvement is often in the tail (consultations where the clinician was previously heavily divided between patient and screen).
 ```
 
 **Limitations**
@@ -261,7 +261,7 @@ When AI-generated clinical summaries are shared with patients (via NHS App, pati
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                           |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                           |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Summarisation                                                            |
 |**Assurance Question** |Patient Experience                                                       |
@@ -284,7 +284,7 @@ Patient Comprehension Test: after receiving an AI-generated summary, patient is 
 
 **Limitations**
 
-> Requires patient time and willingness. Cultural and language barriers affect comprehension measurement itself. Summaries generated for clinical purposes may use language appropriate for clinicians but inaccessible to patients — this is a separable design question from AVT accuracy.
+> Requires patient time and willingness. Cultural and language barriers affect comprehension measurement itself. Summaries generated for clinical purposes may use language appropriate for clinicians but inaccessible to patients - this is a separable design question from AVT accuracy.
 
 **Novel Thinking / Implications**
 
@@ -298,7 +298,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |End-to-End                                                        |
 |**Assurance Question** |Safety                                                            |
@@ -316,16 +316,16 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 **Formal Definition**
 
 ```
-Blinded multi-clinician study design: same clinical case presented in three conditions — (a) clinician observes consultation directly, (b) clinician reads AVT-generated note, (c) clinician reads verbatim transcript. Each clinician makes diagnostic and differential diagnostic choices. Downstream Diagnostic Accuracy = agreement between conditions. Primary metric: κ between AVT condition and direct observation condition. Secondary metric: discrepancies stratified by clinical complexity.
+Blinded multi-clinician study design: same clinical case presented in three conditions - (a) clinician observes consultation directly, (b) clinician reads AVT-generated note, (c) clinician reads verbatim transcript. Each clinician makes diagnostic and differential diagnostic choices. Downstream Diagnostic Accuracy = agreement between conditions. Primary metric: κ between AVT condition and direct observation condition. Secondary metric: discrepancies stratified by clinical complexity.
 ```
 
 **Limitations**
 
-> Very expensive — requires multiple blinded clinicians per case, clinical reasoning time, and careful study design. Inter-clinician variation in diagnostic reasoning adds noise. Simulated decision-making may not reflect real-world behaviour under time pressure.
+> Very expensive - requires multiple blinded clinicians per case, clinical reasoning time, and careful study design. Inter-clinician variation in diagnostic reasoning adds noise. Simulated decision-making may not reflect real-world behaviour under time pressure.
 
 **Novel Thinking / Implications**
 
-> 💡 This is the metric that answers the question "does AVT preserve the clinical signal?" If clinicians reading AVT-generated notes make different diagnostic decisions than clinicians who observed the original consultation, all the proximal metrics (WER, edit rate, documentation time) are at best partially informative and at worst misleading. The Coiera critique is that the field has been measuring proxies and assuming they correlate with this — without evidence. This metric is the evidence.
+> 💡 This is the metric that answers the question "does AVT preserve the clinical signal?" If clinicians reading AVT-generated notes make different diagnostic decisions than clinicians who observed the original consultation, all the proximal metrics (WER, edit rate, documentation time) are at best partially informative and at worst misleading. The Coiera critique is that the field has been measuring proxies and assuming they correlate with this - without evidence. This metric is the evidence.
 
 -----
 
@@ -335,7 +335,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                       |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                       |
 |**Measurement Cadence**|Periodic audit                                                       |
 |**Pipeline Layer**     |End-to-End                                                           |
 |**Assurance Question** |Safety                                                               |
@@ -370,11 +370,11 @@ Medication Error Rate = |medication_errors_reported| / |total_prescriptions|, st
 
 ### 🔵 Intersectional Compound Fairness Score
 
-Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively — that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
+Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively - that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                       |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                                       |
 |**Measurement Cadence**|Periodic audit                                                                       |
 |**Pipeline Layer**     |Cross-cutting                                                                        |
 |**Assurance Question** |Fairness & Equity                                                                    |
@@ -397,7 +397,7 @@ For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expe
 
 **Limitations**
 
-> Requires large enough samples at every demographic intersection for stable estimation — often infeasible for rare intersections. Additive model assumption may not hold even in fair systems. Interpretation is statistical rather than mechanistic.
+> Requires large enough samples at every demographic intersection for stable estimation - often infeasible for rare intersections. Additive model assumption may not hold even in fair systems. Interpretation is statistical rather than mechanistic.
 
 **Novel Thinking / Implications**
 
@@ -407,11 +407,11 @@ For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expe
 
 ### 🔵 Cross-Platform Fairness Consistency
 
-Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern — if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
+Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern - if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                     |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                     |
 |**Measurement Cadence**|Periodic audit                                                     |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Fairness & Equity                                                  |
@@ -434,7 +434,7 @@ For each vendor v in the ICB's deployed platforms: compute demographic-disaggreg
 
 **Limitations**
 
-> Requires standardised test data available for use against multiple vendors — which currently doesn't exist for NHS. Vendors may resist independent cross-comparison. Aggregation across practices raises information governance questions.
+> Requires standardised test data available for use against multiple vendors - which currently doesn't exist for NHS. Vendors may resist independent cross-comparison. Aggregation across practices raises information governance questions.
 
 **Novel Thinking / Implications**
 
@@ -448,7 +448,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 
 |Dimension              |Value                                                         |
 |-----------------------|--------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                        |
 |**Measurement Cadence**|One-off gate                                                  |
 |**Pipeline Layer**     |ASR / Transcription                                           |
 |**Assurance Question** |Fairness & Equity                                             |
@@ -466,16 +466,16 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 **Formal Definition**
 
 ```
-Assessment against criteria: (1) Sociolinguistic validity — categories correspond to identifiable phonological communities, not political or racial groupings; (2) NHS relevance — categories include varieties actually present in NHS patient populations; (3) Sample adequacy — each category has sufficient evaluation data for stable WER estimation; (4) Documentation — categorisation methodology is transparent and replicable. Binary pass/fail per criterion; composite = all four must pass.
+Assessment against criteria: (1) Sociolinguistic validity - categories correspond to identifiable phonological communities, not political or racial groupings; (2) NHS relevance - categories include varieties actually present in NHS patient populations; (3) Sample adequacy - each category has sufficient evaluation data for stable WER estimation; (4) Documentation - categorisation methodology is transparent and replicable. Binary pass/fail per criterion; composite = all four must pass.
 ```
 
 **Limitations**
 
-> Sociolinguistic categorisation is itself contested. Any taxonomy makes choices that can be critiqued. The alternative — no categorisation — is worse because it hides all disparities.
+> Sociolinguistic categorisation is itself contested. Any taxonomy makes choices that can be critiqued. The alternative - no categorisation - is worse because it hides all disparities.
 
 **Novel Thinking / Implications**
 
-> 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system — a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
+> 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system - a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
 
 -----
 
@@ -483,12 +483,12 @@ Assessment against criteria: (1) Sociolinguistic validity — categories corresp
 
 **Metrics drafted in this batch: 12**
 - End-to-End Pipeline: 1 (Cumulative Information Yield)
-- Human Factors — Sociotechnical & Resilience sub-cluster: 4 (WAI/WAD Gap, Verification Burden, Resilience Capacities Assessment, AI-Off Performance Test)
-- Patient Experience — Patient Clinical Outcomes sub-cluster: 4 (Full Attentiveness Rate, Patient Comprehension, Downstream Diagnostic Accuracy, Medication Error Rate Differential)
+- Human Factors - Sociotechnical & Resilience sub-cluster: 4 (WAI/WAD Gap, Verification Burden, Resilience Capacities Assessment, AI-Off Performance Test)
+- Patient Experience - Patient Clinical Outcomes sub-cluster: 4 (Full Attentiveness Rate, Patient Comprehension, Downstream Diagnostic Accuracy, Medication Error Rate Differential)
 - Fairness & Equity: 3 (Intersectional Compound Fairness Score, Cross-Platform Fairness Consistency, Accent Taxonomy Standardisation)
 
 **Running total across Batches 1–2: 33 of ~64 entries**
 
 **Next**
-- Batch 3: Safety & Governance — Longitudinal Drift sub-cluster (4) + **NHS Compliance & Regulatory (new group, 10)** + Security & Adversarial Robustness (2) = 16 entries
+- Batch 3: Safety & Governance - Longitudinal Drift sub-cluster (4) + **NHS Compliance & Regulatory (new group, 10)** + Security & Adversarial Robustness (2) = 16 entries
 - Batch 4: Privacy & Data Governance (5) + Operational (3) + **Environmental & Sustainability (new group, 3)** + Vendor Transparency (1) + Meta-evaluation (2) = 14 entries

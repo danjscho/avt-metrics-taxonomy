@@ -1,12 +1,12 @@
 ## Gaps & Proposed Metrics (Roadmap)
 
-Consolidated register of metrics not yet in the taxonomy but flagged during mapping, coverage audit, or policy-lens analysis. Nothing here has been added to the 214-metric catalogue — each entry is a *candidate*, tracked so future rounds can draw from one place instead of re-discovering gaps.
+Consolidated register of metrics not yet in the taxonomy but flagged during mapping, coverage audit, or policy-lens analysis. Nothing here has been added to the 214-metric catalogue - each entry is a *candidate*, tracked so future rounds can draw from one place instead of re-discovering gaps.
 
 **Entry states:**
-- `proposed` — identified, not yet reviewed for inclusion
-- `accepted` — approved for a future metric round (awaiting full entry drafting)
-- `deferred` — considered and set aside with reasoning; may revisit
-- `rejected` — considered and dismissed; reasoning preserved so it's not re-raised
+- `proposed` - identified, not yet reviewed for inclusion
+- `accepted` - approved for a future metric round (awaiting full entry drafting)
+- `deferred` - considered and set aside with reasoning; may revisit
+- `rejected` - considered and dismissed; reasoning preserved so it's not re-raised
 
 **Totals across origins:** 83 candidates (9 external-review accepted, 4 external-review deferred, 4 NHSE IG, 28 standards-mapping, 38 Responsible AI lens).
 
@@ -16,9 +16,9 @@ Consolidated register of metrics not yet in the taxonomy but flagged during mapp
 
 Derived from two external-source coverage audits (see `archive/rset-coverage-audit.md` and `archive/nhse-ig-alignment-audit.md`).
 
-### 1a. Accepted — RSET taxonomy (9 candidates)
+### 1a. Accepted - RSET taxonomy (9 candidates)
 
-Gaps identified against the Nuffield Trust RSET AVT taxonomy (Feb 2026) — a product-capability checklist that complements our measurement taxonomy.
+Gaps identified against the Nuffield Trust RSET AVT taxonomy (Feb 2026) - a product-capability checklist that complements our measurement taxonomy.
 
 | Gap ID | Title | Suggested Tier | Rationale | Source |
 |--------|-------|----------------|-----------|--------|
@@ -27,12 +27,12 @@ Gaps identified against the Nuffield Trust RSET AVT taxonomy (Feb 2026) — a pr
 | Gap-RSET-G | Contextual data fusion accuracy | 🟡 2 | When AVT pulls prior EHR content into the note, fidelity of that pull is distinct from within-consultation summarisation fidelity. Untested territory. | RSET #23, #37 |
 | Gap-RSET-H | Task / action-item extraction accuracy | 🟡 2 | Separate construct from consultation summary: can misattribute, fabricate, or miss tasks. Downstream workflow impact. | RSET #25 |
 | Gap-RSET-I | Disability-specific speech performance | 🟡 2 | Dysarthria, aphasia, hearing-impaired speech as explicit sub-populations. Current IO.FE-* covers general demographics but not disability-specific speech. Health-equity salience. | RSET #31 |
-| Gap-RSET-J | Interpreter-mediated consultation performance | 🟢 1 | Explicitly flagged by NHSE IG guidance ("enhanced verification for translated consultations") — cross-validated by both external audits. Translation introduces distortion of speaker turns, content, and consent flow. Tier 1 because the IG guidance makes it a compliance expectation. | RSET #32, NHSE IG Mar-2026 |
+| Gap-RSET-J | Interpreter-mediated consultation performance | 🟢 1 | Explicitly flagged by NHSE IG guidance ("enhanced verification for translated consultations") - cross-validated by both external audits. Translation introduces distortion of speaker turns, content, and consent flow. Tier 1 because the IG guidance makes it a compliance expectation. | RSET #32, NHSE IG Mar-2026 |
 | Gap-RSET-K | Offline-mode integrity | 🟡 2 | Everyday safety concern when connectivity drops mid-consultation: does the product fail safely, buffer with integrity, or silently degrade? Current GV.OP-5 covers uptime but not offline-mode semantics. | RSET #38 |
 | Gap-RSET-L | Validated wellbeing-instrument metric | 🔵 3 | Named validated instruments (Maslach Burnout Inventory, Copenhagen Burnout) rather than ad-hoc surveys. Scoping review confirms the field is still using non-standardised self-reports. | Phase 1 slide deck p. 14 |
-| Gap-RSET-M | Consultation duration / overrun impact | 🟡 2 | Time per encounter, overrun rate — genuinely missing operational metric. Scoping review called this out as an inconsistent measure across studies. | Phase 1 slide deck p. 14 |
+| Gap-RSET-M | Consultation duration / overrun impact | 🟡 2 | Time per encounter, overrun rate - genuinely missing operational metric. Scoping review called this out as an inconsistent measure across studies. | Phase 1 slide deck p. 14 |
 
-### 1b. Deferred — RSET taxonomy (4 candidates)
+### 1b. Deferred - RSET taxonomy (4 candidates)
 
 Considered and set aside. Preserved so the reasoning is durable if the same gaps are re-raised in future rounds.
 
@@ -40,10 +40,10 @@ Considered and set aside. Preserved so the reasoning is durable if the same gaps
 |--------|-------|---------------|--------------|
 | Gap-RSET-A | Transcript / code review-ergonomics | (would have been 🟡 2) | HL.HF-3 Review-Before-Signing Rate and HL.HF-4 Time-to-Sign Distribution already capture whether review happens and how long it takes. "Ergonomics" as a distinct construct is hard to operationalise without subjective instruments; not a pure measurement gap. Revisit only if HL.HF-3/4 prove insufficient in practice. |
 | Gap-RSET-B | Transcript relevance / signal-preservation | (would have been 🔵 3) | Most AVT products don't expose the raw transcript to the clinician; measurement would apply to a minority of deployments. Signal-preservation is also already bracketed by TP.SN-6 Omission Rate (summary level) and TP.SN-11 MEDIC Cross-Examination. Narrow additional value. |
-| Gap-RSET-C | Transcript edit metrics (parallel to summary) | (would have been 🔵 3) | Only meaningful where the transcript is user-editable — a minority feature. HL.HF-* metrics can be applied to transcript edits by analogy if the product supports it; no new metric needed. |
-| Gap-RSET-D | Configurability surface integrity | (would have been 🔵 3) | Meta-property of product configuration surfaces (whether safety-critical features can be toggled off). Unusual measurement shape — closer to a design review than a continuous metric. Out of scope for an assurance metrics taxonomy; belongs to vendor-transparency reporting. Revisit only if configuration-related incidents surface. |
+| Gap-RSET-C | Transcript edit metrics (parallel to summary) | (would have been 🔵 3) | Only meaningful where the transcript is user-editable - a minority feature. HL.HF-* metrics can be applied to transcript edits by analogy if the product supports it; no new metric needed. |
+| Gap-RSET-D | Configurability surface integrity | (would have been 🔵 3) | Meta-property of product configuration surfaces (whether safety-critical features can be toggled off). Unusual measurement shape - closer to a design review than a continuous metric. Out of scope for an assurance metrics taxonomy; belongs to vendor-transparency reporting. Revisit only if configuration-related incidents surface. |
 
-### 1c. Accepted — NHSE IG alignment (4 candidates)
+### 1c. Accepted - NHSE IG alignment (4 candidates)
 
 Derived from the NHSE IG guidance alignment audit. All are IG-driven compliance surfaces not covered by existing metrics.
 
@@ -51,8 +51,8 @@ Derived from the NHSE IG guidance alignment audit. All are IG-driven compliance 
 |--------|-------|----------------|-----------|--------|
 | Gap-IG-A | Refusal impact-explanation quality | 🟡 2 | NHSE IG explicitly requires clinicians to explain *how* refusal affects care. We measure recording/respecting dissent (GV.CR-1) but not the quality of the explanation. Periodic audit. | NHSE IG Mar-2026 |
 | Gap-IG-B | Privacy notice currency & completeness | 🟢 1 | Organisational privacy notices must be updated to include ambient-scribe processing specifics. Binary compliance, trivial measurement cost, named requirement in the guidance. | NHSE IG Mar-2026 |
-| Gap-IG-C | SAR deletion-pause interaction | 🟡 2 | Guidance explicitly requires deletion paused during active SAR handling. GV.PD-2 Audio Time-to-Deletion doesn't test the SAR interaction — the two processes are measured separately today. | NHSE IG Mar-2026 |
-| Gap-IG-D | Right-to-restrict tooling support | 🟡 2 | Restriction is distinct from erasure — data held, marked, not processed. Current GV.PD-11 covers erasure only. IG guidance explicitly requires tool functionality for restriction. | NHSE IG Mar-2026 |
+| Gap-IG-C | SAR deletion-pause interaction | 🟡 2 | Guidance explicitly requires deletion paused during active SAR handling. GV.PD-2 Audio Time-to-Deletion doesn't test the SAR interaction - the two processes are measured separately today. | NHSE IG Mar-2026 |
+| Gap-IG-D | Right-to-restrict tooling support | 🟡 2 | Restriction is distinct from erasure - data held, marked, not processed. Current GV.PD-11 covers erasure only. IG guidance explicitly requires tool functionality for restriction. | NHSE IG Mar-2026 |
 
 ---
 
@@ -110,7 +110,7 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 
 | Proposed Ref | Title | Tier | What it measures |
 |---|---|---|---|
-| TP.WB-11 | PRSB Semantic Completeness | 🟢 1 | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.). **Highest-leverage single addition** — appears as a gap across PRSB, FHIR UK Core, and CQC record quality. |
+| TP.WB-11 | PRSB Semantic Completeness | 🟢 1 | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.). **Highest-leverage single addition** - appears as a gap across PRSB, FHIR UK Core, and CQC record quality. |
 | TP.SN-25 | Professional Narrative Preservation | 🟡 2 | Ratio of free-text narrative vs structured extraction; flags over-structurisation and loss of clinical nuance. |
 | TP.WB-12 | Communication Needs (AIS) Capture | 🟡 2 | Whether Accessible Information Standard flags (interpreter, BSL, etc.) are captured and preserved. Accessibility-critical. |
 | TP.WB-13 | Legal Status Information Capture | 🟡 2 | Whether MHA status, DoLS, LPA, advance decisions are preserved when present. Clinical-legal critical. |
@@ -140,65 +140,65 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 
 ## 3. Responsible AI Lens (38 candidates)
 
-Derived from the DSIT AI Playbook principle mapping and the six ethical theme mapping in `_responsible-ai-lens.md`. Some overlap the standards-mapping gaps — cross-references noted inline.
+Derived from the DSIT AI Playbook principle mapping and the six ethical theme mapping in `_responsible-ai-lens.md`. Some overlap the standards-mapping gaps - cross-references noted inline.
 
 ### 3a. By Playbook principle (20)
 
 | Principle | Gap | Severity | Cross-reference |
 |-----------|-----|----------|-----------------|
-| P1 — Limitations | Patient-facing disclosure of AVT limitations (not just clinician-facing) | Medium | — |
-| P1 — Limitations | Running tally of encountered failure modes over deployment time | Medium | Partial via GV.SG-11 / GV.SG-14 |
-| P2 — Lawful/ethical | IP status of training data (copyright, consent) | Medium | — |
-| P2 — Lawful/ethical | Proportionality review (is AVT the right intervention?) | Medium | See P6; partial via ES.ME-1 |
-| P3 — Security | Supply-chain security for model weights and dependencies | Medium | — |
-| P3 — Security | AI-specific red-teaming cadence | Medium | — |
-| P4 — Human control | Formal escalation paths when AI output is rejected | Medium | — |
-| P4 — Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
-| P5 — Lifecycle | Decommissioning plan | Medium | — |
-| P5 — Lifecycle | Model retirement criteria | Low | — |
-| P6 — Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
-| P6 — Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
-| P7 — Openness | ATRS publication completeness (where applicable) | Low | ATRS referenced but not mapped |
-| P7 — Openness | Patient-facing plain-language AVT documentation | Medium | — |
-| P8 — Commercial | Contractual SLA enforcement (actual enforcement, not just clauses) | Medium | — |
-| P8 — Commercial | Exit-clause testing | Medium | GV.VT-6 is about provisions; gap is on testing |
-| P9 — Skills | SRO / board-level AI literacy assessment | Medium | — |
-| P9 — Skills | Deployer-side data science / engineering skills | Low | — |
-| P10 — Org assurance | AI review board effectiveness metric | Medium | — |
-| P10 — Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
+| P1 - Limitations | Patient-facing disclosure of AVT limitations (not just clinician-facing) | Medium | - |
+| P1 - Limitations | Running tally of encountered failure modes over deployment time | Medium | Partial via GV.SG-11 / GV.SG-14 |
+| P2 - Lawful/ethical | IP status of training data (copyright, consent) | Medium | - |
+| P2 - Lawful/ethical | Proportionality review (is AVT the right intervention?) | Medium | See P6; partial via ES.ME-1 |
+| P3 - Security | Supply-chain security for model weights and dependencies | Medium | - |
+| P3 - Security | AI-specific red-teaming cadence | Medium | - |
+| P4 - Human control | Formal escalation paths when AI output is rejected | Medium | - |
+| P4 - Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
+| P5 - Lifecycle | Decommissioning plan | Medium | - |
+| P5 - Lifecycle | Model retirement criteria | Low | - |
+| P6 - Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
+| P6 - Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
+| P7 - Openness | ATRS publication completeness (where applicable) | Low | ATRS referenced but not mapped |
+| P7 - Openness | Patient-facing plain-language AVT documentation | Medium | - |
+| P8 - Commercial | Contractual SLA enforcement (actual enforcement, not just clauses) | Medium | - |
+| P8 - Commercial | Exit-clause testing | Medium | GV.VT-6 is about provisions; gap is on testing |
+| P9 - Skills | SRO / board-level AI literacy assessment | Medium | - |
+| P9 - Skills | Deployer-side data science / engineering skills | Low | - |
+| P10 - Org assurance | AI review board effectiveness metric | Medium | - |
+| P10 - Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
 
 ### 3b. By ethical theme (18)
 
 | Theme | Gap | Severity | Cross-reference |
 |-------|-----|----------|-----------------|
-| T1 — Safety/Security/Robustness | Systems-based root cause analysis (SEIPS) for AI incidents | High | GV.SG-19 proposed (Standards §2e) |
-| T1 — Safety | Catastrophic failure mode planning | Medium | — |
-| T2 — Transparency | Patient-facing explanation of AI decision-making in the record | High | TP.WB-11 proposed (Standards §2f) |
-| T2 — Transparency | Model card / system card publication | Medium | Partial via GV.VT-2 |
-| T2 — Transparency | Audience-proportionate explanation | Medium | — |
-| T3 — Fairness | Fairness during deployment ramp | Medium | Partial via IO.FE-1 |
-| T3 — Fairness | Intersectional fairness at small-group level | High | IO.FE-4/5 partial; small-group power unresolved |
-| T4 — Accountability | Board-level AI governance mechanism | High | GV.CR-12 proposed (Standards §2d) |
-| T4 — Accountability | Named accountable director for AI | High | Covered under GV.CR-12 |
-| T4 — Accountability | Clear role distinction: CSO, DPO, SIRO, Caldicott Guardian in AI context | Medium | — |
-| T5 — Contestability | Patient route to challenge AI-generated note content (beyond SAR) | High | Related to IO.PX-11 (Standards §2d) |
-| T5 — Contestability | Affected-third-party contestability | Medium | — |
-| T5 — Contestability | Redress mechanism for population-level AVT harm | Medium | — |
-| T6 — Societal Wellbeing | Workforce displacement / role change assessment | High | HL.HF-12 partial |
-| T6 — Societal Wellbeing | Equity of benefit distribution across practices | High | IO.FE-1 partial |
-| T6 — Societal Wellbeing | Patient trust at population level | High | IO.PX-5, IO.PX-6 partial |
-| T6 — Societal Wellbeing | Long-term sustainability of AVT adoption | Medium | — |
-| T6 — Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged low severity in Standards Mapping |
+| T1 - Safety/Security/Robustness | Systems-based root cause analysis (SEIPS) for AI incidents | High | GV.SG-19 proposed (Standards §2e) |
+| T1 - Safety | Catastrophic failure mode planning | Medium | - |
+| T2 - Transparency | Patient-facing explanation of AI decision-making in the record | High | TP.WB-11 proposed (Standards §2f) |
+| T2 - Transparency | Model card / system card publication | Medium | Partial via GV.VT-2 |
+| T2 - Transparency | Audience-proportionate explanation | Medium | - |
+| T3 - Fairness | Fairness during deployment ramp | Medium | Partial via IO.FE-1 |
+| T3 - Fairness | Intersectional fairness at small-group level | High | IO.FE-4/5 partial; small-group power unresolved |
+| T4 - Accountability | Board-level AI governance mechanism | High | GV.CR-12 proposed (Standards §2d) |
+| T4 - Accountability | Named accountable director for AI | High | Covered under GV.CR-12 |
+| T4 - Accountability | Clear role distinction: CSO, DPO, SIRO, Caldicott Guardian in AI context | Medium | - |
+| T5 - Contestability | Patient route to challenge AI-generated note content (beyond SAR) | High | Related to IO.PX-11 (Standards §2d) |
+| T5 - Contestability | Affected-third-party contestability | Medium | - |
+| T5 - Contestability | Redress mechanism for population-level AVT harm | Medium | - |
+| T6 - Societal Wellbeing | Workforce displacement / role change assessment | High | HL.HF-12 partial |
+| T6 - Societal Wellbeing | Equity of benefit distribution across practices | High | IO.FE-1 partial |
+| T6 - Societal Wellbeing | Patient trust at population level | High | IO.PX-5, IO.PX-6 partial |
+| T6 - Societal Wellbeing | Long-term sustainability of AVT adoption | Medium | - |
+| T6 - Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged low severity in Standards Mapping |
 
 ### 3c. Highest-severity cross-cutting gaps
 
-Gaps that surface under multiple lens axes — highest-leverage targets for future metric rounds.
+Gaps that surface under multiple lens axes - highest-leverage targets for future metric rounds.
 
-1. **Patient-facing explanation / contestability of AVT output** — P7, T2, T5. The taxonomy assumes clinicians mediate AI output to patients; patient-facing AI requires direct channels.
-2. **Board-level AI governance** — P10, T4, CQC Well-led. Captured in proposed GV.CR-12. Arguably the single highest-leverage missing metric for NHS deployment.
-3. **Tool-fit / proportionality assessment** — P2, P6, NICE ESF Tier classification. Procurement-stage gap.
-4. **Systems-based incident learning (SEIPS)** — T1, PSIRF mandatory requirements. Captured in proposed GV.SG-19.
-5. **Societal Wellbeing measurement generally** — Theme 6 has the highest concentration of gaps because second-order effects on workforce, patient relationships, and healthcare sustainability are intrinsically hard to measure.
+1. **Patient-facing explanation / contestability of AVT output** - P7, T2, T5. The taxonomy assumes clinicians mediate AI output to patients; patient-facing AI requires direct channels.
+2. **Board-level AI governance** - P10, T4, CQC Well-led. Captured in proposed GV.CR-12. Arguably the single highest-leverage missing metric for NHS deployment.
+3. **Tool-fit / proportionality assessment** - P2, P6, NICE ESF Tier classification. Procurement-stage gap.
+4. **Systems-based incident learning (SEIPS)** - T1, PSIRF mandatory requirements. Captured in proposed GV.SG-19.
+5. **Societal Wellbeing measurement generally** - Theme 6 has the highest concentration of gaps because second-order effects on workforce, patient relationships, and healthcare sustainability are intrinsically hard to measure.
 
 ---
 
@@ -226,10 +226,10 @@ Gaps that surface under multiple lens axes — highest-leverage targets for futu
 **If all 79 accepted candidates were adopted as metrics,** the taxonomy would grow from 214 to ~293 metrics. In practice, cross-cutting gaps (e.g. Board-Level AI Governance surfaces under CQC, P10, and T4) will collapse to single metrics, so the true additive count is likely ~60–65.
 
 **Highest-leverage single additions** (gap appears in multiple origins simultaneously):
-- **TP.WB-11 PRSB Semantic Completeness** — Standards §2f (PRSB), implicit in CQC record quality, implicit in FHIR UK Core conformance, T2 Transparency
-- **GV.CR-12 Board-Level AI Governance Mechanism** — Standards §2d (CQC), P10, T4
-- **GV.SG-19 Systems-Based Incident Analysis Rate** — Standards §2e (PSIRF), T1
-- **GV.CR-14 Consultation-Type Appropriateness Assessment** — Standards §2g (Caldicott), direct NHSE IG concern for sensitive consultation carve-outs
+- **TP.WB-11 PRSB Semantic Completeness** - Standards §2f (PRSB), implicit in CQC record quality, implicit in FHIR UK Core conformance, T2 Transparency
+- **GV.CR-12 Board-Level AI Governance Mechanism** - Standards §2d (CQC), P10, T4
+- **GV.SG-19 Systems-Based Incident Analysis Rate** - Standards §2e (PSIRF), T1
+- **GV.CR-14 Consultation-Type Appropriateness Assessment** - Standards §2g (Caldicott), direct NHSE IG concern for sensitive consultation carve-outs
 
 ## 5. How this file is maintained
 

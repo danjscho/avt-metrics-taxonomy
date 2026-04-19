@@ -20,7 +20,7 @@ ROOT = pathlib.Path(__file__).parent
 OUTPUT_MD = ROOT.parent / "avt-metrics-taxonomy.md"
 DIST = ROOT.parent / "dist"
 
-# Explicit file order — pipeline order within parts, not alphabetical.
+# Explicit file order - pipeline order within parts, not alphabetical.
 # Cross-cutting files first, matching the original document structure.
 FILES = [
     "_header.md",
@@ -92,34 +92,36 @@ def build_metric_outputs() -> int:
 
     DIST.mkdir(exist_ok=True)
 
-    # CSV — flat, spreadsheet-friendly
+    # CSV - flat, spreadsheet-friendly
     csv_path = DIST / "metrics.csv"
     with csv_path.open("w", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=CSV_COLUMNS)
         writer.writeheader()
         for m in metrics:
-            writer.writerow({
-                "ref_id": m.ref_id,
-                "name": m.name,
-                "tier": m.tier,
-                "tier_label": m.tier_label,
-                "part": m.part,
-                "group": m.group,
-                "applicability": m.applicability or "",
-                "cadence": m.cadence,
-                "pipeline_layer": m.pipeline_layer,
-                "assurance_question": m.assurance_question,
-                "measurement_method": m.measurement_method,
-                "lifecycle_phases": m.lifecycle_phases,
-                "responsible_actors": m.responsible_actors,
-                "maturity": m.maturity,
-                "source": m.source,
-                "group_file": m.group_file,
-                "heading_line": m.heading_line,
-            })
+            writer.writerow(
+                {
+                    "ref_id": m.ref_id,
+                    "name": m.name,
+                    "tier": m.tier,
+                    "tier_label": m.tier_label,
+                    "part": m.part,
+                    "group": m.group,
+                    "applicability": m.applicability or "",
+                    "cadence": m.cadence,
+                    "pipeline_layer": m.pipeline_layer,
+                    "assurance_question": m.assurance_question,
+                    "measurement_method": m.measurement_method,
+                    "lifecycle_phases": m.lifecycle_phases,
+                    "responsible_actors": m.responsible_actors,
+                    "maturity": m.maturity,
+                    "source": m.source,
+                    "group_file": m.group_file,
+                    "heading_line": m.heading_line,
+                }
+            )
     print(f"Built {csv_path.relative_to(ROOT.parent)} ({len(metrics)} rows).")
 
-    # JSON — preserves full dimensions dict
+    # JSON - preserves full dimensions dict
     json_path = DIST / "metrics.json"
     payload = {
         "version": "v3.2-dev",

@@ -1,6 +1,7 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/schema.json
 site_name: AVT Metrics Taxonomy
-site_description: Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings
+site_description: Healthcare metrics taxonomy for assuring Ambient Voice
+  Technology in NHS and comparable settings
 site_url: https://danjscho.github.io/avt-metrics-taxonomy/
 repo_url: https://github.com/danjscho/avt-metrics-taxonomy
 repo_name: danjscho/avt-metrics-taxonomy
@@ -67,7 +68,7 @@ extra:
   social:
     - icon: fontawesome/solid/rss
       link: /avt-metrics-taxonomy/feed_rss_updated.xml
-      name: RSS — CHANGELOG updates
+      name: RSS - CHANGELOG updates
     - icon: fontawesome/brands/github
       link: https://github.com/danjscho/avt-metrics-taxonomy
       name: Source on GitHub
@@ -83,8 +84,8 @@ markdown_extensions:
       permalink: true
   - pymdownx.details
   - pymdownx.emoji:
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
+      emoji_index: !!python/name:material.extensions.emoji.twemoji ""
+      emoji_generator: !!python/name:material.extensions.emoji.to_svg ""
   - pymdownx.highlight:
       anchor_linenums: true
   - pymdownx.superfences
@@ -98,69 +99,69 @@ nav:
   - How to use: how-to-use.md
   - Quick start (Tier 1): tier-1-quick-reference.md
   - Browse metrics:
-    - Contents: contents.md
-    - A — Technical Pipeline:
-      - Audio Capture & Environment: groups/audio-capture.md
-      - ASR / Transcription: groups/asr-transcription.md
-      - Diarisation: groups/diarisation.md
-      - Summarisation / NLP: groups/summarisation-nlp.md
-      - Clinical Coding: groups/clinical-coding.md
-      - EPR Write-back: groups/epr-write-back.md
-    - B — Pipeline Interactions:
-      - Partial-Pipeline: groups/partial-pipeline.md
-      - End-to-End Pipeline: groups/end-to-end-pipeline.md
-    - C — The Human Layer:
-      - Human Factors & Workflow: groups/human-factors-workflow.md
-    - D — Impact & Outcomes:
-      - Patient Experience: groups/patient-experience.md
-      - Fairness & Equity: groups/fairness-equity.md
-    - E — System Governance:
-      - Safety & Governance: groups/safety-governance.md
-      - NHS Compliance & Regulatory: groups/nhs-compliance-regulatory.md
-      - Security & Adversarial Robustness: groups/security-adversarial-robustness.md
-      - Privacy & Data Governance: groups/privacy-data-governance.md
-      - Operational: groups/operational.md
-      - Environmental & Sustainability: groups/environmental-sustainability.md
-      - Training & Competency: groups/training-competency.md
-      - Vendor Transparency & Contractual: groups/vendor-transparency-contractual.md
-    - F — Evaluation Science:
-      - Meta-Evaluation: groups/meta-evaluation.md
+      - Contents: contents.md
+      - A - Technical Pipeline:
+          - Audio Capture & Environment: groups/audio-capture.md
+          - ASR / Transcription: groups/asr-transcription.md
+          - Diarisation: groups/diarisation.md
+          - Summarisation / NLP: groups/summarisation-nlp.md
+          - Clinical Coding: groups/clinical-coding.md
+          - EPR Write-back: groups/epr-write-back.md
+      - B - Pipeline Interactions:
+          - Partial-Pipeline: groups/partial-pipeline.md
+          - End-to-End Pipeline: groups/end-to-end-pipeline.md
+      - C - The Human Layer:
+          - Human Factors & Workflow: groups/human-factors-workflow.md
+      - D - Impact & Outcomes:
+          - Patient Experience: groups/patient-experience.md
+          - Fairness & Equity: groups/fairness-equity.md
+      - E - System Governance:
+          - Safety & Governance: groups/safety-governance.md
+          - NHS Compliance & Regulatory: groups/nhs-compliance-regulatory.md
+          - Security & Adversarial Robustness: groups/security-adversarial-robustness.md
+          - Privacy & Data Governance: groups/privacy-data-governance.md
+          - Operational: groups/operational.md
+          - Environmental & Sustainability: groups/environmental-sustainability.md
+          - Training & Competency: groups/training-competency.md
+          - Vendor Transparency & Contractual: groups/vendor-transparency-contractual.md
+      - F - Evaluation Science:
+          - Meta-Evaluation: groups/meta-evaluation.md
   - Cross-cutting:
-    - Applicability: applicability.md
-    - Standards Mapping: standards-mapping.md
-    - Responsible AI Lens: responsible-ai-lens.md
+      - Applicability: applicability.md
+      - Standards Mapping: standards-mapping.md
+      - Responsible AI Lens: responsible-ai-lens.md
   - Cross-cut views:
-    - Overview: crosscuts/index.md
-    - By applicability:
-      - AVT-Specific: crosscuts/by-applicability/avt-specific.md
-      - AVT-Contextualised: crosscuts/by-applicability/avt-contextualised.md
-      - General Healthcare AI: crosscuts/by-applicability/general.md
-    - By Playbook principle:
-      - P1 — Limitations: crosscuts/by-principle/p1.md
-      - P2 — Lawful/ethical: crosscuts/by-principle/p2.md
-      - P3 — Security: crosscuts/by-principle/p3.md
-      - P4 — Human control: crosscuts/by-principle/p4.md
-      - P5 — Lifecycle: crosscuts/by-principle/p5.md
-      - P6 — Right tool: crosscuts/by-principle/p6.md
-      - P7 — Openness: crosscuts/by-principle/p7.md
-      - P8 — Commercial: crosscuts/by-principle/p8.md
-      - P9 — Skills: crosscuts/by-principle/p9.md
-      - P10 — Org assurance: crosscuts/by-principle/p10.md
-    - By ethical theme:
-      - T1 — Safety, Security, Robustness: crosscuts/by-theme/t1.md
-      - T2 — Transparency & Explainability: crosscuts/by-theme/t2.md
-      - T3 — Fairness: crosscuts/by-theme/t3.md
-      - T4 — Accountability & Governance: crosscuts/by-theme/t4.md
-      - T5 — Contestability & Redress: crosscuts/by-theme/t5.md
-      - T6 — Societal Wellbeing: crosscuts/by-theme/t6.md
-    - By standard:
-      - DTAC v2.0: crosscuts/by-standard/dtac-digital-technology-assessment-criteria-v2-0.md
-      - DSPT (NDG): crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
-      - DCB0129 / DCB0160: crosscuts/by-standard/dcb0129-dcb0160.md
-      - NHS LLM Framework: crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2.md
-      - MHRA SaMD/AIaMD: crosscuts/by-standard/mhra-software-and-ai-as-a-medical-device-samd-aiamd.md
-      - NICE ESF (ECD7): crosscuts/by-standard/nice-evidence-standards-framework-for-digital-health-technologies-ecd7.md
-      - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
+      - Overview: crosscuts/index.md
+      - By applicability:
+          - AVT-Specific: crosscuts/by-applicability/avt-specific.md
+          - AVT-Contextualised: crosscuts/by-applicability/avt-contextualised.md
+          - General Healthcare AI: crosscuts/by-applicability/general.md
+      - By Playbook principle:
+          - P1 - Limitations: crosscuts/by-principle/p1.md
+          - P2 - Lawful/ethical: crosscuts/by-principle/p2.md
+          - P3 - Security: crosscuts/by-principle/p3.md
+          - P4 - Human control: crosscuts/by-principle/p4.md
+          - P5 - Lifecycle: crosscuts/by-principle/p5.md
+          - P6 - Right tool: crosscuts/by-principle/p6.md
+          - P7 - Openness: crosscuts/by-principle/p7.md
+          - P8 - Commercial: crosscuts/by-principle/p8.md
+          - P9 - Skills: crosscuts/by-principle/p9.md
+          - P10 - Org assurance: crosscuts/by-principle/p10.md
+      - By ethical theme:
+          - T1 - Safety, Security, Robustness: crosscuts/by-theme/t1.md
+          - T2 - Transparency & Explainability: crosscuts/by-theme/t2.md
+          - T3 - Fairness: crosscuts/by-theme/t3.md
+          - T4 - Accountability & Governance: crosscuts/by-theme/t4.md
+          - T5 - Contestability & Redress: crosscuts/by-theme/t5.md
+          - T6 - Societal Wellbeing: crosscuts/by-theme/t6.md
+      - By standard:
+          - DTAC v2.0: crosscuts/by-standard/dtac-digital-technology-assessment-criteria-v2-0.md
+          - DSPT (NDG): crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
+          - DCB0129 / DCB0160: crosscuts/by-standard/dcb0129-dcb0160.md
+          - NHS LLM Framework: crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2.md
+          - MHRA SaMD/AIaMD: crosscuts/by-standard/mhra-software-and-ai-as-a-medical-device-samd-aiamd.md
+          - NICE ESF (ECD7): crosscuts/by-standard/nice-evidence-standards-framework-for-digital-health-technologies-ecd7.md
+          - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
   - Roadmap (Gaps): gaps.md
   - Downloads: downloads.md
   - Glossary: glossary.md

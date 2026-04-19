@@ -1,4 +1,4 @@
-# Build artefacts — derived from taxonomy/ source, not authored
+# Build artefacts - derived from taxonomy/ source, not authored
 dist/
 docs/
 site/

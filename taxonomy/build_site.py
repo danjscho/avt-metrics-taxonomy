@@ -20,35 +20,35 @@ DOCS = REPO / "docs"
 
 # source file -> docs path
 MAPPING: dict[str, str] = {
-    "_header.md":                                  "index.md",
-    "_how-to-use.md":                              "how-to-use.md",
-    "_tier-1-quick-reference.md":                  "tier-1-quick-reference.md",
-    "_contents.md":                                "contents.md",
-    "_applicability.md":                           "applicability.md",
-    "_standards-mapping.md":                       "standards-mapping.md",
-    "_responsible-ai-lens.md":                     "responsible-ai-lens.md",
-    "_gaps.md":                                    "gaps.md",
-    "_glossary.md":                                "glossary.md",
-    "part-a/audio-capture.md":                     "groups/audio-capture.md",
-    "part-a/asr-transcription.md":                 "groups/asr-transcription.md",
-    "part-a/diarisation.md":                       "groups/diarisation.md",
-    "part-a/summarisation-nlp.md":                 "groups/summarisation-nlp.md",
-    "part-a/clinical-coding.md":                   "groups/clinical-coding.md",
-    "part-a/epr-write-back.md":                    "groups/epr-write-back.md",
-    "part-b/partial-pipeline.md":                  "groups/partial-pipeline.md",
-    "part-b/end-to-end-pipeline.md":               "groups/end-to-end-pipeline.md",
-    "part-c/human-factors-workflow.md":            "groups/human-factors-workflow.md",
-    "part-d/patient-experience.md":                "groups/patient-experience.md",
-    "part-d/fairness-equity.md":                   "groups/fairness-equity.md",
-    "part-e/safety-governance.md":                 "groups/safety-governance.md",
-    "part-e/nhs-compliance-regulatory.md":         "groups/nhs-compliance-regulatory.md",
-    "part-e/security-adversarial-robustness.md":   "groups/security-adversarial-robustness.md",
-    "part-e/privacy-data-governance.md":           "groups/privacy-data-governance.md",
-    "part-e/operational.md":                       "groups/operational.md",
-    "part-e/environmental-sustainability.md":      "groups/environmental-sustainability.md",
-    "part-e/training-competency.md":               "groups/training-competency.md",
-    "part-e/vendor-transparency-contractual.md":   "groups/vendor-transparency-contractual.md",
-    "part-f/meta-evaluation.md":                   "groups/meta-evaluation.md",
+    "_header.md": "index.md",
+    "_how-to-use.md": "how-to-use.md",
+    "_tier-1-quick-reference.md": "tier-1-quick-reference.md",
+    "_contents.md": "contents.md",
+    "_applicability.md": "applicability.md",
+    "_standards-mapping.md": "standards-mapping.md",
+    "_responsible-ai-lens.md": "responsible-ai-lens.md",
+    "_gaps.md": "gaps.md",
+    "_glossary.md": "glossary.md",
+    "part-a/audio-capture.md": "groups/audio-capture.md",
+    "part-a/asr-transcription.md": "groups/asr-transcription.md",
+    "part-a/diarisation.md": "groups/diarisation.md",
+    "part-a/summarisation-nlp.md": "groups/summarisation-nlp.md",
+    "part-a/clinical-coding.md": "groups/clinical-coding.md",
+    "part-a/epr-write-back.md": "groups/epr-write-back.md",
+    "part-b/partial-pipeline.md": "groups/partial-pipeline.md",
+    "part-b/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
+    "part-c/human-factors-workflow.md": "groups/human-factors-workflow.md",
+    "part-d/patient-experience.md": "groups/patient-experience.md",
+    "part-d/fairness-equity.md": "groups/fairness-equity.md",
+    "part-e/safety-governance.md": "groups/safety-governance.md",
+    "part-e/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
+    "part-e/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
+    "part-e/privacy-data-governance.md": "groups/privacy-data-governance.md",
+    "part-e/operational.md": "groups/operational.md",
+    "part-e/environmental-sustainability.md": "groups/environmental-sustainability.md",
+    "part-e/training-competency.md": "groups/training-competency.md",
+    "part-e/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
+    "part-f/meta-evaluation.md": "groups/meta-evaluation.md",
 }
 
 
@@ -56,32 +56,32 @@ MAPPING: dict[str, str] = {
 # need to redirect to the relevant page. Keys are the anchor slugs as they
 # appear in the source; values are the target URL (relative to docs root).
 ANCHOR_REWRITES: dict[str, str] = {
-    # Group anchors — these were h2s inside the monolith; now they're pages.
-    "audio-capture-environment":             "groups/audio-capture.md",
-    "asr-transcription":                     "groups/asr-transcription.md",
-    "diarisation":                           "groups/diarisation.md",
-    "summarisation-nlp":                     "groups/summarisation-nlp.md",
-    "clinical-coding":                       "groups/clinical-coding.md",
-    "epr-write-back":                        "groups/epr-write-back.md",
-    "partial-pipeline":                      "groups/partial-pipeline.md",
-    "end-to-end-pipeline":                   "groups/end-to-end-pipeline.md",
-    "human-factors-workflow":                "groups/human-factors-workflow.md",
-    "patient-experience":                    "groups/patient-experience.md",
-    "fairness-equity":                       "groups/fairness-equity.md",
-    "safety-governance":                     "groups/safety-governance.md",
-    "nhs-compliance-regulatory":             "groups/nhs-compliance-regulatory.md",
-    "security-adversarial-robustness":       "groups/security-adversarial-robustness.md",
-    "privacy-data-governance":               "groups/privacy-data-governance.md",
-    "operational":                           "groups/operational.md",
-    "environmental-sustainability":          "groups/environmental-sustainability.md",
-    "training-competency":                   "groups/training-competency.md",
-    "vendor-transparency-contractual":       "groups/vendor-transparency-contractual.md",
-    "meta-evaluation":                       "groups/meta-evaluation.md",
-    # Cross-cutting sections — each now its own page.
-    "applicability-classification":          "applicability.md",
-    "standards-mapping":                     "standards-mapping.md",
-    "responsible-ai-lens":                   "responsible-ai-lens.md",
-    "gaps-proposed-metrics-roadmap":         "gaps.md",
+    # Group anchors - these were h2s inside the monolith; now they're pages.
+    "audio-capture-environment": "groups/audio-capture.md",
+    "asr-transcription": "groups/asr-transcription.md",
+    "diarisation": "groups/diarisation.md",
+    "summarisation-nlp": "groups/summarisation-nlp.md",
+    "clinical-coding": "groups/clinical-coding.md",
+    "epr-write-back": "groups/epr-write-back.md",
+    "partial-pipeline": "groups/partial-pipeline.md",
+    "end-to-end-pipeline": "groups/end-to-end-pipeline.md",
+    "human-factors-workflow": "groups/human-factors-workflow.md",
+    "patient-experience": "groups/patient-experience.md",
+    "fairness-equity": "groups/fairness-equity.md",
+    "safety-governance": "groups/safety-governance.md",
+    "nhs-compliance-regulatory": "groups/nhs-compliance-regulatory.md",
+    "security-adversarial-robustness": "groups/security-adversarial-robustness.md",
+    "privacy-data-governance": "groups/privacy-data-governance.md",
+    "operational": "groups/operational.md",
+    "environmental-sustainability": "groups/environmental-sustainability.md",
+    "training-competency": "groups/training-competency.md",
+    "vendor-transparency-contractual": "groups/vendor-transparency-contractual.md",
+    "meta-evaluation": "groups/meta-evaluation.md",
+    # Cross-cutting sections - each now its own page.
+    "applicability-classification": "applicability.md",
+    "standards-mapping": "standards-mapping.md",
+    "responsible-ai-lens": "responsible-ai-lens.md",
+    "gaps-proposed-metrics-roadmap": "gaps.md",
 }
 
 _MD_LINK = re.compile(r"(?<!!)\[([^\]]+?)\]\(#([a-z0-9][a-z0-9_-]*)\)")
@@ -99,9 +99,9 @@ _METRIC_HEADING = re.compile(
 
 # Link every bolded metric name on the Tier-1 Quick Reference page to its
 # source page. The source file (`_tier-1-quick-reference.md`) is authored
-# prose — we don't edit it at source, we transform it on the way into the
+# prose - we don't edit it at source, we transform it on the way into the
 # site. Each bullet is of the form:
-#   - 🚪 **Metric Name** — rationale...
+#   - 🚪 **Metric Name** - rationale...
 # We match `**Metric Name**` tokens (optionally followed by `⚠️`), look the
 # name up in the parsed catalogue, and rewrite to a link.
 _BOLD_METRIC_TOKEN = re.compile(r"\*\*([^*]+?)\*\*")
@@ -153,6 +153,7 @@ def add_metric_anchors(text: str) -> str:
         slug = ref_id.lower().replace(".", "-")
         # Keep the reference-ID visible in the heading; attach a stable id.
         return f"{prefix}{ref_id}{tail} {{ #{slug} }}"
+
     return _METRIC_HEADING.sub(sub, text)
 
 
@@ -161,15 +162,17 @@ def rewrite_anchors(text: str, current_page: str) -> str:
     has moved to another page in the site. Same-page anchors are left
     untouched.
     """
+
     def sub(m: re.Match) -> str:
         label, slug = m.group(1), m.group(2)
         target = ANCHOR_REWRITES.get(slug)
         if target is None:
-            return m.group(0)  # unchanged — assumed same-page
+            return m.group(0)  # unchanged - assumed same-page
         # Don't self-redirect if the current page is the target.
         if target.split("#", 1)[0] == current_page:
             return m.group(0)
         return f"[{label}]({target})"
+
     return _MD_LINK.sub(sub, text)
 
 
@@ -177,7 +180,7 @@ def promote_h2_to_h1(text: str) -> str:
     """Reshape a source file so MkDocs gets exactly one h1 at the top.
 
     Group-file pattern:
-        # Part A — The Technical Pipeline
+        # Part A - The Technical Pipeline
         ## Audio Capture & Environment
 
     We want the *group name* to be the h1 (so the sidebar, tab title, and
@@ -199,9 +202,9 @@ def promote_h2_to_h1(text: str) -> str:
         return text
 
     first = lines[first_idx].strip()
-    # Case A: group file — `# Part …` then later `## <Group>`
-    if first.startswith("# Part ") and " — " in first:
-        part_title = first[2:].strip()  # "Part A — The Technical Pipeline"
+    # Case A: group file - `# Part …` then later `## <Group>`
+    if first.startswith("# Part ") and " - " in first:
+        part_title = first[2:].strip()  # "Part A - The Technical Pipeline"
         # Find the next `## ` heading
         for j in range(first_idx + 1, len(lines)):
             s = lines[j].strip()
@@ -210,11 +213,11 @@ def promote_h2_to_h1(text: str) -> str:
                 # Replace lines from first_idx..j (inclusive) with a kicker + h1
                 kicker = f"*{part_title}*"
                 new_head = [f"# {group_title}", "", kicker, ""]
-                lines = lines[:first_idx] + new_head + lines[j + 1:]
+                lines = lines[:first_idx] + new_head + lines[j + 1 :]
                 break
         return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
-    # Case B: cross-cutting file starting with `## Heading` — promote to `# Heading`.
+    # Case B: cross-cutting file starting with `## Heading` - promote to `# Heading`.
     if first.startswith("## "):
         lines[first_idx] = "# " + first[3:]
     return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
@@ -243,7 +246,7 @@ def main() -> None:
             text = _add_applicability_badges(text, dst_rel)
             text = _add_related_metrics_footers(text, dst_rel)
         if dst_rel == "index.md":
-            # Root index page — replace the source h1 and the repeated
+            # Root index page - replace the source h1 and the repeated
             # summary prose with a concise landing block; keep the source's
             # "Acknowledgements / Sources / Structure" content below the
             # new jumping-off section.
@@ -259,12 +262,12 @@ def main() -> None:
             text = promote_h2_to_h1(text)
         dst.write_text(text)
 
-    # Changelog at repo root is already Markdown — copy as-is.
+    # Changelog at repo root is already Markdown - copy as-is.
     cl_src = REPO / "CHANGELOG.md"
     if cl_src.exists():
         (DOCS / "changelog.md").write_text(cl_src.read_text())
 
-    # Downloads landing page — links resolve in CI where dist/* is copied
+    # Downloads landing page - links resolve in CI where dist/* is copied
     # into docs/downloads/ before mkdocs build (see .github/workflows/site.yml).
     # For local preview, also mirror dist/* into docs/downloads/ here so
     # `mkdocs serve` shows the downloads as working links.
@@ -275,7 +278,9 @@ def main() -> None:
     # Cross-cut auto-generated pages (applicability / principle / theme).
     crosscut_count = build_crosscuts()
 
-    print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2 + crosscut_count} pages.")
+    print(
+        f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2 + crosscut_count} pages."
+    )
 
 
 def _copy_stylesheets() -> None:
@@ -300,7 +305,7 @@ def _mirror_downloads() -> None:
         src = dist / name
         if src.exists():
             shutil.copy2(src, target / name)
-    # Copy the monolithic MD for local preview parity with CI — but with
+    # Copy the monolithic MD for local preview parity with CI - but with
     # a `.txt` extension so MkDocs doesn't treat it as a page source.
     # The Downloads page link carries `download="avt-metrics-taxonomy.md"`
     # so browsers save it with the expected filename.
@@ -316,7 +321,7 @@ def _mirror_downloads() -> None:
 #   - by-applicability/avt-specific.md, avt-contextualised.md, general.md
 #   - by-principle/p1.md … p10.md
 #   - by-theme/t1.md … t6.md
-# Per-standard cross-cut pages are deferred — standards-mapping tables have
+# Per-standard cross-cut pages are deferred - standards-mapping tables have
 # heterogeneous shapes per standard; needs a dedicated extractor round.
 # ---------------------------------------------------------------------------
 
@@ -326,25 +331,25 @@ CROSSCUT_DIR = "crosscuts"
 # used wherever we link to a principle/theme page (index, landing, per-metric
 # references). Kept in one place so a nav rename stays in sync.
 PRINCIPLE_SHORT = {
-    "P1":  "P1 — Limitations",
-    "P2":  "P2 — Lawful/ethical",
-    "P3":  "P3 — Security",
-    "P4":  "P4 — Human control",
-    "P5":  "P5 — Lifecycle",
-    "P6":  "P6 — Right tool",
-    "P7":  "P7 — Openness",
-    "P8":  "P8 — Commercial",
-    "P9":  "P9 — Skills",
-    "P10": "P10 — Org assurance",
+    "P1": "P1 - Limitations",
+    "P2": "P2 - Lawful/ethical",
+    "P3": "P3 - Security",
+    "P4": "P4 - Human control",
+    "P5": "P5 - Lifecycle",
+    "P6": "P6 - Right tool",
+    "P7": "P7 - Openness",
+    "P8": "P8 - Commercial",
+    "P9": "P9 - Skills",
+    "P10": "P10 - Org assurance",
 }
 
 THEME_SHORT = {
-    "T1": "T1 — Safety, Security, Robustness",
-    "T2": "T2 — Transparency & Explainability",
-    "T3": "T3 — Fairness",
-    "T4": "T4 — Accountability & Governance",
-    "T5": "T5 — Contestability & Redress",
-    "T6": "T6 — Societal Wellbeing",
+    "T1": "T1 - Safety, Security, Robustness",
+    "T2": "T2 - Transparency & Explainability",
+    "T3": "T3 - Fairness",
+    "T4": "T4 - Accountability & Governance",
+    "T5": "T5 - Contestability & Redress",
+    "T6": "T6 - Societal Wellbeing",
 }
 
 SRC_GROUP_FILE_TO_PAGE = {
@@ -386,15 +391,17 @@ def _tier_icon(t: int) -> str:
     return {1: "🟢", 2: "🟡", 3: "🔵"}[t]
 
 
-def _crosscut_index_page(applicability_counts: dict[str, int],
-                          principle_counts: dict[str, int],
-                          theme_counts: dict[str, int],
-                          standards: dict[str, dict] | None = None) -> str:
+def _crosscut_index_page(
+    applicability_counts: dict[str, int],
+    principle_counts: dict[str, int],
+    theme_counts: dict[str, int],
+    standards: dict[str, dict] | None = None,
+) -> str:
     lines = [
         "# Cross-cut views",
         "",
         "Auto-generated views that slice the 214-metric catalogue along three additional axes. "
-        "Each view links back to individual metric pages — nothing here is authoritative, "
+        "Each view links back to individual metric pages - nothing here is authoritative, "
         "just a different way to read the same source.",
         "",
         "## By applicability",
@@ -408,7 +415,7 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
         ("General Healthcare AI", "by-applicability/general.md"),
     ):
         count = applicability_counts.get(label, 0)
-        lines.append(f"- [{label}]({path}) — {count} metrics")
+        lines.append(f"- [{label}]({path}) - {count} metrics")
     lines += [
         "",
         "## By DSIT AI Playbook principle",
@@ -419,8 +426,8 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
     ]
     for code in sorted(principle_counts, key=lambda c: int(c[1:])):
         count = principle_counts[code]
-        label = PRINCIPLE_SHORT.get(code, f"{code} — principle membership")
-        lines.append(f"- [{label}](by-principle/{code.lower()}.md) — {count} metrics")
+        label = PRINCIPLE_SHORT.get(code, f"{code} - principle membership")
+        lines.append(f"- [{label}](by-principle/{code.lower()}.md) - {count} metrics")
     lines += [
         "",
         "## By standard",
@@ -437,7 +444,7 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
             total = sum(len(s.rows) for s in info["sections"])
             resolved = sum(len(r.metric_refs) for s in info["sections"] for r in s.rows)
             lines.append(
-                f"- [{std}](by-standard/{info['code']}.md) — {total} assertions, {resolved} metric mappings"
+                f"- [{std}](by-standard/{info['code']}.md) - {total} assertions, {resolved} metric mappings"
             )
     lines += [
         "",
@@ -448,8 +455,8 @@ def _crosscut_index_page(applicability_counts: dict[str, int],
     ]
     for code in sorted(theme_counts, key=lambda c: int(c[1:])):
         count = theme_counts[code]
-        label = THEME_SHORT.get(code, f"{code} — theme membership")
-        lines.append(f"- [{label}](by-theme/{code.lower()}.md) — {count} metrics")
+        label = THEME_SHORT.get(code, f"{code} - theme membership")
+        lines.append(f"- [{label}](by-theme/{code.lower()}.md) - {count} metrics")
     lines.append("")
     return "\n".join(lines)
 
@@ -465,7 +472,9 @@ def _applicability_page(label: str, metrics: list) -> str:
     ]
     for m in sorted(metrics, key=lambda x: (x.part, x.group, x.ref_id)):
         link = _metric_page_link(m.ref_id, m.name, m.group_file)
-        lines.append(f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |")
+        lines.append(
+            f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |"
+        )
     lines.append("")
     return "\n".join(lines)
 
@@ -486,7 +495,9 @@ def _principle_or_theme_page(kind: str, code: str, label: str, entries: list) ->
     for e in entries:
         gf = ref_to_group_file.get(e.ref_id, "")
         link = _metric_page_link(e.ref_id, e.name, gf) if gf else e.name
-        lines.append(f"| {e.ref_id} | {link} | {e.group} | {e.tier_icon} | {e.aspect} |")
+        lines.append(
+            f"| {e.ref_id} | {link} | {e.group} | {e.tier_icon} | {e.aspect} |"
+        )
     lines.append("")
     return "\n".join(lines)
 
@@ -508,17 +519,21 @@ def _standard_page(standard: str, sections: list) -> str:
         lines.append("| Criterion | Description | Metrics | Tier |")
         lines.append("|-----------|-------------|---------|------|")
         for row in section.rows:
-            metric_md = _render_metric_refs(row.metric_refs, row.metric_names, ref_to_group_file)
+            metric_md = _render_metric_refs(
+                row.metric_refs, row.metric_names, ref_to_group_file
+            )
             lines.append(
-                f"| {row.criterion} | {row.description} | {metric_md} | {row.tier_cell or '—'} |"
+                f"| {row.criterion} | {row.description} | {metric_md} | {row.tier_cell or '-'} |"
             )
         lines.append("")
     return "\n".join(lines)
 
 
-def _render_metric_refs(ref_ids: list[str], names: list[str], ref_to_group_file: dict) -> str:
+def _render_metric_refs(
+    ref_ids: list[str], names: list[str], ref_to_group_file: dict
+) -> str:
     if not ref_ids and not names:
-        return "*Process criterion — no metric equivalent*"
+        return "*Process criterion - no metric equivalent*"
     parts: list[str] = []
     # Walk ref_ids in order, falling back to names that didn't resolve.
     seen = set()
@@ -576,12 +591,14 @@ def build_crosscuts() -> int:
         )
 
     # Index page for the section
-    (base / "index.md").write_text(_crosscut_index_page(
-        applicability_counts={k: len(v) for k, v in apps.items()},
-        principle_counts={k: len(v) for k, (_, v) in principles.items()},
-        theme_counts={k: len(v) for k, (_, v) in themes.items()},
-        standards=standards,
-    ))
+    (base / "index.md").write_text(
+        _crosscut_index_page(
+            applicability_counts={k: len(v) for k, v in apps.items()},
+            principle_counts={k: len(v) for k, (_, v) in principles.items()},
+            theme_counts={k: len(v) for k, (_, v) in themes.items()},
+            standards=standards,
+        )
+    )
 
     # Applicability pages
     applicability_slugs = {
@@ -607,14 +624,16 @@ def build_crosscuts() -> int:
             _principle_or_theme_page("theme", code, name, entries)
         )
 
-    total = 1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
+    total = (
+        1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
+    )
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total
 
 
 _APPLICABILITY_BADGES = {
-    "AVT-Specific":          ("🎯", "avt-specific.md"),
-    "AVT-Contextualised":    ("🔀", "avt-contextualised.md"),
+    "AVT-Specific": ("🎯", "avt-specific.md"),
+    "AVT-Contextualised": ("🔀", "avt-contextualised.md"),
     "General Healthcare AI": ("🌐", "general.md"),
 }
 
@@ -672,9 +691,7 @@ def _add_applicability_badges(text: str, current_page: str) -> str:
             continue
         # Build the badge line. From groups/<this>.md, crosscuts/by-applicability/<target>
         # is reachable at ../crosscuts/by-applicability/<target>.
-        badge_md = (
-            f"\n**Applicability:** {emoji} [{label}](../crosscuts/by-applicability/{target})\n"
-        )
+        badge_md = f"\n**Applicability:** {emoji} [{label}](../crosscuts/by-applicability/{target})\n"
         inserts[table_end + 1] = badge_md
 
     if not inserts:
@@ -750,7 +767,11 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
     # Compute bounds for each metric: ends at next metric heading or a standalone '---'.
     bounds: list[tuple[int, int, str]] = []
     for i, (line_num, rid) in enumerate(metric_heading_line_nums):
-        end = metric_heading_line_nums[i + 1][0] if i + 1 < len(metric_heading_line_nums) else len(lines)
+        end = (
+            metric_heading_line_nums[i + 1][0]
+            if i + 1 < len(metric_heading_line_nums)
+            else len(lines)
+        )
         bounds.append((line_num, end, rid))
 
     # Build an insert map: index -> block text
@@ -765,10 +786,12 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
         related_ids.discard(rid)
         if not related_ids:
             continue
+
         # Cap at 6 most-shared first (sort by co-axis count).
         def co_count(r: str) -> int:
             other = set(membership.get(r, []))
             return len(set(axes) & other)
+
         ranked = sorted(related_ids, key=lambda r: (-co_count(r), r))[:6]
         items = []
         for r in ranked:
@@ -784,12 +807,16 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
             items.append(f"[{r} {target.name}]({href})")
         if not items:
             continue
-        # Find the last content line before the next metric heading — place
+        # Find the last content line before the next metric heading - place
         # before any trailing `---` separator.
         insert_at = end
         while insert_at > start and lines[insert_at - 1].strip() in ("", "---"):
             insert_at -= 1
-        block = "\n\n**Related metrics** *(shared Playbook principles / ethical themes):* " + " · ".join(items) + "\n"
+        block = (
+            "\n\n**Related metrics** *(shared Playbook principles / ethical themes):* "
+            + " · ".join(items)
+            + "\n"
+        )
         inserts[insert_at] = block
 
     # Assemble output with inserts.
@@ -809,7 +836,7 @@ def _inject_contents_applicability_row(text: str) -> str:
     / General Healthcare AI in one click."""
     block = (
         "\n"
-        "!!! tip \"Browse by applicability\"\n"
+        '!!! tip "Browse by applicability"\n'
         "    Jump straight to the metrics that match your scope:\n\n"
         "    [:material-target: 48 AVT-Specific](crosscuts/by-applicability/avt-specific.md){ .md-button }\n"
         "    [:material-shuffle-variant: 77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){ .md-button }\n"
@@ -825,8 +852,12 @@ def _inject_contents_applicability_row(text: str) -> str:
             while insert_at < len(lines) and not lines[insert_at].strip():
                 insert_at += 1
             break
-    return "\n".join(lines[:insert_at]) + "\n" + block + "\n".join(lines[insert_at:]) + (
-        "\n" if not text.endswith("\n") else ""
+    return (
+        "\n".join(lines[:insert_at])
+        + "\n"
+        + block
+        + "\n".join(lines[insert_at:])
+        + ("\n" if not text.endswith("\n") else "")
     )
 
 
@@ -839,10 +870,10 @@ def _inject_roadmap_prelude(text: str) -> str:
     tier_1 = [g for g in gaps if g.tier == 1]
     rai_high = [g for g in gaps if g.severity == "High"]
 
-    # Build a compact table of the Tier 1 candidates — the accepted/proposed
+    # Build a compact table of the Tier 1 candidates - the accepted/proposed
     # set a deployer or standards body would want to tackle first.
     lines = [
-        "!!! tip \"Near-term priorities\"",
+        '!!! tip "Near-term priorities"',
         "    These candidates combine **Tier 1 classification** (where assigned) "
         "and **High severity** (Responsible AI lens). They are the highest-leverage "
         "adds for any future metric round.",
@@ -854,10 +885,12 @@ def _inject_roadmap_prelude(text: str) -> str:
         lines.append("| ID | Title | Origin |")
         lines.append("|----|-------|--------|")
         for g in sorted(tier_1, key=lambda x: (x.origin, x.gap_id or "")):
-            gid = g.gap_id or "—"
+            gid = g.gap_id or "-"
             lines.append(f"| {gid} | {g.title} | {g.origin} |")
     else:
-        lines.append("_(no Tier 1 candidates currently — earlier rounds promoted all available.)_")
+        lines.append(
+            "_(no Tier 1 candidates currently - earlier rounds promoted all available.)_"
+        )
     lines.append("")
 
     lines += [
@@ -896,12 +929,12 @@ def _landing_page(header_body: str) -> str:
     gap_count = summary["gap_count"]
     return f"""# AVT Metrics Taxonomy
 
-!!! warning "Draft — not yet stakeholder-approved"
+!!! warning "Draft - not yet stakeholder-approved"
     Shared openly for early feedback. Tier assignments, gap analysis, and
     cross-references may change before public release. Treat as a working
     document, not a settled standard.
 
-!!! info "v3.1 — {metric_count} metrics across {group_count} groups"
+!!! info "v3.1 - {metric_count} metrics across {group_count} groups"
     A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology
     in NHS and comparable settings. Each metric carries a formal definition,
     priority tier, responsible actors, and mappings to 11 healthcare and
@@ -915,9 +948,9 @@ def _landing_page(header_body: str) -> str:
 
     ---
 
-    🟢 **{t1}** Tier 1 — minimum viable assurance, measurable today
-    🟡 **{t2}** Tier 2 — recommended for any AVT deployment
-    🔵 **{t3}** Tier 3 — advanced / research-grade
+    🟢 **{t1}** Tier 1 - minimum viable assurance, measurable today
+    🟡 **{t2}** Tier 2 - recommended for any AVT deployment
+    🔵 **{t3}** Tier 3 - advanced / research-grade
 
     [Jump to Tier 1 quick reference](tier-1-quick-reference.md)
 
@@ -966,7 +999,7 @@ def _landing_page(header_body: str) -> str:
 ## Ways in
 
 - **First time here?** Read [How to use the taxonomy](how-to-use.md) to understand tiers, cadence, and responsible actors.
-- **Deploying AVT?** Start with the [Tier 1 Quick Reference](tier-1-quick-reference.md) — the Day Zero set.
+- **Deploying AVT?** Start with the [Tier 1 Quick Reference](tier-1-quick-reference.md) - the Day Zero set.
 - **Evaluating products?** Jump to the [Applicability classification](applicability.md) and the [AVT-Specific cross-cut](crosscuts/by-applicability/avt-specific.md).
 - **Setting procurement criteria?** Work through [Standards Mapping](standards-mapping.md) and the [per-principle cross-cuts](crosscuts/index.md).
 - **Building a metric?** Every metric has a stable reference ID. Cite as `TP.AC-1` → `/groups/audio-capture/#tp-ac-1`.
@@ -985,14 +1018,14 @@ Machine-readable and archival exports of the taxonomy, regenerated on every rele
 
 ## Structured data
 
-- [metrics.csv](downloads/metrics.csv) — all 214 metrics as a flat spreadsheet (17 columns: reference ID, name, tier, part, group, applicability, 8 dimension fields, source, pointer to source file).
-- [metrics.json](downloads/metrics.json) — same metrics with full dimension dictionary preserved per entry. Stable for programmatic consumption.
-- [gaps.json](downloads/gaps.json) — 83 roadmap candidates (accepted + deferred), partitioned by origin (RSET, NHSE IG, standards mapping, Responsible AI lens).
-- [summary.json](downloads/summary.json) — headline counts (metric count, tier distribution, group count, gap count).
+- [metrics.csv](downloads/metrics.csv) - all 214 metrics as a flat spreadsheet (17 columns: reference ID, name, tier, part, group, applicability, 8 dimension fields, source, pointer to source file).
+- [metrics.json](downloads/metrics.json) - same metrics with full dimension dictionary preserved per entry. Stable for programmatic consumption.
+- [gaps.json](downloads/gaps.json) - 83 roadmap candidates (accepted + deferred), partitioned by origin (RSET, NHSE IG, standards mapping, Responsible AI lens).
+- [summary.json](downloads/summary.json) - headline counts (metric count, tier distribution, group count, gap count).
 
 ## Archival Markdown
 
-- <a href="downloads/avt-metrics-taxonomy.txt" download="avt-metrics-taxonomy.md">avt-metrics-taxonomy.md</a> — the full monolithic document. Same content as the site, assembled into a single file for offline reading, PDF printing, or citation. Served with a `.txt` extension so MkDocs treats it as a static download; the link triggers a `.md` save filename in the browser.
+- <a href="downloads/avt-metrics-taxonomy.txt" download="avt-metrics-taxonomy.md">avt-metrics-taxonomy.md</a> - the full monolithic document. Same content as the site, assembled into a single file for offline reading, PDF printing, or citation. Served with a `.txt` extension so MkDocs treats it as a static download; the link triggers a `.md` save filename in the browser.
 
 ## Citing
 
@@ -1000,7 +1033,7 @@ Cite the taxonomy as:
 
 > AVT Metrics Taxonomy v3.1 (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
 
-For a specific metric, use its reference ID (e.g. `TP.AC-1`) — these are stable across versions. Individual metric pages carry anchor links of the form `/groups/<group>/#tp-ac-1` suitable for deep citation.
+For a specific metric, use its reference ID (e.g. `TP.AC-1`) - these are stable across versions. Individual metric pages carry anchor links of the form `/groups/<group>/#tp-ac-1` suitable for deep citation.
 
 ## Earlier versions
 

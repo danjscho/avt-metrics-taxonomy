@@ -11,7 +11,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.DI-1 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -47,16 +47,16 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 **References**
 
-- **Scoring tool**: [dscore — Python NIST md-eval](https://github.com/nryant/dscore)
-- **SCRIBE**: [Wang et al. (2025) — npj Digital Medicine](https://doi.org/10.1038/s41746-025-01449-w)
+- **Scoring tool**: [dscore - Python NIST md-eval](https://github.com/nryant/dscore)
+- **SCRIBE**: [Wang et al. (2025) - npj Digital Medicine](https://doi.org/10.1038/s41746-025-01449-w)
 
 **Limitations**
 
 > Challenging in multi-party consultations. Most benchmarks assume two speakers.
 
-**⚠️ Underspecification Warning (Tier C — standard methodology, absent clinical context)**
+**⚠️ Underspecification Warning (Tier C - standard methodology, absent clinical context)**
 
-> DER has a rigorous technical definition (NIST RT evaluation protocol) and established general benchmarks (AMI ~7.2%, CALLHOME ~12.4%), but **no clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality — a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
+> DER has a rigorous technical definition (NIST RT evaluation protocol) and established general benchmarks (AMI ~7.2%, CALLHOME ~12.4%), but **no clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality - a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
 
 ---
 
@@ -67,7 +67,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.DI-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Safety |
@@ -109,7 +109,7 @@ Does the system correctly identify how many speakers are present? Particularly i
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.DI-3 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -136,18 +136,18 @@ Speaker Count Accuracy = |encounters_with_correct_count| / |total_encounters|. D
 
 **Novel Thinking / Implications**
 
-> 💡 Speaker count is the gateway to multi-party robustness. If the system thinks there are 2 speakers when there are actually 3 (interpreter, family member), the third speaker's content is misattributed to one of the others — silently changing the clinical meaning of utterances.
+> 💡 Speaker count is the gateway to multi-party robustness. If the system thinks there are 2 speakers when there are actually 3 (interpreter, family member), the third speaker's content is misattributed to one of the others - silently changing the clinical meaning of utterances.
 
 ---
 
 ### TP.DI-4 🔵 Speaker Boundary Precision
 
-Temporal accuracy of where one speaker stops and another starts. Affects attribution at turn boundaries — words at the edge of a turn may be attributed to the wrong speaker.
+Temporal accuracy of where one speaker stops and another starts. Affects attribution at turn boundaries - words at the edge of a turn may be attributed to the wrong speaker.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.DI-4 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -174,7 +174,7 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 **Novel Thinking / Implications**
 
-> 💡 Boundary errors are the most common cause of speaker attribution errors at turn boundaries. The first or last word of a turn is the most likely to be misattributed — and often these are the words that carry clinical meaning ('yes' to a question about symptoms, 'no' to a question about allergies).
+> 💡 Boundary errors are the most common cause of speaker attribution errors at turn boundaries. The first or last word of a turn is the most likely to be misattributed - and often these are the words that carry clinical meaning ('yes' to a question about symptoms, 'no' to a question about allergies).
 
 ---
 
@@ -188,12 +188,12 @@ Boundary Precision = mean temporal error (ms) between predicted and actual speak
 
 ### TP.DI-5 🟡 Speaker Role Identification F1
 
-Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
+Accuracy of classifying speakers into clinical roles - clinician, patient, family member, nurse, interpreter, student - rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
 | **Reference** | TP.DI-5 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                               |
 |**Measurement Cadence**|One-off gate                                                         |
 |**Pipeline Layer**     |Diarisation                                                          |
 |**Assurance Question** |Safety                                                               |
@@ -216,7 +216,7 @@ Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_m
 
 **Limitations**
 
-> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations — exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
+> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations - exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
 
 **Novel Thinking / Implications**
 
@@ -226,12 +226,12 @@ Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_m
 
 ### TP.DI-6 🟡 Code-Switching Detection Rate
 
-Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
+Accuracy of detecting within-utterance language switching - a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
 | **Reference** | TP.DI-6 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                |
 |**Measurement Cadence**|One-off gate                                          |
 |**Pipeline Layer**     |ASR / Transcription                                   |
 |**Assurance Question** |Fairness & Equity                                     |
@@ -258,18 +258,18 @@ Per utterance with code-switching: (1) detected that switching occurred (binary)
 
 **Novel Thinking / Implications**
 
-> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications — and the clinician reviewing the note has no signal that anything was lost.
+> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications - and the clinician reviewing the note has no signal that anything was lost.
 
 ---
 
 ### TP.DI-7 🟡 Turn-Taking Accuracy in Overlap
 
-Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
+Accuracy of attributing words spoken during overlapping speech - when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
 
 |Dimension              |Value                                          |
 |-----------------------|-----------------------------------------------|
 | **Reference** | TP.DI-7 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                         |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                         |
 |**Measurement Cadence**|One-off gate                                   |
 |**Pipeline Layer**     |ASR + Diarisation                              |
 |**Assurance Question** |Fidelity & Accuracy                            |
@@ -307,7 +307,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
 | **Reference** | TP.DI-8 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research              |
 |**Measurement Cadence**|One-off gate                                |
 |**Pipeline Layer**     |ASR + Diarisation                           |
 |**Assurance Question** |Safety                                      |
@@ -320,7 +320,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 
 **Why this tier?**
 
-> Research metric. Requires both role-labelled ground truth and a clinical importance ontology — neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
+> Research metric. Requires both role-labelled ground truth and a clinical importance ontology - neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
 
 **Formal Definition**
 
@@ -330,22 +330,22 @@ cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the
 
 **Limitations**
 
-> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite - compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
 
 **Novel Thinking / Implications**
 
-> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies — without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
+> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies - without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
 
 ---
 
 ### TP.DI-9 🔵 Addressee Recognition Accuracy
 
-In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
+In multi-party consultations, correctly identifying who the speaker is addressing - the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
 
 |Dimension              |Value                                            |
 |-----------------------|-------------------------------------------------|
 | **Reference** | TP.DI-9 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                   |
 |**Measurement Cadence**|One-off gate                                     |
 |**Pipeline Layer**     |Diarisation                                      |
 |**Assurance Question** |Fidelity & Accuracy                              |
@@ -358,7 +358,7 @@ In multi-party consultations, correctly identifying who the speaker is addressin
 
 **Why this tier?**
 
-> Research frontier. No current AVT system explicitly models addressee. Academic research area — cannot be deployed in routine assessment today.
+> Research frontier. No current AVT system explicitly models addressee. Academic research area - cannot be deployed in routine assessment today.
 
 **Formal Definition**
 
@@ -368,7 +368,7 @@ For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family
 
 **Limitations**
 
-> Addressee is often ambiguous even to humans — clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
+> Addressee is often ambiguous even to humans - clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
 
 **Novel Thinking / Implications**
 

@@ -1,4 +1,4 @@
-# AVT Metrics Taxonomy — Repository Guide
+# AVT Metrics Taxonomy - Repository Guide
 
 ## Building the document
 
@@ -52,8 +52,8 @@ Underscore-prefixed files contain cross-cutting content (not tied to a single me
 
 Stable releases are tagged on `main`:
 
-- `v1.0` — 151 metrics across 18 groups (initial modular split)
-- `v2.0` — 214 metrics across 20 groups (first major extension)
+- `v1.0` - 151 metrics across 18 groups (initial modular split)
+- `v2.0` - 214 metrics across 20 groups (first major extension)
 
 ## Contributing
 

@@ -4,7 +4,7 @@ Used by `build.py` (to emit CSV/JSON alongside the monolithic Markdown),
 by `audit.py` (single invariant surface), and later by `build_site.py`
 (to generate per-standard, per-principle, per-applicability pages).
 
-Do not author structured data outside the source files — this parser
+Do not author structured data outside the source files - this parser
 is the single route by which in-prose tables become structured data.
 """
 
@@ -20,26 +20,98 @@ ROOT = pathlib.Path(__file__).parent
 # Canonical group file list: path -> {prefix, part, group name}.
 # Matches the build.py order within each part.
 GROUP_FILES: dict[str, dict[str, str]] = {
-    "part-a/audio-capture.md":                 {"prefix": "TP.AC",  "part": "A", "group": "Audio Capture & Environment"},
-    "part-a/asr-transcription.md":             {"prefix": "TP.ASR", "part": "A", "group": "ASR / Transcription"},
-    "part-a/diarisation.md":                   {"prefix": "TP.DI",  "part": "A", "group": "Diarisation"},
-    "part-a/summarisation-nlp.md":             {"prefix": "TP.SN",  "part": "A", "group": "Summarisation / NLP"},
-    "part-a/clinical-coding.md":               {"prefix": "TP.CC",  "part": "A", "group": "Clinical Coding"},
-    "part-a/epr-write-back.md":                {"prefix": "TP.WB",  "part": "A", "group": "EPR Write-back"},
-    "part-b/partial-pipeline.md":              {"prefix": "PI.PP",  "part": "B", "group": "Partial-Pipeline"},
-    "part-b/end-to-end-pipeline.md":           {"prefix": "PI.E2E", "part": "B", "group": "End-to-End Pipeline"},
-    "part-c/human-factors-workflow.md":        {"prefix": "HL.HF",  "part": "C", "group": "Human Factors & Workflow"},
-    "part-d/patient-experience.md":            {"prefix": "IO.PX",  "part": "D", "group": "Patient Experience"},
-    "part-d/fairness-equity.md":               {"prefix": "IO.FE",  "part": "D", "group": "Fairness & Equity"},
-    "part-e/safety-governance.md":             {"prefix": "GV.SG",  "part": "E", "group": "Safety & Governance"},
-    "part-e/nhs-compliance-regulatory.md":     {"prefix": "GV.CR",  "part": "E", "group": "NHS Compliance & Regulatory"},
-    "part-e/security-adversarial-robustness.md": {"prefix": "GV.SC", "part": "E", "group": "Security & Adversarial Robustness"},
-    "part-e/privacy-data-governance.md":       {"prefix": "GV.PD",  "part": "E", "group": "Privacy & Data Governance"},
-    "part-e/operational.md":                   {"prefix": "GV.OP",  "part": "E", "group": "Operational"},
-    "part-e/environmental-sustainability.md":  {"prefix": "GV.EN",  "part": "E", "group": "Environmental & Sustainability"},
-    "part-e/training-competency.md":           {"prefix": "GV.TC",  "part": "E", "group": "Training & Competency"},
-    "part-e/vendor-transparency-contractual.md": {"prefix": "GV.VT", "part": "E", "group": "Vendor Transparency & Contractual"},
-    "part-f/meta-evaluation.md":               {"prefix": "ES.ME",  "part": "F", "group": "Meta-Evaluation"},
+    "part-a/audio-capture.md": {
+        "prefix": "TP.AC",
+        "part": "A",
+        "group": "Audio Capture & Environment",
+    },
+    "part-a/asr-transcription.md": {
+        "prefix": "TP.ASR",
+        "part": "A",
+        "group": "ASR / Transcription",
+    },
+    "part-a/diarisation.md": {"prefix": "TP.DI", "part": "A", "group": "Diarisation"},
+    "part-a/summarisation-nlp.md": {
+        "prefix": "TP.SN",
+        "part": "A",
+        "group": "Summarisation / NLP",
+    },
+    "part-a/clinical-coding.md": {
+        "prefix": "TP.CC",
+        "part": "A",
+        "group": "Clinical Coding",
+    },
+    "part-a/epr-write-back.md": {
+        "prefix": "TP.WB",
+        "part": "A",
+        "group": "EPR Write-back",
+    },
+    "part-b/partial-pipeline.md": {
+        "prefix": "PI.PP",
+        "part": "B",
+        "group": "Partial-Pipeline",
+    },
+    "part-b/end-to-end-pipeline.md": {
+        "prefix": "PI.E2E",
+        "part": "B",
+        "group": "End-to-End Pipeline",
+    },
+    "part-c/human-factors-workflow.md": {
+        "prefix": "HL.HF",
+        "part": "C",
+        "group": "Human Factors & Workflow",
+    },
+    "part-d/patient-experience.md": {
+        "prefix": "IO.PX",
+        "part": "D",
+        "group": "Patient Experience",
+    },
+    "part-d/fairness-equity.md": {
+        "prefix": "IO.FE",
+        "part": "D",
+        "group": "Fairness & Equity",
+    },
+    "part-e/safety-governance.md": {
+        "prefix": "GV.SG",
+        "part": "E",
+        "group": "Safety & Governance",
+    },
+    "part-e/nhs-compliance-regulatory.md": {
+        "prefix": "GV.CR",
+        "part": "E",
+        "group": "NHS Compliance & Regulatory",
+    },
+    "part-e/security-adversarial-robustness.md": {
+        "prefix": "GV.SC",
+        "part": "E",
+        "group": "Security & Adversarial Robustness",
+    },
+    "part-e/privacy-data-governance.md": {
+        "prefix": "GV.PD",
+        "part": "E",
+        "group": "Privacy & Data Governance",
+    },
+    "part-e/operational.md": {"prefix": "GV.OP", "part": "E", "group": "Operational"},
+    "part-e/environmental-sustainability.md": {
+        "prefix": "GV.EN",
+        "part": "E",
+        "group": "Environmental & Sustainability",
+    },
+    "part-e/training-competency.md": {
+        "prefix": "GV.TC",
+        "part": "E",
+        "group": "Training & Competency",
+    },
+    "part-e/vendor-transparency-contractual.md": {
+        "prefix": "GV.VT",
+        "part": "E",
+        "group": "Vendor Transparency & Contractual",
+    },
+    "part-f/meta-evaluation.md": {
+        "prefix": "ES.ME",
+        "part": "F",
+        "group": "Meta-Evaluation",
+    },
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
@@ -55,13 +127,13 @@ DIM_ROW = re.compile(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|\s*$")
 class Metric:
     ref_id: str
     name: str
-    tier: int                          # 1 / 2 / 3
-    part: str                          # A–F
-    group: str                         # human-readable group name
-    group_file: str                    # relative path, e.g. "part-a/audio-capture.md"
-    heading_line: int                  # 1-indexed line number of `### ...` heading in group file
+    tier: int  # 1 / 2 / 3
+    part: str  # A–F
+    group: str  # human-readable group name
+    group_file: str  # relative path, e.g. "part-a/audio-capture.md"
+    heading_line: int  # 1-indexed line number of `### ...` heading in group file
     dimensions: dict[str, str] = field(default_factory=dict)
-    applicability: str | None = None   # populated by annotate_applicability()
+    applicability: str | None = None  # populated by annotate_applicability()
 
     @property
     def tier_icon(self) -> str:
@@ -89,11 +161,15 @@ class Metric:
 
     @property
     def lifecycle_phases(self) -> str:
-        return self.dimensions.get("Lifecycle Phases") or self.dimensions.get("Lifecycle Phase", "")
+        return self.dimensions.get("Lifecycle Phases") or self.dimensions.get(
+            "Lifecycle Phase", ""
+        )
 
     @property
     def responsible_actors(self) -> str:
-        return self.dimensions.get("Responsible Actors") or self.dimensions.get("Responsible Actor", "")
+        return self.dimensions.get("Responsible Actors") or self.dimensions.get(
+            "Responsible Actor", ""
+        )
 
     @property
     def maturity(self) -> str:
@@ -128,16 +204,18 @@ def parse_group_file(rel_path: str) -> list[Metric]:
                 dims[dm.group(1).strip()] = dm.group(2).strip()
             j += 1
 
-        metrics.append(Metric(
-            ref_id=ref_id,
-            name=name,
-            tier=tier,
-            part=info["part"],
-            group=info["group"],
-            group_file=rel_path,
-            heading_line=heading_line,
-            dimensions=dims,
-        ))
+        metrics.append(
+            Metric(
+                ref_id=ref_id,
+                name=name,
+                tier=tier,
+                part=info["part"],
+                group=info["group"],
+                group_file=rel_path,
+                heading_line=heading_line,
+                dimensions=dims,
+            )
+        )
         i = j
 
     return metrics
@@ -151,7 +229,7 @@ def parse_all_metrics() -> list[Metric]:
 
 
 # ---------------------------------------------------------------------------
-# Applicability — parsed from _applicability.md "Full Classification" tables
+# Applicability - parsed from _applicability.md "Full Classification" tables
 # ---------------------------------------------------------------------------
 
 _APPLICABILITY_ROW = re.compile(
@@ -178,25 +256,26 @@ def annotate_applicability(metrics: list[Metric]) -> list[Metric]:
 
 
 # ---------------------------------------------------------------------------
-# Gaps — parsed from _gaps.md by origin section
+# Gaps - parsed from _gaps.md by origin section
 # ---------------------------------------------------------------------------
+
 
 @dataclass
 class Gap:
-    gap_id: str | None           # e.g. "Gap-RSET-A", "GV.CR-11", or None for RAI severity rows
+    gap_id: str | None  # e.g. "Gap-RSET-A", "GV.CR-11", or None for RAI severity rows
     title: str
-    origin: str                  # "rset-accepted" / "rset-deferred" / "ig" / "standards-*" / "rai-principle" / "rai-theme"
-    tier: int | None             # 1 / 2 / 3 or None (RAI severity rows don't have a tier)
-    severity: str | None         # "High" / "Medium" / "Low" or None
-    source: str                  # source standard / audit reference
-    notes: str                   # free-text rationale or cross-reference
+    origin: str  # "rset-accepted" / "rset-deferred" / "ig" / "standards-*" / "rai-principle" / "rai-theme"
+    tier: int | None  # 1 / 2 / 3 or None (RAI severity rows don't have a tier)
+    severity: str | None  # "High" / "Medium" / "Low" or None
+    source: str  # source standard / audit reference
+    notes: str  # free-text rationale or cross-reference
 
 
 _GAP_SECTIONS: list[tuple[str, str, str]] = [
     # (section anchor start, origin tag, source label)
-    ("### 1a. Accepted — RSET", "rset-accepted", "RSET external review"),
-    ("### 1b. Deferred — RSET", "rset-deferred", "RSET external review"),
-    ("### 1c. Accepted — NHSE IG", "ig", "NHSE IG Mar-2026"),
+    ("### 1a. Accepted - RSET", "rset-accepted", "RSET external review"),
+    ("### 1b. Deferred - RSET", "rset-deferred", "RSET external review"),
+    ("### 1c. Accepted - NHSE IG", "ig", "NHSE IG Mar-2026"),
     ("### 2a. MHRA SaMD", "standards-mhra", "MHRA SaMD / AIaMD"),
     ("### 2b. NICE Evidence Standards", "standards-nice-esf", "NICE ESF"),
     ("### 2c. FHIR UK Core", "standards-fhir-uk-core", "FHIR UK Core"),
@@ -217,10 +296,10 @@ def _section_slices(text: str) -> list[tuple[str, str, str, str]]:
         if idx == -1:
             continue
         # Body runs until the next section marker or a higher-level heading.
-        rest = text[idx + len(header):]
+        rest = text[idx + len(header) :]
         # Next `### ` or `## ` heading ends the section.
         m = re.search(r"\n(#{2,3})\s", rest)
-        body = rest[:m.start()] if m else rest
+        body = rest[: m.start()] if m else rest
         out.append((origin, source, header, body))
     return out
 
@@ -239,11 +318,14 @@ def _parse_gap_row(cells: list[str], origin: str, source: str) -> Gap | None:
     tier = None
     for c in cells:
         if "🟢" in c:
-            tier = 1; break
+            tier = 1
+            break
         if "🟡" in c:
-            tier = 2; break
+            tier = 2
+            break
         if "🔵" in c:
-            tier = 3; break
+            tier = 3
+            break
 
     # Severity (RAI rows use High/Medium/Low).
     severity = None
@@ -255,9 +337,11 @@ def _parse_gap_row(cells: list[str], origin: str, source: str) -> Gap | None:
 
     # For standards rows the first cell is a proposed ref ID (e.g. GV.CR-11).
     # For external-review rows the first cell is Gap-RSET-* / Gap-IG-*.
-    # For RAI rows there's no gap ID — first cell is the principle/theme label.
+    # For RAI rows there's no gap ID - first cell is the principle/theme label.
     gap_id = None
-    if cells and re.match(r"^(Gap-[A-Z]+-[A-Z0-9]+|[A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)$", cells[0]):
+    if cells and re.match(
+        r"^(Gap-[A-Z]+-[A-Z0-9]+|[A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)$", cells[0]
+    ):
         gap_id = cells[0]
 
     # Title: for standards/external rows, column index 1. For RAI rows, column 1 is the gap itself.
@@ -269,7 +353,11 @@ def _parse_gap_row(cells: list[str], origin: str, source: str) -> Gap | None:
     # Filter out header rows masquerading as data (e.g. "Gap ID | Title | ...").
     if title_cell.lower() in {"title", "gap", "description"}:
         return None
-    if gap_id is None and title_cell.lower().startswith("principle") or title_cell.lower().startswith("theme"):
+    if (
+        gap_id is None
+        and title_cell.lower().startswith("principle")
+        or title_cell.lower().startswith("theme")
+    ):
         return None
 
     return Gap(
@@ -309,7 +397,9 @@ def parse_gaps() -> list[Gap]:
             parts = [c.strip() for c in parts]
             # Header row detection: contains "Gap ID" / "Proposed Ref" / "Principle" / "Theme"
             lower = [c.lower() for c in parts]
-            if any(h in lower for h in ("gap id", "proposed ref", "principle", "theme")):
+            if any(
+                h in lower for h in ("gap id", "proposed ref", "principle", "theme")
+            ):
                 continue
             gap = _parse_gap_row(parts, origin, source)
             if gap is not None:
@@ -319,7 +409,7 @@ def parse_gaps() -> list[Gap]:
 
 
 # ---------------------------------------------------------------------------
-# Responsible AI lens — per-principle and per-theme membership tables
+# Responsible AI lens - per-principle and per-theme membership tables
 # ---------------------------------------------------------------------------
 
 # The source file has one table per principle (P1..P10) and per theme (T1..T6).
@@ -329,7 +419,7 @@ def parse_gaps() -> list[Gap]:
 
 _RAI_SECTION = re.compile(
     r"^###\s+(?:Principle\s+(?P<pnum>\d+):\s*(?P<pname>.+?)|"
-    r"Theme\s+(?P<tnum>\d+)[\s—:–-]+(?P<tname>.+?))\s*$",
+    r"Theme\s+(?P<tnum>\d+)\s*[:\-–—]\s*(?P<tname>.+?))\s*$",
     re.MULTILINE,
 )
 _TABLE_ROW = re.compile(
@@ -357,9 +447,15 @@ def _parse_rai_section(body: str) -> list[RaiEntry]:
         # this doesn't look like a real ref.
         if not re.match(r"^[A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+$", ref_id):
             continue
-        entries.append(RaiEntry(
-            ref_id=ref_id, name=name, group=grp, tier_icon=tier, aspect=aspect,
-        ))
+        entries.append(
+            RaiEntry(
+                ref_id=ref_id,
+                name=name,
+                group=grp,
+                tier_icon=tier,
+                aspect=aspect,
+            )
+        )
     return entries
 
 
@@ -395,7 +491,7 @@ def parse_rai_theme_membership() -> dict[str, tuple[str, list[RaiEntry]]]:
 
 
 # ---------------------------------------------------------------------------
-# Standards mapping — per-standard assertion → metric rows
+# Standards mapping - per-standard assertion → metric rows
 # ---------------------------------------------------------------------------
 
 # Standards each live under an `### Standard Name` heading in
@@ -406,20 +502,21 @@ def parse_rai_theme_membership() -> dict[str, tuple[str, list[RaiEntry]]]:
 # reference ID. We extract both shapes and resolve names against the
 # parsed metric catalogue.
 
+
 @dataclass
 class StandardRow:
-    criterion: str           # e.g. "C1.2.2" or "WP3-05"
+    criterion: str  # e.g. "C1.2.2" or "WP3-05"
     description: str
-    metric_refs: list[str]   # resolved reference IDs (may be empty)
+    metric_refs: list[str]  # resolved reference IDs (may be empty)
     metric_names: list[str]  # original names, useful for fallback display
-    tier_cell: str           # raw tier cell (e.g. "🟢 1" or "🟢 1 / 🟡 2" or "—")
+    tier_cell: str  # raw tier cell (e.g. "🟢 1" or "🟢 1 / 🟡 2" or "-")
 
 
 @dataclass
 class StandardSection:
-    code: str                # unique code e.g. "dtac-c1"
-    standard: str            # top-level standard heading text
-    subsection: str          # `#### ...` heading text (may be empty)
+    code: str  # unique code e.g. "dtac-c1"
+    standard: str  # top-level standard heading text
+    subsection: str  # `#### ...` heading text (may be empty)
     rows: list[StandardRow]
 
 
@@ -485,11 +582,11 @@ def _name_to_metric_idx() -> dict[str, Metric]:
 def _extract_metric_refs(cell: str) -> tuple[list[str], list[str]]:
     """Given a standards-table 'Taxonomy Metrics' cell, return (ref_ids,
     display_names). The cell may be:
-      - italic process note: `*Process criterion — no metric equivalent*`
+      - italic process note: `*Process criterion - no metric equivalent*`
       - a comma-separated list of names, optionally prefixed with ref IDs
-      - empty or "—"
+      - empty or "-"
     """
-    if not cell or cell.strip() in {"—", "-"}:
+    if not cell or cell.strip() in {"-", "-"}:
         return [], []
     # Strip italic wrapper if present; if the whole cell is italic process
     # text we return nothing.
@@ -520,7 +617,7 @@ def _extract_metric_refs(cell: str) -> tuple[list[str], list[str]]:
             ref_ids.append(hit.ref_id)
             names.append(hit.name)
         else:
-            names.append(part)  # unresolved — preserve for display
+            names.append(part)  # unresolved - preserve for display
     return ref_ids, names
 
 
@@ -529,7 +626,7 @@ def _standard_code(heading: str) -> str:
     # Keep only alnum and hyphens from the first word or two.
     text = heading.lower()
     # Clip to just before the em dash / colon
-    for sep in (" — ", " – ", ": "):
+    for sep in (" - ", " – ", ": "):
         if sep in text:
             text = text.split(sep, 1)[0]
             break
@@ -546,7 +643,10 @@ def parse_standards_mapping() -> list[StandardSection]:
     # Find every ### block.
     h3s = [(m.start(), m.group(1).strip()) for m in _STD_H3.finditer(text)]
     # Add terminator
-    h3s_bounds = [(h3s[i][0], h3s[i][1], h3s[i + 1][0] if i + 1 < len(h3s) else len(text)) for i in range(len(h3s))]
+    h3s_bounds = [
+        (h3s[i][0], h3s[i][1], h3s[i + 1][0] if i + 1 < len(h3s) else len(text))
+        for i in range(len(h3s))
+    ]
 
     sections: list[StandardSection] = []
     for start, heading, end in h3s_bounds:
@@ -555,14 +655,16 @@ def parse_standards_mapping() -> list[StandardSection]:
         h4_matches = list(_STD_H4.finditer(block))
         segments: list[tuple[str, str]] = []
         if h4_matches:
-            # Segment before first h4 (rare — usually intro only, skip)
+            # Segment before first h4 (rare - usually intro only, skip)
             intro_end = h4_matches[0].start()
             for i, h4 in enumerate(h4_matches):
                 seg_start = h4.end()
-                seg_end = h4_matches[i + 1].start() if i + 1 < len(h4_matches) else len(block)
+                seg_end = (
+                    h4_matches[i + 1].start() if i + 1 < len(h4_matches) else len(block)
+                )
                 segments.append((h4.group(1).strip(), block[seg_start:seg_end]))
         else:
-            segments.append(("", block[len(heading) + 4:]))  # after `### <heading>\n`
+            segments.append(("", block[len(heading) + 4 :]))  # after `### <heading>\n`
 
         for sub_heading, body in segments:
             all_rows: list[StandardRow] = []
@@ -576,36 +678,64 @@ def parse_standards_mapping() -> list[StandardSection]:
                 header_cells = [c.lower() for c in data_rows[0]]
                 # Require "taxonomy metrics" column presence
                 try:
-                    metric_col = next(i for i, c in enumerate(header_cells) if "taxonomy metric" in c or "metrics" == c)
+                    metric_col = next(
+                        i
+                        for i, c in enumerate(header_cells)
+                        if "taxonomy metric" in c or "metrics" == c
+                    )
                 except StopIteration:
                     continue
                 # Locate other columns heuristically
-                desc_col = next((i for i, c in enumerate(header_cells) if c in {"description", "item", "principle", "assertion", "clause"} or "description" in c), 1 if len(header_cells) > 1 else None)
-                tier_col = next((i for i, c in enumerate(header_cells) if c == "tier"), None)
+                desc_col = next(
+                    (
+                        i
+                        for i, c in enumerate(header_cells)
+                        if c
+                        in {"description", "item", "principle", "assertion", "clause"}
+                        or "description" in c
+                    ),
+                    1 if len(header_cells) > 1 else None,
+                )
+                tier_col = next(
+                    (i for i, c in enumerate(header_cells) if c == "tier"), None
+                )
                 # Treat the first column as criterion regardless.
                 crit_col = 0
                 for row in data_rows[1:]:
                     if len(row) <= metric_col:
                         continue
                     criterion = row[crit_col] if crit_col < len(row) else ""
-                    description = row[desc_col] if (desc_col is not None and desc_col < len(row)) else ""
+                    description = (
+                        row[desc_col]
+                        if (desc_col is not None and desc_col < len(row))
+                        else ""
+                    )
                     metric_cell = row[metric_col]
-                    tier_cell = row[tier_col] if (tier_col is not None and tier_col < len(row)) else ""
+                    tier_cell = (
+                        row[tier_col]
+                        if (tier_col is not None and tier_col < len(row))
+                        else ""
+                    )
                     ref_ids, names = _extract_metric_refs(metric_cell)
-                    all_rows.append(StandardRow(
-                        criterion=criterion,
-                        description=description,
-                        metric_refs=ref_ids,
-                        metric_names=names,
-                        tier_cell=tier_cell,
-                    ))
+                    all_rows.append(
+                        StandardRow(
+                            criterion=criterion,
+                            description=description,
+                            metric_refs=ref_ids,
+                            metric_names=names,
+                            tier_cell=tier_cell,
+                        )
+                    )
             if all_rows:
-                sections.append(StandardSection(
-                    code=_standard_code(heading) + (("-" + _standard_code(sub_heading)) if sub_heading else ""),
-                    standard=heading,
-                    subsection=sub_heading,
-                    rows=all_rows,
-                ))
+                sections.append(
+                    StandardSection(
+                        code=_standard_code(heading)
+                        + (("-" + _standard_code(sub_heading)) if sub_heading else ""),
+                        standard=heading,
+                        subsection=sub_heading,
+                        rows=all_rows,
+                    )
+                )
     return sections
 
 
@@ -615,16 +745,20 @@ def parse_standards_grouped() -> dict[str, dict]:
     gets one page."""
     out: dict[str, dict] = {}
     for section in parse_standards_mapping():
-        out.setdefault(section.standard, {
-            "code": _standard_code(section.standard),
-            "sections": [],
-        })["sections"].append(section)
+        out.setdefault(
+            section.standard,
+            {
+                "code": _standard_code(section.standard),
+                "sections": [],
+            },
+        )["sections"].append(section)
     return out
 
 
 # ---------------------------------------------------------------------------
 # Applicability membership (derived from already-parsed metrics)
 # ---------------------------------------------------------------------------
+
 
 def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metric]]:
     out: dict[str, list[Metric]] = {}
@@ -637,6 +771,7 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
 # ---------------------------------------------------------------------------
 # Convenience
 # ---------------------------------------------------------------------------
+
 
 def summary() -> dict:
     metrics = annotate_applicability(parse_all_metrics())
@@ -652,4 +787,5 @@ def summary() -> dict:
 
 if __name__ == "__main__":
     import json
+
     print(json.dumps(summary(), indent=2))

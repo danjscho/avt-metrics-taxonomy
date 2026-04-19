@@ -11,7 +11,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.TC-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -24,7 +24,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 
 **Why this tier?**
 
-> Governance requirement. No clinician should use AVT without completing required training. Binary compliance metric — 100% is the only acceptable target.
+> Governance requirement. No clinician should use AVT without completing required training. Binary compliance metric - 100% is the only acceptable target.
 
 **Formal Definition**
 
@@ -49,7 +49,7 @@ Clinician knowledge of AVT-specific failure modes: can they identify hallucinati
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.TC-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -58,7 +58,7 @@ Clinician knowledge of AVT-specific failure modes: can they identify hallucinati
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
-| **Source** | Proposed — extends error injection concept to training assessment |
+| **Source** | Proposed - extends error injection concept to training assessment |
 
 **Why this tier?**
 
@@ -87,7 +87,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.TC-3 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -110,7 +110,7 @@ Compliance = |clinicians_current_on_refresher| / |clinicians_using_AVT|. Refresh
 
 **Limitations**
 
-> Refresher fatigue — clinicians already have substantial CPD requirements. AVT-specific refresher competes for limited time. Must be efficient and clinically relevant.
+> Refresher fatigue - clinicians already have substantial CPD requirements. AVT-specific refresher competes for limited time. Must be efficient and clinically relevant.
 
 **Novel Thinking / Implications**
 
@@ -125,7 +125,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.TC-4 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -152,7 +152,7 @@ Compare documentation skills of: (1) trainees who learned with AVT from start; (
 
 **Novel Thinking / Implications**
 
-> 💡 This is the medical education question that should be answered before AVT becomes ubiquitous in training environments. If trainees lose documentation skills, the workforce loses resilience — what happens when AVT is unavailable, malfunctioning, or contraindicated? Medical Royal Colleges should be tracking this.
+> 💡 This is the medical education question that should be answered before AVT becomes ubiquitous in training environments. If trainees lose documentation skills, the workforce loses resilience - what happens when AVT is unavailable, malfunctioning, or contraindicated? Medical Royal Colleges should be tracking this.
 
 ---
 
@@ -163,7 +163,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.TC-5 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -186,7 +186,7 @@ Training Currency = days since last update of training materials. Coverage of re
 
 **Limitations**
 
-> Requires connection between operational monitoring and training update process — often disconnected.
+> Requires connection between operational monitoring and training update process - often disconnected.
 
 **Novel Thinking / Implications**
 

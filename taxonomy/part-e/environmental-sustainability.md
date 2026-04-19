@@ -1,8 +1,8 @@
 ## Environmental & Sustainability
 
-*Energy, carbon, and water footprint of AVT operation. All three current metrics in this group are Tier 3 — not Day Zero priority for clinical safety assurance, but increasingly required for NHS procurement under Net Zero commitments and cascading through EU-market vendor compliance under forthcoming corporate sustainability reporting requirements.*
+*Energy, carbon, and water footprint of AVT operation. All three current metrics in this group are Tier 3 - not Day Zero priority for clinical safety assurance, but increasingly required for NHS procurement under Net Zero commitments and cascading through EU-market vendor compliance under forthcoming corporate sustainability reporting requirements.*
 
-*The group exists more as placeholder for an expected future than as a cluster of actionable metrics today. The measurement infrastructure is immature: vendors rarely expose per-inference telemetry; cloud providers are not consistent in sustainability reporting; methodology for attributing training emissions to individual inferences is contested; water consumption data is especially limited. None of the current metrics are deployer-measurable — they are vendor-reported, and deployers currently have no independent verification path.*
+*The group exists more as placeholder for an expected future than as a cluster of actionable metrics today. The measurement infrastructure is immature: vendors rarely expose per-inference telemetry; cloud providers are not consistent in sustainability reporting; methodology for attributing training emissions to individual inferences is contested; water consumption data is especially limited. None of the current metrics are deployer-measurable - they are vendor-reported, and deployers currently have no independent verification path.*
 
 *All three metrics may move to Tier 2 as the NHS Net Zero procurement framework matures and as vendor sustainability reporting becomes routine. At the scale of potential NHS AVT deployment (millions of consultations per year), even small per-note environmental differences compound into substantial total footprint, and procurement conversations are starting to ask the question even where answers are uneven.*
 
@@ -10,12 +10,12 @@
 
 ### GV.EN-1 🔵 Energy Consumption per Clinical Note
 
-Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts — a 70× range that makes provider choice consequential for total energy footprint.
+Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts - a 70× range that makes provider choice consequential for total energy footprint.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.EN-1 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -24,7 +24,7 @@ Electrical energy cost of generating a single clinical note, measured in watt-ho
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
-| **Source** | Jegham et al., arXiv 2505.09598 (2025) — "How Hungry is AI?" |
+| **Source** | Jegham et al., arXiv 2505.09598 (2025) - "How Hungry is AI?" |
 
 **Why this tier?**
 
@@ -42,18 +42,18 @@ Energy per Note (Wh) = total_inference_energy / number_of_notes_generated. Measu
 
 **Novel Thinking / Implications**
 
-> 💡 At the NHS scale (potentially millions of consultations per year using AVT), even small per-note energy differences compound into substantial total footprint. An NHS-wide AVT deployment using a 29 Wh/note model consumes ~70× more energy than the same deployment on a 0.42 Wh/note model. This is not a dominant clinical assurance question but it is a material procurement question under NHS Net Zero — and reporting it creates the data visibility that lets procurement use it.
+> 💡 At the NHS scale (potentially millions of consultations per year using AVT), even small per-note energy differences compound into substantial total footprint. An NHS-wide AVT deployment using a 29 Wh/note model consumes ~70× more energy than the same deployment on a 0.42 Wh/note model. This is not a dominant clinical assurance question but it is a material procurement question under NHS Net Zero - and reporting it creates the data visibility that lets procurement use it.
 
 ---
 
 ### GV.EN-2 🔵 Carbon Emissions per Inference
 
-Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalent. Distinct from energy consumption because carbon intensity depends on the hosting region's electricity grid — the same model hosted in a coal-heavy grid vs a renewable-heavy grid has very different carbon footprint despite identical energy use. Relevant to NHS Net Zero procurement and to EU-market vendors under corporate sustainability reporting requirements.
+Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalent. Distinct from energy consumption because carbon intensity depends on the hosting region's electricity grid - the same model hosted in a coal-heavy grid vs a renewable-heavy grid has very different carbon footprint despite identical energy use. Relevant to NHS Net Zero procurement and to EU-market vendors under corporate sustainability reporting requirements.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.EN-2 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -62,7 +62,7 @@ Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalen
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
-| **Source** | Mistral AI lifecycle assessment; Jegham et al. 2025 — grid carbon intensity adjustment |
+| **Source** | Mistral AI lifecycle assessment; Jegham et al. 2025 - grid carbon intensity adjustment |
 
 **Why this tier?**
 
@@ -80,7 +80,7 @@ gCO₂e per Note = energy_per_note × grid_carbon_intensity(hosting_region, time
 
 **Novel Thinking / Implications**
 
-> 💡 Hosting region choice is a lever NHS procurement could use: a vendor hosted in regions with lower-carbon grids has lower per-note emissions for identical models. This creates a potential procurement criterion distinct from clinical performance — and may create pressure for vendors to offer UK or low-carbon hosting options as a Net Zero differentiator. Whether NHS procurement will actually weight this remains to be seen.
+> 💡 Hosting region choice is a lever NHS procurement could use: a vendor hosted in regions with lower-carbon grids has lower per-note emissions for identical models. This creates a potential procurement criterion distinct from clinical performance - and may create pressure for vendors to offer UK or low-carbon hosting options as a Net Zero differentiator. Whether NHS procurement will actually weight this remains to be seen.
 
 ---
 
@@ -91,7 +91,7 @@ Water consumed by data centre cooling infrastructure per clinical note inference
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.EN-3 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |

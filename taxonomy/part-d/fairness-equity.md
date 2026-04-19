@@ -11,7 +11,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-1 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fairness & Equity |
@@ -49,7 +49,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |Dimension              |Value                                                         |
 |-----------------------|--------------------------------------------------------------|
 | **Reference** | IO.FE-2 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                        |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                        |
 |**Measurement Cadence**|One-off gate                                                  |
 |**Pipeline Layer**     |ASR / Transcription                                           |
 |**Assurance Question** |Fairness & Equity                                             |
@@ -67,16 +67,16 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 **Formal Definition**
 
 ```
-Assessment against criteria: (1) Sociolinguistic validity — categories correspond to identifiable phonological communities, not political or racial groupings; (2) NHS relevance — categories include varieties actually present in NHS patient populations; (3) Sample adequacy — each category has sufficient evaluation data for stable WER estimation; (4) Documentation — categorisation methodology is transparent and replicable. Binary pass/fail per criterion; composite = all four must pass.
+Assessment against criteria: (1) Sociolinguistic validity - categories correspond to identifiable phonological communities, not political or racial groupings; (2) NHS relevance - categories include varieties actually present in NHS patient populations; (3) Sample adequacy - each category has sufficient evaluation data for stable WER estimation; (4) Documentation - categorisation methodology is transparent and replicable. Binary pass/fail per criterion; composite = all four must pass.
 ```
 
 **Limitations**
 
-> Sociolinguistic categorisation is itself contested. Any taxonomy makes choices that can be critiqued. The alternative — no categorisation — is worse because it hides all disparities.
+> Sociolinguistic categorisation is itself contested. Any taxonomy makes choices that can be critiqued. The alternative - no categorisation - is worse because it hides all disparities.
 
 **Novel Thinking / Implications**
 
-> 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system — a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
+> 💡 The hardest form of bias to fix is bias that cannot be measured, and ad-hoc accent categorisation produces unmeasurable bias. An NHS-specific accent taxonomy is infrastructure that would benefit every deployed AVT system - a national body responsibility that would pay for itself quickly. Without it, every vendor's Demographic-Disaggregated WER is self-reported against self-chosen categories, and independent verification is impossible.
 
 ### IO.FE-3 🟡 Clinical Domain Performance Variance
 
@@ -85,7 +85,7 @@ Accuracy variation across specialties and complexity. Compound boundary risk: de
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-3 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
 | **Assurance Question** | Fairness & Equity |
@@ -118,12 +118,12 @@ Accuracy A(d) per clinical domain d. PV = Var(A(d)). Compound risk: performance 
 
 ### IO.FE-4 🔵 Intersectional Performance
 
-Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women). Single-axis disaggregation misses compound disadvantage — a system may perform adequately on each dimension separately but fail badly at intersections.
+Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women). Single-axis disaggregation misses compound disadvantage - a system may perform adequately on each dimension separately but fail badly at intersections.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-4 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fairness & Equity |
@@ -150,18 +150,18 @@ For each intersection of demographic categories (age x ethnicity x language x ge
 
 **Novel Thinking / Implications**
 
-> 💡 An elderly, EAL, female patient with limited health literacy may be at the worst-case intersection for AVT accuracy — yet single-axis metrics for elderly, EAL, female, and low-literacy patients may all look acceptable individually. Intersectional analysis reveals this compound disadvantage. Required by population health equity but rarely measured.
+> 💡 An elderly, EAL, female patient with limited health literacy may be at the worst-case intersection for AVT accuracy - yet single-axis metrics for elderly, EAL, female, and low-literacy patients may all look acceptable individually. Intersectional analysis reveals this compound disadvantage. Required by population health equity but rarely measured.
 
 ---
 
 ### IO.FE-5 🔵 Intersectional Compound Fairness Score
 
-Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively — that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
+Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively - that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
 | **Reference** | IO.FE-5 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                       |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                                       |
 |**Measurement Cadence**|Periodic audit                                                                       |
 |**Pipeline Layer**     |Cross-cutting                                                                        |
 |**Assurance Question** |Fairness & Equity                                                                    |
@@ -184,7 +184,7 @@ For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expe
 
 **Limitations**
 
-> Requires large enough samples at every demographic intersection for stable estimation — often infeasible for rare intersections. Additive model assumption may not hold even in fair systems. Interpretation is statistical rather than mechanistic.
+> Requires large enough samples at every demographic intersection for stable estimation - often infeasible for rare intersections. Additive model assumption may not hold even in fair systems. Interpretation is statistical rather than mechanistic.
 
 **Novel Thinking / Implications**
 
@@ -192,12 +192,12 @@ For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expe
 
 ### IO.FE-6 🔵 Rare Presentation Handling
 
-Accuracy on uncommon clinical presentations vs common ones. Long-tail performance matters disproportionately for diagnostic safety — the rare presentation that's missed is the most dangerous one to miss.
+Accuracy on uncommon clinical presentations vs common ones. Long-tail performance matters disproportionately for diagnostic safety - the rare presentation that's missed is the most dangerous one to miss.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-6 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Summarisation |
 | **Assurance Question** | Fairness & Equity |
@@ -224,7 +224,7 @@ Stratify test data by presentation frequency. Compute accuracy for: common (top 
 
 **Novel Thinking / Implications**
 
-> 💡 AVT systems trained on common presentations will perform best on common presentations and worst on rare ones. But rare presentations are exactly where clinical decision support matters most — the unusual case that benefits from accurate documentation. Long-tail performance should be a procurement question, not just average performance.
+> 💡 AVT systems trained on common presentations will perform best on common presentations and worst on rare ones. But rare presentations are exactly where clinical decision support matters most - the unusual case that benefits from accurate documentation. Long-tail performance should be a procurement question, not just average performance.
 
 ---
 
@@ -235,7 +235,7 @@ Does AVT performance vary with patient health literacy level? Medically sophisti
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-7 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fairness & Equity |
@@ -253,7 +253,7 @@ Does AVT performance vary with patient health literacy level? Medically sophisti
 **Formal Definition**
 
 ```
-Compare accuracy on: (1) patients using clinical terminology; (2) patients using lay terms for the same conditions. Performance Gap = accuracy_clinical_terms - accuracy_lay_terms. Significant gap indicates the system rewards health literacy — an equity concern.
+Compare accuracy on: (1) patients using clinical terminology; (2) patients using lay terms for the same conditions. Performance Gap = accuracy_clinical_terms - accuracy_lay_terms. Significant gap indicates the system rewards health literacy - an equity concern.
 ```
 
 **Limitations**
@@ -262,7 +262,7 @@ Compare accuracy on: (1) patients using clinical terminology; (2) patients using
 
 **Novel Thinking / Implications**
 
-> 💡 If AVT performs better when patients use clinical language, the system rewards health literacy and disadvantages patients who describe symptoms in everyday terms. This compounds existing health inequalities — the patients who already face barriers to healthcare get less accurate documentation as well. This is an equity dimension that single-axis demographic metrics miss.
+> 💡 If AVT performs better when patients use clinical language, the system rewards health literacy and disadvantages patients who describe symptoms in everyday terms. This compounds existing health inequalities - the patients who already face barriers to healthcare get less accurate documentation as well. This is an equity dimension that single-axis demographic metrics miss.
 
 ---
 
@@ -270,12 +270,12 @@ Compare accuracy on: (1) patients using clinical terminology; (2) patients using
 
 ### IO.FE-8 🔵 Cross-Platform Fairness Consistency
 
-Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern — if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
+Whether fairness properties are consistent across multiple AVT platforms deployed within the same ICB or trust. Differential bias between vendors is itself an equity concern - if Practice A uses Vendor X (which performs well on majority populations but poorly on minority populations) and Practice B uses Vendor Y (with the opposite bias profile), patients experience different quality of documentation depending on which practice happens to serve them.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
 | **Reference** | IO.FE-8 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                     |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                     |
 |**Measurement Cadence**|Periodic audit                                                     |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Fairness & Equity                                                  |
@@ -298,7 +298,7 @@ For each vendor v in the ICB's deployed platforms: compute demographic-disaggreg
 
 **Limitations**
 
-> Requires standardised test data available for use against multiple vendors — which currently doesn't exist for NHS. Vendors may resist independent cross-comparison. Aggregation across practices raises information governance questions.
+> Requires standardised test data available for use against multiple vendors - which currently doesn't exist for NHS. Vendors may resist independent cross-comparison. Aggregation across practices raises information governance questions.
 
 **Novel Thinking / Implications**
 

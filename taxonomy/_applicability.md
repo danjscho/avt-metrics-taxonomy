@@ -4,11 +4,11 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ### Classification Values
 
-- **AVT-Specific** — the metric is meaningful only in the context of an audio capture, speech recognition, or speaker attribution pipeline. Removing the audio layer removes the need for the metric entirely. *Example: Signal-to-Noise Ratio Monitoring measures audio input quality — irrelevant to a text-based clinical AI system.*
+- **AVT-Specific** - the metric is meaningful only in the context of an audio capture, speech recognition, or speaker attribution pipeline. Removing the audio layer removes the need for the metric entirely. *Example: Signal-to-Noise Ratio Monitoring measures audio input quality - irrelevant to a text-based clinical AI system.*
 
-- **General Healthcare AI** — the metric applies to any clinical AI system regardless of input modality. The definition, measurement method, and assurance question are independent of whether the system processes audio, text, images, or structured data. *Example: Consent Verification Accuracy applies equally to an ambient scribe, a diagnostic imaging AI, or an EHR predictive model.*
+- **General Healthcare AI** - the metric applies to any clinical AI system regardless of input modality. The definition, measurement method, and assurance question are independent of whether the system processes audio, text, images, or structured data. *Example: Consent Verification Accuracy applies equally to an ambient scribe, a diagnostic imaging AI, or an EHR predictive model.*
 
-- **AVT-Contextualised** — the underlying concept is general (applicable to any clinical AI) but the specific definition, threshold, or measurement method in this taxonomy is tuned for AVT. Adapting the metric to another modality would require redefining the formal definition while preserving the assurance question. *Example: Hallucination Rate measures fabricated content in AI output — a general concern — but the formal definition here references transcript-to-note fidelity, speaker attribution errors, and audio-derived confabulation, which are AVT-specific failure modes.*
+- **AVT-Contextualised** - the underlying concept is general (applicable to any clinical AI) but the specific definition, threshold, or measurement method in this taxonomy is tuned for AVT. Adapting the metric to another modality would require redefining the formal definition while preserving the assurance question. *Example: Hallucination Rate measures fabricated content in AI output - a general concern - but the formal definition here references transcript-to-note fidelity, speaker attribution errors, and audio-derived confabulation, which are AVT-specific failure modes.*
 
 ### Summary
 
@@ -23,18 +23,18 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 | Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
 |------|-------------|--------------------|--------------------|-------|
-| A — Technical Pipeline | 33 | 42 | 0 | 75 |
-| B — Pipeline Interactions | 8 | 13 | 0 | 21 |
-| C — The Human Layer | 0 | 16 | 3 | 19 |
-| D — Impact & Outcomes | 1 | 6 | 11 | 18 |
-| E — System Governance | 6 | 0 | 68 | 74 |
-| F — Evaluation Science | 0 | 0 | 7 | 7 |
+| A - Technical Pipeline | 33 | 42 | 0 | 75 |
+| B - Pipeline Interactions | 8 | 13 | 0 | 21 |
+| C - The Human Layer | 0 | 16 | 3 | 19 |
+| D - Impact & Outcomes | 1 | 6 | 11 | 18 |
+| E - System Governance | 6 | 0 | 68 | 74 |
+| F - Evaluation Science | 0 | 0 | 7 | 7 |
 | **Total** | **48** | **77** | **89** | **214** |
 
 
 ### Full Classification
 
-#### Part A — The Technical Pipeline
+#### Part A - The Technical Pipeline
 
 **Audio Capture & Environment** (9 metrics)
 
@@ -141,7 +141,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.WB-6 | FHIR R4 Resource Conformance Rate | 🟡 Tier 2 | AVT-Contextualised |
 | TP.WB-7 | openEHR Archetype Conformance | 🔵 Tier 3 | AVT-Contextualised |
 
-#### Part B — Pipeline Interactions
+#### Part B - Pipeline Interactions
 
 **Partial-Pipeline** (9 metrics)
 
@@ -174,7 +174,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | PI.E2E-11 | Pipeline Failure Recovery | 🟡 Tier 2 | AVT-Contextualised |
 | PI.E2E-12 | Round-Trip Information Loss | 🔵 Tier 3 | AVT-Specific |
 
-#### Part C — The Human Layer
+#### Part C - The Human Layer
 
 **Human Factors & Workflow** (19 metrics)
 
@@ -201,7 +201,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | HL.HF-19 | AI-Off Performance Test | 🟡 Tier 2 | General Healthcare AI |
 
 
-#### Part D — Impact & Outcomes
+#### Part D - Impact & Outcomes
 
 **Patient Experience** (10 metrics)
 
@@ -231,7 +231,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | IO.FE-7 | Health Literacy Performance Variation | 🔵 Tier 3 | General Healthcare AI |
 | IO.FE-8 | Cross-Platform Fairness Consistency | 🔵 Tier 3 | General Healthcare AI |
 
-#### Part E — System Governance
+#### Part E - System Governance
 
 **Safety & Governance** (17 metrics)
 
@@ -347,7 +347,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-7 | Sub-Processor Transparency | 🟢 Tier 1 | General Healthcare AI |
 | GV.VT-8 | Intermediate Output Access | 🟡 Tier 2 | General Healthcare AI |
 
-#### Part F — Evaluation Science
+#### Part F - Evaluation Science
 
 **Meta-evaluation** (7 metrics)
 

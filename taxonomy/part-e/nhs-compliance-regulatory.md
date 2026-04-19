@@ -1,12 +1,12 @@
 ## NHS Compliance & Regulatory
 
-*Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary — the deployer is compliant or they are not — and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
+*Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary - the deployer is compliant or they are not - and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
 
 *The group was added to the taxonomy in response to the January–March 2026 NHS guidance suite: NHSE IG guidance on ambient scribing (March 2026), the NHSE AVT Supplier Registry (launched January 2026), and CIO/CCIO guidance v2 (January 2026). Taken together these documents defined a discrete compliance surface that is operationally distinct from clinical safety governance and that deserves its own cluster rather than being scattered across Safety & Governance and Privacy & Data Governance.*
 
-*The group also contains two international regulatory metrics (FDA PCCP-Equivalent Pre-Defined Acceptance Criteria, EU AI Act Event Logging Compliance) because vendor compliance cascades across jurisdictions — an AVT vendor with EU market exposure will typically apply EU AI Act requirements uniformly across their product rather than maintaining jurisdiction-specific variants, which means UK deployments inherit EU requirements through vendor compliance regardless of whether they would otherwise apply.*
+*The group also contains two international regulatory metrics (FDA PCCP-Equivalent Pre-Defined Acceptance Criteria, EU AI Act Event Logging Compliance) because vendor compliance cascades across jurisdictions - an AVT vendor with EU market exposure will typically apply EU AI Act requirements uniformly across their product rather than maintaining jurisdiction-specific variants, which means UK deployments inherit EU requirements through vendor compliance regardless of whether they would otherwise apply.*
 
-*Legal and statutory privacy metrics that pre-date the 2026 NHS guidance (Subject Access Request Fulfilment, Right to Erasure, Cross-Border Data Transfer Compliance, Sub-Processor Transparency) remain in the Privacy & Data Governance group to preserve the legal-basis cluster there. The split between "privacy legal requirements" and "NHS compliance process requirements" is analytical rather than hierarchical — a deployer is obliged to meet both, and neither group has precedence over the other.*
+*Legal and statutory privacy metrics that pre-date the 2026 NHS guidance (Subject Access Request Fulfilment, Right to Erasure, Cross-Border Data Transfer Compliance, Sub-Processor Transparency) remain in the Privacy & Data Governance group to preserve the legal-basis cluster there. The split between "privacy legal requirements" and "NHS compliance process requirements" is analytical rather than hierarchical - a deployer is obliged to meet both, and neither group has precedence over the other.*
 
 **Tier breakdown**: 🟢 7 Tier 1 · 🟡 3 Tier 2 · 🔵 0 Tier 3
 
@@ -19,7 +19,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |Dimension              |Value                                                  |
 |-----------------------|--------------------------------------------------------|
 | **Reference** | GV.CR-1 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                              |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                              |
 |**Measurement Cadence**|Continuous                                              |
 |**Pipeline Layer**     |Cross-cutting                                           |
 |**Assurance Question** |Patient Experience                                      |
@@ -32,7 +32,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 
 **Why this tier?**
 
-> Direct compliance requirement under NHSE IG guidance. Deployer-measurable from workflow records. Binary compliance — a patient dissent not recorded and respected is a regulatory and ethical failure.
+> Direct compliance requirement under NHSE IG guidance. Deployer-measurable from workflow records. Binary compliance - a patient dissent not recorded and respected is a regulatory and ethical failure.
 
 **Formal Definition**
 
@@ -57,7 +57,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |Dimension              |Value                                                    |
 |-----------------------|----------------------------------------------------------|
 | **Reference** | GV.CR-2 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Cross-cutting                                             |
 |**Assurance Question** |Patient Experience                                        |
@@ -70,7 +70,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 
 **Why this tier?**
 
-> Direct compliance requirement. Measurable via patient survey sampling, consultation audit, or (with appropriate consent) recording sampling. Binary compliance — notification either happened or it didn't.
+> Direct compliance requirement. Measurable via patient survey sampling, consultation audit, or (with appropriate consent) recording sampling. Binary compliance - notification either happened or it didn't.
 
 **Formal Definition**
 
@@ -84,18 +84,18 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 **Novel Thinking / Implications**
 
-> 💡 The gap between policy and practice on patient notification is the compliance equivalent of the consent understanding gap. A practice can have a 100% notification policy and a 60% actual notification rate — and the 40% gap is where the consent model breaks down. Periodic audit is the only way to know which side of the gap a deployer is on. A practice that refuses to audit is implicitly choosing not to know.
+> 💡 The gap between policy and practice on patient notification is the compliance equivalent of the consent understanding gap. A practice can have a 100% notification policy and a 60% actual notification rate - and the 40% gap is where the consent model breaks down. Periodic audit is the only way to know which side of the gap a deployer is on. A practice that refuses to audit is implicitly choosing not to know.
 
 ---
 
 ### GV.CR-3 🟢 AI-Generated Content Labelling Compliance
 
-Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content — essential for audit, safety investigation, and future training data curation.
+Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content - essential for audit, safety investigation, and future training data curation.
 
 |Dimension              |Value                                                     |
 |-----------------------|-----------------------------------------------------------|
 | **Reference** | GV.CR-3 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                 |
 |**Measurement Cadence**|Continuous                                                 |
 |**Pipeline Layer**     |EPR Write-back                                             |
 |**Assurance Question** |Meta-evaluation                                            |
@@ -113,7 +113,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 **Formal Definition**
 
 ```
-Labelling Rate = |AI_generated_entries_with_correct_suffix| / |total_AI_generated_entries|. Target: 100%. Zero-tolerance — every AI-generated entry must be labelled. Automated verification is feasible because the suffix is a fixed SNOMED concept that either appears or doesn't. Report non-compliance instances for immediate remediation.
+Labelling Rate = |AI_generated_entries_with_correct_suffix| / |total_AI_generated_entries|. Target: 100%. Zero-tolerance - every AI-generated entry must be labelled. Automated verification is feasible because the suffix is a fixed SNOMED concept that either appears or doesn't. Report non-compliance instances for immediate remediation.
 ```
 
 **Code: Labelling compliance check**
@@ -141,7 +141,7 @@ def check_labelling_compliance(epr_entries):
 
 **Limitations**
 
-> Assumes the vendor's write-back system supports the suffix — some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.
+> Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.
 
 **Novel Thinking / Implications**
 
@@ -156,7 +156,7 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
 | **Reference** | GV.CR-4 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                             |
 |**Measurement Cadence**|Continuous                                            |
 |**Pipeline Layer**     |Cross-cutting                                         |
 |**Assurance Question** |Safety                                                |
@@ -179,11 +179,11 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 **Limitations**
 
-> Registry is self-certified — listing indicates vendor attestation rather than independent verification. Listing scope may not cover all deployed AVT modules from a vendor with multiple products.
+> Registry is self-certified - listing indicates vendor attestation rather than independent verification. Listing scope may not cover all deployed AVT modules from a vendor with multiple products.
 
 **Novel Thinking / Implications**
 
-> 💡 The Registry's value depends on NHS bodies treating listing as a procurement precondition. If deployments proceed with non-listed vendors, the Registry becomes advisory rather than normative and loses its governance function. Making Registry verification a Tier 1 metric supports the norm that listing is expected — and creates visible data on deployment-to-listing alignment that can inform Registry policy over time.
+> 💡 The Registry's value depends on NHS bodies treating listing as a procurement precondition. If deployments proceed with non-listed vendors, the Registry becomes advisory rather than normative and loses its governance function. Making Registry verification a Tier 1 metric supports the norm that listing is expected - and creates visible data on deployment-to-listing alignment that can inform Registry policy over time.
 
 ---
 
@@ -194,7 +194,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |Dimension              |Value                                                       |
 |-----------------------|-------------------------------------------------------------|
 | **Reference** | GV.CR-5 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                   |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                   |
 |**Measurement Cadence**|One-off gate                                                 |
 |**Pipeline Layer**     |Cross-cutting                                                |
 |**Assurance Question** |Meta-evaluation                                              |
@@ -217,11 +217,11 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 
 **Limitations**
 
-> ICB engagement quality varies — some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality.
+> ICB engagement quality varies - some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality.
 
 **Novel Thinking / Implications**
 
-> 💡 ICB engagement is the mechanism that prevents NHS AVT deployment from being a series of disconnected practice-level decisions with no regional coordination. It only works if it is actually happening — and practices deploying AVT without ICB engagement are a visible symptom of governance friction, ICB capacity constraints, or deployment urgency overriding process. Tracking the metric is a diagnostic tool for that friction as much as it is a compliance check.
+> 💡 ICB engagement is the mechanism that prevents NHS AVT deployment from being a series of disconnected practice-level decisions with no regional coordination. It only works if it is actually happening - and practices deploying AVT without ICB engagement are a visible symptom of governance friction, ICB capacity constraints, or deployment urgency overriding process. Tracking the metric is a diagnostic tool for that friction as much as it is a compliance check.
 
 ---
 
@@ -232,7 +232,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
 | **Reference** | GV.CR-6 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                                                                        |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                                                        |
 |**Measurement Cadence**|Periodic audit                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
 |**Assurance Question** |Safety                                                                                           |
@@ -255,22 +255,22 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 **Limitations**
 
-> Compliance with structure does not guarantee quality of content. Safety cases are often written to satisfy the standard rather than to genuinely analyse system safety — the "compliance theatre" problem. External independent review is the only reliable check.
+> Compliance with structure does not guarantee quality of content. Safety cases are often written to satisfy the standard rather than to genuinely analyse system safety - the "compliance theatre" problem. External independent review is the only reliable check.
 
 **Novel Thinking / Implications**
 
-> 💡 The 2025 FOI finding that many NHS digital health deployments lack DCB0129 compliance is a structural warning about regulatory enforcement gaps. AVT deployment is happening faster than safety case development in many places. Making Safety Case Completeness a Tier 1 metric both highlights the compliance obligation and creates visible data on how widespread the gap is — which is itself a governance intervention.
+> 💡 The 2025 FOI finding that many NHS digital health deployments lack DCB0129 compliance is a structural warning about regulatory enforcement gaps. AVT deployment is happening faster than safety case development in many places. Making Safety Case Completeness a Tier 1 metric both highlights the compliance obligation and creates visible data on how widespread the gap is - which is itself a governance intervention.
 
 ---
 
 ### GV.CR-7 🟢 DPIA Template Completion Rate
 
-Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure — but the template only helps if it's actually used and completed.
+Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure - but the template only helps if it's actually used and completed.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
 | **Reference** | GV.CR-7 |
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                             |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                             |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Cross-cutting                                         |
 |**Assurance Question** |Safety                                                |
@@ -308,7 +308,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
 | **Reference** | GV.CR-8 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                        |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Cross-cutting                                 |
 |**Assurance Question** |Safety                                        |
@@ -321,7 +321,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 
 **Why this tier?**
 
-> Legal compliance requirement. Annual audit recommended. Slightly lower tier than DPIA because absence of DSPA is more commonly an oversight than a structural governance failure — but still a legal requirement.
+> Legal compliance requirement. Annual audit recommended. Slightly lower tier than DPIA because absence of DSPA is more commonly an oversight than a structural governance failure - but still a legal requirement.
 
 **Formal Definition**
 
@@ -346,7 +346,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.CR-9 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                   |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
 |**Measurement Cadence**|One-off gate                                             |
 |**Pipeline Layer**     |Cross-cutting                                            |
 |**Assurance Question** |Safety                                                   |
@@ -369,11 +369,11 @@ Assessment against criteria: (1) Performance acceptance thresholds pre-specified
 
 **Limitations**
 
-> Vendors may claim PCCP equivalence without independent verification. The substantive quality of acceptance criteria matters more than their existence — a criterion like "WER not more than 20% worse" technically exists but provides no meaningful safety floor.
+> Vendors may claim PCCP equivalence without independent verification. The substantive quality of acceptance criteria matters more than their existence - a criterion like "WER not more than 20% worse" technically exists but provides no meaningful safety floor.
 
 **Novel Thinking / Implications**
 
-> 💡 PCCP is a structural shift in how AI medical devices are regulated — from approving specific models to approving the change control process. For AVT specifically, this is essential because continuous model improvement is expected, and ad-hoc change control makes every update a regulatory event. NHS procurement should treat PCCP-equivalent frameworks as the baseline expectation, not a differentiator, even though the formal PCCP framework applies to US-market devices.
+> 💡 PCCP is a structural shift in how AI medical devices are regulated - from approving specific models to approving the change control process. For AVT specifically, this is essential because continuous model improvement is expected, and ad-hoc change control makes every update a regulatory event. NHS procurement should treat PCCP-equivalent frameworks as the baseline expectation, not a differentiator, even though the formal PCCP framework applies to US-market devices.
 
 ---
 
@@ -384,7 +384,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |Dimension              |Value                                              |
 |-----------------------|----------------------------------------------------|
 | **Reference** | GV.CR-10 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                              |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                              |
 |**Measurement Cadence**|Continuous                                          |
 |**Pipeline Layer**     |Cross-cutting                                       |
 |**Assurance Question** |Safety                                              |
@@ -407,8 +407,8 @@ Event logging must capture: (1) period of use (start, duration, stop per session
 
 **Limitations**
 
-> Full logging creates large data volumes and storage costs. Logging of input data conflicts with data minimisation principles — resolving this requires careful policy design. Deployer verification is manual and sample-based.
+> Full logging creates large data volumes and storage costs. Logging of input data conflicts with data minimisation principles - resolving this requires careful policy design. Deployer verification is manual and sample-based.
 
 **Novel Thinking / Implications**
 
-> 💡 Event logging is the infrastructure that supports retrospective incident investigation. Without it, when an AVT error causes harm six months after the fact, the investigation has nothing to work with — the clinician may not remember the encounter, the patient certainly won't remember the AI's behaviour, and the vendor has no logs to reconstruct what happened. The EU AI Act requirement is essentially mandating the infrastructure for forensic investigation of AI clinical systems, which is a governance improvement regardless of jurisdiction.
+> 💡 Event logging is the infrastructure that supports retrospective incident investigation. Without it, when an AVT error causes harm six months after the fact, the investigation has nothing to work with - the clinician may not remember the encounter, the patient certainly won't remember the AI's behaviour, and the vendor has no logs to reconstruct what happened. The EU AI Act requirement is essentially mandating the infrastructure for forensic investigation of AI clinical systems, which is a governance improvement regardless of jurisdiction.

@@ -1,29 +1,29 @@
-# AVT Metrics Taxonomy — New Metric Entries (Batch 1)
+# AVT Metrics Taxonomy - New Metric Entries (Batch 1)
 
 New metrics drafted in the existing taxonomy house style, organised by target section for direct integration. Batch 1 covers Parts A and B (technical pipeline and pipeline interactions).
 
 **Contents**
-- ASR / Transcription — 2 new metrics
-- Diarisation → new **Conversation Analysis** sub-cluster — 5 new metrics
-- Summarisation / NLP — 4 new metrics
-- Clinical Coding — 8 new metrics
-- EPR Write-back — 2 new metrics
+- ASR / Transcription - 2 new metrics
+- Diarisation → new **Conversation Analysis** sub-cluster - 5 new metrics
+- Summarisation / NLP - 4 new metrics
+- Clinical Coding - 8 new metrics
+- EPR Write-back - 2 new metrics
 
 **Total this batch: 21 entries**
 
 ---
 
-# Part A — Technical Pipeline additions
+# Part A - Technical Pipeline additions
 
 ## ASR / Transcription (+2)
 
 ### 🟡 Error Transmission Rate
 
-Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step — a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
+Proportion of ASR transcription errors that survive into the final clinical note. Distinct from end-to-end accuracy because it isolates the ASR→NLP propagation step - a system with high raw WER but strong contextual inference in the summariser can have a low transmission rate, while a system with low WER and literal summarisation can still transmit every error it makes.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                 |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |ASR + Summarisation                                                    |
 |**Assurance Question** |Fidelity & Accuracy                                                    |
@@ -36,12 +36,12 @@ Proportion of ASR transcription errors that survive into the final clinical note
 
 **Why this tier?**
 
-> Vendor metric requiring intermediate output access. Measurable when raw transcript and final note are both available for comparison. Valuable diagnostic because it distinguishes ASR-bottleneck systems from summarisation-bottleneck systems — the intervention is completely different in each case.
+> Vendor metric requiring intermediate output access. Measurable when raw transcript and final note are both available for comparison. Valuable diagnostic because it distinguishes ASR-bottleneck systems from summarisation-bottleneck systems - the intervention is completely different in each case.
 
 **Formal Definition**
 
 ```
-ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR = 0 means the summariser corrects every ASR error (unlikely). ETR = 1 means the summariser transmits every error unchanged. ETR > 1 is possible if summariser amplification adds errors beyond the ASR baseline. Compute per error category (numeric, drug name, negation, demographic) — the overall rate obscures category-specific failure modes.
+ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR = 0 means the summariser corrects every ASR error (unlikely). ETR = 1 means the summariser transmits every error unchanged. ETR > 1 is possible if summariser amplification adds errors beyond the ASR baseline. Compute per error category (numeric, drug name, negation, demographic) - the overall rate obscures category-specific failure modes.
 ```
 
 **Limitations**
@@ -56,11 +56,11 @@ ETR = |ASR_errors_present_in_final_note| / |ASR_errors_in_raw_transcript|. ETR =
 
 ### 🟡 ASR Confidence Exposure
 
-Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers — both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
+Whether the ASR system exposes per-token or per-segment confidence scores to downstream consumers - both the summariser and the clinician reviewing. Different from the existing ASR Confidence Calibration metric, which asks whether confidence scores are *accurate*. Exposure asks whether they are *available at all*. Well-calibrated confidence locked inside the vendor's infrastructure provides no downstream benefit.
 
 |Dimension              |Value                                                           |
 |-----------------------|----------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                          |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                          |
 |**Measurement Cadence**|One-off gate                                                    |
 |**Pipeline Layer**     |ASR / Transcription                                             |
 |**Assurance Question** |Safety                                                          |
@@ -78,30 +78,30 @@ Whether the ASR system exposes per-token or per-segment confidence scores to dow
 **Formal Definition**
 
 ```
-Exposure assessed on three levels: (1) Internal — confidence scores exist but are not exposed; (2) Downstream — confidence scores passed to summariser for internal use; (3) Clinician-visible — low-confidence segments highlighted in the review interface. Target: Level 3 for any safety-critical deployment. Binary per level; report highest level achieved.
+Exposure assessed on three levels: (1) Internal - confidence scores exist but are not exposed; (2) Downstream - confidence scores passed to summariser for internal use; (3) Clinician-visible - low-confidence segments highlighted in the review interface. Target: Level 3 for any safety-critical deployment. Binary per level; report highest level achieved.
 ```
 
 **Limitations**
 
-> End-to-end neural ASR systems may produce confidence scores that are poorly calibrated (see existing ASR Confidence Calibration metric). Exposure without calibration can be actively misleading — a clinician seeing "95% confidence" on a 70%-accurate segment has worse situational awareness than a clinician seeing no score at all.
+> End-to-end neural ASR systems may produce confidence scores that are poorly calibrated (see existing ASR Confidence Calibration metric). Exposure without calibration can be actively misleading - a clinician seeing "95% confidence" on a 70%-accurate segment has worse situational awareness than a clinician seeing no score at all.
 
 **Novel Thinking / Implications**
 
-> 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally — which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
+> 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally - which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
 -----
 
-## Diarisation — new Conversation Analysis sub-cluster (+5)
+## Diarisation - new Conversation Analysis sub-cluster (+5)
 
 *Multi-role identification, code-switching, turn-taking in overlap, addressee recognition, and clinically weighted attribution. Extends the existing diarisation metrics (which focus on speaker counts and boundaries) into the semantics of multi-party clinical dialogue.*
 
 ### 🟡 Speaker Role Identification F1
 
-Accuracy of classifying speakers into clinical roles — clinician, patient, family member, nurse, interpreter, student — rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
+Accuracy of classifying speakers into clinical roles - clinician, patient, family member, nurse, interpreter, student - rather than just distinguishing anonymous speakers. Distinct from the existing Speaker Attribution Accuracy metric, which measures whether an utterance is assigned to the correct speaker *given that roles are known*. Role identification is the prerequisite step.
 
 |Dimension              |Value                                                                |
 |-----------------------|---------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                               |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                               |
 |**Measurement Cadence**|One-off gate                                                         |
 |**Pipeline Layer**     |Diarisation                                                          |
 |**Assurance Question** |Safety                                                               |
@@ -124,7 +124,7 @@ Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_m
 
 **Limitations**
 
-> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations — exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
+> Role identification often relies on content cues (who asks questions, who describes symptoms) rather than voice characteristics, which means errors correlate with atypical consultations - exactly where they matter most. Role-labelled ground truth is rarely available in clinical speech corpora.
 
 **Novel Thinking / Implications**
 
@@ -138,7 +138,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research              |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research              |
 |**Measurement Cadence**|One-off gate                                |
 |**Pipeline Layer**     |ASR + Diarisation                           |
 |**Assurance Question** |Safety                                      |
@@ -151,7 +151,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 
 **Why this tier?**
 
-> Research metric. Requires both role-labelled ground truth and a clinical importance ontology — neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
+> Research metric. Requires both role-labelled ground truth and a clinical importance ontology - neither of which is standardised. Conceptually valuable but not operationally ready for routine deployment assessment.
 
 **Formal Definition**
 
@@ -161,21 +161,21 @@ cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the
 
 **Limitations**
 
-> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite - compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
 
 **Novel Thinking / Implications**
 
-> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies — without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
+> 💡 cpHEWER is the diarisation-layer equivalent of Medical WER at the transcription layer: both attempt to weight errors by clinical consequence rather than treating all errors equally. The same standardisation gap applies - without a nationally agreed weight matrix, every vendor's cpHEWER number means something different. This is a candidate for national body specification work.
 
 -----
 
 ### 🟡 Code-Switching Detection Rate
 
-Accuracy of detecting within-utterance language switching — a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
+Accuracy of detecting within-utterance language switching - a speaker moving between English and another language mid-sentence or across turns. Common in NHS consultations with EAL patients and interpreter-mediated encounters. Code-switching confounds ASR because most systems are trained on single-language audio and may transcribe the non-English segments as phonetically similar English, or drop them entirely.
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                |
 |**Measurement Cadence**|One-off gate                                          |
 |**Pipeline Layer**     |ASR / Transcription                                   |
 |**Assurance Question** |Fairness & Equity                                     |
@@ -202,17 +202,17 @@ Per utterance with code-switching: (1) detected that switching occurred (binary)
 
 **Novel Thinking / Implications**
 
-> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications — and the clinician reviewing the note has no signal that anything was lost.
+> 💡 Code-switching is a genuine equity dimension distinct from accent. A patient with fluent English who occasionally uses terms from their first language for culturally specific concepts (family roles, traditional remedies, culturally defined symptoms) should have those terms captured, not erased. A system that silently drops non-English tokens is performing lossy documentation with equity implications - and the clinician reviewing the note has no signal that anything was lost.
 
 -----
 
 ### 🟡 Turn-Taking Accuracy in Overlap
 
-Accuracy of attributing words spoken during overlapping speech — when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
+Accuracy of attributing words spoken during overlapping speech - when two or more speakers are simultaneously active. The existing Speaker Overlap Rate metric measures how much overlap occurs; this metric measures how well the system handles it when it does. Most ASR+diarisation pipelines degrade substantially in overlap, with one speaker's content being dropped or merged into the other.
 
 |Dimension              |Value                                          |
 |-----------------------|-----------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                         |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                         |
 |**Measurement Cadence**|One-off gate                                   |
 |**Pipeline Layer**     |ASR + Diarisation                              |
 |**Assurance Question** |Fidelity & Accuracy                            |
@@ -245,11 +245,11 @@ TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Repo
 
 ### 🔵 Addressee Recognition Accuracy
 
-In multi-party consultations, correctly identifying who the speaker is addressing — the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
+In multi-party consultations, correctly identifying who the speaker is addressing - the patient, a specific family member, another clinician, or the room at large. Affects the pragmatic interpretation of utterances: "you should stop smoking" addressed to the patient is a clinical instruction; addressed to a family member present it is different content entirely.
 
 |Dimension              |Value                                            |
 |-----------------------|-------------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                   |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                   |
 |**Measurement Cadence**|One-off gate                                     |
 |**Pipeline Layer**     |Diarisation                                      |
 |**Assurance Question** |Fidelity & Accuracy                              |
@@ -262,7 +262,7 @@ In multi-party consultations, correctly identifying who the speaker is addressin
 
 **Why this tier?**
 
-> Research frontier. No current AVT system explicitly models addressee. Academic research area — cannot be deployed in routine assessment today.
+> Research frontier. No current AVT system explicitly models addressee. Academic research area - cannot be deployed in routine assessment today.
 
 **Formal Definition**
 
@@ -272,7 +272,7 @@ For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family
 
 **Limitations**
 
-> Addressee is often ambiguous even to humans — clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
+> Addressee is often ambiguous even to humans - clinicians frequently address statements to "the room" without a specific target. Annotation inter-rater reliability is low. Technical solutions require multimodal input (gaze, body orientation) not available from audio alone.
 
 **Novel Thinking / Implications**
 
@@ -284,11 +284,11 @@ For each utterance u in multi-party encounter: addressee(u) ∈ {patient, family
 
 ### 🟡 Temporal Event Ordering Accuracy
 
-Accuracy of reconstructing the chronological sequence of clinical events from non-linear conversation. Patients rarely describe symptoms in temporal order — they jump between current symptoms, historical episodes, family history, and future concerns. The summary must impose a coherent timeline. Distinct from the existing Temporal Accuracy metric, which covers tense and time-marker preservation at the sentence level; this metric covers event sequencing across the whole note.
+Accuracy of reconstructing the chronological sequence of clinical events from non-linear conversation. Patients rarely describe symptoms in temporal order - they jump between current symptoms, historical episodes, family history, and future concerns. The summary must impose a coherent timeline. Distinct from the existing Temporal Accuracy metric, which covers tense and time-marker preservation at the sentence level; this metric covers event sequencing across the whole note.
 
 |Dimension              |Value                                                   |
 |-----------------------|--------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                  |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                  |
 |**Measurement Cadence**|Periodic audit                                          |
 |**Pipeline Layer**     |Summarisation                                           |
 |**Assurance Question** |Safety                                                  |
@@ -321,11 +321,11 @@ Given a set of clinical events E extracted from source, and their true temporal 
 
 ### 🟡 Medication Attribute Extraction F1
 
-Per-attribute accuracy for each component of a medication reference: drug name, dose, route, frequency, duration, indication, and start/stop dates. Each attribute is scored independently with its own F1. The medication as a whole is only fully correct if all attributes are correct — and aggregate medication accuracy masks systematic attribute-level failures (e.g. systems that get drug names right but frequencies wrong).
+Per-attribute accuracy for each component of a medication reference: drug name, dose, route, frequency, duration, indication, and start/stop dates. Each attribute is scored independently with its own F1. The medication as a whole is only fully correct if all attributes are correct - and aggregate medication accuracy masks systematic attribute-level failures (e.g. systems that get drug names right but frequencies wrong).
 
 |Dimension              |Value                                                        |
 |-----------------------|-------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                       |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                       |
 |**Measurement Cadence**|Periodic audit                                               |
 |**Pipeline Layer**     |Summarisation                                                |
 |**Assurance Question** |Safety                                                       |
@@ -352,17 +352,17 @@ For each medication mention m with attributes A = {name, dose, route, frequency,
 
 **Novel Thinking / Implications**
 
-> 💡 Aggregate medication accuracy is a misleading single number. A system with 95% medication accuracy could be getting drug names right 99% of the time and doses right 92% of the time — and the 8% dose error rate is the safety-critical finding. Attribute-level breakdown is necessary for safety assurance.
+> 💡 Aggregate medication accuracy is a misleading single number. A system with 95% medication accuracy could be getting drug names right 99% of the time and doses right 92% of the time - and the 8% dose error rate is the safety-critical finding. Attribute-level breakdown is necessary for safety assurance.
 
 -----
 
 ### 🟡 Medication Event Classification
 
-Classification of medication *actions* discussed in a consultation: start, stop, increase, decrease, continue, hold, restart, allergy/contraindication. Distinct from medication attribute extraction, which captures what the medication is; event classification captures what is being *done* with it. A medication mentioned as "we'll stop this one" is not the same as "we'll keep this one" — the attributes may be identical but the clinical action is opposite.
+Classification of medication *actions* discussed in a consultation: start, stop, increase, decrease, continue, hold, restart, allergy/contraindication. Distinct from medication attribute extraction, which captures what the medication is; event classification captures what is being *done* with it. A medication mentioned as "we'll stop this one" is not the same as "we'll keep this one" - the attributes may be identical but the clinical action is opposite.
 
 |Dimension              |Value                                              |
 |-----------------------|---------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                             |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                             |
 |**Measurement Cadence**|Periodic audit                                     |
 |**Pipeline Layer**     |Summarisation                                      |
 |**Assurance Question** |Safety                                             |
@@ -389,17 +389,17 @@ For each medication event discussed: classification into {start, stop, increase,
 
 **Novel Thinking / Implications**
 
-> 💡 The start↔stop confusion is the canonical AVT safety nightmare. A consultation discussion of "we're going to stop your warfarin and start apixaban instead" that is silently inverted by the summariser produces a note that documents starting warfarin and stopping apixaban — both incorrect, both dangerous, and neither flagged by attribute-level accuracy metrics. Event classification should be a mandatory safety gate.
+> 💡 The start↔stop confusion is the canonical AVT safety nightmare. A consultation discussion of "we're going to stop your warfarin and start apixaban instead" that is silently inverted by the summariser produces a note that documents starting warfarin and stopping apixaban - both incorrect, both dangerous, and neither flagged by attribute-level accuracy metrics. Event classification should be a mandatory safety gate.
 
 -----
 
 ### 🟡 Stigmatising Language Replication Rate
 
-Proportion of AI-generated notes that reproduce biased or stigmatising language patterns learned from training data. Distinct from the existing Cultural & Linguistic Appropriateness metric, which covers broader sensitivity issues. This metric specifically tracks whether the system has learned to generate language like "drug-seeking", "non-compliant", "frequent flyer", "difficult patient" — terms which research shows appear disproportionately in notes about specific patient populations.
+Proportion of AI-generated notes that reproduce biased or stigmatising language patterns learned from training data. Distinct from the existing Cultural & Linguistic Appropriateness metric, which covers broader sensitivity issues. This metric specifically tracks whether the system has learned to generate language like "drug-seeking", "non-compliant", "frequent flyer", "difficult patient" - terms which research shows appear disproportionately in notes about specific patient populations.
 
 |Dimension              |Value                                                                       |
 |-----------------------|----------------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                      |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                      |
 |**Measurement Cadence**|Periodic audit                                                              |
 |**Pipeline Layer**     |Summarisation                                                               |
 |**Assurance Question** |Fairness & Equity                                                           |
@@ -469,15 +469,15 @@ def stigmatising_language_rate(notes, demographic_col=None):
 
 ## Clinical Coding additions (+8)
 
-*Significant expansion from 4 to 12 metrics. Clinical coding is the single largest gap area in the current taxonomy — reflecting the rapid 2025-2026 shift in ambient scribe capability from pure note generation into automated or suggested coding, with implications for safety, revenue integrity, and data quality.*
+*Significant expansion from 4 to 12 metrics. Clinical coding is the single largest gap area in the current taxonomy - reflecting the rapid 2025-2026 shift in ambient scribe capability from pure note generation into automated or suggested coding, with implications for safety, revenue integrity, and data quality.*
 
 ### 🟡 SNOMED CT Concept Mapping Accuracy
 
-Accuracy of the mapping from extracted clinical entities in free-text to the correct SNOMED CT concept ID. Distinct from the existing SNOMED Code Accuracy metric, which measures whether the assigned code is clinically correct. Concept mapping measures whether the system correctly resolves "chest pain" to the correct SNOMED concept (29857009 — chest pain) rather than a near-miss concept (102588006 — chest discomfort). The boundary between correct and near-miss is where most mapping errors occur.
+Accuracy of the mapping from extracted clinical entities in free-text to the correct SNOMED CT concept ID. Distinct from the existing SNOMED Code Accuracy metric, which measures whether the assigned code is clinically correct. Concept mapping measures whether the system correctly resolves "chest pain" to the correct SNOMED concept (29857009 - chest pain) rather than a near-miss concept (102588006 - chest discomfort). The boundary between correct and near-miss is where most mapping errors occur.
 
 |Dimension              |Value                                                                    |
 |-----------------------|-------------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                   |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                   |
 |**Measurement Cadence**|Periodic audit                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                          |
 |**Assurance Question** |Fidelity & Accuracy                                                      |
@@ -495,26 +495,26 @@ Accuracy of the mapping from extracted clinical entities in free-text to the cor
 **Formal Definition**
 
 ```
-For each extracted clinical mention m: mapping function M(m) → SNOMED concept ID. Accuracy = |correctly_mapped| / |total_mentions|. Additional measures: (a) Exact Match Rate — mapped to exactly the reference concept; (b) Hierarchical Match Rate — mapped to an ancestor or descendant within 2 levels of reference; (c) Semantic Type Match Rate — mapped to correct semantic category. Report all three because acceptable mapping depth depends on context.
+For each extracted clinical mention m: mapping function M(m) → SNOMED concept ID. Accuracy = |correctly_mapped| / |total_mentions|. Additional measures: (a) Exact Match Rate - mapped to exactly the reference concept; (b) Hierarchical Match Rate - mapped to an ancestor or descendant within 2 levels of reference; (c) Semantic Type Match Rate - mapped to correct semantic category. Report all three because acceptable mapping depth depends on context.
 ```
 
 **Limitations**
 
-> "Correct" mapping is context-dependent — sometimes a more general concept is preferable to an over-specific one. Ground truth annotation requires SNOMED expertise. NHS-specific subset mappings add complexity (not all SNOMED concepts are in the UK Edition).
+> "Correct" mapping is context-dependent - sometimes a more general concept is preferable to an over-specific one. Ground truth annotation requires SNOMED expertise. NHS-specific subset mappings add complexity (not all SNOMED concepts are in the UK Edition).
 
 **Novel Thinking / Implications**
 
-> 💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" — but the downstream analytics, safety alerts, and QOF calculations will.
+> 💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" - but the downstream analytics, safety alerts, and QOF calculations will.
 
 -----
 
 ### 🟡 ICD-10 / ICD-11 Full-Specificity Precision
 
-Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity — the difference representing systematic specificity errors that aggregate metrics hide.
+Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity - the difference representing systematic specificity errors that aggregate metrics hide.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                      |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                      |
 |**Measurement Cadence**|Periodic audit                              |
 |**Pipeline Layer**     |Clinical Coding                             |
 |**Assurance Question** |Fidelity & Accuracy                         |
@@ -537,7 +537,7 @@ Report precision at each specificity level independently: P_3char, P_4char, P_fu
 
 **Limitations**
 
-> Full-specificity coding requires clinical judgement that may exceed what is documented in the consultation. Some codes are legitimately unreachable from the source material — the consultation didn't contain enough information. Distinguishing unreachable codes from model errors requires careful reference construction.
+> Full-specificity coding requires clinical judgement that may exceed what is documented in the consultation. Some codes are legitimately unreachable from the source material - the consultation didn't contain enough information. Distinguishing unreachable codes from model errors requires careful reference construction.
 
 **Novel Thinking / Implications**
 
@@ -547,11 +547,11 @@ Report precision at each specificity level independently: P_3char, P_4char, P_fu
 
 ### 🟡 OPCS-4 Procedure Coding Accuracy
 
-Accuracy of OPCS-4 procedure code assignment from consultation documentation. NHS-specific — the OPCS-4 classification (Office of Population Censuses and Surveys, 4th revision) is the mandatory procedure coding standard for NHS secondary care. **No published AI benchmarks currently exist for OPCS-4 coding** despite it being essential for NHS deployment.
+Accuracy of OPCS-4 procedure code assignment from consultation documentation. NHS-specific - the OPCS-4 classification (Office of Population Censuses and Surveys, 4th revision) is the mandatory procedure coding standard for NHS secondary care. **No published AI benchmarks currently exist for OPCS-4 coding** despite it being essential for NHS deployment.
 
 |Dimension              |Value                                         |
 |-----------------------|----------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                        |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                        |
 |**Measurement Cadence**|Periodic audit                                |
 |**Pipeline Layer**     |Clinical Coding                               |
 |**Assurance Question** |Fidelity & Accuracy                           |
@@ -564,12 +564,12 @@ Accuracy of OPCS-4 procedure code assignment from consultation documentation. NH
 
 **Why this tier?**
 
-> Critical for NHS secondary care deployment. Should be a procurement requirement but cannot currently be assessed against published benchmarks — deployers must require vendor evidence on their specific cases.
+> Critical for NHS secondary care deployment. Should be a procurement requirement but cannot currently be assessed against published benchmarks - deployers must require vendor evidence on their specific cases.
 
 **Formal Definition**
 
 ```
-Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level (first character), category (first 2 characters), sub-category (3 characters), full code. Report per clinical chapter because procedure complexity varies dramatically (codes in Chapter V — Nervous System — are harder than Chapter W — Bones & Joints).
+Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level (first character), category (first 2 characters), sub-category (3 characters), full code. Report per clinical chapter because procedure complexity varies dramatically (codes in Chapter V - Nervous System - are harder than Chapter W - Bones & Joints).
 ```
 
 **Limitations**
@@ -578,17 +578,17 @@ Precision, Recall, F1 at OPCS-4 code level. Specificity breakdown: chapter level
 
 **Novel Thinking / Implications**
 
-> 💡 The absence of any published OPCS-4 AI benchmark is itself a diagnostic finding about the state of the field. Ambient scribe vendors focused on the US market optimise for ICD-10 and CPT; NHS-specific standards are an afterthought. This is a strong argument for NHS England to commission a national OPCS-4 benchmark dataset as infrastructure investment — without it, NHS secondary care AVT deployment is operating without evidence.
+> 💡 The absence of any published OPCS-4 AI benchmark is itself a diagnostic finding about the state of the field. Ambient scribe vendors focused on the US market optimise for ICD-10 and CPT; NHS-specific standards are an afterthought. This is a strong argument for NHS England to commission a national OPCS-4 benchmark dataset as infrastructure investment - without it, NHS secondary care AVT deployment is operating without evidence.
 
 -----
 
 ### 🟡 dm+d Medication Coding Accuracy
 
-Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications discussed in consultations. NHS-specific — dm+d is the mandatory NHS medication terminology, maintained by NHS BSA, and essential for medication safety, interoperability, and prescribing workflows. **Like OPCS-4, no published AI benchmarks exist for dm+d coding**.
+Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications discussed in consultations. NHS-specific - dm+d is the mandatory NHS medication terminology, maintained by NHS BSA, and essential for medication safety, interoperability, and prescribing workflows. **Like OPCS-4, no published AI benchmarks exist for dm+d coding**.
 
 |Dimension              |Value                                                     |
 |-----------------------|----------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                    |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                    |
 |**Measurement Cadence**|Periodic audit                                            |
 |**Pipeline Layer**     |Clinical Coding                                           |
 |**Assurance Question** |Safety                                                    |
@@ -601,7 +601,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 
 **Why this tier?**
 
-> Safety-critical for any AVT writing medication data back to the EPR. Should be a procurement requirement with vendor attestation. Monitoring required as dm+d is updated quarterly — a model trained against an old version will systematically fail on newer medications.
+> Safety-critical for any AVT writing medication data back to the EPR. Should be a procurement requirement with vendor attestation. Monitoring required as dm+d is updated quarterly - a model trained against an old version will systematically fail on newer medications.
 
 **Formal Definition**
 
@@ -615,17 +615,17 @@ Per medication mention: correct mapping to dm+d VMP (Virtual Medicinal Product),
 
 **Novel Thinking / Implications**
 
-> 💡 dm+d is updated quarterly. Any AVT system with a static model is by definition accumulating vocabulary drift against the current standard. A system trained two years ago has approximately eight releases of drift. Currency should be a contractual requirement — vendors should commit to a maximum acceptable drift against the live dm+d.
+> 💡 dm+d is updated quarterly. Any AVT system with a static model is by definition accumulating vocabulary drift against the current standard. A system trained two years ago has approximately eight releases of drift. Currency should be a contractual requirement - vendors should commit to a maximum acceptable drift against the live dm+d.
 
 -----
 
 ### 🟢 Code Hallucination Rate
 
-Rate at which the system generates codes that do not exist in the target code set. Distinct from all other coding error metrics because a non-existent code is not a "wrong" code — it is a structural error. The code looks valid syntactically but resolves to nothing. The Hybrid-Code v2 framework explicitly targeted "zero-hallucination coding" because this failure mode is both detectable and unambiguously wrong.
+Rate at which the system generates codes that do not exist in the target code set. Distinct from all other coding error metrics because a non-existent code is not a "wrong" code - it is a structural error. The code looks valid syntactically but resolves to nothing. The Hybrid-Code v2 framework explicitly targeted "zero-hallucination coding" because this failure mode is both detectable and unambiguously wrong.
 
 |Dimension              |Value                                                |
 |-----------------------|-----------------------------------------------------|
-|**Priority Tier**      |🟢 Tier 1 — Minimum Viable                            |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                            |
 |**Measurement Cadence**|Continuous                                           |
 |**Pipeline Layer**     |Clinical Coding                                      |
 |**Assurance Question** |Safety                                               |
@@ -634,16 +634,16 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Responsible Actors** |Vendor, Deployer                                     |
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
-|**Source**             |Hybrid-Code v2 (arXiv 2512.23743) — neuro-symbolic verification approach|
+|**Source**             |Hybrid-Code v2 (arXiv 2512.23743) - neuro-symbolic verification approach|
 
 **Why this tier?**
 
-> Architecturally preventable failure mode — there is no reason a production system should generate non-existent codes. Should be a hard zero-tolerance metric validated pre-deployment and monitored continuously. Automated detection is trivial (lookup against the code set).
+> Architecturally preventable failure mode - there is no reason a production system should generate non-existent codes. Should be a hard zero-tolerance metric validated pre-deployment and monitored continuously. Automated detection is trivial (lookup against the code set).
 
 **Formal Definition**
 
 ```
-Code Hallucination Rate = |generated_codes_not_in_target_code_set| / |total_generated_codes|. Target: 0.0. Any non-zero value indicates architectural failure — the system should be constrained to generate only valid codes via lookup or constrained decoding. Report per code set (SNOMED, ICD, OPCS-4, dm+d) because constraint enforcement may vary.
+Code Hallucination Rate = |generated_codes_not_in_target_code_set| / |total_generated_codes|. Target: 0.0. Any non-zero value indicates architectural failure - the system should be constrained to generate only valid codes via lookup or constrained decoding. Report per code set (SNOMED, ICD, OPCS-4, dm+d) because constraint enforcement may vary.
 ```
 
 **Code: Code hallucination check**
@@ -667,11 +667,11 @@ def code_hallucination_rate(generated_codes, code_set):
 
 **Limitations**
 
-> Requires current version of the target code set for lookup. Code set updates may temporarily create false positives (newly valid codes that haven't propagated). Does not detect codes that exist but are clinically wrong — that's captured by SNOMED Code Accuracy.
+> Requires current version of the target code set for lookup. Code set updates may temporarily create false positives (newly valid codes that haven't propagated). Does not detect codes that exist but are clinically wrong - that's captured by SNOMED Code Accuracy.
 
 **Novel Thinking / Implications**
 
-> 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation — the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
+> 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation - the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
 -----
 
@@ -681,7 +681,7 @@ Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and pos
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                               |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                               |
 |**Measurement Cadence**|Continuous                                                                           |
 |**Pipeline Layer**     |Clinical Coding                                                                      |
 |**Assurance Question** |Safety                                                                               |
@@ -690,7 +690,7 @@ Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and pos
 |**Responsible Actors** |Regional (ICB), National Body                                                        |
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
-|**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) — documented 3.0→4.1 diagnoses/encounter post-AVT|
+|**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) - documented 3.0→4.1 diagnoses/encounter post-AVT|
 
 **Why this tier?**
 
@@ -718,7 +718,7 @@ Attribution of workload or tariff-relevant coding changes to AVT specifically, s
 
 |Dimension              |Value                                        |
 |-----------------------|---------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research               |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research               |
 |**Measurement Cadence**|Periodic audit                               |
 |**Pipeline Layer**     |Clinical Coding                              |
 |**Assurance Question** |Meta-evaluation                              |
@@ -741,11 +741,11 @@ Using difference-in-differences or synthetic control methodology: compare coding
 
 **Limitations**
 
-> Practice selection into AVT is not random — early adopters may differ systematically from non-adopters. Matching methodology is contested. Small sample sizes at practice level undermine statistical power.
+> Practice selection into AVT is not random - early adopters may differ systematically from non-adopters. Matching methodology is contested. Small sample sizes at practice level undermine statistical power.
 
 **Novel Thinking / Implications**
 
-> 💡 This is the metric that answers the governance question: is AVT making the coded data more accurate or more inflated? Without this attribution, every observed coding shift is ambiguous. National evaluation programmes are the only plausible venue for doing this properly — individual deployers cannot.
+> 💡 This is the metric that answers the governance question: is AVT making the coded data more accurate or more inflated? Without this attribution, every observed coding shift is ambiguous. National evaluation programmes are the only plausible venue for doing this properly - individual deployers cannot.
 
 -----
 
@@ -755,7 +755,7 @@ Whether AVT-driven changes in coding distribution are equitably spread across pa
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                |
 |**Measurement Cadence**|Periodic audit                                        |
 |**Pipeline Layer**     |Clinical Coding                                       |
 |**Assurance Question** |Fairness & Equity                                     |
@@ -782,7 +782,7 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 **Novel Thinking / Implications**
 
-> 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture — they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
+> 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
 -----
 
@@ -790,11 +790,11 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 ### 🟡 FHIR R4 Resource Conformance Rate
 
-Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats — but retention is not the same as profile conformance.
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats - but retention is not the same as profile conformance.
 
 |Dimension              |Value                                    |
 |-----------------------|-----------------------------------------|
-|**Priority Tier**      |🟡 Tier 2 — Recommended                   |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                   |
 |**Measurement Cadence**|Continuous                               |
 |**Pipeline Layer**     |EPR Write-back                           |
 |**Assurance Question** |Fidelity & Accuracy                      |
@@ -812,12 +812,12 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 **Formal Definition**
 
 ```
-For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) — failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
+For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) - failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
 ```
 
 **Limitations**
 
-> Conformance to a profile does not guarantee clinical correctness — a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
+> Conformance to a profile does not guarantee clinical correctness - a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
 
 **Novel Thinking / Implications**
 
@@ -831,7 +831,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 
 |Dimension              |Value                                     |
 |-----------------------|------------------------------------------|
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research            |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research            |
 |**Measurement Cadence**|Continuous                                |
 |**Pipeline Layer**     |EPR Write-back                            |
 |**Assurance Question** |Fidelity & Accuracy                       |
@@ -844,7 +844,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 
 **Why this tier?**
 
-> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms — context adjustment per the "Adapting to Local Context" section.
+> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms - context adjustment per the "Adapting to Local Context" section.
 
 **Formal Definition**
 

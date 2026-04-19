@@ -11,7 +11,7 @@ End-to-end: comparing original consultation audio directly against the final EPR
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-1 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -20,7 +20,7 @@ End-to-end: comparing original consultation audio directly against the final EPR
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
-| **Source** | Proposed as the ultimate AVT safety metric — captures cumulative pipeline effect |
+| **Source** | Proposed as the ultimate AVT safety metric - captures cumulative pipeline effect |
 
 **Why this tier?**
 
@@ -83,18 +83,18 @@ def source_to_record_concordance(
 
 **Novel Thinking / Implications**
 
-> 💡 This is the metric the entire field should be targeting but almost nobody measures. Every other metric is a proxy for this one. VeriFact gets close by checking against existing EHR, but source-to-record concordance checks against what was actually said — a fundamentally stronger test. A national benchmark programme could fund periodic SRC audits as the definitive AVT safety assessment.
+> 💡 This is the metric the entire field should be targeting but almost nobody measures. Every other metric is a proxy for this one. VeriFact gets close by checking against existing EHR, but source-to-record concordance checks against what was actually said - a fundamentally stronger test. A national benchmark programme could fund periodic SRC audits as the definitive AVT safety assessment.
 
 ---
 
 ### PI.E2E-2 🔵 Cumulative Information Yield
 
-The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories — so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
+The positive framing of source-to-record concordance: what proportion of the clinical information present in the source audio successfully survives the entire pipeline and appears in the final EPR record. Where Source-to-Record Concordance measures preservation rate (how much was preserved), Cumulative Information Yield measures the distributional yield across clinical categories - so it exposes systematic category bias (e.g. a system that yields 95% on medications but 60% on psychosocial content).
 
 |Dimension              |Value                                                                            |
 |-----------------------|---------------------------------------------------------------------------------|
 | **Reference** | PI.E2E-2 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                                   |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                                   |
 |**Measurement Cadence**|Periodic audit                                                                   |
 |**Pipeline Layer**     |End-to-End                                                                       |
 |**Assurance Question** |Safety                                                                           |
@@ -112,7 +112,7 @@ The positive framing of source-to-record concordance: what proportion of the cli
 **Formal Definition**
 
 ```
-For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite — the aggregate obscures category bias.
+For each clinical category c ∈ C = {medications, allergies, diagnoses, symptoms, plan, safety_netting, social_context, psychosocial, red_flags}: Yield(c) = |items_in_c_present_in_record| / |items_in_c_in_source|. Composite: Yield_weighted = Σ w_c × Yield(c), where w_c are clinical importance weights. Report per-category breakdown alongside composite - the aggregate obscures category bias.
 ```
 
 **Limitations**
@@ -121,7 +121,7 @@ For each clinical category c ∈ C = {medications, allergies, diagnoses, symptom
 
 **Novel Thinking / Implications**
 
-> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally — but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
+> 💡 The most common finding in ambient scribe evaluation is systematic yield bias toward clinical content the model recognises as "medical" (medications, symptoms, diagnoses) and away from content it treats as peripheral (social context, psychosocial factors, patient concerns that don't map to a code). This bias is invisible to concordance metrics that treat all clinical items equally - but it has direct consequences for patient-centred care and safeguarding. Per-category yield reporting makes the bias visible and actionable.
 
 ### PI.E2E-3 🔵 Error Propagation / Cascade Analysis
 
@@ -130,7 +130,7 @@ End-to-end: tracking how a single upstream error amplifies or gets corrected thr
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-3 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -139,7 +139,7 @@ End-to-end: tracking how a single upstream error amplifies or gets corrected thr
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — analogous to fault propagation analysis in safety engineering |
+| **Source** | Proposed - analogous to fault propagation analysis in safety engineering |
 
 **Why this tier?**
 
@@ -202,7 +202,7 @@ End-to-end per-item trace for highest-risk content: did this specific allergy su
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-4 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -211,7 +211,7 @@ End-to-end per-item trace for highest-risk content: did this specific allergy su
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
-| **Source** | Proposed — analogous to chain-of-custody in evidence management and traceability in safety-critical systems |
+| **Source** | Proposed - analogous to chain-of-custody in evidence management and traceability in safety-critical systems |
 
 **Why this tier?**
 
@@ -267,7 +267,7 @@ result = chain_of_custody(
 
 **Limitations**
 
-> Requires access to intermediate outputs (transcript, diarised transcript, summary, codes) — most vendors expose only the final note. Per-item tracing is manual without automation.
+> Requires access to intermediate outputs (transcript, diarised transcript, summary, codes) - most vendors expose only the final note. Per-item tracing is manual without automation.
 
 **Novel Thinking / Implications**
 
@@ -282,7 +282,7 @@ End-to-end: demographic performance gap measured at the final output, not just a
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-5 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Fairness & Equity |
@@ -291,7 +291,7 @@ End-to-end: demographic performance gap measured at the final output, not just a
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
-| **Source** | Proposed — extends demographic-disaggregated WER to end-to-end measurement |
+| **Source** | Proposed - extends demographic-disaggregated WER to end-to-end measurement |
 
 **Why this tier?**
 
@@ -315,12 +315,12 @@ For demographic group g: E2E_gap = Quality(g_majority) - Quality(g_minority) mea
 
 ### PI.E2E-6 🔵 Semantic Drift Accumulation
 
-End-to-end: measuring cumulative meaning transformation across stages. Each stage subtly transforms meaning — 'occasional chest tightness on stairs' → 'chest pain on exertion'. Each individual transformation may be defensible; the cumulative drift may not be.
+End-to-end: measuring cumulative meaning transformation across stages. Each stage subtly transforms meaning - 'occasional chest tightness on stairs' → 'chest pain on exertion'. Each individual transformation may be defensible; the cumulative drift may not be.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-6 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -329,7 +329,7 @@ End-to-end: measuring cumulative meaning transformation across stages. Each stag
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — inspired by signal processing concept of cumulative distortion |
+| **Source** | Proposed - inspired by signal processing concept of cumulative distortion |
 
 **Why this tier?**
 
@@ -384,7 +384,7 @@ def measure_semantic_drift(stage_texts: dict) -> dict:
 
 **Novel Thinking / Implications**
 
-> 💡 Not all drift is bad — 'occasional tightness going upstairs' → 'exertional chest pain' is appropriate medical abstraction. The question is whether the drift preserves clinical decision-relevance. A clinically-aware drift metric would weight drift on safety-critical elements higher than drift on contextual description.
+> 💡 Not all drift is bad - 'occasional tightness going upstairs' → 'exertional chest pain' is appropriate medical abstraction. The question is whether the drift preserves clinical decision-relevance. A clinically-aware drift metric would weight drift on safety-critical elements higher than drift on contextual description.
 
 ---
 
@@ -395,7 +395,7 @@ End-to-end: if you re-process the same audio, do you get the same output? Each s
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -404,7 +404,7 @@ End-to-end: if you re-process the same audio, do you get the same output? Each s
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — standard practice in safety-critical software testing but not yet applied to AVT pipelines |
+| **Source** | Proposed - standard practice in safety-critical software testing but not yet applied to AVT pipelines |
 
 **Why this tier?**
 
@@ -475,7 +475,7 @@ End-to-end: when an error appears in the final output, which stage introduced it
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-8 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Meta-evaluation |
@@ -484,7 +484,7 @@ End-to-end: when an error appears in the final output, which stage introduced it
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — analogous to root cause analysis in incident investigation |
+| **Source** | Proposed - analogous to root cause analysis in incident investigation |
 
 **Why this tier?**
 
@@ -513,7 +513,7 @@ End-to-end: does the final note support the same clinical decisions a clinician 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-9 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -522,7 +522,7 @@ End-to-end: does the final note support the same clinical decisions a clinician 
 | **Responsible Actors** | Academic, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
-| **Source** | Proposed — the ultimate validity test for clinical documentation |
+| **Source** | Proposed - the ultimate validity test for clinical documentation |
 
 **Why this tier?**
 
@@ -538,9 +538,9 @@ Present note to blinded clinician(s). Clinician makes clinical decisions (diagno
 
 > Extremely resource-intensive: requires blinded clinical decision-making from multiple clinicians. Inter-clinician variation in decision-making adds noise. Simulated decisions may not reflect real-world behaviour.
 
-**⚠️ Underspecification Warning (Tier B — conceptually essential, operationally impractical)**
+**⚠️ Underspecification Warning (Tier B - conceptually essential, operationally impractical)**
 
-> Clinical Decision Equivalence is conceptually the most important metric in the taxonomy for distal outcome validation — it directly tests whether AVT-generated notes support the same clinical decisions as direct observation, which is what AVT ultimately needs to do to be safe. But measurement methodology is extremely resource-intensive: blinded clinical decision-making from multiple clinicians per case, inter-clinician variation adding noise, simulated decision contexts differing from real-world behaviour under time pressure. No validated protocol exists. No threshold for "adequate equivalence" has been established. Best interpreted as a target for national or academic evaluation programmes rather than deployer-level assessment. When operationalised, the study design must specify: (a) number of clinicians per case and selection criteria; (b) blinding methodology and how information leakage is prevented; (c) decision categories assessed (diagnostic, therapeutic, safety-netting, follow-up); (d) agreement metric (kappa, per-category accuracy, weighted agreement); (e) clinical complexity stratification; (f) handling of inter-clinician disagreement in the ground-truth condition.
+> Clinical Decision Equivalence is conceptually the most important metric in the taxonomy for distal outcome validation - it directly tests whether AVT-generated notes support the same clinical decisions as direct observation, which is what AVT ultimately needs to do to be safe. But measurement methodology is extremely resource-intensive: blinded clinical decision-making from multiple clinicians per case, inter-clinician variation adding noise, simulated decision contexts differing from real-world behaviour under time pressure. No validated protocol exists. No threshold for "adequate equivalence" has been established. Best interpreted as a target for national or academic evaluation programmes rather than deployer-level assessment. When operationalised, the study design must specify: (a) number of clinicians per case and selection criteria; (b) blinding methodology and how information leakage is prevented; (c) decision categories assessed (diagnostic, therapeutic, safety-netting, follow-up); (d) agreement metric (kappa, per-category accuracy, weighted agreement); (e) clinical complexity stratification; (f) handling of inter-clinician disagreement in the ground-truth condition.
 
 **Novel Thinking / Implications**
 
@@ -550,12 +550,12 @@ Present note to blinded clinician(s). Clinician makes clinical decisions (diagno
 
 ### PI.E2E-10 🟡 Full-Pipeline Latency Budget
 
-End-to-end: total time from consultation end to note availability in EPR, broken down by stage. Not just ASR RTF — the full wait before a clinician can review.
+End-to-end: total time from consultation end to note availability in EPR, broken down by stage. Not just ASR RTF - the full wait before a clinician can review.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-10 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Operational |
@@ -564,11 +564,11 @@ End-to-end: total time from consultation end to note availability in EPR, broken
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed as operational metric — RTF alone doesn't capture full workflow impact |
+| **Source** | Proposed as operational metric - RTF alone doesn't capture full workflow impact |
 
 **Why this tier?**
 
-> Operational metric deployers can measure: time from consultation end to note availability. Directly affects review quality — if note arrives after next patient, review suffers.
+> Operational metric deployers can measure: time from consultation end to note availability. Directly affects review quality - if note arrives after next patient, review suffers.
 
 **Formal Definition**
 
@@ -588,12 +588,12 @@ L_total = Σ L_stage for stages ∈ {ASR, diarisation, summarisation, coding, wr
 
 ### PI.E2E-11 🟡 Pipeline Failure Recovery
 
-When one stage fails (e.g. diarisation crashes), what does the system produce? Graceful degradation vs catastrophic failure. Most metrics assume the pipeline runs to completion — but partial failures are common in production.
+When one stage fails (e.g. diarisation crashes), what does the system produce? Graceful degradation vs catastrophic failure. Most metrics assume the pipeline runs to completion - but partial failures are common in production.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-11 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
@@ -620,18 +620,18 @@ For each pipeline stage, simulate failure and assess: (1) Does the system produc
 
 **Novel Thinking / Implications**
 
-> 💡 The dangerous failure mode is silent degradation: the pipeline produces output that looks normal but is built on a failed component. A diarisation failure could cause all speech to be attributed to the clinician — producing a confident-looking note with completely wrong attribution. The clinician reviewing the note has no signal that anything went wrong. Pre-deployment testing must include controlled failure injection.
+> 💡 The dangerous failure mode is silent degradation: the pipeline produces output that looks normal but is built on a failed component. A diarisation failure could cause all speech to be attributed to the clinician - producing a confident-looking note with completely wrong attribution. The clinician reviewing the note has no signal that anything went wrong. Pre-deployment testing must include controlled failure injection.
 
 ---
 
 ### PI.E2E-12 🔵 Round-Trip Information Loss
 
-If the AVT-generated note were used to reconstruct the original consultation, how much would be lost? An information-theoretic complement to source-to-record concordance — measures total information preserved through the pipeline.
+If the AVT-generated note were used to reconstruct the original consultation, how much would be lost? An information-theoretic complement to source-to-record concordance - measures total information preserved through the pipeline.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | PI.E2E-12 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -654,11 +654,11 @@ Round-Trip Loss = 1 - I(audio; note) / H(audio), where I is mutual information a
 
 **Limitations**
 
-> Theoretical metric; practical measurement is approximate. Information loss is not always bad — appropriate medical abstraction is loss in the technical sense.
+> Theoretical metric; practical measurement is approximate. Information loss is not always bad - appropriate medical abstraction is loss in the technical sense.
 
 **Novel Thinking / Implications**
 
-> 💡 Different from source-to-record concordance because it asks about all information, not just clinical items. Includes contextual information that may matter for safeguarding, family dynamics, patient understanding — content that AVT systems systematically strip but that clinicians sometimes rely on.
+> 💡 Different from source-to-record concordance because it asks about all information, not just clinical items. Includes contextual information that may matter for safeguarding, family dynamics, patient understanding - content that AVT systems systematically strip but that clinicians sometimes rely on.
 
 ---
 
