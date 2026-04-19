@@ -16,6 +16,7 @@ site_dir: site
 
 theme:
   name: material
+  custom_dir: overrides
   features:
     - navigation.tabs
     - navigation.tabs.sticky
@@ -44,6 +45,9 @@ theme:
       toggle:
         icon: material/weather-sunny
         name: Light mode
+
+extra_css:
+  - stylesheets/extra.css
 
 plugins:
   - search

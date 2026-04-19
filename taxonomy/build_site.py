@@ -174,19 +174,49 @@ def rewrite_anchors(text: str, current_page: str) -> str:
 
 
 def promote_h2_to_h1(text: str) -> str:
-    """If the source starts with `## Title`, promote to `# Title` for the page h1.
-    MkDocs expects a single h1 per page; source files avoid h1 because they're
-    concatenated into a single monolithic doc."""
+    """Reshape a source file so MkDocs gets exactly one h1 at the top.
+
+    Group-file pattern:
+        # Part A — The Technical Pipeline
+        ## Audio Capture & Environment
+
+    We want the *group name* to be the h1 (so the sidebar, tab title, and
+    page heading all match the user's mental model of "I'm on the Audio
+    Capture page"), with the Part shown as a small italic kicker above it
+    so readers don't lose the parent-section context.
+
+    Non-group files (underscore-prefixed) start with a single `## Heading`
+    and just need that promoted to `# Heading`.
+    """
     lines = text.splitlines()
+    # Find first non-empty line
+    first_idx = None
     for i, line in enumerate(lines):
-        stripped = line.strip()
-        if not stripped:
-            continue
-        if stripped.startswith("## "):
-            lines[i] = "# " + stripped[3:]
+        if line.strip():
+            first_idx = i
             break
-        # If first non-empty line isn't ## or #, leave alone.
-        break
+    if first_idx is None:
+        return text
+
+    first = lines[first_idx].strip()
+    # Case A: group file — `# Part …` then later `## <Group>`
+    if first.startswith("# Part ") and " — " in first:
+        part_title = first[2:].strip()  # "Part A — The Technical Pipeline"
+        # Find the next `## ` heading
+        for j in range(first_idx + 1, len(lines)):
+            s = lines[j].strip()
+            if s.startswith("## ") and not s.startswith("### "):
+                group_title = s[3:].strip()
+                # Replace lines from first_idx..j (inclusive) with a kicker + h1
+                kicker = f"*{part_title}*"
+                new_head = [f"# {group_title}", "", kicker, ""]
+                lines = lines[:first_idx] + new_head + lines[j + 1:]
+                break
+        return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
+
+    # Case B: cross-cutting file starting with `## Heading` — promote to `# Heading`.
+    if first.startswith("## "):
+        lines[first_idx] = "# " + first[3:]
     return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
 
@@ -207,7 +237,10 @@ def main() -> None:
             text = link_tier1_quickref(text)
         if dst_rel == "gaps.md":
             text = _inject_roadmap_prelude(text)
+        if dst_rel == "contents.md":
+            text = _inject_contents_applicability_row(text)
         if dst_rel.startswith("groups/"):
+            text = _add_applicability_badges(text, dst_rel)
             text = _add_related_metrics_footers(text, dst_rel)
         if dst_rel == "index.md":
             # Root index page — replace the source h1 and the repeated
@@ -237,11 +270,24 @@ def main() -> None:
     # `mkdocs serve` shows the downloads as working links.
     (DOCS / "downloads.md").write_text(_downloads_page())
     _mirror_downloads()
+    _copy_stylesheets()
 
     # Cross-cut auto-generated pages (applicability / principle / theme).
     crosscut_count = build_crosscuts()
 
     print(f"Populated {DOCS.relative_to(REPO)} with {len(MAPPING) + 2 + crosscut_count} pages.")
+
+
+def _copy_stylesheets() -> None:
+    """Copy taxonomy/stylesheets/*.css into docs/stylesheets/.
+    docs/ is gitignored, so this has to run every build."""
+    src = ROOT / "stylesheets"
+    if not src.exists():
+        return
+    dest = DOCS / "stylesheets"
+    dest.mkdir(exist_ok=True)
+    for css in src.glob("*.css"):
+        shutil.copy2(css, dest / css.name)
 
 
 def _mirror_downloads() -> None:
@@ -539,6 +585,84 @@ def build_crosscuts() -> int:
     return total
 
 
+_APPLICABILITY_BADGES = {
+    "AVT-Specific":          ("🎯", "avt-specific.md"),
+    "AVT-Contextualised":    ("🔀", "avt-contextualised.md"),
+    "General Healthcare AI": ("🌐", "general.md"),
+}
+
+
+def _add_applicability_badges(text: str, current_page: str) -> str:
+    """Inject a compact applicability badge after each metric's dimensions
+    table on a group page. The badge is a single line:
+        **Applicability:** 🎯 [AVT-Specific](../crosscuts/by-applicability/avt-specific.md)
+    Inserted immediately after the closing row of the dimensions table (the
+    line before the next blank-line-separated section).
+    """
+    if not current_page.startswith("groups/"):
+        return text
+    applicability_idx = parse_src.parse_applicability()
+
+    # Split the doc into metric segments by ### Ref-ID heading (same regex
+    # as add_metric_anchors, after anchor injection).
+    heading_re = re.compile(
+        r"^(###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+[🟢🟡🔵]\s+.+?)\s+\{\s*#[a-z0-9-]+\s*\}\s*$"
+    )
+    lines = text.splitlines()
+
+    # Identify metric heading line numbers.
+    metric_bounds: list[tuple[int, int, str]] = []
+    indices = [i for i, line in enumerate(lines) if heading_re.match(line)]
+    for k, start in enumerate(indices):
+        end = indices[k + 1] if k + 1 < len(indices) else len(lines)
+        ref_id = heading_re.match(lines[start]).group(2)
+        metric_bounds.append((start, end, ref_id))
+
+    if not metric_bounds:
+        return text
+
+    # For each metric, find the end of its dimensions table (last `|` row
+    # before a non-`|` line), and insert the badge immediately below.
+    inserts: dict[int, str] = {}
+    for start, end, ref_id in metric_bounds:
+        label = applicability_idx.get(ref_id)
+        if label is None:
+            continue
+        badge = _APPLICABILITY_BADGES.get(label)
+        if badge is None:
+            continue
+        emoji, target = badge
+        # Walk from start+1 forward to find the dimensions table end.
+        table_end = None
+        in_table = False
+        for i in range(start + 1, end):
+            if lines[i].startswith("|"):
+                in_table = True
+                table_end = i
+            elif in_table and not lines[i].startswith("|"):
+                break
+        if table_end is None:
+            continue
+        # Build the badge line. From groups/<this>.md, crosscuts/by-applicability/<target>
+        # is reachable at ../crosscuts/by-applicability/<target>.
+        badge_md = (
+            f"\n**Applicability:** {emoji} [{label}](../crosscuts/by-applicability/{target})\n"
+        )
+        inserts[table_end + 1] = badge_md
+
+    if not inserts:
+        return text
+
+    out: list[str] = []
+    for i, line in enumerate(lines):
+        if i in inserts:
+            out.append(inserts[i])
+        out.append(line)
+    if len(lines) in inserts:
+        out.append(inserts[len(lines)])
+    return "\n".join(out)
+
+
 _RAI_MEMBERSHIP_CACHE: dict[str, list[tuple[str, str]]] | None = None
 
 
@@ -652,6 +776,33 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
     return "\n".join(out_lines)
 
 
+def _inject_contents_applicability_row(text: str) -> str:
+    """Inject a prominent applicability-filter row near the top of the
+    contents page so a reader can jump to AVT-Specific / AVT-Contextualised
+    / General Healthcare AI in one click."""
+    block = (
+        "\n"
+        "!!! tip \"Browse by applicability\"\n"
+        "    Jump straight to the metrics that match your scope:\n\n"
+        "    [:material-target: 48 AVT-Specific](crosscuts/by-applicability/avt-specific.md){ .md-button }\n"
+        "    [:material-shuffle-variant: 77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){ .md-button }\n"
+        "    [:material-earth: 89 General Healthcare AI](crosscuts/by-applicability/general.md){ .md-button }\n"
+        "\n"
+    )
+    # Insert after the h1 (first `# ` line) and any immediately following blank lines.
+    lines = text.splitlines()
+    insert_at = 0
+    for i, line in enumerate(lines):
+        if line.startswith("# "):
+            insert_at = i + 1
+            while insert_at < len(lines) and not lines[insert_at].strip():
+                insert_at += 1
+            break
+    return "\n".join(lines[:insert_at]) + "\n" + block + "\n".join(lines[insert_at:]) + (
+        "\n" if not text.endswith("\n") else ""
+    )
+
+
 def _inject_roadmap_prelude(text: str) -> str:
     """Insert a 'Near-term priorities' panel at the top of the gaps page,
     driven by parsed gap data (Tier 1 candidates + High-severity RAI gaps).
@@ -718,6 +869,11 @@ def _landing_page(header_body: str) -> str:
     gap_count = summary["gap_count"]
     return f"""# AVT Metrics Taxonomy
 
+!!! warning "Draft — not yet stakeholder-approved"
+    Shared openly for early feedback. Tier assignments, gap analysis, and
+    cross-references may change before public release. Treat as a working
+    document, not a settled standard.
+
 !!! info "v3.1 — {metric_count} metrics across {group_count} groups"
     A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology
     in NHS and comparable settings. Each metric carries a formal definition,
@@ -766,6 +922,17 @@ def _landing_page(header_body: str) -> str:
     policy lens.
 
     [Browse roadmap](gaps.md)
+
+-   :material-filter-variant:{{ .lg .middle }} **Browse by applicability**
+
+    ---
+
+    Quickly filter the catalogue by whether the metric is specific to
+    ambient voice, applies to any healthcare AI, or sits in between.
+
+    🎯 [48 AVT-Specific](crosscuts/by-applicability/avt-specific.md) ·
+    🔀 [77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md) ·
+    🌐 [89 General Healthcare AI](crosscuts/by-applicability/general.md)
 
 </div>
 
