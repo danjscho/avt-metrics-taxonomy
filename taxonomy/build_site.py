@@ -227,16 +227,22 @@ def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
 
     first = lines[first_idx].strip()
 
+    # For every group file, emit header in eyebrow / title / dek order:
+    #   *Part X - Name*    (kicker, styled as right-aligned eyebrow in CSS)
+    #   # Group Name
+    #   *Original intro*   (kept from source)
+    # This lets the H1 and its description read as one unit, with the part
+    # label as a small breadcrumb-style eyebrow above.
+
     # Case A: group file with explicit `# Part X - ...` heading.
     if first.startswith("# Part ") and " - " in first:
         part_title = first[2:].strip()
-        # Find the `## Group` heading.
         for j in range(first_idx + 1, len(lines)):
             s = lines[j].strip()
             if s.startswith("## ") and not s.startswith("### "):
                 group_title = s[3:].strip()
                 kicker = f"*{part_title}*"
-                new_head = [f"# {group_title}", "", kicker, ""]
+                new_head = [kicker, "", f"# {group_title}", ""]
                 lines = lines[:first_idx] + new_head + lines[j + 1 :]
                 break
         return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
@@ -248,7 +254,7 @@ def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
         if part_title is not None:
             group_title = first[3:].strip()
             kicker = f"*{part_title}*"
-            new_head = [f"# {group_title}", "", kicker, ""]
+            new_head = [kicker, "", f"# {group_title}", ""]
             lines = lines[:first_idx] + new_head + lines[first_idx + 1 :]
             return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
@@ -697,13 +703,33 @@ def _legend_block(how_to_use_link: str) -> str:
 
 
 def _insert_after_h1(text: str, block: str) -> str:
-    """Insert a block below the page header region: h1, plus any immediately
-    following italic paragraphs (used for the Part kicker and the group
-    intro on group pages). Keeps the legend below the page's
-    introductory prose so it doesn't interrupt the orientation."""
+    """Insert a block below the page's header region, which is:
+        [optional italic eyebrow/kicker paragraph]
+        # H1
+        [optional italic intro paragraph]
+
+    Positions the insertion after the final piece of that header so the
+    inserted block (the legend) lands below the orientation content
+    rather than interrupting it.
+    """
     lines = text.splitlines()
-    # Find h1
+
+    # Skip any leading eyebrow/kicker italic paragraph and its blanks
+    # before we look for the h1.
     i = 0
+    while i < len(lines) and not lines[i].strip():
+        i += 1
+    if (
+        i < len(lines)
+        and lines[i].startswith("*")
+        and lines[i].rstrip().endswith("*")
+        and not lines[i].startswith("# ")
+    ):
+        i += 1
+        while i < len(lines) and not lines[i].strip():
+            i += 1
+
+    # Find h1
     while i < len(lines) and not lines[i].startswith("# "):
         i += 1
     if i == len(lines):
@@ -712,8 +738,8 @@ def _insert_after_h1(text: str, block: str) -> str:
     i += 1
     while i < len(lines) and not lines[i].strip():
         i += 1
-    # Skip any number of single-line italic paragraphs (kicker + intro)
-    # followed by their trailing blank lines.
+    # Skip any number of single-line italic paragraphs (e.g. intro) and
+    # their trailing blank lines.
     while (
         i < len(lines)
         and lines[i].startswith("*")

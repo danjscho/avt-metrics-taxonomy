@@ -40,19 +40,30 @@
   background: var(--md-default-fg-color--lightest);
 }
 
-/* Part kicker under the h1 - make it small and tag-like so it reads as
- * breadcrumb context, not competing prose. */
-.md-content h1 + p > em:only-child {
-  display: inline-block;
-  font-style: normal;
-  font-size: 0.8em;
-  letter-spacing: 0.05em;
+/* Part kicker (eyebrow): a paragraph whose only content is an italic
+ * Part label, sitting as the first content element above the page h1.
+ * Renders right-aligned, uppercase, small-scale — magazine eyebrow style
+ * — so the h1 and its italic intro below read as one connected unit.
+ *
+ * Selector matches Material's article structure:
+ *   <article class="md-content__inner md-typeset"> > <p><em>Part ...</em></p>
+ */
+.md-typeset h1 {
+  margin-top: 0.2em;
+}
+.md-content__inner > p:first-of-type:has(> em:only-child) {
+  text-align: right;
+  margin: 0 0 -0.2em;
+  font-size: 0.75em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: var(--md-default-fg-color--light);
+}
+.md-content__inner > p:first-of-type:has(> em:only-child) > em {
+  font-style: normal;
   background: var(--md-default-fg-color--lightest);
   padding: 0.15em 0.6em;
-  border-radius: 0.2em;
-  margin-top: -0.5em;
+  border-radius: 0.25em;
 }
 
 /* Applicability badge - one-line callout under each metric's dimensions
