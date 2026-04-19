@@ -260,6 +260,10 @@ def main() -> None:
             text = _landing_page(promoted)
         else:
             text = promote_h2_to_h1(text)
+            # Icon legend collapsible — lives on pages where tier + cadence
+            # emoji appear densely; injected after promote_h2_to_h1 so the
+            # h1 and Part kicker are already in place on group pages.
+            text = inject_legend(text, dst_rel)
         dst.write_text(text)
 
     # Changelog at repo root is already Markdown - copy as-is.
@@ -636,6 +640,62 @@ _APPLICABILITY_BADGES = {
     "AVT-Contextualised": ("🔀", "avt-contextualised.md"),
     "General Healthcare AI": ("🌐", "general.md"),
 }
+
+
+def _legend_block(how_to_use_link: str) -> str:
+    return (
+        "\n"
+        "??? note \"Legend: tier and cadence icons\"\n"
+        "    **Priority tier** (leading dot in each metric heading):\n\n"
+        "    - 🟢 **Tier 1** - Minimum viable assurance (measurable today with existing tools)\n"
+        "    - 🟡 **Tier 2** - Recommended for any AVT deployment\n"
+        "    - 🔵 **Tier 3** - Advanced / research-grade\n\n"
+        "    **Measurement cadence** (used in the Tier 1 quick-reference bullets):\n\n"
+        "    - 🚪 **One-off gate** - measured once pre-deployment as an acceptance criterion\n"
+        "    - 📡 **Continuous** - automated, ongoing measurement during operational use\n"
+        "    - 🔄 **Periodic audit** - scheduled assessment (quarterly / annual)\n\n"
+        "    **Other flags:**\n\n"
+        "    - ⚠️ Metric carries an underspecification warning - see the full entry for measurement-science caveats\n\n"
+        f"    See [How to use]({how_to_use_link}) for the full definitions.\n"
+        "\n"
+    )
+
+
+def _insert_after_h1(text: str, block: str) -> str:
+    """Insert a block immediately after the page's h1 + its blank line, and
+    after any immediately following italic kicker paragraph (for group pages
+    where `promote_h2_to_h1` puts a Part kicker under the h1)."""
+    lines = text.splitlines()
+    # Find h1
+    i = 0
+    while i < len(lines) and not lines[i].startswith("# "):
+        i += 1
+    if i == len(lines):
+        return text  # no h1 found; leave alone
+    # Skip the h1 line and any blank
+    i += 1
+    while i < len(lines) and not lines[i].strip():
+        i += 1
+    # Skip a single kicker line of the form `*...*` plus following blanks
+    if i < len(lines) and lines[i].startswith("*") and lines[i].rstrip().endswith("*"):
+        i += 1
+        while i < len(lines) and not lines[i].strip():
+            i += 1
+    return "\n".join(lines[:i]) + "\n" + block + "\n".join(lines[i:]) + (
+        "\n" if not text.endswith("\n") else ""
+    )
+
+
+def inject_legend(text: str, current_page: str) -> str:
+    """Add a collapsible legend explaining tier and cadence icons to pages
+    where those icons appear densely (group pages + the Tier-1 quickref).
+    Uses a `???` collapsible admonition so it stays out of the way until a
+    reader needs it."""
+    if current_page.startswith("groups/"):
+        return _insert_after_h1(text, _legend_block("../how-to-use.md"))
+    if current_page == "tier-1-quick-reference.md":
+        return _insert_after_h1(text, _legend_block("how-to-use.md"))
+    return text
 
 
 def _add_applicability_badges(text: str, current_page: str) -> str:
