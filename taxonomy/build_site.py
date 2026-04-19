@@ -176,20 +176,44 @@ def rewrite_anchors(text: str, current_page: str) -> str:
     return _MD_LINK.sub(sub, text)
 
 
-def promote_h2_to_h1(text: str) -> str:
-    """Reshape a source file so MkDocs gets exactly one h1 at the top.
+# Hand-written Part titles keyed by part letter, used when a source file
+# doesn't carry its own `# Part X - ...` heading (only one file per part
+# in the monolithic source does). These match the monolithic-build's
+# Part separators so the site and MD-download stay consistent.
+PART_TITLES = {
+    "A": "Part A - The Technical Pipeline",
+    "B": "Part B - Pipeline Interactions",
+    "C": "Part C - The Human Layer",
+    "D": "Part D - Impact & Outcomes",
+    "E": "Part E - System Governance",
+    "F": "Part F - Evaluation Science",
+}
 
-    Group-file pattern:
-        # Part A - The Technical Pipeline
-        ## Audio Capture & Environment
 
-    We want the *group name* to be the h1 (so the sidebar, tab title, and
-    page heading all match the user's mental model of "I'm on the Audio
-    Capture page"), with the Part shown as a small italic kicker above it
-    so readers don't lose the parent-section context.
+def _part_title_for_group_file(src_rel: str) -> str | None:
+    """Look up the Part title for a source group file, via the parser's
+    canonical group list. Returns None for non-group files."""
+    info = parse_src.GROUP_FILES.get(src_rel)
+    if info is None:
+        return None
+    return PART_TITLES.get(info["part"])
 
-    Non-group files (underscore-prefixed) start with a single `## Heading`
-    and just need that promoted to `# Heading`.
+
+def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
+    """Reshape a source file so MkDocs gets exactly one h1 at the top,
+    with a consistent shape on every group page.
+
+    Group files have two source shapes:
+    - `# Part X - Name` then later `## Group` (the first file per part)
+    - `## Group` only (every other file in that part)
+
+    In both cases we want the rendered page to start identically:
+        # Group Name
+        *Part X - Name*     (italic kicker)
+        *Original intro*    (the group's italic intro from source)
+
+    Non-group files (underscore-prefixed cross-cutting pages) just have
+    their `## Heading` promoted to `# Heading`.
     """
     lines = text.splitlines()
     # Find first non-empty line
@@ -202,22 +226,33 @@ def promote_h2_to_h1(text: str) -> str:
         return text
 
     first = lines[first_idx].strip()
-    # Case A: group file - `# Part …` then later `## <Group>`
+
+    # Case A: group file with explicit `# Part X - ...` heading.
     if first.startswith("# Part ") and " - " in first:
-        part_title = first[2:].strip()  # "Part A - The Technical Pipeline"
-        # Find the next `## ` heading
+        part_title = first[2:].strip()
+        # Find the `## Group` heading.
         for j in range(first_idx + 1, len(lines)):
             s = lines[j].strip()
             if s.startswith("## ") and not s.startswith("### "):
                 group_title = s[3:].strip()
-                # Replace lines from first_idx..j (inclusive) with a kicker + h1
                 kicker = f"*{part_title}*"
                 new_head = [f"# {group_title}", "", kicker, ""]
                 lines = lines[:first_idx] + new_head + lines[j + 1 :]
                 break
         return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
-    # Case B: cross-cutting file starting with `## Heading` - promote to `# Heading`.
+    # Case B: group file without a Part heading - inject the kicker from
+    # the canonical Part title lookup so every group page starts the same.
+    if first.startswith("## ") and src_rel is not None:
+        part_title = _part_title_for_group_file(src_rel)
+        if part_title is not None:
+            group_title = first[3:].strip()
+            kicker = f"*{part_title}*"
+            new_head = [f"# {group_title}", "", kicker, ""]
+            lines = lines[:first_idx] + new_head + lines[first_idx + 1 :]
+            return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
+
+    # Case C: cross-cutting file starting with `## Heading` - promote to `# Heading`.
     if first.startswith("## "):
         lines[first_idx] = "# " + first[3:]
     return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
@@ -250,7 +285,7 @@ def main() -> None:
             # summary prose with a concise landing block; keep the source's
             # "Acknowledgements / Sources / Structure" content below the
             # new jumping-off section.
-            promoted = promote_h2_to_h1(text)
+            promoted = promote_h2_to_h1(text, src_rel)
             promoted_lines = promoted.splitlines()
             if promoted_lines and promoted_lines[0].startswith("# "):
                 promoted_lines = promoted_lines[1:]
@@ -259,7 +294,7 @@ def main() -> None:
             promoted = "\n".join(promoted_lines)
             text = _landing_page(promoted)
         else:
-            text = promote_h2_to_h1(text)
+            text = promote_h2_to_h1(text, src_rel)
             # Icon legend collapsible — lives on pages where tier + cadence
             # emoji appear densely; injected after promote_h2_to_h1 so the
             # h1 and Part kicker are already in place on group pages.
@@ -662,9 +697,10 @@ def _legend_block(how_to_use_link: str) -> str:
 
 
 def _insert_after_h1(text: str, block: str) -> str:
-    """Insert a block immediately after the page's h1 + its blank line, and
-    after any immediately following italic kicker paragraph (for group pages
-    where `promote_h2_to_h1` puts a Part kicker under the h1)."""
+    """Insert a block below the page header region: h1, plus any immediately
+    following italic paragraphs (used for the Part kicker and the group
+    intro on group pages). Keeps the legend below the page's
+    introductory prose so it doesn't interrupt the orientation."""
     lines = text.splitlines()
     # Find h1
     i = 0
@@ -676,8 +712,13 @@ def _insert_after_h1(text: str, block: str) -> str:
     i += 1
     while i < len(lines) and not lines[i].strip():
         i += 1
-    # Skip a single kicker line of the form `*...*` plus following blanks
-    if i < len(lines) and lines[i].startswith("*") and lines[i].rstrip().endswith("*"):
+    # Skip any number of single-line italic paragraphs (kicker + intro)
+    # followed by their trailing blank lines.
+    while (
+        i < len(lines)
+        and lines[i].startswith("*")
+        and lines[i].rstrip().endswith("*")
+    ):
         i += 1
         while i < len(lines) and not lines[i].strip():
             i += 1
