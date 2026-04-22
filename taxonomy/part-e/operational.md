@@ -6,12 +6,12 @@
 
 ### GV.OP-1 🟢 Documentation Time per Consultation
 
-Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless — pair with quality.
+Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless - pair with quality.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -54,7 +54,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -81,7 +81,7 @@ Pyjama Time = time spent in EHR outside of scheduled clinic hours per clinician 
 
 **Novel Thinking / Implications**
 
-> 💡 This is the metric that catches the most common AVT failure mode for clinician wellbeing: the system reduces typing time during consultations but creates after-hours review work that the clinician was not previously doing. In-consultation time savings are visible and marketable; after-hours burden is invisible and unpaid. A deployment that shows documentation time saved per consultation should also show pyjama time decreased — if only the first moves, the value proposition is shifted burden, not reduced burden.
+> 💡 This is the metric that catches the most common AVT failure mode for clinician wellbeing: the system reduces typing time during consultations but creates after-hours review work that the clinician was not previously doing. In-consultation time savings are visible and marketable; after-hours burden is invisible and unpaid. A deployment that shows documentation time saved per consultation should also show pyjama time decreased - if only the first moves, the value proposition is shifted burden, not reduced burden.
 
 ---
 
@@ -92,7 +92,7 @@ Elapsed time from consultation end to note availability in the EPR, measured fro
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-3 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Operational |
@@ -110,7 +110,7 @@ Elapsed time from consultation end to note availability in the EPR, measured fro
 **Formal Definition**
 
 ```
-Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribution: median, P50, P90, P99. Clinically relevant threshold: proportion of notes available before the start of the next patient's consultation. A turnaround time distribution with long tails creates selective review failure — the notes most delayed are the ones most likely to be approved without meaningful review.
+Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribution: median, P50, P90, P99. Clinically relevant threshold: proportion of notes available before the start of the next patient's consultation. A turnaround time distribution with long tails creates selective review failure - the notes most delayed are the ones most likely to be approved without meaningful review.
 ```
 
 **Limitations**
@@ -119,18 +119,18 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 
 **Novel Thinking / Implications**
 
-> 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else — queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
+> 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else - queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
 
 ---
 
 ### GV.OP-4 🟡 Documentation Workload Composite
 
-Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components — which is the number that matters for the value proposition and clinician wellbeing assessment.
+Composite metric grouping Documentation Time per Consultation, Pyjama Time, and Note Turnaround Time into a single workload assessment. The family-level metric for documentation burden. Reports change in total workload rather than change in individual components - which is the number that matters for the value proposition and clinician wellbeing assessment.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-4 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -153,7 +153,7 @@ Workload Composite = w1 × Documentation_Time + w2 × Pyjama_Time + w3 × Verifi
 
 **Limitations**
 
-> Aggregation hides component-level patterns. A composite that stays stable may mask simultaneous decrease in documentation time and increase in pyjama time — the stable number obscures the pattern shift. Report composite alongside components, not instead of them.
+> Aggregation hides component-level patterns. A composite that stays stable may mask simultaneous decrease in documentation time and increase in pyjama time - the stable number obscures the pattern shift. Report composite alongside components, not instead of them.
 
 **Novel Thinking / Implications**
 
@@ -168,7 +168,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-5 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -202,7 +202,7 @@ Who uses AVT and for which consultations. Selective patterns reveal practical sy
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-6 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -240,7 +240,7 @@ Total cost including licence, infrastructure, training, and governance overhead.
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -267,7 +267,7 @@ Total Cost = vendor_licence + infrastructure + training_time + governance_overhe
 
 **Novel Thinking / Implications**
 
-> 💡 Vendor quotes typically include licence cost only. The full cost of operating AVT includes substantial governance overhead — CSO time, training, audit, incident response. Practices that compute true cost per consultation often find the value proposition is much weaker than vendor materials suggest.
+> 💡 Vendor quotes typically include licence cost only. The full cost of operating AVT includes substantial governance overhead - CSO time, training, audit, incident response. Practices that compute true cost per consultation often find the value proposition is much weaker than vendor materials suggest.
 
 ---
 
@@ -278,7 +278,7 @@ Clinician and admin time spent on AVT-related tasks: template updates, error rep
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-8 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -316,7 +316,7 @@ Initial and refresher training hours required per clinician. Affects both adopti
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.OP-9 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |

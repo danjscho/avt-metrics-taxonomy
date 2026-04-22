@@ -18,38 +18,71 @@ ROOT = pathlib.Path(__file__).parent
 # Part directory -> expected reference-ID prefix(es) used by metrics in that dir.
 # Prefixes are observed from actual source; any mismatch is a violation.
 GROUP_FILES = {
-    "part-a/audio-capture.md":                 {"prefix": "TP.AC",  "label": "Audio Capture & Environment"},
-    "part-a/asr-transcription.md":             {"prefix": "TP.ASR", "label": "ASR / Transcription"},
-    "part-a/diarisation.md":                   {"prefix": "TP.DI",  "label": "Diarisation"},
-    "part-a/summarisation-nlp.md":             {"prefix": "TP.SN",  "label": "Summarisation & NLP"},
-    "part-a/clinical-coding.md":               {"prefix": "TP.CC",  "label": "Clinical Coding"},
-    "part-a/epr-write-back.md":                {"prefix": "TP.WB",  "label": "EPR Write-back"},
-    "part-b/partial-pipeline.md":              {"prefix": "PI.PP",  "label": "Partial Pipeline"},
-    "part-b/end-to-end-pipeline.md":           {"prefix": "PI.E2E", "label": "End-to-End Pipeline"},
-    "part-c/human-factors-workflow.md":        {"prefix": "HL.HF",  "label": "Human Factors & Workflow"},
-    "part-d/patient-experience.md":            {"prefix": "IO.PX",  "label": "Patient Experience"},
-    "part-d/fairness-equity.md":               {"prefix": "IO.FE",  "label": "Fairness & Equity"},
-    "part-e/safety-governance.md":             {"prefix": "GV.SG",  "label": "Safety & Governance"},
-    "part-e/nhs-compliance-regulatory.md":     {"prefix": "GV.CR",  "label": "NHS Compliance & Regulatory"},
-    "part-e/security-adversarial-robustness.md": {"prefix": "GV.SC", "label": "Security & Adversarial Robustness"},
-    "part-e/privacy-data-governance.md":       {"prefix": "GV.PD",  "label": "Privacy & Data Governance"},
-    "part-e/operational.md":                   {"prefix": "GV.OP",  "label": "Operational"},
-    "part-e/environmental-sustainability.md":  {"prefix": "GV.EN",  "label": "Environmental & Sustainability"},
-    "part-e/training-competency.md":           {"prefix": "GV.TC",  "label": "Training & Competency"},
-    "part-e/vendor-transparency-contractual.md": {"prefix": "GV.VT", "label": "Vendor Transparency & Contractual"},
-    "part-f/meta-evaluation.md":               {"prefix": "ES.ME",  "label": "Meta-Evaluation"},
+    "part-a/audio-capture.md": {
+        "prefix": "TP.AC",
+        "label": "Audio Capture & Environment",
+    },
+    "part-a/asr-transcription.md": {"prefix": "TP.ASR", "label": "ASR / Transcription"},
+    "part-a/diarisation.md": {"prefix": "TP.DI", "label": "Diarisation"},
+    "part-a/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
+    "part-a/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
+    "part-a/epr-write-back.md": {"prefix": "TP.WB", "label": "EPR Write-back"},
+    "part-b/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
+    "part-b/end-to-end-pipeline.md": {
+        "prefix": "PI.E2E",
+        "label": "End-to-End Pipeline",
+    },
+    "part-c/human-factors-workflow.md": {
+        "prefix": "HL.HF",
+        "label": "Human Factors & Workflow",
+    },
+    "part-d/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
+    "part-d/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
+    "part-e/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
+    "part-e/nhs-compliance-regulatory.md": {
+        "prefix": "GV.CR",
+        "label": "NHS Compliance & Regulatory",
+    },
+    "part-e/security-adversarial-robustness.md": {
+        "prefix": "GV.SC",
+        "label": "Security & Adversarial Robustness",
+    },
+    "part-e/privacy-data-governance.md": {
+        "prefix": "GV.PD",
+        "label": "Privacy & Data Governance",
+    },
+    "part-e/operational.md": {"prefix": "GV.OP", "label": "Operational"},
+    "part-e/environmental-sustainability.md": {
+        "prefix": "GV.EN",
+        "label": "Environmental & Sustainability",
+    },
+    "part-e/training-competency.md": {
+        "prefix": "GV.TC",
+        "label": "Training & Competency",
+    },
+    "part-e/vendor-transparency-contractual.md": {
+        "prefix": "GV.VT",
+        "label": "Vendor Transparency & Contractual",
+    },
+    "part-f/meta-evaluation.md": {"prefix": "ES.ME", "label": "Meta-Evaluation"},
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
 EXPECTED_TIER_TOTALS = {1: 43, 2: 92, 3: 79}
-EXPECTED_APPLICABILITY = {"AVT-Specific": 48, "AVT-Contextualised": 77, "General Healthcare AI": 89}
+EXPECTED_APPLICABILITY = {
+    "AVT-Specific": 48,
+    "AVT-Contextualised": 77,
+    "General Healthcare AI": 89,
+}
 EXPECTED_TOTAL = 214
 
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 METRIC_HEADING = re.compile(
     r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+([🟢🟡🔵])\s+(.+?)\s*$"
 )
-REF_ROW = re.compile(r"^\|\s*\*\*Reference\*\*\s*\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s*\|")
+REF_ROW = re.compile(
+    r"^\|\s*\*\*Reference\*\*\s*\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s*\|"
+)
 TIER_ROW = re.compile(r"^\|\s*\*\*Priority Tier\*\*\s*\|\s*([🟢🟡🔵])\s*Tier\s*(\d)")
 
 # Dimension rows we expect in every metric table (8 core dimensions; "Reference" and optional extras are separate).
@@ -59,8 +92,8 @@ REQUIRED_DIMENSIONS = [
     "Pipeline Layer",
     "Assurance Question",
     "Measurement Method",
-    "Lifecycle Phase",      # may appear as "Lifecycle Phase" or "Lifecycle Phases"
-    "Responsible Actor",    # may appear as "Responsible Actor" or "Responsible Actors"
+    "Lifecycle Phase",  # may appear as "Lifecycle Phase" or "Lifecycle Phases"
+    "Responsible Actor",  # may appear as "Responsible Actor" or "Responsible Actors"
     "Maturity",
 ]
 
@@ -125,35 +158,66 @@ def parse_group_file(rel_path: str) -> tuple[list[Metric], list[Finding]]:
 
         # Checks
         if ref_in_table is None:
-            findings.append(Finding("ERROR", "missing-reference-row",
-                                    f"metric {ref_id} has no **Reference** row in its dimension table",
-                                    f"{rel_path}:{heading_line}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-reference-row",
+                    f"metric {ref_id} has no **Reference** row in its dimension table",
+                    f"{rel_path}:{heading_line}",
+                )
+            )
         elif ref_in_table != ref_id:
-            findings.append(Finding("ERROR", "reference-mismatch",
-                                    f"heading says {ref_id} but table says {ref_in_table}",
-                                    f"{rel_path}:{heading_line}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "reference-mismatch",
+                    f"heading says {ref_id} but table says {ref_in_table}",
+                    f"{rel_path}:{heading_line}",
+                )
+            )
 
         if tier_in_table is None:
-            findings.append(Finding("ERROR", "missing-tier-row",
-                                    f"metric {ref_id} has no **Priority Tier** row",
-                                    f"{rel_path}:{heading_line}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-tier-row",
+                    f"metric {ref_id} has no **Priority Tier** row",
+                    f"{rel_path}:{heading_line}",
+                )
+            )
         elif tier_in_table != tier_from_icon:
-            findings.append(Finding("ERROR", "tier-mismatch",
-                                    f"heading icon says Tier {tier_from_icon} but table says Tier {tier_in_table}",
-                                    f"{rel_path}:{heading_line}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "tier-mismatch",
+                    f"heading icon says Tier {tier_from_icon} but table says Tier {tier_in_table}",
+                    f"{rel_path}:{heading_line}",
+                )
+            )
 
         # Check dimension presence (allow plural variants)
         for dim in REQUIRED_DIMENSIONS:
             variants = [dim, dim + "s"]  # crude plural
             if not any(v in dims for v in variants):
-                findings.append(Finding("WARN", "missing-dimension",
-                                        f"metric {ref_id} missing dimension '{dim}'",
-                                        f"{rel_path}:{heading_line}"))
+                findings.append(
+                    Finding(
+                        "WARN",
+                        "missing-dimension",
+                        f"metric {ref_id} missing dimension '{dim}'",
+                        f"{rel_path}:{heading_line}",
+                    )
+                )
 
-        metrics.append(Metric(
-            ref_id=ref_id, name=name, tier=tier_from_icon,
-            file=rel_path, line=heading_line, dimensions=dims,
-        ))
+        metrics.append(
+            Metric(
+                ref_id=ref_id,
+                name=name,
+                tier=tier_from_icon,
+                file=rel_path,
+                line=heading_line,
+                dimensions=dims,
+            )
+        )
         i = j
 
     return metrics, findings
@@ -165,10 +229,14 @@ def check_prefixes(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
         prefix = expected["prefix"]
         for m in metrics_by_file.get(rel_path, []):
             if not m.ref_id.startswith(prefix + "-"):
-                findings.append(Finding(
-                    "ERROR", "prefix-mismatch",
-                    f"metric {m.ref_id} in {rel_path} does not start with expected prefix {prefix}-",
-                    f"{rel_path}:{m.line}"))
+                findings.append(
+                    Finding(
+                        "ERROR",
+                        "prefix-mismatch",
+                        f"metric {m.ref_id} in {rel_path} does not start with expected prefix {prefix}-",
+                        f"{rel_path}:{m.line}",
+                    )
+                )
     return findings
 
 
@@ -178,7 +246,9 @@ def check_numbering(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
         prefix = GROUP_FILES[rel_path]["prefix"]
         nums_seen = []
         for m in metrics:
-            mnum = re.match(rf"^{re.escape(prefix)}-(\d+)$", m.ref_id)  # prefix is literal, e.g. PI.E2E
+            mnum = re.match(
+                rf"^{re.escape(prefix)}-(\d+)$", m.ref_id
+            )  # prefix is literal, e.g. PI.E2E
             if not mnum:
                 continue
             nums_seen.append((int(mnum.group(1)), m))
@@ -187,19 +257,27 @@ def check_numbering(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
         for num, count in counts.items():
             if count > 1:
                 locs = [f"{mm.file}:{mm.line}" for n, mm in nums_seen if n == num]
-                findings.append(Finding(
-                    "ERROR", "duplicate-id",
-                    f"{prefix}-{num} appears {count} times",
-                    "; ".join(locs)))
+                findings.append(
+                    Finding(
+                        "ERROR",
+                        "duplicate-id",
+                        f"{prefix}-{num} appears {count} times",
+                        "; ".join(locs),
+                    )
+                )
         # Gaps
         if nums_seen:
             expected = set(range(1, max(n for n, _ in nums_seen) + 1))
             actual = set(n for n, _ in nums_seen)
             for gap in sorted(expected - actual):
-                findings.append(Finding(
-                    "WARN", "numbering-gap",
-                    f"{prefix}-{gap} is missing (numbering not contiguous)",
-                    rel_path))
+                findings.append(
+                    Finding(
+                        "WARN",
+                        "numbering-gap",
+                        f"{prefix}-{gap} is missing (numbering not contiguous)",
+                        rel_path,
+                    )
+                )
     return findings
 
 
@@ -209,15 +287,23 @@ def check_tier_totals(all_metrics: list[Metric]) -> list[Finding]:
     for tier, expected in EXPECTED_TIER_TOTALS.items():
         actual = counts.get(tier, 0)
         if actual != expected:
-            findings.append(Finding(
-                "ERROR", "tier-total",
-                f"Tier {tier}: expected {expected}, found {actual}",
-                "_summary.md declares"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "tier-total",
+                    f"Tier {tier}: expected {expected}, found {actual}",
+                    "_summary.md declares",
+                )
+            )
     total = sum(counts.values())
     if total != EXPECTED_TOTAL:
-        findings.append(Finding(
-            "ERROR", "metric-total",
-            f"expected {EXPECTED_TOTAL} metrics total, found {total}"))
+        findings.append(
+            Finding(
+                "ERROR",
+                "metric-total",
+                f"expected {EXPECTED_TOTAL} metrics total, found {total}",
+            )
+        )
     return findings
 
 
@@ -250,8 +336,8 @@ def check_see_also_resolves(all_metrics: list[Metric]) -> list[Finding]:
             if not mm:
                 continue
             body = mm.group(1)
-            # Split on the em-dash boundary — everything before em-dash is the list of metric names.
-            head = re.split(r"\s[—–-]\s", body, maxsplit=1)[0]
+            # Split on the em-dash boundary - everything before em-dash is the list of metric names.
+            head = re.split(r"\s[-–-]\s", body, maxsplit=1)[0]
             # Split metric names by comma.
             candidates = [c.strip() for c in head.split(",") if c.strip()]
             for cand in candidates:
@@ -269,10 +355,14 @@ def check_see_also_resolves(all_metrics: list[Metric]) -> list[Finding]:
                 abbrs = re.findall(r"\(([^)]+)\)", cand)
                 if any(a.strip() in abbrev_index for a in abbrs):
                     continue
-                findings.append(Finding(
-                    "WARN", "unresolved-see-also",
-                    f"'{cand}' does not match any known metric name",
-                    f"{rel_path}:{lineno}"))
+                findings.append(
+                    Finding(
+                        "WARN",
+                        "unresolved-see-also",
+                        f"'{cand}' does not match any known metric name",
+                        f"{rel_path}:{lineno}",
+                    )
+                )
     return findings
 
 
@@ -284,17 +374,32 @@ def check_applicability_totals() -> list[Finding]:
     for label, expected in EXPECTED_APPLICABILITY.items():
         m = re.search(rf"\|\s*{re.escape(label)}\s*\|\s*(\d+)\s*\|", text)
         if not m:
-            findings.append(Finding("WARN", "applicability-missing",
-                                    f"could not find '{label}' count row in _applicability.md"))
+            findings.append(
+                Finding(
+                    "WARN",
+                    "applicability-missing",
+                    f"could not find '{label}' count row in _applicability.md",
+                )
+            )
             continue
         actual = int(m.group(1))
         if actual != expected:
-            findings.append(Finding("ERROR", "applicability-total",
-                                    f"{label}: expected {expected}, _applicability.md says {actual}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "applicability-total",
+                    f"{label}: expected {expected}, _applicability.md says {actual}",
+                )
+            )
     total = sum(EXPECTED_APPLICABILITY.values())
     if total != EXPECTED_TOTAL:
-        findings.append(Finding("ERROR", "applicability-sum",
-                                f"applicability counts sum to {total}, expected {EXPECTED_TOTAL}"))
+        findings.append(
+            Finding(
+                "ERROR",
+                "applicability-sum",
+                f"applicability counts sum to {total}, expected {EXPECTED_TOTAL}",
+            )
+        )
     return findings
 
 
@@ -334,25 +439,37 @@ def check_tier1_quickref(all_metrics: list[Metric]) -> list[Finding]:
     for n in set(all_listed_names):
         m = name_to_metric.get(n) or base_index.get(n)
         if m is None:
-            findings.append(Finding(
-                "WARN", "tier1-unknown-metric",
-                f"quick-reference lists '{n}' but no source metric has that name",
-                "_tier-1-quick-reference.md"))
+            findings.append(
+                Finding(
+                    "WARN",
+                    "tier1-unknown-metric",
+                    f"quick-reference lists '{n}' but no source metric has that name",
+                    "_tier-1-quick-reference.md",
+                )
+            )
             continue
         if m.tier != 1:
-            findings.append(Finding(
-                "ERROR", "tier1-drift",
-                f"'{n}' is listed in Tier 1 quick reference but source has it as Tier {m.tier}",
-                f"{m.file}:{m.line}"))
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "tier1-drift",
+                    f"'{n}' is listed in Tier 1 quick reference but source has it as Tier {m.tier}",
+                    f"{m.file}:{m.line}",
+                )
+            )
 
     # Duplicates ONLY within a single actor subsection
     for actor, names in per_actor_names.items():
         dupes = [n for n, c in Counter(names).items() if c > 1]
         for d in dupes:
-            findings.append(Finding(
-                "WARN", "tier1-duplicate-in-actor",
-                f"'{d}' appears more than once under actor '{actor}'",
-                "_tier-1-quick-reference.md"))
+            findings.append(
+                Finding(
+                    "WARN",
+                    "tier1-duplicate-in-actor",
+                    f"'{d}' appears more than once under actor '{actor}'",
+                    "_tier-1-quick-reference.md",
+                )
+            )
     return findings
 
 
@@ -380,18 +497,22 @@ def main() -> int:
 
     print(f"Parsed {len(all_metrics)} metrics across {len(GROUP_FILES)} group files.")
     tier_counts = Counter(m.tier for m in all_metrics)
-    print(f"Tier counts: 🟢 {tier_counts[1]} · 🟡 {tier_counts[2]} · 🔵 {tier_counts[3]}")
+    print(
+        f"Tier counts: 🟢 {tier_counts[1]} · 🟡 {tier_counts[2]} · 🔵 {tier_counts[3]}"
+    )
     print()
 
     if not findings:
-        print("✅ AUDIT CLEAN — no findings.")
+        print("✅ AUDIT CLEAN - no findings.")
         return 0
 
     by_category: dict[str, list[Finding]] = defaultdict(list)
     for f in findings:
         by_category[f.category].append(f)
 
-    print(f"Found {len(errors)} errors, {len(warns)} warnings across {len(by_category)} categories.\n")
+    print(
+        f"Found {len(errors)} errors, {len(warns)} warnings across {len(by_category)} categories.\n"
+    )
     for cat, items in sorted(by_category.items()):
         print(f"── {cat} ({len(items)}) ──")
         for f in items[:50]:

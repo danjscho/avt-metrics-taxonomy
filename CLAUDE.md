@@ -4,11 +4,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this repo is
 
-A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems — ambient scribes and clinical AI documentation tools — in NHS and comparable healthcare settings. The repo is documentation-only (pure Markdown). There is no application code, no package manager, and no test framework.
+A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems - ambient scribes and clinical AI documentation tools - in NHS and comparable healthcare settings. The repo is documentation-only (pure Markdown). There is no application code, no package manager, and no test framework.
 
 The taxonomy organises metrics across pipeline layers (audio capture, ASR, diarisation, summarisation, clinical coding, EPR write-back) and cross-cutting axes (priority tier, measurement cadence, responsible actor, pipeline layer, assurance question, measurement method, maturity).
 
-**Current state:** v1 is a single monolithic file (`avt-metrics-taxonomy.md`, 151 metrics across 18 groups). The active work is a planned migration to a modular directory structure plus a v2 extension to 214 metrics across 20 groups. The execution blueprint is in `plan.md` — read it before starting any work.
+**Current state:** v1 is a single monolithic file (`avt-metrics-taxonomy.md`, 151 metrics across 18 groups). The active work is a planned migration to a modular directory structure plus a v2 extension to 214 metrics across 20 groups. The execution blueprint is in `plan.md` - read it before starting any work.
 
 ## Build
 
@@ -18,11 +18,11 @@ After the Phase 1 split is complete, the modular files live in `taxonomy/` and a
 python taxonomy/build.py
 ```
 
-Output: `avt-metrics-taxonomy.md` at the repo root. The script is idempotent — running it twice produces identical output.
+Output: `avt-metrics-taxonomy.md` at the repo root. The script is idempotent - running it twice produces identical output.
 
 **Build file order** (defined in `build.py`):
 1. `_header.md`, `_contents.md`, `_how-to-use.md`, `_summary.md`, `_tier-1-quick-reference.md`
-2. `part-a/` through `part-f/` — alphabetical filename order within each part directory
+2. `part-a/` through `part-f/` - alphabetical filename order within each part directory
 
 To verify a build: diff the output against the previous version. Phase 1 gate requires whitespace-only differences vs v1.
 
@@ -53,12 +53,12 @@ Underscore-prefixed files sort to the top and contain cross-cutting content (not
 Every metric entry follows this structure (in order):
 
 1. Tier icon + metric name heading
-2. Dimensions table — all 8 cross-cutting axes (Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phase, Responsible Actor, Maturity, Priority Tier, Measurement Cadence)
-3. **Why this tier?** — rationale for the priority assignment
-4. **Formal Definition** block — mathematical or operational definition
+2. Dimensions table - all 8 cross-cutting axes (Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phase, Responsible Actor, Maturity, Priority Tier, Measurement Cadence)
+3. **Why this tier?** - rationale for the priority assignment
+4. **Formal Definition** block - mathematical or operational definition
 5. **Limitations** section
 6. **Novel Thinking / Implications** section (may be absent on some entries)
-7. Code snippet (only where the batch files include one — do not add speculatively)
+7. Code snippet (only where the batch files include one - do not add speculatively)
 
 For sub-cluster groupings: an italic 1–2 sentence intro paragraph appears before the first metric in the sub-cluster.
 
@@ -78,11 +78,11 @@ Input artefact files in the repo root are the source of truth. Where `avt-metric
 
 Do not revisit these without explicit user instruction:
 
-- All v2 changes are **additive only** — no metric renames, no deletions, no reordering of existing sections
+- All v2 changes are **additive only** - no metric renames, no deletions, no reordering of existing sections
 - **NHS Compliance & Regulatory** is a new top-level group in Part E (not a sub-cluster of Safety & Governance)
 - **Environmental & Sustainability** is a new top-level group in Part E, all Tier 3, placed between Operational and Training & Competency
 - **Sub-clusters** are thematic groupings within an existing group (4 in scope). **Named metric families** are parent-construct groupings that may span sub-clusters (4 in scope). No other groupings should be invented.
-- The Pass 1 / Pass 2 overlap on ROUGE, BERTScore, M-WER, and CK-ER is resolved by keeping the family framing full and using trimmed warning versions — see `avt-cross-cutting-additions.md` "One small interaction to resolve during integration"
+- The Pass 1 / Pass 2 overlap on ROUGE, BERTScore, M-WER, and CK-ER is resolved by keeping the family framing full and using trimmed warning versions - see `avt-cross-cutting-additions.md` "One small interaction to resolve during integration"
 
 ## When to stop and ask the user
 

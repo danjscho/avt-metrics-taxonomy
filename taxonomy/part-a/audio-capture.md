@@ -1,4 +1,4 @@
-# Part A — The Technical Pipeline
+# Part A - The Technical Pipeline
 
 ## Audio Capture & Environment
 
@@ -8,12 +8,12 @@
 
 ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
-Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably — the system may continue producing confident-looking but degraded output without alerting the clinician.
+Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably - the system may continue producing confident-looking but degraded output without alerting the clinician.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-1 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -66,11 +66,11 @@ def estimate_snr(audio_path, sr=16000, frame_length=2048):
 
 **Limitations**
 
-> Simple energy-based SNR is a crude proxy — overlapping speech, reverberation, and non-stationary noise complicate measurement. Clinical environments have complex acoustic profiles.
+> Simple energy-based SNR is a crude proxy - overlapping speech, reverberation, and non-stationary noise complicate measurement. Clinical environments have complex acoustic profiles.
 
 **Novel Thinking / Implications**
 
-> 💡 The system should degrade gracefully: if SNR drops below threshold mid-consultation, the AVT should flag the note as potentially degraded rather than producing output with false confidence. This is an architectural requirement — the AVT should know when its own input quality is insufficient.
+> 💡 The system should degrade gracefully: if SNR drops below threshold mid-consultation, the AVT should flag the note as potentially degraded rather than producing output with false confidence. This is an architectural requirement - the AVT should know when its own input quality is insufficient.
 
 ---
 
@@ -81,7 +81,7 @@ Accuracy of detecting when speech is occurring vs silence/noise. VAD errors caus
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-2 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -108,7 +108,7 @@ VAD Precision = |true_speech_detected| / |all_detected_as_speech|. VAD Recall = 
 
 **Novel Thinking / Implications**
 
-> 💡 False activations are the underappreciated risk: if the VAD activates on background TV, corridor conversation, or equipment alarms, the ASR processes non-clinical audio. The summariser then has to decide what to do with transcribed noise — which may look like clinical content and get included in the note.
+> 💡 False activations are the underappreciated risk: if the VAD activates on background TV, corridor conversation, or equipment alarms, the ASR processes non-clinical audio. The summariser then has to decide what to do with transcribed noise - which may look like clinical content and get included in the note.
 
 ---
 
@@ -119,7 +119,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-3 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Safety |
@@ -128,7 +128,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — extends validated use envelope concept to acoustic conditions |
+| **Source** | Proposed - extends validated use envelope concept to acoustic conditions |
 
 **Why this tier?**
 
@@ -146,7 +146,7 @@ Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, sp
 
 **Novel Thinking / Implications**
 
-> 💡 This is the acoustic equivalent of the compound boundary risk model. A system validated with a lapel mic at 30cm in a quiet room may be deployed with a desk mic at 1.5m in a busy practice with a door open to the waiting room. Each acoustic parameter crossing the validated boundary compounds risk — and unlike clinical domain boundaries, acoustic boundaries are invisible to governance processes.
+> 💡 This is the acoustic equivalent of the compound boundary risk model. A system validated with a lapel mic at 30cm in a quiet room may be deployed with a desk mic at 1.5m in a busy practice with a door open to the waiting room. Each acoustic parameter crossing the validated boundary compounds risk - and unlike clinical domain boundaries, acoustic boundaries are invisible to governance processes.
 
 ---
 
@@ -157,7 +157,7 @@ Ability to detect and flag speech from individuals who have not consented to AVT
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-4 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Patient Experience |
@@ -180,11 +180,11 @@ Detection rate = |bystander_speech_detected| / |total_bystander_speech|. False p
 
 **Limitations**
 
-> Technically challenging — requires distinguishing expected speakers from unexpected ones without prior voice enrolment. Current diarisation can count speakers but cannot determine consent status.
+> Technically challenging - requires distinguishing expected speakers from unexpected ones without prior voice enrolment. Current diarisation can count speakers but cannot determine consent status.
 
 **Novel Thinking / Implications**
 
-> 💡 This sits at the intersection of audio capture, privacy, and consent. UK GDPR requires lawful basis for processing personal data — bystander speech captured and processed by AVT has no consent basis. The NHSE IG guidance (March 2026) flags this but provides no technical solution. A detection-and-redaction pipeline for non-consented speech would be architecturally significant.
+> 💡 This sits at the intersection of audio capture, privacy, and consent. UK GDPR requires lawful basis for processing personal data - bystander speech captured and processed by AVT has no consent basis. The NHSE IG guidance (March 2026) flags this but provides no technical solution. A detection-and-redaction pipeline for non-consented speech would be architecturally significant.
 
 ---
 
@@ -195,7 +195,7 @@ Verification that the capture hardware meets minimum specifications for the AVT 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-5 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Operational |
@@ -224,12 +224,12 @@ Hardware compliance checklist: (1) Frequency response 100Hz–8kHz minimum; (2) 
 
 ### TP.AC-6 🔵 Speaker Overlap Rate
 
-Proportion of audio time with simultaneous speech from multiple speakers. Common in real consultations (interruptions, agreement utterances, talking over) and most ASR/diarisation systems handle overlap poorly — often dropping content from one speaker entirely.
+Proportion of audio time with simultaneous speech from multiple speakers. Common in real consultations (interruptions, agreement utterances, talking over) and most ASR/diarisation systems handle overlap poorly - often dropping content from one speaker entirely.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-6 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -256,18 +256,18 @@ Overlap Rate = T_overlap / T_total_speech, where T_overlap is the duration where
 
 **Novel Thinking / Implications**
 
-> 💡 Real consultations have 5-15% overlap rates depending on style. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question — what conditions was the system validated under?
+> 💡 Real consultations have 5-15% overlap rates depending on style. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question - what conditions was the system validated under?
 
 ---
 
 ### TP.AC-7 🟡 Audio Clipping / Saturation Rate
 
-Frequency of audio level exceeding the dynamic range of the capture system, causing waveform distortion. Different from SNR — clipping is a hardware/gain issue that destroys content even in quiet environments. Commonly caused by mic too close, gain set too high, or sudden loud sounds.
+Frequency of audio level exceeding the dynamic range of the capture system, causing waveform distortion. Different from SNR - clipping is a hardware/gain issue that destroys content even in quiet environments. Commonly caused by mic too close, gain set too high, or sudden loud sounds.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -321,7 +321,7 @@ Whether audio meets minimum bit depth and sample rate specifications for the AVT
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-8 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
@@ -334,7 +334,7 @@ Whether audio meets minimum bit depth and sample rate specifications for the AVT
 
 **Why this tier?**
 
-> Automated check per encounter. Should be enforced architecturally — non-compliant audio should be flagged before processing.
+> Automated check per encounter. Should be enforced architecturally - non-compliant audio should be flagged before processing.
 
 **Formal Definition**
 
@@ -354,12 +354,12 @@ Compliance check per encounter: (1) sample_rate >= vendor_minimum (typically 16k
 
 ### TP.AC-9 🔵 Microphone Drift Detection
 
-Detection of gradual hardware degradation over time: declining battery performance, mechanical wear, positioning shift, accumulated debris, Bluetooth interference patterns. Different from initial validation — this catches problems that develop after deployment.
+Detection of gradual hardware degradation over time: declining battery performance, mechanical wear, positioning shift, accumulated debris, Bluetooth interference patterns. Different from initial validation - this catches problems that develop after deployment.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.AC-9 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Operational |
@@ -368,7 +368,7 @@ Detection of gradual hardware degradation over time: declining battery performan
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — extends hardware validation to ongoing monitoring |
+| **Source** | Proposed - extends hardware validation to ongoing monitoring |
 
 **Why this tier?**
 
@@ -386,7 +386,7 @@ Track baseline audio quality metrics (SNR, frequency response, noise floor) over
 
 **Novel Thinking / Implications**
 
-> 💡 Hardware degrades silently. A wireless lapel mic that worked perfectly at deployment may have degraded battery contacts six months later, producing intermittent dropout that the clinician doesn't notice but that affects ASR accuracy. Drift detection is proactive maintenance — catching the problem before it causes a clinical incident.
+> 💡 Hardware degrades silently. A wireless lapel mic that worked perfectly at deployment may have degraded battery contacts six months later, producing intermittent dropout that the clinician doesn't notice but that affects ASR accuracy. Drift detection is proactive maintenance - catching the problem before it causes a clinical incident.
 
 ---
 

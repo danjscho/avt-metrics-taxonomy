@@ -10,12 +10,12 @@
 
 ### TP.WB-1 🟢 Write-back Fidelity
 
-Data transfer accuracy to EPR structured fields. Where errors become patient safety events — hallucinated allergy in allergy field propagates to all future decisions.
+Data transfer accuracy to EPR structured fields. Where errors become patient safety events - hallucinated allergy in allergy field propagates to all future decisions.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.WB-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
 | **Assurance Question** | Safety |
@@ -24,7 +24,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
-| **Source** | Critical gap — no standardised FHIR R4 write-back in NHS primary care |
+| **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
 
 **Why this tier?**
 
@@ -57,7 +57,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.WB-2 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | EPR Write-back |
 | **Assurance Question** | Operational |
@@ -86,12 +86,12 @@ IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 
 ### TP.WB-3 🟢 Field Mapping Accuracy
 
-Does content land in the correct EPR field even when content is correct? A correctly transcribed allergy written to the free-text consultation field rather than the allergies field is a system failure with safety implications — the allergy won't trigger drug interaction checks.
+Does content land in the correct EPR field even when content is correct? A correctly transcribed allergy written to the free-text consultation field rather than the allergies field is a system failure with safety implications - the allergy won't trigger drug interaction checks.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.WB-3 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
 | **Assurance Question** | Safety |
@@ -118,7 +118,7 @@ For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapp
 
 **Novel Thinking / Implications**
 
-> 💡 This is distinct from write-back fidelity. Fidelity asks 'is the content correct?' Field mapping asks 'is it in the right place?' Both can fail independently. An allergy correctly transcribed but written to the consultation note rather than the allergy list is a silent failure — the content is technically present but won't trigger downstream safety checks like drug interaction warnings.
+> 💡 This is distinct from write-back fidelity. Fidelity asks 'is the content correct?' Field mapping asks 'is it in the right place?' Both can fail independently. An allergy correctly transcribed but written to the consultation note rather than the allergy list is a silent failure - the content is technically present but won't trigger downstream safety checks like drug interaction warnings.
 
 ---
 
@@ -129,7 +129,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.WB-4 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
 | **Assurance Question** | Safety |
@@ -156,7 +156,7 @@ For each structured data update: behaviour in {overwrite, append, merge, skip}. 
 
 **Novel Thinking / Implications**
 
-> 💡 The classic failure: AVT writes 'allergies: penicillin' to a patient who already has 'penicillin, sulpha, aspirin' in their allergy list. If the system overwrites, the patient loses two allergies from their record — a direct patient safety event. Pre-deployment testing must include scenarios with existing structured data, not just clean-slate consultations.
+> 💡 The classic failure: AVT writes 'allergies: penicillin' to a patient who already has 'penicillin, sulpha, aspirin' in their allergy list. If the system overwrites, the patient loses two allergies from their record - a direct patient safety event. Pre-deployment testing must include scenarios with existing structured data, not just clean-slate consultations.
 
 ---
 
@@ -167,7 +167,7 @@ When errors are detected, can the write-back be reversed cleanly? Particularly i
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.WB-5 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | EPR Write-back |
 | **Assurance Question** | Safety |
@@ -200,12 +200,12 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 
 ### TP.WB-6 🟡 FHIR R4 Resource Conformance Rate
 
-Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats — but retention is not the same as profile conformance.
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats - but retention is not the same as profile conformance.
 
 |Dimension              |Value                                    |
 |-----------------------|-----------------------------------------|
 | **Reference** | TP.WB-6 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                   |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                   |
 |**Measurement Cadence**|Continuous                               |
 |**Pipeline Layer**     |EPR Write-back                           |
 |**Assurance Question** |Fidelity & Accuracy                      |
@@ -223,12 +223,12 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 **Formal Definition**
 
 ```
-For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) — failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
+For each generated FHIR resource: validate against the applicable profile using the official HL7 FHIR validator. Conformance Rate = |resources_passing_validation| / |total_resources|. Stratify by resource type (Condition, MedicationStatement, AllergyIntolerance, Observation) - failures often cluster in specific resource types. Target: 100% on safety-critical resource types.
 ```
 
 **Limitations**
 
-> Conformance to a profile does not guarantee clinical correctness — a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
+> Conformance to a profile does not guarantee clinical correctness - a valid but wrong medication code passes validation. Profile requirements may be under-specified for some NHS use cases.
 
 **Novel Thinking / Implications**
 
@@ -243,7 +243,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |Dimension              |Value                                     |
 |-----------------------|------------------------------------------|
 | **Reference** | TP.WB-7 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research            |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research            |
 |**Measurement Cadence**|Continuous                                |
 |**Pipeline Layer**     |EPR Write-back                            |
 |**Assurance Question** |Fidelity & Accuracy                       |
@@ -256,7 +256,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 
 **Why this tier?**
 
-> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms — context adjustment per the "Adapting to Local Context" section.
+> Deployment context-specific. Tier 3 for most deployers but Tier 2 or even Tier 1 for trusts using openEHR-based platforms - context adjustment per the "Adapting to Local Context" section.
 
 **Formal Definition**
 

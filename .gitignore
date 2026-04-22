@@ -1,0 +1,19 @@
+# Build artefacts - derived from taxonomy/ source, not authored
+dist/
+docs/
+site/
+
+# Python
+__pycache__/
+*.pyc
+
+# Editor / OS
+.DS_Store
+.vscode/
+*.swp
+
+# Local Claude Code workspace
+.claude/
+
+# Large supporting reference material not directly cited by the taxonomy
+reference-docs/GOSH-AAI-Phase4-NHSE-report.pdf

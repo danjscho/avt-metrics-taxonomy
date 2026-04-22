@@ -11,7 +11,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -34,11 +34,11 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **References**
 
-- **Stanford**: [Keyes et al. (2025) — Stanford monitoring framework](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes et al. (2025) - Stanford monitoring framework](https://arxiv.org/abs/2512.09048)
 
 **Limitations**
 
-> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes — which requires model version tracking infrastructure.
+> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes - which requires model version tracking infrastructure.
 
 **Novel Thinking / Implications**
 
@@ -53,7 +53,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -80,11 +80,11 @@ Completeness = |telemetry_fields_provided| / |telemetry_fields_required|. Requir
 
 **Limitations**
 
-> Vendors may resist due to commercial sensitivity or technical cost. Telemetry provision must be contractually specified — voluntary provision is unreliable.
+> Vendors may resist due to commercial sensitivity or technical cost. Telemetry provision must be contractually specified - voluntary provision is unreliable.
 
 **Novel Thinking / Implications**
 
-> 💡 This is the meta-metric: without adequate telemetry, most other continuous monitoring metrics are unmeasurable. Telemetry provision completeness should be a procurement gate — if a vendor cannot provide minimum telemetry, the system cannot be governed, and deployment should not proceed.
+> 💡 This is the meta-metric: without adequate telemetry, most other continuous monitoring metrics are unmeasurable. Telemetry provision completeness should be a procurement gate - if a vendor cannot provide minimum telemetry, the system cannot be governed, and deployment should not proceed.
 
 ---
 
@@ -95,7 +95,7 @@ Whether the vendor provides access to benchmarking infrastructure: test datasets
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-3 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -104,7 +104,7 @@ Whether the vendor provides access to benchmarking infrastructure: test datasets
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
-| **Source** | Proposed — vendors currently self-evaluate with proprietary benchmarks |
+| **Source** | Proposed - vendors currently self-evaluate with proprietary benchmarks |
 
 **Why this tier?**
 
@@ -122,18 +122,18 @@ Accessibility score across dimensions: (a) test dataset availability, (b) evalua
 
 **Novel Thinking / Implications**
 
-> 💡 The fundamental transparency problem: vendors evaluate their own systems on their own benchmarks and report their own results. Independent evaluation requires benchmark accessibility. A national NHS AVT benchmark suite — with standardised test encounters, ground truth annotations, and evaluation scripts — would transform the assurance landscape from vendor self-assessment to independent verification.
+> 💡 The fundamental transparency problem: vendors evaluate their own systems on their own benchmarks and report their own results. Independent evaluation requires benchmark accessibility. A national NHS AVT benchmark suite - with standardised test encounters, ground truth annotations, and evaluation scripts - would transform the assurance landscape from vendor self-assessment to independent verification.
 
 ---
 
 ### GV.VT-4 🟡 Audit Trail Completeness
 
-Whether the system maintains a complete, tamper-evident audit trail from audio input to EPR output — sufficient for retrospective incident investigation, complaint resolution, and regulatory inspection.
+Whether the system maintains a complete, tamper-evident audit trail from audio input to EPR output - sufficient for retrospective incident investigation, complaint resolution, and regulatory inspection.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-4 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -171,7 +171,7 @@ Does the vendor disclose security incidents, model failures, and known issues to
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-5 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -209,7 +209,7 @@ When a deployer terminates their contract, can they export their data, audit tra
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-6 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
@@ -247,7 +247,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-7 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
@@ -270,7 +270,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 28 — processor obligations including sub-processor disclosure
+- **UK GDPR**: UK GDPR Article 28 - processor obligations including sub-processor disclosure
 
 **Limitations**
 
@@ -284,12 +284,12 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 ### GV.VT-8 🟡 Intermediate Output Access
 
-Whether the vendor provides contractual access to intermediate pipeline outputs — the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores — rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
+Whether the vendor provides contractual access to intermediate pipeline outputs - the raw transcript, the diarised transcript, the pre-coding summary, the model-internal confidence scores - rather than exposing only the final note. Prerequisite for the existing Error Attribution Analysis metric, and necessary for meaningful incident investigation. Without intermediate outputs, when an error is discovered in the final note, the investigation cannot determine which pipeline stage introduced it.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-8 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -312,10 +312,10 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 
 **Limitations**
 
-> Vendors resist intermediate output access on commercial grounds — the intermediate outputs reveal pipeline architecture and model choices. Contractual access may be granted at high cost or with usage restrictions. Without independent verification, deployers cannot confirm that the "intermediate outputs" provided are authentic rather than reconstructions.
+> Vendors resist intermediate output access on commercial grounds - the intermediate outputs reveal pipeline architecture and model choices. Contractual access may be granted at high cost or with usage restrictions. Without independent verification, deployers cannot confirm that the "intermediate outputs" provided are authentic rather than reconstructions.
 
 **Novel Thinking / Implications**
 
-> 💡 Many of the highest-value metrics in this taxonomy — Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis — depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
+> 💡 Many of the highest-value metrics in this taxonomy - Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis - depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
 
 ---

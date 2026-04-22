@@ -2,17 +2,17 @@
 
 This section provides a **policy-intent view** of the taxonomy. Where the [Standards Mapping](#standards-mapping) section maps metrics against specific regulatory criteria (DTAC, DSPT, MHRA, etc.), this lens tags metrics against two complementary policy frameworks:
 
-- **DSIT AI Playbook for the UK Government (Feb 2025)** — 10 principles for responsible AI use across UK public sector
-- **Six Responsible AI Ethical Themes** — the AI Regulation White Paper's five principles (Safety/Security/Robustness; Transparency/Explainability; Fairness; Accountability/Governance; Contestability/Redress) plus the Playbook-added sixth theme (Societal Wellbeing)
+- **DSIT AI Playbook for the UK Government (Feb 2025)** - 10 principles for responsible AI use across UK public sector
+- **Six Responsible AI Ethical Themes** - the AI Regulation White Paper's five principles (Safety/Security/Robustness; Transparency/Explainability; Fairness; Accountability/Governance; Contestability/Redress) plus the Playbook-added sixth theme (Societal Wellbeing)
 
 ### Why a separate lens document?
 
-Standards prescribe *what artefacts and processes must exist*. Principles and themes are *policy lenses* — every metric hits multiple principles and themes, the Playbook itself acknowledges trade-offs between them (e.g. collecting demographic data to assess fairness reduces privacy), and the value is cross-tagging rather than 1:1 mapping.
+Standards prescribe *what artefacts and processes must exist*. Principles and themes are *policy lenses* - every metric hits multiple principles and themes, the Playbook itself acknowledges trade-offs between them (e.g. collecting demographic data to assess fairness reduces privacy), and the value is cross-tagging rather than 1:1 mapping.
 
 This lens sits alongside:
 - The standards mapping (regulatory-requirement view)
 - The [applicability classification](#applicability-classification) (AVT-specific vs general AI view)
-- The NHS LLM Evaluation Framework's three groups (operationalisation view — already mapped in standards section)
+- The NHS LLM Evaluation Framework's three groups (operationalisation view - already mapped in standards section)
 
 Think of these as four complementary readings of the same 214-metric substrate: **what's required** (standards), **who it applies to** (applicability), **how to measure** (NHS LLM framework), and **why it matters in policy terms** (this lens).
 
@@ -24,11 +24,11 @@ The Playbook is explicit that its principles and themes can be in tension:
 - Tighter security may reduce usability
 - Stronger human oversight may reduce workflow benefit
 
-Metrics in this lens often serve multiple principles/themes — the [Coverage Matrix](#part-c--coverage-matrix) in Part C highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
+Metrics in this lens often serve multiple principles/themes - the [Coverage Matrix](#part-c-coverage-matrix) in Part C highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
 
 ---
 
-## Part A — DSIT AI Playbook: 10 Principles
+## Part A - DSIT AI Playbook: 10 Principles
 
 The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI use across UK government. While the Playbook targets central government and arm's length bodies, its principles are referenced in NHS AI governance and many of its requirements (notably ATRS transparency publication) cascade to NHS ALBs. The principles are numbered P1–P10 for reference throughout this document.
 
@@ -36,7 +36,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 > *"AI is a broad field subject to rapid research and innovation, and many claims have been made about both its promise and risks."*
 
-**AVT application:** Understanding AVT's inherent limitations — ASR has error rates proportional to audio quality, accent, and clinical vocabulary; LLM-based summarisation can hallucinate; demographic performance varies; outputs require clinical review. Users must know what the system *can't* do, not just what it can.
+**AVT application:** Understanding AVT's inherent limitations - ASR has error rates proportional to audio quality, accent, and clinical vocabulary; LLM-based summarisation can hallucinate; demographic performance varies; outputs require clinical review. Users must know what the system *can't* do, not just what it can.
 
 **Relevant taxonomy metrics:**
 
@@ -53,13 +53,13 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 | GV.TC-2 | Failure Mode Awareness Score | Training & Competency | 🟡 2 | Clinician understanding of limits |
 | ES.ME-1 | Proximal vs Distal Outcome Distinction | Meta-evaluation | 🔵 3 | Understanding what the metric means |
 
-**Gaps:** Limitations disclosure to patients (not just clinicians) — no direct metric. Running-tally of encountered failure modes over time.
+**Gaps:** Limitations disclosure to patients (not just clinicians) - no direct metric. Running-tally of encountered failure modes over time.
 
 ### Principle 2: You use AI lawfully, ethically and responsibly
 
 > *"AI solutions bring specific legal and ethical considerations. Your use of AI tools must be lawful and responsible."*
 
-**AVT application:** UK GDPR lawful basis, DPIA completion, equality assessments, IP considerations for training data, environmental impact, proportionality — is AVT the right intervention for this context? Engages legal, compliance, and DP experts early.
+**AVT application:** UK GDPR lawful basis, DPIA completion, equality assessments, IP considerations for training data, environmental impact, proportionality - is AVT the right intervention for this context? Engages legal, compliance, and DP experts early.
 
 **Relevant taxonomy metrics:**
 
@@ -79,13 +79,13 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 | GV.EN-2 | Carbon Emissions per Inference | Environmental | 🔵 3 | Environmental responsibility |
 | TP.SN-24 | Stigmatising Language Replication Rate | Summarisation / NLP | 🟡 2 | Ethical content generation |
 
-**Gaps:** IP status of training data (not directly measured). Proportionality review (is AVT the right tool for this use case — covered partially by ES.ME-1 but not as a procurement gate).
+**Gaps:** IP status of training data (not directly measured). Proportionality review (is AVT the right tool for this use case - covered partially by ES.ME-1 but not as a procurement gate).
 
 ### Principle 3: You know how to use AI securely
 
 > *"When building and deploying AI services, you must make sure that they are secure to use and resilient to cyber attacks."*
 
-**AVT application:** AI-specific threats — prompt injection via dictated content, data poisoning of fine-tuning sets, audio-channel adversarial attacks, PHI leakage through model outputs, cross-patient information contamination. Secure by Design alignment.
+**AVT application:** AI-specific threats - prompt injection via dictated content, data poisoning of fine-tuning sets, audio-channel adversarial attacks, PHI leakage through model outputs, cross-patient information contamination. Secure by Design alignment.
 
 **Relevant taxonomy metrics:**
 
@@ -158,7 +158,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 > *"You should select the most appropriate technology to meet your needs. AI is good at many tasks, but there are a wide range of models and products."*
 
-**AVT application:** Is AVT the right tool? For which consultation types — not all? Should it be template-driven structured notes or full LLM summarisation? Small model or frontier? Procurement should compare AVT against non-AI alternatives (dictation, typing, templated notes).
+**AVT application:** Is AVT the right tool? For which consultation types - not all? Should it be template-driven structured notes or full LLM summarisation? Small model or frontier? Procurement should compare AVT against non-AI alternatives (dictation, typing, templated notes).
 
 **Relevant taxonomy metrics:**
 
@@ -194,7 +194,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 | GV.VT-7 | Sub-Processor Transparency | Vendor Transparency | 🟢 1 | Supply chain openness |
 | GV.VT-8 | Intermediate Output Access | Vendor Transparency | 🟡 2 | Observability of internal state |
 
-**Gaps:** ATRS publication completeness (no direct metric — ATRS may not apply to all NHS deployments). Patient-facing plain-language documentation.
+**Gaps:** ATRS publication completeness (no direct metric - ATRS may not apply to all NHS deployments). Patient-facing plain-language documentation.
 
 ### Principle 8: You work with commercial colleagues from the start
 
@@ -261,7 +261,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 ---
 
-## Part B — Six Responsible AI Ethical Themes
+## Part B - Six Responsible AI Ethical Themes
 
 The AI Regulation White Paper (March 2023) articulated five cross-sectoral principles for responsible AI; the DSIT AI Playbook (Feb 2025) ethics chapter extends this with a sixth theme (Societal Wellbeing and Public Good). These six themes are the **policy-intent axes** that the more operational NHS LLM Evaluation Framework's three groups (Suitability in Context, Wider Impact, Quantifiable Changes) help measure. The themes are labelled T1–T6 for reference.
 
@@ -294,14 +294,14 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | PI.E2E-3 | Error Propagation / Cascade Analysis | End-to-End Pipeline | 🔵 3 | Systemic robustness |
 | HL.HF-19 | AI-Off Performance Test | Human Factors | 🟡 2 | Graceful degradation |
 
-**Relationship to other themes:** Overlaps with T4 (Accountability — who is responsible for safety?) and T5 (Contestability — what recourse when safety fails?). Trade-off with T3 (Fairness): safety monitoring may require demographic data collection.
+**Relationship to other themes:** Overlaps with T4 (Accountability - who is responsible for safety?) and T5 (Contestability - what recourse when safety fails?). Trade-off with T3 (Fairness): safety monitoring may require demographic data collection.
 
 ### Theme 2: Appropriate Transparency and Explainability
 
 > *"AI systems should be appropriately transparent and explainable."*
 
 **Source:** AI Regulation White Paper Principle 2
-**AVT application:** ATRS publication where applicable, patient-facing disclosure of AVT use, clinician-facing confidence exposure, uncertainty marker preservation, model cards, system cards, audit trails. Proportionate to risk — different audiences need different explanation types.
+**AVT application:** ATRS publication where applicable, patient-facing disclosure of AVT use, clinician-facing confidence exposure, uncertainty marker preservation, model cards, system cards, audit trails. Proportionate to risk - different audiences need different explanation types.
 
 **Relevant taxonomy metrics:**
 
@@ -320,7 +320,7 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | GV.VT-8 | Intermediate Output Access | Vendor Transparency | 🟡 2 | Internal-state transparency |
 | PI.PP-5 | Epistemic Status Preservation | Partial-Pipeline | 🔵 3 | Preserving epistemic transparency |
 
-**Relationship to other themes:** Overlaps with T4 (Accountability — transparency enables accountability). Trade-off with T1 (Security): too much transparency may expose attack surfaces. Trade-off with data minimisation (Caldicott Principle 3): audit trails vs minimisation.
+**Relationship to other themes:** Overlaps with T4 (Accountability - transparency enables accountability). Trade-off with T1 (Security): too much transparency may expose attack surfaces. Trade-off with data minimisation (Caldicott Principle 3): audit trails vs minimisation.
 
 ### Theme 3: Fairness
 
@@ -399,14 +399,14 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | TP.WB-5 | Write-back Rollback Capability | EPR Write-back | 🟡 2 | Technical redress |
 | HL.HF-17 | Verification Burden | Human Factors | 🟡 2 | Cost of contestability |
 
-**Relationship to other themes:** Overlaps with T4 (Accountability — contestability requires clear accountability). Overlaps with T2 (Transparency — you must see to contest). Trade-off with T1 (Safety — too-easy reversal may allow errors to propagate before correction).
+**Relationship to other themes:** Overlaps with T4 (Accountability - contestability requires clear accountability). Overlaps with T2 (Transparency - you must see to contest). Trade-off with T1 (Safety - too-easy reversal may allow errors to propagate before correction).
 
 ### Theme 6: Societal Wellbeing and Public Good
 
 > *"AI should deliver positive broader societal impact, use resources proportionately, and avoid deployment where harm outweighs benefit."*
 
 **Source:** DSIT AI Playbook ethics chapter (Playbook-added sixth theme; not in original White Paper five)
-**AVT application:** Environmental/compute footprint, equity of benefit distribution across practices, workforce impact (burnout relief vs deskilling), patient trust at population level, sustainability of adoption at scale, therapeutic relationship impact. This is the theme most distinct from operational performance — it asks whether AVT's deployment makes NHS healthcare better overall, including second-order effects.
+**AVT application:** Environmental/compute footprint, equity of benefit distribution across practices, workforce impact (burnout relief vs deskilling), patient trust at population level, sustainability of adoption at scale, therapeutic relationship impact. This is the theme most distinct from operational performance - it asks whether AVT's deployment makes NHS healthcare better overall, including second-order effects.
 
 **Relevant taxonomy metrics:**
 
@@ -425,13 +425,13 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | GV.OP-2 | Pyjama Time / After-Hours EHR Use | Operational | 🟡 2 | Workforce wellbeing |
 | GV.TC-4 | Trainee Impact Assessment | Training & Competency | 🔵 3 | Future workforce development |
 
-**Relationship to other themes:** Overlaps with T3 (Fairness — equity is part of societal wellbeing). Partial overlap with T1 (Safety — population-level safety is societal). Distinct from T2/T4/T5 (process-focused themes). **This is the theme with the highest concentration of Tier 3 metrics**, reflecting that societal effects are intrinsically harder to measure than operational performance.
+**Relationship to other themes:** Overlaps with T3 (Fairness - equity is part of societal wellbeing). Partial overlap with T1 (Safety - population-level safety is societal). Distinct from T2/T4/T5 (process-focused themes). **This is the theme with the highest concentration of Tier 3 metrics**, reflecting that societal effects are intrinsically harder to measure than operational performance.
 
 ---
 
-## Part C — Coverage Matrix
+## Part C - Coverage Matrix
 
-Some metrics serve multiple Playbook principles *and* multiple ethical themes simultaneously. These are **policy-lever metrics** — a single measurement supports several assurance goals at once, making them high-leverage procurement and governance signals. Implementing or monitoring these metrics gives the broadest coverage for the least measurement burden.
+Some metrics serve multiple Playbook principles *and* multiple ethical themes simultaneously. These are **policy-lever metrics** - a single measurement supports several assurance goals at once, making them high-leverage procurement and governance signals. Implementing or monitoring these metrics gives the broadest coverage for the least measurement burden.
 
 The matrix below lists metrics that genuinely operationalise **3 or more principles** *or* **3 or more themes**. Metrics serving only 1–2 principles/themes are listed in the per-principle and per-theme tables in Parts A and B but not repeated here.
 
@@ -439,8 +439,8 @@ The matrix below lists metrics that genuinely operationalise **3 or more princip
 
 | Ref | Metric | Tier | Playbook Principles | Ethical Themes | Why cross-cutting |
 |-----|--------|------|--------------------|-----------------|--------------------|
-| TP.SN-5 | Hallucination Rate | 🟢 1 | P1, P4, P5 | T1, T2 | Core content integrity — limits-awareness, human-control trigger, lifecycle drift signal, safety, transparency of fabrication |
-| TP.SN-6 | Omission Rate | 🟢 1 | P1, P4, P5 | T1, T2 | Parallel to hallucination — what the system loses is as important as what it fabricates |
+| TP.SN-5 | Hallucination Rate | 🟢 1 | P1, P4, P5 | T1, T2 | Core content integrity - limits-awareness, human-control trigger, lifecycle drift signal, safety, transparency of fabrication |
+| TP.SN-6 | Omission Rate | 🟢 1 | P1, P4, P5 | T1, T2 | Parallel to hallucination - what the system loses is as important as what it fabricates |
 | TP.SN-20 | Uncertainty Marker Preservation | 🟢 1 | P1, P4 | T1, T2 | Preserves clinical uncertainty for human decision-making; transparency about confidence |
 | HL.HF-1 | Edit Rate (% Notes Edited) | 🟢 1 | P1, P4, P5 | T2, T5 | Evidence of meaningful human review, running signal of model fit, contestability evidence |
 | HL.HF-3 | Review-Before-Signing Rate | 🟢 1 | P4, P10 | T4, T5 | Core human control + accountability trail + contestability foundation |
@@ -453,7 +453,7 @@ The matrix below lists metrics that genuinely operationalise **3 or more princip
 | GV.CR-7 | DPIA Template Completion Rate | 🟢 1 | P2, P10 | T4 | Lawfulness + organisational assurance + accountability |
 | GV.SG-1 | Model Version Tracking | 🟢 1 | P5, P10 | T4 | Lifecycle foundation enabling accountability |
 | GV.SG-9 | Safety Performance Indicators with Thresholds (DSCMS) | 🟢 1 | P5, P10 | T1, T4 | Lifecycle monitoring + organisational assurance + safety + accountability |
-| GV.SG-11 | Adverse Event / Incident Rate (LFPSE) | 🟢 1 | P4, P5, P10 | T1, T4, T5 | Very high cross-cutting — incidents feed every theme |
+| GV.SG-11 | Adverse Event / Incident Rate (LFPSE) | 🟢 1 | P4, P5, P10 | T1, T4, T5 | Very high cross-cutting - incidents feed every theme |
 | GV.SG-14 | Near-Miss Reporting Rate | 🟢 1 | P4, P5, P10 | T1, T4 | Precursor signal across multiple concerns |
 | GV.SG-17 | Hazard Log Completeness | 🟢 1 | P2, P5, P10 | T1, T4 | DCB0129/0160 foundation, ethical grounding, organisational assurance |
 | GV.VT-1 | Model Change Notification Compliance | 🟢 1 | P5, P7, P8 | T2, T4 | Lifecycle + openness + commercial + transparency + accountability |
@@ -468,85 +468,37 @@ The matrix below lists metrics that genuinely operationalise **3 or more princip
 ### Patterns in the matrix
 
 **Highest cross-cutting metrics (5 principles/themes or more):**
-- GV.SG-11 Adverse Event / Incident Rate (LFPSE) — 6 axes
-- GV.VT-4 Audit Trail Completeness — 6 axes
-- GV.CR-3 AI-Generated Content Labelling Compliance — 5 axes
-- HL.HF-1 Edit Rate — 5 axes
-- IO.PX-1 Patient Opt-Out Rate — 5 axes
+- GV.SG-11 Adverse Event / Incident Rate (LFPSE) - 6 axes
+- GV.VT-4 Audit Trail Completeness - 6 axes
+- GV.CR-3 AI-Generated Content Labelling Compliance - 5 axes
+- HL.HF-1 Edit Rate - 5 axes
+- IO.PX-1 Patient Opt-Out Rate - 5 axes
 
-These five metrics are the "policy-lever megas" — implementing and monitoring them captures a disproportionate share of the responsible-AI requirement space. They should be the backbone of any AVT assurance programme.
+These five metrics are the "policy-lever megas" - implementing and monitoring them captures a disproportionate share of the responsible-AI requirement space. They should be the backbone of any AVT assurance programme.
 
 **Concentration by group:**
 - Safety & Governance, NHS Compliance & Regulatory, and Vendor Transparency groups dominate the cross-cutting list
-- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only Part A metrics that reach 4+ axes — reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
+- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only Part A metrics that reach 4+ axes - reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
 - Human Factors metrics (HL.HF-1, HL.HF-3, HL.HF-6, HL.HF-8) are heavily cross-cutting because human-AI interaction intersects every principle
 
-**Tier distribution:** Nearly all cross-cutting metrics are Tier 1 or Tier 2. This is expected — the most load-bearing assurance metrics are the ones that multiple principles converge on.
+**Tier distribution:** Nearly all cross-cutting metrics are Tier 1 or Tier 2. This is expected - the most load-bearing assurance metrics are the ones that multiple principles converge on.
 
 ---
 
-## Part D — Gaps
+## Part D - Gaps
 
-This section lists gaps where neither the existing 214 metrics nor the standards mappings clearly operationalise a Playbook principle or ethical theme for AVT. Where a gap has already been flagged in the [Proposed New Metrics](#proposed-new-metrics-not-yet-implemented) section of the standards mapping document, this is cross-referenced.
-
-### Gaps organised by Playbook principle
-
-| Principle | Gap | Severity | Cross-reference |
-|-----------|-----|----------|-----------------|
-| P1 — Limitations | Patient-facing disclosure of AVT limitations (not just clinician-facing) | Medium | — |
-| P1 — Limitations | Running tally of encountered failure modes over deployment time | Medium | Partial via GV.SG-11 / GV.SG-14 |
-| P2 — Lawful/ethical | IP status of training data (copyright, consent) | Medium | — |
-| P2 — Lawful/ethical | Proportionality review (is AVT the right intervention?) | Medium | See P6 too; partial via ES.ME-1 |
-| P3 — Security | Supply-chain security for model weights and dependencies | Medium | — |
-| P3 — Security | AI-specific red-teaming cadence | Medium | — |
-| P4 — Human control | Formal escalation paths when AI output is rejected | Medium | — |
-| P4 — Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
-| P5 — Lifecycle | Decommissioning plan | Medium | — |
-| P5 — Lifecycle | Model retirement criteria | Low | — |
-| P6 — Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
-| P6 — Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
-| P7 — Openness | ATRS publication completeness (where applicable) | Low | Cascades via Standards Mapping (ATRS referenced but not mapped) |
-| P7 — Openness | Patient-facing plain-language AVT documentation | Medium | — |
-| P8 — Commercial | Contractual SLA enforcement (actual enforcement, not just contract clauses) | Medium | — |
-| P8 — Commercial | Exit-clause testing (has the exit clause been exercised?) | Medium | GV.VT-6 is about provisions; gap is on testing |
-| P9 — Skills | SRO / board-level AI literacy assessment | Medium | — |
-| P9 — Skills | Deployer-side data science / engineering skills | Low | — |
-| P10 — Org assurance | AI review board effectiveness metric | Medium | — |
-| P10 — Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
-
-### Gaps organised by ethical theme
-
-| Theme | Gap | Severity | Cross-reference |
-|-------|-----|----------|-----------------|
-| T1 — Safety/Security/Robustness | Systems-based root cause analysis (SEIPS) for AI incidents | High | [PSIRF gap in standards mapping](#proposed-new-metrics-not-yet-implemented): GV.SG-19 proposed |
-| T1 — Safety | Catastrophic failure mode planning (what if AVT silently fails on 5% of notes?) | Medium | — |
-| T2 — Transparency | Patient-facing explanation of AI decision-making in the record | High | Related to PRSB gap: TP.WB-11 proposed |
-| T2 — Transparency | Model card / system card publication | Medium | Partial via GV.VT-2 Telemetry Provision Completeness |
-| T2 — Transparency | Audience-proportionate explanation (regulator vs clinician vs patient vs lay public) | Medium | — |
-| T3 — Fairness | Fairness during deployment ramp (equity of *who gets AVT first*) | Medium | Partial via IO.FE-1 Deployment Equity Index |
-| T3 — Fairness | Intersectional fairness at small-group level (statistical power issues) | High | IO.FE-4 and IO.FE-5 address intersectional but small-group power is unresolved |
-| T4 — Accountability | Board-level AI governance mechanism | High | [CQC gap in standards mapping](#proposed-new-metrics-not-yet-implemented): GV.CR-12 proposed |
-| T4 — Accountability | Named accountable director for AI | High | [CQC gap](#proposed-new-metrics-not-yet-implemented): covered under GV.CR-12 |
-| T4 — Accountability | Clear role distinction: CSO, DPO, SIRO, Caldicott Guardian in AI context | Medium | — |
-| T5 — Contestability | Patient route to challenge AI-generated note content (beyond SAR) | High | Related to IO.PX-11 AI-Specific Complaint Handling Rate proposed |
-| T5 — Contestability | Affected-third-party contestability (e.g. relative mentioned in a note) | Medium | — |
-| T5 — Contestability | Redress mechanism for population-level AVT harm | Medium | — |
-| T6 — Societal Wellbeing | Workforce displacement / role change assessment | High | HL.HF-12 Clinical Documentation Skill Attenuation is partial |
-| T6 — Societal Wellbeing | Equity of benefit distribution across practices | High | IO.FE-1 Deployment Equity Index is partial |
-| T6 — Societal Wellbeing | Patient trust at population level (cumulative effect of AI on healthcare relationship) | High | IO.PX-5, IO.PX-6 are partial |
-| T6 — Societal Wellbeing | Long-term sustainability of AVT adoption (what happens at 5-year review?) | Medium | — |
-| T6 — Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged as low severity in Standards Mapping |
+Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed Metrics](#gaps-proposed-metrics-roadmap) § 3 (Responsible AI Lens). 38 candidates are tracked there: 20 organised by Playbook principle, 18 organised by ethical theme. Cross-references to standards-mapping gaps (e.g. PSIRF → GV.SG-19, CQC → GV.CR-12) are preserved in the roadmap. Highest-severity cross-cutting findings are summarised below.
 
 ### Summary
 
 **Highest-severity cross-cutting gaps (appear in multiple lens axes):**
 
-1. **Patient-facing explanation / contestability of AVT output** — appears as gap under P7 (Openness), T2 (Transparency), T5 (Contestability). The taxonomy assumes clinicians mediate AI output to patients; increasingly, patient-facing AI requires direct patient channels.
-2. **Board-level AI governance** — appears under P10 (Org assurance), T4 (Accountability), and CQC Well-led. Captured in proposed GV.CR-12; arguably the single highest-leverage missing metric for NHS deployment.
-3. **Tool-fit / proportionality assessment** — appears under P2 (ethical), P6 (Right tool), and NICE ESF Tier classification. Procurement-stage gap.
-4. **Systems-based incident learning (SEIPS)** — appears under T1 (Safety), PSIRF mandatory requirements. Captured in proposed GV.SG-19.
-5. **Societal Wellbeing measurement generally** — Theme 6 has the highest concentration of gaps because second-order effects on workforce, patient relationships, and healthcare sustainability are intrinsically hard to measure.
+1. **Patient-facing explanation / contestability of AVT output** - appears as gap under P7 (Openness), T2 (Transparency), T5 (Contestability). The taxonomy assumes clinicians mediate AI output to patients; increasingly, patient-facing AI requires direct patient channels.
+2. **Board-level AI governance** - appears under P10 (Org assurance), T4 (Accountability), and CQC Well-led. Captured in proposed GV.CR-12; arguably the single highest-leverage missing metric for NHS deployment.
+3. **Tool-fit / proportionality assessment** - appears under P2 (ethical), P6 (Right tool), and NICE ESF Tier classification. Procurement-stage gap.
+4. **Systems-based incident learning (SEIPS)** - appears under T1 (Safety), PSIRF mandatory requirements. Captured in proposed GV.SG-19.
+5. **Societal Wellbeing measurement generally** - Theme 6 has the highest concentration of gaps because second-order effects on workforce, patient relationships, and healthcare sustainability are intrinsically hard to measure.
 
-**Gap concentration by theme:** Theme 6 (Societal Wellbeing) has the most gaps, followed by Theme 5 (Contestability). Theme 1 (Safety) and Theme 4 (Accountability) have the fewest gaps — reflecting that the taxonomy was built from a safety-first, governance-aware starting point.
+**Gap concentration by theme:** Theme 6 (Societal Wellbeing) has the most gaps, followed by Theme 5 (Contestability). Theme 1 (Safety) and Theme 4 (Accountability) have the fewest gaps - reflecting that the taxonomy was built from a safety-first, governance-aware starting point.
 
-**Gap concentration by principle:** P6 (Right tool) and P7 (Openness) have the largest number of gaps — reflecting that the taxonomy is weaker on *decision-to-deploy* and *outward transparency* than on *in-deployment performance*. This is a structural gap that several of the proposed new metrics in the standards mapping would begin to close.
+**Gap concentration by principle:** P6 (Right tool) and P7 (Openness) have the largest number of gaps - reflecting that the taxonomy is weaker on *decision-to-deploy* and *outward transparency* than on *in-deployment performance*. This is a structural gap that several of the proposed new metrics in the standards mapping would begin to close.

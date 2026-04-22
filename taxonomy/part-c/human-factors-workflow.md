@@ -1,4 +1,4 @@
-# Part C — The Human Layer
+# Part C - The Human Layer
 
 ## Human Factors & Workflow
 
@@ -8,36 +8,36 @@
 
 ### Family: Post-Generation Correction
 
-> **Parent construct** — what clinicians do to AI-generated notes between generation and sign-off, and what that behaviour tells us about both AI quality and human oversight.
+> **Parent construct** - what clinicians do to AI-generated notes between generation and sign-off, and what that behaviour tells us about both AI quality and human oversight.
 >
 > The next four metrics all measure human correction of AI output but at different levels of resolution. Treating them as independent metrics misses the fact that they form a four-tier family, where each tier adds diagnostic depth at the cost of additional measurement infrastructure. A deployer with limited governance capacity can start at the first tier and add tiers as maturity grows.
 >
 > **Four tiers of increasing resolution:**
 >
-> 1. **Binary — was the note edited at all?** Cheapest to collect from EPR workflow telemetry. System-level monitoring metric. Useful for trending but clinically uninformative in isolation — a low edit rate can mean excellent AI or inadequate review, and only triangulation with other metrics distinguishes them. This is the Edit Rate metric.
+> 1. **Binary - was the note edited at all?** Cheapest to collect from EPR workflow telemetry. System-level monitoring metric. Useful for trending but clinically uninformative in isolation - a low edit rate can mean excellent AI or inadequate review, and only triangulation with other metrics distinguishes them. This is the Edit Rate metric.
 >
-> 2. **Magnitude — how much was edited?** Measured via edit distance (Levenshtein, TER, HTER, or compression-based). Adds signal about the scale of correction effort. Critical refinement: distinguish **semantic edits** (changing clinical meaning — adding a missed symptom, correcting a drug name) from **stylistic edits** (formatting, phrasing preference). Compression-based edit distance (arXiv 2024) has been shown to correlate better with actual human effort than raw Levenshtein because it captures the structural nature of the change. Magnitude is implicit in the Edit Type Classification metric, which decomposes edits into categories that map to magnitude.
+> 2. **Magnitude - how much was edited?** Measured via edit distance (Levenshtein, TER, HTER, or compression-based). Adds signal about the scale of correction effort. Critical refinement: distinguish **semantic edits** (changing clinical meaning - adding a missed symptom, correcting a drug name) from **stylistic edits** (formatting, phrasing preference). Compression-based edit distance (arXiv 2024) has been shown to correlate better with actual human effort than raw Levenshtein because it captures the structural nature of the change. Magnitude is implicit in the Edit Type Classification metric, which decomposes edits into categories that map to magnitude.
 >
-> 3. **Effort and locus — what kind of work, and where in the note?** Measured via Edit Type Classification (additions / deletions / modifications / structural) and Edit Location Distribution (which sections of the note attract the most edits). Tells you which failure modes are active: predominantly additions indicate an omission problem; predominantly deletions indicate a hallucination problem; concentration in the "plan" section indicates the AI extracts facts well but struggles with clinical reasoning. This is where the family becomes diagnostic rather than just descriptive.
+> 3. **Effort and locus - what kind of work, and where in the note?** Measured via Edit Type Classification (additions / deletions / modifications / structural) and Edit Location Distribution (which sections of the note attract the most edits). Tells you which failure modes are active: predominantly additions indicate an omission problem; predominantly deletions indicate a hallucination problem; concentration in the "plan" section indicates the AI extracts facts well but struggles with clinical reasoning. This is where the family becomes diagnostic rather than just descriptive.
 >
-> 4. **Longitudinal pattern — how is the behaviour changing over time?** The Edit-Pattern Monitoring at Scale metric (Abridge, across 1M+ encounters per week) captures fleet-wide edit dynamics and is the most scalable quality signal currently available — but it is locked inside one vendor's proprietary infrastructure. The open research question is whether similar pattern monitoring can be built as an open standard.
+> 4. **Longitudinal pattern - how is the behaviour changing over time?** The Edit-Pattern Monitoring at Scale metric (Abridge, across 1M+ encounters per week) captures fleet-wide edit dynamics and is the most scalable quality signal currently available - but it is locked inside one vendor's proprietary infrastructure. The open research question is whether similar pattern monitoring can be built as an open standard.
 >
 > **A severity taxonomy for edits.** Not all edits carry equal weight. Adapted from CREOLA and edit-pattern disclosures, edits fall into four severity categories:
 >
-> - **Safety-critical correction** — fixing a fabricated medication, corrected allergy, reversed negation, or wrong dose. These are the edits that prevent harm.
-> - **Clinical addition** — adding a missed symptom, examination finding, or plan element. Quality improvement, not harm prevention.
-> - **Stylistic preference** — clinician preference for phrasing, structure, or formatting. Often the majority of edits by count but the minority by safety value.
-> - **Structural reorganisation** — moving content between sections, consolidating or splitting points. Quality improvement.
+> - **Safety-critical correction** - fixing a fabricated medication, corrected allergy, reversed negation, or wrong dose. These are the edits that prevent harm.
+> - **Clinical addition** - adding a missed symptom, examination finding, or plan element. Quality improvement, not harm prevention.
+> - **Stylistic preference** - clinician preference for phrasing, structure, or formatting. Often the majority of edits by count but the minority by safety value.
+> - **Structural reorganisation** - moving content between sections, consolidating or splitting points. Quality improvement.
 >
-> Aggregate edit rate treats all four categories equally. A system with a 30% edit rate consisting mostly of safety-critical corrections is in much worse state than a system with a 60% edit rate consisting mostly of stylistic preference — but the raw numbers invert the assessment. Edit Type Classification is the metric in this family that makes severity visible.
+> Aggregate edit rate treats all four categories equally. A system with a 30% edit rate consisting mostly of safety-critical corrections is in much worse state than a system with a 60% edit rate consisting mostly of stylistic preference - but the raw numbers invert the assessment. Edit Type Classification is the metric in this family that makes severity visible.
 >
-> **The complacency trajectory.** The family has a temporal dimension that individual measurements miss. At Day Zero, edit rate is a quality signal — higher rates mean more errors being caught. Over months, as clinicians develop trust in the system, edit rate declines — but the decline could reflect either improving AI or increasing complacency, and distinguishing them requires triangulation. This is why Edit Rate is a Tier 1 continuous metric but must be read alongside Review-Before-Signing Rate, Time-to-Sign Distribution, and periodic Automation Bias Detection error injection. Edit rate alone is an ambiguous signal; the family is diagnostic.
+> **The complacency trajectory.** The family has a temporal dimension that individual measurements miss. At Day Zero, edit rate is a quality signal - higher rates mean more errors being caught. Over months, as clinicians develop trust in the system, edit rate declines - but the decline could reflect either improving AI or increasing complacency, and distinguishing them requires triangulation. This is why Edit Rate is a Tier 1 continuous metric but must be read alongside Review-Before-Signing Rate, Time-to-Sign Distribution, and periodic Automation Bias Detection error injection. Edit rate alone is an ambiguous signal; the family is diagnostic.
 >
 > **Metrics in this family:**
-> - 🟢 **Edit Rate (% Notes Edited)** — tier 1 binary. The entry point; cheapest and most widely measured. Must be triangulated to interpret.
-> - 🟡 **Edit Type Classification** — tier 3 diagnostic decomposition. Reveals failure mode (omission-dominant vs hallucination-dominant vs stylistic).
-> - 🟡 **Edit Location Distribution** — tier 3 locus analysis. Reveals which sections of the note the AI handles well vs poorly.
-> - 🔵 **Edit-Pattern Monitoring at Scale** — tier 4 longitudinal fleet-level monitoring. Vendor-proprietary; informs what a national standard should require of all vendors.
+> - 🟢 **Edit Rate (% Notes Edited)** - tier 1 binary. The entry point; cheapest and most widely measured. Must be triangulated to interpret.
+> - 🟡 **Edit Type Classification** - tier 3 diagnostic decomposition. Reveals failure mode (omission-dominant vs hallucination-dominant vs stylistic).
+> - 🟡 **Edit Location Distribution** - tier 3 locus analysis. Reveals which sections of the note the AI handles well vs poorly.
+> - 🔵 **Edit-Pattern Monitoring at Scale** - tier 4 longitudinal fleet-level monitoring. Vendor-proprietary; informs what a national standard should require of all vendors.
 
 ---
 
@@ -48,7 +48,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-1 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -61,7 +61,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 
 **Why this tier?**
 
-> Primary continuous complacency indicator. Deployer-measurable from EPR workflow data. NAS Day Zero SPI. The single most important human factors metric — trajectory reveals automation bias before incidents occur.
+> Primary continuous complacency indicator. Deployer-measurable from EPR workflow data. NAS Day Zero SPI. The single most important human factors metric - trajectory reveals automation bias before incidents occur.
 
 **Formal Definition**
 
@@ -104,7 +104,7 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 > 💡 Trajectory matters more than absolute value. 60% → 15% in 3 months should trigger review regardless of AI accuracy.
 
-*See also: Edit Type Classification, Edit Location Distribution, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Edit Rate is the binary entry point; the other metrics add diagnostic depth. Interpret alongside Review-Before-Signing Rate and Time-to-Sign Distribution to distinguish improving AI from increasing complacency.*
+*See also: Edit Type Classification, Edit Location Distribution, Edit-Pattern Monitoring at Scale - all members of the Post-Generation Correction family. Edit Rate is the binary entry point; the other metrics add diagnostic depth. Interpret alongside Review-Before-Signing Rate and Time-to-Sign Distribution to distinguish improving AI from increasing complacency.*
 
 ---
 
@@ -115,7 +115,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-2 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -128,7 +128,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 
 **Why this tier?**
 
-> More granular than edit rate — diagnoses failure mode (additions = omission problem, deletions = hallucination problem). Requires NLP classification but adds substantial diagnostic value.
+> More granular than edit rate - diagnoses failure mode (additions = omission problem, deletions = hallucination problem). Requires NLP classification but adds substantial diagnostic value.
 
 **Formal Definition**
 
@@ -149,7 +149,7 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 > 💡 Mostly additions = omission problem; mostly deletions = hallucination problem.
 
-*See also: Edit Rate, Edit Location Distribution, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Type classification is where the family becomes diagnostic rather than just descriptive: predominantly additions indicate an omission-dominant failure mode; predominantly deletions indicate a hallucination-dominant mode.*
+*See also: Edit Rate, Edit Location Distribution, Edit-Pattern Monitoring at Scale - all members of the Post-Generation Correction family. Type classification is where the family becomes diagnostic rather than just descriptive: predominantly additions indicate an omission-dominant failure mode; predominantly deletions indicate a hallucination-dominant mode.*
 
 ---
 
@@ -160,7 +160,7 @@ Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause t
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-3 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -197,12 +197,12 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 ### HL.HF-4 🟢 Time-to-Sign Distribution
 
-Duration between generation and approval. Model as distribution — tail of very-fast approvals is safety-critical.
+Duration between generation and approval. Model as distribution - tail of very-fast approvals is safety-critical.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-4 |
-| **Priority Tier** | 🟢 Tier 1 — Minimum Viable |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -251,12 +251,12 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
-Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal — locked inside one vendor.
+Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal - locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-5 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -289,7 +289,7 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 > 💡 National standard should require standardised edit-pattern reporting from all vendors.
 
-*See also: Edit Rate, Edit Type Classification, Edit Location Distribution — all members of the Post-Generation Correction family. Pattern monitoring operates at the fleet level to detect shifts invisible to any single deployer; informs what a national standard should require all vendors to provide.*
+*See also: Edit Rate, Edit Type Classification, Edit Location Distribution - all members of the Post-Generation Correction family. Pattern monitoring operates at the fleet level to detect shifts invisible to any single deployer; informs what a national standard should require all vendors to provide.*
 
 ---
 
@@ -300,7 +300,7 @@ Deliberately seeded errors to test clinician catch rate. The only metric directl
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-6 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -329,9 +329,9 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 
 > Ethical complexity. Must ensure errors intercepted before permanent record.
 
-**⚠️ Underspecification Warning (Tier B — strong concept, ad hoc protocols)**
+**⚠️ Underspecification Warning (Tier B - strong concept, ad hoc protocols)**
 
-> Automation bias is well-defined conceptually (Parasuraman & Manzey, *Human Factors* 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds — one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
+> Automation bias is well-defined conceptually (Parasuraman & Manzey, *Human Factors* 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
 
 **Novel Thinking / Implications**
 
@@ -346,7 +346,7 @@ Where in the note do clinicians make edits? Concentration in specific sections (
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-7 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -375,7 +375,7 @@ For each note section s: Edit Density(s) = |edits_in_s| / |words_in_s|. Compare 
 
 > 💡 Reveals systematic quality patterns invisible to aggregate edit rate. If clinicians always edit the 'plan' section but rarely edit 'history', the AI is good at extracting facts but poor at synthesising clinical reasoning. This guides where vendor improvement should focus and where clinicians should pay particular attention during review.
 
-*See also: Edit Rate, Edit Type Classification, Edit-Pattern Monitoring at Scale — all members of the Post-Generation Correction family. Locus analysis complements type classification: what kind of edit combined with where in the note identifies specific failure modes that either dimension alone would miss.*
+*See also: Edit Rate, Edit Type Classification, Edit-Pattern Monitoring at Scale - all members of the Post-Generation Correction family. Locus analysis complements type classification: what kind of edit combined with where in the note identifies specific failure modes that either dimension alone would miss.*
 
 ---
 
@@ -386,7 +386,7 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-8 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -415,7 +415,7 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 > Self-report bias. Must triangulate with behavioural metrics.
 
-**⚠️ Underspecification Warning (Tier B — concept defined, no AVT-validated instrument)**
+**⚠️ Underspecification Warning (Tier B - concept defined, no AVT-validated instrument)**
 
 > Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, HATAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. A 2024 Dokkyo Medical University review concluded that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS or HATAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
 
@@ -432,7 +432,7 @@ Frequency of clinicians abandoning AVT mid-consultation and starting again, or a
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-9 |
-| **Priority Tier** | 🟡 Tier 2 — Recommended |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -459,18 +459,18 @@ Re-record Rate = |consultations_with_restart| / |total_consultations|. Abandonme
 
 **Novel Thinking / Implications**
 
-> 💡 Re-record rate is the canary in the coal mine. When clinicians start restarting consultations or abandoning notes, something has gone fundamentally wrong — either the system has degraded or the workflow is broken. This is a leading indicator that should trigger immediate investigation, not routine review.
+> 💡 Re-record rate is the canary in the coal mine. When clinicians start restarting consultations or abandoning notes, something has gone fundamentally wrong - either the system has degraded or the workflow is broken. This is a leading indicator that should trigger immediate investigation, not routine review.
 
 ---
 
 ### HL.HF-10 🔵 Cognitive Load Assessment
 
-Mental effort for review. Target: 'effortful but efficient' — enough to catch errors, not so much that time savings disappear.
+Mental effort for review. Target: 'effortful but efficient' - enough to catch errors, not so much that time savings disappear.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-10 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -499,9 +499,9 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 
 > Self-report. Adds burden.
 
-**⚠️ Underspecification Warning (Tier B — generic validation, no AVT-specific calibration)**
+**⚠️ Underspecification Warning (Tier B - generic validation, no AVT-specific calibration)**
 
-> NASA-TLX is validated generically with acceptable individual-setting ICC of 0.71–0.81 (lower for group settings). However, for AVT specifically: no subscale selection protocol exists, no consensus on measurement timing (during encounter / immediately after charting / end of day / end of week), no documentation-specific adaptation of the instrument, and no established thresholds for "acceptable" cognitive load in AVT review tasks. The 60.7% reduction in composite cognitive load reported in a 2024 Abridge study is a point estimate with no reference scale for clinical interpretation — "60% less" of an undefined baseline is not directly actionable. Use NASA-TLX as an interim measure, specify the timing and subscale selection used, and avoid comparing raw scores across studies that use different protocols. The proposed **Verification Burden** metric (Human Factors & Workflow) is intended to capture a more specific construct that may ultimately prove more actionable than global cognitive load.
+> NASA-TLX is validated generically with acceptable individual-setting ICC of 0.71–0.81 (lower for group settings). However, for AVT specifically: no subscale selection protocol exists, no consensus on measurement timing (during encounter / immediately after charting / end of day / end of week), no documentation-specific adaptation of the instrument, and no established thresholds for "acceptable" cognitive load in AVT review tasks. The 60.7% reduction in composite cognitive load reported in a 2024 Abridge study is a point estimate with no reference scale for clinical interpretation - "60% less" of an undefined baseline is not directly actionable. Use NASA-TLX as an interim measure, specify the timing and subscale selection used, and avoid comparing raw scores across studies that use different protocols. The proposed **Verification Burden** metric (Human Factors & Workflow) is intended to capture a more specific construct that may ultimately prove more actionable than global cognitive load.
 
 **Novel Thinking / Implications**
 
@@ -516,7 +516,7 @@ Do different clinicians edit the same AI output similarly? High variance suggest
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-11 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -543,18 +543,18 @@ For sample of identical AI outputs reviewed by multiple clinicians: variance in 
 
 **Novel Thinking / Implications**
 
-> 💡 If Clinician A always edits the AI output extensively and Clinician B never edits it, the issue might be either clinician (one is too critical, the other is too lax) or the AI (the output is ambiguous). Inter-clinician variance reveals whether the review function is consistent — a prerequisite for meaningful aggregate metrics.
+> 💡 If Clinician A always edits the AI output extensively and Clinician B never edits it, the issue might be either clinician (one is too critical, the other is too lax) or the AI (the output is ambiguous). Inter-clinician variance reveals whether the review function is consistent - a prerequisite for meaningful aggregate metrics.
 
 ---
 
 ### HL.HF-12 🔵 Clinical Documentation Skill Attenuation
 
-Longitudinal ability to document without AI. Sleeper risk — if a generation trains with AVT, baseline capability degrades.
+Longitudinal ability to document without AI. Sleeper risk - if a generation trains with AVT, baseline capability degrades.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-12 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -577,7 +577,7 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 **References**
 
-- **Aviation analogy**: Casner & Schooler (2014) — pilot skill degradation
+- **Aviation analogy**: Casner & Schooler (2014) - pilot skill degradation
 
 **Limitations**
 
@@ -591,12 +591,12 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 ### HL.HF-13 🔵 Cognitive Offloading Rate
 
-Proportion of clinicians who report relying on AI for content recall ('I don't need to remember, the AI will catch it'). Different from automation bias — this is active delegation rather than passive trust. Predicts skill attenuation.
+Proportion of clinicians who report relying on AI for content recall ('I don't need to remember, the AI will catch it'). Different from automation bias - this is active delegation rather than passive trust. Predicts skill attenuation.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-13 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -634,7 +634,7 @@ Whether initial high trust persists after errors. Absent decay = dangerous over-
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-14 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -659,9 +659,9 @@ Longitudinal T(t). After error at t_e, decay rate λ = -dT/dt for t > t_e. Healt
 
 > Longitudinal measurement required.
 
-**⚠️ Underspecification Warning (Tier A — no validated measurement in clinical AI)**
+**⚠️ Underspecification Warning (Tier A - no validated measurement in clinical AI)**
 
-> The trust halo effect is well-established in cognitive psychology but has **not been operationalised for clinical AI or AVT specifically**. The concept substantially overlaps with automation bias, and the empirical boundary between the two constructs is not established — it is unclear whether they should be measured as distinct phenomena or as facets of a common over-reliance construct. No validation studies exist. No measurement instruments have been adapted from cognitive psychology to the clinical AI context. Two viable paths forward: (a) define a specific experimental paradigm (e.g. testing whether positive experience with transcription accuracy transfers uncritically to trust in clinical summarisation accuracy, which is a different capability) and build validation evidence from there, or (b) fold the construct into the broader automation bias / over-reliance family until the measurement science matures enough to distinguish it meaningfully. Until one of these is done, any reported values should carry explicit acknowledgement of the definitional uncertainty.
+> The trust halo effect is well-established in cognitive psychology but has **not been operationalised for clinical AI or AVT specifically**. The concept substantially overlaps with automation bias, and the empirical boundary between the two constructs is not established - it is unclear whether they should be measured as distinct phenomena or as facets of a common over-reliance construct. No validation studies exist. No measurement instruments have been adapted from cognitive psychology to the clinical AI context. Two viable paths forward: (a) define a specific experimental paradigm (e.g. testing whether positive experience with transcription accuracy transfers uncritically to trust in clinical summarisation accuracy, which is a different capability) and build validation evidence from there, or (b) fold the construct into the broader automation bias / over-reliance family until the measurement science matures enough to distinguish it meaningfully. Until one of these is done, any reported values should carry explicit acknowledgement of the definitional uncertainty.
 
 **Novel Thinking / Implications**
 
@@ -676,7 +676,7 @@ Review quality degradation over a clinical session. The 9am note review may be d
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | HL.HF-15 |
-| **Priority Tier** | 🔵 Tier 3 — Advanced / Research |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
@@ -701,13 +701,13 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 > Confounded with case mix variation (afternoon clinics may have different complexity). Requires careful statistical controls.
 
-**⚠️ Underspecification Warning (Tier A — underlying concept unoperationalised)**
+**⚠️ Underspecification Warning (Tier A - underlying concept unoperationalised)**
 
-> The broader concept of attention drift across a clinician's reviewing session has **no operationalised definition in AVT literature**. The Cognitive Drift Index (Frontiers in Neuroscience 2025) measures information consumers' judgment shifts in unrelated domains, not clinician review vigilance. A 2026 KevinMD essay described "the slow erosion of clinical humility" qualitatively but offered no measurement approach. No published study has established a detection methodology, thresholds, or relationship to patient safety outcomes. Proposed interim operationalisation for this taxonomy — to be treated as a working definition pending empirical validation — is a composite of (a) declining review time per note over a session, (b) reduced edit rate trajectory within sessions, and (c) reduced error detection rate in periodic injection testing stratified by time-of-session. This proposal has not been validated; deployers using it should document the operational definition applied and treat results as exploratory rather than diagnostic.
+> The broader concept of attention drift across a clinician's reviewing session has **no operationalised definition in AVT literature**. The Cognitive Drift Index (Frontiers in Neuroscience 2025) measures information consumers' judgment shifts in unrelated domains, not clinician review vigilance. A 2026 KevinMD essay described "the slow erosion of clinical humility" qualitatively but offered no measurement approach. No published study has established a detection methodology, thresholds, or relationship to patient safety outcomes. Proposed interim operationalisation for this taxonomy - to be treated as a working definition pending empirical validation - is a composite of (a) declining review time per note over a session, (b) reduced edit rate trajectory within sessions, and (c) reduced error detection rate in periodic injection testing stratified by time-of-session. This proposal has not been validated; deployers using it should document the operational definition applied and treat results as exploratory rather than diagnostic.
 
 **Novel Thinking / Implications**
 
-> 💡 If review quality degrades through the session, the safety implications are significant: the last patients of the day get the least rigorous oversight. AVT systems designed assuming consistent reviewer attention are operating outside that assumption for a meaningful fraction of consultations. This argues for fatigue-aware workflow design — perhaps requiring more thorough review for end-of-session notes, or rotating review responsibility.
+> 💡 If review quality degrades through the session, the safety implications are significant: the last patients of the day get the least rigorous oversight. AVT systems designed assuming consistent reviewer attention are operating outside that assumption for a meaningful fraction of consultations. This argues for fatigue-aware workflow design - perhaps requiring more thorough review for end-of-session notes, or rotating review responsibility.
 
 ---
 
@@ -715,18 +715,18 @@ Track review quality metrics (time-to-sign, edit rate, error detection in inject
 
 ### Sociotechnical & Resilience sub-cluster
 
-*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss — the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
+*Systems-level constructs drawn from FRAM, Safety-II, and resilience engineering. These metrics assess the clinician-AVT joint cognitive system rather than AVT alone, and capture dimensions that standard human factors metrics miss - the gap between intended and actual practice, the hidden cost of verification, and the capacity to handle unexpected situations.*
 
 ---
 
 ### HL.HF-16 🔵 Work-as-Imagined vs Work-as-Done Gap
 
-The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric — not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
+The gap between how AVT is intended to be used (per procedures, training, and governance documentation) and how it is actually used in clinical practice. A construct from Hollnagel's FRAM methodology and the Safety-II tradition. Subsumes and generalises the existing Off-Label Use Detection metric - not every WAI/WAD gap is off-label, and not every adaptation is a safety problem, but the gap itself is diagnostically valuable.
 
 |Dimension              |Value                                                                  |
 |-----------------------|-----------------------------------------------------------------------|
 | **Reference** | HL.HF-16 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                         |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                         |
 |**Measurement Cadence**|Periodic audit                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                          |
 |**Assurance Question** |Safety                                                                 |
@@ -744,7 +744,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 **Formal Definition**
 
 ```
-Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis — categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar — the qualitative detail is what supports intervention.
+Three-step methodology: (1) Document WAI from training materials, SOPs, vendor guidance, and governance policies; (2) Observe WAD through shadowing, workflow analysis, and semi-structured clinician interviews; (3) Gap analysis - categorise deviations as {beneficial adaptation, neutral workaround, latent risk, active hazard}. Report gap count per category and exemplar descriptions rather than a single scalar - the qualitative detail is what supports intervention.
 ```
 
 **Limitations**
@@ -753,18 +753,18 @@ Three-step methodology: (1) Document WAI from training materials, SOPs, vendor g
 
 **Novel Thinking / Implications**
 
-> 💡 Every complex sociotechnical system has a WAI/WAD gap — procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
+> 💡 Every complex sociotechnical system has a WAI/WAD gap - procedures can never fully specify practice. The Safety-II insight is that adaptations are not automatically failures; they are often what makes the system work at all. The diagnostic question is not "is there a gap?" (there always is) but "which gaps indicate genuine risk vs which indicate necessary adaptation that should be formalised back into WAI?" This metric surfaces the question; human judgment answers it.
 
 ---
 
 ### HL.HF-17 🟡 Verification Burden
 
-The additional workload created by the need to verify AI-generated content against clinical reality — reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
+The additional workload created by the need to verify AI-generated content against clinical reality - reading the note, cross-checking against the conversation, identifying errors, making corrections. Distinct from the existing Cognitive Load Assessment metric, which measures total effort. Verification burden is specifically the checking overhead that exists only because the output needs checking. A well-calibrated AVT system minimises this burden; a poorly-calibrated one shifts documentation time into verification time and may eliminate the apparent efficiency gain.
 
 |Dimension              |Value                                                               |
 |-----------------------|--------------------------------------------------------------------|
 | **Reference** | HL.HF-17 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                              |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                              |
 |**Measurement Cadence**|Periodic audit                                                      |
 |**Pipeline Layer**     |Cross-cutting                                                       |
 |**Assurance Question** |Human Factors                                                       |
@@ -777,7 +777,7 @@ The additional workload created by the need to verify AI-generated content again
 
 **Why this tier?**
 
-> Conceptually important — distinguishes apparent efficiency gain from actual efficiency gain — but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
+> Conceptually important - distinguishes apparent efficiency gain from actual efficiency gain - but requires time-motion observation methodology (TimeCat or equivalent). Day Zero baseline plus periodic re-measurement supports trajectory analysis.
 
 **Formal Definition**
 
@@ -791,7 +791,7 @@ VB = t_review + t_correction + t_cross_reference, measured per consultation. Bas
 
 **Novel Thinking / Implications**
 
-> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency — and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
+> 💡 The marketing claim "AVT saves 3 minutes of documentation time per consultation" is meaningless without verification burden accounting. A system that saves 3 minutes of typing but adds 4 minutes of verification has negative net efficiency - and research suggests this scenario is common early in deployment before clinicians develop efficient review patterns. Verification burden should be reported alongside every documentation time saving claim, or the claim should not be reported at all.
 
 ---
 
@@ -802,7 +802,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 |Dimension              |Value                                                             |
 |-----------------------|------------------------------------------------------------------|
 | **Reference** | HL.HF-18 |
-|**Priority Tier**      |🔵 Tier 3 — Advanced / Research                                    |
+|**Priority Tier**      |🔵 Tier 3 - Advanced / Research                                    |
 |**Measurement Cadence**|Periodic audit                                                    |
 |**Pipeline Layer**     |Cross-cutting                                                     |
 |**Assurance Question** |Safety                                                            |
@@ -821,10 +821,10 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 
 ```
 Four capacity dimensions scored via structured scenario-based assessment and qualitative evaluation:
-(1) Responding — when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
-(2) Monitoring — what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
-(3) Learning — when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
-(4) Anticipating — does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
+(1) Responding - when an AVT failure occurs mid-consultation (crash, silent degradation, wrong-patient data), how does the clinician-system respond? Recovery time, recovery completeness, downstream impact.
+(2) Monitoring - what signals does the system provide that allow the clinician to detect degradation? Are those signals attended to in practice?
+(3) Learning - when errors are discovered, how is that learning captured and integrated into future work? (Links to Hazard Log Completeness and Training Material Currency)
+(4) Anticipating - does the deployer identify and prepare for foreseeable challenges (model updates, regulatory changes, novel failure modes)?
 Score each capacity 1–5 with narrative justification. Composite is a profile, not a single number.
 ```
 
@@ -834,18 +834,18 @@ Score each capacity 1–5 with narrative justification. Composite is a profile, 
 
 **Novel Thinking / Implications**
 
-> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle — the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
+> 💡 Traditional safety metrics are Safety-I: counting failures and aiming for zero. Resilience metrics are Safety-II: assessing the capacity to handle failures that will inevitably occur. An AVT deployment with zero recorded incidents but weak resilience capacities is brittle - the first real test will reveal the gap. This metric family complements rather than replaces the incident-based metrics in Safety & Governance.
 
 ---
 
 ### HL.HF-19 🟡 AI-Off Performance Test
 
-Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept — instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
+Scheduled exercises where clinicians document a clinical encounter without AVT assistance, and the resulting documentation is assessed for quality against baseline standards. Provides an operational implementation of the existing Clinical Documentation Skill Attenuation concept - instead of inferring skill degradation longitudinally, directly measure current unassisted capability. Also doubles as business continuity assurance: can the clinical team function if AVT is unavailable?
 
 |Dimension              |Value                                                                                                 |
 |-----------------------|------------------------------------------------------------------------------------------------------|
 | **Reference** | HL.HF-19 |
-|**Priority Tier**      |🟡 Tier 2 — Recommended                                                                                |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                                                                |
 |**Measurement Cadence**|Periodic audit                                                                                        |
 |**Pipeline Layer**     |Cross-cutting                                                                                         |
 |**Assurance Question** |Human Factors                                                                                         |
@@ -872,4 +872,4 @@ Protocol: (1) Schedule defined exercises where clinicians document simulated or 
 
 **Novel Thinking / Implications**
 
-> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case — can the practice function during a vendor outage? — is almost sufficient reason to run the test regardless of the deskilling question.
+> 💡 The endoscopy AI-off finding (adenoma detection rate falling from 28.4% to 22.4% when AI was removed after a period of AI use) is the first robust real-world evidence of clinical deskilling from AI dependency. For ambient scribes, the equivalent question is whether clinicians lose the ability to write a clinically complete note unassisted after a period of AVT use. This is testable today. The business continuity case - can the practice function during a vendor outage? - is almost sufficient reason to run the test regardless of the deskilling question.
