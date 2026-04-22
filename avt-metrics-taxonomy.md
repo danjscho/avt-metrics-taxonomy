@@ -667,7 +667,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ## Standards Mapping
 
-This section maps the taxonomy's 214 metrics against four NHS/regulatory frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
+This section maps the taxonomy's 214 metrics against twelve NHS/regulatory frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
 
 Where a standard criterion has no corresponding taxonomy metric, this is flagged as a **gap**. Where the taxonomy provides coverage beyond the standard's scope, this is noted as **taxonomy extends**.
 
@@ -964,6 +964,78 @@ The framework has 30 evaluation dimensions across three groups. All dimensions i
 | **Evaluation techniques for ongoing monitoring** | PDSQI-9, CREOLA Error Taxonomy, LLM-as-a-Judge, Automated-Human Metric Concordance | 🟡 2 / 🔵 3 | Strong coverage; taxonomy extensively addresses clinical evaluation methodology |
 | **Scalability** 🔄 | Full-Pipeline Latency Budget, System Availability / Uptime | 🟡 2 / 🟢 1 | **Partial gap** - taxonomy lacks explicit scalability / concurrency metric |
 | **System for monitoring** | Safety Performance Indicators with Thresholds (DSCMS), Goodhart's Law Monitoring | 🟢 1 / 🟡 2 | Taxonomy provides the metrics; framework asks whether monitoring infrastructure exists |
+
+---
+
+### NHS T.E.S.T. Framework (Technology Evaluation Safety Test)
+
+**Publisher:** Developed by clinicians at Great Ormond Street Hospital, NHS London, Chelsea & Westminster, and UCL; published via the Health Innovation Network (June 2025, v11.17625SS).
+**Mandatory status:** Not statutorily mandatory, but positioned as an ICS-level assurance gate: "If your ICS has already approved an AVT vendor using T.E.S.T., individual Trusts, PCNs, or Surgeries may not need to conduct separate assurance processes." Liability for non-compliant choices rests locally.
+**AVT relevance:** Purpose-built for AVT / ambient-scribing procurement. Directly addresses this taxonomy's scope.
+
+The framework has two parts. **Section A** is a binary pass/fail platform-assurance checklist (7 domains, 22 requirements; all must pass to progress). **Section B** is a 420-point benefits score across 12 domains, with certification thresholds: Gold 🥇 360–410 (NHS-wide scale), Silver 🥈 290–359 (single-site use), 200–279 needs improvement, <200 not recommended. Gold is practically unreachable without the 50-point RCT / clinical-validation item.
+
+#### Section A - Platform Assurance (binary, all 22 requirements mandatory)
+
+| # | T.E.S.T. Requirement | Domain | Taxonomy Metrics | Tier | Notes |
+|---|----------------------|--------|------------------|------|-------|
+| 1 | NHS accreditations (DTAC, DSPT, CE Plus, CREST pentest, UK GDPR) | Cybersecurity | *Process criterion - covered by DTAC/DSPT mappings above* | - | Compound accreditation check; see DTAC and DSPT sections |
+| 2 | Safeguarding patient information (DSPT, E2E encryption, DPIA, TRE rules, controllership) | Data Protection | GV.CR-7 DPIA Template Completion Rate, GV.PD-9 Cross-Border Data Transfer Compliance | 🟢 1 | Strong coverage; E2E encryption itself is a control, not a metric |
+| 3 | Deletion of patient data (audio + transcript auto-delete, minimisation, retention proportionality) | Data Protection | GV.PD-1 Audio Retention Compliance, GV.PD-2 Audio Time-to-Deletion, GV.PD-3 Transcript Retention Compliance, GV.PD-4 Data Minimisation Score | 🟢 1 / 🟡 2 | Direct mapping - taxonomy's Privacy group was built around this exact requirement |
+| 4 | AI training data quality, minimisation, anonymisation (ICO-aligned) | Data Protection | GV.PD-7 Training Data Inclusion Status | 🟡 2 | **Partial gap** - no metric on training-data anonymisation provenance |
+| 5 | Servers in UK/EU, adequacy decisions, SCCs/BCRs for transfers | Data Protection | GV.PD-9 Cross-Border Data Transfer Compliance | 🟢 1 | Direct mapping |
+| 6 | MHRA Class I minimum for summarisation; Class IIa+ for diagnoses/calculations | Clinical Safety | GV.CR-6 Clinical Safety Case Completeness | 🟢 1 | Covered indirectly via MHRA mapping; T.E.S.T. makes the Class boundary explicit |
+| 7 | Local ICS/Trust governance approval (DPIA, DCB 0129 Safety Case + Hazard Log, DCB 0160) | Clinical Safety | GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness, GV.CR-7 DPIA Template Completion Rate | 🟢 1 | Strong coverage; see also DCB0129/0160 mapping |
+| 8 | Embedded Clinical Safety Officer (CSO), external validation recommended | Clinical Safety | *Structural requirement - no metric equivalent* | - | Process/organisational requirement |
+| 9 | Defined product scope; re-review on scope change | Clinical Safety | GV.SG-2 Model Update Impact Score, GV.VT-1 Model Change Notification Compliance | 🟡 2 / 🟢 1 | Change-management metrics map well |
+| 10 | Prompt-injection guardrails (end-users blocked from direct LLM interface) | Clinical Safety | GV.SC-1 Prompt Injection Resistance Rate, GV.SC-6 Template Injection Vulnerability Assessment | 🟡 2 | Direct mapping |
+| 11 | Clinician-in-the-loop validation, annotated output data, continuous validation | Clinical Safety | HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate, ES.ME-7 Automated-Human Metric Concordance | 🟢 1 / 🔵 3 | Strong coverage through Human Factors + Meta-evaluation |
+| 12 | Adverse-event reporting/mitigation processes; inbuilt error reporting advised | Clinical Safety | GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate, GV.VT-5 Incident Disclosure Compliance | 🟢 1 | Direct mapping |
+| 13 | AI language translation liability remains with vendor (not clinician) | Clinical Safety | *Gap - no metric for translation accuracy or liability locus* | - | **Gap** - taxonomy does not currently address AI translation; candidate for roadmap |
+| 14 | Disclosure of underlying AI models (even if proprietary) | Bias & Inclusivity | GV.VT-7 Sub-Processor Transparency, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟢 1 / 🔵 3 | Partial coverage - sub-processor transparency captures model stack disclosure |
+| 15 | Evidence of testing on diverse populations; bias-free operation | Bias & Inclusivity | TP.ASR-4 Demographic-Disaggregated WER, IO.FE-4 Intersectional Performance, IO.FE-2 Accent Taxonomy Standardisation | 🟡 2 / 🔵 3 | Strong coverage through Demographic Equity Disaggregation family |
+| 16 | Mandatory EHR integration (front-end or back-end) for write-back, provenance | Technical | TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-4 Update vs Append Behaviour | 🟢 1 | Direct mapping to EPR Write-back group |
+| 17 | Offer simple VR/dictation alongside ambient AI as standard | Technical | *Product-feature requirement - no metric equivalent* | - | Procurement feature check |
+| 18 | Routine reporting of hallucination rate, omission rate, word-error-rate | Technical | TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.ASR-1 Word Error Rate (WER), TP.ASR-12 Hallucination-Under-Noise Rate | 🟢 1 / 🟡 2 | **Direct mapping** - T.E.S.T. names these three exact metrics |
+| 19 | Handle multiple consultations; allow edit/correct pre-session-close | Technical | HL.HF-1 Edit Rate, HL.HF-7 Edit Location Distribution | 🟢 1 / 🟡 2 | Edit-pattern metrics cover in-session correction |
+| 20 | Adaptability to clinician styles, formats, workflows | Technical | HL.HF-11 Inter-Clinician Edit Variance, TP.SN-22 Style & Format Consistency | 🔵 3 | Good coverage |
+| 21 | Offline capture + async processing; local encryption; 24h auto-delete; logout clears data | Business Continuity | GV.OP-5 System Availability / Uptime, GV.PD-2 Audio Time-to-Deletion, PI.E2E-11 Pipeline Failure Recovery | 🟢 1 / 🟡 2 | Strong coverage |
+| 22 | Continuous drift monitoring; formal periodic testing | Evolving Technology Test | GV.SG-3 Performance Degradation Detection Latency, GV.SG-6 Concept Drift in Clinical Notes, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS) | 🟡 2 / 🔵 3 / 🟢 1 | **Direct mapping** - taxonomy's Longitudinal Drift sub-cluster is built for this |
+
+#### Section B - Benefits Assessment (420 points across 12 domains)
+
+| # | T.E.S.T. Benefit Domain | Points | Taxonomy Metrics | Tier | Notes |
+|---|-------------------------|-------:|------------------|------|-------|
+| 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🔵 3 / 🟢 1 / 🟡 2 | Good coverage for most items. **Gap** - no metric for "timeliness of correspondence across care teams" or RCT-validation status as a checkbox |
+| 2 | **Operational Cost-Effectiveness** (economic evaluation 25; ROI 10; cost savings 15; operational savings 10) | 60 | GV.OP-7 Cost per Consultation, GV.OP-8 Governance & Maintenance Burden | 🟡 2 / 🔵 3 | **Partial gap** - taxonomy lacks explicit ROI, total cost of ownership, formal economic-evaluation metric |
+| 3 | **Workforce Impact Assessment** (settings, specialties, foci, burnout, job satisfaction) | 60 | GV.OP-6 Adoption Rate & Selective Use Patterns, IO.FE-1 Deployment Equity Index, GV.OP-2 Pyjama Time / After-Hours EHR Use, HL.HF-8 Trust Calibration Survey | 🟢 1 / 🟡 2 | Burnout and pyjama time well-covered. **Gap** - no direct "job satisfaction" metric; no "multi-specialty validation" metric |
+| 4 | **Integration and Interoperability** (EHR integration, interoperability synergy, narrative quality) | 35 | TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency | 🟡 2 / 🔵 3 | Strong coverage through EPR Write-back group |
+| 5 | **Clinician Experience and Usability** (friction, speed, workflow, cognitive load, human factors) | 30 | HL.HF-10 Cognitive Load Assessment, HL.HF-17 Verification Burden, GV.OP-3 Note Turnaround Time, HL.HF-16 Work-as-Imagined vs Work-as-Done Gap | 🔵 3 / 🟡 2 | Strong coverage through Human Factors group |
+| 6 | **Training, Adoption, and Human Factors** (ease of use, AI/human labelling, personalisation, learning, training) | 25 | GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.CR-3 AI-Generated Content Labelling Compliance, GV.TC-5 Training Material Currency | 🟢 1 / 🟡 2 | Direct mapping to Training & Competency group |
+| 7 | **Patient Safety and Quality of Care** (time for care 15; documentation accuracy 5) | 20 | IO.PX-7 Full Attentiveness Rate, GV.SG-11 Adverse Event / Incident Rate (LFPSE), PI.E2E-1 Source-to-Record Concordance | 🟡 2 / 🟢 1 / 🔵 3 | Strong coverage; Full Attentiveness Rate is a direct proxy for "time for care" |
+| 8 | **Patient Experience and Understanding** (communication, patient understanding) | 20 | IO.PX-2 Patient-Perceived Accuracy, IO.PX-6 Therapeutic Relationship Impact, IO.PX-8 Patient Comprehension of AI-Generated Summaries | 🔵 3 | Direct mapping to Patient Experience group |
+| 9 | **Virtual Care Integration** (primary, secondary, ambulance/telephone) | 20 | IO.FE-1 Deployment Equity Index, IO.FE-8 Cross-Platform Fairness Consistency | 🟡 2 / 🔵 3 | **Partial gap** - no metric for virtual-care-specific performance; modality stratification absent |
+| 10 | **Data & Analytics Integration** (real-time visualisation, data-driven decisions) | 20 | GV.VT-2 Telemetry Provision Completeness, GV.VT-4 Audit Trail Completeness | 🟡 2 | Telemetry metrics cover infrastructure; no metric on downstream analytics use |
+| 11 | **Disbenefits / Potential Harm Analysis** (harms characterisation, distribution, mitigation) | 20 | HL.HF-12 Clinical Documentation Skill Attenuation, HL.HF-13 Cognitive Offloading Rate, IO.PX-5 Chilling Effect Assessment, PI.E2E-3 Error Propagation / Cascade Analysis | 🔵 3 | Strong coverage across human factors, patient experience, and pipeline harms |
+| 12 | **Environmental and Societal Impact** (carbon, energy, societal, UK economy / sovereign AI) | 20 | GV.EN-1 Energy Consumption per Clinical Note, GV.EN-2 Carbon Emissions per Inference, GV.EN-3 Water Consumption per Query | 🔵 3 | Direct mapping to Environmental & Sustainability group. **Gap** - no metric for "sovereign AI" / UK economic contribution |
+
+**Summary of taxonomy alignment with T.E.S.T.:**
+
+- **Section A (platform assurance):** 18 of 22 requirements have direct or strong metric coverage. 3 are pure process/product-feature criteria (8 CSO, 17 VR/dictation offering). 1 is a clear gap: requirement 13 (AI language translation accuracy and liability) - candidate for the roadmap.
+- **Section B (benefits):** All 12 domains have taxonomy metrics in scope. Partial gaps in cost-effectiveness (ROI / TCO / formal economic evaluation), workforce (job satisfaction, multi-specialty validation), virtual-care modality stratification, data analytics use, and sovereign-AI contribution. None are critical given the taxonomy's scope, but several would be practical additions.
+- **Strongest alignment:** T.E.S.T. requirement 18 (hallucination / omission / WER) names three exact taxonomy metrics. Requirement 22 (drift) maps directly onto the Longitudinal Drift & Model Contamination sub-cluster. Requirement 3 (deletion) maps onto the full Privacy & Data Governance deletion chain.
+- **Distinctive T.E.S.T. contributions:** The explicit MHRA Class I / Class IIa boundary (req 6), the DCB 0129 / DCB 0160 split with 'Evolving Technology Test' as a local post-market surveillance capability (req 7), and the translation-liability stance (req 13) are framing contributions that the taxonomy could reference directly in its Compliance & Regulatory group.
+
+**Candidate metrics to add (T.E.S.T.-derived gaps)** — full entries in [`_gaps.md` §3](#nhs-test-framework-6-candidates):
+
+| Proposed Ref | Title | T.E.S.T. Source | Suggested Placement | Tier |
+|---|---|---|---|---|
+| TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | Part A (Summarisation/NLP) or new translation sub-group | 🟡 2 |
+| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | Part E Privacy & Data Governance | 🟡 2 |
+| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | Part E Operational | 🟡 2 |
+| GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | Part E Vendor Transparency | 🔵 3 |
+| IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | Part D Fairness & Equity | 🔵 3 |
+| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | Part E Vendor Transparency | 🔵 3 |
 
 ---
 
@@ -1999,7 +2071,7 @@ Consolidated register of metrics not yet in the taxonomy but flagged during mapp
 - `deferred` - considered and set aside with reasoning; may revisit
 - `rejected` - considered and dismissed; reasoning preserved so it's not re-raised
 
-**Totals across origins:** 83 candidates (9 external-review accepted, 4 external-review deferred, 4 NHSE IG, 28 standards-mapping, 38 Responsible AI lens).
+**Totals across origins:** 89 candidates (9 external-review accepted, 4 external-review deferred, 4 NHSE IG, 28 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens).
 
 ---
 
@@ -2129,11 +2201,36 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 
 ---
 
-## 3. Responsible AI Lens (38 candidates)
+## 3. NHS T.E.S.T. Framework (6 candidates)
+
+Derived from the NHS T.E.S.T. Framework mapping (see `_standards-mapping.md` § NHS T.E.S.T.). T.E.S.T. is AVT-specific, so alignment is already strong - these 6 gaps are genuinely novel surfaces rather than re-statements of existing standards.
+
+| Proposed Ref | Title | Tier | T.E.S.T. Source | What it measures |
+|---|---|---|---|---|
+| TP.SN-26 | AI Translation Accuracy & Liability Attribution | 🟡 2 | Section A req 13 | Accuracy of AI-generated language translation in AVT output, with explicit documentation that liability for translation errors rests with the vendor, not the clinician. T.E.S.T. names translation as a distinctive clinical safety surface; no existing metric. |
+| GV.PD-15 | Training Data Anonymisation Provenance | 🟡 2 | Section A req 4 | Documented provenance of anonymisation technique applied to AI training data (ICO-aligned). Extends GV.PD-7 Training Data Inclusion Status, which covers inclusion declaration but not anonymisation quality. |
+| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | 🟡 2 | Section B domain 2 (25 pts) | Formal multi-dimensional economic evaluation including ROI, operational savings, and full TCO. Extends GV.OP-7 (per-consultation cost) and GV.OP-8 (governance burden) with a top-down economic view that T.E.S.T. weights at 25 of 420 points. Distinct from NICE-derived GV.OP-10 (CEA / QALY) and GV.OP-11 (budget impact) - this is an NHS-procurement-framed TCO view. |
+| GV.VT-11 | Multi-Specialty Validation Coverage | 🔵 3 | Section B domain 3 | Count and breadth of clinical specialties in which the AVT has been formally validated (medical, surgical, allied health). T.E.S.T. awards 10 pts for multi-specialty validation; no existing metric captures breadth of validation scope. |
+| IO.FE-9 | Virtual-Care Modality Stratified Performance | 🔵 3 | Section B domain 9 | Performance stratified by consultation modality (in-person, video, telephone, ambulance triage). Existing IO.FE-1 covers deployment equity by site/setting but not by modality. T.E.S.T. singles out ambulance telephone triage as a distinct high-weight case (10 pts). |
+| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | 🔵 3 | Section B domain 12 | Disclosure of whether the vendor and underlying model stack are UK-based (contributing to UK PLC per T.E.S.T. domain 12). Procurement transparency surface. Complements GV.VT-7 Sub-Processor Transparency with sovereignty-specific attribute. |
+
+### 3a. T.E.S.T. summary
+
+| Source | Gaps | Tier Distribution |
+|--------|------|-------------------|
+| NHS T.E.S.T. Section A | 2 | 2 × Tier 2 |
+| NHS T.E.S.T. Section B | 4 | 1 × Tier 2, 3 × Tier 3 |
+| **Total** | **6** | **3 × Tier 2, 3 × Tier 3** |
+
+Note: 18 of 22 Section A requirements already have direct or strong metric coverage. 3 Section A items are pure process/product-feature criteria (CSO embedding, VR/dictation product offering, DCB 0160 local risk control) and are not metric-shaped. The 4th un-mapped item (req 13, translation) becomes Gap TP.SN-26 above. Section B's 12 domains all have at least partial coverage; the 4 gaps captured above are where weighting is heavy or coverage is thin.
+
+---
+
+## 4. Responsible AI Lens (38 candidates)
 
 Derived from the DSIT AI Playbook principle mapping and the six ethical theme mapping in `_responsible-ai-lens.md`. Some overlap the standards-mapping gaps - cross-references noted inline.
 
-### 3a. By Playbook principle (20)
+### 4a. By Playbook principle (20)
 
 | Principle | Gap | Severity | Cross-reference |
 |-----------|-----|----------|-----------------|
@@ -2158,7 +2255,7 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | P10 - Org assurance | AI review board effectiveness metric | Medium | - |
 | P10 - Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
 
-### 3b. By ethical theme (18)
+### 4b. By ethical theme (18)
 
 | Theme | Gap | Severity | Cross-reference |
 |-------|-----|----------|-----------------|
@@ -2181,7 +2278,7 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | T6 - Societal Wellbeing | Long-term sustainability of AVT adoption | Medium | - |
 | T6 - Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged low severity in Standards Mapping |
 
-### 3c. Highest-severity cross-cutting gaps
+### 4c. Highest-severity cross-cutting gaps
 
 Gaps that surface under multiple lens axes - highest-leverage targets for future metric rounds.
 
@@ -2193,7 +2290,7 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 
 ---
 
-## 4. Roll-up
+## 5. Roll-up
 
 **Totals across origins:**
 
@@ -2202,19 +2299,20 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 | RSET external review | 9 | 4 | 0 | 13 |
 | NHSE IG external review | 4 | 0 | 0 | 4 |
 | Standards mapping | 28 | 0 | 0 | 28 |
+| NHS T.E.S.T. | 6 | 0 | 0 | 6 |
 | Responsible AI lens | 38 | 0 | 0 | 38 |
-| **Total** | **79** | **4** | **0** | **83** |
+| **Total** | **85** | **4** | **0** | **89** |
 
-**Tier distribution of the 79 accepted/proposed candidates:**
+**Tier distribution of the 85 accepted/proposed candidates:**
 
 | Tier | Count |
 |------|-------|
 | 🟢 1 | 10 (Gap-RSET-J, Gap-IG-B, 6 from Standards, 2 from RAI high-severity) |
-| 🟡 2 | 47 |
-| 🔵 3 | 6 |
+| 🟡 2 | 50 (+3 from T.E.S.T.) |
+| 🔵 3 | 9 (+3 from T.E.S.T.) |
 | Unassigned (RAI severity only) | 16 |
 
-**If all 79 accepted candidates were adopted as metrics,** the taxonomy would grow from 214 to ~293 metrics. In practice, cross-cutting gaps (e.g. Board-Level AI Governance surfaces under CQC, P10, and T4) will collapse to single metrics, so the true additive count is likely ~60–65.
+**If all 85 accepted candidates were adopted as metrics,** the taxonomy would grow from 214 to ~299 metrics. In practice, cross-cutting gaps (e.g. Board-Level AI Governance surfaces under CQC, P10, and T4) will collapse to single metrics, so the true additive count is likely ~65–70.
 
 **Highest-leverage single additions** (gap appears in multiple origins simultaneously):
 - **TP.WB-11 PRSB Semantic Completeness** - Standards §2f (PRSB), implicit in CQC record quality, implicit in FHIR UK Core conformance, T2 Transparency
@@ -2222,7 +2320,7 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 - **GV.SG-19 Systems-Based Incident Analysis Rate** - Standards §2e (PSIRF), T1
 - **GV.CR-14 Consultation-Type Appropriateness Assessment** - Standards §2g (Caldicott), direct NHSE IG concern for sensitive consultation carve-outs
 
-## 5. How this file is maintained
+## 6. How this file is maintained
 
 - New gaps identified in any source document are added here with `status: proposed`.
 - Gaps promoted to metrics: status changes to `accepted`, then the entry is *removed* when the metric is drafted and numbered. The CHANGELOG records the promotion.

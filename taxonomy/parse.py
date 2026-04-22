@@ -283,8 +283,9 @@ _GAP_SECTIONS: list[tuple[str, str, str]] = [
     ("### 2e. PSIRF", "standards-psirf", "PSIRF"),
     ("### 2f. PRSB", "standards-prsb", "PRSB"),
     ("### 2g. Caldicott", "standards-caldicott", "Caldicott Principles"),
-    ("### 3a. By Playbook principle", "rai-principle", "DSIT AI Playbook"),
-    ("### 3b. By ethical theme", "rai-theme", "Responsible AI ethical themes"),
+    ("## 3. NHS T.E.S.T.", "standards-test", "NHS T.E.S.T."),
+    ("### 4a. By Playbook principle", "rai-principle", "DSIT AI Playbook"),
+    ("### 4b. By ethical theme", "rai-theme", "Responsible AI ethical themes"),
 ]
 
 

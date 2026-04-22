@@ -8,7 +8,7 @@ Consolidated register of metrics not yet in the taxonomy but flagged during mapp
 - `deferred` - considered and set aside with reasoning; may revisit
 - `rejected` - considered and dismissed; reasoning preserved so it's not re-raised
 
-**Totals across origins:** 83 candidates (9 external-review accepted, 4 external-review deferred, 4 NHSE IG, 28 standards-mapping, 38 Responsible AI lens).
+**Totals across origins:** 89 candidates (9 external-review accepted, 4 external-review deferred, 4 NHSE IG, 28 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens).
 
 ---
 
@@ -138,11 +138,36 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 
 ---
 
-## 3. Responsible AI Lens (38 candidates)
+## 3. NHS T.E.S.T. Framework (6 candidates)
+
+Derived from the NHS T.E.S.T. Framework mapping (see `_standards-mapping.md` § NHS T.E.S.T.). T.E.S.T. is AVT-specific, so alignment is already strong - these 6 gaps are genuinely novel surfaces rather than re-statements of existing standards.
+
+| Proposed Ref | Title | Tier | T.E.S.T. Source | What it measures |
+|---|---|---|---|---|
+| TP.SN-26 | AI Translation Accuracy & Liability Attribution | 🟡 2 | Section A req 13 | Accuracy of AI-generated language translation in AVT output, with explicit documentation that liability for translation errors rests with the vendor, not the clinician. T.E.S.T. names translation as a distinctive clinical safety surface; no existing metric. |
+| GV.PD-15 | Training Data Anonymisation Provenance | 🟡 2 | Section A req 4 | Documented provenance of anonymisation technique applied to AI training data (ICO-aligned). Extends GV.PD-7 Training Data Inclusion Status, which covers inclusion declaration but not anonymisation quality. |
+| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | 🟡 2 | Section B domain 2 (25 pts) | Formal multi-dimensional economic evaluation including ROI, operational savings, and full TCO. Extends GV.OP-7 (per-consultation cost) and GV.OP-8 (governance burden) with a top-down economic view that T.E.S.T. weights at 25 of 420 points. Distinct from NICE-derived GV.OP-10 (CEA / QALY) and GV.OP-11 (budget impact) - this is an NHS-procurement-framed TCO view. |
+| GV.VT-11 | Multi-Specialty Validation Coverage | 🔵 3 | Section B domain 3 | Count and breadth of clinical specialties in which the AVT has been formally validated (medical, surgical, allied health). T.E.S.T. awards 10 pts for multi-specialty validation; no existing metric captures breadth of validation scope. |
+| IO.FE-9 | Virtual-Care Modality Stratified Performance | 🔵 3 | Section B domain 9 | Performance stratified by consultation modality (in-person, video, telephone, ambulance triage). Existing IO.FE-1 covers deployment equity by site/setting but not by modality. T.E.S.T. singles out ambulance telephone triage as a distinct high-weight case (10 pts). |
+| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | 🔵 3 | Section B domain 12 | Disclosure of whether the vendor and underlying model stack are UK-based (contributing to UK PLC per T.E.S.T. domain 12). Procurement transparency surface. Complements GV.VT-7 Sub-Processor Transparency with sovereignty-specific attribute. |
+
+### 3a. T.E.S.T. summary
+
+| Source | Gaps | Tier Distribution |
+|--------|------|-------------------|
+| NHS T.E.S.T. Section A | 2 | 2 × Tier 2 |
+| NHS T.E.S.T. Section B | 4 | 1 × Tier 2, 3 × Tier 3 |
+| **Total** | **6** | **3 × Tier 2, 3 × Tier 3** |
+
+Note: 18 of 22 Section A requirements already have direct or strong metric coverage. 3 Section A items are pure process/product-feature criteria (CSO embedding, VR/dictation product offering, DCB 0160 local risk control) and are not metric-shaped. The 4th un-mapped item (req 13, translation) becomes Gap TP.SN-26 above. Section B's 12 domains all have at least partial coverage; the 4 gaps captured above are where weighting is heavy or coverage is thin.
+
+---
+
+## 4. Responsible AI Lens (38 candidates)
 
 Derived from the DSIT AI Playbook principle mapping and the six ethical theme mapping in `_responsible-ai-lens.md`. Some overlap the standards-mapping gaps - cross-references noted inline.
 
-### 3a. By Playbook principle (20)
+### 4a. By Playbook principle (20)
 
 | Principle | Gap | Severity | Cross-reference |
 |-----------|-----|----------|-----------------|
@@ -167,7 +192,7 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | P10 - Org assurance | AI review board effectiveness metric | Medium | - |
 | P10 - Org assurance | Enterprise risk register alignment for AI risks | Medium | Partial via GV.SG-13 |
 
-### 3b. By ethical theme (18)
+### 4b. By ethical theme (18)
 
 | Theme | Gap | Severity | Cross-reference |
 |-------|-----|----------|-----------------|
@@ -190,7 +215,7 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | T6 - Societal Wellbeing | Long-term sustainability of AVT adoption | Medium | - |
 | T6 - Societal Wellbeing | Job security / workforce anxiety assessment | Medium | Flagged low severity in Standards Mapping |
 
-### 3c. Highest-severity cross-cutting gaps
+### 4c. Highest-severity cross-cutting gaps
 
 Gaps that surface under multiple lens axes - highest-leverage targets for future metric rounds.
 
@@ -202,7 +227,7 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 
 ---
 
-## 4. Roll-up
+## 5. Roll-up
 
 **Totals across origins:**
 
@@ -211,19 +236,20 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 | RSET external review | 9 | 4 | 0 | 13 |
 | NHSE IG external review | 4 | 0 | 0 | 4 |
 | Standards mapping | 28 | 0 | 0 | 28 |
+| NHS T.E.S.T. | 6 | 0 | 0 | 6 |
 | Responsible AI lens | 38 | 0 | 0 | 38 |
-| **Total** | **79** | **4** | **0** | **83** |
+| **Total** | **85** | **4** | **0** | **89** |
 
-**Tier distribution of the 79 accepted/proposed candidates:**
+**Tier distribution of the 85 accepted/proposed candidates:**
 
 | Tier | Count |
 |------|-------|
 | 🟢 1 | 10 (Gap-RSET-J, Gap-IG-B, 6 from Standards, 2 from RAI high-severity) |
-| 🟡 2 | 47 |
-| 🔵 3 | 6 |
+| 🟡 2 | 50 (+3 from T.E.S.T.) |
+| 🔵 3 | 9 (+3 from T.E.S.T.) |
 | Unassigned (RAI severity only) | 16 |
 
-**If all 79 accepted candidates were adopted as metrics,** the taxonomy would grow from 214 to ~293 metrics. In practice, cross-cutting gaps (e.g. Board-Level AI Governance surfaces under CQC, P10, and T4) will collapse to single metrics, so the true additive count is likely ~60–65.
+**If all 85 accepted candidates were adopted as metrics,** the taxonomy would grow from 214 to ~299 metrics. In practice, cross-cutting gaps (e.g. Board-Level AI Governance surfaces under CQC, P10, and T4) will collapse to single metrics, so the true additive count is likely ~65–70.
 
 **Highest-leverage single additions** (gap appears in multiple origins simultaneously):
 - **TP.WB-11 PRSB Semantic Completeness** - Standards §2f (PRSB), implicit in CQC record quality, implicit in FHIR UK Core conformance, T2 Transparency
@@ -231,7 +257,7 @@ Gaps that surface under multiple lens axes - highest-leverage targets for future
 - **GV.SG-19 Systems-Based Incident Analysis Rate** - Standards §2e (PSIRF), T1
 - **GV.CR-14 Consultation-Type Appropriateness Assessment** - Standards §2g (Caldicott), direct NHSE IG concern for sensitive consultation carve-outs
 
-## 5. How this file is maintained
+## 6. How this file is maintained
 
 - New gaps identified in any source document are added here with `status: proposed`.
 - Gaps promoted to metrics: status changes to `accepted`, then the entry is *removed* when the metric is drafted and numbered. The CHANGELOG records the promotion.
