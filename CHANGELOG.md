@@ -1,5 +1,70 @@
 # Changelog
 
+## v3.2 (2026-04-22)
+
+No new metrics in the taxonomy (still 214 across 20 groups; tier split unchanged 43/92/79). This release restructures the repository around a build pipeline, publishes a documentation site, extends coverage with two external audits and a second AVT-specific framework, and consolidates the roadmap.
+
+### Parser and structured build outputs
+
+New `taxonomy/parse.py` parses every metric from its dimension table (no frontmatter migration needed — derive, don't duplicate). `build.py` now emits to `dist/`:
+
+- `metrics.csv` - 214 flat rows for spreadsheet / BI use
+- `metrics.json` - structured catalogue
+- `gaps.json` - 89 roadmap candidates with origin tags
+- `summary.json` - headline counts
+
+Audit tool (`taxonomy/audit.py`) kept green across the whole release.
+
+### Documentation site (MkDocs Material)
+
+Published as GitHub Pages. Key features:
+
+- One page per group (20 group pages), metrics as anchors
+- Tier 1 Quick Reference auto-generated from source
+- Per-standard cross-cut pages (one per framework)
+- Related-metrics footer on every group page
+- Glossary, RSS feed, downloads page (CSV/JSON)
+- `mike` version switcher; GitHub Actions deploy
+- Site polish: draft banner, Part kicker, applicability quick access, collapsible icon legend, consistent header shape, em-dash sweep
+
+### External coverage audits
+
+Two external-source coverage audits landed alongside the existing 12-framework standards mapping:
+
+- **RSET external review** (Nuffield Trust AVT taxonomy, Feb 2026) — 9 accepted, 4 deferred
+- **NHSE IG alignment audit** (Mar 2026) — 4 accepted
+
+Audits archived under `archive/`; findings consolidated into the single roadmap file.
+
+### NHS T.E.S.T. Framework mapping
+
+Added the NHS T.E.S.T. (Technology Evaluation Safety Test) framework to the standards mapping — the AVT-specific ICS-level procurement assurance framework from GOSH/NHS London/C&W/UCL (v11.17625SS, June 2025). Brings total mapped frameworks to twelve.
+
+- **Section A** (platform assurance, 22 binary requirements): 18 directly or strongly covered by existing metrics; 3 are process/product-feature criteria (not metric-shaped); 1 novel gap (translation)
+- **Section B** (benefits assessment, 420 points across 12 domains): all 12 domains have at least partial coverage
+- **6 novel gap candidates added** to the roadmap: TP.SN-26 (AI Translation Accuracy), GV.PD-15 (Training Data Anonymisation Provenance), GV.OP-13 (Total Cost of Ownership), GV.VT-11 (Multi-Specialty Validation Coverage), IO.FE-9 (Virtual-Care Modality Stratified Performance), GV.VT-12 (Sovereign AI Disclosure)
+- Authoritative PDF stored under `reference-docs/` for offline reference
+
+Strongest alignment: T.E.S.T. requirement 18 names three exact taxonomy metrics (hallucination rate, omission rate, WER); requirement 22 (drift) maps directly to the Longitudinal Drift sub-cluster.
+
+### Roadmap consolidation
+
+All gap analyses unified into `taxonomy/_gaps.md`:
+
+- Single source of truth across five origins: RSET, NHSE IG, Standards Mapping, NHS T.E.S.T., Responsible AI Lens
+- 89 total candidates (85 accepted/proposed + 4 deferred with preserved reasoning)
+- Entry states (`proposed` / `accepted` / `deferred` / `rejected`) so dismissals are durable
+- Parsed into `gaps.json` by origin for programmatic use
+- Prose gap sections in `_standards-mapping.md` and `_responsible-ai-lens.md` now point here instead of duplicating content
+
+### Repository hygiene
+
+- `.gitignore`: added `.claude/` (local workspace) and the unused 5MB GOSH AAI report; build artefacts (`dist/`, `docs/`, `site/`) already ignored
+- `METHODOLOGY.md`: reusable recipe for applying this taxonomy structure to new assurance domains
+- `reference-docs/`: new location for authoritative source PDFs cited by mappings
+
+---
+
 ## v3.1 (2026-04-18)
 
 ### Source Audit Tool
