@@ -1,5 +1,52 @@
 # Changelog
 
+## v3.5 (2026-04-25)
+
+Tightens 12 additional Tier 1 metrics — the two highest-value waves identified in the v3.4 classification artefact. Tightened count: **13/43 → 25/43**. No new metrics; counts unchanged at 216.
+
+### Wave 1 — Compliance/governance core (8 metrics)
+
+The metrics a procurement officer reads first; loose definitions here had the highest practical cost for vendor-comparable evidence:
+
+- **GV.CR-5 ICB Engagement Documentation** — three sub-metrics (notification sent / acknowledged / conditions on file); latency reporting; carve-out logging with regional CCIO escalation after two unanswered notifications.
+- **GV.CR-6 Clinical Safety Case Completeness** — per-DCB0129-section reporting (8 sections); named CSO author requirement; differentiated currency windows (sections 2-5 within 30 days of trigger event; sections 1, 6, 8 annual; section 7 live-current); 24-month external-review cadence.
+- **GV.CR-7 DPIA Template Completion Rate** — per-section + DPO sign-off binary; significant-change definition mandatory; reconciliation against [GV.CR-6 Clinical Safety Case](#gvcr-6-clinical-safety-case-completeness) hazard list — DPIA risks must be cross-mappable to safety-case hazards.
+- **GV.TC-1 Clinician Training Completion Rate** — four-module enumeration (M1 vendor / M2 local induction / M3 failure-mode awareness / M4 refresher) with per-module validity periods; engagement-time floors (30/20/15 min) prevent click-through completion; M3 as safety-critical pause trigger.
+- **GV.VT-1 Model Change Notification Compliance** — severity-classified lead times (major ≥ 14d / moderate ≥ 7d / minor ≥ 0d); five-element notification content schema; MHRA PMS substantial-change cross-link with separate compliance failure for missing flag.
+- **GV.VT-5 Incident Disclosure Compliance** — severity-driven timelines (24h critical / 72h high / 7d medium / 30d low); rebuttable knowing-time clause; cross-deployer scope mandated as fifth content element (most commonly omitted in vendor-frame disclosures).
+- **GV.VT-7 Sub-Processor Transparency** — seven-source discovered-set framework (cloud / model providers / annotation services / contractors / backups / sub-sub-processors); materiality classification; vendor self-cert insufficient — independent verification step required.
+- **GV.SG-14 Near-Miss Reporting Rate** — two-source construction (active reports + inferred via [HL.HF-1](#hlhf-1-edit-rate-notes-edited) safety-critical edit detection); active-to-inferred ratio as safety-culture diagnostic; pause when LFPSE rate rises but near-miss flat or falling.
+
+### Wave 2 — Privacy-chain completion (4 metrics)
+
+Closes the v3.3 storage-location enumeration cascade and completes the privacy lifecycle (deletion → consent → access → erasure):
+
+- **GV.PD-2 Audio Time-to-Deletion** — inherits storage-location enumeration from [GV.PD-1](#gvpd-1-audio-retention-compliance), making the v3.3 cascade explicit; sign-off as `t_consultation_end` per NHSE IG; carve-out logging tracked separately from standard distribution.
+- **GV.PD-8 Consent Verification Accuracy** — gap (process compliance minus understanding rate) as the headline metric, not either rate alone; survey instrument declaration mandatory; ≥ 30 patients/quarter floor; demographic disaggregation reveals where understanding fails.
+- **GV.PD-10 Subject Access Request Fulfilment** — three sub-metrics (locate / export / timeliness) reported separately; **synthetic SAR test mandatory pre-deployment**, exercising every storage location and sub-processor; extension-pattern alert detects systematic locate/export failure.
+- **GV.PD-11 Right to Erasure Compliance** — three-class outcome distinction (deletable / anonymisable / technically-irreversible) operationalises the existing observation that some erasure cannot be fulfilled even in principle; privacy-notice cross-check; Article 17 individual-care exemption scope explicitly handled per NHSE IG March 2026.
+
+### Counts and audit
+
+- 216 metrics; 43 / 94 / 79 tier split (unchanged — v3.5 is structural like v3.4).
+- Tightening status now: **25/43 Tier 1 metrics tightened**.
+- Audit clean; both v3.4 enforcement checks (`tightening-pattern-presence`, `threshold-provenance-presence`) pass on all 25 tightened metrics.
+
+### Cross-cutting
+
+- `taxonomy/_header.md` bumped to v3.5 / 2026-04-25 with the updated tightened-count
+- `taxonomy/_how-to-use.md` updated to list 25 tightened metrics and to repoint v3.6+ scope to the audit output (the 18 remaining Tier 1 metrics: 8 TIGHT, 6 pipeline candidates, 5 deferred)
+
+### Deferred to v3.6+
+
+- 6 pipeline narrow tightening candidates: TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20
+- 5 pattern-may-not-fit deferred: GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (each has a structural feature that means the standard pattern is the wrong shape — bespoke per-metric scoping needed)
+- 8 TIGHT metrics will not be tightened (pattern would be structural cleanup, not substantive)
+- Outcomes layer stays at ES.ME-8/9; the [Outcomes Boundary](#outcomes-boundary) position holds
+- Roadmap (`_gaps.md`) untouched in v3.5 — 89 candidates still queued
+
+---
+
 ## v3.4 (2026-04-25)
 
 Three deliverables completing the v3.3 tightening work and making the conventions machine-enforced. No new metrics, no new gap-roadmap candidates. Counts unchanged: 216 metrics, tier split 43 / 94 / 79.
