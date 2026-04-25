@@ -10613,9 +10613,26 @@ Measured time from consultation end to verified deletion of the captured audio. 
 Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution: median, P95, P99, and count of encounters exceeding policy threshold. Verification requirement: deletion confirmed in primary storage, caches, backups, and any downstream analytic systems. Policy threshold per deployer: typically 24 hours to 7 days depending on DPIA. Compliance = proportion of encounters with verified deletion within threshold.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Verification across all storage locations is technically difficult - backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
+> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under the NHSE IG March 2026 guidance); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly distribution reporting.
+> - **Population:** every consultation audio captured during the window. No sampling — this is a compliance metric.
+> - **Distribution reporting MANDATORY:** median, P95, P99, AND count of encounters exceeding policy threshold (the tail is the safety signal, not the median). Per-storage-location distribution where the architecture allows; otherwise the slowest-location time is the headline.
+> - **Per-storage-location verification MANDATORY:** time-to-deletion measured against every storage location named in the GV.PD-1 enumeration. A median of 6 hours that hides 100 % retention in backups (where deletion never occurs) is non-compliant.
+> - **Carve-out logging MANDATORY:** any audio retained beyond standard threshold under a DPIA carve-out logged with reason, duration, and re-deletion target date. Carved-out audio tracked in a separate distribution from standard audio; aggregating the two hides policy adherence.
+> - **Deletion-verification method MANDATORY:** parallel to GV.PD-1 — vendor self-attestation alone insufficient; periodic independent verification (third-party audit, deployer-witnessed deletion test, or cryptographic proof via key destruction).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the post-sign-off deletion expectation derives from NHSE IG guidance March 2026; UK GDPR Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** vendor demonstrates per-storage-location deletion telemetry; one end-to-end deletion test passes prior to go-live; DPIA cross-references the policy threshold.
+> - **Continuous monitoring:** monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate < 1 %; per-storage-location compliance ≥ 99.5 %.
+> - **Pause / escalation trigger:** any single non-exception retention beyond DPIA threshold; OR median TTD > DPIA threshold in any month; OR per-storage-location compliance < 95 % (cascades to GV.PD-1 compliance failure). All three are reportable as IG incidents.
 
 **Novel Thinking / Implications**
 
@@ -10861,9 +10878,30 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 Process compliance = |consultations_where_patient_informed| / |total_AVT_consultations|. Understanding rate = |patients_who_can_describe_AVT_use| / |patients_surveyed| (periodic audit). Gap = process_compliance - understanding_rate reveals 'informed but not understanding' problem.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Process compliance is measurable; patient understanding is not easily quantified. Self-report may overstate understanding. Cultural and language barriers affect both notification and comprehension.
+> Two distinct sources combined:
+>
+> - **Process compliance** inherits the reference standard from [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) — the deployer-approved patient notification script with the four content elements (what / what / who / how) delivered before AVT activation
+> - **Understanding rate** is measured by structured patient survey using a published instrument (e.g. validated comprehension instrument, or where unavailable, a deployer-defined survey with at least four comprehension items mapped to the notification content elements)
+>
+> The headline metric is the **gap** (process compliance minus understanding rate), not either rate alone. Gap > 25 percentage points triggers a substantive review; the consent model's legitimacy depends on understanding, not just notification (per the Novel Thinking section). Cross-link to [IO.PX-1 Patient Opt-Out Rate](#iopx-1-patient-opt-out-rate) — opt-out behaviour disaggregated by demographics may indicate where the understanding gap is concentrated even before survey detects it.
+
+**Operational Specification**
+
+> - **Window:** continuous for process compliance (inherits from GV.CR-2); quarterly periodic audit for understanding rate.
+> - **Population for understanding survey MANDATORY:** ≥ 30 patients per practice per quarter for survey method, with stratification across demographic axes (age band, primary language, deprivation index where available). Pure aggregate sampling masks the failure modes that matter — language and literacy are the predictable understanding-rate diminishers.
+> - **Three sub-metrics MANDATORY:** process compliance rate (continuous from GV.CR-2), understanding rate (quarterly), and the gap. Any rate reported alone insufficient.
+> - **Demographic disaggregation MANDATORY for understanding rate:** stratification by primary language, age band, ethnicity, and where available deprivation index. The aggregate understanding rate hides the failure pattern; disparities are the metric's value.
+> - **Survey instrument declaration MANDATORY:** the survey instrument used must be declared (validated published instrument vs deployer-defined). Deployer-defined instruments must be reviewed by the IG team and document at least four comprehension items mapping to GV.CR-2 content elements.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and CQC Mythbuster 109's "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** GV.CR-2 process-compliance gate met; survey instrument selected and reviewed by IG team; quarterly survey schedule established.
+> - **Continuous monitoring:** monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap > 25 percentage points OR any demographic axis shows understanding rate < practice mean by ≥ 20 percentage points.
+> - **Pause / escalation trigger:** gap > 40 percentage points sustained two quarters (consent model legitimacy in question); OR any demographic axis shows understanding rate < 50 % (the consent model is failing for that population, not just under-performing).
 
 **Novel Thinking / Implications**
 
@@ -10941,9 +10979,26 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criteria: (1) Can deployer locate all AVT data for a patient? (2) Can it be exported in usable format? (3) Within statutory timeframe? Target: 100% within 30 days.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Requires deployer to know what AVT data exists and how to retrieve it from vendor systems. Many current AVT integrations don't provide patient-level data export.
+> UK GDPR Article 15 is the legal floor; ICO 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gvpd-11-right-to-erasure-compliance) — the same data-locating capability underpins both rights.
+
+**Operational Specification**
+
+> - **Window:** continuous SAR-by-SAR tracking with quarterly compliance reporting.
+> - **Population:** every SAR received that includes AVT-related data (denominator: SARs received, not consultations).
+> - **Three sub-metric reporting MANDATORY:** locate-rate (deployer can find all AVT data), export-rate (data exportable in usable format), and timeliness-rate (completed within 30 days). Aggregate alone is not sufficient — failure mode (couldn't find / found but couldn't export / found and exported too slowly) drives different remediation.
+> - **Synthetic SAR test pre-deployment MANDATORY:** at least one synthetic SAR processed end-to-end before go-live, exercising every storage location and sub-processor in the architecture. Failures discovered in this test are remediated before live SARs occur, not after.
+> - **Sub-processor cooperation tracked separately:** SAR fulfilment depends on sub-processors providing their data; cooperation latency per sub-processor recorded. Vendors should contractually commit sub-processors to deployer's SAR timeline.
+> - **Complex-request extension logged:** any SAR using the two-month extension provision logged with reason; pattern of extensions on AVT-related SARs is a signal that the locate-rate or export-rate is failing.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from UK GDPR Article 15 and ICO guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** synthetic SAR test passes — every storage location returns data; export format usable; full processing within 30 days. Gaps remediated before go-live.
+> - **Continuous monitoring:** quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).
+> - **Pause / escalation trigger:** any SAR where AVT data could not be located within the deployer's known architecture (this is a regulatory failure under Article 15); OR timeliness-rate < 90 % in any quarter (suggests operational capacity failure); OR > 30 % of AVT-related SARs using the two-month extension (suggests systematic locate/export failure rather than legitimate complexity).
 
 **Novel Thinking / Implications**
 
@@ -10981,9 +11036,32 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 Erasure Test: process a synthetic erasure request through the system. Verify deletion in: primary storage, backups, vendor caches, model training pipelines, downstream secondary use. Verification Rate = locations confirmed deleted / total locations.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> True deletion is technically difficult. Backup systems retain data. Model training data may be impossible to remove from trained models.
+> UK GDPR Article 17 with the NHSE IG March 2026 individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus three Article-17-specific additions:
+>
+> - **Model training pipelines** — any AVT data ingested for model fine-tuning, validation set construction, or A/B testing
+> - **Downstream secondary use** — research databases, quality-monitoring archives, business-intelligence pipelines
+> - **Sub-processor systems** — every entity in the [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) discovered set
+>
+> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the ICO standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gvpd-7-training-data-inclusion-status) — patients should know at consent time whether their data may end up in the irreversible class.
+
+**Operational Specification**
+
+> - **Window:** one-off pre-deployment gate; mandatory re-test on architectural change (new sub-processor, new training pipeline, new secondary-use destination).
+> - **Population for synthetic test:** at least one synthetic patient record exercised end-to-end through every named location in the enumeration above. Production erasure-rate also tracked for the (small) population of in-scope live erasure requests.
+> - **Three-class outcome reporting MANDATORY:** every erasure-test location classified deletable / anonymisable / technically-irreversible. Aggregate "verification rate" alone hides the irreversible-class failure mode.
+> - **Privacy-notice cross-check MANDATORY:** the technically-irreversible class enumerated at procurement must match the disclosure in the privacy notice. Drift between the two (locations becoming irreversible without privacy-notice update) is itself a flag.
+> - **Article-17-exempt vs in-scope:** every erasure request classified as exempt (individual-care purpose, public-task carve-out) or in-scope (secondary use, research, training data, best-interest case). The exempt class is logged with reason but not subject to the same fulfilment expectation as in-scope.
+> - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gvpd-10-subject-access-request-fulfilment) — sub-processor latency per erasure request recorded.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited (NHSE IG March 2026). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** synthetic erasure test passes — every storage location classified into one of the three outcome classes; technically-irreversible class enumerated and matched to the privacy notice; sub-processor cooperation timelines documented.
+> - **Continuous monitoring:** in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).
+> - **Pause / escalation trigger:** any in-scope erasure request where a deletable location fails to delete (regulatory failure under Article 17); OR any newly added location not classified into the three-class taxonomy before processing personal data; OR drift between technically-irreversible class and privacy-notice disclosure (procurement-time disclosure failure).
 
 **Novel Thinking / Implications**
 
