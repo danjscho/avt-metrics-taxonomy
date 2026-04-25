@@ -1,10 +1,10 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.1, 2026-04-18.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.3, 2026-04-25.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**214 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 2 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions).
+**216 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 adds an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern on nine Tier 1 metrics to make them vendor-comparable.
 
 ## How to Use This Taxonomy
 
@@ -125,7 +125,7 @@ A trust with multiple AVT platforms deployed across different services should pr
 ### By Priority Tier
 
 - **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 92 metrics - recommended with reasonable governance capacity
+- **🟡 Tier 2 - Recommended Assurance**: 94 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -145,7 +145,7 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **Unaffiliated**: 189 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 191 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -289,7 +289,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 **Part F - Evaluation Science**
 
-- [Meta-evaluation](#meta-evaluation) (7 metrics)
+- [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 
 **Cross-cutting**
 
@@ -320,8 +320,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 |----------------|-------|------------|
 | AVT-Specific | 48 | 22% |
 | AVT-Contextualised | 77 | 36% |
-| General Healthcare AI | 89 | 42% |
-| **Total** | **214** | **100%** |
+| General Healthcare AI | 91 | 42% |
+| **Total** | **216** | **100%** |
 
 ### By Part
 
@@ -332,8 +332,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
 | E - System Governance | 6 | 0 | 68 | 74 |
-| F - Evaluation Science | 0 | 0 | 7 | 7 |
-| **Total** | **48** | **77** | **89** | **214** |
+| F - Evaluation Science | 0 | 0 | 9 | 9 |
+| **Total** | **48** | **77** | **91** | **216** |
 
 
 ### Full Classification
@@ -653,7 +653,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 #### Part F - Evaluation Science
 
-**Meta-evaluation** (7 metrics)
+**Meta-evaluation** (9 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -664,6 +664,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | ES.ME-5 | Coverage Gap Analysis | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-6 | LLM-Judge Bias Quantification | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-7 | Automated-Human Metric Concordance | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-8 | Outcome Evidence Commitment Status | 🟡 Tier 2 | General Healthcare AI |
+| ES.ME-9 | Causal Model Operationalisation | 🟡 Tier 2 | General Healthcare AI |
 
 ## Standards Mapping
 
@@ -1006,7 +1008,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 | # | T.E.S.T. Benefit Domain | Points | Taxonomy Metrics | Tier | Notes |
 |---|-------------------------|-------:|------------------|------|-------|
-| 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🔵 3 / 🟢 1 / 🟡 2 | Good coverage for most items. **Gap** - no metric for "timeliness of correspondence across care teams" or RCT-validation status as a checkbox |
+| 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | ES.ME-8 Outcome Evidence Commitment Status (RCT-validation checkbox proxy), ES.ME-9 Causal Model Operationalisation, PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🟡 2 / 🔵 3 / 🟢 1 | ES.ME-8 measures **commitment to** RCT evidence (the closest the taxonomy gets to the 50-point RCT item without overstepping the [Outcomes Boundary](#outcomes-boundary)); ES.ME-9 measures whether vendor causal claims are documented. **Gap** - no metric for "timeliness of correspondence across care teams"; the taxonomy does not itself constitute RCT evidence |
 | 2 | **Operational Cost-Effectiveness** (economic evaluation 25; ROI 10; cost savings 15; operational savings 10) | 60 | GV.OP-7 Cost per Consultation, GV.OP-8 Governance & Maintenance Burden | 🟡 2 / 🔵 3 | **Partial gap** - taxonomy lacks explicit ROI, total cost of ownership, formal economic-evaluation metric |
 | 3 | **Workforce Impact Assessment** (settings, specialties, foci, burnout, job satisfaction) | 60 | GV.OP-6 Adoption Rate & Selective Use Patterns, IO.FE-1 Deployment Equity Index, GV.OP-2 Pyjama Time / After-Hours EHR Use, HL.HF-8 Trust Calibration Survey | 🟢 1 / 🟡 2 | Burnout and pyjama time well-covered. **Gap** - no direct "job satisfaction" metric; no "multi-specialty validation" metric |
 | 4 | **Integration and Interoperability** (EHR integration, interoperability synergy, narrative quality) | 35 | TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency | 🟡 2 / 🔵 3 | Strong coverage through EPR Write-back group |
@@ -2060,6 +2062,69 @@ Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed M
 **Gap concentration by theme:** Theme 6 (Societal Wellbeing) has the most gaps, followed by Theme 5 (Contestability). Theme 1 (Safety) and Theme 4 (Accountability) have the fewest gaps - reflecting that the taxonomy was built from a safety-first, governance-aware starting point.
 
 **Gap concentration by principle:** P6 (Right tool) and P7 (Openness) have the largest number of gaps - reflecting that the taxonomy is weaker on *decision-to-deploy* and *outward transparency* than on *in-deployment performance*. This is a structural gap that several of the proposed new metrics in the standards mapping would begin to close.
+
+## Outcomes Boundary
+
+This section is an explicit scope statement: what this taxonomy assures, what it does not, and where the responsibility for the rest lies. The intent is to prevent a common failure mode in clinical AI governance — passing every metric in a deployment-assurance framework and reading that as evidence of clinical benefit, when the framework was never designed to measure benefit at all.
+
+### What this taxonomy assures
+
+The 216 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
+
+- **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
+- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (Part A — Summarisation / NLP)
+- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (Part C — Human Factors)
+- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (Part D — Fairness & Equity)
+- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (Part E — Safety & Governance)
+- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (Part E)
+- **Measurement quality** — is the evaluation methodology itself sound? (Part F — Meta-evaluation)
+
+These are **process, structure, and proximal-outcome measures**. They tell a deployer whether the system is *operating as specified* and whether the conditions for safe use are in place.
+
+### What this taxonomy does not assure
+
+**Clinical outcome validation is out of scope.** This taxonomy does not contain, and is not designed to contain, metrics that establish:
+
+- Whether AVT use changes diagnostic accuracy in real practice
+- Whether AVT use changes the rate or severity of patient safety incidents
+- Whether AVT use changes downstream care quality, patient outcomes, or population health
+- Whether AVT use changes clinician decision-making in ways that benefit (or harm) patients
+- Whether AVT delivers the cost-effectiveness claimed at procurement
+
+These are **distal-outcome questions**. They require infrastructure that no individual deployer can provide alone: multi-site randomised trial designs, longitudinal follow-up, case-mix controls, baseline incident data of sufficient power to detect change, and independence from the vendor whose product is being evaluated.
+
+### Why the boundary
+
+Three reasons this is drawn explicitly rather than left implicit:
+
+1. **The field has not solved outcome measurement for clinical AI generally, and AVT specifically.** Coiera & Fraile-Navarro (2026) name this as a structural gap. Adding outcome metrics to a deployment taxonomy does not produce outcome evidence; it produces the appearance of coverage. That risks substituting framework completeness for empirical evidence.
+
+2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
+
+3. **Process compliance is not clinical benefit.** A deployment passing all 43 Tier 1 metrics in this taxonomy is *assured of deployment safety* — that the system is configured, monitored, governed, and overseen correctly. It is not assured of *clinical benefit*. The taxonomy makes that distinction visible so deployers, vendors, and procurement leads do not conflate the two.
+
+### What deployers should do instead
+
+For the questions this taxonomy does not answer, deployers should:
+
+- **Require post-market outcome studies** in vendor contracts. The two new meta-metrics in this v3.3 release operationalise this requirement: [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether a vendor has committed (protocol, registration, post-market surveillance plan) to outcome evaluation; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) measures whether the vendor has specified how the proximal metrics in this taxonomy connect to claimed distal outcomes.
+- **Require T.E.S.T. Section B RCT evidence** where Gold certification (national-scale deployment) is sought. T.E.S.T. awards 50 of 420 points for clinical validation through RCTs or sufficiently powered NHS pilot studies; this taxonomy treats that evidence as input to procurement, not output of measurement.
+- **Treat proximal metrics as deployment-safety signals, not as evidence of clinical benefit.** Hallucination rate is a safety-floor signal; edit rate is a workflow-and-attention signal; cumulative information yield is a fidelity signal. None of these establish that the deployed system improves care.
+- **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
+
+### Cross-references
+
+- **ES.ME-1 Proximal vs Distal Outcome Distinction** — names the causal-logic burden on vendors
+- **ES.ME-8 Outcome Evidence Commitment Status** — operationalises outcome-study commitment as a metric
+- **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
+- **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
+- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
+
+### Future direction
+
+This boundary may need revisiting if (a) NHS England, NIHR, or an equivalent body publishes a national outcome-evaluation framework for AVT that this taxonomy can map to; (b) the field converges on a defensible set of distal outcome metrics with validated measurement protocols; or (c) the proximal metrics in this taxonomy are themselves shown by clinical evidence to be inadequate proxies for the outcomes that matter. Until then, the boundary stays explicit.
+
+---
 
 ## Gaps & Proposed Metrics (Roadmap)
 
@@ -11594,7 +11659,7 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **Novel Thinking / Implications**
 
-> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors.
+> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
 
 ---
 
@@ -11828,5 +11893,108 @@ For each automated metric m in deployed use: collect a sample of N encounters sc
 **Novel Thinking / Implications**
 
 > 💡 This is the metric that polices the other metrics. Without concordance data, the taxonomy's automated metrics are running on an unverified assumption that they measure what human experts measure. The ROUGE finding is the canonical example of that assumption failing - a metric in widespread use has essentially zero correlation with clinical judgment and is used anyway because it's easy to compute. Periodic concordance measurement should be a national evaluation programme responsibility, and any metric with concordance < 0.3 should be explicitly flagged in the taxonomy as inadequate as a standalone indicator.
+
+---
+
+### ES.ME-8 🟡 Outcome Evidence Commitment Status
+
+Whether the vendor and deployer have committed - contractually, via published protocol, or via post-market surveillance plan - to evaluating the actual clinical outcomes of AVT deployment. Operationalises the boundary set by [Outcomes Boundary](#outcomes-boundary): this taxonomy does not measure clinical outcomes, but it can measure whether outcome evaluation is in train.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-8 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; reviewed annually |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
+
+**Why this tier?**
+
+> A deployment cannot satisfy T.E.S.T. Gold without RCT or sufficiently powered NHS pilot evidence. Procurement above pilot scale should require demonstrable commitment to outcome evaluation even where the evidence is not yet available. Tier 2 because it is documentary - no instrumentation - and because pilots and small-site deployments may legitimately not yet have outcome studies in train.
+
+**Formal Definition**
+
+```
+Composite of four binary checks against documentary evidence:
+  C1 = clinical-trial protocol registered (ISRCTN, ClinicalTrials.gov, or equivalent)
+       OR equivalent NHS pilot study protocol with pre-registered primary outcome
+  C2 = post-market surveillance plan exists and names patient-outcome signals
+       (incident rate, diagnostic accuracy, medication errors, etc.)
+       distinct from technical-performance signals
+  C3 = data-collection infrastructure exists at deployment site sufficient to detect
+       change in named outcome signals (baseline data; case ascertainment method;
+       comparator arm or pre/post design)
+  C4 = vendor contractually committed to share post-market outcome data with
+       deployer and (where applicable) with national bodies
+Score = number of checks passed (0-4). Tier 2 expectation: ≥ 2 of 4 at procurement;
+≥ 3 of 4 within 12 months of deployment.
+```
+
+**Limitations**
+
+> Documentary; does not verify the *quality* of the protocol or the *power* of the study. A registered trial may be underpowered, badly designed, or never report results. C2 and C3 are vendor-asserted unless deployer audits them. Treats commitment as a proxy for eventual evidence; that proxy can fail (the [Roadmap as Graveyard](#outcomes-boundary) risk - protocols register but evidence never lands). Pair with periodic re-check of whether registered studies are progressing.
+
+**Novel Thinking / Implications**
+
+> 💡 The honest answer to "does this AVT improve patient outcomes?" is almost always "we don't know yet" - because the field has not produced the evidence and most deployments are not generating it. ES.ME-8 forces that uncertainty into the open at procurement. A vendor scoring 0/4 is selling on technical-performance evidence alone; a vendor scoring 4/4 has committed to producing the evidence the field is missing. Either is acceptable as long as the deployer chooses with eyes open. The metric does not establish clinical benefit - it establishes whether anyone is trying to.
+
+---
+
+### ES.ME-9 🟡 Causal Model Operationalisation
+
+Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)'s "burden of proof" requirement operational.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-9 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; updated when outcome claims change |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
+
+**Why this tier?**
+
+> Vendors making outcome claims at procurement (faster documentation, fewer errors, improved patient experience) should be required to specify the causal chain by which their proximal performance translates to those outcomes. Without that chain, the procurement claim is unfalsifiable. Tier 2 because it is documentary and one-off; the burden is on the vendor making the claim, not on continuous measurement.
+
+**Formal Definition**
+
+```
+For each outcome claim O made at procurement (e.g. "reduces documentation time",
+"reduces medication errors", "improves patient experience"):
+  S1 = vendor names the proximal metrics P_1..P_n that, if measured, would constitute
+       evidence for or against O (where P_i are drawn from this taxonomy or named
+       vendor-specific equivalents with comparable definitions)
+  S2 = vendor specifies the mechanism linking each P_i to O (the causal step from
+       proximal performance to distal outcome - e.g. "lower hallucination rate
+       reduces clinician verification burden which reduces after-hours review which
+       reduces documentation time outside consultations")
+  S3 = vendor cites or commits to producing evidence for each linking mechanism
+       (literature, internal study, external trial)
+  S4 = vendor identifies known confounders and threats to the causal claim
+       (Hawthorne effects, selection bias, secular trends, concurrent interventions)
+Score per claim = number of stages documented (0-4). Composite for the deployment =
+mean score across all outcome claims. Tier 2 expectation: ≥ 3 of 4 on every claim
+made at procurement.
+```
+
+**Limitations**
+
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#esme-7-automated-human-metric-concordance) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) for the distal evidence.
+
+**Novel Thinking / Implications**
+
+> 💡 This metric exposes a common procurement failure mode: vendors making outcome claims ("reduces clinician burnout", "improves patient outcomes") backed by proximal evidence ("our hallucination rate is 1.5%") with no documented causal chain connecting the two. The chain may be sound, weak, or nonexistent - but without it being written down, the deployer cannot evaluate the claim. Forcing the chain into the procurement documentation does not validate it; it makes validation possible. Deployers who require this metric can compare causal models across vendors and identify which are operating on evidence and which on assumption.
 
 ---

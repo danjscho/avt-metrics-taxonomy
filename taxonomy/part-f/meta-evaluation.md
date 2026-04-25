@@ -45,7 +45,7 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **Novel Thinking / Implications**
 
-> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors.
+> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
 
 ---
 
@@ -279,5 +279,108 @@ For each automated metric m in deployed use: collect a sample of N encounters sc
 **Novel Thinking / Implications**
 
 > 💡 This is the metric that polices the other metrics. Without concordance data, the taxonomy's automated metrics are running on an unverified assumption that they measure what human experts measure. The ROUGE finding is the canonical example of that assumption failing - a metric in widespread use has essentially zero correlation with clinical judgment and is used anyway because it's easy to compute. Periodic concordance measurement should be a national evaluation programme responsibility, and any metric with concordance < 0.3 should be explicitly flagged in the taxonomy as inadequate as a standalone indicator.
+
+---
+
+### ES.ME-8 🟡 Outcome Evidence Commitment Status
+
+Whether the vendor and deployer have committed - contractually, via published protocol, or via post-market surveillance plan - to evaluating the actual clinical outcomes of AVT deployment. Operationalises the boundary set by [Outcomes Boundary](#outcomes-boundary): this taxonomy does not measure clinical outcomes, but it can measure whether outcome evaluation is in train.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-8 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; reviewed annually |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
+
+**Why this tier?**
+
+> A deployment cannot satisfy T.E.S.T. Gold without RCT or sufficiently powered NHS pilot evidence. Procurement above pilot scale should require demonstrable commitment to outcome evaluation even where the evidence is not yet available. Tier 2 because it is documentary - no instrumentation - and because pilots and small-site deployments may legitimately not yet have outcome studies in train.
+
+**Formal Definition**
+
+```
+Composite of four binary checks against documentary evidence:
+  C1 = clinical-trial protocol registered (ISRCTN, ClinicalTrials.gov, or equivalent)
+       OR equivalent NHS pilot study protocol with pre-registered primary outcome
+  C2 = post-market surveillance plan exists and names patient-outcome signals
+       (incident rate, diagnostic accuracy, medication errors, etc.)
+       distinct from technical-performance signals
+  C3 = data-collection infrastructure exists at deployment site sufficient to detect
+       change in named outcome signals (baseline data; case ascertainment method;
+       comparator arm or pre/post design)
+  C4 = vendor contractually committed to share post-market outcome data with
+       deployer and (where applicable) with national bodies
+Score = number of checks passed (0-4). Tier 2 expectation: ≥ 2 of 4 at procurement;
+≥ 3 of 4 within 12 months of deployment.
+```
+
+**Limitations**
+
+> Documentary; does not verify the *quality* of the protocol or the *power* of the study. A registered trial may be underpowered, badly designed, or never report results. C2 and C3 are vendor-asserted unless deployer audits them. Treats commitment as a proxy for eventual evidence; that proxy can fail (the [Roadmap as Graveyard](#outcomes-boundary) risk - protocols register but evidence never lands). Pair with periodic re-check of whether registered studies are progressing.
+
+**Novel Thinking / Implications**
+
+> 💡 The honest answer to "does this AVT improve patient outcomes?" is almost always "we don't know yet" - because the field has not produced the evidence and most deployments are not generating it. ES.ME-8 forces that uncertainty into the open at procurement. A vendor scoring 0/4 is selling on technical-performance evidence alone; a vendor scoring 4/4 has committed to producing the evidence the field is missing. Either is acceptable as long as the deployer chooses with eyes open. The metric does not establish clinical benefit - it establishes whether anyone is trying to.
+
+---
+
+### ES.ME-9 🟡 Causal Model Operationalisation
+
+Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)'s "burden of proof" requirement operational.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-9 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; updated when outcome claims change |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
+
+**Why this tier?**
+
+> Vendors making outcome claims at procurement (faster documentation, fewer errors, improved patient experience) should be required to specify the causal chain by which their proximal performance translates to those outcomes. Without that chain, the procurement claim is unfalsifiable. Tier 2 because it is documentary and one-off; the burden is on the vendor making the claim, not on continuous measurement.
+
+**Formal Definition**
+
+```
+For each outcome claim O made at procurement (e.g. "reduces documentation time",
+"reduces medication errors", "improves patient experience"):
+  S1 = vendor names the proximal metrics P_1..P_n that, if measured, would constitute
+       evidence for or against O (where P_i are drawn from this taxonomy or named
+       vendor-specific equivalents with comparable definitions)
+  S2 = vendor specifies the mechanism linking each P_i to O (the causal step from
+       proximal performance to distal outcome - e.g. "lower hallucination rate
+       reduces clinician verification burden which reduces after-hours review which
+       reduces documentation time outside consultations")
+  S3 = vendor cites or commits to producing evidence for each linking mechanism
+       (literature, internal study, external trial)
+  S4 = vendor identifies known confounders and threats to the causal claim
+       (Hawthorne effects, selection bias, secular trends, concurrent interventions)
+Score per claim = number of stages documented (0-4). Composite for the deployment =
+mean score across all outcome claims. Tier 2 expectation: ≥ 3 of 4 on every claim
+made at procurement.
+```
+
+**Limitations**
+
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#esme-7-automated-human-metric-concordance) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) for the distal evidence.
+
+**Novel Thinking / Implications**
+
+> 💡 This metric exposes a common procurement failure mode: vendors making outcome claims ("reduces clinician burnout", "improves patient outcomes") backed by proximal evidence ("our hallucination rate is 1.5%") with no documented causal chain connecting the two. The chain may be sound, weak, or nonexistent - but without it being written down, the deployer cannot evaluate the claim. Forcing the chain into the procurement documentation does not validate it; it makes validation possible. Deployers who require this metric can compare causal models across vendors and identify which are operating on evidence and which on assumption.
 
 ---

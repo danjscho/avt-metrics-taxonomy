@@ -36,7 +36,7 @@
 
 **Part F - Evaluation Science**
 
-- [Meta-evaluation](#meta-evaluation) (7 metrics)
+- [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 
 **Cross-cutting**
 
