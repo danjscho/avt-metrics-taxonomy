@@ -86,6 +86,12 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 | VT | Vendor Transparency & Contractual | GV |
 | ME | Meta-evaluation | ES |
 
+### Tightened Tier 1 metrics (Reference Standard / Operational Specification / Threshold Guidance)
+
+A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard Formal Definition: **Reference Standard** (what counts as ground truth and how reliability is established), **Operational Specification** (concrete decisions about measurement window, population, mandatory breakdowns, and aggregation rule), and **Threshold Guidance** (pre-deployment gate, continuous-monitoring alert, pause / escalation trigger). Where a metric carries these sub-blocks, the Operational Specification is what your vendor must comply with at procurement, and the Threshold Guidance is what triggers escalation post-deployment.
+
+Nine Tier 1 metrics carry this pattern in v3.3 (TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-15 Negation Handling Accuracy, HL.HF-1 Edit Rate, TP.WB-1 Write-back Fidelity, GV.PD-1 Audio Retention Compliance, GV.PD-3 Transcript Retention Compliance, GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance). The remainder of Tier 1 will be assessed and tightened in v3.4 - see CHANGELOG for the deferred set. Metrics without the sub-blocks have not yet been audited under this pattern; treat their formal definitions as the procurement reference and expect future tightening to add the constraints implicit in current practice.
+
 ### Adapting to Local Context
 
 Tier assignments reflect a general assessment of priority and actionability. Local context should adjust them:
