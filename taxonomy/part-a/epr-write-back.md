@@ -56,6 +56,8 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the zero-tolerance posture on type-(iii) failures into safety-critical fields follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (a hallucinated allergy in an allergy field is a system-level safety failure). Specific numbers (100 % safety-critical gate, ≥ 95 % free-text gate, ≥ 99 % monthly audit floor, ≥ 200 cases per EPR) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
 > - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
 > - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.

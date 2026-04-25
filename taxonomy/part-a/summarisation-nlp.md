@@ -311,6 +311,8 @@ HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generat
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the < 2 % gate and ≥ 5 % pause trigger derive from the NAS Day Zero SPI cited in the Why-this-tier rationale; the > 3 % monitoring alert and the 500-note test-set floor are **proposed in v3.3 as starting points**, not externally validated. All numbers below are indicative and require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset) before contractual use.
+>
 > - **Pre-deployment gate:** HR_w ≤ 2 % on a representative ≥500-note test set; critical-subtype rate < 0.5 %.
 > - **Continuous monitoring:** weekly HR_w; alert if > 3 % sustained two weeks or any new critical subtype emerges.
 > - **Pause trigger:** critical-subtype rate ≥ 5 % or HR_w > 5 % for three consecutive days. Mirrors the NAS Day Zero SPI threshold cited in the Why-this-tier rationale.
@@ -402,6 +404,8 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the Tortus 3.45 % omission baseline cited above informs the pre-deployment gate framing, but the specific numbers (≤ 3 % gate, 5 % critical-category alert, 10 % critical-category pause, 1.5× drift trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** OR_w ≤ 3 % on a representative ≥500-note test set; critical-category omission rate < 1 % for any single mandatory category.
 > - **Continuous monitoring:** monthly OR_w by category; alert if any mandatory category exceeds 5 % critical omission rate or if aggregate OR_w drifts > 1.5× the deployment-baseline established in the first 30 days.
 > - **Pause trigger:** any mandatory-category critical-omission rate ≥ 10 % or OR_w > 8 % aggregate.
@@ -833,6 +837,8 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** all numbers below (≥ 98 % real-consultation NA_w, ≥ 90 % adversarial NA_w, ≥ 200-sentence adversarial floor, < 95 % pause trigger) are **proposed in v3.3 as starting points**, not externally validated. The zero-allergy-failure gate reflects the clinical-safety logic in the Novel Thinking section but is not externally cited. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** real-consultation NA_w ≥ 98 %; adversarial-test NA_w ≥ 90 %; zero allergy-category negation failures on the adversarial test set.
 > - **Continuous monitoring:** monthly real-consultation NA_w by category; alert on any allergy / red-flag / medication-dose category failure within the audit window.
 > - **Pause trigger:** any allergy-category critical failure in production traffic, or NA_w < 95 % for two consecutive audit cycles.

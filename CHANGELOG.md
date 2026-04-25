@@ -68,6 +68,14 @@ The v3.3 critique work identified ~30 of 43 Tier 1 metrics as LOOSE or SURROGATE
 - `taxonomy/_header.md` updated to v3.3 / 2026-04-25 with reference to the new structural elements
 - Plan file `plan-v3.3.md` lives at repo root during the release; will move to `archive/` on completion per the established convention
 
+### Post-release clarification (2026-04-25)
+
+Self-review of v3.3 surfaced an honesty gap in the Threshold Guidance blocks: some numerical thresholds derive from cited sources (e.g. NAS Day Zero SPI, UK GDPR storage limitation, NHSE IG guidance), but others were proposed during v3.3 as starting points without external validation. The original blocks did not consistently distinguish the two, risking over-trust by procurement officers reading the numbers as authoritative.
+
+A ⚠️ **Provenance** prelude was added to each of the nine Threshold Guidance blocks naming which thresholds are cited and which are proposed-as-starting-points, and stating that all numbers require local calibration before contractual use. `_how-to-use.md` updated to explain the distinction. No metric IDs, dimensions, or substantive content changed.
+
+This clarification is a small follow-up to v3.3 rather than a new tag. v3.4 will add an `audit.py` check that flags Threshold Guidance blocks missing the Provenance prelude, so the convention becomes machine-enforced.
+
 ---
 
 ## v3.2 (2026-04-22)

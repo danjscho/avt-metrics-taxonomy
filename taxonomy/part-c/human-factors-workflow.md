@@ -88,7 +88,7 @@ ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained �
 
 **Threshold Guidance**
 
-> Edit Rate is **interpretable only as a trajectory** (per the Limitations and Novel Thinking sections); absolute thresholds below are deployment-context-dependent and represent indicative levels for procurement-stage discussion.
+> ⚠️ **Provenance:** the > 15-percentage-point drop sustained ≥ 4 weeks comes from the existing Formal Definition complacency signal (carried from prior versions of the metric); the 30–80 % baseline range, the < 50 %-of-baseline pause trigger, and the zero-safety-critical-edits-with-continued-stylistic-editing trigger are **proposed in v3.3 as starting points**, not externally validated. Edit Rate is **interpretable only as a trajectory** (per Limitations and Novel Thinking); absolute thresholds below are deployment-context-dependent and require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
 > - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).

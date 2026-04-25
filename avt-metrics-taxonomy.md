@@ -98,6 +98,8 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 
 A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard Formal Definition: **Reference Standard** (what counts as ground truth and how reliability is established), **Operational Specification** (concrete decisions about measurement window, population, mandatory breakdowns, and aggregation rule), and **Threshold Guidance** (pre-deployment gate, continuous-monitoring alert, pause / escalation trigger). Where a metric carries these sub-blocks, the Operational Specification is what your vendor must comply with at procurement, and the Threshold Guidance is what triggers escalation post-deployment.
 
+Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguishing thresholds **derived from a cited source** (e.g. NAS Day Zero SPI, UK GDPR storage limitation, NHSE IG guidance) from those **proposed in v3.3 as starting points**. The starting-point numbers are deliberate suggestions calibrated against the metric's clinical-safety logic, not externally validated values; they require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset, DPIA risk appetite) before contractual use. Treat the Operational Specification as the structural commitment a vendor must meet; treat the Threshold Guidance numbers as the conversation starter, not the answer.
+
 Nine Tier 1 metrics carry this pattern in v3.3 (TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-15 Negation Handling Accuracy, HL.HF-1 Edit Rate, TP.WB-1 Write-back Fidelity, GV.PD-1 Audio Retention Compliance, GV.PD-3 Transcript Retention Compliance, GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance). The remainder of Tier 1 will be assessed and tightened in v3.4 - see CHANGELOG for the deferred set. Metrics without the sub-blocks have not yet been audited under this pattern; treat their formal definitions as the procurement reference and expect future tightening to add the constraints implicit in current practice.
 
 ### Adapting to Local Context
@@ -4292,6 +4294,8 @@ HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generat
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the < 2 % gate and ≥ 5 % pause trigger derive from the NAS Day Zero SPI cited in the Why-this-tier rationale; the > 3 % monitoring alert and the 500-note test-set floor are **proposed in v3.3 as starting points**, not externally validated. All numbers below are indicative and require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset) before contractual use.
+>
 > - **Pre-deployment gate:** HR_w ≤ 2 % on a representative ≥500-note test set; critical-subtype rate < 0.5 %.
 > - **Continuous monitoring:** weekly HR_w; alert if > 3 % sustained two weeks or any new critical subtype emerges.
 > - **Pause trigger:** critical-subtype rate ≥ 5 % or HR_w > 5 % for three consecutive days. Mirrors the NAS Day Zero SPI threshold cited in the Why-this-tier rationale.
@@ -4383,6 +4387,8 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the Tortus 3.45 % omission baseline cited above informs the pre-deployment gate framing, but the specific numbers (≤ 3 % gate, 5 % critical-category alert, 10 % critical-category pause, 1.5× drift trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** OR_w ≤ 3 % on a representative ≥500-note test set; critical-category omission rate < 1 % for any single mandatory category.
 > - **Continuous monitoring:** monthly OR_w by category; alert if any mandatory category exceeds 5 % critical omission rate or if aggregate OR_w drifts > 1.5× the deployment-baseline established in the first 30 days.
 > - **Pause trigger:** any mandatory-category critical-omission rate ≥ 10 % or OR_w > 8 % aggregate.
@@ -4814,6 +4820,8 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** all numbers below (≥ 98 % real-consultation NA_w, ≥ 90 % adversarial NA_w, ≥ 200-sentence adversarial floor, < 95 % pause trigger) are **proposed in v3.3 as starting points**, not externally validated. The zero-allergy-failure gate reflects the clinical-safety logic in the Novel Thinking section but is not externally cited. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** real-consultation NA_w ≥ 98 %; adversarial-test NA_w ≥ 90 %; zero allergy-category negation failures on the adversarial test set.
 > - **Continuous monitoring:** monthly real-consultation NA_w by category; alert on any allergy / red-flag / medication-dose category failure within the audit window.
 > - **Pause trigger:** any allergy-category critical failure in production traffic, or NA_w < 95 % for two consecutive audit cycles.
@@ -5767,6 +5775,8 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the zero-tolerance posture on type-(iii) failures into safety-critical fields follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (a hallucinated allergy in an allergy field is a system-level safety failure). Specific numbers (100 % safety-critical gate, ≥ 95 % free-text gate, ≥ 99 % monthly audit floor, ≥ 200 cases per EPR) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
 > - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
 > - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
@@ -7238,7 +7248,7 @@ ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained �
 
 **Threshold Guidance**
 
-> Edit Rate is **interpretable only as a trajectory** (per the Limitations and Novel Thinking sections); absolute thresholds below are deployment-context-dependent and represent indicative levels for procurement-stage discussion.
+> ⚠️ **Provenance:** the > 15-percentage-point drop sustained ≥ 4 weeks comes from the existing Formal Definition complacency signal (carried from prior versions of the metric); the 30–80 % baseline range, the < 50 %-of-baseline pause trigger, and the zero-safety-critical-edits-with-continued-stylistic-editing trigger are **proposed in v3.3 as starting points**, not externally validated. Edit Rate is **interpretable only as a trajectory** (per Limitations and Novel Thinking); absolute thresholds below are deployment-context-dependent and require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
 > - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).
@@ -9510,6 +9520,8 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the IG-incident reportability framing follows from NHSE IG guidance (March 2026) and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, < 95 % escalation trigger, < 0.5 % coverage-check threshold) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** EPR / AVT integration capable of recording dissent in a structured form and propagating it to subsequent encounters; consultation workflow includes a documented step at which the clinician offers AVT and records the response.
 > - **Continuous monitoring:** documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.
 > - **Pause / escalation trigger:** any dissent-not-respected event confirmed (single instance), OR sub-metric < 95 % in any month. Both reportable as IG incidents.
@@ -9573,6 +9585,8 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the four content-element framing (what / what / who / how) follows from NHSE IG guidance (March 2026). Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, < 75 % escalation, ≥ 30 sample-size floor) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** notification script drafted and reviewed against NHSE IG content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
 > - **Continuous monitoring:** monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.
 > - **Pause / escalation trigger:** any content element < 75 % compliance in any audit cycle; or self-report > 95 % paired with audited rate < 75 % (this is a self-report integrity failure, separately serious).
@@ -10401,6 +10415,8 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** the IG-incident reportability framing follows from UK GDPR storage-limitation requirements and the existing NHSE IG framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, < 95 % escalation trigger, annual independent verification cadence) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.
+>
 > - **Pre-deployment gate:** vendor produces a deletion-verification protocol covering every storage location in the architecture; deployer DPIA cross-references the protocol; one end-to-end deletion test passes prior to go-live.
 > - **Continuous monitoring:** monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.
 > - **Pause / escalation trigger:** any storage-location compliance < 95 % in any month, OR any unlogged retention beyond policy detected. Both are reportable as IG incidents per the existing NHSE IG framework.
@@ -10495,6 +10511,8 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 
 **Threshold Guidance**
 
+> ⚠️ **Provenance:** UK GDPR purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, < 95 % escalation trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
 > - **Pre-deployment gate:** DPIA enumerates ≥ 3 distinct retention purposes with periods; vendor architecture diagram shows transcript flow through every named storage location with retention period at each.
 > - **Continuous monitoring:** monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).
 > - **Pause / escalation trigger:** any unenumerated retention purpose discovered in production, OR any per-purpose compliance < 95 %.
