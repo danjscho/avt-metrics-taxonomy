@@ -32,6 +32,26 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hallucination rate. TS = DT_pre - DT_post. Meaningful only if quality stable/improving.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product telemetry. "Documentation start" = first keystroke or first AVT activation in the note's edit session, whichever is earlier. "Documentation end" = clinician signature event on the note. Time spent reviewing AVT-generated content **counts as documentation time**; the metric measures total clinician note-effort, not just typing time. The metric MUST be reported alongside a quality companion metric ([TP.SN-3 PDSQI-9](#tpsn-3-pdsqi-9-physician-documentation-quality-instrument), [TP.SN-5 Hallucination Rate](#tpsn-5-hallucination-rate), or equivalent) - DT in isolation is not interpretable per Coiera & Fraile-Navarro 2026.
+
+**Operational Specification**
+
+> - **Window:** weekly aggregate per clinician, with continuous monitoring trajectory.
+> - **In-consultation vs out-of-consultation breakdown MANDATORY:** documentation completed during the patient encounter reported separately from documentation completed after the patient has left. AVT systems can reduce in-consultation time while increasing out-of-consultation time - aggregating the two hides the failure mode.
+> - **After-hours boundary MANDATORY:** documentation completed outside the clinician's scheduled clinical hours is tracked under [GV.OP-2 Pyjama Time / After-Hours EHR Use](#gvop-2-pyjama-time-after-hours-ehr-use), not under DT. Both metrics must be reported together; reporting DT alone risks hiding burden displacement.
+> - **Per-clinician baseline MANDATORY:** the deployment baseline is the median weekly DT across the first 4 weeks of clinician live use. Time-saved (TS) calculations reference this per-clinician baseline, not a pooled cohort baseline (parallel to [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)).
+> - **Aggregation:** report median DT and the time-saved (TS) trajectory; do not collapse to a single number without quality companion metric.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from Coiera & Fraile-Navarro 2026 and the RSET 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish per-clinician DT median across the first 4 weeks of live use, with separate medians for in-consultation and out-of-consultation segments. Quality companion metric measured concurrently.
+> - **Continuous monitoring:** weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS > 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).
+> - **Pause / review trigger:** any TS reported without quality data; OR in-consultation TS > 0 paired with out-of-consultation DT increase (suggests burden displacement to after-hours, not reduction); OR TS positive while quality companion metric (PDSQI-9, hallucination rate) deteriorates.
+
 **References**
 
 - **Critique**: Coiera & Fraile-Navarro (2026)
@@ -39,7 +59,7 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **Limitations**
 
-> Says nothing about safety.
+> Says nothing about safety. The Operational Specification's pairing requirement makes this gap visible at every reporting cycle but does not eliminate it - the metric still measures effort, not value.
 
 **Novel Thinking / Implications**
 

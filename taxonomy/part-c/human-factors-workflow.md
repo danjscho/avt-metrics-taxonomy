@@ -248,6 +248,27 @@ Duration between generation and approval. Model as distribution - tail of very-f
 TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm = TTS / word_count. Flag: TTS_norm < 0.5s/word suggests rubber-stamping.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product telemetry. `t_generated` = the timestamp at which the AVT-generated note becomes visible to the clinician for review. `t_approve` = the clinician signature event on the note. The window between these two timestamps captures total review-and-edit duration; TTS does NOT include time before AVT note availability or time after signature. Where the clinician opens, leaves, and returns to the note, TTS counts only the foreground review time within the EPR session if the EPR can distinguish; otherwise the full elapsed time is used and the limitation declared.
+
+**Operational Specification**
+
+> - **Window:** continuous; weekly distribution analysis per clinician.
+> - **Population:** all AVT-generated notes signed during the window. Notes signed by a clinician other than the one to whom AVT was active (delegated workflows) excluded; flagged as a separate audit item.
+> - **Distribution reporting MANDATORY:** P5, P10, median, P90 of TTS per clinician AND of TTS_norm (TTS / word_count). Single-number reporting (mean or median alone) is not Tier 1 sufficient - the safety signal lives in the lower tail.
+> - **Per-clinician baseline MANDATORY:** baseline TTS_norm distribution computed across the first 4 weeks of clinician live use; subsequent reporting referenced to per-clinician baseline (parallel to [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)).
+> - **Pairing with Edit Rate MANDATORY:** TTS distribution reported alongside HL.HF-1 substantive edit rate for the same clinician-window. Low TTS + low substantive edit rate is the rubber-stamping signal; either alone is ambiguous.
+> - **Note-complexity stratification:** report TTS_norm distribution stratified by note word count quartile (short / medium / long / very-long); rubber-stamping risk is most visible on long/complex notes signed at short-note speed.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and Stanford principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
+>
+> - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
+> - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
+> - **Pause / review trigger:** weekly P10 of TTS_norm < 0.3 s/word AND HL.HF-1 substantive edit rate < 25 % for the same clinician-window (rubber-stamping confirmed in distribution and in editing behaviour). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+
 **Code: Time-to-sign analysis**
 
 ```python

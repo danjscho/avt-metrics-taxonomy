@@ -7408,6 +7408,27 @@ Duration between generation and approval. Model as distribution - tail of very-f
 TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm = TTS / word_count. Flag: TTS_norm < 0.5s/word suggests rubber-stamping.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product telemetry. `t_generated` = the timestamp at which the AVT-generated note becomes visible to the clinician for review. `t_approve` = the clinician signature event on the note. The window between these two timestamps captures total review-and-edit duration; TTS does NOT include time before AVT note availability or time after signature. Where the clinician opens, leaves, and returns to the note, TTS counts only the foreground review time within the EPR session if the EPR can distinguish; otherwise the full elapsed time is used and the limitation declared.
+
+**Operational Specification**
+
+> - **Window:** continuous; weekly distribution analysis per clinician.
+> - **Population:** all AVT-generated notes signed during the window. Notes signed by a clinician other than the one to whom AVT was active (delegated workflows) excluded; flagged as a separate audit item.
+> - **Distribution reporting MANDATORY:** P5, P10, median, P90 of TTS per clinician AND of TTS_norm (TTS / word_count). Single-number reporting (mean or median alone) is not Tier 1 sufficient - the safety signal lives in the lower tail.
+> - **Per-clinician baseline MANDATORY:** baseline TTS_norm distribution computed across the first 4 weeks of clinician live use; subsequent reporting referenced to per-clinician baseline (parallel to [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)).
+> - **Pairing with Edit Rate MANDATORY:** TTS distribution reported alongside HL.HF-1 substantive edit rate for the same clinician-window. Low TTS + low substantive edit rate is the rubber-stamping signal; either alone is ambiguous.
+> - **Note-complexity stratification:** report TTS_norm distribution stratified by note word count quartile (short / medium / long / very-long); rubber-stamping risk is most visible on long/complex notes signed at short-note speed.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and Stanford principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
+>
+> - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
+> - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
+> - **Pause / review trigger:** weekly P10 of TTS_norm < 0.3 s/word AND HL.HF-1 substantive edit rate < 25 % for the same clinician-window (rubber-stamping confirmed in distribution and in editing behaviour). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+
 **Code: Time-to-sign analysis**
 
 ```python
@@ -8095,13 +8116,38 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and demographic group. Significant association = inequitable consent model.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product workflow telemetry. Two distinct opt-out events MUST be tracked separately:
+>
+> - **Registration-level opt-out** - patient declines AVT use across all encounters with the practice (status set in patient record)
+> - **Per-encounter opt-out** - patient declines AVT for a specific consultation while remaining eligible elsewhere (cross-link to [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate))
+>
+> Aggregating the two hides the underlying signal. The denominator `P_offered` is the count of patients to whom AVT use was offered (not consultations); a patient declining once and accepting later contributes once to numerator and once to denominator. Pre-conditions for inclusion: the patient was demonstrably informed (cross-link to [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)) - undocumented offers are excluded with reason.
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly aggregate per practice and per clinician.
+> - **Population:** all patients offered AVT during the window. Excludes patients for whom AVT was not offered (e.g. consultation type explicitly carved out under [GV.CR-14 Consultation-Type Appropriateness Assessment](#gvcr-14-consultation-type-appropriateness-assessment) when implemented).
+> - **Demographic disaggregation MANDATORY:** opt-out rate stratified by age band, sex, ethnicity, and primary language at minimum. Disability status and deprivation index where the data is available. Aggregate-only reporting hides the equity signal that is the metric's primary purpose.
+> - **Statistical test MANDATORY:** χ² (or Fisher's exact for small cells) test for independence between opt-out and each demographic axis, with multiple-comparison correction (Holm-Bonferroni or FDR) across axes. Report both raw rates and significance.
+> - **Trajectory MANDATORY:** monthly opt-out rate trajectory per practice; rising aggregate rate is a separate signal from disparate rate, and both matter.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the NAS SPI and CQC Mythbuster 109 cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
+> - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.
+> - **Pause / review trigger:** demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises > 5 percentage points (signals trust deterioration). Pair with [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) to test whether the consent model is the cause.
+
 **References**
 
 - **CQC**: Mythbuster 109: implied consent sufficient but patients must be informed
 
 **Limitations**
 
-> Low opt-out ≠ informed consent.
+> Low opt-out ≠ informed consent. The demographic-disaggregation requirement in the Operational Specification surfaces equity issues that aggregate rate hides; it does not address the upstream concern that opt-out rates depend on the quality of notification (covered by GV.CR-2) and on patient understanding of what they are declining (no current metric).
 
 **Novel Thinking / Implications**
 
@@ -8799,13 +8845,33 @@ Logging which model version produces each output. Foundation for all continuous 
 Per inference: log model_id, model_version, timestamp, config_hash. On change (v_old → v_new), monitoring window W with duration Δt calibrated for statistical power ≥0.8.
 ```
 
+**Reference Standard**
+
+> Vendor inference-logging telemetry covering every component of the deployed system that can change independently. Component list MUST include at minimum: (a) ASR model; (b) summarisation/LLM model weights; (c) system prompt / instruction template; (d) retrieval indices or RAG corpora; (e) safety classifier or guardrail models; (f) any fine-tuning adapter or LoRA. Each component carries its own version identifier and `config_hash`. A "model update" is any change to any of the six components - not just LLM weight updates. Notification of change to the deployer is mandatory; the time between change-event and deployer notification is itself a monitored quantity.
+
+**Operational Specification**
+
+> - **Window:** continuous logging; per-inference granularity.
+> - **Per-component versioning MANDATORY:** the six components above each have a recorded version on every inference. A single rolled-up "system version" is not Tier 1 sufficient - downstream incident attribution requires component-level provenance.
+> - **Change-event log MANDATORY:** every change to any component generates a structured change-event record with component name, old version, new version, change type (weights / prompt / retrieval / classifier), timestamp, and notification status (notified / not-yet-notified).
+> - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gvsg-2-model-update-impact-score) workflow and the monitoring window referenced in the Formal Definition.
+> - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under MHRA Post-Market Surveillance regulations must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gvvt-1-model-change-notification-compliance).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the three-layer surveillance framing carries from the Novel Thinking section and Keyes et al. 2025; the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
+> - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
+> - **Pause / escalation trigger:** any inference produced without complete per-component version log; OR any change-event unnotified > 14 days; OR any "substantial" MHRA-PMS-relevant change deployed without prior deployer notification (this is a regulatory event, not just an operational one).
+
 **References**
 
 - **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
 
 **Limitations**
 
-> Not contractually mandated in most NHS procurement.
+> Not contractually mandated in most NHS procurement. The Operational Specification's per-component versioning requirement makes this gap visible at procurement-time but does not close it - vendors can decline to log all six components, in which case the deployer is choosing to forgo Tier 1 assurance for that part of the stack.
 
 **Novel Thinking / Implications**
 
@@ -10871,6 +10937,26 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hallucination rate. TS = DT_pre - DT_post. Meaningful only if quality stable/improving.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product telemetry. "Documentation start" = first keystroke or first AVT activation in the note's edit session, whichever is earlier. "Documentation end" = clinician signature event on the note. Time spent reviewing AVT-generated content **counts as documentation time**; the metric measures total clinician note-effort, not just typing time. The metric MUST be reported alongside a quality companion metric ([TP.SN-3 PDSQI-9](#tpsn-3-pdsqi-9-physician-documentation-quality-instrument), [TP.SN-5 Hallucination Rate](#tpsn-5-hallucination-rate), or equivalent) - DT in isolation is not interpretable per Coiera & Fraile-Navarro 2026.
+
+**Operational Specification**
+
+> - **Window:** weekly aggregate per clinician, with continuous monitoring trajectory.
+> - **In-consultation vs out-of-consultation breakdown MANDATORY:** documentation completed during the patient encounter reported separately from documentation completed after the patient has left. AVT systems can reduce in-consultation time while increasing out-of-consultation time - aggregating the two hides the failure mode.
+> - **After-hours boundary MANDATORY:** documentation completed outside the clinician's scheduled clinical hours is tracked under [GV.OP-2 Pyjama Time / After-Hours EHR Use](#gvop-2-pyjama-time-after-hours-ehr-use), not under DT. Both metrics must be reported together; reporting DT alone risks hiding burden displacement.
+> - **Per-clinician baseline MANDATORY:** the deployment baseline is the median weekly DT across the first 4 weeks of clinician live use. Time-saved (TS) calculations reference this per-clinician baseline, not a pooled cohort baseline (parallel to [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)).
+> - **Aggregation:** report median DT and the time-saved (TS) trajectory; do not collapse to a single number without quality companion metric.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from Coiera & Fraile-Navarro 2026 and the RSET 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish per-clinician DT median across the first 4 weeks of live use, with separate medians for in-consultation and out-of-consultation segments. Quality companion metric measured concurrently.
+> - **Continuous monitoring:** weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS > 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).
+> - **Pause / review trigger:** any TS reported without quality data; OR in-consultation TS > 0 paired with out-of-consultation DT increase (suggests burden displacement to after-hours, not reduction); OR TS positive while quality companion metric (PDSQI-9, hallucination rate) deteriorates.
+
 **References**
 
 - **Critique**: Coiera & Fraile-Navarro (2026)
@@ -10878,7 +10964,7 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **Limitations**
 
-> Says nothing about safety.
+> Says nothing about safety. The Operational Specification's pairing requirement makes this gap visible at every reporting cycle but does not eliminate it - the metric still measures effort, not value.
 
 **Novel Thinking / Implications**
 

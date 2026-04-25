@@ -34,13 +34,38 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and demographic group. Significant association = inequitable consent model.
 ```
 
+**Reference Standard**
+
+> EPR + AVT product workflow telemetry. Two distinct opt-out events MUST be tracked separately:
+>
+> - **Registration-level opt-out** - patient declines AVT use across all encounters with the practice (status set in patient record)
+> - **Per-encounter opt-out** - patient declines AVT for a specific consultation while remaining eligible elsewhere (cross-link to [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate))
+>
+> Aggregating the two hides the underlying signal. The denominator `P_offered` is the count of patients to whom AVT use was offered (not consultations); a patient declining once and accepting later contributes once to numerator and once to denominator. Pre-conditions for inclusion: the patient was demonstrably informed (cross-link to [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)) - undocumented offers are excluded with reason.
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly aggregate per practice and per clinician.
+> - **Population:** all patients offered AVT during the window. Excludes patients for whom AVT was not offered (e.g. consultation type explicitly carved out under [GV.CR-14 Consultation-Type Appropriateness Assessment](#gvcr-14-consultation-type-appropriateness-assessment) when implemented).
+> - **Demographic disaggregation MANDATORY:** opt-out rate stratified by age band, sex, ethnicity, and primary language at minimum. Disability status and deprivation index where the data is available. Aggregate-only reporting hides the equity signal that is the metric's primary purpose.
+> - **Statistical test MANDATORY:** χ² (or Fisher's exact for small cells) test for independence between opt-out and each demographic axis, with multiple-comparison correction (Holm-Bonferroni or FDR) across axes. Report both raw rates and significance.
+> - **Trajectory MANDATORY:** monthly opt-out rate trajectory per practice; rising aggregate rate is a separate signal from disparate rate, and both matter.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the NAS SPI and CQC Mythbuster 109 cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
+> - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.
+> - **Pause / review trigger:** demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises > 5 percentage points (signals trust deterioration). Pair with [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) to test whether the consent model is the cause.
+
 **References**
 
 - **CQC**: Mythbuster 109: implied consent sufficient but patients must be informed
 
 **Limitations**
 
-> Low opt-out ≠ informed consent.
+> Low opt-out ≠ informed consent. The demographic-disaggregation requirement in the Operational Specification surfaces equity issues that aggregate rate hides; it does not address the upstream concern that opt-out rates depend on the quality of notification (covered by GV.CR-2) and on patient understanding of what they are declining (no current metric).
 
 **Novel Thinking / Implications**
 
