@@ -36,17 +36,41 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 Fidelity(d,f) = 1 if content correct AND target field correct. Report per category: (a) free-text, (b) coded diagnoses, (c) medications, (d) allergies, (e) problem list. Categories c-e are safety-critical.
 ```
 
+**Reference Standard**
+
+> Pre-defined gold-standard test corpus per target EPR (EMIS, SystmOne, Epic, others as applicable). Each test case specifies: source AVT output (transcript + summary), expected target EPR field, expected content semantically equivalent to a clinician-authored entry. "Content correct" decomposes into:
+>
+> - **Structural equivalence** - the value lands in the field of the correct datatype (string, coded value, numeric, date) with correct units where applicable
+> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tpsn-6-omission-rate) reference standard
+> - **No content addition** - the value introduces no information absent from the AVT output. Hallucinated content reaching a structured field counts as a write-back failure even where the same content in free text would be a TP.SN-5 hallucination
+>
+> Inter-rater target on test-case construction: ICC ≥ 0.85 (write-back fidelity is a more constrained task than free-text fidelity; higher reliability expected).
+
+**Operational Specification**
+
+> - **Test corpus MANDATORY:** ≥ 200 test cases per target EPR system, balanced across the five categories with safety-critical categories (medications / allergies / problem-list) over-represented (≥ 40 cases each).
+> - **Pre-deployment gate per EPR:** fidelity tested against every EPR system in scope at the deployment site. A vendor-asserted "EMIS-compatible" claim does not transfer to SystmOne without re-test.
+> - **Population for continuous monitoring:** sampled production write-backs reviewed against a clinician-authored gold standard at a frequency proportional to write-back volume (minimum monthly audit; weekly for high-volume deployments).
+> - **Per-category reporting MANDATORY:** report fidelity by category (a)-(e) with safety-critical categories reported separately. Aggregate-only reporting hides the failure modes that matter most.
+> - **Failure-mode classification MANDATORY:** every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
+> - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
+> - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
+
 **References**
 
 - **IM1**: NHS IM1 interface assurance
 
 **Limitations**
 
-> Integration-specific: must test per EPR (EMIS, SystmOne, Epic).
+> Integration-specific: must test per EPR (EMIS, SystmOne, Epic). The Operational Specification scope ("≥200 cases per EPR with safety-critical over-representation") makes the testing burden visible; it does not reduce it. A multi-EPR vendor claim translates to a multi-EPR test programme.
 
 **Novel Thinking / Implications**
 
-> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure.
+> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure. The structured Reference Standard / Operational Specification / Threshold Guidance pattern above promotes the existing severity intuition into an operational gate: type-(iii) failures on safety-critical fields are not measured as a rate to be optimised; they are measured as binary defects that must not occur.
 
 ---
 

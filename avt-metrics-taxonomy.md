@@ -4272,6 +4272,24 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generated note, S_unsupported = subset not evidentially supported by source transcript. Severity: benign (formatting), moderate (non-safety addition), critical (fabricated clinical content).
 ```
 
+**Reference Standard**
+
+> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the CREOLA subtype taxonomy (Asgari et al. 2025). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
+
+**Operational Specification**
+
+> - **Window:** per-note (not per-sentence aggregate), covering all atomic propositions in the generated note.
+> - **Population:** all clinical consultations during the measurement period; exclude only transcription failures (ASR confidence < 0.7).
+> - **Subtype reporting MANDATORY:** aggregate rate plus CREOLA subtype breakdown - Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation. Aggregate-only reporting is not sufficient for Tier 1 compliance.
+> - **Severity classification MANDATORY:** every flagged proposition labelled benign / moderate / critical, with critical rate reported separately.
+> - **Aggregation:** weighted aggregate HR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / N_total. Unweighted rate may be reported alongside but not in place of HR_w.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** HR_w ≤ 2 % on a representative ≥500-note test set; critical-subtype rate < 0.5 %.
+> - **Continuous monitoring:** weekly HR_w; alert if > 3 % sustained two weeks or any new critical subtype emerges.
+> - **Pause trigger:** critical-subtype rate ≥ 5 % or HR_w > 5 % for three consecutive days. Mirrors the NAS Day Zero SPI threshold cited in the Why-this-tier rationale.
+
 **Code: Hallucination detection via NLI**
 
 ```python
@@ -4345,13 +4363,31 @@ Clinically relevant source content absent from note. More dangerous than halluci
 OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions in source. Clinical relevance per CREOLA: key findings, medications, allergies, plan elements, safety-netting, red-flags are mandatory.
 ```
 
+**Reference Standard**
+
+> Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the CREOLA mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.
+
+**Operational Specification**
+
+> - **Window:** per-note, covering all clinically relevant propositions identified in the source transcript.
+> - **Population:** all clinical consultations during the measurement period; same exclusions as TP.SN-5.
+> - **Category breakdown MANDATORY:** report omission rate by CREOLA mandatory category (findings / medications / allergies / plan / safety-netting / red-flags). A 5 % aggregate that hides 30 % missed allergies is unacceptable; category-stratified reporting catches this.
+> - **Severity classification MANDATORY:** flagged omissions labelled benign / moderate / critical. Allergies, red-flag symptoms, medication doses, and safety-netting omissions are critical by default; downgrading requires documented justification.
+> - **Aggregation:** weighted aggregate OR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / |P_reference|.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** OR_w ≤ 3 % on a representative ≥500-note test set; critical-category omission rate < 1 % for any single mandatory category.
+> - **Continuous monitoring:** monthly OR_w by category; alert if any mandatory category exceeds 5 % critical omission rate or if aggregate OR_w drifts > 1.5× the deployment-baseline established in the first 30 days.
+> - **Pause trigger:** any mandatory-category critical-omission rate ≥ 10 % or OR_w > 8 % aggregate.
+
 **References**
 
 - **Tortus**: 3.45% omission rate (Asgari et al. 2025)
 
 **Limitations**
 
-> Harder to detect than hallucination. Automated detection at scale unsolved.
+> Harder to detect than hallucination because the reference set must be constructed from the source rather than checked against the output. Automated detection at scale unsolved; the reference-set construction step is the bottleneck and the dominant source of inter-rater variance.
 
 **Novel Thinking / Implications**
 
@@ -4758,13 +4794,31 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 For each negated concept in reference: Negation Preserved = (concept appears in summary) AND (negation marker correctly attached). Negation Accuracy = |correctly_negated| / |total_negations|. Failure modes: dropped negation (becomes positive), added negation (becomes negative), wrong scope.
 ```
 
+**Reference Standard**
+
+> Source transcript + ConText-style negation detection (Harkema et al.) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
+
+**Operational Specification**
+
+> - **Negation types in scope (MANDATORY):** explicit ("no chest pain"), implicit ("denies dyspnoea"), and hedged ("unlikely to be cardiac"). Conditional negation ("if no improvement") and historical negation ("previously denied") MUST be reported separately and counted only when their truth-value at the time of the consultation can be determined from the transcript.
+> - **Scope correctness:** preservation requires both the concept and the negation's syntactic scope. "No history of MI" preserved as "no MI" is a scope error and counts as a failure even though the concept and negation both appear.
+> - **Population:** all clinical consultations during the measurement period. For pre-deployment gating, supplement with an **adversarial test set** of ≥200 sentences specifically constructed to challenge negation handling (long-distance negation, multiple negations per sentence, double negatives, implicit forms). Adversarial-set performance reported separately from real-consultation performance.
+> - **Severity classification MANDATORY:** failures by clinical category, with allergy / red-flag / medication-dose negation errors classified critical by default.
+> - **Aggregation:** report per-type accuracy and per-category accuracy. A weighted aggregate NA_w using the same 0.1 / 0.5 / 1.0 severity weights as TP.SN-5/-6 is the headline figure.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** real-consultation NA_w ≥ 98 %; adversarial-test NA_w ≥ 90 %; zero allergy-category negation failures on the adversarial test set.
+> - **Continuous monitoring:** monthly real-consultation NA_w by category; alert on any allergy / red-flag / medication-dose category failure within the audit window.
+> - **Pause trigger:** any allergy-category critical failure in production traffic, or NA_w < 95 % for two consecutive audit cycles.
+
 **References**
 
 - **Negation in clinical NLP**: ConText algorithm (Harkema et al.); standard clinical NLP problem
 
 **Limitations**
 
-> Negation detection itself is imperfect. Clinical negation has subtleties: hedged negation ('unlikely to be'), conditional negation ('if no improvement'), historical negation ('previously denied').
+> Negation detection itself is imperfect. Clinical negation has subtleties: hedged negation ('unlikely to be'), conditional negation ('if no improvement'), historical negation ('previously denied'). The Operational Specification above brings these into scope by requiring explicit reporting; it does not solve the underlying detection problem, only makes the gap visible.
 
 **Novel Thinking / Implications**
 
@@ -5687,17 +5741,41 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 Fidelity(d,f) = 1 if content correct AND target field correct. Report per category: (a) free-text, (b) coded diagnoses, (c) medications, (d) allergies, (e) problem list. Categories c-e are safety-critical.
 ```
 
+**Reference Standard**
+
+> Pre-defined gold-standard test corpus per target EPR (EMIS, SystmOne, Epic, others as applicable). Each test case specifies: source AVT output (transcript + summary), expected target EPR field, expected content semantically equivalent to a clinician-authored entry. "Content correct" decomposes into:
+>
+> - **Structural equivalence** - the value lands in the field of the correct datatype (string, coded value, numeric, date) with correct units where applicable
+> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tpsn-6-omission-rate) reference standard
+> - **No content addition** - the value introduces no information absent from the AVT output. Hallucinated content reaching a structured field counts as a write-back failure even where the same content in free text would be a TP.SN-5 hallucination
+>
+> Inter-rater target on test-case construction: ICC ≥ 0.85 (write-back fidelity is a more constrained task than free-text fidelity; higher reliability expected).
+
+**Operational Specification**
+
+> - **Test corpus MANDATORY:** ≥ 200 test cases per target EPR system, balanced across the five categories with safety-critical categories (medications / allergies / problem-list) over-represented (≥ 40 cases each).
+> - **Pre-deployment gate per EPR:** fidelity tested against every EPR system in scope at the deployment site. A vendor-asserted "EMIS-compatible" claim does not transfer to SystmOne without re-test.
+> - **Population for continuous monitoring:** sampled production write-backs reviewed against a clinician-authored gold standard at a frequency proportional to write-back volume (minimum monthly audit; weekly for high-volume deployments).
+> - **Per-category reporting MANDATORY:** report fidelity by category (a)-(e) with safety-critical categories reported separately. Aggregate-only reporting hides the failure modes that matter most.
+> - **Failure-mode classification MANDATORY:** every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
+> - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
+> - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
+
 **References**
 
 - **IM1**: NHS IM1 interface assurance
 
 **Limitations**
 
-> Integration-specific: must test per EPR (EMIS, SystmOne, Epic).
+> Integration-specific: must test per EPR (EMIS, SystmOne, Epic). The Operational Specification scope ("≥200 cases per EPR with safety-critical over-representation") makes the testing burden visible; it does not reduce it. A multi-EPR vendor claim translates to a multi-EPR test programme.
 
 **Novel Thinking / Implications**
 
-> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure.
+> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure. The structured Reference Standard / Operational Specification / Threshold Guidance pattern above promotes the existing severity intuition into an operational gate: type-(iii) failures on safety-critical fields are not measured as a rate to be optimised; they are measured as binary defects that must not occur.
 
 ---
 
@@ -7134,6 +7212,31 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 ```
 ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained ≥4 weeks without AI accuracy improvement. Alert: ER drops >15pp from baseline within 3 months.
 ```
+
+**Reference Standard**
+
+> EPR or AVT-product telemetry capturing the post-generation, pre-signature note-state diff. An "edit" is any change to the AI-generated text between AI output and clinician signature. Out of scope: changes after signature (correction workflows are tracked under [GV.SG-15 Time-to-Correct](#gvsg-15-time-to-correct), not Edit Rate). Edit detection MUST distinguish:
+>
+> - **Substantive edits** - additions, deletions, or modifications that alter clinical meaning (default count for ER)
+> - **Stylistic edits** - formatting, punctuation, casing, whitespace (reported separately, not counted in headline ER)
+>
+> Where the diff cannot reliably classify substantive vs stylistic, count as substantive. The classification rule MUST be documented and held constant across the deployment; vendors changing the rule must declare a baseline reset (see Operational Specification).
+
+**Operational Specification**
+
+> - **Window:** weekly aggregate per clinician and per deployment site. Continuous monitoring (the Cadence above); weekly granularity is the floor for trajectory analysis.
+> - **Population:** all AI-generated notes signed by the clinician during the window. Exclude notes where the clinician aborted the AI workflow before signature (these belong under [HL.HF-9 Re-record / Abandonment Rate](#hlhf-9-re-record-abandonment-rate)).
+> - **Baseline establishment MANDATORY:** the deployment baseline is the mean weekly ER across the first 4 weeks of clinician live use, computed per clinician (not pooled). All complacency-alert calculations are referenced to this per-clinician baseline.
+> - **Severity stratification MANDATORY:** edits classified as **safety-critical** (allergy, medication, dose, red-flag, diagnosis, plan), **clinically meaningful** (history, exam findings, risk-factor wording), or **stylistic**. Headline ER is over substantive (safety-critical + clinically-meaningful) edits; safety-critical edit rate reported separately as a leading indicator.
+> - **Per-clinician disaggregation MANDATORY:** site-level ER hides individual complacency. Reporting must include per-clinician trajectories alongside aggregate.
+
+**Threshold Guidance**
+
+> Edit Rate is **interpretable only as a trajectory** (per the Limitations and Novel Thinking sections); absolute thresholds below are deployment-context-dependent and represent indicative levels for procurement-stage discussion.
+>
+> - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
+> - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).
+> - **Pause / review trigger:** substantive ER < 50 % of per-clinician baseline for 4 consecutive weeks, OR safety-critical edit rate drops to zero for ≥ 4 weeks while substantive edit rate remains > 10 % (suggests clinicians are stopping their safety review while continuing minor editing). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
 
 **Code: Edit rate complacency detection**
 
