@@ -16,8 +16,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 |----------------|-------|------------|
 | AVT-Specific | 48 | 22% |
 | AVT-Contextualised | 77 | 36% |
-| General Healthcare AI | 89 | 42% |
-| **Total** | **214** | **100%** |
+| General Healthcare AI | 91 | 42% |
+| **Total** | **216** | **100%** |
 
 ### By Part
 
@@ -28,8 +28,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
 | E - System Governance | 6 | 0 | 68 | 74 |
-| F - Evaluation Science | 0 | 0 | 7 | 7 |
-| **Total** | **48** | **77** | **89** | **214** |
+| F - Evaluation Science | 0 | 0 | 9 | 9 |
+| **Total** | **48** | **77** | **91** | **216** |
 
 
 ### Full Classification
@@ -349,7 +349,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 #### Part F - Evaluation Science
 
-**Meta-evaluation** (7 metrics)
+**Meta-evaluation** (9 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -360,3 +360,5 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | ES.ME-5 | Coverage Gap Analysis | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-6 | LLM-Judge Bias Quantification | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-7 | Automated-Human Metric Concordance | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-8 | Outcome Evidence Commitment Status | 🟡 Tier 2 | General Healthcare AI |
+| ES.ME-9 | Causal Model Operationalisation | 🟡 Tier 2 | General Healthcare AI |

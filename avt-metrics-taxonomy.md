@@ -1,10 +1,10 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.1, 2026-04-18.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.3, 2026-04-25.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**214 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 2 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions).
+**216 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 adds an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern on nine Tier 1 metrics to make them vendor-comparable.
 
 ## How to Use This Taxonomy
 
@@ -94,6 +94,12 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 | VT | Vendor Transparency & Contractual | GV |
 | ME | Meta-evaluation | ES |
 
+### Tightened Tier 1 metrics (Reference Standard / Operational Specification / Threshold Guidance)
+
+A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard Formal Definition: **Reference Standard** (what counts as ground truth and how reliability is established), **Operational Specification** (concrete decisions about measurement window, population, mandatory breakdowns, and aggregation rule), and **Threshold Guidance** (pre-deployment gate, continuous-monitoring alert, pause / escalation trigger). Where a metric carries these sub-blocks, the Operational Specification is what your vendor must comply with at procurement, and the Threshold Guidance is what triggers escalation post-deployment.
+
+Nine Tier 1 metrics carry this pattern in v3.3 (TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-15 Negation Handling Accuracy, HL.HF-1 Edit Rate, TP.WB-1 Write-back Fidelity, GV.PD-1 Audio Retention Compliance, GV.PD-3 Transcript Retention Compliance, GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance). The remainder of Tier 1 will be assessed and tightened in v3.4 - see CHANGELOG for the deferred set. Metrics without the sub-blocks have not yet been audited under this pattern; treat their formal definitions as the procurement reference and expect future tightening to add the constraints implicit in current practice.
+
 ### Adapting to Local Context
 
 Tier assignments reflect a general assessment of priority and actionability. Local context should adjust them:
@@ -125,7 +131,7 @@ A trust with multiple AVT platforms deployed across different services should pr
 ### By Priority Tier
 
 - **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 92 metrics - recommended with reasonable governance capacity
+- **🟡 Tier 2 - Recommended Assurance**: 94 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -145,7 +151,7 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **Unaffiliated**: 189 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 191 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -289,7 +295,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 **Part F - Evaluation Science**
 
-- [Meta-evaluation](#meta-evaluation) (7 metrics)
+- [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 
 **Cross-cutting**
 
@@ -320,8 +326,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 |----------------|-------|------------|
 | AVT-Specific | 48 | 22% |
 | AVT-Contextualised | 77 | 36% |
-| General Healthcare AI | 89 | 42% |
-| **Total** | **214** | **100%** |
+| General Healthcare AI | 91 | 42% |
+| **Total** | **216** | **100%** |
 
 ### By Part
 
@@ -332,8 +338,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
 | E - System Governance | 6 | 0 | 68 | 74 |
-| F - Evaluation Science | 0 | 0 | 7 | 7 |
-| **Total** | **48** | **77** | **89** | **214** |
+| F - Evaluation Science | 0 | 0 | 9 | 9 |
+| **Total** | **48** | **77** | **91** | **216** |
 
 
 ### Full Classification
@@ -653,7 +659,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 #### Part F - Evaluation Science
 
-**Meta-evaluation** (7 metrics)
+**Meta-evaluation** (9 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -664,6 +670,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | ES.ME-5 | Coverage Gap Analysis | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-6 | LLM-Judge Bias Quantification | 🔵 Tier 3 | General Healthcare AI |
 | ES.ME-7 | Automated-Human Metric Concordance | 🔵 Tier 3 | General Healthcare AI |
+| ES.ME-8 | Outcome Evidence Commitment Status | 🟡 Tier 2 | General Healthcare AI |
+| ES.ME-9 | Causal Model Operationalisation | 🟡 Tier 2 | General Healthcare AI |
 
 ## Standards Mapping
 
@@ -1006,7 +1014,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 | # | T.E.S.T. Benefit Domain | Points | Taxonomy Metrics | Tier | Notes |
 |---|-------------------------|-------:|------------------|------|-------|
-| 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🔵 3 / 🟢 1 / 🟡 2 | Good coverage for most items. **Gap** - no metric for "timeliness of correspondence across care teams" or RCT-validation status as a checkbox |
+| 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | ES.ME-8 Outcome Evidence Commitment Status (RCT-validation checkbox proxy), ES.ME-9 Causal Model Operationalisation, PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🟡 2 / 🔵 3 / 🟢 1 | ES.ME-8 measures **commitment to** RCT evidence (the closest the taxonomy gets to the 50-point RCT item without overstepping the [Outcomes Boundary](#outcomes-boundary)); ES.ME-9 measures whether vendor causal claims are documented. **Gap** - no metric for "timeliness of correspondence across care teams"; the taxonomy does not itself constitute RCT evidence |
 | 2 | **Operational Cost-Effectiveness** (economic evaluation 25; ROI 10; cost savings 15; operational savings 10) | 60 | GV.OP-7 Cost per Consultation, GV.OP-8 Governance & Maintenance Burden | 🟡 2 / 🔵 3 | **Partial gap** - taxonomy lacks explicit ROI, total cost of ownership, formal economic-evaluation metric |
 | 3 | **Workforce Impact Assessment** (settings, specialties, foci, burnout, job satisfaction) | 60 | GV.OP-6 Adoption Rate & Selective Use Patterns, IO.FE-1 Deployment Equity Index, GV.OP-2 Pyjama Time / After-Hours EHR Use, HL.HF-8 Trust Calibration Survey | 🟢 1 / 🟡 2 | Burnout and pyjama time well-covered. **Gap** - no direct "job satisfaction" metric; no "multi-specialty validation" metric |
 | 4 | **Integration and Interoperability** (EHR integration, interoperability synergy, narrative quality) | 35 | TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency | 🟡 2 / 🔵 3 | Strong coverage through EPR Write-back group |
@@ -2060,6 +2068,69 @@ Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed M
 **Gap concentration by theme:** Theme 6 (Societal Wellbeing) has the most gaps, followed by Theme 5 (Contestability). Theme 1 (Safety) and Theme 4 (Accountability) have the fewest gaps - reflecting that the taxonomy was built from a safety-first, governance-aware starting point.
 
 **Gap concentration by principle:** P6 (Right tool) and P7 (Openness) have the largest number of gaps - reflecting that the taxonomy is weaker on *decision-to-deploy* and *outward transparency* than on *in-deployment performance*. This is a structural gap that several of the proposed new metrics in the standards mapping would begin to close.
+
+## Outcomes Boundary
+
+This section is an explicit scope statement: what this taxonomy assures, what it does not, and where the responsibility for the rest lies. The intent is to prevent a common failure mode in clinical AI governance — passing every metric in a deployment-assurance framework and reading that as evidence of clinical benefit, when the framework was never designed to measure benefit at all.
+
+### What this taxonomy assures
+
+The 216 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
+
+- **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
+- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (Part A — Summarisation / NLP)
+- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (Part C — Human Factors)
+- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (Part D — Fairness & Equity)
+- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (Part E — Safety & Governance)
+- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (Part E)
+- **Measurement quality** — is the evaluation methodology itself sound? (Part F — Meta-evaluation)
+
+These are **process, structure, and proximal-outcome measures**. They tell a deployer whether the system is *operating as specified* and whether the conditions for safe use are in place.
+
+### What this taxonomy does not assure
+
+**Clinical outcome validation is out of scope.** This taxonomy does not contain, and is not designed to contain, metrics that establish:
+
+- Whether AVT use changes diagnostic accuracy in real practice
+- Whether AVT use changes the rate or severity of patient safety incidents
+- Whether AVT use changes downstream care quality, patient outcomes, or population health
+- Whether AVT use changes clinician decision-making in ways that benefit (or harm) patients
+- Whether AVT delivers the cost-effectiveness claimed at procurement
+
+These are **distal-outcome questions**. They require infrastructure that no individual deployer can provide alone: multi-site randomised trial designs, longitudinal follow-up, case-mix controls, baseline incident data of sufficient power to detect change, and independence from the vendor whose product is being evaluated.
+
+### Why the boundary
+
+Three reasons this is drawn explicitly rather than left implicit:
+
+1. **The field has not solved outcome measurement for clinical AI generally, and AVT specifically.** Coiera & Fraile-Navarro (2026) name this as a structural gap. Adding outcome metrics to a deployment taxonomy does not produce outcome evidence; it produces the appearance of coverage. That risks substituting framework completeness for empirical evidence.
+
+2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
+
+3. **Process compliance is not clinical benefit.** A deployment passing all 43 Tier 1 metrics in this taxonomy is *assured of deployment safety* — that the system is configured, monitored, governed, and overseen correctly. It is not assured of *clinical benefit*. The taxonomy makes that distinction visible so deployers, vendors, and procurement leads do not conflate the two.
+
+### What deployers should do instead
+
+For the questions this taxonomy does not answer, deployers should:
+
+- **Require post-market outcome studies** in vendor contracts. The two new meta-metrics in this v3.3 release operationalise this requirement: [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether a vendor has committed (protocol, registration, post-market surveillance plan) to outcome evaluation; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) measures whether the vendor has specified how the proximal metrics in this taxonomy connect to claimed distal outcomes.
+- **Require T.E.S.T. Section B RCT evidence** where Gold certification (national-scale deployment) is sought. T.E.S.T. awards 50 of 420 points for clinical validation through RCTs or sufficiently powered NHS pilot studies; this taxonomy treats that evidence as input to procurement, not output of measurement.
+- **Treat proximal metrics as deployment-safety signals, not as evidence of clinical benefit.** Hallucination rate is a safety-floor signal; edit rate is a workflow-and-attention signal; cumulative information yield is a fidelity signal. None of these establish that the deployed system improves care.
+- **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
+
+### Cross-references
+
+- **ES.ME-1 Proximal vs Distal Outcome Distinction** — names the causal-logic burden on vendors
+- **ES.ME-8 Outcome Evidence Commitment Status** — operationalises outcome-study commitment as a metric
+- **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
+- **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
+- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
+
+### Future direction
+
+This boundary may need revisiting if (a) NHS England, NIHR, or an equivalent body publishes a national outcome-evaluation framework for AVT that this taxonomy can map to; (b) the field converges on a defensible set of distal outcome metrics with validated measurement protocols; or (c) the proximal metrics in this taxonomy are themselves shown by clinical evidence to be inadequate proxies for the outcomes that matter. Until then, the boundary stays explicit.
+
+---
 
 ## Gaps & Proposed Metrics (Roadmap)
 
@@ -4207,6 +4278,24 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generated note, S_unsupported = subset not evidentially supported by source transcript. Severity: benign (formatting), moderate (non-safety addition), critical (fabricated clinical content).
 ```
 
+**Reference Standard**
+
+> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the CREOLA subtype taxonomy (Asgari et al. 2025). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
+
+**Operational Specification**
+
+> - **Window:** per-note (not per-sentence aggregate), covering all atomic propositions in the generated note.
+> - **Population:** all clinical consultations during the measurement period; exclude only transcription failures (ASR confidence < 0.7).
+> - **Subtype reporting MANDATORY:** aggregate rate plus CREOLA subtype breakdown - Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation. Aggregate-only reporting is not sufficient for Tier 1 compliance.
+> - **Severity classification MANDATORY:** every flagged proposition labelled benign / moderate / critical, with critical rate reported separately.
+> - **Aggregation:** weighted aggregate HR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / N_total. Unweighted rate may be reported alongside but not in place of HR_w.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** HR_w ≤ 2 % on a representative ≥500-note test set; critical-subtype rate < 0.5 %.
+> - **Continuous monitoring:** weekly HR_w; alert if > 3 % sustained two weeks or any new critical subtype emerges.
+> - **Pause trigger:** critical-subtype rate ≥ 5 % or HR_w > 5 % for three consecutive days. Mirrors the NAS Day Zero SPI threshold cited in the Why-this-tier rationale.
+
 **Code: Hallucination detection via NLI**
 
 ```python
@@ -4280,13 +4369,31 @@ Clinically relevant source content absent from note. More dangerous than halluci
 OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions in source. Clinical relevance per CREOLA: key findings, medications, allergies, plan elements, safety-netting, red-flags are mandatory.
 ```
 
+**Reference Standard**
+
+> Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the CREOLA mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.
+
+**Operational Specification**
+
+> - **Window:** per-note, covering all clinically relevant propositions identified in the source transcript.
+> - **Population:** all clinical consultations during the measurement period; same exclusions as TP.SN-5.
+> - **Category breakdown MANDATORY:** report omission rate by CREOLA mandatory category (findings / medications / allergies / plan / safety-netting / red-flags). A 5 % aggregate that hides 30 % missed allergies is unacceptable; category-stratified reporting catches this.
+> - **Severity classification MANDATORY:** flagged omissions labelled benign / moderate / critical. Allergies, red-flag symptoms, medication doses, and safety-netting omissions are critical by default; downgrading requires documented justification.
+> - **Aggregation:** weighted aggregate OR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / |P_reference|.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** OR_w ≤ 3 % on a representative ≥500-note test set; critical-category omission rate < 1 % for any single mandatory category.
+> - **Continuous monitoring:** monthly OR_w by category; alert if any mandatory category exceeds 5 % critical omission rate or if aggregate OR_w drifts > 1.5× the deployment-baseline established in the first 30 days.
+> - **Pause trigger:** any mandatory-category critical-omission rate ≥ 10 % or OR_w > 8 % aggregate.
+
 **References**
 
 - **Tortus**: 3.45% omission rate (Asgari et al. 2025)
 
 **Limitations**
 
-> Harder to detect than hallucination. Automated detection at scale unsolved.
+> Harder to detect than hallucination because the reference set must be constructed from the source rather than checked against the output. Automated detection at scale unsolved; the reference-set construction step is the bottleneck and the dominant source of inter-rater variance.
 
 **Novel Thinking / Implications**
 
@@ -4693,13 +4800,31 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 For each negated concept in reference: Negation Preserved = (concept appears in summary) AND (negation marker correctly attached). Negation Accuracy = |correctly_negated| / |total_negations|. Failure modes: dropped negation (becomes positive), added negation (becomes negative), wrong scope.
 ```
 
+**Reference Standard**
+
+> Source transcript + ConText-style negation detection (Harkema et al.) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
+
+**Operational Specification**
+
+> - **Negation types in scope (MANDATORY):** explicit ("no chest pain"), implicit ("denies dyspnoea"), and hedged ("unlikely to be cardiac"). Conditional negation ("if no improvement") and historical negation ("previously denied") MUST be reported separately and counted only when their truth-value at the time of the consultation can be determined from the transcript.
+> - **Scope correctness:** preservation requires both the concept and the negation's syntactic scope. "No history of MI" preserved as "no MI" is a scope error and counts as a failure even though the concept and negation both appear.
+> - **Population:** all clinical consultations during the measurement period. For pre-deployment gating, supplement with an **adversarial test set** of ≥200 sentences specifically constructed to challenge negation handling (long-distance negation, multiple negations per sentence, double negatives, implicit forms). Adversarial-set performance reported separately from real-consultation performance.
+> - **Severity classification MANDATORY:** failures by clinical category, with allergy / red-flag / medication-dose negation errors classified critical by default.
+> - **Aggregation:** report per-type accuracy and per-category accuracy. A weighted aggregate NA_w using the same 0.1 / 0.5 / 1.0 severity weights as TP.SN-5/-6 is the headline figure.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** real-consultation NA_w ≥ 98 %; adversarial-test NA_w ≥ 90 %; zero allergy-category negation failures on the adversarial test set.
+> - **Continuous monitoring:** monthly real-consultation NA_w by category; alert on any allergy / red-flag / medication-dose category failure within the audit window.
+> - **Pause trigger:** any allergy-category critical failure in production traffic, or NA_w < 95 % for two consecutive audit cycles.
+
 **References**
 
 - **Negation in clinical NLP**: ConText algorithm (Harkema et al.); standard clinical NLP problem
 
 **Limitations**
 
-> Negation detection itself is imperfect. Clinical negation has subtleties: hedged negation ('unlikely to be'), conditional negation ('if no improvement'), historical negation ('previously denied').
+> Negation detection itself is imperfect. Clinical negation has subtleties: hedged negation ('unlikely to be'), conditional negation ('if no improvement'), historical negation ('previously denied'). The Operational Specification above brings these into scope by requiring explicit reporting; it does not solve the underlying detection problem, only makes the gap visible.
 
 **Novel Thinking / Implications**
 
@@ -5622,17 +5747,41 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 Fidelity(d,f) = 1 if content correct AND target field correct. Report per category: (a) free-text, (b) coded diagnoses, (c) medications, (d) allergies, (e) problem list. Categories c-e are safety-critical.
 ```
 
+**Reference Standard**
+
+> Pre-defined gold-standard test corpus per target EPR (EMIS, SystmOne, Epic, others as applicable). Each test case specifies: source AVT output (transcript + summary), expected target EPR field, expected content semantically equivalent to a clinician-authored entry. "Content correct" decomposes into:
+>
+> - **Structural equivalence** - the value lands in the field of the correct datatype (string, coded value, numeric, date) with correct units where applicable
+> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tpsn-6-omission-rate) reference standard
+> - **No content addition** - the value introduces no information absent from the AVT output. Hallucinated content reaching a structured field counts as a write-back failure even where the same content in free text would be a TP.SN-5 hallucination
+>
+> Inter-rater target on test-case construction: ICC ≥ 0.85 (write-back fidelity is a more constrained task than free-text fidelity; higher reliability expected).
+
+**Operational Specification**
+
+> - **Test corpus MANDATORY:** ≥ 200 test cases per target EPR system, balanced across the five categories with safety-critical categories (medications / allergies / problem-list) over-represented (≥ 40 cases each).
+> - **Pre-deployment gate per EPR:** fidelity tested against every EPR system in scope at the deployment site. A vendor-asserted "EMIS-compatible" claim does not transfer to SystmOne without re-test.
+> - **Population for continuous monitoring:** sampled production write-backs reviewed against a clinician-authored gold standard at a frequency proportional to write-back volume (minimum monthly audit; weekly for high-volume deployments).
+> - **Per-category reporting MANDATORY:** report fidelity by category (a)-(e) with safety-critical categories reported separately. Aggregate-only reporting hides the failure modes that matter most.
+> - **Failure-mode classification MANDATORY:** every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
+> - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
+> - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
+
 **References**
 
 - **IM1**: NHS IM1 interface assurance
 
 **Limitations**
 
-> Integration-specific: must test per EPR (EMIS, SystmOne, Epic).
+> Integration-specific: must test per EPR (EMIS, SystmOne, Epic). The Operational Specification scope ("≥200 cases per EPR with safety-critical over-representation") makes the testing burden visible; it does not reduce it. A multi-EPR vendor claim translates to a multi-EPR test programme.
 
 **Novel Thinking / Implications**
 
-> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure.
+> 💡 Highest-priority pre-deployment gate. Hallucination in free text is bad; hallucinated allergy in allergy field is system-level safety failure. The structured Reference Standard / Operational Specification / Threshold Guidance pattern above promotes the existing severity intuition into an operational gate: type-(iii) failures on safety-critical fields are not measured as a rate to be optimised; they are measured as binary defects that must not occur.
 
 ---
 
@@ -7069,6 +7218,31 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 ```
 ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained ≥4 weeks without AI accuracy improvement. Alert: ER drops >15pp from baseline within 3 months.
 ```
+
+**Reference Standard**
+
+> EPR or AVT-product telemetry capturing the post-generation, pre-signature note-state diff. An "edit" is any change to the AI-generated text between AI output and clinician signature. Out of scope: changes after signature (correction workflows are tracked under [GV.SG-15 Time-to-Correct](#gvsg-15-time-to-correct), not Edit Rate). Edit detection MUST distinguish:
+>
+> - **Substantive edits** - additions, deletions, or modifications that alter clinical meaning (default count for ER)
+> - **Stylistic edits** - formatting, punctuation, casing, whitespace (reported separately, not counted in headline ER)
+>
+> Where the diff cannot reliably classify substantive vs stylistic, count as substantive. The classification rule MUST be documented and held constant across the deployment; vendors changing the rule must declare a baseline reset (see Operational Specification).
+
+**Operational Specification**
+
+> - **Window:** weekly aggregate per clinician and per deployment site. Continuous monitoring (the Cadence above); weekly granularity is the floor for trajectory analysis.
+> - **Population:** all AI-generated notes signed by the clinician during the window. Exclude notes where the clinician aborted the AI workflow before signature (these belong under [HL.HF-9 Re-record / Abandonment Rate](#hlhf-9-re-record-abandonment-rate)).
+> - **Baseline establishment MANDATORY:** the deployment baseline is the mean weekly ER across the first 4 weeks of clinician live use, computed per clinician (not pooled). All complacency-alert calculations are referenced to this per-clinician baseline.
+> - **Severity stratification MANDATORY:** edits classified as **safety-critical** (allergy, medication, dose, red-flag, diagnosis, plan), **clinically meaningful** (history, exam findings, risk-factor wording), or **stylistic**. Headline ER is over substantive (safety-critical + clinically-meaningful) edits; safety-critical edit rate reported separately as a leading indicator.
+> - **Per-clinician disaggregation MANDATORY:** site-level ER hides individual complacency. Reporting must include per-clinician trajectories alongside aggregate.
+
+**Threshold Guidance**
+
+> Edit Rate is **interpretable only as a trajectory** (per the Limitations and Novel Thinking sections); absolute thresholds below are deployment-context-dependent and represent indicative levels for procurement-stage discussion.
+>
+> - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
+> - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).
+> - **Pause / review trigger:** substantive ER < 50 % of per-clinician baseline for 4 consecutive weeks, OR safety-critical edit rate drops to zero for ≥ 4 weeks while substantive edit rate remains > 10 % (suggests clinicians are stopping their safety review while continuing minor editing). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
 
 **Code: Edit rate complacency detection**
 
@@ -9316,9 +9490,33 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total_dissent_events|. Target: 100%. Sub-metrics: (a) dissent documentation rate (was it recorded?); (b) dissent respect rate (was AVT paused?); (c) dissent persistence rate (was it respected in subsequent encounters?). Any sub-metric below 100% indicates compliance failure.
 ```
 
+**Reference Standard**
+
+> Authoritative source: the EPR consultation record + AVT activation telemetry. A "dissent event" is any patient communication declining AVT use at the point of care, captured by one of:
+>
+> - **Explicit verbal objection** logged by the clinician in the consultation record (free-text or structured field; structured preferred)
+> - **Structured opt-out indicator** set in the patient record at or before the encounter (must propagate to AVT activation - see [IO.PX-1 Patient Opt-Out Rate](#iopx-1-patient-opt-out-rate))
+> - **Patient-initiated AVT termination mid-consultation** signalled to the clinician
+>
+> Implicit / inferred dissent (patient appears uncomfortable, clinician guesses) is out of scope for this metric and belongs under separate human-factors observation. "Respected" means AVT was not active at any point after the dissent event during that encounter or in subsequent encounters until the patient affirmatively reverses the dissent. Reversal MUST be documented separately; absence of new dissent ≠ reversal.
+
+**Operational Specification**
+
+> - **Window:** continuous, monthly compliance reporting per practice / per clinician.
+> - **Population:** all AVT-eligible consultations during the window. Denominator includes encounters where the patient *could* have dissented (i.e. AVT was offered or activated), not just encounters where dissent occurred.
+> - **Sub-metric breakdown MANDATORY:** the three sub-metrics (documentation, respect, persistence) reported separately; aggregate-only reporting is not Tier 1 sufficient.
+> - **Per-clinician disaggregation MANDATORY:** dissent compliance hides at clinician level. A practice 95 % aggregate may hide one clinician at 50 %.
+> - **Dissent-detection coverage check:** if recorded dissent rate is < 0.5 % of AVT-eligible consultations, the deployer must run a sampling check (clinician self-report or patient survey) to verify the low rate reflects actual patient acceptance rather than under-detection.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** EPR / AVT integration capable of recording dissent in a structured form and propagating it to subsequent encounters; consultation workflow includes a documented step at which the clinician offers AVT and records the response.
+> - **Continuous monitoring:** documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.
+> - **Pause / escalation trigger:** any dissent-not-respected event confirmed (single instance), OR sub-metric < 95 % in any month. Both reportable as IG incidents.
+
 **Limitations**
 
-> Detection of dissent events requires clinician reporting or structured capture in the EPR workflow. Silent non-compliance (clinician uses AVT despite patient objection) is invisible to passive observation.
+> Detection of dissent events requires clinician reporting or structured capture in the EPR workflow. Silent non-compliance (clinician uses AVT despite patient objection) is invisible to passive observation. The dissent-detection coverage check in the Operational Specification provides a partial counter to this by requiring sampling-based verification when recorded dissent is implausibly low.
 
 **Novel Thinking / Implications**
 
@@ -9354,9 +9552,34 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AVT_consultations|. Measurement methods in order of increasing rigour: (a) clinician self-report at end of session; (b) patient survey sampling asking whether notification was delivered; (c) audit of audio recordings (where retention allows) for notification language. Target: 100%. Values below 95% indicate systematic compliance failure requiring intervention.
 ```
 
+**Reference Standard**
+
+> The deployer-approved patient notification script (drawn from NHSE IG guidance March 2026 + local DPIA). A consultation counts as "notified" only if the script's required content elements were delivered to the patient before AVT activation:
+>
+> - **What** the technology is (ambient scribe / AI-assisted documentation) and what it does
+> - **What** is captured (audio + transcript) and where it goes
+> - **Who** has access (clinician, vendor, sub-processors)
+> - **How** to decline (without service consequence)
+>
+> A notification missing any of the four content elements counts as non-compliant even if some notification language was used. The most rigorous measurement method available at the deployment site is the gold standard; methods (a)-(c) are ranked by reliability and the headline rate must be reported with the method declared.
+
+**Operational Specification**
+
+> - **Window:** monthly, with quarterly periodic audit using the highest-rigour method available.
+> - **Population:** all AVT consultations during the window (denominator excludes consultations where AVT was not used, including patient-opt-out cases).
+> - **Method declaration MANDATORY:** the headline compliance rate carries the measurement method (self-report / patient survey / audio audit). Reporting "Compliance: 98 %" without method is not Tier 1 sufficient.
+> - **Sample size for survey or audit MANDATORY:** ≥ 30 patients per clinician per quarter for survey method; ≥ 30 audio recordings per clinician per quarter where audio audit is used. Sub-30 samples are uninformative and do not satisfy the metric.
+> - **Content-element breakdown MANDATORY:** report compliance per content element (what / what / who / how). A clinician who consistently omits "how to decline" is failing differently from one who omits "where it goes"; aggregate-only reporting hides the failure pattern.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** notification script drafted and reviewed against NHSE IG content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
+> - **Continuous monitoring:** monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.
+> - **Pause / escalation trigger:** any content element < 75 % compliance in any audit cycle; or self-report > 95 % paired with audited rate < 75 % (this is a self-report integrity failure, separately serious).
+
 **Limitations**
 
-> Self-report over-estimates compliance. Patient recall is imperfect. Audio audit is resource-intensive and depends on retention policies that may conflict with data minimisation.
+> Self-report over-estimates compliance. Patient recall is imperfect. Audio audit is resource-intensive and depends on retention policies that may conflict with data minimisation. The Operational Specification's method-declaration requirement makes the self-report bias visible by forcing the audited cross-check.
 
 **Novel Thinking / Implications**
 
@@ -10164,9 +10387,27 @@ Whether audio recordings are retained, for how long, and whether retention compl
 Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Track: actual deletion timestamps vs policy-required deletion timestamps. Delta > 0 = non-compliant retention. Must verify deletion is genuine (not just flagged), including backup systems.
 ```
 
+**Reference Standard**
+
+> The deployer-approved DPIA and privacy notice are the authoritative retention policy. "Compliant" means the audio is deleted from every named storage location within the policy-stated period. Storage locations in scope MUST include: primary vendor storage, vendor backups and disaster-recovery systems, vendor logs, any downstream analytic or quality-monitoring system, deployer-side caches, and any sub-processor systems named in the vendor's [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) declaration. "Deletion" means cryptographic erasure or physical deletion; logical deletion (flagged-deleted-but-retained) does not count without an explicit DPIA carve-out.
+
+**Operational Specification**
+
+> - **Window:** continuous, with monthly attested compliance reporting.
+> - **Population:** all consultation audio captured during the reporting window. No sampling; this is a compliance metric, not a quality metric.
+> - **Per-storage-location reporting MANDATORY:** compliance reported per named storage location, not as a single rolled-up number. A 99 % aggregate that hides 100 % retention in backups is not compliant.
+> - **Verification method MANDATORY:** vendor self-attestation alone is not Tier 1 sufficient. Independent verification is required at minimum annually via a third-party audit, deployer-witnessed deletion test, or cryptographic proof (e.g. key destruction for envelope-encrypted audio).
+> - **Exception handling:** any audio retained beyond policy MUST be logged with reason, DPIA reference, and re-deletion target date. Exception rate reported as a separate KPI.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** vendor produces a deletion-verification protocol covering every storage location in the architecture; deployer DPIA cross-references the protocol; one end-to-end deletion test passes prior to go-live.
+> - **Continuous monitoring:** monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.
+> - **Pause / escalation trigger:** any storage-location compliance < 95 % in any month, OR any unlogged retention beyond policy detected. Both are reportable as IG incidents per the existing NHSE IG framework.
+
 **Limitations**
 
-> Deployers typically cannot verify vendor-side deletion without independent audit. Backup and disaster recovery systems may retain data beyond primary deletion.
+> Deployers typically cannot verify vendor-side deletion without independent audit. Backup and disaster recovery systems may retain data beyond primary deletion. The Operational Specification above makes this gap measurable rather than tacit; it does not eliminate it.
 
 **Novel Thinking / Implications**
 
@@ -10240,9 +10481,27 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 For each transcript: retention duration = t_current - t_consultation_end. Retention policy specifies maximum duration for each purpose: summary generation (typically hours), review support (typically days), quality monitoring (variable, documented in DPIA). Compliance = |transcripts_retained_within_policy| / |total_transcripts|. Report per retention purpose - aggregating different retention justifications obscures policy adherence.
 ```
 
+**Reference Standard**
+
+> Same DPIA + privacy notice authority as [GV.PD-1](#gvpd-1-audio-retention-compliance). Retention purposes MUST be enumerated in the DPIA with a maximum retention period per purpose; an unenumerated purpose is not a valid retention basis. "Compliance" is per-purpose, per-storage-location, and verified the same way as GV.PD-1: cryptographic erasure or physical deletion, not logical deletion. Storage locations in scope add: deployer-side analytics warehouses, research databases (where consent permits), and any redaction-pipeline intermediates.
+
+**Operational Specification**
+
+> - **Window:** continuous, monthly reporting.
+> - **Population:** all transcripts produced during the window.
+> - **Per-purpose, per-storage-location reporting MANDATORY:** the matrix of {retention purpose × storage location} is the unit of reporting. "Quality monitoring" as a single retention purpose without sub-categorisation does not satisfy this requirement; quality monitoring must be decomposed (e.g. "vendor model retraining", "deployer audit trail", "incident review") with separate retention periods per sub-purpose.
+> - **Cross-system retention chain MANDATORY:** transcript derivatives (extracted entities, redacted variants, embedding vectors) tracked under the same purpose, with retention period inherited from the source unless explicitly DPIA'd otherwise.
+> - **Verification:** parallel to GV.PD-1; independent verification annual minimum.
+
+**Threshold Guidance**
+
+> - **Pre-deployment gate:** DPIA enumerates ≥ 3 distinct retention purposes with periods; vendor architecture diagram shows transcript flow through every named storage location with retention period at each.
+> - **Continuous monitoring:** monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).
+> - **Pause / escalation trigger:** any unenumerated retention purpose discovered in production, OR any per-purpose compliance < 95 %.
+
 **Limitations**
 
-> Retention for "quality monitoring" is often a catch-all that effectively keeps transcripts indefinitely. Tightening this requires specific retention periods per monitoring purpose. Cross-system retention (transcript in vendor system, derived metadata in deployer analytics, redacted version in research database) creates a tangled retention picture.
+> Retention for "quality monitoring" is often a catch-all that effectively keeps transcripts indefinitely. Tightening this requires specific retention periods per monitoring purpose - this is now an explicit Operational Specification requirement. Cross-system retention (transcript in vendor system, derived metadata in deployer analytics, redacted version in research database) creates a tangled retention picture.
 
 **Novel Thinking / Implications**
 
@@ -11594,7 +11853,7 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **Novel Thinking / Implications**
 
-> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors.
+> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
 
 ---
 
@@ -11828,5 +12087,108 @@ For each automated metric m in deployed use: collect a sample of N encounters sc
 **Novel Thinking / Implications**
 
 > 💡 This is the metric that polices the other metrics. Without concordance data, the taxonomy's automated metrics are running on an unverified assumption that they measure what human experts measure. The ROUGE finding is the canonical example of that assumption failing - a metric in widespread use has essentially zero correlation with clinical judgment and is used anyway because it's easy to compute. Periodic concordance measurement should be a national evaluation programme responsibility, and any metric with concordance < 0.3 should be explicitly flagged in the taxonomy as inadequate as a standalone indicator.
+
+---
+
+### ES.ME-8 🟡 Outcome Evidence Commitment Status
+
+Whether the vendor and deployer have committed - contractually, via published protocol, or via post-market surveillance plan - to evaluating the actual clinical outcomes of AVT deployment. Operationalises the boundary set by [Outcomes Boundary](#outcomes-boundary): this taxonomy does not measure clinical outcomes, but it can measure whether outcome evaluation is in train.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-8 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; reviewed annually |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
+
+**Why this tier?**
+
+> A deployment cannot satisfy T.E.S.T. Gold without RCT or sufficiently powered NHS pilot evidence. Procurement above pilot scale should require demonstrable commitment to outcome evaluation even where the evidence is not yet available. Tier 2 because it is documentary - no instrumentation - and because pilots and small-site deployments may legitimately not yet have outcome studies in train.
+
+**Formal Definition**
+
+```
+Composite of four binary checks against documentary evidence:
+  C1 = clinical-trial protocol registered (ISRCTN, ClinicalTrials.gov, or equivalent)
+       OR equivalent NHS pilot study protocol with pre-registered primary outcome
+  C2 = post-market surveillance plan exists and names patient-outcome signals
+       (incident rate, diagnostic accuracy, medication errors, etc.)
+       distinct from technical-performance signals
+  C3 = data-collection infrastructure exists at deployment site sufficient to detect
+       change in named outcome signals (baseline data; case ascertainment method;
+       comparator arm or pre/post design)
+  C4 = vendor contractually committed to share post-market outcome data with
+       deployer and (where applicable) with national bodies
+Score = number of checks passed (0-4). Tier 2 expectation: ≥ 2 of 4 at procurement;
+≥ 3 of 4 within 12 months of deployment.
+```
+
+**Limitations**
+
+> Documentary; does not verify the *quality* of the protocol or the *power* of the study. A registered trial may be underpowered, badly designed, or never report results. C2 and C3 are vendor-asserted unless deployer audits them. Treats commitment as a proxy for eventual evidence; that proxy can fail (the [Roadmap as Graveyard](#outcomes-boundary) risk - protocols register but evidence never lands). Pair with periodic re-check of whether registered studies are progressing.
+
+**Novel Thinking / Implications**
+
+> 💡 The honest answer to "does this AVT improve patient outcomes?" is almost always "we don't know yet" - because the field has not produced the evidence and most deployments are not generating it. ES.ME-8 forces that uncertainty into the open at procurement. A vendor scoring 0/4 is selling on technical-performance evidence alone; a vendor scoring 4/4 has committed to producing the evidence the field is missing. Either is acceptable as long as the deployer chooses with eyes open. The metric does not establish clinical benefit - it establishes whether anyone is trying to.
+
+---
+
+### ES.ME-9 🟡 Causal Model Operationalisation
+
+Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)'s "burden of proof" requirement operational.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | ES.ME-9 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; updated when outcome claims change |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
+
+**Why this tier?**
+
+> Vendors making outcome claims at procurement (faster documentation, fewer errors, improved patient experience) should be required to specify the causal chain by which their proximal performance translates to those outcomes. Without that chain, the procurement claim is unfalsifiable. Tier 2 because it is documentary and one-off; the burden is on the vendor making the claim, not on continuous measurement.
+
+**Formal Definition**
+
+```
+For each outcome claim O made at procurement (e.g. "reduces documentation time",
+"reduces medication errors", "improves patient experience"):
+  S1 = vendor names the proximal metrics P_1..P_n that, if measured, would constitute
+       evidence for or against O (where P_i are drawn from this taxonomy or named
+       vendor-specific equivalents with comparable definitions)
+  S2 = vendor specifies the mechanism linking each P_i to O (the causal step from
+       proximal performance to distal outcome - e.g. "lower hallucination rate
+       reduces clinician verification burden which reduces after-hours review which
+       reduces documentation time outside consultations")
+  S3 = vendor cites or commits to producing evidence for each linking mechanism
+       (literature, internal study, external trial)
+  S4 = vendor identifies known confounders and threats to the causal claim
+       (Hawthorne effects, selection bias, secular trends, concurrent interventions)
+Score per claim = number of stages documented (0-4). Composite for the deployment =
+mean score across all outcome claims. Tier 2 expectation: ≥ 3 of 4 on every claim
+made at procurement.
+```
+
+**Limitations**
+
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#esme-7-automated-human-metric-concordance) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) for the distal evidence.
+
+**Novel Thinking / Implications**
+
+> 💡 This metric exposes a common procurement failure mode: vendors making outcome claims ("reduces clinician burnout", "improves patient outcomes") backed by proximal evidence ("our hallucination rate is 1.5%") with no documented causal chain connecting the two. The chain may be sound, weak, or nonexistent - but without it being written down, the deployer cannot evaluate the claim. Forcing the chain into the procurement documentation does not validate it; it makes validation possible. Deployers who require this metric can compare causal models across vendors and identify which are operating on evidence and which on assumption.
 
 ---

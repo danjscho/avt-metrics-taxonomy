@@ -1,5 +1,75 @@
 # Changelog
 
+## v3.3 (2026-04-25)
+
+Two structural changes addressing critique findings on v3.2: an explicit outcomes boundary and a definitional-tightening pattern applied to nine Tier 1 metrics. No new gap-roadmap candidates are promoted in this release.
+
+### Outcomes Boundary
+
+New cross-cutting file `taxonomy/_outcomes-boundary.md` makes the scope of the taxonomy explicit:
+
+- **What this taxonomy assures:** technical fidelity, documentation quality, clinician oversight, equitable performance, hazard identification, governance compliance, measurement quality. Process, structure, and proximal-outcome measures.
+- **What it does not:** clinical-outcome validation - whether AVT changes diagnostic accuracy, patient safety incident rates, downstream care quality, or clinical reasoning. That work belongs to national research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C), and vendors pursuing formal clinical claims.
+- **Why drawn explicitly:** to prevent the failure mode where passing every metric in a deployment-assurance taxonomy is read as evidence of clinical benefit.
+
+Two new Tier 2 meta-metrics in Part F operationalise the boundary at procurement:
+
+- **ES.ME-8 Outcome Evidence Commitment Status** - 4-check composite for whether vendor and deployer have committed to outcome evaluation (registered protocol or NHS pilot; PMS plan naming patient-outcome signals distinct from technical-performance signals; baseline data infrastructure; contractual commitment to share results).
+- **ES.ME-9 Causal Model Operationalisation** - 4-stage check that each vendor outcome claim is backed by a documented causal chain from proximal performance to distal outcome, with cited mechanisms and named confounders.
+
+ES.ME-1 Proximal vs Distal Outcome Distinction prose updated to point at ES.ME-8/9 as making its "burden of proof on vendors" requirement operational. T.E.S.T. Section B Clinical Effectiveness mapping row updated to reference ES.ME-8 as the closest taxonomy proxy for the 50-point RCT-validation item (commitment, not the evidence itself).
+
+### Tier 1 Definitional Tightening (9 metrics)
+
+Adds three structured sub-blocks to nine Tier 1 metrics where loose definitions previously allowed vendor-selective compliance and non-comparable evidence:
+
+- **Reference Standard** - what counts as ground truth, with inter-rater reliability target where applicable
+- **Operational Specification** - measurement window, population, mandatory breakdowns (subtype, severity, category, per-storage-location, per-clinician), aggregation rule
+- **Threshold Guidance** - pre-deployment gate, continuous-monitoring alert, pause / escalation trigger
+
+The pattern lifts existing-but-buried content (Tier B underspecification warnings, Limitations, Novel Thinking) into discoverable structured sub-blocks. No new measurement science is invented; existing knowledge is made actionable.
+
+**Phase 1 - five safety-critical metrics:**
+- TP.SN-5 Hallucination Rate (CREOLA subtype mandatory; weighted aggregate HR_w; gate ≤ 2 %, pause ≥ 5 % sustained)
+- TP.SN-6 Omission Rate (per-CREOLA-category breakdown mandatory; allergies / red-flags / dose / safety-netting critical by default)
+- TP.SN-15 Negation Handling Accuracy (negation-type scope explicit; ≥ 200-sentence adversarial test set; allergy-category zero-failure gate)
+- HL.HF-1 Edit Rate (substantive vs stylistic distinction; per-clinician baseline mandatory; safety-critical edit rate as separate leading indicator)
+- TP.WB-1 Write-back Fidelity (structural / semantic / no-addition decomposition; per-EPR ≥ 200-case test corpus; type-(iii) hallucination into safety-critical fields as binary defect)
+
+**Phase 2 - four compliance/consent metrics:**
+- GV.PD-1 Audio Retention Compliance (per-storage-location reporting; cryptographic erasure not logical deletion; independent verification annual minimum)
+- GV.PD-3 Transcript Retention Compliance (purpose enumeration mandatory; "quality monitoring" decomposition required; transcript derivatives tracked under same chain)
+- GV.CR-1 Patient Dissent Recording Rate (dissent-event scope explicit; coverage-check sampling required when recorded rate implausibly low; per-clinician disaggregation)
+- GV.CR-2 Verbal Notification Compliance (four content elements mandatory; method declaration mandatory; ≥ 30 patients/recordings per clinician per quarter)
+
+`taxonomy/_how-to-use.md` adds a paragraph explaining the sub-block structure to readers and lists the nine tightened metrics.
+
+### Counts
+
+- 214 → 216 metrics (+2 from ES.ME-8/9)
+- Tier split 43 / 92 / 79 → **43 / 94 / 79**
+- 20 groups unchanged
+- Meta-evaluation group: 7 → 9 metrics
+- Applicability: AVT-Specific 48, AVT-Contextualised 77, General Healthcare AI 89 → 91, total 216
+
+`audit.py` baseline updated; build clean; audit clean.
+
+### Deferred to v3.4
+
+The v3.3 critique work identified ~30 of 43 Tier 1 metrics as LOOSE or SURROGATE (definitional rigour audit, sampled 20 of 43). v3.3 tightens 9 of those; the remainder are deferred:
+
+- **Phase 3 - operational/proxy (4 metrics):** GV.OP-1 Documentation Time per Consultation, HL.HF-4 Time-to-Sign Distribution, IO.PX-1 Patient Opt-Out Rate, GV.SG-1 Model Version Tracking
+- **Remaining LOOSE Tier 1 pool (~17 metrics):** scope to be confirmed in v3.4 via a full rather than sampled audit
+- **Outcomes layer:** explicitly *not* extended beyond ES.ME-8/9; the [Outcomes Boundary](#outcomes-boundary) position stands
+- **Roadmap:** 89 candidates remain in `_gaps.md`; v3.3 promotes none
+
+### Repository hygiene
+
+- `taxonomy/_header.md` updated to v3.3 / 2026-04-25 with reference to the new structural elements
+- Plan file `plan-v3.3.md` lives at repo root during the release; will move to `archive/` on completion per the established convention
+
+---
+
 ## v3.2 (2026-04-22)
 
 No new metrics in the taxonomy (still 214 across 20 groups; tier split unchanged 43/92/79). This release restructures the repository around a build pipeline, publishes a documentation site, extends coverage with two external audits and a second AVT-specific framework, and consolidates the roadmap.

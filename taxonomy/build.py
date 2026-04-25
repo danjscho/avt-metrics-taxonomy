@@ -31,6 +31,7 @@ FILES = [
     "_applicability.md",
     "_standards-mapping.md",
     "_responsible-ai-lens.md",
+    "_outcomes-boundary.md",
     "_gaps.md",
     "_glossary.md",
     "part-a/audio-capture.md",

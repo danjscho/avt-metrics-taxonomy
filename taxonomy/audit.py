@@ -68,13 +68,13 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 43, 2: 92, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 43, 2: 94, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 48,
     "AVT-Contextualised": 77,
-    "General Healthcare AI": 89,
+    "General Healthcare AI": 91,
 }
-EXPECTED_TOTAL = 214
+EXPECTED_TOTAL = 216
 
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 METRIC_HEADING = re.compile(
