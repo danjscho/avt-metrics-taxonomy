@@ -1,5 +1,73 @@
 # Changelog
 
+## v3.4 (2026-04-25)
+
+Three deliverables completing the v3.3 tightening work and making the conventions machine-enforced. No new metrics, no new gap-roadmap candidates. Counts unchanged: 216 metrics, tier split 43 / 94 / 79.
+
+### Phase A — Audit-side enforcement
+
+Two new checks in `taxonomy/audit.py` promote the v3.3 conventions from documentation to machine-enforced:
+
+- **`check_tightening_pattern`** — every Tier 1 metric must carry all three tightening sub-blocks (`Reference Standard`, `Operational Specification`, `Threshold Guidance`) or none of them. Mixed (partial) state is an ERROR. Preserves cohort integrity: a metric is either tightened or not, no half-states.
+- **`check_threshold_provenance`** — every metric classified as 'tightened' must open its Threshold Guidance block with a `⚠️ **Provenance**` line within the first 400 characters. Closes the honesty gap surfaced by the v3.3 self-review.
+
+`audit.py` also emits a Tier 1 tightening status manifest after the tier counts:
+
+```
+Tier 1 tightening status: 13/43 tightened.
+  Tightened: GV.CR-1, GV.CR-2, GV.OP-1, GV.PD-1, GV.PD-3, GV.SG-1,
+             HL.HF-1, HL.HF-4, IO.PX-1, TP.SN-15, TP.SN-5, TP.SN-6, TP.WB-1
+  Not tightened: [30 metric IDs]
+```
+
+v3.5+ scope is now derived from this output rather than from CHANGELOG prose. Future contributors see the deferred set in the audit log, not buried in a release note.
+
+The Metric dataclass gained a `body` field (heading-to-next-heading content) so sub-block detection runs on parsed bodies rather than re-reading files.
+
+### Phase B — Phase 3 tightening (4 operational/proxy metrics)
+
+Apply the Reference Standard / Operational Specification / Threshold Guidance pattern (with ⚠️ Provenance prelude written in from the start) to the operational/proxy class — different shape from the safety class (Phase B.1, v3.3) and compliance class (Phase B.2, v3.3):
+
+- **GV.OP-1 Documentation Time per Consultation** — defines doc start/end timestamps; in-consultation vs out-of-consultation breakdown mandatory; pairing with quality companion metric (PDSQI-9 / hallucination rate) mandatory; pause trigger when time-saved positive but quality deteriorates or burden displaces to after-hours.
+- **HL.HF-4 Time-to-Sign Distribution** — TTS_norm distribution (P5 / P10 / median / P90) per clinician mandatory; pairing with HL.HF-1 substantive edit rate mandatory (rubber-stamping signal lives in the conjunction); per-clinician baseline; note-complexity stratification.
+- **IO.PX-1 Patient Opt-Out Rate** — distinguishes registration-level from per-encounter opt-out (cross-link to GV.CR-1); demographic disaggregation mandatory with χ² + Holm correction; trajectory + disparity-ratio thresholds; the disparities are the metric's value, not the absolute rate.
+- **GV.SG-1 Model Version Tracking** — six-component versioning mandatory (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes); change-event log structure mandatory; deployer-notification latency monitored; MHRA PMS substantial-change cross-link.
+
+Tightened count: 9/43 → **13/43**.
+
+### Phase C — Full Tier 1 LOOSE classification
+
+`archive/v3.3-tier1-classification.md` (new) classifies every Tier 1 metric not yet tightened as **TIGHT** (8), **LOOSE** (18), or **SURROGATE-and-LOOSE** (3, also LOOSE) with one-sentence per-metric reasoning. The artefact is frozen at v3.4 ship date and is the input to v3.5+ scoping.
+
+Suggested v3.5+ waves identified in the artefact:
+
+- **v3.5 Wave 1 (8 compliance/governance core metrics):** GV.CR-5, GV.CR-6, GV.CR-7, GV.TC-1, GV.VT-1, GV.VT-5, GV.VT-7, GV.SG-14
+- **v3.5 Wave 2 (4 privacy-chain completion metrics):** GV.PD-2, GV.PD-8, GV.PD-10, GV.PD-11
+- **v3.6+ pipeline narrow tightening (6 metrics):** TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20
+- **Deferred / pattern-may-not-fit (5 metrics):** GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3
+
+The v3.4 release does **not** promote these — it stops at the audit boundary. v3.5 will pick the wave it wants based on stakeholder input.
+
+### Cross-cutting
+
+- `taxonomy/_header.md` bumped to v3.4 / 2026-04-25 with reference to the audit-side enforcement and the published classification
+- `taxonomy/_how-to-use.md` updated to list 13 tightened metrics and to point readers at `audit.py` output for current status rather than the prose
+- 8 of 30 not-yet-tightened Tier 1 metrics are classified TIGHT and explicitly will not be tightened — the pattern is structural, not substantive, for these
+
+### Counts
+
+Unchanged: 216 metrics, 43 / 94 / 79 tier split, 20 groups. v3.4 is structural, not additive.
+
+`audit.py` baseline updated; build clean; audit clean (both new checks pass on the 13 tightened metrics).
+
+### Deferred to v3.5+
+
+- Tightening of remaining LOOSE metrics per the classification waves above
+- Outcomes layer stays at ES.ME-8/9; the [Outcomes Boundary](#outcomes-boundary) position holds
+- Roadmap (`_gaps.md`) untouched in v3.4 — 89 candidates still queued
+
+---
+
 ## v3.3 (2026-04-25)
 
 Two structural changes addressing critique findings on v3.2: an explicit outcomes boundary and a definitional-tightening pattern applied to nine Tier 1 metrics. No new gap-roadmap candidates are promoted in this release.

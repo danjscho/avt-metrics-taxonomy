@@ -34,13 +34,33 @@ Logging which model version produces each output. Foundation for all continuous 
 Per inference: log model_id, model_version, timestamp, config_hash. On change (v_old → v_new), monitoring window W with duration Δt calibrated for statistical power ≥0.8.
 ```
 
+**Reference Standard**
+
+> Vendor inference-logging telemetry covering every component of the deployed system that can change independently. Component list MUST include at minimum: (a) ASR model; (b) summarisation/LLM model weights; (c) system prompt / instruction template; (d) retrieval indices or RAG corpora; (e) safety classifier or guardrail models; (f) any fine-tuning adapter or LoRA. Each component carries its own version identifier and `config_hash`. A "model update" is any change to any of the six components - not just LLM weight updates. Notification of change to the deployer is mandatory; the time between change-event and deployer notification is itself a monitored quantity.
+
+**Operational Specification**
+
+> - **Window:** continuous logging; per-inference granularity.
+> - **Per-component versioning MANDATORY:** the six components above each have a recorded version on every inference. A single rolled-up "system version" is not Tier 1 sufficient - downstream incident attribution requires component-level provenance.
+> - **Change-event log MANDATORY:** every change to any component generates a structured change-event record with component name, old version, new version, change type (weights / prompt / retrieval / classifier), timestamp, and notification status (notified / not-yet-notified).
+> - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gvsg-2-model-update-impact-score) workflow and the monitoring window referenced in the Formal Definition.
+> - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under MHRA Post-Market Surveillance regulations must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gvvt-1-model-change-notification-compliance).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the three-layer surveillance framing carries from the Novel Thinking section and Keyes et al. 2025; the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
+> - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
+> - **Pause / escalation trigger:** any inference produced without complete per-component version log; OR any change-event unnotified > 14 days; OR any "substantial" MHRA-PMS-relevant change deployed without prior deployer notification (this is a regulatory event, not just an operational one).
+
 **References**
 
 - **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
 
 **Limitations**
 
-> Not contractually mandated in most NHS procurement.
+> Not contractually mandated in most NHS procurement. The Operational Specification's per-component versioning requirement makes this gap visible at procurement-time but does not close it - vendors can decline to log all six components, in which case the deployer is choosing to forgo Tier 1 assurance for that part of the stack.
 
 **Novel Thinking / Implications**
 
