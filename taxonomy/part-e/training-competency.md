@@ -32,9 +32,37 @@ Percentage of AVT-using clinicians who have completed required training modules:
 TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = completed all required modules within validity period. Track by module: vendor training, local induction, failure mode awareness, refresher. TCR < 100% = governance non-compliance.
 ```
 
+**Reference Standard**
+
+> Authoritative source: the deployer's clinical governance training record (LMS or equivalent), with module catalogue mapped against the NAS Day Zero training requirements and local induction policy. Four mandatory modules MUST be enumerated:
+>
+> - **M1: Vendor product training** — system mechanics, activation, opt-out, error reporting per the specific AVT product
+> - **M2: Local induction** — review-before-signing workflow, opt-out and dissent procedures (cross-link [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate) and [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)), incident-reporting pathway
+> - **M3: Failure-mode awareness** — AVT-specific failure modes (hallucination/omission asymmetry, speaker misattribution, accent-related accuracy variation, complacency trajectory, system-unavailable fallback)
+> - **M4: Refresher** — annual re-engagement on M1-M3 with updates reflecting deployed system changes
+>
+> "Completed" requires evidenced engagement, not just course-record entry. Module-completion timestamps recorded; minimum-engagement-time floors specified per module to prevent "5-minute completion".
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly compliance reporting per practice / per clinician.
+> - **Population:** every clinician using AVT (denominator). Clinicians who have stopped using AVT but remain on the practice register are excluded with reason.
+> - **Per-module reporting MANDATORY:** four sub-rates (M1/M2/M3/M4 completion). Aggregate TCR alone is insufficient — a clinician missing M3 (failure-mode awareness) is a different risk from one missing M4 (refresher overdue).
+> - **Validity periods MANDATORY (per module):** M1 valid for the lifetime of the deployed system version (revoked on major vendor product upgrade per [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking)); M2 valid until significant local-policy change; M3 valid 12 months; M4 must be completed within 12 months of the previous engagement (rolling).
+> - **Engagement-time floor MANDATORY:** minimum 30 minutes recorded engagement on M3 specifically (the failure-mode-awareness module is the most subject to "click-through" completion); 15 minutes on M1; 20 minutes on M2.
+> - **Coverage check:** any clinician active on AVT in the previous 30 days appears in the denominator. Late-onboarders given a 14-day grace window from first AVT use to completion of M1 + M2.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the NAS Day Zero requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
+>
+> - **Pre-deployment / Day Zero gate:** every clinician scheduled to use AVT has M1 + M2 + M3 complete within validity periods; M4 not yet applicable for new starters.
+> - **Continuous monitoring:** monthly per-module TCR ≥ 100 %; alert on any clinician active on AVT with any module out of date by > 14 days.
+> - **Pause / escalation trigger:** any clinician using AVT with M3 (failure-mode awareness) missing or stale (this is the safety-critical module — operational use without it is a governance failure regardless of M1/M2/M4 status); OR aggregate TCR < 95 % at the practice level for any module sustained two consecutive months.
+
 **Limitations**
 
-> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything.
+> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything. The Operational Specification's engagement-time floors prevent the most blatant click-through pattern but cannot test actual understanding; pair with [GV.TC-2 Failure Mode Awareness Score](#gvtc-2-failure-mode-awareness-score) for an outcome-side check on whether training has produced competence.
 
 **Novel Thinking / Implications**
 

@@ -585,9 +585,35 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separately from LFPSE incidents (errors that reached the record). Healthy ratio: high near-miss rate, low LFPSE rate. Concerning ratio: low near-miss rate, any LFPSE incidents.
 ```
 
+**Reference Standard**
+
+> Two distinct sources MUST be combined to construct the numerator:
+>
+> - **Active reports:** clinician-submitted near-miss reports through a deployer-provided reporting mechanism (in-product button, EPR form, or dedicated channel)
+> - **Inferred near-misses:** safety-critical edits detected by [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)'s severity stratification — substantive edits flagged as safety-critical (allergy / medication / dose / red-flag / diagnosis / plan changes between AI output and clinician signature) constitute presumptive near-misses
+>
+> Both are required because active-only reporting under-counts (clinicians under busy conditions edit-and-move-on without reporting), and edit-only inference over-counts (some safety-critical edits are stylistic refinements not error corrections). Cross-validate the two sources monthly; ratio of active-to-inferred is itself a safety-culture signal. The denominator is total AI outputs reaching clinician review (excludes outputs aborted before review per [HL.HF-9 Re-record / Abandonment Rate](#hlhf-9-re-record-abandonment-rate)).
+
+**Operational Specification**
+
+> - **Window:** continuous; weekly aggregate per practice and per clinician.
+> - **Population:** all AVT-generated outputs reviewed by clinicians during the window.
+> - **Two-source reporting MANDATORY:** active near-miss rate and inferred near-miss rate reported separately, with composite headline rate = max(active, inferred) where the two sources contradict (the higher source is the more conservative safety estimate). Cross-validation report monthly with the active-to-inferred ratio.
+> - **Severity classification MANDATORY:** near-misses classified by clinical category (allergy / medication / red-flag / diagnosis / plan / other) parallel to [HL.HF-1](#hlhf-1-edit-rate-notes-edited) severity stratification. Per-category breakdown reported.
+> - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gvsg-11-adverse-event-incident-rate-lfpse). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
+> - **No-blame culture check:** if active reporting rate is < 25 % of inferred rate sustained two months, this is a safety-culture flag (clinicians editing-without-reporting), not a metric failure. Triggers a separate qualitative review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hlhf-1-edit-rate-notes-edited)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish baseline active near-miss rate and inferred near-miss rate during the first 4 weeks; record per-category breakdown; pair with concurrent LFPSE rate.
+> - **Continuous monitoring:** weekly two-source reporting; monthly cross-validation; alert when active-to-inferred ratio < 25 % sustained two months (under-reporting culture flag); alert when near-miss-to-LFPSE ratio falls (rising LFPSE without rising near-miss = review layer is failing, not improving).
+> - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited) trajectory).
+
 **Limitations**
 
-> Requires clinicians to actively report near-misses, which is often under-reported in busy clinical practice.
+> Requires clinicians to actively report near-misses, which is often under-reported in busy clinical practice. The two-source Operational Specification (active + inferred via edit telemetry) addresses this directly — the inferred channel doesn't depend on active reporting — but introduces its own risk that some safety-critical edits are stylistic rather than error-corrections, leading to over-counting. The active-to-inferred ratio is a deliberate safety-culture diagnostic in this context, not just a measurement-error indicator.
 
 **Novel Thinking / Implications**
 

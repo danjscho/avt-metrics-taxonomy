@@ -1,10 +1,10 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.4, 2026-04-25.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.5, 2026-04-25.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**216 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extends the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promotes the convention to machine-enforced via two new `audit.py` checks, and publishes the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics as input to v3.5+ scoping.
+**216 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extended the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promoted the convention to machine-enforced via two new `audit.py` checks, and published the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics. v3.5 lands the two highest-value tightening waves identified in that classification: 8 compliance/governance core metrics (Wave 1) and 4 privacy-chain metrics (Wave 2). The pattern is now applied to **25 of 43 Tier 1 metrics**.
 
 ## How to Use This Taxonomy
 
@@ -100,7 +100,7 @@ A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard
 
 Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguishing thresholds **derived from a cited source** (e.g. NAS Day Zero SPI, UK GDPR storage limitation, NHSE IG guidance) from those **proposed in v3.3 as starting points**. The starting-point numbers are deliberate suggestions calibrated against the metric's clinical-safety logic, not externally validated values; they require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset, DPIA risk appetite) before contractual use. Treat the Operational Specification as the structural commitment a vendor must meet; treat the Threshold Guidance numbers as the conversation starter, not the answer.
 
-Thirteen Tier 1 metrics carry this pattern as of v3.4: nine from v3.3 (TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-15 Negation Handling Accuracy, HL.HF-1 Edit Rate, TP.WB-1 Write-back Fidelity, GV.PD-1 Audio Retention Compliance, GV.PD-3 Transcript Retention Compliance, GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance) and four added in v3.4 covering the operational/proxy class (GV.OP-1 Documentation Time per Consultation, HL.HF-4 Time-to-Sign Distribution, IO.PX-1 Patient Opt-Out Rate, GV.SG-1 Model Version Tracking). The remaining 30 Tier 1 metrics have been classified TIGHT / LOOSE / SURROGATE in `archive/v3.3-tier1-classification.md`; v3.5+ will tighten the LOOSE compliance/governance and privacy-chain metrics first. The current tightening status is auto-emitted by `taxonomy/audit.py` so future readers can rely on the audit output rather than this prose. Metrics without the sub-blocks have not yet been audited under this pattern; treat their formal definitions as the procurement reference and expect future tightening to add the constraints implicit in current practice.
+**Twenty-five Tier 1 metrics** carry this pattern as of v3.5 (up from 13 at v3.4): the v3.3 / v3.4 cohorts (safety, compliance, operational/proxy classes) plus v3.5's two waves — Wave 1 compliance/governance core (GV.CR-5 ICB Engagement, GV.CR-6 Clinical Safety Case, GV.CR-7 DPIA, GV.TC-1 Training Completion, GV.VT-1 Model Change Notification, GV.VT-5 Incident Disclosure, GV.VT-7 Sub-Processor Transparency, GV.SG-14 Near-Miss Reporting) and Wave 2 privacy-chain (GV.PD-2 Audio Time-to-Deletion, GV.PD-8 Consent Verification, GV.PD-10 SAR Fulfilment, GV.PD-11 Right to Erasure). The remaining 18 Tier 1 metrics fall into three groups per `archive/v3.3-tier1-classification.md`: 8 already classified TIGHT (no tightening planned — the pattern would be structural cleanup not substance), 6 candidates for v3.6+ pipeline narrow tightening (TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20), and 5 deferred-pattern-may-not-fit metrics (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3). The current tightening status is auto-emitted by `taxonomy/audit.py` — rely on the audit output rather than this prose for current state.
 
 ### Adapting to Local Context
 
@@ -9396,9 +9396,35 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separately from LFPSE incidents (errors that reached the record). Healthy ratio: high near-miss rate, low LFPSE rate. Concerning ratio: low near-miss rate, any LFPSE incidents.
 ```
 
+**Reference Standard**
+
+> Two distinct sources MUST be combined to construct the numerator:
+>
+> - **Active reports:** clinician-submitted near-miss reports through a deployer-provided reporting mechanism (in-product button, EPR form, or dedicated channel)
+> - **Inferred near-misses:** safety-critical edits detected by [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)'s severity stratification — substantive edits flagged as safety-critical (allergy / medication / dose / red-flag / diagnosis / plan changes between AI output and clinician signature) constitute presumptive near-misses
+>
+> Both are required because active-only reporting under-counts (clinicians under busy conditions edit-and-move-on without reporting), and edit-only inference over-counts (some safety-critical edits are stylistic refinements not error corrections). Cross-validate the two sources monthly; ratio of active-to-inferred is itself a safety-culture signal. The denominator is total AI outputs reaching clinician review (excludes outputs aborted before review per [HL.HF-9 Re-record / Abandonment Rate](#hlhf-9-re-record-abandonment-rate)).
+
+**Operational Specification**
+
+> - **Window:** continuous; weekly aggregate per practice and per clinician.
+> - **Population:** all AVT-generated outputs reviewed by clinicians during the window.
+> - **Two-source reporting MANDATORY:** active near-miss rate and inferred near-miss rate reported separately, with composite headline rate = max(active, inferred) where the two sources contradict (the higher source is the more conservative safety estimate). Cross-validation report monthly with the active-to-inferred ratio.
+> - **Severity classification MANDATORY:** near-misses classified by clinical category (allergy / medication / red-flag / diagnosis / plan / other) parallel to [HL.HF-1](#hlhf-1-edit-rate-notes-edited) severity stratification. Per-category breakdown reported.
+> - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gvsg-11-adverse-event-incident-rate-lfpse). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
+> - **No-blame culture check:** if active reporting rate is < 25 % of inferred rate sustained two months, this is a safety-culture flag (clinicians editing-without-reporting), not a metric failure. Triggers a separate qualitative review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hlhf-1-edit-rate-notes-edited)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
+>
+> - **Pre-deployment / Day Zero baseline:** establish baseline active near-miss rate and inferred near-miss rate during the first 4 weeks; record per-category breakdown; pair with concurrent LFPSE rate.
+> - **Continuous monitoring:** weekly two-source reporting; monthly cross-validation; alert when active-to-inferred ratio < 25 % sustained two months (under-reporting culture flag); alert when near-miss-to-LFPSE ratio falls (rising LFPSE without rising near-miss = review layer is failing, not improving).
+> - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited) trajectory).
+
 **Limitations**
 
-> Requires clinicians to actively report near-misses, which is often under-reported in busy clinical practice.
+> Requires clinicians to actively report near-misses, which is often under-reported in busy clinical practice. The two-source Operational Specification (active + inferred via edit telemetry) addresses this directly — the inferred channel doesn't depend on active reporting — but introduces its own risk that some safety-critical edits are stylistic rather than error-corrections, leading to over-counting. The active-to-inferred ratio is a deliberate safety-culture diagnostic in this context, not just a measurement-error indicator.
 
 **Novel Thinking / Implications**
 
@@ -9794,9 +9820,29 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 Engagement documentation includes: (1) formal notification to ICB digital team dated before go-live; (2) ICB response acknowledging notification; (3) any conditions or recommendations from ICB on file. Binary compliance: all three present = compliant. Missing ICB response is a flag for follow-up, not automatic non-compliance, because ICB capacity constraints may prevent timely response.
 ```
 
+**Reference Standard**
+
+> Authoritative source: the deployer's governance file plus ICB digital team's correspondence record. "Formal notification" = a written communication to the named ICB digital lead (not generic inbox) containing at minimum: vendor identity, product scope, deployment site list, intended go-live date, DPIA reference, and Clinical Safety Case reference. "ICB response" = any written acknowledgement, including auto-receipts where the ICB has explicitly designated them as acknowledgements; substantive review responses are tracked separately as "ICB conditions". A response received after go-live counts but is recorded with the latency.
+
+**Operational Specification**
+
+> - **Window:** one-off pre-deployment gate; quarterly re-verification when material scope changes (new sites, new vendor product, new use case).
+> - **Population:** every AVT deployment by the practice / Trust / federation. The denominator is deployments, not consultations.
+> - **Three sub-metrics MANDATORY:** notification-sent rate, ICB-acknowledged rate, ICB-conditions-on-file rate. Aggregate-only reporting is not Tier 1 sufficient — the three failure modes (deployer didn't notify / ICB didn't acknowledge / conditions exist but not actioned) require separate visibility.
+> - **Latency reporting MANDATORY:** time-to-notification (deployment-decision to ICB notification) and time-to-acknowledgement (notification to ICB response). Latency reveals process health independently of binary compliance.
+> - **Carve-out logging MANDATORY:** any deployment proceeding without ICB acknowledgement (under the capacity-constraint allowance) MUST be logged with reason and review date. Repeated unanswered notifications to the same ICB within 12 months trigger escalation to the regional CCIO, not silent acceptance.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the three-sub-metric framing follows from the CIO/CCIO guidance v2 (January 2026) and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** notification sent to named ICB digital lead ≥ 14 days before planned go-live; DPIA + Clinical Safety Case referenced; deployment-site list complete.
+> - **Continuous monitoring:** quarterly review of acknowledgement rate and conditions-on-file rate; alert when any ICB has > 1 unanswered notification on the deployer's books.
+> - **Pause / escalation trigger:** any deployment going live without notification sent (process failure, not capacity issue); OR same ICB unanswered for ≥ 2 separate notifications within 12 months (escalate to regional CCIO).
+
 **Limitations**
 
-> ICB engagement quality varies - some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality.
+> ICB engagement quality varies - some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality. The Operational Specification's separate sub-metric for ICB-conditions-on-file makes substantive engagement visible (it surfaces only when the ICB has actually reviewed), but the metric still cannot distinguish deep review from cursory acknowledgement.
 
 **Novel Thinking / Implications**
 
@@ -9832,9 +9878,30 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 Completeness assessed against DCB0129 standard sections: (1) safety management system; (2) hazard identification; (3) hazard analysis and evaluation; (4) hazard control; (5) hazard log; (6) safety case report; (7) safety incident management; (8) issue resolution. Each section binary (present and current / missing or out-of-date). Full compliance requires all sections. Currency: major update triggered by significant system change, model version change, or new hazard identification.
 ```
 
+**Reference Standard**
+
+> DCB0129 (Clinical Risk Management for Health IT Systems) is the authoritative section schema for vendors / manufacturers. The deployer-side equivalent DCB0160 governs the safety case for the implementing institution and is the cross-reference for sites operating their own safety case (see also [Clinical Safety Officer reviewer requirement under DCB0129/0160]). "Present" requires a section heading plus content authored by a named Clinical Safety Officer (CSO); template-only sections (heading present, body empty or "TBC") count as missing. "Current" requires last-update date within the metric's currency window per the Operational Specification below.
+
+**Operational Specification**
+
+> - **Window:** annual periodic audit; mandatory re-review on any of the four trigger events (significant system change, model version change in any component per [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking), new hazard identification, scope expansion).
+> - **Population:** every deployment site holding a safety case (typically Trust-level for hospitals, federation-level for primary-care networks).
+> - **Per-section reporting MANDATORY:** the eight sub-metrics (one per DCB0129 section) reported separately. Aggregate-only reporting is not sufficient — the failure pattern matters: a site missing section 5 (hazard log) has a different compliance failure from one missing section 7 (incident management).
+> - **Currency window MANDATORY:** sections (2) hazard identification, (3) analysis, (4) control, and (5) log MUST be updated within 30 days of any trigger event. Section (1) safety management system, (6) safety case report, and (8) issue resolution MUST be reviewed at least annually. Section (7) safety incident management MUST be live-current (updated on each new incident per the existing process).
+> - **Trigger-event log MANDATORY:** every trigger event recorded with date, type, sections requiring update, and target completion date. Time-to-update reported per trigger.
+> - **External review:** independent CSO review of the safety case at intervals not exceeding 24 months OR on any major version change of the AVT product. Internal-only review is not Tier 1 sufficient.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the eight-section schema and currency triggers carry from DCB0129 itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are **proposed in v3.5 as starting points**, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.
+>
+> - **Pre-deployment gate:** all eight DCB0129 sections present with named CSO author; safety case report explicitly references the AVT product version, EPR target, and deployment scope.
+> - **Continuous monitoring:** annual per-section review; alert when any of sections 2-5 falls outside the 30-day post-trigger window; alert when external review is overdue.
+> - **Pause / escalation trigger:** any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated > 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link MHRA PMS substantial-change framework).
+
 **Limitations**
 
-> Compliance with structure does not guarantee quality of content. Safety cases are often written to satisfy the standard rather than to genuinely analyse system safety - the "compliance theatre" problem. External independent review is the only reliable check.
+> Compliance with structure does not guarantee quality of content. Safety cases are often written to satisfy the standard rather than to genuinely analyse system safety - the "compliance theatre" problem. External independent review is the only reliable check; the Operational Specification's 24-month external-review cadence makes this requirement explicit but does not eliminate the gap between structural compliance and genuine safety analysis.
 
 **Novel Thinking / Implications**
 
@@ -9870,9 +9937,30 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_deployments|. Template mandatory sections: processing description, lawful basis, data flows, risks identified, mitigations, residual risk acceptance, DPO sign-off, review schedule. Each section binary; complete DPIA requires all sections. Review cadence: minimum annually or on significant processing change.
 ```
 
+**Reference Standard**
+
+> The NHSE March 2026 DPIA template is the authoritative section schema for AVT deployments; UK GDPR Article 35 is the legal floor. "Complete" requires every mandatory section populated with substantive content, signed off by the named Data Protection Officer (DPO). Template-only sections (heading present, body empty, "TBC", or boilerplate copied from the template's example text) count as incomplete. Cross-link to [GV.CR-6 Clinical Safety Case Completeness](#gvcr-6-clinical-safety-case-completeness) — DPIA risks identified MUST be reconcilable with hazards in the safety case; gaps between the two are themselves a quality signal.
+
+**Operational Specification**
+
+> - **Window:** annual periodic audit; mandatory re-review on significant processing change (defined: new vendor, new data flow, new sub-processor, new use case, model component change per [GV.SG-1](#gvsg-1-model-version-tracking), site expansion).
+> - **Population:** every AVT deployment (denominator: deployments, not consultations).
+> - **Per-section reporting MANDATORY:** the eight mandatory sections (processing description, lawful basis, data flows, risks identified, mitigations, residual-risk acceptance, DPO sign-off, review schedule) reported separately. Aggregate-only reporting hides sectional failure patterns.
+> - **Significant-change definition MANDATORY:** the deployer's local definition of "significant processing change" must be documented; ambiguity here is a common failure mode for the metric. Default rule: any change requiring sub-processor disclosure update under [GV.VT-7](#gvvt-7-sub-processor-transparency) is significant by definition.
+> - **DPO sign-off MANDATORY (binary):** unsigned DPIAs do not count as complete regardless of section content. Sign-off date recorded; sign-offs preceding the most recent significant change are stale.
+> - **Cross-reconciliation with safety case:** DPIA-identified risks MUST be cross-mapped to safety-case hazards; risks named in DPIA but absent from safety case (or vice versa) are flagged in the audit output.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the eight-section schema and DPO sign-off requirement carry from UK GDPR Article 35 and the NHSE March 2026 template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
+>
+> - **Pre-deployment gate:** all eight template sections complete with substantive content; DPO sign-off dated within the 30 days preceding go-live; DPIA-safety-case reconciliation documented.
+> - **Continuous monitoring:** annual completion-rate review; alert on any DPIA where sign-off precedes the most recent significant change; alert when DPIA-safety-case reconciliation reveals unaligned risk/hazard list.
+> - **Pause / escalation trigger:** any deployment going live without a DPO-signed DPIA (legal failure, not process); OR any DPIA stale > 12 months past a significant change without re-review (regulatory exposure).
+
 **Limitations**
 
-> Template compliance doesn't guarantee substantive risk analysis. "Completed" DPIAs that list "no residual risks identified" for a novel AVT deployment are likely inadequate regardless of template adherence.
+> Template compliance doesn't guarantee substantive risk analysis. "Completed" DPIAs that list "no residual risks identified" for a novel AVT deployment are likely inadequate regardless of template adherence. The Operational Specification's reconciliation-with-safety-case requirement creates a partial check on substantive quality (a DPIA that names no risks while the safety case names hazards is automatically flagged), but the gap between section-completion compliance and genuine analysis remains.
 
 **Novel Thinking / Implications**
 
@@ -10525,9 +10613,26 @@ Measured time from consultation end to verified deletion of the captured audio. 
 Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution: median, P95, P99, and count of encounters exceeding policy threshold. Verification requirement: deletion confirmed in primary storage, caches, backups, and any downstream analytic systems. Policy threshold per deployer: typically 24 hours to 7 days depending on DPIA. Compliance = proportion of encounters with verified deletion within threshold.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Verification across all storage locations is technically difficult - backup systems and distributed caches may retain data after primary deletion. Vendor attestation is often the only feasible verification method. The word "deletion" itself has degrees (logical deletion / physical deletion / cryptographic erasure) that matter for real assurance.
+> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under the NHSE IG March 2026 guidance); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly distribution reporting.
+> - **Population:** every consultation audio captured during the window. No sampling — this is a compliance metric.
+> - **Distribution reporting MANDATORY:** median, P95, P99, AND count of encounters exceeding policy threshold (the tail is the safety signal, not the median). Per-storage-location distribution where the architecture allows; otherwise the slowest-location time is the headline.
+> - **Per-storage-location verification MANDATORY:** time-to-deletion measured against every storage location named in the GV.PD-1 enumeration. A median of 6 hours that hides 100 % retention in backups (where deletion never occurs) is non-compliant.
+> - **Carve-out logging MANDATORY:** any audio retained beyond standard threshold under a DPIA carve-out logged with reason, duration, and re-deletion target date. Carved-out audio tracked in a separate distribution from standard audio; aggregating the two hides policy adherence.
+> - **Deletion-verification method MANDATORY:** parallel to GV.PD-1 — vendor self-attestation alone insufficient; periodic independent verification (third-party audit, deployer-witnessed deletion test, or cryptographic proof via key destruction).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the post-sign-off deletion expectation derives from NHSE IG guidance March 2026; UK GDPR Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** vendor demonstrates per-storage-location deletion telemetry; one end-to-end deletion test passes prior to go-live; DPIA cross-references the policy threshold.
+> - **Continuous monitoring:** monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate < 1 %; per-storage-location compliance ≥ 99.5 %.
+> - **Pause / escalation trigger:** any single non-exception retention beyond DPIA threshold; OR median TTD > DPIA threshold in any month; OR per-storage-location compliance < 95 % (cascades to GV.PD-1 compliance failure). All three are reportable as IG incidents.
 
 **Novel Thinking / Implications**
 
@@ -10773,9 +10878,30 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 Process compliance = |consultations_where_patient_informed| / |total_AVT_consultations|. Understanding rate = |patients_who_can_describe_AVT_use| / |patients_surveyed| (periodic audit). Gap = process_compliance - understanding_rate reveals 'informed but not understanding' problem.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Process compliance is measurable; patient understanding is not easily quantified. Self-report may overstate understanding. Cultural and language barriers affect both notification and comprehension.
+> Two distinct sources combined:
+>
+> - **Process compliance** inherits the reference standard from [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) — the deployer-approved patient notification script with the four content elements (what / what / who / how) delivered before AVT activation
+> - **Understanding rate** is measured by structured patient survey using a published instrument (e.g. validated comprehension instrument, or where unavailable, a deployer-defined survey with at least four comprehension items mapped to the notification content elements)
+>
+> The headline metric is the **gap** (process compliance minus understanding rate), not either rate alone. Gap > 25 percentage points triggers a substantive review; the consent model's legitimacy depends on understanding, not just notification (per the Novel Thinking section). Cross-link to [IO.PX-1 Patient Opt-Out Rate](#iopx-1-patient-opt-out-rate) — opt-out behaviour disaggregated by demographics may indicate where the understanding gap is concentrated even before survey detects it.
+
+**Operational Specification**
+
+> - **Window:** continuous for process compliance (inherits from GV.CR-2); quarterly periodic audit for understanding rate.
+> - **Population for understanding survey MANDATORY:** ≥ 30 patients per practice per quarter for survey method, with stratification across demographic axes (age band, primary language, deprivation index where available). Pure aggregate sampling masks the failure modes that matter — language and literacy are the predictable understanding-rate diminishers.
+> - **Three sub-metrics MANDATORY:** process compliance rate (continuous from GV.CR-2), understanding rate (quarterly), and the gap. Any rate reported alone insufficient.
+> - **Demographic disaggregation MANDATORY for understanding rate:** stratification by primary language, age band, ethnicity, and where available deprivation index. The aggregate understanding rate hides the failure pattern; disparities are the metric's value.
+> - **Survey instrument declaration MANDATORY:** the survey instrument used must be declared (validated published instrument vs deployer-defined). Deployer-defined instruments must be reviewed by the IG team and document at least four comprehension items mapping to GV.CR-2 content elements.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and CQC Mythbuster 109's "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** GV.CR-2 process-compliance gate met; survey instrument selected and reviewed by IG team; quarterly survey schedule established.
+> - **Continuous monitoring:** monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap > 25 percentage points OR any demographic axis shows understanding rate < practice mean by ≥ 20 percentage points.
+> - **Pause / escalation trigger:** gap > 40 percentage points sustained two quarters (consent model legitimacy in question); OR any demographic axis shows understanding rate < 50 % (the consent model is failing for that population, not just under-performing).
 
 **Novel Thinking / Implications**
 
@@ -10853,9 +10979,26 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criteria: (1) Can deployer locate all AVT data for a patient? (2) Can it be exported in usable format? (3) Within statutory timeframe? Target: 100% within 30 days.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> Requires deployer to know what AVT data exists and how to retrieve it from vendor systems. Many current AVT integrations don't provide patient-level data export.
+> UK GDPR Article 15 is the legal floor; ICO 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gvpd-11-right-to-erasure-compliance) — the same data-locating capability underpins both rights.
+
+**Operational Specification**
+
+> - **Window:** continuous SAR-by-SAR tracking with quarterly compliance reporting.
+> - **Population:** every SAR received that includes AVT-related data (denominator: SARs received, not consultations).
+> - **Three sub-metric reporting MANDATORY:** locate-rate (deployer can find all AVT data), export-rate (data exportable in usable format), and timeliness-rate (completed within 30 days). Aggregate alone is not sufficient — failure mode (couldn't find / found but couldn't export / found and exported too slowly) drives different remediation.
+> - **Synthetic SAR test pre-deployment MANDATORY:** at least one synthetic SAR processed end-to-end before go-live, exercising every storage location and sub-processor in the architecture. Failures discovered in this test are remediated before live SARs occur, not after.
+> - **Sub-processor cooperation tracked separately:** SAR fulfilment depends on sub-processors providing their data; cooperation latency per sub-processor recorded. Vendors should contractually commit sub-processors to deployer's SAR timeline.
+> - **Complex-request extension logged:** any SAR using the two-month extension provision logged with reason; pattern of extensions on AVT-related SARs is a signal that the locate-rate or export-rate is failing.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from UK GDPR Article 15 and ICO guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** synthetic SAR test passes — every storage location returns data; export format usable; full processing within 30 days. Gaps remediated before go-live.
+> - **Continuous monitoring:** quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).
+> - **Pause / escalation trigger:** any SAR where AVT data could not be located within the deployer's known architecture (this is a regulatory failure under Article 15); OR timeliness-rate < 90 % in any quarter (suggests operational capacity failure); OR > 30 % of AVT-related SARs using the two-month extension (suggests systematic locate/export failure rather than legitimate complexity).
 
 **Novel Thinking / Implications**
 
@@ -10893,9 +11036,32 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 Erasure Test: process a synthetic erasure request through the system. Verify deletion in: primary storage, backups, vendor caches, model training pipelines, downstream secondary use. Verification Rate = locations confirmed deleted / total locations.
 ```
 
-**Limitations**
+**Reference Standard**
 
-> True deletion is technically difficult. Backup systems retain data. Model training data may be impossible to remove from trained models.
+> UK GDPR Article 17 with the NHSE IG March 2026 individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus three Article-17-specific additions:
+>
+> - **Model training pipelines** — any AVT data ingested for model fine-tuning, validation set construction, or A/B testing
+> - **Downstream secondary use** — research databases, quality-monitoring archives, business-intelligence pipelines
+> - **Sub-processor systems** — every entity in the [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) discovered set
+>
+> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the ICO standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gvpd-7-training-data-inclusion-status) — patients should know at consent time whether their data may end up in the irreversible class.
+
+**Operational Specification**
+
+> - **Window:** one-off pre-deployment gate; mandatory re-test on architectural change (new sub-processor, new training pipeline, new secondary-use destination).
+> - **Population for synthetic test:** at least one synthetic patient record exercised end-to-end through every named location in the enumeration above. Production erasure-rate also tracked for the (small) population of in-scope live erasure requests.
+> - **Three-class outcome reporting MANDATORY:** every erasure-test location classified deletable / anonymisable / technically-irreversible. Aggregate "verification rate" alone hides the irreversible-class failure mode.
+> - **Privacy-notice cross-check MANDATORY:** the technically-irreversible class enumerated at procurement must match the disclosure in the privacy notice. Drift between the two (locations becoming irreversible without privacy-notice update) is itself a flag.
+> - **Article-17-exempt vs in-scope:** every erasure request classified as exempt (individual-care purpose, public-task carve-out) or in-scope (secondary use, research, training data, best-interest case). The exempt class is logged with reason but not subject to the same fulfilment expectation as in-scope.
+> - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gvpd-10-subject-access-request-fulfilment) — sub-processor latency per erasure request recorded.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited (NHSE IG March 2026). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate:** synthetic erasure test passes — every storage location classified into one of the three outcome classes; technically-irreversible class enumerated and matched to the privacy notice; sub-processor cooperation timelines documented.
+> - **Continuous monitoring:** in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).
+> - **Pause / escalation trigger:** any in-scope erasure request where a deletable location fails to delete (regulatory failure under Article 17); OR any newly added location not classified into the three-class taxonomy before processing personal data; OR drift between technically-irreversible class and privacy-notice disclosure (procurement-time disclosure failure).
 
 **Novel Thinking / Implications**
 
@@ -11426,9 +11592,37 @@ Percentage of AVT-using clinicians who have completed required training modules:
 TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = completed all required modules within validity period. Track by module: vendor training, local induction, failure mode awareness, refresher. TCR < 100% = governance non-compliance.
 ```
 
+**Reference Standard**
+
+> Authoritative source: the deployer's clinical governance training record (LMS or equivalent), with module catalogue mapped against the NAS Day Zero training requirements and local induction policy. Four mandatory modules MUST be enumerated:
+>
+> - **M1: Vendor product training** — system mechanics, activation, opt-out, error reporting per the specific AVT product
+> - **M2: Local induction** — review-before-signing workflow, opt-out and dissent procedures (cross-link [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate) and [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)), incident-reporting pathway
+> - **M3: Failure-mode awareness** — AVT-specific failure modes (hallucination/omission asymmetry, speaker misattribution, accent-related accuracy variation, complacency trajectory, system-unavailable fallback)
+> - **M4: Refresher** — annual re-engagement on M1-M3 with updates reflecting deployed system changes
+>
+> "Completed" requires evidenced engagement, not just course-record entry. Module-completion timestamps recorded; minimum-engagement-time floors specified per module to prevent "5-minute completion".
+
+**Operational Specification**
+
+> - **Window:** continuous; monthly compliance reporting per practice / per clinician.
+> - **Population:** every clinician using AVT (denominator). Clinicians who have stopped using AVT but remain on the practice register are excluded with reason.
+> - **Per-module reporting MANDATORY:** four sub-rates (M1/M2/M3/M4 completion). Aggregate TCR alone is insufficient — a clinician missing M3 (failure-mode awareness) is a different risk from one missing M4 (refresher overdue).
+> - **Validity periods MANDATORY (per module):** M1 valid for the lifetime of the deployed system version (revoked on major vendor product upgrade per [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking)); M2 valid until significant local-policy change; M3 valid 12 months; M4 must be completed within 12 months of the previous engagement (rolling).
+> - **Engagement-time floor MANDATORY:** minimum 30 minutes recorded engagement on M3 specifically (the failure-mode-awareness module is the most subject to "click-through" completion); 15 minutes on M1; 20 minutes on M2.
+> - **Coverage check:** any clinician active on AVT in the previous 30 days appears in the denominator. Late-onboarders given a 14-day grace window from first AVT use to completion of M1 + M2.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the NAS Day Zero requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
+>
+> - **Pre-deployment / Day Zero gate:** every clinician scheduled to use AVT has M1 + M2 + M3 complete within validity periods; M4 not yet applicable for new starters.
+> - **Continuous monitoring:** monthly per-module TCR ≥ 100 %; alert on any clinician active on AVT with any module out of date by > 14 days.
+> - **Pause / escalation trigger:** any clinician using AVT with M3 (failure-mode awareness) missing or stale (this is the safety-critical module — operational use without it is a governance failure regardless of M1/M2/M4 status); OR aggregate TCR < 95 % at the practice level for any module sustained two consecutive months.
+
 **Limitations**
 
-> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything.
+> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything. The Operational Specification's engagement-time floors prevent the most blatant click-through pattern but cannot test actual understanding; pair with [GV.TC-2 Failure Mode Awareness Score](#gvtc-2-failure-mode-awareness-score) for an outcome-side check on whether training has produced competence.
 
 **Novel Thinking / Implications**
 
@@ -11622,13 +11816,34 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed|. Notification quality: must include (a) what changed, (b) expected impact on outputs, (c) validation results on clinical benchmarks. Lead time: minimum 14 days before production deployment for major updates.
 ```
 
+**Reference Standard**
+
+> Vendor change-event log paired with deployer notification record. The change-event taxonomy follows [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking) — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to MHRA Post-Market Surveillance Regulations 2024 (SI 2024 No. 1368): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.
+
+**Operational Specification**
+
+> - **Window:** continuous; per-change-event tracking with monthly compliance reporting.
+> - **Population:** every change-event recorded by [GV.SG-1](#gvsg-1-model-version-tracking) telemetry. Denominator is change-events, not calendar months.
+> - **Severity classification MANDATORY:** every change classified as **major** (component-level rewrite, scope expansion, retraining with new data, regulatory-substantial), **moderate** (incremental retraining, prompt revision, retrieval index update), or **minor** (bug fix, performance optimisation without behavioural change). Lead-time requirements differ per severity (Threshold Guidance below).
+> - **Four mandatory content elements per notification:** (a) what changed (component, version-from, version-to); (b) expected impact (clinical-benchmark deltas, edge cases, known failure modes affected); (c) validation results (named benchmarks, test corpora, sample sizes); (d) deployer action required (re-run [GV.SG-2 Model Update Impact Score](#gvsg-2-model-update-impact-score), schedule [GV.CR-6 Safety Case](#gvcr-6-clinical-safety-case-completeness) update, etc.). Notifications missing any element count as non-compliant regardless of timing.
+> - **Substantial-change flag MANDATORY:** any change meeting MHRA PMS substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
+> - **Per-deployment notification:** notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises Stanford monitoring framework requirements (cited Source) with MHRA PMS notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (procurement):** vendor contractually commits to the four-element schema and the per-severity lead times below; vendor demonstrates a recent change-event with full notification on file.
+> - **Continuous monitoring:** major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.
+> - **Pause / escalation trigger:** any major change deployed without prior notification; OR any substantial-change-flag-applicable change deployed without the regulatory flag (this is a regulatory event); OR per-element completeness < 95 % over a rolling 90-day window.
+
 **References**
 
 - **Stanford**: [Keyes et al. (2025) - Stanford monitoring framework](https://arxiv.org/abs/2512.09048)
 
 **Limitations**
 
-> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes - which requires model version tracking infrastructure.
+> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes - which requires model version tracking infrastructure. The Operational Specification's reliance on [GV.SG-1](#gvsg-1-model-version-tracking) telemetry surfaces this dependency: the metric is only as reliable as the per-component versioning the vendor exposes.
 
 **Novel Thinking / Implications**
 
@@ -11782,9 +11997,30 @@ Does the vendor disclose security incidents, model failures, and known issues to
 Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Completeness = |required_information_provided| / |required_information_categories|. Required: incident description, affected functionality, mitigation, recommended actions.
 ```
 
+**Reference Standard**
+
+> Authoritative source: vendor incident log paired with deployer notification record. `t_incident_known_by_vendor` is the earliest of: (a) vendor's own detection telemetry; (b) report from another deployer; (c) external (e.g. researcher) disclosure. Vendor self-classification of "knowing time" is rebuttable — if independent evidence (security advisories, public disclosure, regulator notice) establishes earlier knowledge, that timestamp is authoritative. Cross-link to UK NIS regulations and ICO Article 33 timelines for data-breach incidents (72-hour deployer-side notification obligation cascades from vendor disclosure). Incident severity classified per a deployer-defined schema; default: critical (active patient safety risk or active data exposure), high (potential exposure pending mitigation), medium (vulnerability disclosed and patched), low (informational).
+
+**Operational Specification**
+
+> - **Window:** continuous; per-incident tracking with monthly compliance reporting.
+> - **Population:** every incident the vendor knows about, with cross-deployer scope explicit (an incident at deployer A that affects deployer B's exposure must reach deployer B).
+> - **Severity classification MANDATORY:** every incident classified critical / high / medium / low with disclosure-timeline expectations differing per severity.
+> - **Five mandatory content elements:** (a) incident description with affected components named per [GV.SG-1](#gvsg-1-model-version-tracking) taxonomy; (b) affected functionality and known scope of impact; (c) mitigation in progress or completed (with timeline); (d) recommended deployer actions; (e) cross-deployer scope (which deployers / configurations / use cases are affected). The fifth element is the most commonly omitted — vendors often disclose in vendor-frame ("we patched X") without translating to deployer impact ("you should check Y in your deployment"). Notifications missing any element count as non-compliant regardless of timing.
+> - **Update cadence MANDATORY:** initial disclosure plus material updates as new information emerges; final closure report on resolution. A single one-off notification without updates is non-compliant where the incident has not been resolved.
+> - **Escalation path MANDATORY:** named deployer contact for critical and high incidents; vendor must demonstrate the escalation path was used, not just the standard support inbox.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with ICO Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (procurement):** vendor contractually commits to severity-classified disclosure timelines and the five-element content schema; named deployer contact recorded; one tabletop test of the disclosure path.
+> - **Continuous monitoring:** critical incidents disclosed ≤ 24 hours from `t_known`; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.
+> - **Pause / escalation trigger:** any critical incident disclosed > 72 hours after `t_known` (regardless of severity-classification target); OR any incident where independent evidence shows vendor knew earlier than disclosed `t_known`; OR cross-deployer-scope element missing on incidents affecting multiple deployments. All three are contract-breach triggers.
+
 **Limitations**
 
-> Vendor incentives often favour minimising disclosure. Requires contractual specification.
+> Vendor incentives often favour minimising disclosure. Requires contractual specification. The Operational Specification's rebuttable-knowing-time clause and cross-deployer-scope mandate make the most common evasion patterns explicit, but verification still depends on the deployer's ability to detect independent evidence of earlier knowledge — itself an asymmetric capability problem.
 
 **Novel Thinking / Implications**
 
@@ -11858,13 +12094,34 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 Audit vendor's sub-processor list against actual data access. Completeness = |disclosed_subprocessors| / |actual_subprocessors|. Verification: review data flow diagrams, cloud architecture, support contracts. Each sub-processor should have its own data protection assessment.
 ```
 
+**Reference Standard**
+
+> Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. UK GDPR Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place ([GV.PD-9 Cross-Border Data Transfer Compliance](#gvpd-9-cross-border-data-transfer-compliance) cross-link for non-UK locations).
+
+**Operational Specification**
+
+> - **Window:** continuous; quarterly audit cadence with notification-driven re-audits on any vendor sub-processor change.
+> - **Population:** every sub-processor with any data-access path (transitively). The discovered set explicitly extends to sub-sub-processors — a vendor's cloud provider's storage region's sub-contractor for backup is in scope if it can reach personal data.
+> - **Per-sub-processor reporting MANDATORY:** for each sub-processor: name, processing purpose, data categories, location, DPA status (in-place / signed / pending), Article 46 safeguard (where non-UK). Aggregate completeness ratio insufficient — the failure pattern (which sub-processor is undisclosed) matters more than the count.
+> - **Discovery method MANDATORY:** the deployer's verification method MUST be declared (data-flow diagram review / cloud-architecture audit / contract trace / penetration test). Pure self-certification by the vendor is not Tier 1 sufficient; some independent verification step required.
+> - **Change-notification mandate:** vendor contract MUST specify advance notice of sub-processor changes ([GV.VT-1 Model Change Notification Compliance](#gvvt-1-model-change-notification-compliance) cross-link); change-events tracked per sub-processor with notification timestamps.
+> - **Materiality flag:** sub-processors handling personal data classified material; sub-processors handling only metadata or aggregated telemetry classified non-material. Material sub-processors required to be in scope; non-material classification must be evidenced.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the seven-source discovered-set framing follows from UK GDPR Article 28(2) and standard DPIA practice; the materiality distinction synthesises ICO guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
+>
+> - **Pre-deployment gate (procurement):** vendor publishes complete sub-processor list with the per-sub-processor information schema above; deployer-side verification step completed (not vendor self-cert alone); DPAs in place for every material sub-processor.
+> - **Continuous monitoring:** quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.
+> - **Pause / escalation trigger:** any material sub-processor undisclosed (regulatory failure under Article 28(2), not contractual); OR any material sub-processor without an in-place DPA; OR sub-processor change without prior notification (contractual breach where the contract specifies notification obligation).
+
 **References**
 
 - **UK GDPR**: UK GDPR Article 28 - processor obligations including sub-processor disclosure
 
 **Limitations**
 
-> Vendors often have complex, evolving sub-processor arrangements. Disclosure may not be complete or up-to-date.
+> Vendors often have complex, evolving sub-processor arrangements. Disclosure may not be complete or up-to-date. The Operational Specification's discovered-set framework makes the discovery method explicit; it does not eliminate the asymmetric-information problem that a vendor knows its supply chain better than the deployer can reconstruct it.
 
 **Novel Thinking / Implications**
 
