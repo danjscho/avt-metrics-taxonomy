@@ -106,6 +106,7 @@ class Metric:
     file: str
     line: int
     dimensions: dict = field(default_factory=dict)  # dim name -> raw value
+    body: str = ""  # Full metric body from heading to next heading (for sub-block detection)
 
 
 @dataclass
@@ -208,6 +209,8 @@ def parse_group_file(rel_path: str) -> tuple[list[Metric], list[Finding]]:
                     )
                 )
 
+        body = "\n".join(lines[i:j])
+
         metrics.append(
             Metric(
                 ref_id=ref_id,
@@ -216,6 +219,7 @@ def parse_group_file(rel_path: str) -> tuple[list[Metric], list[Finding]]:
                 file=rel_path,
                 line=heading_line,
                 dimensions=dims,
+                body=body,
             )
         )
         i = j
@@ -473,6 +477,109 @@ def check_tier1_quickref(all_metrics: list[Metric]) -> list[Finding]:
     return findings
 
 
+TIGHTENING_SUB_BLOCKS = (
+    "**Reference Standard**",
+    "**Operational Specification**",
+    "**Threshold Guidance**",
+)
+
+
+def classify_tightening(metric: Metric) -> str:
+    """Return 'tightened' (all 3 sub-blocks present), 'not-tightened' (none),
+    or 'partial' (some but not all)."""
+    present = [b for b in TIGHTENING_SUB_BLOCKS if b in metric.body]
+    if len(present) == len(TIGHTENING_SUB_BLOCKS):
+        return "tightened"
+    if not present:
+        return "not-tightened"
+    return "partial"
+
+
+def check_tightening_pattern(all_metrics: list[Metric]) -> list[Finding]:
+    """Tier 1 metrics must carry all three tightening sub-blocks or none of
+    them. Mixed (partial) states are an error."""
+    findings: list[Finding] = []
+    for m in all_metrics:
+        if m.tier != 1:
+            continue
+        state = classify_tightening(m)
+        if state == "partial":
+            present = [b for b in TIGHTENING_SUB_BLOCKS if b in m.body]
+            missing = [b for b in TIGHTENING_SUB_BLOCKS if b not in m.body]
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "tightening-partial",
+                    (
+                        f"Tier 1 metric {m.ref_id} has partial tightening: "
+                        f"present={[b.strip('*') for b in present]} "
+                        f"missing={[b.strip('*') for b in missing]}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+PROVENANCE_RE = re.compile(r"⚠️\s*\*\*Provenance[:\*]", re.UNICODE)
+
+
+def check_threshold_provenance(all_metrics: list[Metric]) -> list[Finding]:
+    """Every tightened metric's Threshold Guidance block must open with a
+    ⚠️ **Provenance** line within the first 400 characters of the block body
+    (after the heading itself)."""
+    findings: list[Finding] = []
+    for m in all_metrics:
+        if classify_tightening(m) != "tightened":
+            continue
+        # Locate the Threshold Guidance block.
+        idx = m.body.find("**Threshold Guidance**")
+        if idx == -1:
+            # Defensive: classify_tightening said it's tightened, so this
+            # should not happen, but guard anyway.
+            continue
+        # Skip past the heading itself.
+        block_start = idx + len("**Threshold Guidance**")
+        snippet = m.body[block_start : block_start + 400]
+        if not PROVENANCE_RE.search(snippet):
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-threshold-provenance",
+                    (
+                        f"tightened metric {m.ref_id} has no ⚠️ **Provenance** "
+                        f"prelude in its Threshold Guidance block (must appear "
+                        f"in the first 400 chars after the heading)"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
+    """Print a Tier 1 tightening status manifest. Informational, not gated by
+    findings."""
+    tier1 = [m for m in all_metrics if m.tier == 1]
+    tightened = [m for m in tier1 if classify_tightening(m) == "tightened"]
+    not_tightened = [m for m in tier1 if classify_tightening(m) == "not-tightened"]
+    partial = [m for m in tier1 if classify_tightening(m) == "partial"]
+
+    print(f"Tier 1 tightening status: {len(tightened)}/{len(tier1)} tightened.")
+    print(
+        f"  Tightened: {', '.join(sorted(m.ref_id for m in tightened)) or '(none)'}"
+    )
+    print(
+        f"  Not tightened: {', '.join(sorted(m.ref_id for m in not_tightened)) or '(none)'}"
+    )
+    if partial:
+        print(
+            f"  ⚠️ Partial (audit error): "
+            f"{', '.join(sorted(m.ref_id for m in partial))}"
+        )
+    print()
+
+
 def main() -> int:
     all_metrics: list[Metric] = []
     metrics_by_file: dict[str, list[Metric]] = {}
@@ -490,6 +597,8 @@ def main() -> int:
     findings.extend(check_applicability_totals())
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))
+    findings.extend(check_tightening_pattern(all_metrics))
+    findings.extend(check_threshold_provenance(all_metrics))
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]
@@ -501,6 +610,7 @@ def main() -> int:
         f"Tier counts: 🟢 {tier_counts[1]} · 🟡 {tier_counts[2]} · 🔵 {tier_counts[3]}"
     )
     print()
+    emit_tightening_manifest(all_metrics)
 
     if not findings:
         print("✅ AUDIT CLEAN - no findings.")
