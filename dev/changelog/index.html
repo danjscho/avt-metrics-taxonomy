@@ -1,0 +1,5688 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings">
+      
+      
+      
+        <link rel="canonical" href="https://danjscho.github.io/avt-metrics-taxonomy/dev/changelog/">
+      
+      
+        <link rel="prev" href="../glossary/">
+      
+      
+      
+        
+      
+      
+        <link rel="alternate" type="application/rss+xml" title="RSS feed" href="../feed_rss_created.xml">
+        <link rel="alternate" type="application/rss+xml" title="RSS feed of updated content" href="../feed_rss_updated.xml">
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-ProperDocs 1.6.7, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Changelog - AVT Metrics Taxonomy</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#changelog" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+        <aside class="md-banner">
+          <div class="md-banner__inner md-grid md-typeset">
+            
+            
+  <strong>Draft v3.1</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
+  <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
+
+          </div>
+          
+        </aside>
+      
+    </div>
+    
+      <div data-md-color-scheme="default" data-md-component="outdated" hidden>
+        
+      </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="AVT Metrics Taxonomy" class="md-header__button md-logo" aria-label="AVT Metrics Taxonomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AVT Metrics Taxonomy
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Changelog
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+          <a href="javascript:void(0)" class="md-search__icon md-icon" title="Share" aria-label="Share" data-clipboard data-clipboard-text="" data-md-component="search-share" tabindex="-1">
+            
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9a3 3 0 0 0-3 3 3 3 0 0 0 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.15c-.05.21-.08.43-.08.66 0 1.61 1.31 2.91 2.92 2.91s2.92-1.3 2.92-2.91A2.92 2.92 0 0 0 18 16.08"/></svg>
+          </a>
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/danjscho/avt-metrics-taxonomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    danjscho/avt-metrics-taxonomy
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../how-to-use/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  How to use
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../tier-1-quick-reference/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Quick start (Tier 1)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contents/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Browse metrics
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../applicability/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cross-cutting
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../crosscuts/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Cross-cut views
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../gaps/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Roadmap (Gaps)
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../downloads/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Downloads
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../glossary/" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Glossary
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    <li class="md-tabs__item md-tabs__item--active">
+      <a href="./" class="md-tabs__link">
+        
+  
+  
+    
+  
+  Changelog
+
+      </a>
+    </li>
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AVT Metrics Taxonomy" class="md-nav__button md-logo" aria-label="AVT Metrics Taxonomy" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AVT Metrics Taxonomy
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/danjscho/avt-metrics-taxonomy" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    danjscho/avt-metrics-taxonomy
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../how-to-use/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    How to use
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tier-1-quick-reference/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Quick start (Tier 1)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Browse metrics
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Browse metrics
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contents/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Contents
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_2" id="__nav_4_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    A - Technical Pipeline
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    A - Technical Pipeline
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/audio-capture/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Audio Capture & Environment
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/asr-transcription/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    ASR / Transcription
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/diarisation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Diarisation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/summarisation-nlp/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Summarisation / NLP
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/clinical-coding/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Clinical Coding
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/epr-write-back/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    EPR Write-back
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_3" id="__nav_4_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    B - Pipeline Interactions
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    B - Pipeline Interactions
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/partial-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Partial-Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/end-to-end-pipeline/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    End-to-End Pipeline
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_4" id="__nav_4_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    C - The Human Layer
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    C - The Human Layer
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/human-factors-workflow/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Human Factors & Workflow
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_5" id="__nav_4_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    D - Impact & Outcomes
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    D - Impact & Outcomes
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/patient-experience/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Patient Experience
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/fairness-equity/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Fairness & Equity
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_6" id="__nav_4_6_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    E - System Governance
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    E - System Governance
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/safety-governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Safety & Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/nhs-compliance-regulatory/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NHS Compliance & Regulatory
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/security-adversarial-robustness/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Security & Adversarial Robustness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/privacy-data-governance/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Privacy & Data Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/operational/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Operational
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/environmental-sustainability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Environmental & Sustainability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/training-competency/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Training & Competency
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/vendor-transparency-contractual/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vendor Transparency & Contractual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_4_7" id="__nav_4_7_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    F - Evaluation Science
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_4_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4_7">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    F - Evaluation Science
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../groups/meta-evaluation/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Meta-Evaluation
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-cutting
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cross-cutting
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../applicability/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Applicability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../standards-mapping/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Standards Mapping
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../outcomes-boundary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Outcomes Boundary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../calibration-and-context/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Calibration & Context
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../responsible-ai-lens/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Responsible AI Lens
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+      
+        
+          
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <div class="md-nav__link md-nav__container">
+            <a href="../crosscuts/" class="md-nav__link ">
+              
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Cross-cut views
+  
+
+    
+  </span>
+  
+  
+
+            </a>
+            
+              
+              <label class="md-nav__link " for="__nav_6" id="__nav_6_label" tabindex="0">
+                <span class="md-nav__icon md-icon"></span>
+              </label>
+            
+          </div>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Cross-cut views
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_2" id="__nav_6_2_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    By applicability
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_2">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    By applicability
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-applicability/avt-specific/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVT-Specific
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-applicability/avt-contextualised/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    AVT-Contextualised
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-applicability/general/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    General Healthcare AI
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_3" id="__nav_6_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    By Playbook principle
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    By Playbook principle
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P1 - Limitations
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P2 - Lawful/ethical
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P3 - Security
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P4 - Human control
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P5 - Lifecycle
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P6 - Right tool
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P7 - Openness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p8/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P8 - Commercial
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p9/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P9 - Skills
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-principle/p10/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    P10 - Org assurance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_4" id="__nav_6_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    By ethical theme
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    By ethical theme
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t1/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T1 - Safety, Security, Robustness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T2 - Transparency & Explainability
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t3/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T3 - Fairness
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t4/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T4 - Accountability & Governance
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t5/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T5 - Contestability & Redress
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-theme/t6/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    T6 - Societal Wellbeing
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+        
+      
+    
+    
+    
+      
+      
+        
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_6_5" id="__nav_6_5_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    By standard
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_6_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6_5">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    By standard
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/dtac-digital-technology-assessment-criteria-v2-0/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DTAC v2.0
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/dspt-data-security-and-protection-toolkit/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DSPT (NDG)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/dcb0129-dcb0160/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    DCB0129 / DCB0160
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NHS LLM Framework
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/nhs-t-e-s-t-framework-technology-evaluation-safety-test/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NHS T.E.S.T.
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/nhs-england-avt-self-certified-supplier-registry/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NHSE AVT Registry
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/mhra-software-and-ai-as-a-medical-device-samd-aiamd/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    MHRA SaMD/AIaMD
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/nice-evidence-standards-framework-for-digital-health-technologies-ecd7/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    NICE ESF (ECD7)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crosscuts/by-standard/fhir-uk-core-interopen/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    FHIR UK Core
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../gaps/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Roadmap (Gaps)
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../downloads/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Downloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../glossary/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Glossary
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Changelog
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v382-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.2 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v381-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.1 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v38-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.8 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-documentation-drift-sweep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Documentation drift sweep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-audit-tooling-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Audit-tooling hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-nhse-avt-registry-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — NHSE AVT Registry mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 — NHSE AVT Registry mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-21-standards-mapping-section-13th-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.1 — Standards-mapping section (13th framework)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-22-three-new-registry-driven-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.2 — Three new registry-driven metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-23-gvcr-4-tightening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.3 — GV.CR-4 tightening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-carry-forwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Carry-forwards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 — Carry-forwards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-31-hlhf-3a-tightening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3.1 — HL.HF-3a tightening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-32-gvtc-1-gvtc-3-redundancy-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3.2 — GV.TC-1 / GV.TC-3 redundancy resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-cross-cutting-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Cross-cutting consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.9+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v37-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.7 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.7 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-calibration-context-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Calibration &amp; Context principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-pipeline-narrow-tightening-6-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Pipeline narrow tightening (6 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-21-redundancy-as-sub-parts-3-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.1 — Redundancy as sub-parts (3 candidates)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-22-targeted-cross-references-4-metric-pairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.2 — Targeted cross-references (4 metric pairs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-23-us-flavour-audit-and-reframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.3 — US-flavour audit and reframe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-deferred-to-v38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — deferred to v3.8+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.8+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v36-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.6 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.6 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-applicability-on-metric-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — Applicability-on-metric alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-duplication-review-research-artefact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — Duplication review (research artefact)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-v35-follow-up-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — v3.5 follow-up items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-d-repo-root-readmemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase D — Repo-root README.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts-and-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts and audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.7
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v35-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.5 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.5 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wave-1-compliancegovernance-core-8-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 1 — Compliance/governance core (8 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-2-privacy-chain-completion-4-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 2 — Privacy-chain completion (4 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts-and-audit_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts and audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.6+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v34-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.4 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.4 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-audit-side-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — Audit-side enforcement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-phase-3-tightening-4-operationalproxy-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — Phase 3 tightening (4 operational/proxy metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-full-tier-1-loose-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — Full Tier 1 LOOSE classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.5+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v33-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.3 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.3 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outcomes-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcomes Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tier-1-definitional-tightening-9-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tier 1 Definitional Tightening (9 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-release-clarification-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-release clarification (2026-04-25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v32-2026-04-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.2 (2026-04-22)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.2 (2026-04-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parser-and-structured-build-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parser and structured build outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-site-mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation site (MkDocs Material)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-coverage-audits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External coverage audits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nhs-test-framework-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NHS T.E.S.T. Framework mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadmap-consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap consolidation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-hygiene_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v31-2026-04-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.1 (2026-04-18)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.1 (2026-04-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-audit-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Audit Tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-standards-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extended Standards Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposed-new-metrics-not-yet-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed New Metrics (Not Yet Implemented)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-responsible-ai-lens-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Responsible AI Lens Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v30-unreleased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.0 (unreleased)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.0 (unreleased)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference IDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applicability-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applicability Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-metric-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Metric Families
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-sub-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Sub-clusters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standards-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standards Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count Corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v2.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v382-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.2 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v381-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.1 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v38-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.8 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-documentation-drift-sweep" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Documentation drift sweep
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-audit-tooling-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Audit-tooling hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-2-nhse-avt-registry-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2 — NHSE AVT Registry mapping
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 2 — NHSE AVT Registry mapping">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-21-standards-mapping-section-13th-framework" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.1 — Standards-mapping section (13th framework)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-22-three-new-registry-driven-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.2 — Three new registry-driven metrics
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-23-gvcr-4-tightening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.3 — GV.CR-4 tightening
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-carry-forwards" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — Carry-forwards
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Phase 3 — Carry-forwards">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-31-hlhf-3a-tightening" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3.1 — HL.HF-3a tightening
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-32-gvtc-1-gvtc-3-redundancy-resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3.2 — GV.TC-1 / GV.TC-3 redundancy resolution
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-4-cross-cutting-consistency" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 4 — Cross-cutting consistency
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v39" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.9+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v37-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.7 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.7 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-0-calibration-context-principle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 0 — Calibration &amp; Context principle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-1-pipeline-narrow-tightening-6-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 1 — Pipeline narrow tightening (6 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-21-redundancy-as-sub-parts-3-candidates" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.1 — Redundancy as sub-parts (3 candidates)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-22-targeted-cross-references-4-metric-pairs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.2 — Targeted cross-references (4 metric pairs)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-23-us-flavour-audit-and-reframe" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 2.3 — US-flavour audit and reframe
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-3-deferred-to-v38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase 3 — deferred to v3.8+
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v38" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.8+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v36-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.6 (2026-04-26)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.6 (2026-04-26)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-applicability-on-metric-alignment" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — Applicability-on-metric alignment
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-duplication-review-research-artefact" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — Duplication review (research artefact)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-v35-follow-up-items" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — v3.5 follow-up items
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-d-repo-root-readmemd" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase D — Repo-root README.md
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts-and-audit" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts and audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v37" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.7
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v35-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.5 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.5 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#wave-1-compliancegovernance-core-8-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 1 — Compliance/governance core (8 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wave-2-privacy-chain-completion-4-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Wave 2 — Privacy-chain completion (4 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts-and-audit_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts and audit
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v36" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.6+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v34-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.4 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.4 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#phase-a-audit-side-enforcement" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase A — Audit-side enforcement
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-b-phase-3-tightening-4-operationalproxy-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase B — Phase 3 tightening (4 operational/proxy metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#phase-c-full-tier-1-loose-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Phase C — Full Tier 1 LOOSE classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-cutting_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-cutting
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v35" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.5+
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v33-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.3 (2026-04-25)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.3 (2026-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#outcomes-boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Outcomes Boundary
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#tier-1-definitional-tightening-9-metrics" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Tier 1 Definitional Tightening (9 metrics)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#counts_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Counts
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deferred-to-v34" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Deferred to v3.4
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-hygiene" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#post-release-clarification-2026-04-25" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Post-release clarification (2026-04-25)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v32-2026-04-22" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.2 (2026-04-22)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.2 (2026-04-22)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#parser-and-structured-build-outputs" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Parser and structured build outputs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#documentation-site-mkdocs-material" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Documentation site (MkDocs Material)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#external-coverage-audits" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        External coverage audits
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nhs-test-framework-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        NHS T.E.S.T. Framework mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#roadmap-consolidation" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Roadmap consolidation
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#repository-hygiene_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Repository hygiene
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v31-2026-04-18" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.1 (2026-04-18)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.1 (2026-04-18)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#source-audit-tool" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Source Audit Tool
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#extended-standards-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Extended Standards Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#proposed-new-metrics-not-yet-implemented" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Proposed New Metrics (Not Yet Implemented)
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-responsible-ai-lens-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Responsible AI Lens Document
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v30-unreleased" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.0 (unreleased)
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="v3.0 (unreleased)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#reference-ids" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference IDs
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#applicability-classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Applicability Classification
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-metric-families" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Metric Families
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-sub-clusters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        New Sub-clusters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#standards-mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Standards Mapping
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#count-corrections" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Count Corrections
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#build_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Build
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v20" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v2.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v10" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v1.0
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v382-2026-04-26">v3.8.2 (2026-04-26)<a class="headerlink" href="#v382-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Tooling-only patch — adds reproducible local-development setup and documents the build pipeline.</p>
+<ul>
+<li><strong><code>pyproject.toml</code> + <code>uv.lock</code> committed.</strong> Project now uses <a href="https://docs.astral.sh/uv/">uv</a> for Python environment management. <code>uv sync</code> creates a <code>.venv</code> matching CI exactly. Lockfile is committed for reproducibility.</li>
+<li><strong>CI workflow uses uv.</strong> <code>.github/workflows/site.yml</code> swapped from <code>pip install</code> to <code>uv sync --frozen</code> + <code>uv run</code>. Removes the package-list drift risk between local and CI.</li>
+<li><strong>Local-development docs.</strong> New "Local development — build and serve the site" section in <code>taxonomy/README.md</code> walks through the three-step recipe (<code>uv sync</code> → <code>uv run python taxonomy/build.py</code> → <code>uv run python taxonomy/build_site.py</code> → <code>uv run mkdocs serve</code>) and explains where the <code>dist/</code> files come from. Quick version added to root <code>README.md</code> developer section.</li>
+<li><strong><code>.gitignore</code>:</strong> added <code>.venv/</code>. (<code>dist/</code>, <code>docs/</code>, <code>site/</code> already ignored.)</li>
+</ul>
+<p>No taxonomy content changes; no audit findings; counts unchanged.</p>
+<h2 id="v381-2026-04-26">v3.8.1 (2026-04-26)<a class="headerlink" href="#v381-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Site-only patch release — no taxonomy content changes. Fixes broken cross-page links and download issues surfaced by reviewing the <code>mkdocs serve</code> output:</p>
+<ul>
+<li><strong>Cross-cutting principle pages now in nav</strong>: <code>_outcomes-boundary.md</code> and <code>_calibration-and-context.md</code> were authored as separate source files but never mapped into the rendered site. Every <code>[Calibration &amp; Context principle](calibration-and-context.md)</code> and <code>[Outcomes Boundary](outcomes-boundary.md)</code> link from a group page resolved to nowhere. Mapped both into <code>docs/</code> and added to the nav under "Cross-cutting".</li>
+<li><strong>Two orphan crosscut pages added to nav</strong>: the auto-generated NHSE AVT Registry and NHS T.E.S.T. by-standard pages were rendered but missing from the nav block. Added to "Cross-cut views → By standard".</li>
+<li><strong>Cross-page metric anchor rewriting</strong>: bare <code>#tp-ac-1</code>-style references from one group page to a metric on a different group page are now rewritten to <code>&lt;other-group&gt;.md#tp-ac-1</code> at build time. The catalogue is parsed once and cached; sub-part suffixes (<code>-a</code>, <code>-b</code>) handled. Closes ~50 broken anchors that existed in the source taxonomy but only resolved in the monolith build.</li>
+<li><strong>Sub-part anchor regex</strong>: <code>add_metric_anchors</code> regex extended to capture trailing letter suffixes so <code>### HL.HF-3a</code> lands <code>id="hl-hf-3a"</code> on the rendered page (previously slugged as <code>hl-hf-3</code>).</li>
+<li><strong>External-link rewrites for strict mode</strong>: <code>[CHANGELOG.md](changelog.md)</code> → <code>changelog.md</code> (in-docs), <code>[README.md](https://github.com/danjscho/avt-metrics-taxonomy/blob/main/README.md)</code> → GitHub blob URL, <code>[archive/&lt;file&gt;.md]</code> → GitHub blob URL. <code>mkdocs build --strict</code> was previously failing with three warnings; now passes.</li>
+<li><strong>Live-derived downloads page</strong>: replaced hardcoded <code>v3.1</code> citation example and "214 metrics" / "83 gaps" counts with values pulled from <code>parse.summary()</code> and a single <code>SITE_VERSION</code> constant. Same for the landing page version stamp.</li>
+<li><strong>Stale slug fixes in CHANGELOG</strong>: three legacy anchor refs (<code>#gvcr-6-...</code>, <code>#hlhf-1-...</code>, <code>#gvpd-1-...</code>) updated to current <code>#gv-cr-6</code> / <code>#hl-hf-1</code> / <code>#gv-pd-1</code> form so the cross-page rewrite resolves them to the right metric pages.</li>
+</ul>
+<p>Counts unchanged: 218 metrics, 43/96/79 tier split, 32/42 Tier 1 tightened, 13 frameworks. Audit clean. <code>mkdocs build --strict</code> now exits 0.</p>
+<h2 id="v38-2026-04-26">v3.8 (2026-04-26)<a class="headerlink" href="#v38-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Adds the NHS England AVT Self-Certified Supplier Registry as the <strong>13th mapped framework</strong>, three registry-driven metrics, two new audit checks, and a tightening completion of HL.HF-3a (promoting the HL.HF-3 parent construct to fully tightened). Counts: 215 → <strong>218 metrics</strong>, tier split 43/93/79 → <strong>43/96/79</strong>, <strong>32 of 42 Tier 1 constructs tightened</strong>, 12 → <strong>13 frameworks</strong>.</p>
+<p>Roadmap promotions explicitly deferred — user direction holds all 89 <code>_gaps.md</code> candidates for a dedicated future release after the registry mapping has time to settle and may reframe priorities.</p>
+<h3 id="phase-0-documentation-drift-sweep">Phase 0 — Documentation drift sweep<a class="headerlink" href="#phase-0-documentation-drift-sweep" title="Permanent link">&para;</a></h3>
+<p>User-facing files updated for v3.7-shipped state: <code>README.md</code> (v3.6 → v3.7; 216 → 215; "25 of 43" → "30 of 42 constructs"; tag history; citation example; last-updated stamp), <code>docs/index.md</code> (was wildly stale at v3.1; now v3.7 / 215 with correct framework list), <code>_outcomes-boundary.md</code> (216 → 215), <code>_privacy-data-governance.md</code> GV.PD-8 reference text (v3.6 → v3.7).</p>
+<h3 id="phase-1-audit-tooling-hygiene">Phase 1 — Audit-tooling hygiene<a class="headerlink" href="#phase-1-audit-tooling-hygiene" title="Permanent link">&para;</a></h3>
+<p>Two new <code>audit.py</code> checks closing silent-failure modes:</p>
+<ul>
+<li><strong><code>check_maturity_values</code></strong> — Maturity dimension must hold one of the four canonical enum values (Established / Emerging / Vendor-Proprietary / Proposed/Novel). Pre-v3.8 audit only checked presence; non-canonical values like "Partly Established" silently passed.</li>
+<li><strong><code>check_source_presence</code></strong> — Source row must be non-empty. Pre-v3.8 audit checked row presence but not value content.</li>
+</ul>
+<p>New <code>EXPECTED_MATURITY_VALUES</code> constant. Smoke-tested under fault injection.</p>
+<h3 id="phase-2-nhse-avt-registry-mapping">Phase 2 — NHSE AVT Registry mapping<a class="headerlink" href="#phase-2-nhse-avt-registry-mapping" title="Permanent link">&para;</a></h3>
+<h4 id="phase-21-standards-mapping-section-13th-framework">Phase 2.1 — Standards-mapping section (13th framework)<a class="headerlink" href="#phase-21-standards-mapping-section-13th-framework" title="Permanent link">&para;</a></h4>
+<p>New section in <code>_standards-mapping.md</code> for the NHS England AVT Self-Certified Supplier Registry — live since January 2026 (first cohort 19 vendors, expanded to 23 by April 2026; applications reopen indefinitely from 3 February 2026). Self-certification scheme; NHSE undertakes preliminary completion checks only and does not endorse listed suppliers; evidence published via the National Commercial &amp; Procurement Hub.</p>
+<p>13-row vendor requirements table cross-referencing each registry category to existing framework mappings (DTAC, DSPT, DCB0129, MHRA, NHS T.E.S.T., NHS LLM Framework). 11 of 13 categories already covered by existing metrics; 2 had genuine gaps closed by Phase 2.2; 1 self-certification-integrity gap closed by Phase 2.2; 1 placeholder for AI/LLM-specific sub-criteria (NHSE has not yet published detail).</p>
+<p>Standards-mapping preamble updated: 214 → 215 metrics; twelve → thirteen frameworks. Section positioned immediately after NHS T.E.S.T. since both are AVT-specific procurement tools.</p>
+<h4 id="phase-22-three-new-registry-driven-metrics">Phase 2.2 — Three new registry-driven metrics<a class="headerlink" href="#phase-22-three-new-registry-driven-metrics" title="Permanent link">&para;</a></h4>
+<ul>
+<li><strong>GV.SC-12 Cyber Essentials Plus Certification Status</strong> (Tier 2; Security &amp; Adversarial Robustness; AVT-Contextualised). Closes registry req #5 gap. Three sub-metrics (status / currency / in-scope coverage); annual cadence per IASME scheme; per-sub-processor coverage cross-linked to GV.VT-7. Limitations name the AI-specific threat surface that Cyber Essentials Plus does <strong>not</strong> cover.</li>
+<li><strong>GV.VT-13 Evidence Pack Freshness</strong> (Tier 2; Vendor Transparency &amp; Contractual; AVT-Specific). Closes self-certification-integrity gap. Quarterly Hub-publication review; Fresh / Aging / Stale per-component classification; signed-declaration-provenance check. Cross-linked to GV.CR-4 — VT-13 measures evidence pack quality, CR-4 measures listing.</li>
+<li><strong>GV.VT-14 Indicative Pricing Transparency</strong> (Tier 2; Vendor Transparency &amp; Contractual; AVT-Specific). Closes registry req #12 gap. Three sub-metrics (published / coverage / currency); deployer-side scope-alignment audit; ±20% materiality threshold on contracted use cases.</li>
+</ul>
+<p>All three drafted with the v3.7 tightening pattern from inception (Reference Standard / Operational Specification / Threshold Guidance + ⚠️ Provenance prelude + Calibration &amp; Context cross-reference).</p>
+<p><strong>ID-allocation note:</strong> GV.VT-9/-10/-11/-12 were already reserved by <code>_gaps.md</code> roadmap entries (proposed metrics from MHRA SaMD/AIaMD and NHS T.E.S.T. mappings). New metrics use GV.VT-13/-14 to preserve those slots. New "Reserved IDs (roadmap-allocated)" section added to <code>_retired-ids.md</code>; <code>audit.py</code> refactored (<code>_load_skipped_ids_sections</code>) to load both retired and reserved IDs; manifest output prints them on separate lines.</p>
+<h4 id="phase-23-gvcr-4-tightening">Phase 2.3 — GV.CR-4 tightening<a class="headerlink" href="#phase-23-gvcr-4-tightening" title="Permanent link">&para;</a></h4>
+<p>GV.CR-4 (AVT Supplier Registry Listing Verification) now carries the v3.7 tightening pattern. Three mandatory sub-metrics (listing status / scope alignment / attestation currency); self-certification disclosure mandatory at every verification; multi-product handling; delisting watch.</p>
+<h3 id="phase-3-carry-forwards">Phase 3 — Carry-forwards<a class="headerlink" href="#phase-3-carry-forwards" title="Permanent link">&para;</a></h3>
+<h4 id="phase-31-hlhf-3a-tightening">Phase 3.1 — HL.HF-3a tightening<a class="headerlink" href="#phase-31-hlhf-3a-tightening" title="Permanent link">&para;</a></h4>
+<p>HL.HF-3a Review-Before-Signing Rate was promoted to a Tier 1 sub-part in v3.7 Phase 2.1 but did not yet carry the tightening pattern. v3.8 adds Reference Standard / Operational Specification / Threshold Guidance with mandatory pairing to HL.HF-3b (rubber-stamping detection lives in the conjunction). The parent HL.HF-3 (Inadequate-Review Detection) now classified as <strong>tightened</strong> in the manifest since both sub-parts carry the pattern.</p>
+<h4 id="phase-32-gvtc-1-gvtc-3-redundancy-resolution">Phase 3.2 — GV.TC-1 / GV.TC-3 redundancy resolution<a class="headerlink" href="#phase-32-gvtc-1-gvtc-3-redundancy-resolution" title="Permanent link">&para;</a></h4>
+<p>v3.6 duplication review flagged GV.TC-3 (Refresher &amp; CPD Compliance) as adjacent to GV.TC-1's M4 module after v3.5 tightening. Decision recorded: <strong>option (b) keep both with explicit framing</strong>. New "Relationship to GV.TC-1" section on GV.TC-3 distinguishes:</p>
+<ul>
+<li>GV.TC-1 M4 = process-compliance (per-clinician completion rate against the rolling validity window)</li>
+<li>GV.TC-3 = content-currency (the four update sources: locally discovered failure modes, national safety alerts, model-update implications, new attack vectors)</li>
+</ul>
+<p>Headline reporting should pair the two; either alone is incomplete. No metric retired.</p>
+<h3 id="phase-4-cross-cutting-consistency">Phase 4 — Cross-cutting consistency<a class="headerlink" href="#phase-4-cross-cutting-consistency" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Calibration ↔ Outcomes Boundary cross-references</strong> strengthened. Soft-vs-hard distinction now explicit: Outcomes Boundary is a hard limit (calibration cannot import out-of-scope work); Calibration is a soft instruction (parameter values are local within the in-scope set).</li>
+<li><strong><code>build_site.py</code> parent-handling consistency:</strong> v3.6/v3.7 review found 5 places using <code>parse_all_metrics()</code> without consistent parent filtering. Audited each call site; one (<code>build_crosscuts</code>) was incorrectly including parents in applicability cross-cuts (would land in 'Unclassified'). Now filters to countable_metrics. Three other call sites correctly include parents (cross-reference resolution by name; ref_id → group_file lookup; related-metric chip generation).</li>
+<li><strong><code>_landing_page</code> template fixes:</strong> hardcoded "v3.1", "11 healthcare and AI standards", and applicability counts (48/77/89) replaced with live values derived from <code>parse.summary()</code> and <code>countable_metrics</code>. Prevents v3.7 → v3.8 docs/index.md staleness pattern from recurring.</li>
+</ul>
+<h3 id="counts">Counts<a class="headerlink" href="#counts" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>218 metrics</strong> (was 215; +3 from Phase 2.2)</li>
+<li>Tier split <strong>43 / 96 / 79</strong> (Tier 2 +3 from Phase 2.2; Tier 1 and Tier 3 unchanged)</li>
+<li>20 groups unchanged</li>
+<li><strong>32 of 42 Tier 1 constructs tightened</strong> (was 30/42; HL.HF-3 promoted to tightened via Phase 3.1; GV.CR-4 tightened via Phase 2.3). Individual entries: 33 of 43 (counting sub-parts).</li>
+<li>Applicability: AVT-Specific 48 → <strong>50</strong> (+2 from GV.VT-13/-14); AVT-Contextualised 76 → <strong>77</strong> (+1 from GV.SC-12); General Healthcare AI 91 unchanged.</li>
+<li>Frameworks mapped: 12 → <strong>13</strong>.</li>
+<li>Roadmap unchanged at 89 candidates (no promotions in v3.8).</li>
+</ul>
+<h3 id="deferred-to-v39">Deferred to v3.9+<a class="headerlink" href="#deferred-to-v39" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Big roadmap review</strong> — 89 <code>_gaps.md</code> candidates held for a dedicated future release after the registry mapping settles. Three previously-flagged high-leverage candidates (GV.CR-12 Board-Level AI Governance, GV.SG-19 Systems-Based Incident Analysis, TP.WB-11 PRSB Semantic Completeness) remain queued.</li>
+<li><strong>NHSE registry AI/LLM-specific sub-criteria</strong> — req #13 placeholder; NHSE detail not yet published.</li>
+<li><strong>Remaining 4 of 5 v3.4 deferred-pool metrics</strong> (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13) — bespoke per-metric scoping owed.</li>
+<li><strong>Remaining ~10 cross-reference / framing additions</strong> from the v3.6 duplication review.</li>
+<li><strong>Outcomes layer</strong> stays at ES.ME-8/9.</li>
+</ul>
+<hr />
+<h2 id="v37-2026-04-26">v3.7 (2026-04-26)<a class="headerlink" href="#v37-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Establishes the <strong>Calibration &amp; Context principle</strong> as a first-class taxonomy commitment alongside the Outcomes Boundary; tightens 6 pipeline narrow Tier 1 metrics; restructures 3 redundancy candidates as parent-with-sub-parts; reframes US-flavour metrics with NHS-primary framing. Tightened-count manifest reaches 30/42 (constructs); flat tightened count is 31/43 (sub-parts). Headline metric count 216 → 215 (TP.CC-8 folded).</p>
+<h3 id="phase-0-calibration-context-principle">Phase 0 — Calibration &amp; Context principle<a class="headerlink" href="#phase-0-calibration-context-principle" title="Permanent link">&para;</a></h3>
+<p>New cross-cutting file <code>taxonomy/_calibration-and-context.md</code> parallel to <code>_outcomes-boundary.md</code>. Names the structural commitment that <strong>tier assignments and threshold numbers are calibration starting points, not universal gates</strong>, and provides:</p>
+<ul>
+<li>Six deployment-setting calibration axes: specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume / scale</li>
+<li>Practical guidance on documenting local calibration in the deployer's governance file (taxonomy default + local calibration + axis driving the change + named decision-maker)</li>
+<li>Promotion-up-vs-promotion-down asymmetry — promoting Tier 2/3 to Tier 1 is encouraged with one-line justification; promoting Tier 1 down requires substantive risk assessment</li>
+<li>Explicit boundaries on what calibration is <em>not</em> — not an excuse to disregard Tier 1; not a basis for negotiating contracted thresholds; not a way around the Outcomes Boundary</li>
+</ul>
+<p>Wired into 5 surfacing points so the principle is visible where readers actually look:</p>
+<ul>
+<li><code>_header.md</code> — count narrative names the principle alongside the Outcomes Boundary</li>
+<li><code>_how-to-use.md</code> — "Adapting to Local Context" gets a top-line cross-reference; existing prose stays as practical examples subsidiary to the principle</li>
+<li><code>_tier-1-quick-reference.md</code> — top-of-page ⚠️ callout: "this list is a calibrated starting point, not a fixed checklist"</li>
+<li><code>_outcomes-boundary.md</code> — new "Relationship to the Calibration &amp; Context principle" section explaining the parallel</li>
+<li><code>README.md</code> — new bullet in Quick links; new paragraph in "What this is for"; per-audience reminder sentences</li>
+</ul>
+<h3 id="phase-1-pipeline-narrow-tightening-6-metrics">Phase 1 — Pipeline narrow tightening (6 metrics)<a class="headerlink" href="#phase-1-pipeline-narrow-tightening-6-metrics" title="Permanent link">&para;</a></h3>
+<p>Apply the Reference Standard / Operational Specification / Threshold Guidance pattern (with ⚠️ Provenance prelude) to the six pipeline narrow candidates from the v3.4 classification artefact:</p>
+<ul>
+<li><strong>TP.ASR-12 Hallucination-Under-Noise Rate</strong> — five-category test corpus (silence / music / environmental / non-clinical-speech / clinical-adjacent ambient); per-category asymmetric-failure reporting; severity classification with critical = spurious clinical content</li>
+<li><strong>TP.ASR-13 Numeric Accuracy</strong> — five-sub-type reference standards (integer / decimal / unit / date / range) with explicit canonicalisation rules; dosage accuracy as zero-tolerance critical sub-metric</li>
+<li><strong>TP.WB-2 Integration Error Rate</strong> — three error types (failed / partial / degraded); per-EPR stratification; soft-failure detection method documented at procurement</li>
+<li><strong>TP.WB-3 Field Mapping Accuracy</strong> — per-EPR field-map document mandatory with multi-target rules; type-(iii) silent-safety-bypass classification</li>
+<li><strong>TP.WB-4 Update vs Append Behaviour</strong> — per-EPR (category × update-context) rule grid (5×5 = 25 cells); three critical-failure-mode classes; skip-with-flag pathway mandatory</li>
+<li><strong>TP.SN-20 Uncertainty Marker Preservation</strong> — five-level epistemic ladder (definite / probable / possible / unlikely / negated) plus conditional uncertainty; asymmetric severity weighting (inflation &gt; deflation)</li>
+</ul>
+<p>Tightened count: 25/43 → 31/43 flat sub-parts (30/42 constructs after Phase 2.1 sub-part promotions).</p>
+<h3 id="phase-21-redundancy-as-sub-parts-3-candidates">Phase 2.1 — Redundancy as sub-parts (3 candidates)<a class="headerlink" href="#phase-21-redundancy-as-sub-parts-3-candidates" title="Permanent link">&para;</a></h3>
+<p>Restructure three redundancy pairs from the v3.6 duplication review as <strong>parent + sub-parts</strong> so neither implementation is lost and the relationship is explicit:</p>
+<ul>
+<li><strong>TP.SN-7 Factual Verification</strong> (parent) absorbs:</li>
+<li><strong>TP.SN-7a Confabulation Detection (Support × Severity)</strong> — was TP.SN-7 (Abridge two-axis classifier; vendor-proprietary)</li>
+<li><strong>TP.SN-7b VeriFact Factual Verification</strong> — was TP.SN-8 (Stanford RAG + LLM-as-Judge; open-source, locally deployable)</li>
+<li>The two are complementary instruments for the same construct (factual support); running both provides stronger assurance than either alone.</li>
+<li><strong>TP.SN-9 LLM-Judge Methodology</strong> (parent) absorbs:</li>
+<li><strong>TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)</strong> — was TP.SN-9 (single-judge; 27× speed for continuous evaluation)</li>
+<li><strong>TP.SN-9b MedHELM LLM-Jury</strong> — was TP.SN-10 (ensemble jury; pre-deployment capability gate)</li>
+<li><strong>HL.HF-3 Inadequate-Review Detection</strong> (parent) absorbs:</li>
+<li><strong>HL.HF-3a Review-Before-Signing Rate</strong> — was HL.HF-3 (binary edit/scroll/dwell signal)</li>
+<li><strong>HL.HF-3b Time-to-Sign Distribution</strong> — was HL.HF-4 (TTS distribution; retains v3.4 tightening pattern)</li>
+</ul>
+<p><strong>Locked design decision:</strong> deprecate-don't-renumber. Retired IDs (TP.SN-8, TP.SN-10, HL.HF-4) are not reused — every prior taxonomy version, the standards-mapping file, the v3.4 / v3.6 artefacts, and any external citation references the existing IDs. The integer sequences carry gaps (TP.SN sequence ... -7a, -7b, (gap at -8), -9a, -9b, (gap at -10), -11 ...). New file <code>taxonomy/_retired-ids.md</code> records every retirement with redirect target and reason; the audit reads this registry and tolerates the gaps.</p>
+<p><strong>Audit / parser refactor:</strong></p>
+<ul>
+<li><code>parse.py</code> METRIC_HEADING regex extended to recognise sub-part suffix (e.g. TP.SN-7a)</li>
+<li>New <code>Metric.is_subpart</code> and <code>Metric.parent_ref_id</code> properties</li>
+<li><code>audit.py</code> METRIC_HEADING + REF_ROW regexes extended; new <code>is_parent_metric</code> / <code>parent_id</code> / <code>is_subpart_id</code> helpers; new <code>classify_parent_tightening</code> (parent counts as tightened iff every sub-part is tightened)</li>
+<li><code>check_numbering</code> loads <code>_retired-ids.md</code> and tolerates retired-ID gaps; duplicate detection switched to exact-ref-id rather than base-integer</li>
+<li><code>check_tightening_pattern</code> excludes parent metrics from the partial-state ERROR check (parents carry construct framing in the body, not the tightening pattern)</li>
+<li><code>emit_tightening_manifest</code> uses parent-aware classifier; emits <code>Retired IDs: ...</code> status line</li>
+<li><code>build.py</code> and <code>parse.summary()</code> exclude parents from headline counts via <code>countable_metrics</code> helper</li>
+<li>New audit constants document the count shift</li>
+</ul>
+<h3 id="phase-22-targeted-cross-references-4-metric-pairs">Phase 2.2 — Targeted cross-references (4 metric pairs)<a class="headerlink" href="#phase-22-targeted-cross-references-4-metric-pairs" title="Permanent link">&para;</a></h3>
+<p>Add See-also lines to the highest-value paired metrics from the v3.6 duplication review, in the audit-parser-friendly format (italic <em>See also: NameA, NameB - prose</em>):</p>
+<ul>
+<li>TP.ASR-10 ↔ TP.ASR-11 (calibration vs exposure of ASR confidence)</li>
+<li>GV.OP-3 → GV.OP-1 (record-availability time vs clinician note-effort time)</li>
+<li>GV.SG-15 ↔ GV.SG-16 (incident-correction latency vs SPI-breach escalation latency)</li>
+<li>GV.SG-16 → GV.SG-9 (escalation response time has GV.SG-9 SPI framework as a direct dependency)</li>
+</ul>
+<p>Remaining ~10 cross-reference candidates from the v3.6 duplication review deferred to v3.8+ (recorded in <code>archive/v3.6-duplication-review.md</code> as the remaining set).</p>
+<h3 id="phase-23-us-flavour-audit-and-reframe">Phase 2.3 — US-flavour audit and reframe<a class="headerlink" href="#phase-23-us-flavour-audit-and-reframe" title="Permanent link">&para;</a></h3>
+<p>Sweep across all 216 metrics for US-flavour content. Three findings:</p>
+<ul>
+<li><strong>TP.CC-7</strong> — reframed as <strong>Coding Drift Detection (NHS framing)</strong>; methodology unchanged but framing focus is data-quality corruption (QOF, HES, population-health analytics), not US revenue extraction. US E/M-upcoding literature called out as methodological precedent.</li>
+<li><strong>TP.CC-8 E/M Level Shift Monitoring</strong> — folded into TP.CC-7 (option β from kick-off). KL-divergence and demographic-disaggregation methodology absorbed into TP.CC-7's new Operational Specification. TP.CC-8 retired with redirect to TP.CC-7 in <code>_retired-ids.md</code>.</li>
+<li><strong>TP.CC-10</strong> — reframed as <strong>HRG / Tariff Impact Attribution (NHS framing)</strong>; NHS PbR / HRG context primary, US wRVU / CMS Medicare called out as methodological precedent.</li>
+</ul>
+<p>Other US-flagged grep matches (DSCMS, MIMIC-III, Duke/MedStar citations) were ambient citation references rather than US-flavour content; no change needed.</p>
+<h3 id="phase-3-deferred-to-v38">Phase 3 — deferred to v3.8+<a class="headerlink" href="#phase-3-deferred-to-v38" title="Permanent link">&para;</a></h3>
+<p>The 5 pattern-may-not-fit metrics (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3) need bespoke per-metric scoping that v3.7's already substantial scope didn't accommodate. Deferred to v3.8+ kick-off where each metric will be scoped individually. Note that HL.HF-3 has now been promoted to a parent construct (Phase 2.1) — its v3.7 framing already addresses some of the v3.4-flagged review-quality-bound concerns; v3.8 may find HL.HF-3 partially or fully resolved.</p>
+<h3 id="counts_1">Counts<a class="headerlink" href="#counts_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Headline metric count: 216 → <strong>215</strong> (TP.CC-8 retired and folded; not replaced as a sub-part since the methodology rolled into TP.CC-7)</li>
+<li>Tier split: 43 / 94 / 79 → <strong>43 / 93 / 79</strong> (TP.CC-8 was Tier 2)</li>
+<li>20 groups unchanged</li>
+<li>Clinical Coding group: 12 → 11 metrics</li>
+<li>Applicability: AVT-Specific 48 unchanged; AVT-Contextualised 77 → 76; General Healthcare AI 91 unchanged</li>
+<li>Tightened-count manifest: <strong>30/42</strong> Tier 1 constructs (parents counted as units; HL.HF-3 not-tightened because HL.HF-3a not yet tightened; TP.SN-7 / TP.SN-9 parents not-tightened because they were Tier 3 / Tier 2 with no prior tightening pattern). Sub-part flat count: 31/43 individually tightened.</li>
+</ul>
+<p><code>audit.py</code> baseline updated for new totals; build clean; audit clean. Three audit checks introduced or extended in this release: parser/regex extension for sub-parts; <code>check_numbering</code> retired-ID tolerance; manifest parent-aware classifier.</p>
+<h3 id="cross-cutting">Cross-cutting<a class="headerlink" href="#cross-cutting" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>taxonomy/_header.md</code> v3.6 → v3.7 / 2026-04-26; narrative names the Calibration &amp; Context principle and the six axes</li>
+<li><code>taxonomy/_how-to-use.md</code> Adapting-to-Local-Context section now opens with a cross-reference to the principle file</li>
+<li><code>taxonomy/_summary.md</code>, <code>_contents.md</code>, <code>_applicability.md</code> updated for the new totals (215 / 43-93-79; Clinical Coding 11)</li>
+<li><code>taxonomy/_responsible-ai-lens.md</code>, <code>_calibration-and-context.md</code>, <code>_gaps.md</code> swept for legacy ID references (HL.HF-3 → HL.HF-3a; HL.HF-4 → HL.HF-3b; TP.SN-8 → TP.SN-7b; TP.SN-10 → TP.SN-9b)</li>
+<li><code>taxonomy/_tier-1-quick-reference.md</code> ⚠️ callout naming the Calibration &amp; Context principle</li>
+</ul>
+<h3 id="deferred-to-v38">Deferred to v3.8+<a class="headerlink" href="#deferred-to-v38" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Phase 3 bespoke deferred-pool scoping:</strong> 1-2 of GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (the latter partially addressed by Phase 2.1 parent-construct framing; reassess at kick-off)</li>
+<li><strong>HL.HF-3a tightening</strong> — now a Tier 1 sub-part not yet carrying the pattern; v3.8 should consider tightening it alongside Phase 3</li>
+<li><strong>Remaining ~10 cross-reference / framing additions</strong> from the v3.6 duplication review (see <code>archive/v3.6-duplication-review.md</code>)</li>
+<li><strong>Outcomes layer</strong> stays at ES.ME-8/9</li>
+<li><strong>Roadmap</strong> (<code>_gaps.md</code>) untouched in v3.7 — 89 candidates still queued</li>
+</ul>
+<hr />
+<h2 id="v36-2026-04-26">v3.6 (2026-04-26)<a class="headerlink" href="#v36-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Architectural alignment, duplication-review research artefact, four v3.5 self-review follow-ups, and a repo-root README. No new metrics; no new tightenings. Counts unchanged at 216 metrics, 43 / 94 / 79; tightened count unchanged at 25/43.</p>
+<h3 id="phase-a-applicability-on-metric-alignment">Phase A — Applicability-on-metric alignment<a class="headerlink" href="#phase-a-applicability-on-metric-alignment" title="Permanent link">&para;</a></h3>
+<p>Adds an <strong>Applicability</strong> row to every metric's dimension table (216 metrics across 20 group files), placed immediately after Outcome Type. Values (AVT-Specific / AVT-Contextualised / General Healthcare AI) extracted from the existing <code>_applicability.md</code> classification tables.</p>
+<p><code>taxonomy/parse.py</code> now sources <code>metric.applicability</code> from the dimension table — consistent with every other axis. The legacy <code>parse_applicability</code> lookup against <code>_applicability.md</code> is renamed to <code>parse_applicability_legacy</code> and retained only for audit cross-validation; <code>annotate_applicability()</code> becomes an idempotent no-op safety net for any caller that hasn't migrated.</p>
+<p><code>taxonomy/audit.py</code> gains <code>check_applicability_presence</code> (every metric must carry the row, value must be one of the three valid labels) and reworks <code>check_applicability_totals</code> to derive totals from per-metric dimension-table values (the new source of truth). Cross-validation against <code>_applicability.md</code> declared totals continues as a transition-period WARN.</p>
+<p>The classification rationale prose in <code>_applicability.md</code> stays; per-metric tables become derivable. v3.7+ may move them to script generation.</p>
+<h3 id="phase-b-duplication-review-research-artefact">Phase B — Duplication review (research artefact)<a class="headerlink" href="#phase-b-duplication-review-research-artefact" title="Permanent link">&para;</a></h3>
+<p><a href="https://github.com/danjscho/avt-metrics-taxonomy/blob/main/archive/v3.6-duplication-review.md"><code>archive/v3.6-duplication-review.md</code></a> classifies every within-group metric pair as <code>distinct</code> / <code>overlapping</code> / <code>redundant</code>, with cross-group analysis for surfaced candidates. Frozen at v3.6 ship date; <strong>no metrics changed</strong>.</p>
+<p>Headline findings:</p>
+<ul>
+<li><strong>3 redundancy candidates</strong> flagged for v3.7 review with explicit user sign-off:</li>
+<li><strong>TP.SN-7 Confabulation Detection ↔ TP.SN-8 VeriFact</strong> — same construct (factual verification), different instruments</li>
+<li><strong>TP.SN-9 LLM-as-a-Judge ↔ TP.SN-10 MedHELM LLM-Jury</strong> — same construct (LLM-judge methodology), different ensemble configurations</li>
+<li><strong>HL.HF-3 Review-Before-Signing ↔ HL.HF-4 Time-to-Sign Distribution</strong> — both detect inadequate review (v3.4 already mandates pairing)</li>
+<li>2 adjacent candidates: HL.HF-1 ↔ HL.HF-11 (v3.4 mandate substantially overlaps); GV.TC-1 M4 module ↔ GV.TC-3 (v3.5 tightening overlaps)</li>
+<li>~15 overlapping-but-not-framed pairs flagged for v3.7 lightweight cross-reference additions (See-also, sub-cluster notes)</li>
+<li>Most apparent overlap turned out to be already framed — named families / sub-clusters and v3.3-v3.5 tightenings did substantial framing work; the artefact records this rather than re-flagging</li>
+</ul>
+<p>v3.7 Phase B disposition split into B.1 (redundancy review with user sign-off, expected 0–2 merges) and B.2 (mechanical cross-reference additions).</p>
+<h3 id="phase-c-v35-follow-up-items">Phase C — v3.5 follow-up items<a class="headerlink" href="#phase-c-v35-follow-up-items" title="Permanent link">&para;</a></h3>
+<p><strong>C.1 Cross-reference anchor validation.</strong> Inspection revealed that internal cross-references inside metric bodies were using a collapsed-prefix-with-heading-text-suffix format (e.g. <code>#gvsg-2-model-update-impact-score</code>) when the rendered site uses explicit anchors of form <code>#gv-sg-2</code>. <strong>58 broken cross-references</strong> were silently failing on the site. All mass-fixed. New audit check <code>check_metric_cross_references</code> validates every metric-shaped link against the set of real metric anchors; non-metric anchors (group anchors, section anchors) are skipped. Smoke-tested under fault injection.</p>
+<p>A genuine forward-reference was caught in the process: IO.PX-1 referenced <code>GV.CR-14</code> (a roadmap candidate, not yet a real metric). Replaced with a prose pointer to the roadmap.</p>
+<p><strong>C.2 GV.CR-5 carve-out circularity.</strong> Limitations section now acknowledges that the regional CCIO escalation pathway assumes capacity that the CIO/CCIO guidance v2 (Jan 2026) does not mandate or fund. Where capacity is absent, the metric's escalation route is non-operational; deployers should document the gap and surface via routes other than this metric (e.g. ICS digital risk register).</p>
+<p><strong>C.3 GV.CR-6 30-day window honesty fix.</strong> The Operational Specification's 30-day post-trigger update requirement now explicitly notes that DCB0129 itself does not specify a numeric window — the 30 days is proposed in v3.5 (already covered in Threshold Guidance Provenance), not a regulatory expectation.</p>
+<p><strong>C.4 GV.PD-8 survey-instrument honesty.</strong> The reference-standard sub-block now explicitly states no validated AVT-specific patient-comprehension instrument exists at the time of v3.6, with two named options: (a) adapt the closest healthcare-IT-comprehension instrument with documented adaptation, or (b) commission a deployer-defined survey reviewed by the IG team mapping to GV.CR-2 content elements.</p>
+<h3 id="phase-d-repo-root-readmemd">Phase D — Repo-root README.md<a class="headerlink" href="#phase-d-repo-root-readmemd" title="Permanent link">&para;</a></h3>
+<p>New <a href="https://github.com/danjscho/avt-metrics-taxonomy/blob/main/README.md"><code>README.md</code></a> at the repository root for the GitHub-arrival experience. Per-audience entry points (procurement officer, vendor, developer, researcher); quick links to the published site, monolithic markdown, structured data, and the Outcomes Boundary; status / version block with full tag history; citation guidance with explicit draft warning; contributing pointer (GitHub issues until a CONTRIBUTING file exists); licence TBD with explicit "draft work shared for early feedback" framing pending a licence declaration.</p>
+<h3 id="counts-and-audit">Counts and audit<a class="headerlink" href="#counts-and-audit" title="Permanent link">&para;</a></h3>
+<ul>
+<li>216 metrics; 43 / 94 / 79 tier split; <strong>25 / 43</strong> Tier 1 metrics tightened — all unchanged from v3.5.</li>
+<li>Three audit checks introduced or reworked: <code>check_applicability_presence</code> (new), <code>check_applicability_totals</code> (rewritten to derive from per-metric values), <code>check_metric_cross_references</code> (new).</li>
+<li>Build clean; audit clean. All four checks fire under fault injection.</li>
+</ul>
+<h3 id="cross-cutting_1">Cross-cutting<a class="headerlink" href="#cross-cutting_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>taxonomy/_header.md</code> bumped to v3.6 / 2026-04-26 with narrative covering applicability alignment + duplication review + cross-reference audit</li>
+<li><code>taxonomy/_how-to-use.md</code> adds an Applicability dimension paragraph naming the three labels and their counts (48 / 77 / 91)</li>
+</ul>
+<h3 id="deferred-to-v37">Deferred to v3.7<a class="headerlink" href="#deferred-to-v37" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Phase A — Pipeline narrow tightening (6 metrics):</strong> TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20 → would reach 31/43 tightened</li>
+<li><strong>Phase B — Action on duplication-review findings:</strong> B.1 redundancy review with user sign-off (expected 0–2 merges); B.2 mechanical cross-reference additions to the ~15 overlapping-but-not-framed pairs</li>
+<li><strong>Phase C — Bespoke deferred-pool scoping:</strong> scope and progress 1–2 of GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (each needs bespoke shape; standard pattern is the wrong fit for some)</li>
+<li>8 TIGHT metrics will not be tightened (pattern would be structural cleanup, not substantive)</li>
+<li>Outcomes layer stays at ES.ME-8/9; the <a href="../outcomes-boundary/">Outcomes Boundary</a> position holds</li>
+<li>Roadmap (<code>_gaps.md</code>) untouched in v3.6 — 89 candidates still queued</li>
+</ul>
+<hr />
+<h2 id="v35-2026-04-25">v3.5 (2026-04-25)<a class="headerlink" href="#v35-2026-04-25" title="Permanent link">&para;</a></h2>
+<p>Tightens 12 additional Tier 1 metrics — the two highest-value waves identified in the v3.4 classification artefact. Tightened count: <strong>13/43 → 25/43</strong>. No new metrics; counts unchanged at 216.</p>
+<h3 id="wave-1-compliancegovernance-core-8-metrics">Wave 1 — Compliance/governance core (8 metrics)<a class="headerlink" href="#wave-1-compliancegovernance-core-8-metrics" title="Permanent link">&para;</a></h3>
+<p>The metrics a procurement officer reads first; loose definitions here had the highest practical cost for vendor-comparable evidence:</p>
+<ul>
+<li><strong>GV.CR-5 ICB Engagement Documentation</strong> — three sub-metrics (notification sent / acknowledged / conditions on file); latency reporting; carve-out logging with regional CCIO escalation after two unanswered notifications.</li>
+<li><strong>GV.CR-6 Clinical Safety Case Completeness</strong> — per-DCB0129-section reporting (8 sections); named CSO author requirement; differentiated currency windows (sections 2-5 within 30 days of trigger event; sections 1, 6, 8 annual; section 7 live-current); 24-month external-review cadence.</li>
+<li><strong>GV.CR-7 DPIA Template Completion Rate</strong> — per-section + DPO sign-off binary; significant-change definition mandatory; reconciliation against <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6 Clinical Safety Case</a> hazard list — DPIA risks must be cross-mappable to safety-case hazards.</li>
+<li><strong>GV.TC-1 Clinician Training Completion Rate</strong> — four-module enumeration (M1 vendor / M2 local induction / M3 failure-mode awareness / M4 refresher) with per-module validity periods; engagement-time floors (30/20/15 min) prevent click-through completion; M3 as safety-critical pause trigger.</li>
+<li><strong>GV.VT-1 Model Change Notification Compliance</strong> — severity-classified lead times (major ≥ 14d / moderate ≥ 7d / minor ≥ 0d); five-element notification content schema; MHRA PMS substantial-change cross-link with separate compliance failure for missing flag.</li>
+<li><strong>GV.VT-5 Incident Disclosure Compliance</strong> — severity-driven timelines (24h critical / 72h high / 7d medium / 30d low); rebuttable knowing-time clause; cross-deployer scope mandated as fifth content element (most commonly omitted in vendor-frame disclosures).</li>
+<li><strong>GV.VT-7 Sub-Processor Transparency</strong> — seven-source discovered-set framework (cloud / model providers / annotation services / contractors / backups / sub-sub-processors); materiality classification; vendor self-cert insufficient — independent verification step required.</li>
+<li><strong>GV.SG-14 Near-Miss Reporting Rate</strong> — two-source construction (active reports + inferred via <a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> safety-critical edit detection); active-to-inferred ratio as safety-culture diagnostic; pause when LFPSE rate rises but near-miss flat or falling.</li>
+</ul>
+<h3 id="wave-2-privacy-chain-completion-4-metrics">Wave 2 — Privacy-chain completion (4 metrics)<a class="headerlink" href="#wave-2-privacy-chain-completion-4-metrics" title="Permanent link">&para;</a></h3>
+<p>Closes the v3.3 storage-location enumeration cascade and completes the privacy lifecycle (deletion → consent → access → erasure):</p>
+<ul>
+<li><strong>GV.PD-2 Audio Time-to-Deletion</strong> — inherits storage-location enumeration from <a href="../groups/privacy-data-governance/#gv-pd-1">GV.PD-1</a>, making the v3.3 cascade explicit; sign-off as <code>t_consultation_end</code> per NHSE IG; carve-out logging tracked separately from standard distribution.</li>
+<li><strong>GV.PD-8 Consent Verification Accuracy</strong> — gap (process compliance minus understanding rate) as the headline metric, not either rate alone; survey instrument declaration mandatory; ≥ 30 patients/quarter floor; demographic disaggregation reveals where understanding fails.</li>
+<li><strong>GV.PD-10 Subject Access Request Fulfilment</strong> — three sub-metrics (locate / export / timeliness) reported separately; <strong>synthetic SAR test mandatory pre-deployment</strong>, exercising every storage location and sub-processor; extension-pattern alert detects systematic locate/export failure.</li>
+<li><strong>GV.PD-11 Right to Erasure Compliance</strong> — three-class outcome distinction (deletable / anonymisable / technically-irreversible) operationalises the existing observation that some erasure cannot be fulfilled even in principle; privacy-notice cross-check; Article 17 individual-care exemption scope explicitly handled per NHSE IG March 2026.</li>
+</ul>
+<h3 id="counts-and-audit_1">Counts and audit<a class="headerlink" href="#counts-and-audit_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li>216 metrics; 43 / 94 / 79 tier split (unchanged — v3.5 is structural like v3.4).</li>
+<li>Tightening status now: <strong>25/43 Tier 1 metrics tightened</strong>.</li>
+<li>Audit clean; both v3.4 enforcement checks (<code>tightening-pattern-presence</code>, <code>threshold-provenance-presence</code>) pass on all 25 tightened metrics.</li>
+</ul>
+<h3 id="cross-cutting_2">Cross-cutting<a class="headerlink" href="#cross-cutting_2" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>taxonomy/_header.md</code> bumped to v3.5 / 2026-04-25 with the updated tightened-count</li>
+<li><code>taxonomy/_how-to-use.md</code> updated to list 25 tightened metrics and to repoint v3.6+ scope to the audit output (the 18 remaining Tier 1 metrics: 8 TIGHT, 6 pipeline candidates, 5 deferred)</li>
+</ul>
+<h3 id="deferred-to-v36">Deferred to v3.6+<a class="headerlink" href="#deferred-to-v36" title="Permanent link">&para;</a></h3>
+<ul>
+<li>6 pipeline narrow tightening candidates: TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20</li>
+<li>5 pattern-may-not-fit deferred: GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (each has a structural feature that means the standard pattern is the wrong shape — bespoke per-metric scoping needed)</li>
+<li>8 TIGHT metrics will not be tightened (pattern would be structural cleanup, not substantive)</li>
+<li>Outcomes layer stays at ES.ME-8/9; the <a href="../outcomes-boundary/">Outcomes Boundary</a> position holds</li>
+<li>Roadmap (<code>_gaps.md</code>) untouched in v3.5 — 89 candidates still queued</li>
+</ul>
+<hr />
+<h2 id="v34-2026-04-25">v3.4 (2026-04-25)<a class="headerlink" href="#v34-2026-04-25" title="Permanent link">&para;</a></h2>
+<p>Three deliverables completing the v3.3 tightening work and making the conventions machine-enforced. No new metrics, no new gap-roadmap candidates. Counts unchanged: 216 metrics, tier split 43 / 94 / 79.</p>
+<h3 id="phase-a-audit-side-enforcement">Phase A — Audit-side enforcement<a class="headerlink" href="#phase-a-audit-side-enforcement" title="Permanent link">&para;</a></h3>
+<p>Two new checks in <code>taxonomy/audit.py</code> promote the v3.3 conventions from documentation to machine-enforced:</p>
+<ul>
+<li><strong><code>check_tightening_pattern</code></strong> — every Tier 1 metric must carry all three tightening sub-blocks (<code>Reference Standard</code>, <code>Operational Specification</code>, <code>Threshold Guidance</code>) or none of them. Mixed (partial) state is an ERROR. Preserves cohort integrity: a metric is either tightened or not, no half-states.</li>
+<li><strong><code>check_threshold_provenance</code></strong> — every metric classified as 'tightened' must open its Threshold Guidance block with a <code>⚠️ **Provenance**</code> line within the first 400 characters. Closes the honesty gap surfaced by the v3.3 self-review.</li>
+</ul>
+<p><code>audit.py</code> also emits a Tier 1 tightening status manifest after the tier counts:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Tier 1 tightening status: 13/43 tightened.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>  Tightened: GV.CR-1, GV.CR-2, GV.OP-1, GV.PD-1, GV.PD-3, GV.SG-1,
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>             HL.HF-1, HL.HF-4, IO.PX-1, TP.SN-15, TP.SN-5, TP.SN-6, TP.WB-1
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>  Not tightened: [30 metric IDs]
+</code></pre></div>
+<p>v3.5+ scope is now derived from this output rather than from CHANGELOG prose. Future contributors see the deferred set in the audit log, not buried in a release note.</p>
+<p>The Metric dataclass gained a <code>body</code> field (heading-to-next-heading content) so sub-block detection runs on parsed bodies rather than re-reading files.</p>
+<h3 id="phase-b-phase-3-tightening-4-operationalproxy-metrics">Phase B — Phase 3 tightening (4 operational/proxy metrics)<a class="headerlink" href="#phase-b-phase-3-tightening-4-operationalproxy-metrics" title="Permanent link">&para;</a></h3>
+<p>Apply the Reference Standard / Operational Specification / Threshold Guidance pattern (with ⚠️ Provenance prelude written in from the start) to the operational/proxy class — different shape from the safety class (Phase B.1, v3.3) and compliance class (Phase B.2, v3.3):</p>
+<ul>
+<li><strong>GV.OP-1 Documentation Time per Consultation</strong> — defines doc start/end timestamps; in-consultation vs out-of-consultation breakdown mandatory; pairing with quality companion metric (PDSQI-9 / hallucination rate) mandatory; pause trigger when time-saved positive but quality deteriorates or burden displaces to after-hours.</li>
+<li><strong>HL.HF-4 Time-to-Sign Distribution</strong> — TTS_norm distribution (P5 / P10 / median / P90) per clinician mandatory; pairing with HL.HF-1 substantive edit rate mandatory (rubber-stamping signal lives in the conjunction); per-clinician baseline; note-complexity stratification.</li>
+<li><strong>IO.PX-1 Patient Opt-Out Rate</strong> — distinguishes registration-level from per-encounter opt-out (cross-link to GV.CR-1); demographic disaggregation mandatory with χ² + Holm correction; trajectory + disparity-ratio thresholds; the disparities are the metric's value, not the absolute rate.</li>
+<li><strong>GV.SG-1 Model Version Tracking</strong> — six-component versioning mandatory (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes); change-event log structure mandatory; deployer-notification latency monitored; MHRA PMS substantial-change cross-link.</li>
+</ul>
+<p>Tightened count: 9/43 → <strong>13/43</strong>.</p>
+<h3 id="phase-c-full-tier-1-loose-classification">Phase C — Full Tier 1 LOOSE classification<a class="headerlink" href="#phase-c-full-tier-1-loose-classification" title="Permanent link">&para;</a></h3>
+<p><code>archive/v3.3-tier1-classification.md</code> (new) classifies every Tier 1 metric not yet tightened as <strong>TIGHT</strong> (8), <strong>LOOSE</strong> (18), or <strong>SURROGATE-and-LOOSE</strong> (3, also LOOSE) with one-sentence per-metric reasoning. The artefact is frozen at v3.4 ship date and is the input to v3.5+ scoping.</p>
+<p>Suggested v3.5+ waves identified in the artefact:</p>
+<ul>
+<li><strong>v3.5 Wave 1 (8 compliance/governance core metrics):</strong> GV.CR-5, GV.CR-6, GV.CR-7, GV.TC-1, GV.VT-1, GV.VT-5, GV.VT-7, GV.SG-14</li>
+<li><strong>v3.5 Wave 2 (4 privacy-chain completion metrics):</strong> GV.PD-2, GV.PD-8, GV.PD-10, GV.PD-11</li>
+<li><strong>v3.6+ pipeline narrow tightening (6 metrics):</strong> TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20</li>
+<li><strong>Deferred / pattern-may-not-fit (5 metrics):</strong> GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3</li>
+</ul>
+<p>The v3.4 release does <strong>not</strong> promote these — it stops at the audit boundary. v3.5 will pick the wave it wants based on stakeholder input.</p>
+<h3 id="cross-cutting_3">Cross-cutting<a class="headerlink" href="#cross-cutting_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>taxonomy/_header.md</code> bumped to v3.4 / 2026-04-25 with reference to the audit-side enforcement and the published classification</li>
+<li><code>taxonomy/_how-to-use.md</code> updated to list 13 tightened metrics and to point readers at <code>audit.py</code> output for current status rather than the prose</li>
+<li>8 of 30 not-yet-tightened Tier 1 metrics are classified TIGHT and explicitly will not be tightened — the pattern is structural, not substantive, for these</li>
+</ul>
+<h3 id="counts_2">Counts<a class="headerlink" href="#counts_2" title="Permanent link">&para;</a></h3>
+<p>Unchanged: 216 metrics, 43 / 94 / 79 tier split, 20 groups. v3.4 is structural, not additive.</p>
+<p><code>audit.py</code> baseline updated; build clean; audit clean (both new checks pass on the 13 tightened metrics).</p>
+<h3 id="deferred-to-v35">Deferred to v3.5+<a class="headerlink" href="#deferred-to-v35" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tightening of remaining LOOSE metrics per the classification waves above</li>
+<li>Outcomes layer stays at ES.ME-8/9; the <a href="../outcomes-boundary/">Outcomes Boundary</a> position holds</li>
+<li>Roadmap (<code>_gaps.md</code>) untouched in v3.4 — 89 candidates still queued</li>
+</ul>
+<hr />
+<h2 id="v33-2026-04-25">v3.3 (2026-04-25)<a class="headerlink" href="#v33-2026-04-25" title="Permanent link">&para;</a></h2>
+<p>Two structural changes addressing critique findings on v3.2: an explicit outcomes boundary and a definitional-tightening pattern applied to nine Tier 1 metrics. No new gap-roadmap candidates are promoted in this release.</p>
+<h3 id="outcomes-boundary">Outcomes Boundary<a class="headerlink" href="#outcomes-boundary" title="Permanent link">&para;</a></h3>
+<p>New cross-cutting file <code>taxonomy/_outcomes-boundary.md</code> makes the scope of the taxonomy explicit:</p>
+<ul>
+<li><strong>What this taxonomy assures:</strong> technical fidelity, documentation quality, clinician oversight, equitable performance, hazard identification, governance compliance, measurement quality. Process, structure, and proximal-outcome measures.</li>
+<li><strong>What it does not:</strong> clinical-outcome validation - whether AVT changes diagnostic accuracy, patient safety incident rates, downstream care quality, or clinical reasoning. That work belongs to national research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C), and vendors pursuing formal clinical claims.</li>
+<li><strong>Why drawn explicitly:</strong> to prevent the failure mode where passing every metric in a deployment-assurance taxonomy is read as evidence of clinical benefit.</li>
+</ul>
+<p>Two new Tier 2 meta-metrics in Part F operationalise the boundary at procurement:</p>
+<ul>
+<li><strong>ES.ME-8 Outcome Evidence Commitment Status</strong> - 4-check composite for whether vendor and deployer have committed to outcome evaluation (registered protocol or NHS pilot; PMS plan naming patient-outcome signals distinct from technical-performance signals; baseline data infrastructure; contractual commitment to share results).</li>
+<li><strong>ES.ME-9 Causal Model Operationalisation</strong> - 4-stage check that each vendor outcome claim is backed by a documented causal chain from proximal performance to distal outcome, with cited mechanisms and named confounders.</li>
+</ul>
+<p>ES.ME-1 Proximal vs Distal Outcome Distinction prose updated to point at ES.ME-8/9 as making its "burden of proof on vendors" requirement operational. T.E.S.T. Section B Clinical Effectiveness mapping row updated to reference ES.ME-8 as the closest taxonomy proxy for the 50-point RCT-validation item (commitment, not the evidence itself).</p>
+<h3 id="tier-1-definitional-tightening-9-metrics">Tier 1 Definitional Tightening (9 metrics)<a class="headerlink" href="#tier-1-definitional-tightening-9-metrics" title="Permanent link">&para;</a></h3>
+<p>Adds three structured sub-blocks to nine Tier 1 metrics where loose definitions previously allowed vendor-selective compliance and non-comparable evidence:</p>
+<ul>
+<li><strong>Reference Standard</strong> - what counts as ground truth, with inter-rater reliability target where applicable</li>
+<li><strong>Operational Specification</strong> - measurement window, population, mandatory breakdowns (subtype, severity, category, per-storage-location, per-clinician), aggregation rule</li>
+<li><strong>Threshold Guidance</strong> - pre-deployment gate, continuous-monitoring alert, pause / escalation trigger</li>
+</ul>
+<p>The pattern lifts existing-but-buried content (Tier B underspecification warnings, Limitations, Novel Thinking) into discoverable structured sub-blocks. No new measurement science is invented; existing knowledge is made actionable.</p>
+<p><strong>Phase 1 - five safety-critical metrics:</strong>
+- TP.SN-5 Hallucination Rate (CREOLA subtype mandatory; weighted aggregate HR_w; gate ≤ 2 %, pause ≥ 5 % sustained)
+- TP.SN-6 Omission Rate (per-CREOLA-category breakdown mandatory; allergies / red-flags / dose / safety-netting critical by default)
+- TP.SN-15 Negation Handling Accuracy (negation-type scope explicit; ≥ 200-sentence adversarial test set; allergy-category zero-failure gate)
+- HL.HF-1 Edit Rate (substantive vs stylistic distinction; per-clinician baseline mandatory; safety-critical edit rate as separate leading indicator)
+- TP.WB-1 Write-back Fidelity (structural / semantic / no-addition decomposition; per-EPR ≥ 200-case test corpus; type-(iii) hallucination into safety-critical fields as binary defect)</p>
+<p><strong>Phase 2 - four compliance/consent metrics:</strong>
+- GV.PD-1 Audio Retention Compliance (per-storage-location reporting; cryptographic erasure not logical deletion; independent verification annual minimum)
+- GV.PD-3 Transcript Retention Compliance (purpose enumeration mandatory; "quality monitoring" decomposition required; transcript derivatives tracked under same chain)
+- GV.CR-1 Patient Dissent Recording Rate (dissent-event scope explicit; coverage-check sampling required when recorded rate implausibly low; per-clinician disaggregation)
+- GV.CR-2 Verbal Notification Compliance (four content elements mandatory; method declaration mandatory; ≥ 30 patients/recordings per clinician per quarter)</p>
+<p><code>taxonomy/_how-to-use.md</code> adds a paragraph explaining the sub-block structure to readers and lists the nine tightened metrics.</p>
+<h3 id="counts_3">Counts<a class="headerlink" href="#counts_3" title="Permanent link">&para;</a></h3>
+<ul>
+<li>214 → 216 metrics (+2 from ES.ME-8/9)</li>
+<li>Tier split 43 / 92 / 79 → <strong>43 / 94 / 79</strong></li>
+<li>20 groups unchanged</li>
+<li>Meta-evaluation group: 7 → 9 metrics</li>
+<li>Applicability: AVT-Specific 48, AVT-Contextualised 77, General Healthcare AI 89 → 91, total 216</li>
+</ul>
+<p><code>audit.py</code> baseline updated; build clean; audit clean.</p>
+<h3 id="deferred-to-v34">Deferred to v3.4<a class="headerlink" href="#deferred-to-v34" title="Permanent link">&para;</a></h3>
+<p>The v3.3 critique work identified ~30 of 43 Tier 1 metrics as LOOSE or SURROGATE (definitional rigour audit, sampled 20 of 43). v3.3 tightens 9 of those; the remainder are deferred:</p>
+<ul>
+<li><strong>Phase 3 - operational/proxy (4 metrics):</strong> GV.OP-1 Documentation Time per Consultation, HL.HF-4 Time-to-Sign Distribution, IO.PX-1 Patient Opt-Out Rate, GV.SG-1 Model Version Tracking</li>
+<li><strong>Remaining LOOSE Tier 1 pool (~17 metrics):</strong> scope to be confirmed in v3.4 via a full rather than sampled audit</li>
+<li><strong>Outcomes layer:</strong> explicitly <em>not</em> extended beyond ES.ME-8/9; the <a href="../outcomes-boundary/">Outcomes Boundary</a> position stands</li>
+<li><strong>Roadmap:</strong> 89 candidates remain in <code>_gaps.md</code>; v3.3 promotes none</li>
+</ul>
+<h3 id="repository-hygiene">Repository hygiene<a class="headerlink" href="#repository-hygiene" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>taxonomy/_header.md</code> updated to v3.3 / 2026-04-25 with reference to the new structural elements</li>
+<li>Plan file <code>plan-v3.3.md</code> lives at repo root during the release; will move to <code>archive/</code> on completion per the established convention</li>
+</ul>
+<h3 id="post-release-clarification-2026-04-25">Post-release clarification (2026-04-25)<a class="headerlink" href="#post-release-clarification-2026-04-25" title="Permanent link">&para;</a></h3>
+<p>Self-review of v3.3 surfaced an honesty gap in the Threshold Guidance blocks: some numerical thresholds derive from cited sources (e.g. NAS Day Zero SPI, UK GDPR storage limitation, NHSE IG guidance), but others were proposed during v3.3 as starting points without external validation. The original blocks did not consistently distinguish the two, risking over-trust by procurement officers reading the numbers as authoritative.</p>
+<p>A ⚠️ <strong>Provenance</strong> prelude was added to each of the nine Threshold Guidance blocks naming which thresholds are cited and which are proposed-as-starting-points, and stating that all numbers require local calibration before contractual use. <code>_how-to-use.md</code> updated to explain the distinction. No metric IDs, dimensions, or substantive content changed.</p>
+<p>This clarification is a small follow-up to v3.3 rather than a new tag. v3.4 will add an <code>audit.py</code> check that flags Threshold Guidance blocks missing the Provenance prelude, so the convention becomes machine-enforced.</p>
+<hr />
+<h2 id="v32-2026-04-22">v3.2 (2026-04-22)<a class="headerlink" href="#v32-2026-04-22" title="Permanent link">&para;</a></h2>
+<p>No new metrics in the taxonomy (still 214 across 20 groups; tier split unchanged 43/92/79). This release restructures the repository around a build pipeline, publishes a documentation site, extends coverage with two external audits and a second AVT-specific framework, and consolidates the roadmap.</p>
+<h3 id="parser-and-structured-build-outputs">Parser and structured build outputs<a class="headerlink" href="#parser-and-structured-build-outputs" title="Permanent link">&para;</a></h3>
+<p>New <code>taxonomy/parse.py</code> parses every metric from its dimension table (no frontmatter migration needed — derive, don't duplicate). <code>build.py</code> now emits to <code>dist/</code>:</p>
+<ul>
+<li><code>metrics.csv</code> - 214 flat rows for spreadsheet / BI use</li>
+<li><code>metrics.json</code> - structured catalogue</li>
+<li><code>gaps.json</code> - 89 roadmap candidates with origin tags</li>
+<li><code>summary.json</code> - headline counts</li>
+</ul>
+<p>Audit tool (<code>taxonomy/audit.py</code>) kept green across the whole release.</p>
+<h3 id="documentation-site-mkdocs-material">Documentation site (MkDocs Material)<a class="headerlink" href="#documentation-site-mkdocs-material" title="Permanent link">&para;</a></h3>
+<p>Published as GitHub Pages. Key features:</p>
+<ul>
+<li>One page per group (20 group pages), metrics as anchors</li>
+<li>Tier 1 Quick Reference auto-generated from source</li>
+<li>Per-standard cross-cut pages (one per framework)</li>
+<li>Related-metrics footer on every group page</li>
+<li>Glossary, RSS feed, downloads page (CSV/JSON)</li>
+<li><code>mike</code> version switcher; GitHub Actions deploy</li>
+<li>Site polish: draft banner, Part kicker, applicability quick access, collapsible icon legend, consistent header shape, em-dash sweep</li>
+</ul>
+<h3 id="external-coverage-audits">External coverage audits<a class="headerlink" href="#external-coverage-audits" title="Permanent link">&para;</a></h3>
+<p>Two external-source coverage audits landed alongside the existing 12-framework standards mapping:</p>
+<ul>
+<li><strong>RSET external review</strong> (Nuffield Trust AVT taxonomy, Feb 2026) — 9 accepted, 4 deferred</li>
+<li><strong>NHSE IG alignment audit</strong> (Mar 2026) — 4 accepted</li>
+</ul>
+<p>Audits archived under <code>archive/</code>; findings consolidated into the single roadmap file.</p>
+<h3 id="nhs-test-framework-mapping">NHS T.E.S.T. Framework mapping<a class="headerlink" href="#nhs-test-framework-mapping" title="Permanent link">&para;</a></h3>
+<p>Added the NHS T.E.S.T. (Technology Evaluation Safety Test) framework to the standards mapping — the AVT-specific ICS-level procurement assurance framework from GOSH/NHS London/C&amp;W/UCL (v11.17625SS, June 2025). Brings total mapped frameworks to twelve.</p>
+<ul>
+<li><strong>Section A</strong> (platform assurance, 22 binary requirements): 18 directly or strongly covered by existing metrics; 3 are process/product-feature criteria (not metric-shaped); 1 novel gap (translation)</li>
+<li><strong>Section B</strong> (benefits assessment, 420 points across 12 domains): all 12 domains have at least partial coverage</li>
+<li><strong>6 novel gap candidates added</strong> to the roadmap: TP.SN-26 (AI Translation Accuracy), GV.PD-15 (Training Data Anonymisation Provenance), GV.OP-13 (Total Cost of Ownership), GV.VT-11 (Multi-Specialty Validation Coverage), IO.FE-9 (Virtual-Care Modality Stratified Performance), GV.VT-12 (Sovereign AI Disclosure)</li>
+<li>Authoritative PDF stored under <code>reference-docs/</code> for offline reference</li>
+</ul>
+<p>Strongest alignment: T.E.S.T. requirement 18 names three exact taxonomy metrics (hallucination rate, omission rate, WER); requirement 22 (drift) maps directly to the Longitudinal Drift sub-cluster.</p>
+<h3 id="roadmap-consolidation">Roadmap consolidation<a class="headerlink" href="#roadmap-consolidation" title="Permanent link">&para;</a></h3>
+<p>All gap analyses unified into <code>taxonomy/_gaps.md</code>:</p>
+<ul>
+<li>Single source of truth across five origins: RSET, NHSE IG, Standards Mapping, NHS T.E.S.T., Responsible AI Lens</li>
+<li>89 total candidates (85 accepted/proposed + 4 deferred with preserved reasoning)</li>
+<li>Entry states (<code>proposed</code> / <code>accepted</code> / <code>deferred</code> / <code>rejected</code>) so dismissals are durable</li>
+<li>Parsed into <code>gaps.json</code> by origin for programmatic use</li>
+<li>Prose gap sections in <code>_standards-mapping.md</code> and <code>_responsible-ai-lens.md</code> now point here instead of duplicating content</li>
+</ul>
+<h3 id="repository-hygiene_1">Repository hygiene<a class="headerlink" href="#repository-hygiene_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>.gitignore</code>: added <code>.claude/</code> (local workspace) and the unused 5MB GOSH AAI report; build artefacts (<code>dist/</code>, <code>docs/</code>, <code>site/</code>) already ignored</li>
+<li><code>METHODOLOGY.md</code>: reusable recipe for applying this taxonomy structure to new assurance domains</li>
+<li><code>reference-docs/</code>: new location for authoritative source PDFs cited by mappings</li>
+</ul>
+<hr />
+<h2 id="v31-2026-04-18">v3.1 (2026-04-18)<a class="headerlink" href="#v31-2026-04-18" title="Permanent link">&para;</a></h2>
+<h3 id="source-audit-tool">Source Audit Tool<a class="headerlink" href="#source-audit-tool" title="Permanent link">&para;</a></h3>
+<p>New <code>taxonomy/audit.py</code> - parses every group file and verifies:</p>
+<ul>
+<li>Every metric heading has a matching <strong>Reference</strong> row in its dimension table</li>
+<li>Heading tier icon matches the <strong>Priority Tier</strong> row</li>
+<li>Reference-ID prefix matches the group file (e.g. <code>TP.AC-*</code> only in <code>audio-capture.md</code>)</li>
+<li>No duplicate reference IDs; numbering is contiguous per group</li>
+<li>Tier totals reconcile with <code>_summary.md</code> declarations (43 / 92 / 79)</li>
+<li>214 total metrics across 20 group files</li>
+<li><code>_applicability.md</code> counts sum to 214 (48 + 77 + 89)</li>
+<li>Every metric listed in <code>_tier-1-quick-reference.md</code> exists and is still Tier 1</li>
+<li>"See also" cross-references resolve to a known metric (by name or abbreviation)</li>
+<li>All 8 required dimensions present on every metric</li>
+</ul>
+<p>Baseline audit at v3.1 tag: <strong>zero findings</strong>. Run <code>python taxonomy/audit.py</code> before any future content change.</p>
+<h3 id="extended-standards-mapping">Extended Standards Mapping<a class="headerlink" href="#extended-standards-mapping" title="Permanent link">&para;</a></h3>
+<p>Added assertion-level or higher-level mapping for seven additional NHS/UK standards. Mapping only - no new metrics added to taxonomy; gaps flagged for future consideration.</p>
+<p><strong>Assertion-level (formal standards):</strong>
+- <strong>MHRA SaMD / AIaMD</strong> - Change Programme workstreams (WP1–WP11), SI 2024 No. 1368 Post-Market Surveillance (in force June 2025), Transparency Guiding Principles (June 2024), GMLP 10 principles (Oct 2021)
+- <strong>NICE Evidence Standards Framework for DHTs (ECD7)</strong> - all 21 numbered standards across 5 lifecycle areas, Tier A/B/C classification, AI-specific provisions (Standards 4, 5, 6, 15, 16)
+- <strong>FHIR UK Core / INTEROPen</strong> - STU1/STU2/STU3 release status, per-profile conformance, UK-specific extensions (NHS Number verification, Ethnic Category, etc.), refinement of TP.WB-6 to mean UK Core not generic FHIR R4</p>
+<p><strong>Higher-level summary:</strong>
+- <strong>CQC Assessment for AI</strong> - GP Mythbuster 109 baseline assertions, Five Key Questions (Safe/Effective/Caring/Responsive/Well-led), CSO expectations (flagged as emerging 2025–26)
+- <strong>Patient Safety Incident Response Framework (PSIRF)</strong> - four PSIRF principles, response types (AAR, PSII, SEIPS), engagement and board oversight requirements
+- <strong>PRSB Clinical Documentation Standards</strong> - Core Information Standard, Outpatient Letter, Discharge, etc.; common header set; narrative vs structured trade-off; relationship to FHIR UK Core
+- <strong>Caldicott Principles (2020 revision)</strong> - all 8 principles with direct metric mapping (Principle 8 maps directly to existing GV.CR-1/2/3), Caldicott Guardian role, NDG statutory context</p>
+<h3 id="proposed-new-metrics-not-yet-implemented">Proposed New Metrics (Not Yet Implemented)<a class="headerlink" href="#proposed-new-metrics-not-yet-implemented" title="Permanent link">&para;</a></h3>
+<p>28 candidate metrics flagged across the 7 new standards to close identified gaps:
+- 5 from MHRA (classification, PCCP, PMS reports, transparency, training data)
+- 5 from NICE ESF (tier classification, silent mode, subgroup drift, cost-effectiveness, budget impact)
+- 3 from FHIR UK Core (per-resource conformance, UK extensions, STU version targeting)
+- 4 from CQC (board governance, CSO capacity, AI complaints, Reg 17 record quality)
+- 4 from PSIRF (SEIPS analysis, compassionate engagement, Just Culture, learning tracking)
+- 4 from PRSB (semantic completeness, narrative preservation, AIS capture, legal status)
+- 3 from Caldicott (DPIA justification, consultation appropriateness, per-item necessity)</p>
+<p>Distribution: 6 × Tier 1, 19 × Tier 2, 3 × Tier 3. Highest-leverage addition: <strong>TP.WB-11 PRSB Semantic Completeness</strong> (appears as gap across multiple standards).</p>
+<h3 id="new-responsible-ai-lens-document">New Responsible AI Lens Document<a class="headerlink" href="#new-responsible-ai-lens-document" title="Permanent link">&para;</a></h3>
+<p>New cross-cutting file <code>taxonomy/_responsible-ai-lens.md</code> providing a policy-intent view of the taxonomy complementary to standards mapping and applicability classification.</p>
+<p><strong>Part A: DSIT AI Playbook for the UK Government (Feb 2025) - 10 principles:</strong>
+- P1 (Know AI and its limitations), P2 (Lawful/ethical), P3 (Security), P4 (Meaningful human control), P5 (Lifecycle management), P6 (Right tool for the job), P7 (Open and collaborative), P8 (Commercial colleagues), P9 (Skills and expertise), P10 (Organisation policies and assurance)
+- Each principle has narrative + metric table + gap notes</p>
+<p><strong>Part B: Six Responsible AI Ethical Themes</strong> (AI Regulation White Paper five + Playbook-added sixth):
+- T1 (Safety, Security and Robustness), T2 (Transparency and Explainability), T3 (Fairness), T4 (Accountability and Governance), T5 (Contestability and Redress), T6 (Societal Wellbeing and Public Good)
+- Each theme has narrative + metric table + trade-off notes</p>
+<p><strong>Part C: Coverage Matrix</strong> - 25 policy-lever metrics that cross-cut 3+ principles/themes simultaneously. Five "megas" cross 5–6 axes: GV.SG-11 (Adverse Event/LFPSE), GV.VT-4 (Audit Trail), GV.CR-3 (AI Content Labelling), HL.HF-1 (Edit Rate), IO.PX-1 (Patient Opt-Out).</p>
+<p><strong>Part D: Gaps</strong> - 20 principle-level + 18 theme-level gaps identified; cross-referenced to Proposed New Metrics. Societal Wellbeing (T6) has highest gap concentration; P6 (Right tool) and P7 (Openness) weakest principles.</p>
+<h3 id="build">Build<a class="headerlink" href="#build" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>build.py</code> now assembles from 28 files (was 27) - added <code>_responsible-ai-lens.md</code></li>
+<li>All 214 metric reference IDs preserved; no existing metrics changed</li>
+<li>Tier counts unchanged: 43 Tier 1 / 92 Tier 2 / 79 Tier 3</li>
+<li>All metric references in new sections validated against assembled taxonomy</li>
+</ul>
+<hr />
+<h2 id="v30-unreleased">v3.0 (unreleased)<a class="headerlink" href="#v30-unreleased" title="Permanent link">&para;</a></h2>
+<h3 id="reference-ids">Reference IDs<a class="headerlink" href="#reference-ids" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Every metric now carries a unique reference ID in the format <code>{Part}.{Group}-{Number}</code> (e.g. <code>TP.AC-1</code>, <code>GV.CR-7</code>)</li>
+<li>IDs appear in both the metric heading and the dimensions table</li>
+<li>Part abbreviations: TP (Technical Pipeline), PI (Pipeline Interactions), HL (Human Layer), IO (Impact &amp; Outcomes), GV (System Governance), ES (Evaluation Science)</li>
+<li>20 group abbreviations documented in the Reference IDs section of How to Use</li>
+<li>Reference key legend added to How to Use section</li>
+</ul>
+<h3 id="applicability-classification">Applicability Classification<a class="headerlink" href="#applicability-classification" title="Permanent link">&para;</a></h3>
+<ul>
+<li>New cross-cutting section classifying all 214 metrics by applicability:</li>
+<li><strong>AVT-Specific</strong> (48 metrics, 22%) - meaningful only with the audio pipeline</li>
+<li><strong>AVT-Contextualised</strong> (77 metrics, 36%) - general concept, AVT-tuned definition</li>
+<li><strong>General Healthcare AI</strong> (89 metrics, 42%) - applicable to any clinical AI system</li>
+<li>Summary and per-part breakdown tables included</li>
+<li>Full per-metric classification table with reference IDs</li>
+</ul>
+<h3 id="new-metric-families">New Metric Families<a class="headerlink" href="#new-metric-families" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Medication Safety Thread</strong> (4 metrics: TP.SN-19, TP.SN-21, TP.CC-5, IO.PX-10) - cross-cutting family tracking medication accuracy from summarisation through coding to patient outcomes</li>
+<li><strong>Demographic Equity Disaggregation</strong> (7 metrics: TP.ASR-4, TP.ASR-5, TP.CC-9, PI.E2E-5, IO.FE-2, IO.FE-4, IO.FE-5) - cross-cutting family applying demographic disaggregation across pipeline layers</li>
+</ul>
+<h3 id="new-sub-clusters">New Sub-clusters<a class="headerlink" href="#new-sub-clusters" title="Permanent link">&para;</a></h3>
+<ul>
+<li><strong>Write-back Safety</strong> (4 metrics: TP.WB-1 through TP.WB-4) - the four Tier 1 pre-deployment gates at the EPR integration boundary</li>
+<li><strong>Coding Fidelity</strong> (7 metrics: TP.CC-1 through TP.CC-6 plus TP.CC-11) - accuracy of individual code assignment across NHS terminology systems</li>
+</ul>
+<h3 id="standards-mapping">Standards Mapping<a class="headerlink" href="#standards-mapping" title="Permanent link">&para;</a></h3>
+<ul>
+<li>New cross-cutting section with assertion-level mapping to four NHS/regulatory frameworks:</li>
+<li><strong>DTAC v2.0</strong> - all 5 sections (C1 Clinical Safety, C2 Data Protection, C3 Technical Security, C4 Interoperability, D1 Usability)</li>
+<li><strong>DSPT v8</strong> - all 10 National Data Guardian standards with individual assertion mapping</li>
+<li><strong>DCB0129/DCB0160</strong> - all 7 clinical safety lifecycle stages</li>
+<li><strong>NHS England LLM Evaluation &amp; Monitoring Framework v0.2.2</strong> - all 30 dimensions across 3 groups (flagged as draft)</li>
+<li>Gap summary identifying 9 areas where standards require coverage the taxonomy doesn't provide</li>
+<li>Coverage summary identifying 8 areas where the taxonomy extends beyond all standards</li>
+</ul>
+<h3 id="count-corrections">Count Corrections<a class="headerlink" href="#count-corrections" title="Permanent link">&para;</a></h3>
+<ul>
+<li>Tier breakdown corrected from 42/87/85 to <strong>43/92/79</strong> (Tier 1/Tier 2/Tier 3) in Summary and How to Use</li>
+<li>Human Factors &amp; Workflow metric count corrected from 20 to <strong>19</strong> in Contents</li>
+<li>EPR Write-back tier breakdown corrected from "4 Tier 1 · 1 Tier 2" to <strong>4 Tier 1 · 2 Tier 2 · 1 Tier 3</strong></li>
+<li>Clinical Coding tier breakdown corrected from "2 Tier 2 · 2 Tier 3" to <strong>1 Tier 1 · 8 Tier 2 · 3 Tier 3</strong></li>
+</ul>
+<h3 id="build_1">Build<a class="headerlink" href="#build_1" title="Permanent link">&para;</a></h3>
+<ul>
+<li><code>build.py</code> now assembles from 27 files (was 25) - added <code>_applicability.md</code> and <code>_standards-mapping.md</code></li>
+<li>Family count: 6 (was 4)</li>
+<li>Sub-cluster count: 6 (was 4)</li>
+<li>Unaffiliated metrics: 189 (was 200)</li>
+</ul>
+<hr />
+<h2 id="v20">v2.0<a class="headerlink" href="#v20" title="Permanent link">&para;</a></h2>
+<ul>
+<li>214 metrics across 20 groups (was 151 metrics across 18 groups in v1)</li>
+<li>63 new metrics added in batches 1-4</li>
+<li>2 new groups: NHS Compliance &amp; Regulatory, Environmental &amp; Sustainability</li>
+<li>4 named metric families: Clinical Content Fidelity, Post-Generation Correction, Clinical Transcription Accuracy, Reference-Based Text Similarity</li>
+<li>4 sub-clusters: Conversation Analysis, Sociotechnical &amp; Resilience, Patient Clinical Outcomes, Longitudinal Drift &amp; Model Contamination</li>
+<li>15 underspecification warnings across Tiers A/B/C</li>
+<li>Tier 1 Quick Reference section organised by responsible actor</li>
+</ul>
+<h2 id="v10">v1.0<a class="headerlink" href="#v10" title="Permanent link">&para;</a></h2>
+<ul>
+<li>Initial release: 151 metrics across 18 groups</li>
+<li>Modular file structure with <code>build.py</code> assembler</li>
+<li>Monolithic source split into <code>taxonomy/</code> directory</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+  <script>var tabs=__md_get("__tabs");if(Array.isArray(tabs))e:for(var set of document.querySelectorAll(".tabbed-set")){var labels=set.querySelector(".tabbed-labels");for(var tab of tabs)for(var label of labels.getElementsByTagName("label"))if(label.innerText.trim()===tab){var input=document.getElementById(label.htmlFor);input.checked=!0;continue e}}</script>
+
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+        
+<div class="md-social">
+  
+    
+    
+    
+    
+    <a href="/avt-metrics-taxonomy/feed_rss_updated.xml" target="_blank" rel="noopener" title="RSS - CHANGELOG updates" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M0 64c0-17.7 14.3-32 32-32 229.8 0 416 186.2 416 416 0 17.7-14.3 32-32 32s-32-14.3-32-32C384 253.6 226.4 96 32 96 14.3 96 0 81.7 0 64m0 352a64 64 0 1 1 128 0 64 64 0 1 1-128 0m32-256c159.1 0 288 128.9 288 288 0 17.7-14.3 32-32 32s-32-14.3-32-32c0-123.7-100.3-224-224-224-17.7 0-32-14.3-32-32s14.3-32 32-32"/></svg>
+    </a>
+  
+    
+    
+    
+    
+    <a href="https://github.com/danjscho/avt-metrics-taxonomy" target="_blank" rel="noopener" title="Source on GitHub" class="md-social__link">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M173.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6m-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3m44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9M252.8 8C114.1 8 8 113.3 8 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C436.2 457.8 504 362.9 504 252 504 113.3 391.5 8 252.8 8M105.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1m-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7m32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1m-11.4-14.7c-1.6 1-1.6 3.6 0 5.9s4.3 3.3 5.6 2.3c1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2"/></svg>
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.sections", "navigation.indexes", "navigation.top", "toc.follow", "search.suggest", "search.highlight", "search.share", "content.code.copy", "content.tabs.link", "content.tooltips"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": {"alias": true, "default": "latest", "provider": "mike"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>
