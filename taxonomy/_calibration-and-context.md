@@ -33,7 +33,7 @@ A deployment's calibration should respond to at least these six contextual axes.
 
 Acute vs primary care vs mental health vs paediatrics; emergency vs routine; high-stakes diagnostic settings vs documentation-heavy settings.
 
-A paediatric outpatient clinic and an A&E majors ward should not measure [TP.SN-5 Hallucination Rate](#tp-sn-5) against the same threshold. A psychiatric consultation has different hallucination-severity dynamics from a routine medication review. An emergency department's [HL.HF-4 Time-to-Sign Distribution](#hl-hf-4) thresholds should be tighter because rapid-sign patterns under genuine time pressure are harder to distinguish from rubber-stamping than in an outpatient clinic.
+A paediatric outpatient clinic and an A&E majors ward should not measure [TP.SN-5 Hallucination Rate](#tp-sn-5) against the same threshold. A psychiatric consultation has different hallucination-severity dynamics from a routine medication review. An emergency department's [HL.HF-3b Time-to-Sign Distribution](#hl-hf-3b) thresholds should be tighter because rapid-sign patterns under genuine time pressure are harder to distinguish from rubber-stamping than in an outpatient clinic.
 
 #### 2. Patient population
 

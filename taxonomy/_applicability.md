@@ -93,10 +93,10 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.SN-4 | CREOLA Error Taxonomy Scores | 🟡 Tier 2 | AVT-Contextualised |
 | TP.SN-5 | Hallucination Rate | 🟢 Tier 1 | AVT-Contextualised |
 | TP.SN-6 | Omission Rate | 🟢 Tier 1 | AVT-Contextualised |
-| TP.SN-7 | Confabulation Detection (Support × Severity) | 🔵 Tier 3 | AVT-Contextualised |
-| TP.SN-8 | VeriFact Factual Verification | 🔵 Tier 3 | AVT-Contextualised |
-| TP.SN-9 | LLM-as-a-Judge (PDSQI-9 Proxy) | 🟡 Tier 2 | AVT-Contextualised |
-| TP.SN-10 | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-7a | Confabulation Detection (Support × Severity) | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-7b | VeriFact Factual Verification | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-9a | LLM-as-a-Judge (PDSQI-9 Proxy) | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-9b | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-11 | MEDIC Cross-Examination | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-12 | Linked Evidence / Provenance Tracing | 🟡 Tier 2 | AVT-Contextualised |
 | TP.SN-13 | SCRIBE Framework Composite | 🔵 Tier 3 | AVT-Specific |
@@ -182,8 +182,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 |-----|--------|------|---------------|
 | HL.HF-1 | Edit Rate (% Notes Edited) | 🟢 Tier 1 | AVT-Contextualised |
 | HL.HF-2 | Edit Type Classification | 🟡 Tier 2 | AVT-Contextualised |
-| HL.HF-3 | Review-Before-Signing Rate | 🟢 Tier 1 | AVT-Contextualised |
-| HL.HF-4 | Time-to-Sign Distribution | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-3a | Review-Before-Signing Rate | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-3b | Time-to-Sign Distribution | 🟢 Tier 1 | AVT-Contextualised |
 | HL.HF-5 | Edit-Pattern Monitoring at Scale | 🔵 Tier 3 | AVT-Contextualised |
 | HL.HF-6 | Automation Bias Detection (Error Injection) | 🟡 Tier 2 | AVT-Contextualised |
 | HL.HF-7 | Edit Location Distribution | 🟡 Tier 2 | AVT-Contextualised |
