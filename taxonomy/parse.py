@@ -814,7 +814,13 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
 
 
 def summary() -> dict:
-    metrics = annotate_applicability(parse_all_metrics())
+    all_metrics = annotate_applicability(parse_all_metrics())
+    # Parents (with sub-parts) are excluded from headline counts; the
+    # countable units are flat metrics + sub-parts.
+    parent_ids = {
+        sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id is not None
+    }
+    metrics = [m for m in all_metrics if m.ref_id not in parent_ids]
     gaps = parse_gaps()
     tiers = Counter(m.tier for m in metrics)
     return {

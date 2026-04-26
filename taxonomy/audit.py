@@ -322,9 +322,21 @@ def check_numbering(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
     return findings
 
 
+def countable_metrics(all_metrics: list[Metric]) -> list[Metric]:
+    """Return the metrics that count toward headline totals — flat metrics
+    and sub-parts. Parent metrics (those with sub-parts) are excluded;
+    they provide construct framing only and would double-count their
+    sub-parts' substance."""
+    parent_ids = {
+        m.ref_id for m in all_metrics if is_parent_metric(m, all_metrics)
+    }
+    return [m for m in all_metrics if m.ref_id not in parent_ids]
+
+
 def check_tier_totals(all_metrics: list[Metric]) -> list[Finding]:
     findings: list[Finding] = []
-    counts = Counter(m.tier for m in all_metrics)
+    countable = countable_metrics(all_metrics)
+    counts = Counter(m.tier for m in countable)
     for tier, expected in EXPECTED_TIER_TOTALS.items():
         actual = counts.get(tier, 0)
         if actual != expected:
@@ -408,11 +420,13 @@ def check_see_also_resolves(all_metrics: list[Metric]) -> list[Finding]:
 
 
 def check_applicability_presence(all_metrics: list[Metric]) -> list[Finding]:
-    """Every metric must carry an Applicability row in its dimension table
-    (v3.6+ — Applicability moved on-metric)."""
+    """Every countable metric (flat + sub-parts; parents excluded) must
+    carry an Applicability row in its dimension table (v3.6+ — Applicability
+    moved on-metric). Parent metrics carry construct framing only and need
+    not duplicate the dimension table."""
     findings: list[Finding] = []
     valid = set(EXPECTED_APPLICABILITY.keys())
-    for m in all_metrics:
+    for m in countable_metrics(all_metrics):
         applic = m.dimensions.get("Applicability")
         if applic is None:
             findings.append(
@@ -445,9 +459,10 @@ def check_applicability_totals(all_metrics: list[Metric]) -> list[Finding]:
     """
     findings: list[Finding] = []
 
-    # Derive totals from per-metric values.
+    # Derive totals from per-metric values, excluding parent metrics
+    # (which carry construct framing only and have no dimension table).
     derived: dict[str, int] = Counter()
-    for m in all_metrics:
+    for m in countable_metrics(all_metrics):
         applic = m.dimensions.get("Applicability")
         if applic in EXPECTED_APPLICABILITY:
             derived[applic] += 1
@@ -754,13 +769,28 @@ def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
     Sub-parts themselves are classified individually. Flat metrics
     (no sub-parts, not a parent) are classified individually.
     """
-    tier1 = [m for m in all_metrics if m.tier == 1]
+    # The tightening manifest reports parent metrics (with sub-parts) as
+    # single units classified by aggregate sub-part status, plus all flat
+    # Tier 1 metrics. Sub-parts themselves are not double-counted in the
+    # headline; they roll up via the parent.
+    tier1_flat_or_parent: list[Metric] = []
+    seen_parents: set[str] = set()
+    for m in all_metrics:
+        if m.tier != 1:
+            continue
+        if parent_id(m.ref_id) is not None:
+            # This is a sub-part; defer to its parent (added below)
+            continue
+        tier1_flat_or_parent.append(m)
+        if is_parent_metric(m, all_metrics):
+            seen_parents.add(m.ref_id)
+
     tightened: list[Metric] = []
     not_tightened: list[Metric] = []
     partial: list[Metric] = []
 
-    for m in tier1:
-        if is_parent_metric(m, all_metrics):
+    for m in tier1_flat_or_parent:
+        if m.ref_id in seen_parents:
             state = classify_parent_tightening(m, all_metrics)
         else:
             state = classify_tightening(m)
@@ -771,7 +801,7 @@ def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
         else:
             not_tightened.append(m)
 
-    print(f"Tier 1 tightening status: {len(tightened)}/{len(tier1)} tightened.")
+    print(f"Tier 1 tightening status: {len(tightened)}/{len(tier1_flat_or_parent)} tightened.")
     print(
         f"  Tightened: {', '.join(sorted(m.ref_id for m in tightened)) or '(none)'}"
     )

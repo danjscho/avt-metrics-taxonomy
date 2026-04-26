@@ -137,9 +137,9 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 ---
 
-### HL.HF-3 🟢 Review-Before-Signing Rate
+### HL.HF-3 🟢 Inadequate-Review Detection
 
-Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause trigger.
+Parent construct covering two complementary telemetry approaches to detecting inadequate clinician review of AVT-generated content. The two sub-parts (HL.HF-3a Review-Before-Signing Rate, HL.HF-3b Time-to-Sign Distribution) are different windows on the same underlying question — *is the clinician genuinely reviewing the AI output before signing it?* — and v3.4's tightening of the time-to-sign sub-part already mandated pairing with the review-before-signing sub-part. v3.7 makes the conjunction explicit at the construct level.
 
 | Dimension | Value |
 |-----------|-------|
@@ -158,7 +158,45 @@ Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause t
 
 **Why this tier?**
 
-> NAS Day Zero SPI with ≥95% threshold and <85% pause trigger. Deployer-measurable from EPR workflow telemetry. Directly monitors whether human oversight is functioning.
+> NAS Day Zero SPI is gated on review-quality detection; the construct is foundational human-factors assurance and is composed of two telemetry channels reported jointly. See sub-parts HL.HF-3a (binary review-event signal) and HL.HF-3b (time-to-sign distribution) for the implementation detail.
+
+**Construct framing**
+
+> Inadequate review can be detected from EPR / AVT workflow telemetry in two complementary ways:
+>
+> - **HL.HF-3a Review-Before-Signing Rate** (was HL.HF-3 pre-v3.7) — binary per-note signal from edit / scroll / dwell-above-threshold events. Catches notes where review demonstrably did not happen at all.
+> - **HL.HF-3b Time-to-Sign Distribution** (was HL.HF-4 pre-v3.7) — distribution of time from AVT note availability to clinician signature, normalised by word count. Catches notes where review happened too fast to be meaningful (rubber-stamping pattern).
+>
+> Each alone is ambiguous: a note with edit-events but signed in 2 seconds may still be a rubber-stamp; a note with no edit-events may still have been read carefully. Reported jointly, they discriminate genuine review from both no-review and rubber-stamping. The v3.4 tightening of HL.HF-3b mandates pairing with HL.HF-3a; v3.7 promotes that pairing into the parent construct.
+
+**Limitations**
+
+> Both sub-parts measure review *behaviour*, not review *quality*. A clinician scrolling for 30 seconds on a 200-word note has produced the right telemetry signal but may not have read it. The construct is a surrogate for review quality; pair with [HL.HF-6 Automation Bias Detection](#hl-hf-6) (in-context error injection) and [HL.HF-19 AI-Off Performance Test](#hl-hf-19) (counterfactual) for outcome-side checks on whether review behaviour is producing review quality. See [Calibration & Context principle](#calibration-context) — review-quality detection is materially different across specialties; rapid signing in a routine outpatient context is not the same signal as rapid signing in an A&E majors workflow.
+
+---
+
+### HL.HF-3a 🟢 Review-Before-Signing Rate
+
+Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / AVT telemetry: a note counts as "reviewed" if any of edit, scroll, or above-threshold dwell events occurred between AVT availability and signature. Sub-part of [HL.HF-3 Inadequate-Review Detection](#hl-hf-3); the construct framing for this sub-part lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | HL.HF-3a |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Human Factors |
+| **Measurement Method** | Passive Observational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | NAS Day Zero SPI; Stanford |
+
+**Why this tier?**
+
+> NAS Day Zero SPI with ≥95% threshold and <85% pause trigger. Deployer-measurable from EPR workflow telemetry. Directly monitors whether human oversight is functioning. *Was HL.HF-3 in v3.6 and earlier; promoted to sub-part of HL.HF-3 in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -172,21 +210,21 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **Limitations**
 
-> Scrolling ≠ meaningful review.
+> Scrolling ≠ meaningful review. The T_min threshold values are concrete but unvalidated against actual review quality — see the parent construct's Limitations and the v3.4 classification artefact's note that this sub-part is a surrogate for review quality without a bounded proxy gap. v3.8+ work may add a quality bound or pairing rule.
 
 **Novel Thinking / Implications**
 
-> 💡 EPR should enforce architecturally: minimum dwell-time before approve activates.
+> 💡 EPR should enforce architecturally: minimum dwell-time before approve activates. Pair with [HL.HF-3b Time-to-Sign Distribution](#hl-hf-3b) — a note with edit-events but TTS_norm < 0.5 s/word is rubber-stamping despite passing the binary review check.
 
 ---
 
-### HL.HF-4 🟢 Time-to-Sign Distribution
+### HL.HF-3b 🟢 Time-to-Sign Distribution
 
-Duration between generation and approval. Model as distribution - tail of very-fast approvals is safety-critical.
+Distribution of duration between generation and approval. Model as distribution — the tail of very-fast approvals is safety-critical. Sub-part of [HL.HF-3 Inadequate-Review Detection](#hl-hf-3); the construct framing for this sub-part lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | HL.HF-4 |
+| **Reference** | HL.HF-3b |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -201,7 +239,7 @@ Duration between generation and approval. Model as distribution - tail of very-f
 
 **Why this tier?**
 
-> Deployer-measurable from EPR data. The tail of very-fast approvals (<5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns.
+> Deployer-measurable from EPR data. The tail of very-fast approvals (<5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns. *Was HL.HF-4 in v3.6 and earlier; promoted to sub-part of HL.HF-3 in v3.7 Phase 2.1; retains the v3.4 tightening pattern.*
 
 **Formal Definition**
 
