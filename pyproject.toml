@@ -1,0 +1,15 @@
+[project]
+name = "avt-metrics-taxonomy"
+version = "3.8.2"
+description = "Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings"
+requires-python = ">=3.10"
+dependencies = [
+    "mkdocs-material",
+    "mike",
+    "mkdocs-rss-plugin",
+]
+
+# This project is documentation + Python tooling, not a distributable package.
+# uv reads `dependencies` for environment management; nothing is published to PyPI.
+[tool.uv]
+package = false

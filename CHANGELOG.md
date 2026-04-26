@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.8.2 (2026-04-26)
+
+Tooling-only patch — adds reproducible local-development setup and documents the build pipeline.
+
+- **`pyproject.toml` + `uv.lock` committed.** Project now uses [uv](https://docs.astral.sh/uv/) for Python environment management. `uv sync` creates a `.venv` matching CI exactly. Lockfile is committed for reproducibility.
+- **CI workflow uses uv.** `.github/workflows/site.yml` swapped from `pip install` to `uv sync --frozen` + `uv run`. Removes the package-list drift risk between local and CI.
+- **Local-development docs.** New "Local development — build and serve the site" section in `taxonomy/README.md` walks through the three-step recipe (`uv sync` → `uv run python taxonomy/build.py` → `uv run python taxonomy/build_site.py` → `uv run mkdocs serve`) and explains where the `dist/` files come from. Quick version added to root `README.md` developer section.
+- **`.gitignore`:** added `.venv/`. (`dist/`, `docs/`, `site/` already ignored.)
+
+No taxonomy content changes; no audit findings; counts unchanged.
+
 ## v3.8.1 (2026-04-26)
 
 Site-only patch release — no taxonomy content changes. Fixes broken cross-page links and download issues surfaced by reviewing the `mkdocs serve` output:
