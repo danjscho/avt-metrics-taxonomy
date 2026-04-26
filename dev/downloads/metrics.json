@@ -4128,7 +4128,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
-        "Source": "NHSE AVT Supplier Registry (January 2026)"
+        "Source": "[NHSE-AVT-Registry] (live since January 2026)"
       },
       "group_file": "part-e/nhs-compliance-regulatory.md",
       "heading_line": 194
@@ -4614,7 +4614,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "NHS England AVT Self-Certified Supplier Registry (req #5); IASME Cyber Essentials scheme; NCSC guidance"
+        "Source": "[NHSE-AVT-Registry] (req #5); [IASME-Cyber-Essentials-Plus]; [NCSC-Cyber-Essentials]"
       },
       "group_file": "part-e/security-adversarial-robustness.md",
       "heading_line": 449
@@ -5613,7 +5613,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
-        "Source": "NHS England AVT Self-Certified Supplier Registry; National Commercial & Procurement Hub publication mechanism"
+        "Source": "[NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism"
       },
       "group_file": "part-e/vendor-transparency-contractual.md",
       "heading_line": 388
@@ -5640,7 +5640,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Process",
         "Applicability": "AVT-Specific",
-        "Source": "NHS England AVT Self-Certified Supplier Registry req #12"
+        "Source": "[NHSE-AVT-Registry] req #12"
       },
       "group_file": "part-e/vendor-transparency-contractual.md",
       "heading_line": 468
