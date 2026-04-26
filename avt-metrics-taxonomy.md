@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.7, 2026-04-26 (in progress).** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.7, 2026-04-26.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -5808,7 +5808,7 @@ def coding_drift_spc(pre_counts, post_counts):
 
 > 💡 The US evidence (14% HCC capture increase, 11% wRVU increase post-AVT) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently. The metric exists to make this visible at the regional and national level — deployers measuring on their own cannot distinguish AVT-driven drift from population-level coding-policy change.
 
-*See also: [TP.CC-9 Coding Equity Index](#tp-cc-9) — disaggregates the shift by demographic strata to surface inequitable AVT-driven drift; [TP.CC-10 HRG / Tariff Impact Attribution](#tp-cc-10) — quasi-experimental causal attribution for the tariff-impact dimension.*
+*See also: Coding Equity Index, HRG / Tariff Impact Attribution - TP.CC-9 disaggregates the shift by demographic strata to surface inequitable AVT-driven drift; TP.CC-10 provides quasi-experimental causal attribution for the tariff-impact dimension.*
 
 ---
 

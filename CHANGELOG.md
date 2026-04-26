@@ -1,5 +1,121 @@
 # Changelog
 
+## v3.7 (2026-04-26)
+
+Establishes the **Calibration & Context principle** as a first-class taxonomy commitment alongside the Outcomes Boundary; tightens 6 pipeline narrow Tier 1 metrics; restructures 3 redundancy candidates as parent-with-sub-parts; reframes US-flavour metrics with NHS-primary framing. Tightened-count manifest reaches 30/42 (constructs); flat tightened count is 31/43 (sub-parts). Headline metric count 216 → 215 (TP.CC-8 folded).
+
+### Phase 0 — Calibration & Context principle
+
+New cross-cutting file `taxonomy/_calibration-and-context.md` parallel to `_outcomes-boundary.md`. Names the structural commitment that **tier assignments and threshold numbers are calibration starting points, not universal gates**, and provides:
+
+- Six deployment-setting calibration axes: specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume / scale
+- Practical guidance on documenting local calibration in the deployer's governance file (taxonomy default + local calibration + axis driving the change + named decision-maker)
+- Promotion-up-vs-promotion-down asymmetry — promoting Tier 2/3 to Tier 1 is encouraged with one-line justification; promoting Tier 1 down requires substantive risk assessment
+- Explicit boundaries on what calibration is *not* — not an excuse to disregard Tier 1; not a basis for negotiating contracted thresholds; not a way around the Outcomes Boundary
+
+Wired into 5 surfacing points so the principle is visible where readers actually look:
+
+- `_header.md` — count narrative names the principle alongside the Outcomes Boundary
+- `_how-to-use.md` — "Adapting to Local Context" gets a top-line cross-reference; existing prose stays as practical examples subsidiary to the principle
+- `_tier-1-quick-reference.md` — top-of-page ⚠️ callout: "this list is a calibrated starting point, not a fixed checklist"
+- `_outcomes-boundary.md` — new "Relationship to the Calibration & Context principle" section explaining the parallel
+- `README.md` — new bullet in Quick links; new paragraph in "What this is for"; per-audience reminder sentences
+
+### Phase 1 — Pipeline narrow tightening (6 metrics)
+
+Apply the Reference Standard / Operational Specification / Threshold Guidance pattern (with ⚠️ Provenance prelude) to the six pipeline narrow candidates from the v3.4 classification artefact:
+
+- **TP.ASR-12 Hallucination-Under-Noise Rate** — five-category test corpus (silence / music / environmental / non-clinical-speech / clinical-adjacent ambient); per-category asymmetric-failure reporting; severity classification with critical = spurious clinical content
+- **TP.ASR-13 Numeric Accuracy** — five-sub-type reference standards (integer / decimal / unit / date / range) with explicit canonicalisation rules; dosage accuracy as zero-tolerance critical sub-metric
+- **TP.WB-2 Integration Error Rate** — three error types (failed / partial / degraded); per-EPR stratification; soft-failure detection method documented at procurement
+- **TP.WB-3 Field Mapping Accuracy** — per-EPR field-map document mandatory with multi-target rules; type-(iii) silent-safety-bypass classification
+- **TP.WB-4 Update vs Append Behaviour** — per-EPR (category × update-context) rule grid (5×5 = 25 cells); three critical-failure-mode classes; skip-with-flag pathway mandatory
+- **TP.SN-20 Uncertainty Marker Preservation** — five-level epistemic ladder (definite / probable / possible / unlikely / negated) plus conditional uncertainty; asymmetric severity weighting (inflation > deflation)
+
+Tightened count: 25/43 → 31/43 flat sub-parts (30/42 constructs after Phase 2.1 sub-part promotions).
+
+### Phase 2.1 — Redundancy as sub-parts (3 candidates)
+
+Restructure three redundancy pairs from the v3.6 duplication review as **parent + sub-parts** so neither implementation is lost and the relationship is explicit:
+
+- **TP.SN-7 Factual Verification** (parent) absorbs:
+  - **TP.SN-7a Confabulation Detection (Support × Severity)** — was TP.SN-7 (Abridge two-axis classifier; vendor-proprietary)
+  - **TP.SN-7b VeriFact Factual Verification** — was TP.SN-8 (Stanford RAG + LLM-as-Judge; open-source, locally deployable)
+  - The two are complementary instruments for the same construct (factual support); running both provides stronger assurance than either alone.
+- **TP.SN-9 LLM-Judge Methodology** (parent) absorbs:
+  - **TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)** — was TP.SN-9 (single-judge; 27× speed for continuous evaluation)
+  - **TP.SN-9b MedHELM LLM-Jury** — was TP.SN-10 (ensemble jury; pre-deployment capability gate)
+- **HL.HF-3 Inadequate-Review Detection** (parent) absorbs:
+  - **HL.HF-3a Review-Before-Signing Rate** — was HL.HF-3 (binary edit/scroll/dwell signal)
+  - **HL.HF-3b Time-to-Sign Distribution** — was HL.HF-4 (TTS distribution; retains v3.4 tightening pattern)
+
+**Locked design decision:** deprecate-don't-renumber. Retired IDs (TP.SN-8, TP.SN-10, HL.HF-4) are not reused — every prior taxonomy version, the standards-mapping file, the v3.4 / v3.6 artefacts, and any external citation references the existing IDs. The integer sequences carry gaps (TP.SN sequence ... -7a, -7b, (gap at -8), -9a, -9b, (gap at -10), -11 ...). New file `taxonomy/_retired-ids.md` records every retirement with redirect target and reason; the audit reads this registry and tolerates the gaps.
+
+**Audit / parser refactor:**
+
+- `parse.py` METRIC_HEADING regex extended to recognise sub-part suffix (e.g. TP.SN-7a)
+- New `Metric.is_subpart` and `Metric.parent_ref_id` properties
+- `audit.py` METRIC_HEADING + REF_ROW regexes extended; new `is_parent_metric` / `parent_id` / `is_subpart_id` helpers; new `classify_parent_tightening` (parent counts as tightened iff every sub-part is tightened)
+- `check_numbering` loads `_retired-ids.md` and tolerates retired-ID gaps; duplicate detection switched to exact-ref-id rather than base-integer
+- `check_tightening_pattern` excludes parent metrics from the partial-state ERROR check (parents carry construct framing in the body, not the tightening pattern)
+- `emit_tightening_manifest` uses parent-aware classifier; emits `Retired IDs: ...` status line
+- `build.py` and `parse.summary()` exclude parents from headline counts via `countable_metrics` helper
+- New audit constants document the count shift
+
+### Phase 2.2 — Targeted cross-references (4 metric pairs)
+
+Add See-also lines to the highest-value paired metrics from the v3.6 duplication review, in the audit-parser-friendly format (italic *See also: NameA, NameB - prose*):
+
+- TP.ASR-10 ↔ TP.ASR-11 (calibration vs exposure of ASR confidence)
+- GV.OP-3 → GV.OP-1 (record-availability time vs clinician note-effort time)
+- GV.SG-15 ↔ GV.SG-16 (incident-correction latency vs SPI-breach escalation latency)
+- GV.SG-16 → GV.SG-9 (escalation response time has GV.SG-9 SPI framework as a direct dependency)
+
+Remaining ~10 cross-reference candidates from the v3.6 duplication review deferred to v3.8+ (recorded in `archive/v3.6-duplication-review.md` as the remaining set).
+
+### Phase 2.3 — US-flavour audit and reframe
+
+Sweep across all 216 metrics for US-flavour content. Three findings:
+
+- **TP.CC-7** — reframed as **Coding Drift Detection (NHS framing)**; methodology unchanged but framing focus is data-quality corruption (QOF, HES, population-health analytics), not US revenue extraction. US E/M-upcoding literature called out as methodological precedent.
+- **TP.CC-8 E/M Level Shift Monitoring** — folded into TP.CC-7 (option β from kick-off). KL-divergence and demographic-disaggregation methodology absorbed into TP.CC-7's new Operational Specification. TP.CC-8 retired with redirect to TP.CC-7 in `_retired-ids.md`.
+- **TP.CC-10** — reframed as **HRG / Tariff Impact Attribution (NHS framing)**; NHS PbR / HRG context primary, US wRVU / CMS Medicare called out as methodological precedent.
+
+Other US-flagged grep matches (DSCMS, MIMIC-III, Duke/MedStar citations) were ambient citation references rather than US-flavour content; no change needed.
+
+### Phase 3 — deferred to v3.8+
+
+The 5 pattern-may-not-fit metrics (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3) need bespoke per-metric scoping that v3.7's already substantial scope didn't accommodate. Deferred to v3.8+ kick-off where each metric will be scoped individually. Note that HL.HF-3 has now been promoted to a parent construct (Phase 2.1) — its v3.7 framing already addresses some of the v3.4-flagged review-quality-bound concerns; v3.8 may find HL.HF-3 partially or fully resolved.
+
+### Counts
+
+- Headline metric count: 216 → **215** (TP.CC-8 retired and folded; not replaced as a sub-part since the methodology rolled into TP.CC-7)
+- Tier split: 43 / 94 / 79 → **43 / 93 / 79** (TP.CC-8 was Tier 2)
+- 20 groups unchanged
+- Clinical Coding group: 12 → 11 metrics
+- Applicability: AVT-Specific 48 unchanged; AVT-Contextualised 77 → 76; General Healthcare AI 91 unchanged
+- Tightened-count manifest: **30/42** Tier 1 constructs (parents counted as units; HL.HF-3 not-tightened because HL.HF-3a not yet tightened; TP.SN-7 / TP.SN-9 parents not-tightened because they were Tier 3 / Tier 2 with no prior tightening pattern). Sub-part flat count: 31/43 individually tightened.
+
+`audit.py` baseline updated for new totals; build clean; audit clean. Three audit checks introduced or extended in this release: parser/regex extension for sub-parts; `check_numbering` retired-ID tolerance; manifest parent-aware classifier.
+
+### Cross-cutting
+
+- `taxonomy/_header.md` v3.6 → v3.7 / 2026-04-26; narrative names the Calibration & Context principle and the six axes
+- `taxonomy/_how-to-use.md` Adapting-to-Local-Context section now opens with a cross-reference to the principle file
+- `taxonomy/_summary.md`, `_contents.md`, `_applicability.md` updated for the new totals (215 / 43-93-79; Clinical Coding 11)
+- `taxonomy/_responsible-ai-lens.md`, `_calibration-and-context.md`, `_gaps.md` swept for legacy ID references (HL.HF-3 → HL.HF-3a; HL.HF-4 → HL.HF-3b; TP.SN-8 → TP.SN-7b; TP.SN-10 → TP.SN-9b)
+- `taxonomy/_tier-1-quick-reference.md` ⚠️ callout naming the Calibration & Context principle
+
+### Deferred to v3.8+
+
+- **Phase 3 bespoke deferred-pool scoping:** 1-2 of GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (the latter partially addressed by Phase 2.1 parent-construct framing; reassess at kick-off)
+- **HL.HF-3a tightening** — now a Tier 1 sub-part not yet carrying the pattern; v3.8 should consider tightening it alongside Phase 3
+- **Remaining ~10 cross-reference / framing additions** from the v3.6 duplication review (see `archive/v3.6-duplication-review.md`)
+- **Outcomes layer** stays at ES.ME-8/9
+- **Roadmap** (`_gaps.md`) untouched in v3.7 — 89 candidates still queued
+
+---
+
 ## v3.6 (2026-04-26)
 
 Architectural alignment, duplication-review research artefact, four v3.5 self-review follow-ups, and a repo-root README. No new metrics; no new tightenings. Counts unchanged at 216 metrics, 43 / 94 / 79; tightened count unchanged at 25/43.
