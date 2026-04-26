@@ -94,19 +94,106 @@ After v3.7 Phase A: tightening status reaches **31/43 Tier 1** (from 25/43).
 
 ## Phase 2 — Act on duplication-review findings (input: v3.6 Phase B artefact, was Phase B)
 
-**Sketch only — detailed planning at v3.7 kick-off.**
+User reviewed `archive/v3.6-duplication-review.md` on 2026-04-26 and confirmed:
 
-The v3.6 duplication review will produce a frozen artefact at `archive/v3.6-duplication-review.md` classifying every metric pair as `distinct` / `overlapping` / `redundant`. v3.7 acts on the findings:
+- **Redundancy candidates handled as sub-parts under a single parent metric** (a/b/c suffix scheme). Goal: keep both implementations under a coherent parent construct without information loss.
+- **Cross-references / new family framings handled mechanically** for the ~15 overlapping-but-not-framed pairs.
+- **US-flavour audit** added: brief sweep of the 216 metrics for US-isms (wRVU, Medicare-style references, E/M coding); each surfaced metric handled by adding NHS framing rather than removal.
 
-- **`overlapping` pairs** — document the relationship explicitly in metric prose (e.g. cross-references, family or sub-cluster framing where genuinely warranted). Most likely outcome: 5–10 metrics get a See-also or family-framing addition; no structural changes.
-- **`redundant` pairs** — review with user before any merges. Likely 0–5 candidates surfaced. Decision options per pair:
-  - Merge (one metric absorbs the other, retired metric's content folded in, ID retired with redirect note)
-  - Explicit-distinct call (clarify in prose why they are not redundant despite appearing so)
-  - Cut (one metric removed entirely; rare, requires explicit user sign-off because metric IDs are stable)
+### 2.1 Redundancy as sub-parts (3 candidates, sub-parts approach)
 
-**Locked decision (now):** any redundancy merges or cuts in v3.7 require explicit user sign-off per pair. Plan-mode pause before action.
+For the three flagged redundancy candidates, a parent metric is introduced at the natural ID position absorbing the existing metrics as sub-parts (`-Na` / `-Nb`):
 
-**Effort:** highly variable, 0–5 days depending on count of redundancy candidates.
+| Parent | Sub-parts | Construct | Retired IDs |
+|---|---|---|---|
+| **TP.SN-7 Factual Verification** | TP.SN-7a Confabulation Detection (Support × Severity) → was TP.SN-7; TP.SN-7b VeriFact Factual Verification → was TP.SN-8 | Two implementations of factual support verification (Abridge framework / Chung et al. 2025 instrument) | TP.SN-8 |
+| **TP.SN-9 LLM-Judge Methodology** | TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy) → was TP.SN-9; TP.SN-9b MedHELM LLM-Jury → was TP.SN-10 | Two configurations of LLM-judge methodology (single judge / ensemble jury); paired with [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) for meta-evaluation | TP.SN-10 |
+| **HL.HF-3 Inadequate-Review Detection** | HL.HF-3a Review-Before-Signing Rate → was HL.HF-3; HL.HF-3b Time-to-Sign Distribution → was HL.HF-4 | Two telemetry approaches to detecting inadequate clinician review (binary edit/scroll/dwell signal / TTS distribution); v3.4 already mandated pairing | HL.HF-4 |
+
+**Locked design decisions:**
+
+- **Deprecate, don't renumber.** Retired IDs (TP.SN-8, TP.SN-10, HL.HF-4) are NOT reused; the integer sequence carries gaps. Reasoning: reference IDs are a public API — every prior taxonomy version, the standards-mapping file, the v3.4 Tier 1 classification artefact, the v3.6 duplication review, and any external citation references the existing IDs. Renumbering breaks them all; deprecation breaks none. Retired IDs get a one-line redirect note in the metric file ("Retired in v3.7; see TP.SN-7b") and the audit emits a known-retired-IDs status line.
+- **Parent metric introduced as a new construct heading at the natural ID position.** Parent inherits the dimension table from the most-Tier-elevated child (e.g. TP.SN-7 inherits from TP.SN-7a, the existing Tier 3 entry). The parent provides the construct framing; sub-parts provide the implementation detail.
+- **Tightening status carries forward:** HL.HF-3a was previously not-tightened (was HL.HF-3); HL.HF-3b was previously *tightened* in v3.4 (was HL.HF-4). After v3.7 Phase 2.1, HL.HF-3b retains its tightened-pattern sub-blocks. The parent HL.HF-3 itself does not carry the tightening pattern (sub-parts do); audit needs updating to recognise this.
+
+**Audit / parser refactoring:**
+
+- `parse.py` METRIC_HEADING regex extended to recognise `-N{a,b,c}` suffix as a sub-part of parent `-N`. New `Metric.parent_ref_id` field for sub-parts; new `Metric.is_parent` flag for parents.
+- `audit.py check_numbering` updated to allow gaps in the integer sequence iff the gap ID appears in a known-retired-IDs list (loaded from a new `taxonomy/_retired-ids.md` registry). Each retired ID has a redirect note pointing at the new ID.
+- `audit.py check_tightening_pattern` updated: tightening pattern can sit on either the parent (single-implementation metrics) or any sub-part (multi-implementation parents); the sub-parts of a parent metric can be independently tightened or not.
+- `audit.py check_metric_cross_references` updated: anchors of form `tp-sn-7a` resolve to sub-parts; anchors of form `tp-sn-7` resolve to parents.
+- `taxonomy/_retired-ids.md`: new registry file recording every retired ID with its redirect target. v3.7 registers TP.SN-8 → TP.SN-7b, TP.SN-10 → TP.SN-9b, HL.HF-4 → HL.HF-3b, plus the TP.CC-8 retirement from Phase 2.3 below.
+
+**Wire-ups:**
+
+- Standards-mapping references to TP.SN-8, TP.SN-10, HL.HF-4 updated to the new sub-part IDs (mechanical search/replace).
+- `_responsible-ai-lens.md`, `_gaps.md`, `_outcomes-boundary.md` swept for legacy ID references.
+- Existing Tier 1 quick reference updated: HL.HF-3 (now parent) listed once with sub-parts inline; HL.HF-4 removed as separate entry.
+- Tightened-count manifest after Phase 2.1: HL.HF-3b carries forward its tightening (was HL.HF-4); the count of tightened-things stays effectively the same but is now disaggregated by sub-part where applicable.
+
+**Verification:**
+
+- Parent + sub-parts render correctly in the assembled monolithic markdown
+- Retired IDs in `_retired-ids.md` audit-clean; broken-cross-reference check passes (any old `#tp-sn-8` link is either fixed or flagged)
+- Site smoke-test: parent and sub-part anchors both resolve
+
+### 2.2 Cross-references and new family framings (~15 pairs)
+
+Mechanical: add See-also lines or lightweight sub-cluster framings to the overlapping-but-not-framed pairs surfaced in `archive/v3.6-duplication-review.md`. No metric IDs change. Examples:
+
+- TP.ASR-10 ↔ TP.ASR-11 (calibration vs exposure; mutual See-also)
+- TP.CC-1 ↔ TP.CC-2 (general code accuracy vs concept-mapping accuracy; framing note)
+- TP.DI-3 ↔ TP.DI-4 (speaker count vs boundary precision; See-also)
+- HL.HF-12 ↔ HL.HF-13 (skill attenuation vs cognitive offloading; Sociotechnical sub-cluster note)
+- HL.HF-6 ↔ HL.HF-19 (in-context vs counterfactual automation-bias detection; See-also)
+- IO.PX-2 ↔ IO.PX-8 (perceived accuracy vs comprehension; See-also)
+- IO.PX-3 ↔ IO.PX-4 (emotional content vs cultural-linguistic; See-also)
+- IO.FE-1 ↔ IO.FE-8 (within-deployment vs cross-platform fairness; See-also)
+- GV.OP-1 ↔ GV.OP-3 (in-clinician-time vs in-record-time; cross-reference making distinction explicit)
+- GV.SG-7 ↔ GV.SG-8 (P₁/P₂ vs DeepScore; Risk-Quantification sub-cluster note)
+- GV.SG-15 ↔ GV.SG-16 (incident correction vs SPI escalation latency; See-also)
+- GV.SG-9 ↔ GV.SG-16 (SPI thresholds vs response time; explicit pairing)
+- GV.SC-1 ↔ GV.SC-2 ↔ GV.SC-6 (Injection Resistance sub-cluster note)
+- GV.SC-3 ↔ GV.SC-7 (audio-input adversarial threats; See-also)
+- GV.SC-8 ↔ GV.SC-9 ↔ GV.SC-11 (Privacy Attack Surface sub-cluster note)
+- GV.VT-2 ↔ GV.VT-3 ↔ GV.VT-4 (Data-Access sub-cluster note: telemetry / benchmark / audit)
+- ES.ME-2 ↔ ES.ME-7 (inter-rater ceiling vs concordance against ceiling; See-also)
+- ES.ME-3 ↔ ES.ME-4 (interaction analysis vs gaming detection; See-also)
+- TP.SN-12 ↔ GV.VT-4 (cross-group: per-summary provenance vs forensic audit trail; See-also)
+- HL.HF-6 ↔ ES.ME-4 (cross-group: automation bias vs Goodhart gaming; See-also)
+
+Adjacent candidates also resolved here:
+
+- HL.HF-1 ↔ HL.HF-11 (v3.4 mandate substantially overlaps): HL.HF-11 retained as a separate metric; cross-reference note distinguishing aggregate-edit-rate-with-clinician-disaggregation (HF-1) from explicit-variance-quantification (HF-11)
+- GV.TC-1 (M4 module) ↔ GV.TC-3 (Refresher / CPD Compliance): cross-reference distinguishing the integrated-completion-tracking view from the refresher-cadence-specific view; both retained
+
+### 2.3 US-flavour audit and resolution
+
+User direction (2026-04-26): "make sure they acknowledge the need for NHS framing — don't necessarily get rid of the metrics."
+
+**Approach:** brief audit of all 216 metrics for US-flavour content (wRVU, Medicare, E/M coding, US-payer references, ICD-10-CM US conventions, etc.). For each surfaced metric, two outcomes possible:
+
+- **Reframe:** add explicit NHS framing while keeping the US construct as named analogue (e.g. SNOMED specificity shift, with E/M called out as US analogue)
+- **Fold:** retire the metric ID and absorb its content into a more NHS-applicable parent (option β from kick-off)
+
+**Known starting candidates:**
+
+- **TP.CC-7 ↔ TP.CC-8** (option β — fold): TP.CC-8 E/M Level Shift Monitoring is essentially a US-specific specialisation of TP.CC-7 Coding Inflation Detection's SPC-based drift detection. KL-divergence and demographic-disaggregation content from TP.CC-8 folds into TP.CC-7 (which gets renamed to "Coding Drift Detection" or kept as Coding Inflation Detection with NHS framing strengthened). TP.CC-8 retired with redirect note.
+- **TP.CC-10 wRVU / Tariff Impact Attribution** (likely reframe): wRVU is US Medicare; UK equivalent is HRG / NHS tariff. Rename to "HRG / Tariff Impact Attribution" with wRVU called out as US analogue; preserve the construct but shift the framing.
+- **TP.CC-3 ICD-10 / ICD-11 Full-Specificity Precision** (probable reframe): ICD-10-CM (US) vs ICD-10 (UK SNOMED-mapped); already references both but worth confirming the framing emphasises UK use.
+
+**Audit method:**
+
+- grep across all metric files for `wRVU`, `Medicare`, `E/M`, `tariff`, `ICD-10-CM`, `CMS`, `US payer`, `US setting` and adjacent terms
+- read each surfaced metric for genuine US-flavour content vs incidental references
+- per metric: reframe (default) or fold (only if redundant against an existing NHS-applicable metric)
+- each fold requires user sign-off per the Phase 2.1 redundancy convention
+
+**Output:** small registry of US-flavour findings appended to `archive/v3.6-duplication-review.md` (or new `archive/v3.7-us-flavour-audit.md` if the count justifies it).
+
+**Locked decision:** the audit will identify all candidates; the user signs off per metric on reframe vs fold before any retirement.
+
+**Effort across Phase 2:** 3–5 days (Phase 2.1 most of the work due to parser/audit refactoring; Phase 2.2 mechanical; Phase 2.3 1–2 days depending on count of US-flavour findings).
 
 ---
 
@@ -160,8 +247,23 @@ Counts may change if Phase 2 includes any merges (decreases total from 216) or c
 - `taxonomy/part-a/epr-write-back.md` (TP.WB-2, TP.WB-3, TP.WB-4)
 - `taxonomy/part-a/summarisation-nlp.md` (TP.SN-20)
 
-**Phase 2:**
-- TBD per duplication-review findings
+**Phase 2.1 (sub-parts):**
+- `taxonomy/part-a/summarisation-nlp.md` (TP.SN-7, TP.SN-7a, TP.SN-7b → restructure; TP.SN-9, TP.SN-9a, TP.SN-9b → restructure; TP.SN-8 / TP.SN-10 retired with redirect notes)
+- `taxonomy/part-c/human-factors-workflow.md` (HL.HF-3, HL.HF-3a, HL.HF-3b → restructure; HL.HF-4 retired with redirect note)
+- `taxonomy/parse.py` (METRIC_HEADING regex, sub-part parent linkage, retired-ID handling)
+- `taxonomy/audit.py` (`check_numbering` allows retired-ID gaps; `check_tightening_pattern` recognises sub-parts; `check_metric_cross_references` resolves sub-part anchors)
+- `taxonomy/_retired-ids.md` (new registry)
+- `taxonomy/_standards-mapping.md`, `taxonomy/_responsible-ai-lens.md`, `taxonomy/_gaps.md`, `taxonomy/_outcomes-boundary.md` (legacy ID sweep)
+- `taxonomy/_tier-1-quick-reference.md` (HL.HF-3 parent listing; HL.HF-4 removed)
+
+**Phase 2.2 (cross-references):**
+- ~15 metric files across all parts; mechanical See-also / sub-cluster framing additions
+
+**Phase 2.3 (US-flavour audit):**
+- `taxonomy/part-a/clinical-coding.md` (TP.CC-7 reframed; TP.CC-8 retired and folded; TP.CC-10 reframed; TP.CC-3 reviewed)
+- Other metric files surfaced by the audit
+- `taxonomy/_retired-ids.md` (TP.CC-8 entry added)
+- `archive/v3.7-us-flavour-audit.md` (or appended to `archive/v3.6-duplication-review.md`)
 
 **Phase 3:**
 - TBD per metric chosen
@@ -175,11 +277,13 @@ Counts may change if Phase 2 includes any merges (decreases total from 216) or c
 
 1. Build + audit clean throughout
 2. **Phase 0:** new `_calibration-and-context.md` appears in assembled `avt-metrics-taxonomy.md` between Outcomes Boundary and Roadmap; all five wire-in surfaces resolve their cross-references via the cross-reference audit check; the principle is named (not just buried) at every surface — README, header, how-to-use, tier-1-quickref, outcomes-boundary
-3. **Phase 1:** Tightening status manifest reaches **31/43** after Phase 1
-4. **Phase 2:** Duplication-review actions traceable to the v3.6 artefact (every redundancy decision references the pair from the artefact); user sign-off recorded per merge/cut decision
-5. **Phase 3:** scope of addressed deferred metrics named explicitly; remaining deferred metrics named in CHANGELOG for v3.8+
-6. v3.5 / v3.6 follow-ups status — confirm none reopened by v3.7 changes
-7. CHANGELOG v3.7 entry names the deferred metrics not addressed (so v3.8+ scope is auto-tracked)
+3. **Phase 1:** Tightening status manifest reaches **31/43** after Phase 1 (counting parents whose tightenable sub-parts are tightened, e.g. HL.HF-3 counts as tightened iff HL.HF-3b retains its tightening; TBD for double-counted cases)
+4. **Phase 2.1:** Three parent metrics rendered correctly with sub-parts (TP.SN-7/-7a/-7b, TP.SN-9/-9a/-9b, HL.HF-3/-3a/-3b); three retired IDs (TP.SN-8, TP.SN-10, HL.HF-4) appear in `_retired-ids.md` with redirect notes; audit allows the integer gaps; cross-reference audit catches any orphaned legacy-ID anchors. HL.HF-3b retains its v3.4 tightening pattern; HL.HF-3 parent does not need tightening pattern itself.
+5. **Phase 2.2:** ~15 cross-reference / framing additions land; cross-reference audit clean
+6. **Phase 2.3:** US-flavour audit produces a frozen registry (in archive/); each surfaced metric is either reframed (default) or folded (with user sign-off); TP.CC-8 retired and folded into TP.CC-7 (option β); registry covers the 216-metric sweep
+7. **Phase 3:** scope of addressed deferred metrics named explicitly; remaining deferred metrics named in CHANGELOG for v3.8+
+8. v3.5 / v3.6 follow-ups status — confirm none reopened by v3.7 changes
+9. CHANGELOG v3.7 entry names the deferred metrics not addressed (so v3.8+ scope is auto-tracked); names every retired ID and its redirect; names every reframed metric
 
 ---
 
@@ -196,6 +300,8 @@ Counts may change if Phase 2 includes any merges (decreases total from 216) or c
 ## Open questions for v3.7 kick-off
 
 1. **Phase 0 scope confirmed:** strong/structural option (new `_calibration-and-context.md` cross-cutting file); six deployment-setting axes (specialty / population / platform / governance / risk appetite / volume) as the structural frame. User confirmed 2026-04-26.
-2. **Has v3.5 / v3.6 attracted external feedback?** If yes, that may reframe Phase 2 or Phase 3 priorities.
-3. **Phase 2 sign-off cadence.** Locked decision: any redundancy merges or cuts in v3.7 require explicit user sign-off per pair. Pause before each action.
-4. **Which of the 5 deferred metrics to address first in Phase 3?** GV.SG-11 (LFPSE-AVT taxonomy) is the most externally-relevant; HL.HF-3 (review-quality bound) is the most internally-coherent given v3.5's HL.HF-1 / HL.HF-4 pairing. Pick one or both at kick-off.
+2. **Phase 2.1 redundancy-as-sub-parts confirmed:** sub-parts approach (a/b/c suffix) for the 3 redundancy candidates; deprecate-don't-renumber for retired IDs (TP.SN-8, TP.SN-10, HL.HF-4); registry in new `_retired-ids.md`. User confirmed 2026-04-26.
+3. **Phase 2.3 US-flavour audit confirmed:** sweep all 216 metrics; reframe to acknowledge NHS context as default, fold only where redundant against an existing NHS-applicable metric (TP.CC-7/-8 as the known case, option β). User direction 2026-04-26: "make sure they acknowledge the need for NHS framing — don't necessarily get rid of the metrics."
+4. **Has v3.5 / v3.6 attracted external feedback?** If yes, that may reframe Phase 2 or Phase 3 priorities.
+5. **Phase 3 priorities — which of the 5 deferred metrics to address first?** GV.SG-11 (LFPSE-AVT taxonomy) is the most externally-relevant; HL.HF-3 (review-quality bound) is the most internally-coherent given v3.5's HL.HF-1 / HL.HF-4 pairing. Note: v3.7 Phase 2.1 promotes HL.HF-3 to a parent metric; the "review-quality bound" question now sits at the parent-construct level, which may simplify or complicate Phase 3 — review at kick-off.
+6. **HL.HF-3 tightening status post-Phase 2.1.** HL.HF-3b inherits v3.4 tightening (was HL.HF-4). HL.HF-3a was previously not-tightened. Decision: does HL.HF-3a warrant tightening as part of Phase 1 (since it's a Tier 1 metric currently in the not-tightened set), or stays not-tightened pending Phase 3 review-quality-bound work? Default: tighten in Phase 1 if the work is mechanically straightforward; otherwise carry into Phase 3.
