@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.1</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3176,6 +3176,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v384-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.4 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v383-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4123,6 +4134,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v384-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.4 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v383-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5056,6 +5078,15 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v384-2026-04-26">v3.8.4 (2026-04-26)<a class="headerlink" href="#v384-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Tooling-only patch — fixes site-wide version banner drift.</p>
+<ul>
+<li><strong>Site-wide banner now live-derived.</strong> The mkdocs-material announce banner in <code>overrides/main.html</code> was hardcoded as <code>Draft v3.1</code> since the v3.1 release and had been silently stale through six subsequent releases (v3.2 → v3.8.3). <code>build_site._refresh_announce_banner()</code> now regenerates the override on every build using <code>SITE_VERSION</code>.</li>
+<li><strong>Template-token substitution in source files.</strong> <code>_header.md</code> (and any future cross-cutting source file that wants the live version) can use <code>{{TAXONOMY_VERSION}}</code> / <code>{{TAXONOMY_DATE}}</code> placeholders, which both <code>build.py</code> (monolith assembly) and <code>build_site.py</code> (docs population) substitute at build time. Single source of truth = <code>parse.TAXONOMY_VERSION</code> + <code>parse.TAXONOMY_DATE</code>.</li>
+<li><strong><code>parse.TAXONOMY_DATE</code> constant</strong> added alongside the existing <code>TAXONOMY_VERSION</code>. Bumped together at release.</li>
+<li><strong>README.md</strong> version stamps bumped to v3.8.4 (banner / current-draft / citation example / last-updated stamp).</li>
+</ul>
+<p>No taxonomy content changes; audit clean; counts unchanged.</p>
 <h2 id="v383-2026-04-26">v3.8.3 (2026-04-26)<a class="headerlink" href="#v383-2026-04-26" title="Permanent link">&para;</a></h2>
 <p>Tooling-only patch.</p>
 <ul>
