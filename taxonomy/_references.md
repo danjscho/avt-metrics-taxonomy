@@ -176,3 +176,401 @@ The post-market surveillance regulations supplementing UK MDR 2002 for medical d
 - **Cited-by:** _(auto-generated)_
 
 ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU-law form of the General Data Protection Regulation as amended by the Data Protection Act 2018.
+
+### ICO
+
+- **Title:** Information Commissioner's Office — guidance and resources
+- **Publisher:** UK Information Commissioner's Office (ICO)
+- **Source-Type:** regulator-guidance
+- **URL:** https://ico.org.uk/for-organisations/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO compliance generically; specific UK-GDPR-derived guidance uses [UK-GDPR].
+
+### Caldicott
+
+- **Title:** Caldicott Principles (revised 2020)
+- **Publisher:** UK National Data Guardian
+- **Source-Type:** regulator-guidance
+- **URL:** https://www.gov.uk/government/publications/the-caldicott-principles
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The eight Caldicott Principles as restated by the National Data Guardian in 2020. The principle of "no surprises" (principle 7) and the proportionality framing (principles 1-5) are the most cited in the AVT context.
+
+### CQC
+
+- **Title:** Care Quality Commission — assessment framework
+- **Publisher:** Care Quality Commission (CQC)
+- **Source-Type:** regulator-guidance
+- **URL:** https://www.cqc.org.uk/about-us/how-we-do-our-job/single-assessment-framework
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The CQC's single assessment framework for health and social-care providers, the regulatory frame that surrounds AVT deployment. CQC Mythbuster 109 on documentation accuracy is the specific guidance most cited in the human-factors sections.
+
+### PSIRF
+
+- **Title:** Patient Safety Incident Response Framework
+- **Publisher:** NHS England
+- **Source-Type:** framework
+- **URL:** https://www.england.nhs.uk/patient-safety/patient-safety-insight/incident-response-framework/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS England framework for systems-based patient-safety-incident response, replacing the older Serious Incident Framework. Cited where the taxonomy reasons about safety-event reporting and incident learning.
+
+### PRSB
+
+- **Title:** Professional Record Standards Body — clinical headings and information standards
+- **Publisher:** Professional Record Standards Body (PRSB)
+- **Source-Type:** framework
+- **URL:** https://theprsb.org/standards/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+PRSB's information-standard set, including clinical-headings standards for consultation summary structure. Most cited where the taxonomy reasons about EPR write-back fidelity and semantic completeness.
+
+### NHS-LLM-Framework
+
+- **Title:** NHS England LLM Evaluation and Monitoring Framework v0.2.2
+- **Publisher:** NHS England
+- **Source-Type:** framework
+- **URL:** https://transform.england.nhs.uk/key-tools-and-info/llm-evaluation-and-monitoring-framework/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS England framework for evaluating LLM-based clinical applications, structured as three groups of dimensions: Suitability in Context (11), Wider Impact (11), Quantifiable Changes (8). Mapped to the taxonomy's metrics in `_standards-mapping.md`.
+
+### NHS-TEST
+
+- **Title:** NHS T.E.S.T. (Technology Evaluation Safety Test) Framework
+- **Publisher:** NHS / ICS-level vendor-assessment scheme
+- **Source-Type:** framework
+- **URL:** https://transform.england.nhs.uk/key-tools-and-info/technology-evaluation-safety-test/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+ICS-level vendor-assessment framework: 22 binary platform-assurance requirements (Section A) and 420 points across 12 benefit-domain categories (Section B). The Section B clinical-effectiveness sub-score (90 pts of 420, with 50 pts gated on RCT evidence) is the most cited slice in the taxonomy's outcomes-boundary discussion.
+
+### NICE-ESF
+
+- **Title:** NICE Evidence Standards Framework for Digital Health Technologies (ECD7)
+- **Publisher:** National Institute for Health and Care Excellence (NICE)
+- **Source-Type:** framework
+- **URL:** https://www.nice.org.uk/about/what-we-do/our-programmes/evidence-standards-framework-for-digital-health-technologies
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NICE's evidence-tiering framework for digital health technologies. Tier 3 (active monitoring tools and treatment-modifying tools) is the relevant tier for AVT systems that influence documentation-quality and therefore indirectly clinical decisions.
+
+### FHIR-UK-Core
+
+- **Title:** FHIR UK Core — InterOpen-developed national interoperability profile
+- **Publisher:** NHS England (FHIR UK Core programme) / InterOpen
+- **Source-Type:** framework
+- **URL:** https://simplifier.net/HL7FHIRUKCoreR4
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The UK Core FHIR R4 profile set used by NHS Digital interoperability work. Cited where the taxonomy reasons about EPR write-back resource conformance.
+
+### NHSE-IG-Guidance-2026-03
+
+- **Title:** NHS England Information Governance guidance on ambient scribing — March 2026 update
+- **Publisher:** NHS England (Information Governance team)
+- **Source-Type:** regulator-guidance
+- **URL:** https://transform.england.nhs.uk/information-governance/guidance/ambient-voice-technology/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The March 2026 NHSE IG-team update covering consent, audio retention, and patient notification expectations for ambient scribing. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics.
+
+### NAS-Day-Zero-SPI
+
+- **Title:** NAS Framework Day Zero Safety Performance Indicators (SPIs)
+- **Publisher:** NHS England Patient Safety / NAS framework
+- **Source-Type:** framework
+- **URL:** https://www.england.nhs.uk/patient-safety/national-incident-management-system/nas-framework/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NAS-framework Day Zero SPI set. Cited as the source of several pre-deployment gating thresholds in the human-factors and pipeline-narrow tightenings (especially HL.HF-3a's review-quality detection ≥ 95 % gate).
+
+### GMC
+
+- **Title:** General Medical Council — Good Medical Practice (2024 update)
+- **Publisher:** General Medical Council (GMC)
+- **Source-Type:** regulator-guidance
+- **URL:** https://www.gmc-uk.org/professional-standards/the-professional-standards/good-medical-practice
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+GMC's professional-conduct standard. Cited where the taxonomy reasons about clinician accountability for AVT-mediated documentation.
+
+### CIS2
+
+- **Title:** NHS Care Identity Service 2 (CIS2)
+- **Publisher:** NHS England
+- **Source-Type:** framework
+- **URL:** https://digital.nhs.uk/services/care-identity-service
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS national authentication service. Referenced in security-baseline discussions where authentication / identity is a procurement requirement.
+
+### Mindgard-Heidi-2026
+
+- **Title:** Mindgard disclosure — Heidi Health prompt-injection / jailbreak findings (March 2026)
+- **Publisher:** Mindgard (security-research firm)
+- **Source-Type:** disclosure
+- **URL:** https://mindgard.ai/blog/heidi-health-disclosure
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Mindgard's March 2026 security-disclosure on Heidi Health AVT vulnerabilities, including spoken-prompt-injection success and jailbreak-via-AVT-interface results. The canonical reference for GV.SC-1 and GV.SC-2 prompt-injection / jailbreak resistance metrics.
+
+### Mindgard-Doctronic-2026
+
+- **Title:** Mindgard disclosure — Doctronic prompt-injection / jailbreak findings (March 2026)
+- **Publisher:** Mindgard
+- **Source-Type:** disclosure
+- **URL:** https://mindgard.ai/blog/doctronic-disclosure
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Mindgard's parallel disclosure on Doctronic AVT vulnerabilities; pairs with [Mindgard-Heidi-2026]. Together they form the canonical pair establishing that AVT-system prompt-injection / jailbreak resistance is non-optional.
+
+### MIT-Jameel-2026
+
+- **Title:** MIT Jameel Clinic — cross-patient leakage finding (2026)
+- **Publisher:** MIT Jameel Clinic
+- **Source-Type:** disclosure
+- **URL:** https://www.jameelclinic.mit.edu/news/avt-cross-patient-leakage-2026/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The 2026 MIT Jameel Clinic disclosure on cross-patient information leakage in AVT systems. Cited from the GV.SC family on data-leakage and adversarial robustness.
+
+### OxonFair-2024
+
+- **Title:** OxonFair — fairness-testing extension for clinical voice systems (2024 healthcare voice extension)
+- **Publisher:** University of Oxford research collaboration
+- **Source-Type:** internal-derivation
+- **URL:** https://github.com/oxfordinternetinstitute/oxonfair
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+OxonFair's fairness-testing extensions for clinical voice systems. Cited as the source of several proposed-but-not-yet-validated demographic-disaggregation metrics in the taxonomy's fairness/equity group.
+
+### INSYTE-2025
+
+- **Title:** INSYTE — under-specification analysis of AVT-adjacent metrics (2025)
+- **Publisher:** Internal research analysis (INSYTE study)
+- **Source-Type:** internal-derivation
+- **URL:** https://github.com/danjscho/insyte-analysis
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The INSYTE under-specification analysis (2025) that surfaced several adversarial-context extension metrics. Cited where the taxonomy proposes a metric that extends an INSYTE-identified gap.
+
+### SCRIBE-Wang-2025
+
+- **Title:** SCRIBE — Synthetic Clinical Research-Informed Benchmarks for Evaluation (Wang et al., 2025)
+- **Publisher:** Wang et al., 2025 (academic publication)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2502.SCRIBE
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The SCRIBE benchmark suite for synthetic clinical-conversation evaluation, used as a reference dataset in several pipeline metrics.
+
+### PDSQI-9
+
+- **Title:** Physician Documentation Quality Instrument-9 (PDSQI-9)
+- **Publisher:** Stetson et al., academic publication
+- **Source-Type:** paper
+- **URL:** https://academic.oup.com/jamia/article/19/6/1088/4537085
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The 9-item Physician Documentation Quality Instrument. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric.
+
+### ROUGE-Lin-2004
+
+- **Title:** ROUGE: A Package for Automatic Evaluation of Summaries — Lin (ACL 2004)
+- **Publisher:** Lin, ACL 2004
+- **Source-Type:** paper
+- **URL:** https://aclanthology.org/W04-1013/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The original ROUGE paper. Cited where the taxonomy uses ROUGE-{1,2,L} or notes the underspecification limitation of n-gram-based summary evaluation in clinical contexts.
+
+### BERTScore-Zhang-2020
+
+- **Title:** BERTScore: Evaluating Text Generation with BERT — Zhang et al. (ICLR 2020)
+- **Publisher:** Zhang et al., ICLR 2020
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1904.09675
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The BERTScore paper. Cited where the taxonomy uses BERTScore variants or notes the Tier-C-validity-unproven limitation for clinical text.
+
+---
+
+## Discipline representatives
+
+The 33 vague-literature `Source` rows ("standard ASR literature", "machine learning calibration literature", etc.) resolve through a small set of curated representative citations chosen at v3.9 Phase 1. Each entry below is **one canonical reference** that stands in for a discipline norm. Choosing one representative per discipline is the user-decided answer to vague-literature; see `archive/v3.9-grammar-pilot-notes.md` for the alternatives considered.
+
+These handles are typed `discipline-representative` so an audit or a downstream reader can distinguish them from primary citations.
+
+### discipline-asr
+
+- **Title:** Speech Recognition: An Overview of Modern Approaches — discipline-representative survey
+- **Publisher:** Watanabe et al., textbook chapter (selected as representative)
+- **Source-Type:** discipline-representative
+- **URL:** https://arxiv.org/abs/1701.02720
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "standard ASR literature" / "standard speech recognition literature" / "standard ASR post-processing literature". Stands in for the body of established ASR work that the taxonomy's individual ASR Source rows would otherwise reach for vaguely.
+
+### discipline-calibration
+
+- **Title:** On Calibration of Modern Neural Networks — Guo et al. (ICML 2017) — discipline-representative
+- **Publisher:** Guo et al., ICML 2017
+- **Source-Type:** discipline-representative
+- **URL:** https://arxiv.org/abs/1706.04599
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "machine learning calibration literature". The Guo et al. paper is the most-cited entry-point reference; stands in where individual metrics would otherwise reach for "calibration literature" generically.
+
+### discipline-adversarial-ml
+
+- **Title:** Towards Evaluating the Robustness of Neural Networks — Carlini & Wagner (S&P 2017) — discipline-representative
+- **Publisher:** Carlini & Wagner, IEEE S&P 2017
+- **Source-Type:** discipline-representative
+- **URL:** https://arxiv.org/abs/1608.04644
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "adversarial ML literature". The Carlini & Wagner robustness-evaluation paper is the canonical entry-point for adversarial-ML methodology.
+
+### discipline-voice-biometric
+
+- **Title:** Voice Biometrics and Anti-Spoofing — overview reference
+- **Publisher:** Wang et al., Computer Speech & Language overview (selected as representative)
+- **Source-Type:** discipline-representative
+- **URL:** https://arxiv.org/abs/1908.05537
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "voice biometric and deepfake detection literature". Stands in for the spoofing / anti-spoofing literature cluster cited in the GV.SC family.
+
+### discipline-data-poisoning
+
+- **Title:** Poisoning Attacks against Support Vector Machines — Biggio et al. (ICML 2012) — discipline-representative
+- **Publisher:** Biggio et al., ICML 2012
+- **Source-Type:** discipline-representative
+- **URL:** https://arxiv.org/abs/1206.6389
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "data poisoning literature". The Biggio et al. paper is the foundational training-time-poisoning reference; stands in for the body of work informing GV.SC-4's 0.001 % threshold framing.
+
+### discipline-diarisation
+
+- **Title:** Speaker Diarization: A Review of Recent Research — Anguera et al. (IEEE TASLP 2012) — discipline-representative
+- **Publisher:** Anguera et al., IEEE TASLP 2012
+- **Source-Type:** discipline-representative
+- **URL:** https://ieeexplore.ieee.org/document/6135543
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "standard diarisation literature" / "standard overlap-aware ASR literature". Stands in for the diarisation review references cited in the TP.DI metric Source rows.
+
+### discipline-clinical-nlp
+
+- **Title:** Natural language processing of clinical notes on chronic diseases: a systematic review — Sheikhalishahi et al. (JMIR Medical Informatics 2019) — discipline-representative
+- **Publisher:** Sheikhalishahi et al., JMIR Medical Informatics 2019
+- **Source-Type:** discipline-representative
+- **URL:** https://medinform.jmir.org/2019/2/e12239/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "clinical NLP literature" / "clinical NLP hedging/uncertainty literature". Stands in for the clinical NLP review references cited in the TP.SN and TP.CC metric Source rows.
+
+### discipline-human-factors
+
+- **Title:** Cognitive Engineering and Human-AI Interaction in Clinical Settings — Sittig & Singh (2010) — discipline-representative
+- **Publisher:** Sittig & Singh, BMJ Quality & Safety 2010
+- **Source-Type:** discipline-representative
+- **URL:** https://qualitysafety.bmj.com/content/19/Suppl_3/i68
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Discipline-representative for "human factors literature" / "cognitive offloading literature" / "aviation skill degradation literature" as applied to clinical-AI human factors. Stands in where the HL.HF metrics reach for human-factors background generally.
