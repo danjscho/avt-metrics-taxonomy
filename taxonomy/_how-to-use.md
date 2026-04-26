@@ -106,6 +106,8 @@ Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguis
 
 ### Adapting to Local Context
 
+> The taxonomy-wide principle that drives this section is the [Calibration & Context principle](#calibration-context) — tier assignments and threshold numbers are calibration starting points, not universal gates. The examples below are practical illustrations; read the principle file for the structural commitment, the six deployment-setting axes that calibration should respond to, and the local-calibration documentation expectation.
+
 Tier assignments reflect a general assessment of priority and actionability. Local context should adjust them:
 
 A practice with a high proportion of EAL (English as Additional Language) patients should treat demographic-disaggregated WER as Tier 1 rather than Tier 2 - the equity risk is elevated for their population. A practice using AVT for multi-party consultations (interpreter-mediated, family present) should treat multi-party robustness as Tier 1 because they are routinely operating in a scenario most systems are not validated for. A practice where clinicians have been customising prompt templates should treat template underspecification and template injection vulnerability as Tier 1 because the safety case may have been invalidated by modifications. An ICB with AVT deployed across practices of varying digital maturity should prioritise cross-practice variance and deployment equity.

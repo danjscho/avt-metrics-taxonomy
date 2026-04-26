@@ -117,9 +117,15 @@ GROUP_FILES: dict[str, dict[str, str]] = {
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
 TIER_NUM_TO_LABEL = {1: "Minimum Viable", 2: "Recommended", 3: "Advanced / Research"}
 
+# Reference IDs can carry a single lowercase letter suffix for sub-parts
+# (e.g. TP.SN-7a, TP.SN-7b under parent TP.SN-7), introduced in v3.7
+# Phase 2.1 to absorb the redundancy candidates from the v3.6 duplication
+# review. Parents and sub-parts both match this regex; downstream code
+# uses the suffix presence to distinguish them.
 METRIC_HEADING = re.compile(
-    r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+([🟢🟡🔵])\s+(.+?)\s*$"
+    r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s+([🟢🟡🔵])\s+(.+?)\s*$"
 )
+SUBPART_REF_ID_RE = re.compile(r"^([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)([a-z])$")
 DIM_ROW = re.compile(r"^\|\s*\*\*(.+?)\*\*\s*\|\s*(.+?)\s*\|\s*$")
 
 
@@ -178,6 +184,18 @@ class Metric:
     @property
     def source(self) -> str:
         return self.dimensions.get("Source", "")
+
+    @property
+    def is_subpart(self) -> bool:
+        """True iff this metric is a sub-part of a parent (ref_id ends in [a-z])."""
+        return bool(SUBPART_REF_ID_RE.match(self.ref_id))
+
+    @property
+    def parent_ref_id(self) -> str | None:
+        """For a sub-part, return the parent ref_id (e.g. TP.SN-7a → TP.SN-7).
+        For a parent or single metric, return None."""
+        m = SUBPART_REF_ID_RE.match(self.ref_id)
+        return m.group(1) if m else None
 
 
 def parse_group_file(rel_path: str) -> list[Metric]:
@@ -796,7 +814,13 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
 
 
 def summary() -> dict:
-    metrics = annotate_applicability(parse_all_metrics())
+    all_metrics = annotate_applicability(parse_all_metrics())
+    # Parents (with sub-parts) are excluded from headline counts; the
+    # countable units are flat metrics + sub-parts.
+    parent_ids = {
+        sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id is not None
+    }
+    metrics = [m for m in all_metrics if m.ref_id not in parent_ids]
     gaps = parse_gaps()
     tiers = Counter(m.tier for m in metrics)
     return {

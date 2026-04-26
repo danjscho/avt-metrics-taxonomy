@@ -32,6 +32,7 @@ FILES = [
     "_standards-mapping.md",
     "_responsible-ai-lens.md",
     "_outcomes-boundary.md",
+    "_calibration-and-context.md",
     "_gaps.md",
     "_glossary.md",
     "part-a/audio-capture.md",
@@ -89,7 +90,14 @@ CSV_COLUMNS = [
 
 
 def build_metric_outputs() -> int:
-    metrics = p.annotate_applicability(p.parse_all_metrics())
+    all_metrics = p.annotate_applicability(p.parse_all_metrics())
+    # Identify parent metrics (those with sub-parts) so we can exclude them
+    # from headline counts. Sub-parts and flat metrics are the unit of
+    # measurement; parents are construct framing only (introduced v3.7+).
+    parent_ids = {
+        sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id is not None
+    }
+    metrics = [m for m in all_metrics if m.ref_id not in parent_ids]
 
     DIST.mkdir(exist_ok=True)
 

@@ -96,9 +96,35 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 ```
 
+**Reference Standard**
+
+> Pipeline telemetry from the AVT product, the integration middleware (where present), and the target EPR. An "integration error" is any write-back attempt that does not result in a complete, conformant target-EPR record. Three error types distinguished:
+>
+> - **Failed (hard error)** — the write-back attempt threw an explicit error; no record created or partial record rejected by the EPR. Example: API timeout, FHIR resource validation rejection, authentication failure
+> - **Partial** — record created but with missing fields the source data should have populated. Example: free-text body written but coded medications dropped; allergies field truncated due to length limit
+> - **Degraded (soft failure)** — record created with all expected fields but with quality degradation. Example: SNOMED codes silently substituted with parent / generic codes due to mapping failure; structured data downgraded to free-text fallback
+>
+> Cross-link to [TP.WB-1 Write-back Fidelity](#tp-wb-1) — TP.WB-1 measures content correctness given successful integration; TP.WB-2 measures integration-itself success rate. The two together cover "did it write" (TP.WB-2) and "did it write correctly" (TP.WB-1).
+
+**Operational Specification**
+
+> - **Window:** continuous; daily aggregate per integration endpoint, monthly compliance reporting per EPR system in scope.
+> - **Per-error-type reporting MANDATORY:** three sub-rates (failed / partial / degraded) reported separately. Aggregate IER hides the failure pattern: a 0.005 aggregate that is 100 % degraded reads very differently from a 0.005 aggregate that is 100 % failed.
+> - **Per-EPR stratification MANDATORY:** parallel to TP.WB-1's per-EPR test corpus — IER measured against every EPR system in scope at the deployment site (EMIS, SystmOne, Epic, others). Aggregating across EPRs masks system-specific integration weaknesses.
+> - **Severity classification MANDATORY:** every error event classified by clinical impact: **critical** (safety-critical content lost or degraded — allergies, medications, dosages, problem-list entries); **moderate** (clinically meaningful content lost — exam findings, history, plan items); **benign** (presentation-only content lost — formatting, ordering, free-text style). Critical-rate reported separately as the leading safety indicator.
+> - **Soft-failure detection method MANDATORY:** the deployer's method for detecting degraded write-backs (where the EPR accepts the record but quality has been silently downgraded) MUST be documented. Methods in order of rigour: (i) sampled human review of write-back outputs against AVT-generated content; (ii) automated comparison of written-to-EPR content against AVT-generated content via diff; (iii) vendor self-attestation. Method (iii) is not Tier 1 sufficient alone.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the IER < 0.001 SLA target carries from the existing Formal Definition and standard integration-monitoring practice. Specific numerical thresholds per error type (failed < 0.0005, partial < 0.0003, degraded < 0.0002 by default; critical-rate zero-tolerance for the partial / degraded classes on safety-critical content) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (per EPR):** vendor demonstrates the three-error-type telemetry; soft-failure detection method documented; one end-to-end integration test passes per error type prior to go-live; zero critical-class events on the test corpus.
+> - **Continuous monitoring:** daily IER per error type per EPR ≤ SLA target; alert on any critical-class event detected (single instance, regardless of overall rate); alert if any error-type rate drifts > 50 % above per-EPR baseline sustained 7 days.
+> - **Pause / escalation trigger:** any critical-class event on safety-critical content (allergy / medication / dose) confirmed in production; OR aggregate IER > 5 × SLA target on any EPR for 24 hours; OR degraded-class soft-failure detection cadence falls below documented method (loss of monitoring capability is itself an escalation event).
+
 **Limitations**
 
-> Soft failures harder to detect than hard failures.
+> Soft failures harder to detect than hard failures. The Operational Specification's mandatory soft-failure detection method makes this gap explicit at procurement; it does not solve it. Detection method (iii) (vendor self-attestation) is the most common in current deployments and the most epistemically weak — moving to method (i) or (ii) is itself a calibration target deployers should track.
 
 ---
 
@@ -131,9 +157,35 @@ Does content land in the correct EPR field even when content is correct? A corre
 For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapped to correct EPR field). Distinct from content accuracy. Categories: allergies, medications, problems, observations, free-text. Critical failures: safety-critical content in non-safety-critical fields.
 ```
 
+**Reference Standard**
+
+> Inherits the per-EPR test corpus and the structural-equivalence definition from [TP.WB-1 Write-back Fidelity](#tp-wb-1) — TP.WB-3 is the field-correctness specialised case ("right field"). The reference is a per-EPR field-map document maintained by the deployer (or vendor with deployer sign-off) naming the canonical target field for each clinical-item type, including the legitimate-multi-target carve-outs:
+>
+> - **Single-target categories** — allergies, medications, problems, observations. Each clinical-item type has a single canonical EPR field; landing elsewhere is a mapping failure.
+> - **Multi-target categories with rules** — clinical content that may legitimately appear in more than one field (e.g. a smoking history may go into both the social-history structured field AND the consultation note free-text). The field-map document MUST name the rule per category (must-go-to-both / either-acceptable / preferred-with-fallback) so that what counts as "correct" is unambiguous.
+> - **Free-text catchall** — content that has no structured target. The field-map document MUST identify which categories fall here per EPR; an allergy landing in free-text on a system that supports a structured allergy field is a critical failure.
+>
+> Inter-rater target on field-map authoring: ICC ≥ 0.85 between deployer reviewer and vendor reviewer. Where they disagree, the deployer reviewer's call is authoritative.
+
+**Operational Specification**
+
+> - **Per-EPR field map MANDATORY:** authored before pre-deployment gate; reviewed annually or on EPR version change. Without the field-map document, "correct field" has no operational definition.
+> - **Per-category reporting MANDATORY:** five sub-rates (allergies / medications / problems / observations / free-text) reported separately. Aggregate-only reporting hides the failure pattern that matters.
+> - **Critical-failure classification MANDATORY:** safety-critical content (allergies, medications, doses, problem-list entries) landing in non-safety-critical fields (consultation note free-text, history free-text) is a critical-class failure regardless of frequency. Critical-rate reported separately as a leading safety indicator.
+> - **Test corpus inheritance:** uses the same ≥ 200-cases-per-EPR test corpus as TP.WB-1, with per-test-case expected-target-field annotation. Pre-deployment gate runs both metrics on the same corpus.
+> - **Failure-mode classification:** each failure recorded as (i) wrong field same category (e.g. allergy to wrong allergy sub-field); (ii) wrong category (e.g. allergy to medication); (iii) free-text fallback when structured target available; (iv) multi-target rule violation. Type (iii) on safety-critical categories is a critical-class failure (silent safety-mechanism bypass per the Novel Thinking section).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the safety-critical-content-in-non-safety-critical-fields zero-tolerance posture follows from the clinical-safety logic in TP.WB-3's Why-this-tier and Novel Thinking sections (and TP.WB-1's parallel framing). Specific numerical thresholds (100 % safety-critical-category gate, ≥ 95 % per-category gate, type-(iii) zero-tolerance) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the per-EPR field-map content is highly deployment-dependent — local calibration is the substantive work here, not the threshold numbers.
+>
+> - **Pre-deployment gate (per EPR):** field-map document complete and signed off; safety-critical-category mapping accuracy = 100 % on test corpus; per-category accuracy ≥ 95 % each; zero type-(iii) safety-critical failures.
+> - **Continuous monitoring:** monthly audited mapping accuracy ≥ 99 % on safety-critical categories; alert on any type-(iii) safety-critical failure detected in production traffic (no rate threshold — single instance is alert-worthy); alert if any per-category rate falls below 90 % in any audit cycle.
+> - **Pause / escalation trigger:** any type-(iii) failure on allergy or medication-dose categories confirmed in production; OR aggregate safety-critical-category mapping accuracy < 95 % in any monthly audit cycle.
+
 **Limitations**
 
-> Requires clear ground truth on which field each item should land in. Some items legitimately belong in multiple fields.
+> Requires clear ground truth on which field each item should land in. Some items legitimately belong in multiple fields. The Operational Specification's mandatory per-EPR field-map document makes this requirement explicit; it does not eliminate the authoring burden, which is genuinely substantial for a multi-EPR deployment.
 
 **Novel Thinking / Implications**
 
@@ -170,9 +222,41 @@ Does the system correctly handle existing structured data? Overwriting an existi
 For each structured data update: behaviour in {overwrite, append, merge, skip}. Correctness depends on context. Critical failures: overwriting with less complete data, appending duplicates that cause alert fatigue, skipping legitimate updates.
 ```
 
+**Reference Standard**
+
+> Per-EPR + per-category behaviour-rule document, authored by the deployer with vendor sign-off. The rule document specifies the **expected behaviour** per (clinical-item-category × update-context) cell, where:
+>
+> - **Update context** is one of: (a) new content where existing record has no entry; (b) new content semantically equivalent to existing entry; (c) new content adding to existing entry (e.g. new allergy added to existing list); (d) new content contradicting / superseding existing entry (e.g. resolved problem); (e) new content with lower information density than existing (e.g. brief mention where detailed prior history exists).
+> - **Categories** are the same five as [TP.WB-3 Field Mapping Accuracy](#tp-wb-3): allergies, medications, problems, observations, free-text.
+>
+> Each cell has an expected behaviour: **overwrite** (replace existing), **append** (add alongside, preserving existing), **merge** (semantic combine, e.g. consolidate equivalent entries), **skip** (do nothing). Cells without explicit rules default to skip-with-flag (record the proposed update but do not apply, surface to clinician for review).
+>
+> Inter-rater target on rule authoring: ICC ≥ 0.85 between deployer reviewer and vendor reviewer. Where they disagree, the deployer reviewer's call is authoritative; the disagreement itself is logged.
+>
+> **Critical failure modes** (single-instance pause triggers):
+> - **Overwriting with less complete data on safety-critical categories** (allergies, medications, problems) — context (e) above on safety-critical categories must default to skip-with-flag, never overwrite
+> - **Skipping a legitimate update on safety-critical categories** — context (a) on safety-critical must always result in append; failure to write a new allergy is a silent safety event
+> - **Duplicate-without-merge on safety-critical categories** — context (b) on safety-critical must result in merge, not append; appending a duplicate medication entry is an alert-fatigue source that contributes to downstream prescribing errors
+
+**Operational Specification**
+
+> - **Per-EPR + per-category rule document MANDATORY:** authored before pre-deployment gate; reviewed annually or on EPR schema change. Without the document, "correctness" has no operational definition.
+> - **Test corpus MANDATORY:** ≥ 50 test cases per (category × update-context) cell — i.e. ≥ 50 cases × 5 categories × 5 contexts = ≥ 1250 test cases per EPR. Test cases exercise both expected-behaviour-honoured and adversarial edge cases (rapid successive updates, contradictory updates, ambiguous semantic equivalence).
+> - **Per-cell reporting MANDATORY:** behaviour correctness reported per (category × context) cell. Aggregate-only reporting hides exactly the cells where the safety failures live (safety-critical category × overwrite-with-less-data context).
+> - **Duplicate-detection windowing MANDATORY:** the deployer's duplicate-detection logic (does an entry written 2 minutes ago count as duplicate? 2 hours? 2 days?) MUST be documented with the windowing rule. Without explicit windowing, duplicate / merge cells are operationally meaningless.
+> - **Skip-with-flag pathway MANDATORY:** the workflow for surfacing skip-with-flag events to the clinician MUST be documented and tested at pre-deployment. Skip-without-flag is a silent failure of the metric.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the four-behaviour taxonomy and the safety-critical critical-failure classification follow from the existing Formal Definition and Novel Thinking. Specific numerical thresholds (≥ 50 cases per cell, 100 % safety-critical critical-failure-mode gate, ≥ 95 % per-cell gate elsewhere) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the rule-document content is the substantive calibration work; the threshold numbers are starting points for that work.
+>
+> - **Pre-deployment gate (per EPR):** rule document complete and signed off; test corpus passes with zero safety-critical critical-failure-mode events; per-cell behaviour correctness ≥ 95 % across all cells; skip-with-flag pathway tested end-to-end.
+> - **Periodic audit:** quarterly review of production-traffic update behaviour against the rule document; alert on any safety-critical critical-failure-mode event detected (single instance); alert if any (category × context) cell falls below 90 % correctness in any audit cycle.
+> - **Pause / escalation trigger:** any safety-critical critical-failure-mode event confirmed in production (overwrite-with-less-data on allergies / medications / problems; skipped legitimate addition; duplicate-without-merge on safety-critical category); OR aggregate safety-critical-category cell correctness < 95 % in any audit cycle.
+
 **Limitations**
 
-> Correct behaviour is context-dependent and varies by EPR system. Each EPR has different conventions for structured data updates.
+> Correct behaviour is context-dependent and varies by EPR system. Each EPR has different conventions for structured data updates. The Operational Specification's mandatory per-EPR rule document makes this requirement explicit and visible; the authoring burden is genuinely substantial (per-EPR × per-category × per-context grid) and is itself a calibration cost. The duplicate-detection-windowing rule remains a deployment-context call — there is no externally validated standard windowing convention.
 
 **Novel Thinking / Implications**
 

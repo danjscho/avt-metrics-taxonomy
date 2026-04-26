@@ -68,21 +68,23 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 43, 2: 94, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 43, 2: 93, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 48,
-    "AVT-Contextualised": 77,
+    "AVT-Contextualised": 76,
     "General Healthcare AI": 91,
 }
-EXPECTED_TOTAL = 216
+EXPECTED_TOTAL = 215
 
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
+# Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
 METRIC_HEADING = re.compile(
-    r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s+([🟢🟡🔵])\s+(.+?)\s*$"
+    r"^###\s+([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s+([🟢🟡🔵])\s+(.+?)\s*$"
 )
 REF_ROW = re.compile(
-    r"^\|\s*\*\*Reference\*\*\s*\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)\s*\|"
+    r"^\|\s*\*\*Reference\*\*\s*\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s*\|"
 )
+SUBPART_REF_ID_RE = re.compile(r"^([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)([a-z])$")
 TIER_ROW = re.compile(r"^\|\s*\*\*Priority Tier\*\*\s*\|\s*([🟢🟡🔵])\s*Tier\s*(\d)")
 
 # Dimension rows we expect in every metric table (8 core dimensions; "Reference" and optional extras are separate).
@@ -244,50 +246,97 @@ def check_prefixes(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
     return findings
 
 
+def load_retired_ids() -> set[str]:
+    """Read taxonomy/_retired-ids.md and return the set of retired ref IDs.
+
+    Format: any markdown table row in the file whose first cell is a valid
+    ref ID (e.g. TP.SN-8). Header rows and prose are ignored.
+    """
+    path = ROOT / "_retired-ids.md"
+    if not path.exists():
+        return set()
+    retired: set[str] = set()
+    ref_id_re = re.compile(r"^\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s*\|")
+    for line in path.read_text().splitlines():
+        m = ref_id_re.match(line)
+        if m:
+            retired.add(m.group(1))
+    return retired
+
+
 def check_numbering(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
     findings: list[Finding] = []
+    retired_ids = load_retired_ids()
     for rel_path, metrics in metrics_by_file.items():
         prefix = GROUP_FILES[rel_path]["prefix"]
-        nums_seen = []
+        # Capture base integer from each ref_id (parents and sub-parts share a base).
+        # Sub-parts (TP.SN-7a) contribute their parent integer (7); the parent (TP.SN-7)
+        # also contributes 7 — we de-dupe these for gap-checking but flag duplicate
+        # *exact* IDs separately.
+        nums_seen: list[tuple[int, Metric]] = []
+        exact_ids_seen: list[str] = []
         for m in metrics:
             mnum = re.match(
-                rf"^{re.escape(prefix)}-(\d+)$", m.ref_id
+                rf"^{re.escape(prefix)}-(\d+)([a-z]?)$", m.ref_id
             )  # prefix is literal, e.g. PI.E2E
             if not mnum:
                 continue
             nums_seen.append((int(mnum.group(1)), m))
-        # Duplicates
-        counts = Counter(n for n, _ in nums_seen)
-        for num, count in counts.items():
+            exact_ids_seen.append(m.ref_id)
+        # Duplicates: same exact ref_id (including suffix) appearing twice
+        exact_counts = Counter(exact_ids_seen)
+        for ref_id, count in exact_counts.items():
             if count > 1:
-                locs = [f"{mm.file}:{mm.line}" for n, mm in nums_seen if n == num]
+                locs = [f"{mm.file}:{mm.line}" for mm in metrics if mm.ref_id == ref_id]
                 findings.append(
                     Finding(
                         "ERROR",
                         "duplicate-id",
-                        f"{prefix}-{num} appears {count} times",
+                        f"{ref_id} appears {count} times",
                         "; ".join(locs),
                     )
                 )
-        # Gaps
+        # Gaps: integer in 1..max not present at all (neither as a flat ID nor as
+        # a parent of any sub-part). Retired IDs (per _retired-ids.md) are
+        # tolerated; their absence is expected.
         if nums_seen:
             expected = set(range(1, max(n for n, _ in nums_seen) + 1))
             actual = set(n for n, _ in nums_seen)
             for gap in sorted(expected - actual):
+                gap_id = f"{prefix}-{gap}"
+                # Allow the gap if any retired ID maps to this base integer.
+                gap_is_retired = any(
+                    r.startswith(f"{gap_id}") and (r == gap_id or r[len(gap_id)].isalpha())
+                    for r in retired_ids
+                )
+                if gap_is_retired:
+                    continue
                 findings.append(
                     Finding(
                         "WARN",
                         "numbering-gap",
-                        f"{prefix}-{gap} is missing (numbering not contiguous)",
+                        f"{gap_id} is missing (numbering not contiguous)",
                         rel_path,
                     )
                 )
     return findings
 
 
+def countable_metrics(all_metrics: list[Metric]) -> list[Metric]:
+    """Return the metrics that count toward headline totals — flat metrics
+    and sub-parts. Parent metrics (those with sub-parts) are excluded;
+    they provide construct framing only and would double-count their
+    sub-parts' substance."""
+    parent_ids = {
+        m.ref_id for m in all_metrics if is_parent_metric(m, all_metrics)
+    }
+    return [m for m in all_metrics if m.ref_id not in parent_ids]
+
+
 def check_tier_totals(all_metrics: list[Metric]) -> list[Finding]:
     findings: list[Finding] = []
-    counts = Counter(m.tier for m in all_metrics)
+    countable = countable_metrics(all_metrics)
+    counts = Counter(m.tier for m in countable)
     for tier, expected in EXPECTED_TIER_TOTALS.items():
         actual = counts.get(tier, 0)
         if actual != expected:
@@ -371,11 +420,13 @@ def check_see_also_resolves(all_metrics: list[Metric]) -> list[Finding]:
 
 
 def check_applicability_presence(all_metrics: list[Metric]) -> list[Finding]:
-    """Every metric must carry an Applicability row in its dimension table
-    (v3.6+ — Applicability moved on-metric)."""
+    """Every countable metric (flat + sub-parts; parents excluded) must
+    carry an Applicability row in its dimension table (v3.6+ — Applicability
+    moved on-metric). Parent metrics carry construct framing only and need
+    not duplicate the dimension table."""
     findings: list[Finding] = []
     valid = set(EXPECTED_APPLICABILITY.keys())
-    for m in all_metrics:
+    for m in countable_metrics(all_metrics):
         applic = m.dimensions.get("Applicability")
         if applic is None:
             findings.append(
@@ -408,9 +459,10 @@ def check_applicability_totals(all_metrics: list[Metric]) -> list[Finding]:
     """
     findings: list[Finding] = []
 
-    # Derive totals from per-metric values.
+    # Derive totals from per-metric values, excluding parent metrics
+    # (which carry construct framing only and have no dimension table).
     derived: dict[str, int] = Counter()
-    for m in all_metrics:
+    for m in countable_metrics(all_metrics):
         applic = m.dimensions.get("Applicability")
         if applic in EXPECTED_APPLICABILITY:
             derived[applic] += 1
@@ -546,9 +598,28 @@ TIGHTENING_SUB_BLOCKS = (
 )
 
 
+def is_subpart_id(ref_id: str) -> bool:
+    """True iff ref_id ends in [a-z] (e.g. TP.SN-7a)."""
+    return bool(SUBPART_REF_ID_RE.match(ref_id))
+
+
+def parent_id(ref_id: str) -> str | None:
+    """For a sub-part, return parent ref_id; else None."""
+    m = SUBPART_REF_ID_RE.match(ref_id)
+    return m.group(1) if m else None
+
+
+def is_parent_metric(metric: Metric, all_metrics: list[Metric]) -> bool:
+    """True iff this metric has any sub-parts (i.e. some other metric has
+    parent_id == metric.ref_id)."""
+    return any(parent_id(m.ref_id) == metric.ref_id for m in all_metrics)
+
+
 def classify_tightening(metric: Metric) -> str:
     """Return 'tightened' (all 3 sub-blocks present), 'not-tightened' (none),
-    or 'partial' (some but not all)."""
+    or 'partial' (some but not all). Sub-parts are classified individually;
+    parents (of sub-parts) are not run through this check — see
+    classify_parent_tightening below."""
     present = [b for b in TIGHTENING_SUB_BLOCKS if b in metric.body]
     if len(present) == len(TIGHTENING_SUB_BLOCKS):
         return "tightened"
@@ -557,12 +628,32 @@ def classify_tightening(metric: Metric) -> str:
     return "partial"
 
 
+def classify_parent_tightening(parent: Metric, all_metrics: list[Metric]) -> str:
+    """For a parent metric, classify as tightened iff every sub-part is
+    individually tightened. Otherwise not-tightened. Parents do not carry
+    the sub-blocks themselves."""
+    subparts = [m for m in all_metrics if parent_id(m.ref_id) == parent.ref_id]
+    if not subparts:
+        # Defensive: caller should only invoke for actual parents
+        return "not-tightened"
+    if all(classify_tightening(sp) == "tightened" for sp in subparts):
+        return "tightened"
+    return "not-tightened"
+
+
 def check_tightening_pattern(all_metrics: list[Metric]) -> list[Finding]:
     """Tier 1 metrics must carry all three tightening sub-blocks or none of
-    them. Mixed (partial) states are an error."""
+    them. Mixed (partial) states are an error.
+
+    Parent metrics (those with sub-parts) are not subject to this check —
+    they carry construct framing in the body, not the tightening pattern.
+    Sub-parts are checked individually."""
     findings: list[Finding] = []
     for m in all_metrics:
         if m.tier != 1:
+            continue
+        if is_parent_metric(m, all_metrics):
+            # Parents don't carry the pattern; sub-parts do
             continue
         state = classify_tightening(m)
         if state == "partial":
@@ -671,13 +762,46 @@ def check_metric_cross_references(all_metrics: list[Metric]) -> list[Finding]:
 
 def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
     """Print a Tier 1 tightening status manifest. Informational, not gated by
-    findings."""
-    tier1 = [m for m in all_metrics if m.tier == 1]
-    tightened = [m for m in tier1 if classify_tightening(m) == "tightened"]
-    not_tightened = [m for m in tier1 if classify_tightening(m) == "not-tightened"]
-    partial = [m for m in tier1 if classify_tightening(m) == "partial"]
+    findings.
 
-    print(f"Tier 1 tightening status: {len(tightened)}/{len(tier1)} tightened.")
+    Parent metrics (with sub-parts) are classified by aggregate sub-part
+    status — tightened iff all sub-parts tightened, else not-tightened.
+    Sub-parts themselves are classified individually. Flat metrics
+    (no sub-parts, not a parent) are classified individually.
+    """
+    # The tightening manifest reports parent metrics (with sub-parts) as
+    # single units classified by aggregate sub-part status, plus all flat
+    # Tier 1 metrics. Sub-parts themselves are not double-counted in the
+    # headline; they roll up via the parent.
+    tier1_flat_or_parent: list[Metric] = []
+    seen_parents: set[str] = set()
+    for m in all_metrics:
+        if m.tier != 1:
+            continue
+        if parent_id(m.ref_id) is not None:
+            # This is a sub-part; defer to its parent (added below)
+            continue
+        tier1_flat_or_parent.append(m)
+        if is_parent_metric(m, all_metrics):
+            seen_parents.add(m.ref_id)
+
+    tightened: list[Metric] = []
+    not_tightened: list[Metric] = []
+    partial: list[Metric] = []
+
+    for m in tier1_flat_or_parent:
+        if m.ref_id in seen_parents:
+            state = classify_parent_tightening(m, all_metrics)
+        else:
+            state = classify_tightening(m)
+        if state == "tightened":
+            tightened.append(m)
+        elif state == "partial":
+            partial.append(m)
+        else:
+            not_tightened.append(m)
+
+    print(f"Tier 1 tightening status: {len(tightened)}/{len(tier1_flat_or_parent)} tightened.")
     print(
         f"  Tightened: {', '.join(sorted(m.ref_id for m in tightened)) or '(none)'}"
     )
@@ -689,6 +813,10 @@ def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
             f"  ⚠️ Partial (audit error): "
             f"{', '.join(sorted(m.ref_id for m in partial))}"
         )
+    # Retired IDs status line (v3.7+)
+    retired = sorted(load_retired_ids())
+    if retired:
+        print(f"Retired IDs: {', '.join(retired)}")
     print()
 
 

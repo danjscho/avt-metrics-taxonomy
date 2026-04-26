@@ -47,11 +47,16 @@ For the questions this taxonomy does not answer, deployers should:
 - **Treat proximal metrics as deployment-safety signals, not as evidence of clinical benefit.** Hallucination rate is a safety-floor signal; edit rate is a workflow-and-attention signal; cumulative information yield is a fidelity signal. None of these establish that the deployed system improves care.
 - **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#es-me-1)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
 
+### Relationship to the Calibration & Context principle
+
+The Outcomes Boundary names what's *out of scope* (clinical-outcome validation belongs to national research bodies, not deployers). The parallel [Calibration & Context principle](#calibration-context) names what's *in scope but context-dependent* (tier assignments and threshold numbers are deployer-calibrated starting points, not universal gates). The two principles together describe what the taxonomy assures and how it should be applied: the Boundary is a hard limit; calibration is a soft instruction to localise the defaults. A deployer using this taxonomy should read both — the Boundary to understand what it cannot rely on the taxonomy to deliver, and the Calibration principle to understand the scope it does have to adapt the published defaults to its own context.
+
 ### Cross-references
 
 - **ES.ME-1 Proximal vs Distal Outcome Distinction** — names the causal-logic burden on vendors
 - **ES.ME-8 Outcome Evidence Commitment Status** — operationalises outcome-study commitment as a metric
 - **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
+- **[Calibration & Context principle](#calibration-context)** — parallel principle for in-scope-but-context-dependent calibration
 - **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
 - **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
 

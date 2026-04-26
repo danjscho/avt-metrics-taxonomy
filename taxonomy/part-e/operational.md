@@ -138,6 +138,8 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 
 > 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else - queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
 
+*See also: Documentation Time per Consultation - paired metric. GV.OP-1 measures clinician note-effort time (start-of-doc to signature); GV.OP-3 measures end-to-end record-availability time (consultation end to EPR availability). Easily confused; the names invite it.*
+
 ---
 
 ### GV.OP-4 🟡 Documentation Workload Composite

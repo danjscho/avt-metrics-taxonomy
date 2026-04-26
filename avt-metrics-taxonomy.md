@@ -1,10 +1,10 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.6, 2026-04-26.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.7, 2026-04-26.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**216 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extended the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promoted the convention to machine-enforced via two new `audit.py` checks, and published the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics. v3.5 landed the two highest-value tightening waves identified in that classification: 8 compliance/governance core metrics (Wave 1) and 4 privacy-chain metrics (Wave 2). The pattern is now applied to **25 of 43 Tier 1 metrics**. v3.6 completes architectural alignment (Applicability is now a 12th dimension on every metric, removing a parallel-source-of-truth inconsistency), publishes the [duplication review](archive/v3.6-duplication-review.md) classifying every within-group metric pair as `distinct` / `overlapping` / `redundant` (input to v3.7+ scoping), and addresses four v3.5 self-review follow-ups including a new audit check that catches broken cross-reference anchors before they reach the rendered site.
+**215 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extended the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promoted the convention to machine-enforced via two new `audit.py` checks, and published the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics. v3.5 landed the two highest-value tightening waves identified in that classification: 8 compliance/governance core metrics (Wave 1) and 4 privacy-chain metrics (Wave 2). The pattern is now applied to **25 of 43 Tier 1 metrics**. v3.6 completed architectural alignment (Applicability is now a 12th dimension on every metric, removing a parallel-source-of-truth inconsistency), published the [duplication review](archive/v3.6-duplication-review.md) classifying every within-group metric pair as `distinct` / `overlapping` / `redundant` (input to v3.7+ scoping), and addressed four v3.5 self-review follow-ups including a new audit check that catches broken cross-reference anchors before they reach the rendered site. v3.7 establishes the [Calibration & Context principle](#calibration-context) as a first-class commitment alongside the [Outcomes Boundary](#outcomes-boundary): tier assignments and threshold numbers are calibration starting points for the deployer to localise against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
 ## How to Use This Taxonomy
 
@@ -114,6 +114,8 @@ Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguis
 
 ### Adapting to Local Context
 
+> The taxonomy-wide principle that drives this section is the [Calibration & Context principle](#calibration-context) — tier assignments and threshold numbers are calibration starting points, not universal gates. The examples below are practical illustrations; read the principle file for the structural commitment, the six deployment-setting axes that calibration should respond to, and the local-calibration documentation expectation.
+
 Tier assignments reflect a general assessment of priority and actionability. Local context should adjust them:
 
 A practice with a high proportion of EAL (English as Additional Language) patients should treat demographic-disaggregated WER as Tier 1 rather than Tier 2 - the equity risk is elevated for their population. A practice using AVT for multi-party consultations (interpreter-mediated, family present) should treat multi-party robustness as Tier 1 because they are routinely operating in a scenario most systems are not validated for. A practice where clinicians have been customising prompt templates should treat template underspecification and template injection vulnerability as Tier 1 because the safety case may have been invalidated by modifications. An ICB with AVT deployed across practices of varying digital maturity should prioritise cross-practice variance and deployment equity.
@@ -143,7 +145,7 @@ A trust with multiple AVT platforms deployed across different services should pr
 ### By Priority Tier
 
 - **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 94 metrics - recommended with reasonable governance capacity
+- **🟡 Tier 2 - Recommended Assurance**: 93 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -191,6 +193,8 @@ Some groups contain named metric families - clusters of related metrics that mea
 ## Tier 1 - Minimum Viable Assurance (Quick Reference)
 
 The smallest set of metrics that a deployer cannot responsibly skip. All are measurable today with existing tools, data, and governance capacity.
+
+> ⚠️ **This list is a calibrated starting point, not a fixed checklist.** Local deployment context — specialty mix, patient population, platform maturity, governance capacity, risk appetite, and volume — shifts both tier assignments and threshold numbers. A deployment with elevated risk on any of these axes should promote relevant Tier 2 or Tier 3 metrics to Tier 1; a deployment with low risk on a given axis may treat a Tier 1 metric as Tier 2 with explicit justification. See the [Calibration & Context principle](#calibration-context) for the structural commitment, the six axes, and the local-calibration documentation expectation.
 
 **Tier 1 expanded substantially with the January–March 2026 NHS guidance suite.** Nine metrics moved into Tier 1 or were added as new Tier 1 entries reflecting compliance requirements that did not exist when the taxonomy was first drafted: the NHS Compliance & Regulatory cluster (Patient Dissent Recording, Verbal Notification, AI-Generated Content Labelling, AVT Supplier Registry, ICB Engagement, Clinical Safety Case, DPIA Template, Audio Time-to-Deletion, Transcript Retention) plus Code Hallucination Rate. For NHS deployers, the shape of Day Zero minimum assurance has changed materially since early-2025 vendor procurement; re-assess existing deployments against the expanded Tier 1 set.
 
@@ -277,7 +281,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - [ASR / Transcription](#asr-transcription) (14 metrics - 2 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
 - [Diarisation](#diarisation) (9 metrics) *contains Conversation Analysis sub-cluster*
 - [Summarisation / NLP](#summarisation-nlp) (24 metrics - 4 Tier 1) *contains Clinical Content Fidelity, Reference-Based Text Similarity, and Medication Safety Thread families*
-- [Clinical Coding](#clinical-coding) (12 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
+- [Clinical Coding](#clinical-coding) (11 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
 - [EPR Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
 
 **Part B - Pipeline Interactions**
@@ -337,21 +341,21 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | Classification | Count | Percentage |
 |----------------|-------|------------|
 | AVT-Specific | 48 | 22% |
-| AVT-Contextualised | 77 | 36% |
-| General Healthcare AI | 91 | 42% |
-| **Total** | **216** | **100%** |
+| AVT-Contextualised | 76 | 35% |
+| General Healthcare AI | 91 | 43% |
+| **Total** | **215** | **100%** |
 
 ### By Part
 
 | Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
 |------|-------------|--------------------|--------------------|-------|
-| A - Technical Pipeline | 33 | 42 | 0 | 75 |
+| A - Technical Pipeline | 33 | 41 | 0 | 74 |
 | B - Pipeline Interactions | 8 | 13 | 0 | 21 |
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
 | E - System Governance | 6 | 0 | 68 | 74 |
 | F - Evaluation Science | 0 | 0 | 9 | 9 |
-| **Total** | **48** | **77** | **91** | **216** |
+| **Total** | **48** | **76** | **91** | **215** |
 
 
 ### Full Classification
@@ -415,10 +419,10 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.SN-4 | CREOLA Error Taxonomy Scores | 🟡 Tier 2 | AVT-Contextualised |
 | TP.SN-5 | Hallucination Rate | 🟢 Tier 1 | AVT-Contextualised |
 | TP.SN-6 | Omission Rate | 🟢 Tier 1 | AVT-Contextualised |
-| TP.SN-7 | Confabulation Detection (Support × Severity) | 🔵 Tier 3 | AVT-Contextualised |
-| TP.SN-8 | VeriFact Factual Verification | 🔵 Tier 3 | AVT-Contextualised |
-| TP.SN-9 | LLM-as-a-Judge (PDSQI-9 Proxy) | 🟡 Tier 2 | AVT-Contextualised |
-| TP.SN-10 | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-7a | Confabulation Detection (Support × Severity) | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-7b | VeriFact Factual Verification | 🔵 Tier 3 | AVT-Contextualised |
+| TP.SN-9a | LLM-as-a-Judge (PDSQI-9 Proxy) | 🟡 Tier 2 | AVT-Contextualised |
+| TP.SN-9b | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-11 | MEDIC Cross-Examination | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-12 | Linked Evidence / Provenance Tracing | 🟡 Tier 2 | AVT-Contextualised |
 | TP.SN-13 | SCRIBE Framework Composite | 🔵 Tier 3 | AVT-Specific |
@@ -434,7 +438,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.SN-23 | Length Appropriateness | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-24 | Stigmatising Language Replication Rate | 🟡 Tier 2 | AVT-Contextualised |
 
-**Clinical Coding** (12 metrics)
+**Clinical Coding** (11 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -444,10 +448,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.CC-4 | OPCS-4 Procedure Coding Accuracy | 🟡 Tier 2 | AVT-Contextualised |
 | TP.CC-5 | dm+d Medication Coding Accuracy | 🟡 Tier 2 | AVT-Contextualised |
 | TP.CC-6 | Code Hallucination Rate | 🟢 Tier 1 | AVT-Contextualised |
-| TP.CC-7 | Coding Inflation Detection | 🟡 Tier 2 | AVT-Contextualised |
-| TP.CC-8 | E/M Level Shift Monitoring | 🟡 Tier 2 | AVT-Contextualised |
+| TP.CC-7 | Coding Drift Detection | 🟡 Tier 2 | AVT-Contextualised |
 | TP.CC-9 | Coding Equity Index | 🟡 Tier 2 | AVT-Contextualised |
-| TP.CC-10 | wRVU / Tariff Impact Attribution | 🔵 Tier 3 | AVT-Contextualised |
+| TP.CC-10 | HRG / Tariff Impact Attribution | 🔵 Tier 3 | AVT-Contextualised |
 | TP.CC-11 | Code Specificity Index | 🔵 Tier 3 | AVT-Contextualised |
 | TP.CC-12 | Code Suggestion Latency | 🔵 Tier 3 | AVT-Contextualised |
 
@@ -504,8 +507,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 |-----|--------|------|---------------|
 | HL.HF-1 | Edit Rate (% Notes Edited) | 🟢 Tier 1 | AVT-Contextualised |
 | HL.HF-2 | Edit Type Classification | 🟡 Tier 2 | AVT-Contextualised |
-| HL.HF-3 | Review-Before-Signing Rate | 🟢 Tier 1 | AVT-Contextualised |
-| HL.HF-4 | Time-to-Sign Distribution | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-3a | Review-Before-Signing Rate | 🟢 Tier 1 | AVT-Contextualised |
+| HL.HF-3b | Time-to-Sign Distribution | 🟢 Tier 1 | AVT-Contextualised |
 | HL.HF-5 | Edit-Pattern Monitoring at Scale | 🔵 Tier 3 | AVT-Contextualised |
 | HL.HF-6 | Automation Bias Detection (Error Injection) | 🟡 Tier 2 | AVT-Contextualised |
 | HL.HF-7 | Edit Location Distribution | 🟡 Tier 2 | AVT-Contextualised |
@@ -1694,9 +1697,9 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 | Ref | Metric | Group | Tier | Aspect of P4 |
 |-----|--------|-------|------|--------------|
-| HL.HF-3 | Review-Before-Signing Rate | Human Factors | 🟢 1 | Core human control |
+| HL.HF-3a | Review-Before-Signing Rate | Human Factors | 🟢 1 | Core human control |
 | HL.HF-1 | Edit Rate (% Notes Edited) | Human Factors | 🟢 1 | Evidence of meaningful review |
-| HL.HF-4 | Time-to-Sign Distribution | Human Factors | 🟢 1 | Review time sufficiency |
+| HL.HF-3b | Time-to-Sign Distribution | Human Factors | 🟢 1 | Review time sufficiency |
 | HL.HF-2 | Edit Type Classification | Human Factors | 🟡 2 | Depth of review |
 | HL.HF-6 | Automation Bias Detection (Error Injection) | Human Factors | 🟡 2 | Detecting over-reliance |
 | HL.HF-7 | Edit Location Distribution | Human Factors | 🟡 2 | Where humans intervene most |
@@ -2130,17 +2133,126 @@ For the questions this taxonomy does not answer, deployers should:
 - **Treat proximal metrics as deployment-safety signals, not as evidence of clinical benefit.** Hallucination rate is a safety-floor signal; edit rate is a workflow-and-attention signal; cumulative information yield is a fidelity signal. None of these establish that the deployed system improves care.
 - **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#es-me-1)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
 
+### Relationship to the Calibration & Context principle
+
+The Outcomes Boundary names what's *out of scope* (clinical-outcome validation belongs to national research bodies, not deployers). The parallel [Calibration & Context principle](#calibration-context) names what's *in scope but context-dependent* (tier assignments and threshold numbers are deployer-calibrated starting points, not universal gates). The two principles together describe what the taxonomy assures and how it should be applied: the Boundary is a hard limit; calibration is a soft instruction to localise the defaults. A deployer using this taxonomy should read both — the Boundary to understand what it cannot rely on the taxonomy to deliver, and the Calibration principle to understand the scope it does have to adapt the published defaults to its own context.
+
 ### Cross-references
 
 - **ES.ME-1 Proximal vs Distal Outcome Distinction** — names the causal-logic burden on vendors
 - **ES.ME-8 Outcome Evidence Commitment Status** — operationalises outcome-study commitment as a metric
 - **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
+- **[Calibration & Context principle](#calibration-context)** — parallel principle for in-scope-but-context-dependent calibration
 - **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
 - **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
 
 ### Future direction
 
 This boundary may need revisiting if (a) NHS England, NIHR, or an equivalent body publishes a national outcome-evaluation framework for AVT that this taxonomy can map to; (b) the field converges on a defensible set of distal outcome metrics with validated measurement protocols; or (c) the proximal metrics in this taxonomy are themselves shown by clinical evidence to be inadequate proxies for the outcomes that matter. Until then, the boundary stays explicit.
+
+---
+
+## Calibration & Context
+
+This section is a first-class principle of the taxonomy, parallel to the [Outcomes Boundary](#outcomes-boundary): **tier assignments and threshold numbers are calibration starting points, not universal gates.** Any deployment using this taxonomy must calibrate against its specific context before contractual use. The principle is named here so it cannot be lost in the per-metric detail.
+
+### What's calibrated
+
+The following are deployment-context-dependent and the taxonomy provides defaults that should be revisited:
+
+- **Tier assignments** — which metrics are Minimum Viable, Recommended, or Advanced for *your* deployment
+- **Threshold numbers** — pre-deployment gate values, continuous-monitoring alert levels, pause / escalation triggers
+- **Mandatory vs optional sub-metric breakdowns** — what the headline figure must report (per-clinician, per-category, per-storage-location, etc.)
+- **Audit cadences** — weekly / monthly / quarterly review frequencies
+- **Sample-size floors** — how many notes / patients / recordings constitute a meaningful audit cycle
+
+None of these are universal. They reflect a default deployment context — a moderately-resourced NHS Trust or PCN with a single mature AVT vendor, mixed acute-and-routine workload, and average patient population. Any specific deployment will differ on at least one axis, often several.
+
+### What's not calibrated
+
+The following are stable and should not be re-derived per deployment:
+
+- **The metric constructs themselves** — what hallucination rate measures, what edit rate measures, what write-back fidelity measures
+- **The dimensional axes** — Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phases, Responsible Actors, Maturity, Outcome Type, Applicability
+- **The reference IDs** — TP.SN-5, GV.PD-1, etc. These are the public API
+- **The Outcomes Boundary itself** — what this taxonomy assures (deployment safety) versus what national research bodies must validate (clinical outcomes)
+
+Calibration changes parameters; it does not change structure.
+
+### Six deployment-setting axes
+
+A deployment's calibration should respond to at least these six contextual axes. Each axis can shift tier assignments, threshold numbers, or both.
+
+#### 1. Specialty mix
+
+Acute vs primary care vs mental health vs paediatrics; emergency vs routine; high-stakes diagnostic settings vs documentation-heavy settings.
+
+A paediatric outpatient clinic and an A&E majors ward should not measure [TP.SN-5 Hallucination Rate](#tp-sn-5) against the same threshold. A psychiatric consultation has different hallucination-severity dynamics from a routine medication review. An emergency department's [HL.HF-3b Time-to-Sign Distribution](#hl-hf-3b) thresholds should be tighter because rapid-sign patterns under genuine time pressure are harder to distinguish from rubber-stamping than in an outpatient clinic.
+
+#### 2. Patient population
+
+EAL (English as Additional Language) prevalence, deprivation index, accessibility needs (dysarthria, aphasia, hearing impairment), multi-party consultations (interpreter, family member, carer present).
+
+Demographic-disaggregated metrics rise from Tier 2 to Tier 1 where the population's distribution is uneven. A practice with 40% EAL patients should treat [TP.ASR-4 Demographic-Disaggregated WER](#tp-asr-4) as Tier 1, not Tier 2. A practice routinely conducting multi-party consultations should treat [PI.PP-2 Multi-Party Conversation Robustness](#pi-pp-2) as Tier 1. The taxonomy's defaults assume an "average" population; that assumption breaks where it matters most.
+
+#### 3. Platform maturity
+
+Single-vendor vs mixed-vendor portfolio; integrated EHR vs federated; v1.0 vendor product vs mature deployment with N years of telemetry.
+
+[IO.FE-8 Cross-Platform Fairness Consistency](#io-fe-8) shifts up where platforms are mixed across services within an ICS. [GV.SG-1 Model Version Tracking](#gv-sg-1) thresholds change at v1.0 (when component-version logging is being established) versus a mature deployment (where the question is drift detection on top of stable telemetry).
+
+#### 4. Governance capacity
+
+Embedded Clinical Safety Officer presence, regional CCIO support, IG team depth, audit-function maturity.
+
+Audit cadences and sample-size floors are not feasible at the same level for a 4-clinician practice and a 200-clinician Trust. [GV.CR-2 Verbal Notification Compliance](#gv-cr-2)'s "≥ 30 patients per clinician per quarter" floor is straightforward at scale and impossible at solo-practice level — local calibration may shift to "all eligible patients audited quarterly" instead. [GV.CR-5 ICB Engagement Documentation](#gv-cr-5)'s carve-out logic explicitly assumes regional CCIO capacity that is not universal (see GV.CR-5 Limitations).
+
+#### 5. Risk appetite
+
+The DPIA-stated retention window, the contractual SLA tightness, the deployer's institutional appetite for IG-incident reportability.
+
+Threshold *gate* values are at the deployer's risk appetite; the taxonomy provides starting points, not regulator-issued numbers. [GV.PD-2 Audio Time-to-Deletion](#gv-pd-2)'s 24-hour median target is a starting point; a deployer's DPIA may set 4 hours (lower risk appetite) or 7 days (with explicit DPIA justification). The Threshold Guidance Provenance prelude on every tightened metric distinguishes cited thresholds from proposed-as-starting-points; calibration acts on the latter.
+
+#### 6. Volume / scale
+
+Per-clinician disaggregation feasibility, sampled vs full audit, weekly vs monthly cadence — feasibility shifts with the count of consultations per clinician per week.
+
+A solo GP and a Trust-scale ED workflow have different floors for "statistically meaningful". [HL.HF-1 Edit Rate](#hl-hf-1)'s per-clinician baseline establishment over the first 4 weeks of live use produces a defensible signal at 100 consultations per week per clinician; at 5 consultations per week per clinician it does not, and the calibration should extend the baseline window or aggregate to practice level. [GV.SG-14 Near-Miss Reporting Rate](#gv-sg-14)'s active-to-inferred-ratio safety-culture diagnostic needs minimum monthly volume to be informative.
+
+### How to apply the principle
+
+1. **Read each metric's Reference Standard / Operational Specification / Threshold Guidance (where present) as the default calibration**, not the universal answer. The pattern is in place on 25 of 43 Tier 1 metrics as of v3.7; see [`taxonomy/audit.py`](#) output for current status.
+
+2. **Read the ⚠️ Provenance prelude carefully.** Cited thresholds (NAS Day Zero SPI, UK GDPR, NHSE IG guidance) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.
+
+3. **Document the local calibration in the deployer's governance file** alongside the DPIA and Clinical Safety Case. The local-calibration document should record, per metric:
+   - The taxonomy default (tier and threshold values as published)
+   - The local calibration (what was changed, with reasoning)
+   - The deployment-context axis or axes driving the change (which of the six above applies)
+   - The named decision-maker (CSO, IG lead, named clinical lead) and date
+   Auditors and reviewers should see both the taxonomy default and the local calibration, with the reasoning visible.
+
+4. **Promoting tier assignments up is encouraged and lower-friction.** A deployment with elevated context risk on an axis (high EAL prevalence, mixed platform, low governance capacity) can promote any Tier 2 or Tier 3 metric to Tier 1 with a one-line justification. This makes the taxonomy more conservative, not less, and the audit will not flag it.
+
+5. **Promoting tier assignments down requires explicit justification.** A Tier 1 metric treated as Tier 2 because of low-risk context (e.g. an established routine outpatient setting with mature governance and homogeneous population) requires a substantive risk assessment, the named decision-maker, and review at the next governance cycle. Documentation should be available for ICB / CQC review.
+
+6. **Threshold-number calibration follows the same logic.** Tighter thresholds (lower gate values, more sensitive alerts, faster pause triggers) are encouraged where context warrants. Looser thresholds require risk assessment and named accountability.
+
+### What this principle is not
+
+- **Not an excuse to disregard Tier 1 metrics.** Calibration shifts which metrics are Tier 1 for *your* deployment; it does not let you stop measuring them altogether. Every metric in the Tier 1 set after local calibration must be measured.
+- **Not a way to argue threshold numbers are negotiable in vendor contracts.** The contractual gate is the deployer's local calibration, not the taxonomy's published starting point. Once the deployer has calibrated, the calibrated number is the contract; the taxonomy default is no longer in scope.
+- **Not a way to avoid the [Outcomes Boundary](#outcomes-boundary).** The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, MHRA post-market surveillance, and vendor-side regulatory claims.
+
+### Cross-references
+
+- [Outcomes Boundary](#outcomes-boundary) — parallel principle, different boundary. Outcomes are out-of-scope; tier assignments and threshold numbers are in-scope but context-dependent.
+- The "Adapting to Local Context" paragraph in [How to Use This Taxonomy](#how-to-use-this-taxonomy) provides practical examples; this principle file states the underlying commitment.
+- The Threshold Guidance Provenance preludes on tightened Tier 1 metrics show calibration acting in practice, distinguishing cited from proposed-as-starting-points thresholds.
+
+### Future direction
+
+This principle may be refined as deployment experience accumulates. The six axes named here are an initial structural cut; real deployments may surface a seventh (e.g. consultation-modality mix where virtual-care is dominant), and the taxonomy will accept evolution of this principle as part of a future release. The structural commitment — that calibration is named, documented, and reviewable — is the part that doesn't change.
 
 ---
 
@@ -2184,7 +2296,7 @@ Considered and set aside. Preserved so the reasoning is durable if the same gaps
 
 | Gap ID | Title | Proposed Tier | Why deferred |
 |--------|-------|---------------|--------------|
-| Gap-RSET-A | Transcript / code review-ergonomics | (would have been 🟡 2) | HL.HF-3 Review-Before-Signing Rate and HL.HF-4 Time-to-Sign Distribution already capture whether review happens and how long it takes. "Ergonomics" as a distinct construct is hard to operationalise without subjective instruments; not a pure measurement gap. Revisit only if HL.HF-3/4 prove insufficient in practice. |
+| Gap-RSET-A | Transcript / code review-ergonomics | (would have been 🟡 2) | HL.HF-3a Review-Before-Signing Rate and HL.HF-3b Time-to-Sign Distribution (sub-parts of HL.HF-3 Inadequate-Review Detection post-v3.7) already capture whether review happens and how long it takes. "Ergonomics" as a distinct construct is hard to operationalise without subjective instruments; not a pure measurement gap. Revisit only if HL.HF-3 sub-parts prove insufficient in practice. |
 | Gap-RSET-B | Transcript relevance / signal-preservation | (would have been 🔵 3) | Most AVT products don't expose the raw transcript to the clinician; measurement would apply to a minority of deployments. Signal-preservation is also already bracketed by TP.SN-6 Omission Rate (summary level) and TP.SN-11 MEDIC Cross-Examination. Narrow additional value. |
 | Gap-RSET-C | Transcript edit metrics (parallel to summary) | (would have been 🔵 3) | Only meaningful where the transcript is user-editable - a minority feature. HL.HF-* metrics can be applied to transcript edits by analogy if the product supports it; no new metric needed. |
 | Gap-RSET-D | Configurability surface integrity | (would have been 🔵 3) | Meta-property of product configuration surfaces (whether safety-critical features can be toggled off). Unusual measurement shape - closer to a design review than a continuous metric. Out of scope for an assurance metrics taxonomy; belongs to vendor-transparency reporting. Revisit only if configuration-related incidents surface. |
@@ -3435,6 +3547,8 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 > 💡 If confidence scores are exposed and well-calibrated, downstream systems can route low-confidence segments for human review. If they're miscalibrated or absent, the AVT cannot signal its own uncertainty - which means the clinician must assume everything is equally reliable.
 
+*See also: ASR Confidence Exposure - paired metric. TP.ASR-10 asks whether confidence scores are accurate; TP.ASR-11 asks whether they are available at all. Both are needed for downstream uncertainty propagation.*
+
 ---
 
 ### TP.ASR-11 🟡 ASR Confidence Exposure
@@ -3474,6 +3588,10 @@ Exposure assessed on three levels: (1) Internal - confidence scores exist but ar
 
 > 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally - which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
 
+*See also: ASR Confidence Calibration - paired metric. TP.ASR-11 asks whether confidence is available at all; TP.ASR-10 asks whether available confidence is accurate.*
+
+---
+
 ### TP.ASR-12 🟢 Hallucination-Under-Noise Rate
 
 Rate at which the ASR generates plausible-sounding but fabricated text when fed noise, silence, or non-speech audio. Whisper is famously prone to this - it can produce coherent-looking transcriptions of pure silence. A distinct failure mode from substitution errors that creates content from nothing.
@@ -3503,13 +3621,37 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 Test corpus: known non-speech audio (silence, music, environmental noise, foreign language). Hallucination Rate = |outputs_containing_text| / |test_samples|. Severity weighted: spurious clinical content (drug names, symptoms) is more dangerous than spurious filler.
 ```
 
+**Reference Standard**
+
+> Curated test corpus of non-speech audio in five named categories: (1) **silence** — true silence and low-level room tone; (2) **music** — recorded music tracks of varying genre and tempo; (3) **environmental noise** — typical clinical-environment background (HVAC, distant conversation, equipment beeps, paper rustling); (4) **non-clinical speech** — speech in a language the deployment ASR is not configured for, or speech outside the clinical domain; (5) **clinical-adjacent ambient** — ward / waiting-room ambient containing fragments of clinical speech but no consultation. The corpus is the reference; per-sample expected output is empty / silence-marker, not free text. "Hallucinated content" classified by severity:
+>
+> - **Critical** — spurious clinical content (drug names, dosages, symptoms, diagnoses, allergies, plan items). Single-instance occurrence is significant.
+> - **Moderate** — coherent non-clinical text (filler, casual conversation hallucinations).
+> - **Benign** — fragments, repetition artefacts, short utterances under three words.
+
+**Operational Specification**
+
+> - **Test-corpus sample sizes MANDATORY:** ≥ 50 samples per category (≥ 250 total) to make per-category rates statistically meaningful. Below 30 per category, per-category rates are uninformative and may not be reported as compliance evidence.
+> - **Per-category reporting MANDATORY:** rates reported per category (silence / music / environmental / non-clinical-speech / clinical-adjacent), not as a single rolled-up number. Whisper-class systems frequently fail asymmetrically — high silence-hallucination rate, low music-hallucination rate, or vice versa — and the asymmetry is the diagnostic signal.
+> - **Severity classification MANDATORY:** every hallucination event labelled critical / moderate / benign. Critical-rate reported separately as the leading safety indicator.
+> - **Aggregation:** weighted aggregate HUN_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_total per category, plus the overall headline rate. Unweighted rate may be reported alongside but not in place of HUN_w.
+> - **Pre-deployment vs periodic audit:** pre-deployment is a hard gate before go-live; periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking](#gv-sg-1) (any ASR weight or model update triggers re-test).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented (Koenecke et al. 2024, cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
+>
+> - **Pre-deployment gate:** zero critical-class hallucinations across the entire test corpus; moderate-class rate < 1 % per category; benign-class rate < 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.
+> - **Periodic audit:** re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts > 50 % from prior baseline.
+> - **Pause / escalation trigger:** any critical-class hallucination detected in production traffic (single instance), or per-category HUN_w exceeds the pre-deployment gate by 2× in any audit cycle.
+
 **References**
 
 - **Whisper hallucinations**: [Koenecke et al. (2024) - Careless Whisper: Speech-to-Text Hallucination Harms](https://arxiv.org/abs/2402.08021)
 
 **Limitations**
 
-> Different from general hallucination rate at the summarisation layer. Specifically tests ASR architectural failure on silence/noise inputs.
+> Different from general hallucination rate at the summarisation layer. Specifically tests ASR architectural failure on silence/noise inputs. The Operational Specification above makes the asymmetric-failure-mode reporting visible (per-category rates), but the test-corpus construction itself is a research-grade activity — clinical-adjacent ambient samples particularly are hard to source without bringing genuine PHI into the test set.
 
 **Novel Thinking / Implications**
 
@@ -3546,9 +3688,37 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Compute separately for: integers, decimals, units (mg/g/ml/mcg), dates, ranges. Critical sub-metric: dosage accuracy (numeric value AND unit correct).
 ```
 
+**Reference Standard**
+
+> Reference transcript with named-entity recognition (NER) identifying numeric tokens, plus clinician annotation of clinical-significance class. Numeric tokens classified by sub-type with sub-type-specific reference standards:
+>
+> - **Integers** — digit-string match (15 ≠ 50; "fifteen" canonicalised to 15 before comparison)
+> - **Decimals** — digit-string match including decimal separator; "point five" canonicalised to ".5" or "0.5" per a documented canonicalisation rule
+> - **Units** — exact match against the [dm+d](https://digital.nhs.uk/services/dictionary-of-medicines-and-devices) unit set (mg / mcg / g / ml / IU / units / etc.); unit confusion (mg ↔ mcg) is a critical-class error regardless of numeric correctness
+> - **Dates** — canonicalised to ISO 8601 (YYYY-MM-DD) before comparison; spoken-date ambiguities ("the fifteenth" without month context) are flagged separately, not silently dropped
+> - **Ranges** — both endpoints AND the relation (between / from-to / over-under) must be correct; "between 5 and 10" vs "5 to 10" canonicalised to the same range
+>
+> **Critical sub-metric — dosage accuracy:** a dosage event requires *both* the numeric value AND the unit to be correct. A single dosage error (15 mg → 50 mg, or mg → mcg) is a critical-class event independent of overall rate.
+
+**Operational Specification**
+
+> - **Sub-metric reporting MANDATORY:** five sub-rates (integer / decimal / unit / date / range) plus the dosage-accuracy critical sub-metric. Aggregate-only reporting is not Tier 1 sufficient — dosage errors are the safety signal and must be reported separately.
+> - **Canonicalisation rule MANDATORY:** the deployer's canonicalisation rules for spoken-number variants (fifteen → 15; point five → 0.5; the fifteenth → flagged) MUST be documented before measurement; ad-hoc canonicalisation invalidates cross-deployment comparison.
+> - **Test corpus MANDATORY:** ≥ 200 numeric tokens per sub-type per audit cycle (≥ 1000 total), drawn from real consultations or representative synthetic corpora. Below the floor, per-sub-type rates are uninformative.
+> - **Population:** all numeric tokens in scope; no exclusions. A reference transcript missing dosage events under-represents the safety surface.
+> - **Severity classification MANDATORY:** dosage errors are critical by default. Date errors affecting clinical timing (medication start/stop, last menstrual period, immunisation history) classified critical. Other errors classified moderate or benign per clinical-significance review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the dosage-error critical-class framing follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (and the canonical "15 mg → 50 mg" example). Specific numerical thresholds (100 % dosage gate, 99 % unit gate, 95 % integer / decimal / date / range gate, ≥ 200-tokens-per-sub-type floor) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use — paediatric dosing has narrower error tolerance than adult dosing, for example.
+>
+> - **Pre-deployment gate:** dosage accuracy = 100 % on test corpus; unit accuracy ≥ 99 %; integer / decimal / date / range accuracy ≥ 95 % each. Any sub-metric below floor is a hard fail regardless of aggregate.
+> - **Periodic audit:** monthly review of production-traffic numeric accuracy by sub-type; alert on any single dosage error confirmed; alert if any sub-type drifts > 2 % below baseline sustained two months.
+> - **Pause / escalation trigger:** any single dosage error confirmed in production traffic (single instance — dosage errors are zero-tolerance for the metric); OR aggregate sub-type accuracy < 90 % for any sub-type in any audit cycle.
+
 **Limitations**
 
-> Requires NER to identify numeric tokens in reference and hypothesis. Spoken numbers are particularly error-prone ('fifteen' vs 'fifty', 'point five' vs 'five').
+> Requires NER to identify numeric tokens in reference and hypothesis. Spoken numbers are particularly error-prone ('fifteen' vs 'fifty', 'point five' vs 'five'). The Operational Specification above mandates explicit canonicalisation rules to make the spoken-number-ambiguity problem visible; it does not solve it. NER quality on the reference transcript itself is a measurement-error source not eliminated by this metric.
 
 **Novel Thinking / Implications**
 
@@ -4376,13 +4546,51 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 ---
 
-### TP.SN-7 🔵 Confabulation Detection (Support × Severity)
+### TP.SN-7 🔵 Factual Verification
 
-Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate.
+Parent construct covering automated factual-verification approaches: classifying propositions in AVT output as supported, partially supported, or unsupported by source content (transcript and / or EHR). The two sub-parts (TP.SN-7a Confabulation Detection via Support × Severity, TP.SN-7b VeriFact Factual Verification via RAG + LLM-as-Judge) are different *instruments* for the same underlying construct: Abridge's two-axis classifier, and Stanford / NEJM-AI's RAG-based pipeline. v3.6 duplication review surfaced the redundancy; v3.7 promotes the construct to a parent and the instruments to sub-parts so neither implementation is lost and the relationship is explicit.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.SN-7 |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Summarisation |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | See sub-parts |
+
+**Why this tier?**
+
+> Construct framing for the two factual-verification instruments below. Tier 3 because both implementations require infrastructure not yet standardised in NHS deployments (vendor-proprietary classifier on one side, FHIR R4 EHR integration on the other). National pilot candidate.
+
+**Construct framing**
+
+> Factual verification of generated content can be implemented two ways with different trade-offs:
+>
+> - **TP.SN-7a Confabulation Detection (Support × Severity)** — Abridge's two-axis classifier (Support × Severity matrix); produces a risk matrix rather than a single rate; vendor-proprietary
+> - **TP.SN-7b VeriFact Factual Verification** — Stanford / NEJM-AI's RAG + LLM-as-Judge pipeline against EHR facts; open-source, locally deployable; requires FHIR R4 read access
+>
+> Both validate generated content against ground truth, but with different evidence sources (transcript vs EHR) and different methodologies (classifier vs RAG). They are complementary rather than competitive — a deployment with both running provides stronger assurance than either alone. Cross-link to the Clinical Content Fidelity family ([TP.SN-5 Hallucination Rate](#tp-sn-5), [TP.SN-6 Omission Rate](#tp-sn-6), [TP.SN-15 Negation Handling Accuracy](#tp-sn-15), [TP.SN-20 Uncertainty Marker Preservation](#tp-sn-20)) — those are the per-failure-mode metrics; this construct is the methodological infrastructure for verifying them at scale.
+
+**Limitations**
+
+> Both sub-parts have measurement-science gaps documented in [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) (do these instruments actually correlate with expert judgement?). National pilot work would establish the concordance baseline. See [Calibration & Context principle](#calibration-context) — choice of instrument is a deployment-context call (vendor stack vs open-source preference; specialty mix; EHR integration depth).
+
+---
+
+### TP.SN-7a 🔵 Confabulation Detection (Support × Severity)
+
+Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate. Sub-part of [TP.SN-7 Factual Verification](#tp-sn-7); construct framing lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | TP.SN-7a |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -4397,7 +4605,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 
 **Why this tier?**
 
-> Vendor-proprietary (Abridge). Methodologically superior two-axis approach but not independently implementable. Informs what a national standard should require.
+> Vendor-proprietary (Abridge). Methodologically superior two-axis approach but not independently implementable. Informs what a national standard should require. *Was TP.SN-7 in v3.6 and earlier; promoted to sub-part of TP.SN-7 Factual Verification in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4417,17 +4625,17 @@ Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Sup
 
 > 💡 Two-axis approach is methodologically superior. National standard should mandate dimensional approach even if implementation varies.
 
-*See also: Hallucination Rate, Omission Rate, Negation Handling Accuracy, Uncertainty Marker Preservation - all members of the Clinical Content Fidelity family. The Support × Severity axes formalise what the aggregate Hallucination Rate metric leaves implicit.*
+*See also: Hallucination Rate, Omission Rate, Negation Handling Accuracy, Uncertainty Marker Preservation - all members of the Clinical Content Fidelity family. Paired sub-part: [TP.SN-7b VeriFact Factual Verification](#tp-sn-7b). The Support × Severity axes formalise what the aggregate Hallucination Rate metric leaves implicit.*
 
 ---
 
-### TP.SN-8 🔵 VeriFact Factual Verification
+### TP.SN-7b 🔵 VeriFact Factual Verification
 
-Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable.
+Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable. Sub-part of [TP.SN-7 Factual Verification](#tp-sn-7); construct framing lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | TP.SN-8 |
+| **Reference** | TP.SN-7b |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -4442,7 +4650,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 
 **Why this tier?**
 
-> Most credible path to automated continuous monitoring but requires local EHR integration (FHIR R4 read access) and NHS-context validation. National pilot candidate.
+> Most credible path to automated continuous monitoring but requires local EHR integration (FHIR R4 read access) and NHS-context validation. National pilot candidate. *Was TP.SN-8 in v3.6 and earlier; promoted to sub-part of TP.SN-7 Factual Verification in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4491,9 +4699,9 @@ for prop in props:
 
 ---
 
-### TP.SN-9 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+### TP.SN-9 🟡 LLM-Judge Methodology
 
-Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation.
+Parent construct covering LLM-judge approaches to documentation evaluation. Two sub-parts (TP.SN-9a single-judge / PDSQI-9 proxy, TP.SN-9b ensemble jury via MedHELM) are different *configurations* of the same underlying methodology — using LLMs as automated graders against a documentation-quality rubric. v3.6 duplication review surfaced the redundancy; v3.7 promotes the construct to a parent and the configurations to sub-parts. Pair with [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) for meta-evaluation of LLM-judge reliability across both configurations.
 
 | Dimension | Value |
 |-----------|-------|
@@ -4508,11 +4716,49 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Source** | See sub-parts |
+
+**Why this tier?**
+
+> Construct framing for the two LLM-judge configurations below. Parent tier matches the higher-tier sub-part (Tier 2) since either can be deployed; sub-parts may differ.
+
+**Construct framing**
+
+> LLM-judge methodology can be implemented at two ensemble depths:
+>
+> - **TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)** — single reasoning-LLM scoring against the PDSQI-9 rubric; 27× speed improvement over human review enables 100 % note evaluation; Croxford et al. (2025) demonstrated ICC 0.818 with human evaluators
+> - **TP.SN-9b MedHELM LLM-Jury** — ensemble of LLMs independently scoring with majority/mean aggregation; 121 tasks, 22 subcategories; ICC 0.47 exceeds clinician-clinician baseline 0.43; pre-deployment capability gate
+>
+> The two share the same fundamental methodology (LLM as evaluator) but differ in ensemble depth, intended use (continuous evaluation vs pre-deployment gate), and the rubric they score against. Both inherit the LLM-judge measurement-science gaps documented in the underspecification warning on TP.SN-9a and addressed by [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6). See [Calibration & Context principle](#calibration-context) — choice of configuration is a deployment-context call (continuous monitoring favours the single-judge speed; pre-deployment gating favours the jury's robustness).
+
+**Limitations**
+
+> Both sub-parts share a fundamental issue: one LLM evaluating another's output produces correlated failure modes that single-evaluator setups can't detect. The jury configuration (TP.SN-9b) is partly motivated by this — different model families can show partial decorrelation — but doesn't eliminate it. Always pair with ES.ME-6 LLM-Judge Bias Quantification.
+
+---
+
+### TP.SN-9a 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+
+Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | TP.SN-9a |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Summarisation |
+| **Assurance Question** | Fidelity & Accuracy |
+| **Measurement Method** | LLM-as-Judge |
+| **Lifecycle Phases** | Continuous, Periodic Audit |
+| **Responsible Actors** | Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Croxford et al. 2025 |
 
 **Why this tier?**
 
-> 27× speed improvement enables practical scale. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration.
+> 27× speed improvement enables practical scale. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration. *Was TP.SN-9 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4538,13 +4784,13 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 ---
 
-### TP.SN-10 🔵 MedHELM LLM-Jury
+### TP.SN-9b 🔵 MedHELM LLM-Jury
 
-121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence.
+121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | TP.SN-10 |
+| **Reference** | TP.SN-9b |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -4559,7 +4805,7 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 **Why this tier?**
 
-> Research benchmark for pre-deployment capability gating. Vendor responsibility. Value is as minimum capability floor, not deployment safety evidence.
+> Research benchmark for pre-deployment capability gating. Vendor responsibility. Value is as minimum capability floor, not deployment safety evidence. *Was TP.SN-10 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -5013,9 +5259,39 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 For each uncertainty marker in reference: Marker Preservation = (uncertainty marker present in summary) AND (epistemic level preserved). Failure modes: certainty inflation (uncertain -> certain), certainty deflation (certain -> uncertain), marker substitution (changes epistemic meaning).
 ```
 
+**Reference Standard**
+
+> Source transcript with clinician-annotated uncertainty markers, classified into a five-level epistemic ladder:
+>
+> 1. **Definite** — "the patient has X"; "X confirmed"
+> 2. **Probable** — "consistent with X"; "most likely X"; "X most likely"
+> 3. **Possible** — "possibly X"; "could be X"; "suggestive of X"
+> 4. **Unlikely** — "unlikely to be X"; "doesn't appear to be X"
+> 5. **Negated** — "no X"; "ruled out X" (cross-link to [TP.SN-15 Negation Handling Accuracy](#tp-sn-15) — negation is the strongest form of certainty against a proposition; both metrics paired in scope)
+>
+> Plus **conditional uncertainty** — "X if Y", "consider X if no improvement" — flagged separately because it carries a logical structure beyond the epistemic level.
+>
+> A marker is "preserved" iff (a) the concept appears in the summary AND (b) the epistemic level is the same level on the ladder. Adjacent-level shifts (probable → definite, possible → probable) count as substitutions, not preservations. Inter-rater target on epistemic-level annotation: ICC ≥ 0.75 (lower than negation ICC because the boundary between adjacent levels is genuinely fuzzy — see Limitations).
+
+**Operational Specification**
+
+> - **Asymmetric severity weighting MANDATORY:** **certainty inflation** (moving up the ladder, e.g. possible → definite) is weighted more heavily than certainty deflation (moving down). The asymmetry encodes the existing Novel Thinking observation that inflation alters clinical management more dangerously than deflation. Default weights: critical = inflation by ≥ 2 levels OR any inflation on safety-critical concepts (drug allergies, red-flag symptoms, contraindications); moderate = inflation by 1 level on non-safety-critical concepts; benign = deflation in any direction. Weighted aggregate UMP_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_markers.
+> - **Per-direction reporting MANDATORY:** report inflation rate and deflation rate separately. Aggregate-only reporting hides the safety asymmetry.
+> - **Per-level reporting:** report preservation rate per epistemic ladder level (definite preserved / probable preserved / possible preserved / unlikely preserved / negated preserved). Conditional uncertainty preservation reported separately.
+> - **Test corpus MANDATORY:** ≥ 200 uncertainty markers across the five levels per audit cycle, balanced so that each level has ≥ 30 markers. For pre-deployment gating, supplement with an **adversarial test set** of ≥ 100 markers specifically constructed to test inflation patterns (probable → definite, possible → probable, "consider X if Y" collapsed to "X").
+> - **Cross-link to negation:** TP.SN-15 covers level-5 (negated) preservation; TP.SN-20 covers levels 1-4. Both metrics jointly cover the full epistemic surface; they are paired in audit cycles.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the asymmetric-severity-weighting framing follows from the existing Novel Thinking observation that certainty inflation is the more dangerous direction. The five-level epistemic ladder is **proposed in v3.7** as a structural cut from the clinical NLP hedging literature; it is not externally standardised, and adjacent-level boundaries are genuinely contested. Specific numerical thresholds (≥ 95 % UMP_w real-consultation, ≥ 90 % adversarial, zero safety-critical inflation) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration; specialty mix matters here (a psychiatric service uses uncertainty markers very differently from a routine outpatient clinic).
+>
+> - **Pre-deployment gate:** real-consultation UMP_w ≥ 95 %; adversarial-test UMP_w ≥ 90 %; zero safety-critical inflation events on the adversarial test set; conditional-uncertainty preservation ≥ 85 %.
+> - **Periodic audit:** monthly real-consultation UMP_w by direction (inflation / deflation); alert on any safety-critical inflation event in the audit window; alert if inflation rate exceeds deflation rate sustained two months (asymmetric pattern is itself a flag).
+> - **Pause / escalation trigger:** any safety-critical inflation event in production (single instance — paired with [TP.SN-15 Negation Handling Accuracy](#tp-sn-15)'s allergy-zero-failure principle); OR UMP_w < 85 % for two consecutive audit cycles.
+
 **Limitations**
 
-> Uncertainty markers are subtle and easily missed by both humans and machines. The boundary between hedged and unhedged statements is fuzzy.
+> Uncertainty markers are subtle and easily missed by both humans and machines. The boundary between hedged and unhedged statements is fuzzy. The Operational Specification's five-level ladder makes the boundaries explicit but does not eliminate them — the level boundaries themselves carry inter-rater noise (the ICC ≥ 0.75 target is genuinely lower than negation ICC because of this). Conditional uncertainty ("X if Y") is structurally distinct and a known weak point in clinical NLP literature.
 
 **Novel Thinking / Implications**
 
@@ -5461,9 +5737,9 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation - the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### TP.CC-7 🟡 Coding Inflation Detection
+### TP.CC-7 🟡 Coding Drift Detection (NHS framing; was Coding Inflation Detection)
 
-Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality corruption of epidemiological data, QOF, and population health.
+Systematic detection of pre/post-AVT shifts in clinical coding distributions. In the NHS, the primary concern is **data-quality corruption** — coding drift that distorts epidemiological data, QOF returns, Hospital Episode Statistics, population-health analytics, and SNOMED specificity profiles. The equivalent US concern is revenue inflation via E/M level upcoding (which TP.CC-8 was a US-specific specialisation of pre-v3.7); the framing differs because NHS coding incentives differ from US payer-billing incentives, but the underlying SPC + distribution-shift detection methodology applies in both contexts. v3.7 folds the previous TP.CC-8 (E/M Level Shift Monitoring) into this metric — its KL-divergence and demographic-disaggregation content survives in the Operational Specification.
 
 | Dimension | Value |
 |-----------|-------|
@@ -5473,22 +5749,37 @@ Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality cor
 | **Pipeline Layer** | Clinical Coding |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Continuous |
+| **Lifecycle Phases** | Day Zero Baseline, Continuous |
 | **Responsible Actors** | Regional (ICB), National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | US payer countermeasures; NHS risk analysis |
+| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature, npj Digital Medicine policy brief Nature s41746-025-02272-z documented 3.0→4.1 diagnoses/encounter post-AVT) |
 
 **Why this tier?**
 
-> Regional (ICB) monitoring using SPC on coding distributions. Requires pre-AVT baseline. National data integrity implication.
+> Regional (ICB) and national monitoring using SPC on coding distributions. Requires pre-AVT baseline. National data-integrity implication: AVT-driven drift in NHS coding distributions corrupts the epidemiological surveillance, public-health analytics, and resource-allocation data the NHS depends on. Deployers cannot assess population-level shifts from their own data alone — cross-practice and ICB-level aggregation needed.
 
 **Formal Definition**
 
 ```
-SPC on pre/post-AVT code distributions. Track: code density (avg codes/encounter), severity shift, novel code rate. Flag if >2σ from baseline for ≥4 weeks (Western Electric rules).
+Two complementary methodologies, applied jointly:
+
+1. SPC on pre/post-AVT code distributions. Track: code density (avg codes/encounter), severity shift, novel code rate. Flag if >2σ from baseline for ≥4 weeks (Western Electric rules).
+
+2. Distribution-shift index per tariff-relevant or coding-level category: compute pre-AVT baseline distribution and post-AVT distribution. Shift Index = KL divergence or earth-mover's distance between distributions. Flag categories with shift > 0.1 (magnitude calibrated to historical coding drift). Disaggregate by demographic and clinical complexity to identify selective amplification.
+
+Both methods require minimum 12-month pre-AVT baseline for seasonal pattern stability.
 ```
+
+**Operational Specification (folded from former TP.CC-8)**
+
+> - **Window:** continuous; monthly aggregate per practice / per ICB.
+> - **Population:** all coded encounters in scope. Pre-AVT baseline minimum 12 months for seasonal pattern stability.
+> - **Per-category reporting MANDATORY:** SPC and KL/EMD analysis applied per code category (chronic-disease registers, QOF indicators, tariff-relevant codes, novel codes) — not as a single rolled-up number. The shift pattern matters more than aggregate magnitude.
+> - **Demographic disaggregation MANDATORY:** shift indices reported by patient demographic strata (age band, deprivation, ethnicity where data permits) to surface selective amplification — AVT-driven drift that benefits some populations more than others (cross-link [TP.CC-9 Coding Equity Index](#tp-cc-9)).
+> - **Confounder-handling MANDATORY:** distribution shift is confounded with independent coding-policy changes, QOF updates, training interventions, and natural epidemiological drift. Quasi-experimental design (interrupted time series, cross-practice synthetic control) required for attribution to AVT specifically.
+> - **NHS-specific scope:** reporting frame is QOF returns, HES diagnostic codes, SNOMED specificity profiles, and population-health analytics datasets. The US E/M-level analogue is named in Source for cross-context comparison but does not drive the metric structure.
 
 **Code: SPC-based coding drift**
 
@@ -5511,50 +5802,15 @@ def coding_drift_spc(pre_counts, post_counts):
 
 **Limitations**
 
-> NHS coding incentives differ from US.
+> NHS coding incentives differ structurally from US payer incentives — the framing focus is data integrity rather than revenue extraction. The SPC and distribution-shift methodologies transfer; the interpretation does not. The Operational Specification's confounder-handling requirement makes the attribution problem visible (shifts can be driven by AVT, by independent coding-policy changes, by training interventions, or by genuine epidemiological change); it does not solve it. Quasi-experimental design at deployment-cohort scale is genuinely hard.
 
 **Novel Thinking / Implications**
 
-> 💡 Risk is data quality: systematically different codes corrupt epidemiological data, QOF, population health analytics.
+> 💡 The US evidence (14% HCC capture increase, 11% wRVU increase post-AVT) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently. The metric exists to make this visible at the regional and national level — deployers measuring on their own cannot distinguish AVT-driven drift from population-level coding-policy change.
+
+*See also: Coding Equity Index, HRG / Tariff Impact Attribution - TP.CC-9 disaggregates the shift by demographic strata to surface inequitable AVT-driven drift; TP.CC-10 provides quasi-experimental causal attribution for the tariff-impact dimension.*
 
 ---
-
-### TP.CC-8 🟡 E/M Level Shift Monitoring
-
-Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and post-AVT deployment. In US settings, E/M level shift has been a primary revenue impact channel; in NHS settings, the equivalent concern is SNOMED specificity shift and its effect on QOF, Hospital Episode Statistics, and population health analytics. Extension of the existing Coding Inflation Detection metric with a specific focus on tariff-relevant code distributions.
-
-|Dimension              |Value                                                                                |
-|-----------------------|-------------------------------------------------------------------------------------|
-| **Reference** | TP.CC-8 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                                               |
-|**Measurement Cadence**|Continuous                                                                           |
-|**Pipeline Layer**     |Clinical Coding                                                                      |
-|**Assurance Question** |Safety                                                                               |
-|**Measurement Method** |Computational                                                                        |
-|**Lifecycle Phases**   |Day Zero Baseline, Continuous                                                        |
-|**Responsible Actors** |Regional (ICB), National Body                                                        |
-|**Maturity**           |Emerging                                                                             |
-|**Outcome Type**       |Distal                                                                               |
-|**Applicability**      |AVT-Contextualised                                                                   |
-|**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) - documented 3.0→4.1 diagnoses/encounter post-AVT|
-
-**Why this tier?**
-
-> Regional (ICB) and national monitoring. Deployers cannot assess population-level shifts from their own data alone. Requires pre/post AVT baseline and cross-practice aggregation.
-
-**Formal Definition**
-
-```
-For each coding level or tariff-relevant category: compute pre-AVT baseline distribution and post-AVT distribution. Shift Index = KL divergence or earth-mover's distance between distributions. Flag categories with shift > 0.1 (magnitude calibrated to historical coding drift). Disaggregate by demographic and clinical complexity to identify selective amplification.
-```
-
-**Limitations**
-
-> Requires pre-AVT baseline of sufficient duration (minimum 12 months) for seasonal pattern stability. Confounded with independent coding policy changes, QOF updates, and training interventions. Attribution to AVT specifically requires quasi-experimental design.
-
-**Novel Thinking / Implications**
-
-> 💡 The US evidence (14% HCC capture increase, 11% wRVU increase) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently.
 
 ### TP.CC-9 🟡 Coding Equity Index
 
@@ -5593,9 +5849,9 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### TP.CC-10 🔵 wRVU / Tariff Impact Attribution
+### TP.CC-10 🔵 HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)
 
-Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to PbR tariffs, QOF achievement, and secondary care activity-based funding.
+Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to **HRG (Healthcare Resource Group) tariffs under Payment by Results (PbR)**, QOF achievement, and secondary-care activity-based funding. The US analogue is **wRVU** (work Relative Value Units in CMS Medicare); the underlying causal-attribution methodology applies in both contexts but the framing focus and tariff structures differ. v3.7 reframes this metric as NHS-primary with the US wRVU analogue called out for cross-context comparison.
 
 |Dimension              |Value                                        |
 |-----------------------|---------------------------------------------|
@@ -5610,11 +5866,11 @@ Attribution of workload or tariff-relevant coding changes to AVT specifically, s
 |**Maturity**           |Proposed / Novel                             |
 |**Outcome Type**       |Distal                                       |
 |**Applicability**      |AVT-Contextualised                           |
-|**Source**             |Extends E/M Level Shift Monitoring with causal attribution methodology|
+|**Source**             |Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent|
 
 **Why this tier?**
 
-> Research-grade metric requiring quasi-experimental design. National or academic responsibility. Not routinely measurable at deployer level.
+> Research-grade metric requiring quasi-experimental design (interrupted time series, difference-in-differences, or synthetic control). National or academic responsibility. Not routinely measurable at deployer level.
 
 **Formal Definition**
 
@@ -5802,9 +6058,35 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 ```
 
+**Reference Standard**
+
+> Pipeline telemetry from the AVT product, the integration middleware (where present), and the target EPR. An "integration error" is any write-back attempt that does not result in a complete, conformant target-EPR record. Three error types distinguished:
+>
+> - **Failed (hard error)** — the write-back attempt threw an explicit error; no record created or partial record rejected by the EPR. Example: API timeout, FHIR resource validation rejection, authentication failure
+> - **Partial** — record created but with missing fields the source data should have populated. Example: free-text body written but coded medications dropped; allergies field truncated due to length limit
+> - **Degraded (soft failure)** — record created with all expected fields but with quality degradation. Example: SNOMED codes silently substituted with parent / generic codes due to mapping failure; structured data downgraded to free-text fallback
+>
+> Cross-link to [TP.WB-1 Write-back Fidelity](#tp-wb-1) — TP.WB-1 measures content correctness given successful integration; TP.WB-2 measures integration-itself success rate. The two together cover "did it write" (TP.WB-2) and "did it write correctly" (TP.WB-1).
+
+**Operational Specification**
+
+> - **Window:** continuous; daily aggregate per integration endpoint, monthly compliance reporting per EPR system in scope.
+> - **Per-error-type reporting MANDATORY:** three sub-rates (failed / partial / degraded) reported separately. Aggregate IER hides the failure pattern: a 0.005 aggregate that is 100 % degraded reads very differently from a 0.005 aggregate that is 100 % failed.
+> - **Per-EPR stratification MANDATORY:** parallel to TP.WB-1's per-EPR test corpus — IER measured against every EPR system in scope at the deployment site (EMIS, SystmOne, Epic, others). Aggregating across EPRs masks system-specific integration weaknesses.
+> - **Severity classification MANDATORY:** every error event classified by clinical impact: **critical** (safety-critical content lost or degraded — allergies, medications, dosages, problem-list entries); **moderate** (clinically meaningful content lost — exam findings, history, plan items); **benign** (presentation-only content lost — formatting, ordering, free-text style). Critical-rate reported separately as the leading safety indicator.
+> - **Soft-failure detection method MANDATORY:** the deployer's method for detecting degraded write-backs (where the EPR accepts the record but quality has been silently downgraded) MUST be documented. Methods in order of rigour: (i) sampled human review of write-back outputs against AVT-generated content; (ii) automated comparison of written-to-EPR content against AVT-generated content via diff; (iii) vendor self-attestation. Method (iii) is not Tier 1 sufficient alone.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the IER < 0.001 SLA target carries from the existing Formal Definition and standard integration-monitoring practice. Specific numerical thresholds per error type (failed < 0.0005, partial < 0.0003, degraded < 0.0002 by default; critical-rate zero-tolerance for the partial / degraded classes on safety-critical content) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (per EPR):** vendor demonstrates the three-error-type telemetry; soft-failure detection method documented; one end-to-end integration test passes per error type prior to go-live; zero critical-class events on the test corpus.
+> - **Continuous monitoring:** daily IER per error type per EPR ≤ SLA target; alert on any critical-class event detected (single instance, regardless of overall rate); alert if any error-type rate drifts > 50 % above per-EPR baseline sustained 7 days.
+> - **Pause / escalation trigger:** any critical-class event on safety-critical content (allergy / medication / dose) confirmed in production; OR aggregate IER > 5 × SLA target on any EPR for 24 hours; OR degraded-class soft-failure detection cadence falls below documented method (loss of monitoring capability is itself an escalation event).
+
 **Limitations**
 
-> Soft failures harder to detect than hard failures.
+> Soft failures harder to detect than hard failures. The Operational Specification's mandatory soft-failure detection method makes this gap explicit at procurement; it does not solve it. Detection method (iii) (vendor self-attestation) is the most common in current deployments and the most epistemically weak — moving to method (i) or (ii) is itself a calibration target deployers should track.
 
 ---
 
@@ -5837,9 +6119,35 @@ Does content land in the correct EPR field even when content is correct? A corre
 For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapped to correct EPR field). Distinct from content accuracy. Categories: allergies, medications, problems, observations, free-text. Critical failures: safety-critical content in non-safety-critical fields.
 ```
 
+**Reference Standard**
+
+> Inherits the per-EPR test corpus and the structural-equivalence definition from [TP.WB-1 Write-back Fidelity](#tp-wb-1) — TP.WB-3 is the field-correctness specialised case ("right field"). The reference is a per-EPR field-map document maintained by the deployer (or vendor with deployer sign-off) naming the canonical target field for each clinical-item type, including the legitimate-multi-target carve-outs:
+>
+> - **Single-target categories** — allergies, medications, problems, observations. Each clinical-item type has a single canonical EPR field; landing elsewhere is a mapping failure.
+> - **Multi-target categories with rules** — clinical content that may legitimately appear in more than one field (e.g. a smoking history may go into both the social-history structured field AND the consultation note free-text). The field-map document MUST name the rule per category (must-go-to-both / either-acceptable / preferred-with-fallback) so that what counts as "correct" is unambiguous.
+> - **Free-text catchall** — content that has no structured target. The field-map document MUST identify which categories fall here per EPR; an allergy landing in free-text on a system that supports a structured allergy field is a critical failure.
+>
+> Inter-rater target on field-map authoring: ICC ≥ 0.85 between deployer reviewer and vendor reviewer. Where they disagree, the deployer reviewer's call is authoritative.
+
+**Operational Specification**
+
+> - **Per-EPR field map MANDATORY:** authored before pre-deployment gate; reviewed annually or on EPR version change. Without the field-map document, "correct field" has no operational definition.
+> - **Per-category reporting MANDATORY:** five sub-rates (allergies / medications / problems / observations / free-text) reported separately. Aggregate-only reporting hides the failure pattern that matters.
+> - **Critical-failure classification MANDATORY:** safety-critical content (allergies, medications, doses, problem-list entries) landing in non-safety-critical fields (consultation note free-text, history free-text) is a critical-class failure regardless of frequency. Critical-rate reported separately as a leading safety indicator.
+> - **Test corpus inheritance:** uses the same ≥ 200-cases-per-EPR test corpus as TP.WB-1, with per-test-case expected-target-field annotation. Pre-deployment gate runs both metrics on the same corpus.
+> - **Failure-mode classification:** each failure recorded as (i) wrong field same category (e.g. allergy to wrong allergy sub-field); (ii) wrong category (e.g. allergy to medication); (iii) free-text fallback when structured target available; (iv) multi-target rule violation. Type (iii) on safety-critical categories is a critical-class failure (silent safety-mechanism bypass per the Novel Thinking section).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the safety-critical-content-in-non-safety-critical-fields zero-tolerance posture follows from the clinical-safety logic in TP.WB-3's Why-this-tier and Novel Thinking sections (and TP.WB-1's parallel framing). Specific numerical thresholds (100 % safety-critical-category gate, ≥ 95 % per-category gate, type-(iii) zero-tolerance) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the per-EPR field-map content is highly deployment-dependent — local calibration is the substantive work here, not the threshold numbers.
+>
+> - **Pre-deployment gate (per EPR):** field-map document complete and signed off; safety-critical-category mapping accuracy = 100 % on test corpus; per-category accuracy ≥ 95 % each; zero type-(iii) safety-critical failures.
+> - **Continuous monitoring:** monthly audited mapping accuracy ≥ 99 % on safety-critical categories; alert on any type-(iii) safety-critical failure detected in production traffic (no rate threshold — single instance is alert-worthy); alert if any per-category rate falls below 90 % in any audit cycle.
+> - **Pause / escalation trigger:** any type-(iii) failure on allergy or medication-dose categories confirmed in production; OR aggregate safety-critical-category mapping accuracy < 95 % in any monthly audit cycle.
+
 **Limitations**
 
-> Requires clear ground truth on which field each item should land in. Some items legitimately belong in multiple fields.
+> Requires clear ground truth on which field each item should land in. Some items legitimately belong in multiple fields. The Operational Specification's mandatory per-EPR field-map document makes this requirement explicit; it does not eliminate the authoring burden, which is genuinely substantial for a multi-EPR deployment.
 
 **Novel Thinking / Implications**
 
@@ -5876,9 +6184,41 @@ Does the system correctly handle existing structured data? Overwriting an existi
 For each structured data update: behaviour in {overwrite, append, merge, skip}. Correctness depends on context. Critical failures: overwriting with less complete data, appending duplicates that cause alert fatigue, skipping legitimate updates.
 ```
 
+**Reference Standard**
+
+> Per-EPR + per-category behaviour-rule document, authored by the deployer with vendor sign-off. The rule document specifies the **expected behaviour** per (clinical-item-category × update-context) cell, where:
+>
+> - **Update context** is one of: (a) new content where existing record has no entry; (b) new content semantically equivalent to existing entry; (c) new content adding to existing entry (e.g. new allergy added to existing list); (d) new content contradicting / superseding existing entry (e.g. resolved problem); (e) new content with lower information density than existing (e.g. brief mention where detailed prior history exists).
+> - **Categories** are the same five as [TP.WB-3 Field Mapping Accuracy](#tp-wb-3): allergies, medications, problems, observations, free-text.
+>
+> Each cell has an expected behaviour: **overwrite** (replace existing), **append** (add alongside, preserving existing), **merge** (semantic combine, e.g. consolidate equivalent entries), **skip** (do nothing). Cells without explicit rules default to skip-with-flag (record the proposed update but do not apply, surface to clinician for review).
+>
+> Inter-rater target on rule authoring: ICC ≥ 0.85 between deployer reviewer and vendor reviewer. Where they disagree, the deployer reviewer's call is authoritative; the disagreement itself is logged.
+>
+> **Critical failure modes** (single-instance pause triggers):
+> - **Overwriting with less complete data on safety-critical categories** (allergies, medications, problems) — context (e) above on safety-critical categories must default to skip-with-flag, never overwrite
+> - **Skipping a legitimate update on safety-critical categories** — context (a) on safety-critical must always result in append; failure to write a new allergy is a silent safety event
+> - **Duplicate-without-merge on safety-critical categories** — context (b) on safety-critical must result in merge, not append; appending a duplicate medication entry is an alert-fatigue source that contributes to downstream prescribing errors
+
+**Operational Specification**
+
+> - **Per-EPR + per-category rule document MANDATORY:** authored before pre-deployment gate; reviewed annually or on EPR schema change. Without the document, "correctness" has no operational definition.
+> - **Test corpus MANDATORY:** ≥ 50 test cases per (category × update-context) cell — i.e. ≥ 50 cases × 5 categories × 5 contexts = ≥ 1250 test cases per EPR. Test cases exercise both expected-behaviour-honoured and adversarial edge cases (rapid successive updates, contradictory updates, ambiguous semantic equivalence).
+> - **Per-cell reporting MANDATORY:** behaviour correctness reported per (category × context) cell. Aggregate-only reporting hides exactly the cells where the safety failures live (safety-critical category × overwrite-with-less-data context).
+> - **Duplicate-detection windowing MANDATORY:** the deployer's duplicate-detection logic (does an entry written 2 minutes ago count as duplicate? 2 hours? 2 days?) MUST be documented with the windowing rule. Without explicit windowing, duplicate / merge cells are operationally meaningless.
+> - **Skip-with-flag pathway MANDATORY:** the workflow for surfacing skip-with-flag events to the clinician MUST be documented and tested at pre-deployment. Skip-without-flag is a silent failure of the metric.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the four-behaviour taxonomy and the safety-critical critical-failure classification follow from the existing Formal Definition and Novel Thinking. Specific numerical thresholds (≥ 50 cases per cell, 100 % safety-critical critical-failure-mode gate, ≥ 95 % per-cell gate elsewhere) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the rule-document content is the substantive calibration work; the threshold numbers are starting points for that work.
+>
+> - **Pre-deployment gate (per EPR):** rule document complete and signed off; test corpus passes with zero safety-critical critical-failure-mode events; per-cell behaviour correctness ≥ 95 % across all cells; skip-with-flag pathway tested end-to-end.
+> - **Periodic audit:** quarterly review of production-traffic update behaviour against the rule document; alert on any safety-critical critical-failure-mode event detected (single instance); alert if any (category × context) cell falls below 90 % correctness in any audit cycle.
+> - **Pause / escalation trigger:** any safety-critical critical-failure-mode event confirmed in production (overwrite-with-less-data on allergies / medications / problems; skipped legitimate addition; duplicate-without-merge on safety-critical category); OR aggregate safety-critical-category cell correctness < 95 % in any audit cycle.
+
 **Limitations**
 
-> Correct behaviour is context-dependent and varies by EPR system. Each EPR has different conventions for structured data updates.
+> Correct behaviour is context-dependent and varies by EPR system. Each EPR has different conventions for structured data updates. The Operational Specification's mandatory per-EPR rule document makes this requirement explicit and visible; the authoring burden is genuinely substantial (per-EPR × per-category × per-context grid) and is itself a calibration cost. The duplicate-detection-windowing rule remains a deployment-context call — there is no externally validated standard windowing convention.
 
 **Novel Thinking / Implications**
 
@@ -7288,9 +7628,9 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 ---
 
-### HL.HF-3 🟢 Review-Before-Signing Rate
+### HL.HF-3 🟢 Inadequate-Review Detection
 
-Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause trigger.
+Parent construct covering two complementary telemetry approaches to detecting inadequate clinician review of AVT-generated content. The two sub-parts (HL.HF-3a Review-Before-Signing Rate, HL.HF-3b Time-to-Sign Distribution) are different windows on the same underlying question — *is the clinician genuinely reviewing the AI output before signing it?* — and v3.4's tightening of the time-to-sign sub-part already mandated pairing with the review-before-signing sub-part. v3.7 makes the conjunction explicit at the construct level.
 
 | Dimension | Value |
 |-----------|-------|
@@ -7309,7 +7649,45 @@ Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause t
 
 **Why this tier?**
 
-> NAS Day Zero SPI with ≥95% threshold and <85% pause trigger. Deployer-measurable from EPR workflow telemetry. Directly monitors whether human oversight is functioning.
+> NAS Day Zero SPI is gated on review-quality detection; the construct is foundational human-factors assurance and is composed of two telemetry channels reported jointly. See sub-parts HL.HF-3a (binary review-event signal) and HL.HF-3b (time-to-sign distribution) for the implementation detail.
+
+**Construct framing**
+
+> Inadequate review can be detected from EPR / AVT workflow telemetry in two complementary ways:
+>
+> - **HL.HF-3a Review-Before-Signing Rate** (was HL.HF-3 pre-v3.7) — binary per-note signal from edit / scroll / dwell-above-threshold events. Catches notes where review demonstrably did not happen at all.
+> - **HL.HF-3b Time-to-Sign Distribution** (was HL.HF-4 pre-v3.7) — distribution of time from AVT note availability to clinician signature, normalised by word count. Catches notes where review happened too fast to be meaningful (rubber-stamping pattern).
+>
+> Each alone is ambiguous: a note with edit-events but signed in 2 seconds may still be a rubber-stamp; a note with no edit-events may still have been read carefully. Reported jointly, they discriminate genuine review from both no-review and rubber-stamping. The v3.4 tightening of HL.HF-3b mandates pairing with HL.HF-3a; v3.7 promotes that pairing into the parent construct.
+
+**Limitations**
+
+> Both sub-parts measure review *behaviour*, not review *quality*. A clinician scrolling for 30 seconds on a 200-word note has produced the right telemetry signal but may not have read it. The construct is a surrogate for review quality; pair with [HL.HF-6 Automation Bias Detection](#hl-hf-6) (in-context error injection) and [HL.HF-19 AI-Off Performance Test](#hl-hf-19) (counterfactual) for outcome-side checks on whether review behaviour is producing review quality. See [Calibration & Context principle](#calibration-context) — review-quality detection is materially different across specialties; rapid signing in a routine outpatient context is not the same signal as rapid signing in an A&E majors workflow.
+
+---
+
+### HL.HF-3a 🟢 Review-Before-Signing Rate
+
+Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / AVT telemetry: a note counts as "reviewed" if any of edit, scroll, or above-threshold dwell events occurred between AVT availability and signature. Sub-part of [HL.HF-3 Inadequate-Review Detection](#hl-hf-3); the construct framing for this sub-part lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | HL.HF-3a |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Human Factors |
+| **Measurement Method** | Passive Observational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | NAS Day Zero SPI; Stanford |
+
+**Why this tier?**
+
+> NAS Day Zero SPI with ≥95% threshold and <85% pause trigger. Deployer-measurable from EPR workflow telemetry. Directly monitors whether human oversight is functioning. *Was HL.HF-3 in v3.6 and earlier; promoted to sub-part of HL.HF-3 in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -7323,21 +7701,21 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **Limitations**
 
-> Scrolling ≠ meaningful review.
+> Scrolling ≠ meaningful review. The T_min threshold values are concrete but unvalidated against actual review quality — see the parent construct's Limitations and the v3.4 classification artefact's note that this sub-part is a surrogate for review quality without a bounded proxy gap. v3.8+ work may add a quality bound or pairing rule.
 
 **Novel Thinking / Implications**
 
-> 💡 EPR should enforce architecturally: minimum dwell-time before approve activates.
+> 💡 EPR should enforce architecturally: minimum dwell-time before approve activates. Pair with [HL.HF-3b Time-to-Sign Distribution](#hl-hf-3b) — a note with edit-events but TTS_norm < 0.5 s/word is rubber-stamping despite passing the binary review check.
 
 ---
 
-### HL.HF-4 🟢 Time-to-Sign Distribution
+### HL.HF-3b 🟢 Time-to-Sign Distribution
 
-Duration between generation and approval. Model as distribution - tail of very-fast approvals is safety-critical.
+Distribution of duration between generation and approval. Model as distribution — the tail of very-fast approvals is safety-critical. Sub-part of [HL.HF-3 Inadequate-Review Detection](#hl-hf-3); the construct framing for this sub-part lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | HL.HF-4 |
+| **Reference** | HL.HF-3b |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
@@ -7352,7 +7730,7 @@ Duration between generation and approval. Model as distribution - tail of very-f
 
 **Why this tier?**
 
-> Deployer-measurable from EPR data. The tail of very-fast approvals (<5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns.
+> Deployer-measurable from EPR data. The tail of very-fast approvals (<5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns. *Was HL.HF-4 in v3.6 and earlier; promoted to sub-part of HL.HF-3 in v3.7 Phase 2.1; retains the v3.4 tightening pattern.*
 
 **Formal Definition**
 
@@ -9446,6 +9824,8 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 > 💡 A long time-to-correct means errors persist in the system and may affect multiple patients before resolution. This is operationally important - a single error is bad, but a single error that took 3 weeks to correct is a governance failure.
 
+*See also: SPI Escalation Response Time - paired latency metric. GV.SG-15 measures the time to fix a single confirmed incident; GV.SG-16 measures the time to escalate an SPI threshold breach.*
+
 ---
 
 ### GV.SG-16 🟡 SPI Escalation Response Time
@@ -9484,6 +9864,8 @@ Escalation Response Time = t_governance_action - t_SPI_breach. Track per escalat
 **Novel Thinking / Implications**
 
 > 💡 An SPI framework that takes a week to respond to a breach is not protecting anyone. The whole point of pre-defined thresholds with escalation paths is to enable rapid response. Measuring response time reveals whether the framework is operationally functional or governance theatre.
+
+*See also: Safety Performance Indicators with Thresholds (DSCMS), Time-to-Correct - GV.SG-16 measures the response time to GV.SG-9 threshold breaches; meaningless without the SPI framework GV.SG-9 defines. Pair with GV.SG-15 as parallel response-latency metrics for different event types.*
 
 ---
 
@@ -11196,6 +11578,8 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 **Novel Thinking / Implications**
 
 > 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else - queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
+
+*See also: Documentation Time per Consultation - paired metric. GV.OP-1 measures clinician note-effort time (start-of-doc to signature); GV.OP-3 measures end-to-end record-availability time (consultation end to EPR availability). Easily confused; the names invite it.*
 
 ---
 

@@ -116,9 +116,9 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 | Ref | Metric | Group | Tier | Aspect of P4 |
 |-----|--------|-------|------|--------------|
-| HL.HF-3 | Review-Before-Signing Rate | Human Factors | 🟢 1 | Core human control |
+| HL.HF-3a | Review-Before-Signing Rate | Human Factors | 🟢 1 | Core human control |
 | HL.HF-1 | Edit Rate (% Notes Edited) | Human Factors | 🟢 1 | Evidence of meaningful review |
-| HL.HF-4 | Time-to-Sign Distribution | Human Factors | 🟢 1 | Review time sufficiency |
+| HL.HF-3b | Time-to-Sign Distribution | Human Factors | 🟢 1 | Review time sufficiency |
 | HL.HF-2 | Edit Type Classification | Human Factors | 🟡 2 | Depth of review |
 | HL.HF-6 | Automation Bias Detection (Error Injection) | Human Factors | 🟡 2 | Detecting over-reliance |
 | HL.HF-7 | Edit Location Distribution | Human Factors | 🟡 2 | Where humans intervene most |
