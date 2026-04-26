@@ -618,13 +618,37 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 Test corpus: known non-speech audio (silence, music, environmental noise, foreign language). Hallucination Rate = |outputs_containing_text| / |test_samples|. Severity weighted: spurious clinical content (drug names, symptoms) is more dangerous than spurious filler.
 ```
 
+**Reference Standard**
+
+> Curated test corpus of non-speech audio in five named categories: (1) **silence** — true silence and low-level room tone; (2) **music** — recorded music tracks of varying genre and tempo; (3) **environmental noise** — typical clinical-environment background (HVAC, distant conversation, equipment beeps, paper rustling); (4) **non-clinical speech** — speech in a language the deployment ASR is not configured for, or speech outside the clinical domain; (5) **clinical-adjacent ambient** — ward / waiting-room ambient containing fragments of clinical speech but no consultation. The corpus is the reference; per-sample expected output is empty / silence-marker, not free text. "Hallucinated content" classified by severity:
+>
+> - **Critical** — spurious clinical content (drug names, dosages, symptoms, diagnoses, allergies, plan items). Single-instance occurrence is significant.
+> - **Moderate** — coherent non-clinical text (filler, casual conversation hallucinations).
+> - **Benign** — fragments, repetition artefacts, short utterances under three words.
+
+**Operational Specification**
+
+> - **Test-corpus sample sizes MANDATORY:** ≥ 50 samples per category (≥ 250 total) to make per-category rates statistically meaningful. Below 30 per category, per-category rates are uninformative and may not be reported as compliance evidence.
+> - **Per-category reporting MANDATORY:** rates reported per category (silence / music / environmental / non-clinical-speech / clinical-adjacent), not as a single rolled-up number. Whisper-class systems frequently fail asymmetrically — high silence-hallucination rate, low music-hallucination rate, or vice versa — and the asymmetry is the diagnostic signal.
+> - **Severity classification MANDATORY:** every hallucination event labelled critical / moderate / benign. Critical-rate reported separately as the leading safety indicator.
+> - **Aggregation:** weighted aggregate HUN_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_total per category, plus the overall headline rate. Unweighted rate may be reported alongside but not in place of HUN_w.
+> - **Pre-deployment vs periodic audit:** pre-deployment is a hard gate before go-live; periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking](#gv-sg-1) (any ASR weight or model update triggers re-test).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented (Koenecke et al. 2024, cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
+>
+> - **Pre-deployment gate:** zero critical-class hallucinations across the entire test corpus; moderate-class rate < 1 % per category; benign-class rate < 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.
+> - **Periodic audit:** re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts > 50 % from prior baseline.
+> - **Pause / escalation trigger:** any critical-class hallucination detected in production traffic (single instance), or per-category HUN_w exceeds the pre-deployment gate by 2× in any audit cycle.
+
 **References**
 
 - **Whisper hallucinations**: [Koenecke et al. (2024) - Careless Whisper: Speech-to-Text Hallucination Harms](https://arxiv.org/abs/2402.08021)
 
 **Limitations**
 
-> Different from general hallucination rate at the summarisation layer. Specifically tests ASR architectural failure on silence/noise inputs.
+> Different from general hallucination rate at the summarisation layer. Specifically tests ASR architectural failure on silence/noise inputs. The Operational Specification above makes the asymmetric-failure-mode reporting visible (per-category rates), but the test-corpus construction itself is a research-grade activity — clinical-adjacent ambient samples particularly are hard to source without bringing genuine PHI into the test set.
 
 **Novel Thinking / Implications**
 
@@ -661,9 +685,37 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Compute separately for: integers, decimals, units (mg/g/ml/mcg), dates, ranges. Critical sub-metric: dosage accuracy (numeric value AND unit correct).
 ```
 
+**Reference Standard**
+
+> Reference transcript with named-entity recognition (NER) identifying numeric tokens, plus clinician annotation of clinical-significance class. Numeric tokens classified by sub-type with sub-type-specific reference standards:
+>
+> - **Integers** — digit-string match (15 ≠ 50; "fifteen" canonicalised to 15 before comparison)
+> - **Decimals** — digit-string match including decimal separator; "point five" canonicalised to ".5" or "0.5" per a documented canonicalisation rule
+> - **Units** — exact match against the [dm+d](https://digital.nhs.uk/services/dictionary-of-medicines-and-devices) unit set (mg / mcg / g / ml / IU / units / etc.); unit confusion (mg ↔ mcg) is a critical-class error regardless of numeric correctness
+> - **Dates** — canonicalised to ISO 8601 (YYYY-MM-DD) before comparison; spoken-date ambiguities ("the fifteenth" without month context) are flagged separately, not silently dropped
+> - **Ranges** — both endpoints AND the relation (between / from-to / over-under) must be correct; "between 5 and 10" vs "5 to 10" canonicalised to the same range
+>
+> **Critical sub-metric — dosage accuracy:** a dosage event requires *both* the numeric value AND the unit to be correct. A single dosage error (15 mg → 50 mg, or mg → mcg) is a critical-class event independent of overall rate.
+
+**Operational Specification**
+
+> - **Sub-metric reporting MANDATORY:** five sub-rates (integer / decimal / unit / date / range) plus the dosage-accuracy critical sub-metric. Aggregate-only reporting is not Tier 1 sufficient — dosage errors are the safety signal and must be reported separately.
+> - **Canonicalisation rule MANDATORY:** the deployer's canonicalisation rules for spoken-number variants (fifteen → 15; point five → 0.5; the fifteenth → flagged) MUST be documented before measurement; ad-hoc canonicalisation invalidates cross-deployment comparison.
+> - **Test corpus MANDATORY:** ≥ 200 numeric tokens per sub-type per audit cycle (≥ 1000 total), drawn from real consultations or representative synthetic corpora. Below the floor, per-sub-type rates are uninformative.
+> - **Population:** all numeric tokens in scope; no exclusions. A reference transcript missing dosage events under-represents the safety surface.
+> - **Severity classification MANDATORY:** dosage errors are critical by default. Date errors affecting clinical timing (medication start/stop, last menstrual period, immunisation history) classified critical. Other errors classified moderate or benign per clinical-significance review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the dosage-error critical-class framing follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (and the canonical "15 mg → 50 mg" example). Specific numerical thresholds (100 % dosage gate, 99 % unit gate, 95 % integer / decimal / date / range gate, ≥ 200-tokens-per-sub-type floor) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use — paediatric dosing has narrower error tolerance than adult dosing, for example.
+>
+> - **Pre-deployment gate:** dosage accuracy = 100 % on test corpus; unit accuracy ≥ 99 %; integer / decimal / date / range accuracy ≥ 95 % each. Any sub-metric below floor is a hard fail regardless of aggregate.
+> - **Periodic audit:** monthly review of production-traffic numeric accuracy by sub-type; alert on any single dosage error confirmed; alert if any sub-type drifts > 2 % below baseline sustained two months.
+> - **Pause / escalation trigger:** any single dosage error confirmed in production traffic (single instance — dosage errors are zero-tolerance for the metric); OR aggregate sub-type accuracy < 90 % for any sub-type in any audit cycle.
+
 **Limitations**
 
-> Requires NER to identify numeric tokens in reference and hypothesis. Spoken numbers are particularly error-prone ('fifteen' vs 'fifty', 'point five' vs 'five').
+> Requires NER to identify numeric tokens in reference and hypothesis. Spoken numbers are particularly error-prone ('fifteen' vs 'fifty', 'point five' vs 'five'). The Operational Specification above mandates explicit canonicalisation rules to make the spoken-number-ambiguity problem visible; it does not solve it. NER quality on the reference transcript itself is a measurement-error source not eliminated by this metric.
 
 **Novel Thinking / Implications**
 

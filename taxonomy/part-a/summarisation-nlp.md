@@ -1037,9 +1037,39 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 For each uncertainty marker in reference: Marker Preservation = (uncertainty marker present in summary) AND (epistemic level preserved). Failure modes: certainty inflation (uncertain -> certain), certainty deflation (certain -> uncertain), marker substitution (changes epistemic meaning).
 ```
 
+**Reference Standard**
+
+> Source transcript with clinician-annotated uncertainty markers, classified into a five-level epistemic ladder:
+>
+> 1. **Definite** — "the patient has X"; "X confirmed"
+> 2. **Probable** — "consistent with X"; "most likely X"; "X most likely"
+> 3. **Possible** — "possibly X"; "could be X"; "suggestive of X"
+> 4. **Unlikely** — "unlikely to be X"; "doesn't appear to be X"
+> 5. **Negated** — "no X"; "ruled out X" (cross-link to [TP.SN-15 Negation Handling Accuracy](#tp-sn-15) — negation is the strongest form of certainty against a proposition; both metrics paired in scope)
+>
+> Plus **conditional uncertainty** — "X if Y", "consider X if no improvement" — flagged separately because it carries a logical structure beyond the epistemic level.
+>
+> A marker is "preserved" iff (a) the concept appears in the summary AND (b) the epistemic level is the same level on the ladder. Adjacent-level shifts (probable → definite, possible → probable) count as substitutions, not preservations. Inter-rater target on epistemic-level annotation: ICC ≥ 0.75 (lower than negation ICC because the boundary between adjacent levels is genuinely fuzzy — see Limitations).
+
+**Operational Specification**
+
+> - **Asymmetric severity weighting MANDATORY:** **certainty inflation** (moving up the ladder, e.g. possible → definite) is weighted more heavily than certainty deflation (moving down). The asymmetry encodes the existing Novel Thinking observation that inflation alters clinical management more dangerously than deflation. Default weights: critical = inflation by ≥ 2 levels OR any inflation on safety-critical concepts (drug allergies, red-flag symptoms, contraindications); moderate = inflation by 1 level on non-safety-critical concepts; benign = deflation in any direction. Weighted aggregate UMP_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_markers.
+> - **Per-direction reporting MANDATORY:** report inflation rate and deflation rate separately. Aggregate-only reporting hides the safety asymmetry.
+> - **Per-level reporting:** report preservation rate per epistemic ladder level (definite preserved / probable preserved / possible preserved / unlikely preserved / negated preserved). Conditional uncertainty preservation reported separately.
+> - **Test corpus MANDATORY:** ≥ 200 uncertainty markers across the five levels per audit cycle, balanced so that each level has ≥ 30 markers. For pre-deployment gating, supplement with an **adversarial test set** of ≥ 100 markers specifically constructed to test inflation patterns (probable → definite, possible → probable, "consider X if Y" collapsed to "X").
+> - **Cross-link to negation:** TP.SN-15 covers level-5 (negated) preservation; TP.SN-20 covers levels 1-4. Both metrics jointly cover the full epistemic surface; they are paired in audit cycles.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the asymmetric-severity-weighting framing follows from the existing Novel Thinking observation that certainty inflation is the more dangerous direction. The five-level epistemic ladder is **proposed in v3.7** as a structural cut from the clinical NLP hedging literature; it is not externally standardised, and adjacent-level boundaries are genuinely contested. Specific numerical thresholds (≥ 95 % UMP_w real-consultation, ≥ 90 % adversarial, zero safety-critical inflation) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration; specialty mix matters here (a psychiatric service uses uncertainty markers very differently from a routine outpatient clinic).
+>
+> - **Pre-deployment gate:** real-consultation UMP_w ≥ 95 %; adversarial-test UMP_w ≥ 90 %; zero safety-critical inflation events on the adversarial test set; conditional-uncertainty preservation ≥ 85 %.
+> - **Periodic audit:** monthly real-consultation UMP_w by direction (inflation / deflation); alert on any safety-critical inflation event in the audit window; alert if inflation rate exceeds deflation rate sustained two months (asymmetric pattern is itself a flag).
+> - **Pause / escalation trigger:** any safety-critical inflation event in production (single instance — paired with [TP.SN-15 Negation Handling Accuracy](#tp-sn-15)'s allergy-zero-failure principle); OR UMP_w < 85 % for two consecutive audit cycles.
+
 **Limitations**
 
-> Uncertainty markers are subtle and easily missed by both humans and machines. The boundary between hedged and unhedged statements is fuzzy.
+> Uncertainty markers are subtle and easily missed by both humans and machines. The boundary between hedged and unhedged statements is fuzzy. The Operational Specification's five-level ladder makes the boundaries explicit but does not eliminate them — the level boundaries themselves carry inter-rater noise (the ICC ≥ 0.75 target is genuinely lower than negation ICC because of this). Conditional uncertainty ("X if Y") is structurally distinct and a known weak point in clinical NLP literature.
 
 **Novel Thinking / Implications**
 
