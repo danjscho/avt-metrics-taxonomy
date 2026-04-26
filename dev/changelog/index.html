@@ -3176,6 +3176,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v383-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.3 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v382-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4112,6 +4123,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v383-2026-04-26" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.8.3 (2026-04-26)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v382-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5034,6 +5056,14 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v383-2026-04-26">v3.8.3 (2026-04-26)<a class="headerlink" href="#v383-2026-04-26" title="Permanent link">&para;</a></h2>
+<p>Tooling-only patch.</p>
+<ul>
+<li><strong>CSV / JSON downloads now include <code>part_name</code></strong> alongside the existing <code>part</code> letter. The CSV had <code>part=A</code> but no human-readable label; reading metrics.csv in isolation gave you no way to know "A" meant "The Technical Pipeline". New <code>part_name</code> column / JSON field carries the full name (e.g. <code>"The Technical Pipeline"</code>, <code>"System Governance"</code>).</li>
+<li><strong>Single source of truth for part names.</strong> <code>PART_NAMES</code> dict moved from <code>build_site.py</code> (where it was duplicated as <code>PART_TITLES</code>) to <code>parse.py</code>. <code>Metric.part_name</code> is a property; <code>build_site.PART_TITLES</code> is now derived. Renaming a part is a one-line edit.</li>
+<li><strong>Single source of truth for the version stamp.</strong> New <code>parse.TAXONOMY_VERSION</code> consumed by <code>build.py</code> (JSON <code>version</code> field, previously hardcoded <code>"v3.2-dev"</code> — stale by 6 releases) and <code>build_site.SITE_VERSION</code> (landing + downloads citation). <code>pyproject.toml</code> version bumped manually to match at release.</li>
+</ul>
+<p>No taxonomy content changes; audit clean; counts unchanged at 218 / 43-96-79.</p>
 <h2 id="v382-2026-04-26">v3.8.2 (2026-04-26)<a class="headerlink" href="#v382-2026-04-26" title="Permanent link">&para;</a></h2>
 <p>Tooling-only patch — adds reproducible local-development setup and documents the build pipeline.</p>
 <ul>
