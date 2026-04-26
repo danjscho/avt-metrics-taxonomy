@@ -19,6 +19,25 @@ ROOT = pathlib.Path(__file__).parent
 
 # Canonical group file list: path -> {prefix, part, group name}.
 # Matches the build.py order within each part.
+# Single-source version stamp. Bumped manually at each release; consumed by
+# build.py (JSON metadata), build_site.py (landing + downloads citation), and
+# pyproject.toml. Keep these in sync at release time.
+TAXONOMY_VERSION = "v3.8.3"
+
+
+# Human-readable part names. Single source of truth — both build.py (for the
+# CSV / JSON downloads) and build_site.py (for the rendered Part eyebrow on
+# group pages) consume this.
+PART_NAMES: dict[str, str] = {
+    "A": "The Technical Pipeline",
+    "B": "Pipeline Interactions",
+    "C": "The Human Layer",
+    "D": "Impact & Outcomes",
+    "E": "System Governance",
+    "F": "Evaluation Science",
+}
+
+
 GROUP_FILES: dict[str, dict[str, str]] = {
     "part-a/audio-capture.md": {
         "prefix": "TP.AC",
@@ -144,6 +163,10 @@ class Metric:
     @property
     def tier_icon(self) -> str:
         return {1: "🟢", 2: "🟡", 3: "🔵"}[self.tier]
+
+    @property
+    def part_name(self) -> str:
+        return PART_NAMES.get(self.part, "")
 
     @property
     def tier_label(self) -> str:

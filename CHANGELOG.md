@@ -1,5 +1,15 @@
 # Changelog
 
+## v3.8.3 (2026-04-26)
+
+Tooling-only patch.
+
+- **CSV / JSON downloads now include `part_name`** alongside the existing `part` letter. The CSV had `part=A` but no human-readable label; reading metrics.csv in isolation gave you no way to know "A" meant "The Technical Pipeline". New `part_name` column / JSON field carries the full name (e.g. `"The Technical Pipeline"`, `"System Governance"`).
+- **Single source of truth for part names.** `PART_NAMES` dict moved from `build_site.py` (where it was duplicated as `PART_TITLES`) to `parse.py`. `Metric.part_name` is a property; `build_site.PART_TITLES` is now derived. Renaming a part is a one-line edit.
+- **Single source of truth for the version stamp.** New `parse.TAXONOMY_VERSION` consumed by `build.py` (JSON `version` field, previously hardcoded `"v3.2-dev"` — stale by 6 releases) and `build_site.SITE_VERSION` (landing + downloads citation). `pyproject.toml` version bumped manually to match at release.
+
+No taxonomy content changes; audit clean; counts unchanged at 218 / 43-96-79.
+
 ## v3.8.2 (2026-04-26)
 
 Tooling-only patch — adds reproducible local-development setup and documents the build pipeline.
