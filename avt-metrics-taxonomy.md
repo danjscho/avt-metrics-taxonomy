@@ -4541,13 +4541,51 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 ---
 
-### TP.SN-7 🔵 Confabulation Detection (Support × Severity)
+### TP.SN-7 🔵 Factual Verification
 
-Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate.
+Parent construct covering automated factual-verification approaches: classifying propositions in AVT output as supported, partially supported, or unsupported by source content (transcript and / or EHR). The two sub-parts (TP.SN-7a Confabulation Detection via Support × Severity, TP.SN-7b VeriFact Factual Verification via RAG + LLM-as-Judge) are different *instruments* for the same underlying construct: Abridge's two-axis classifier, and Stanford / NEJM-AI's RAG-based pipeline. v3.6 duplication review surfaced the redundancy; v3.7 promotes the construct to a parent and the instruments to sub-parts so neither implementation is lost and the relationship is explicit.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.SN-7 |
+| **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
+| **Measurement Cadence** | Continuous |
+| **Pipeline Layer** | Summarisation |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Computational |
+| **Lifecycle Phases** | Continuous |
+| **Responsible Actors** | Vendor, Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | See sub-parts |
+
+**Why this tier?**
+
+> Construct framing for the two factual-verification instruments below. Tier 3 because both implementations require infrastructure not yet standardised in NHS deployments (vendor-proprietary classifier on one side, FHIR R4 EHR integration on the other). National pilot candidate.
+
+**Construct framing**
+
+> Factual verification of generated content can be implemented two ways with different trade-offs:
+>
+> - **TP.SN-7a Confabulation Detection (Support × Severity)** — Abridge's two-axis classifier (Support × Severity matrix); produces a risk matrix rather than a single rate; vendor-proprietary
+> - **TP.SN-7b VeriFact Factual Verification** — Stanford / NEJM-AI's RAG + LLM-as-Judge pipeline against EHR facts; open-source, locally deployable; requires FHIR R4 read access
+>
+> Both validate generated content against ground truth, but with different evidence sources (transcript vs EHR) and different methodologies (classifier vs RAG). They are complementary rather than competitive — a deployment with both running provides stronger assurance than either alone. Cross-link to the Clinical Content Fidelity family ([TP.SN-5 Hallucination Rate](#tp-sn-5), [TP.SN-6 Omission Rate](#tp-sn-6), [TP.SN-15 Negation Handling Accuracy](#tp-sn-15), [TP.SN-20 Uncertainty Marker Preservation](#tp-sn-20)) — those are the per-failure-mode metrics; this construct is the methodological infrastructure for verifying them at scale.
+
+**Limitations**
+
+> Both sub-parts have measurement-science gaps documented in [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) (do these instruments actually correlate with expert judgement?). National pilot work would establish the concordance baseline. See [Calibration & Context principle](#calibration-context) — choice of instrument is a deployment-context call (vendor stack vs open-source preference; specialty mix; EHR integration depth).
+
+---
+
+### TP.SN-7a 🔵 Confabulation Detection (Support × Severity)
+
+Two-axis classification: evidential support × clinical severity. Abridge model achieves 97% detection. Produces risk matrix, not single rate. Sub-part of [TP.SN-7 Factual Verification](#tp-sn-7); construct framing lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | TP.SN-7a |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -4562,7 +4600,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 
 **Why this tier?**
 
-> Vendor-proprietary (Abridge). Methodologically superior two-axis approach but not independently implementable. Informs what a national standard should require.
+> Vendor-proprietary (Abridge). Methodologically superior two-axis approach but not independently implementable. Informs what a national standard should require. *Was TP.SN-7 in v3.6 and earlier; promoted to sub-part of TP.SN-7 Factual Verification in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4582,17 +4620,17 @@ Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Sup
 
 > 💡 Two-axis approach is methodologically superior. National standard should mandate dimensional approach even if implementation varies.
 
-*See also: Hallucination Rate, Omission Rate, Negation Handling Accuracy, Uncertainty Marker Preservation - all members of the Clinical Content Fidelity family. The Support × Severity axes formalise what the aggregate Hallucination Rate metric leaves implicit.*
+*See also: Hallucination Rate, Omission Rate, Negation Handling Accuracy, Uncertainty Marker Preservation - all members of the Clinical Content Fidelity family. Paired sub-part: [TP.SN-7b VeriFact Factual Verification](#tp-sn-7b). The Support × Severity axes formalise what the aggregate Hallucination Rate metric leaves implicit.*
 
 ---
 
-### TP.SN-8 🔵 VeriFact Factual Verification
+### TP.SN-7b 🔵 VeriFact Factual Verification
 
-Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable.
+Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clinicians (exceeds inter-clinician 88.5%). Open-source, locally deployable. Sub-part of [TP.SN-7 Factual Verification](#tp-sn-7); construct framing lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | TP.SN-8 |
+| **Reference** | TP.SN-7b |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Summarisation |
@@ -4607,7 +4645,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 
 **Why this tier?**
 
-> Most credible path to automated continuous monitoring but requires local EHR integration (FHIR R4 read access) and NHS-context validation. National pilot candidate.
+> Most credible path to automated continuous monitoring but requires local EHR integration (FHIR R4 read access) and NHS-context validation. National pilot candidate. *Was TP.SN-8 in v3.6 and earlier; promoted to sub-part of TP.SN-7 Factual Verification in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4656,9 +4694,9 @@ for prop in props:
 
 ---
 
-### TP.SN-9 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+### TP.SN-9 🟡 LLM-Judge Methodology
 
-Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation.
+Parent construct covering LLM-judge approaches to documentation evaluation. Two sub-parts (TP.SN-9a single-judge / PDSQI-9 proxy, TP.SN-9b ensemble jury via MedHELM) are different *configurations* of the same underlying methodology — using LLMs as automated graders against a documentation-quality rubric. v3.6 duplication review surfaced the redundancy; v3.7 promotes the construct to a parent and the configurations to sub-parts. Pair with [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) for meta-evaluation of LLM-judge reliability across both configurations.
 
 | Dimension | Value |
 |-----------|-------|
@@ -4673,11 +4711,49 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Source** | See sub-parts |
+
+**Why this tier?**
+
+> Construct framing for the two LLM-judge configurations below. Parent tier matches the higher-tier sub-part (Tier 2) since either can be deployed; sub-parts may differ.
+
+**Construct framing**
+
+> LLM-judge methodology can be implemented at two ensemble depths:
+>
+> - **TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)** — single reasoning-LLM scoring against the PDSQI-9 rubric; 27× speed improvement over human review enables 100 % note evaluation; Croxford et al. (2025) demonstrated ICC 0.818 with human evaluators
+> - **TP.SN-9b MedHELM LLM-Jury** — ensemble of LLMs independently scoring with majority/mean aggregation; 121 tasks, 22 subcategories; ICC 0.47 exceeds clinician-clinician baseline 0.43; pre-deployment capability gate
+>
+> The two share the same fundamental methodology (LLM as evaluator) but differ in ensemble depth, intended use (continuous evaluation vs pre-deployment gate), and the rubric they score against. Both inherit the LLM-judge measurement-science gaps documented in the underspecification warning on TP.SN-9a and addressed by [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6). See [Calibration & Context principle](#calibration-context) — choice of configuration is a deployment-context call (continuous monitoring favours the single-judge speed; pre-deployment gating favours the jury's robustness).
+
+**Limitations**
+
+> Both sub-parts share a fundamental issue: one LLM evaluating another's output produces correlated failure modes that single-evaluator setups can't detect. The jury configuration (TP.SN-9b) is partly motivated by this — different model families can show partial decorrelation — but doesn't eliminate it. Always pair with ES.ME-6 LLM-Judge Bias Quantification.
+
+---
+
+### TP.SN-9a 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
+
+Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | TP.SN-9a |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Summarisation |
+| **Assurance Question** | Fidelity & Accuracy |
+| **Measurement Method** | LLM-as-Judge |
+| **Lifecycle Phases** | Continuous, Periodic Audit |
+| **Responsible Actors** | Deployer, National Body |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Croxford et al. 2025 |
 
 **Why this tier?**
 
-> 27× speed improvement enables practical scale. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration.
+> 27× speed improvement enables practical scale. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration. *Was TP.SN-9 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
@@ -4703,13 +4779,13 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 ---
 
-### TP.SN-10 🔵 MedHELM LLM-Jury
+### TP.SN-9b 🔵 MedHELM LLM-Jury
 
-121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence.
+121 tasks, 22 subcategories. LLM-jury ICC 0.47 exceeds clinician-clinician 0.43. Capability gate, not deployment evidence. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
-| **Reference** | TP.SN-10 |
+| **Reference** | TP.SN-9b |
 | **Priority Tier** | 🔵 Tier 3 - Advanced / Research |
 | **Measurement Cadence** | One-off gate |
 | **Pipeline Layer** | Cross-cutting |
@@ -4724,7 +4800,7 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 
 **Why this tier?**
 
-> Research benchmark for pre-deployment capability gating. Vendor responsibility. Value is as minimum capability floor, not deployment safety evidence.
+> Research benchmark for pre-deployment capability gating. Vendor responsibility. Value is as minimum capability floor, not deployment safety evidence. *Was TP.SN-10 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
