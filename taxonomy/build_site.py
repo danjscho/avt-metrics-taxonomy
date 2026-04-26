@@ -21,7 +21,7 @@ DOCS = REPO / "docs"
 # Single source of truth for the version stamp shown on landing + downloads.
 # Bumped manually at each release as part of the release wrap; CI consumes
 # the same string so site, monolith, and download citation stay aligned.
-SITE_VERSION = "v3.8.1"
+SITE_VERSION = "v3.8.2"
 
 # source file -> docs path
 MAPPING: dict[str, str] = {

@@ -1,9 +1,60 @@
 # AVT Metrics Taxonomy - Repository Guide
 
-## Building the document
+## Local development — build and serve the site
+
+A fresh clone needs three steps to reproduce what `https://danjscho.github.io/avt-metrics-taxonomy/` shows. The project uses [uv](https://docs.astral.sh/uv/) for Python environment management; install it via `curl -LsSf https://astral.sh/uv/install.sh | sh` (or `brew install uv`) if you don't already have it. All commands run from the repo root.
+
+### 1. Install dependencies
 
 ```
-python taxonomy/build.py
+uv sync
+```
+
+`uv sync` reads `pyproject.toml` + `uv.lock` and creates a `.venv/` with the exact package set CI uses (`mkdocs-material`, `mike`, `mkdocs-rss-plugin` plus their transitive deps). The lockfile is committed so local builds match CI bit-for-bit. uv also handles the Python toolchain — no separate `pyenv` / `python -m venv` step needed.
+
+### 2. Build the artefacts
+
+```
+uv run python taxonomy/build.py        # → avt-metrics-taxonomy.md + dist/{metrics.csv,metrics.json,gaps.json,summary.json}
+uv run python taxonomy/build_site.py   # → populates docs/ and mirrors dist/* into docs/downloads/
+```
+
+Order matters: `build_site.py` reads `dist/` to populate the Downloads page, so `build.py` must run first. Both scripts are idempotent; rerun freely.
+
+### 3. Serve locally
+
+```
+uv run mkdocs serve
+```
+
+Serves on `http://127.0.0.1:8000/avt-metrics-taxonomy/` (the path prefix comes from `site_url` in `mkdocs.yml`). Live-reloads when files change in `docs/`, but **does not re-run `build_site.py`** — if you edit `taxonomy/*.md` source files you need to re-run `uv run python taxonomy/build_site.py` to repopulate `docs/` and trigger reload.
+
+For a one-off static build into `site/` (what gets published) use `uv run mkdocs build` (or `uv run mkdocs build --strict` to catch broken links — strict mode aborts on missing nav targets, missing link destinations, and similar).
+
+### Where `dist/` files come from
+
+The downloadable CSV / JSON / monolithic-Markdown artefacts on the published site are produced by `python taxonomy/build.py`:
+
+- `dist/metrics.csv` — flat 218-row spreadsheet (17 columns)
+- `dist/metrics.json` — same metrics with full structured dimension data preserved per entry
+- `dist/gaps.json` — 89 roadmap candidates partitioned by origin
+- `dist/summary.json` — headline counts (metric / tier / group / gap)
+- `avt-metrics-taxonomy.md` (repo root) — monolithic concatenated Markdown
+
+`taxonomy/build_site.py`'s `_mirror_downloads()` then copies these into `docs/downloads/` so `mkdocs serve` can serve them locally; CI does the equivalent copy via the workflow file.
+
+### Audit
+
+```
+uv run python taxonomy/audit.py
+```
+
+Source of truth for current state — emits parsed counts, the Tier 1 tightening manifest, retired/reserved IDs, and any structural findings. The CI workflow runs this first and fails the build on any finding. Run it before pushing if you've touched metric files.
+
+## Building the document (legacy short form)
+
+```
+uv run python taxonomy/build.py
 ```
 
 Produces `avt-metrics-taxonomy.md` at the repo root by concatenating the modular source files in the order defined in `build.py`. The script is idempotent.

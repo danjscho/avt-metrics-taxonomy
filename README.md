@@ -47,14 +47,17 @@ When pricing or scoping AVT contracts against this taxonomy, note that the [Cali
 
 ### Developer / contributor
 
-[taxonomy/README.md](taxonomy/README.md) covers the build pipeline:
+[taxonomy/README.md](taxonomy/README.md) covers the full local-build recipe (uv-based) and the file layout. Quick version:
 
 ```
-python3 taxonomy/build.py    # Assembles avt-metrics-taxonomy.md + dist/ outputs
-python3 taxonomy/audit.py    # Structural + Tier 1 tightening + cross-reference audits
+uv sync                                # one-off: install deps into .venv from uv.lock
+uv run python taxonomy/build.py        # → avt-metrics-taxonomy.md + dist/* CSV/JSON
+uv run python taxonomy/build_site.py   # → populates docs/ and mirrors dist/* into docs/downloads/
+uv run mkdocs serve                    # → http://127.0.0.1:8000/avt-metrics-taxonomy/
+uv run python taxonomy/audit.py        # → structural + Tier 1 tightening + cross-reference audits
 ```
 
-`audit.py` is the source of truth for current tightening status — it emits a manifest after the tier counts showing which Tier 1 metrics carry the tightening pattern and which are still pending. Future work scope is derived from this output rather than from CHANGELOG prose.
+The project uses [uv](https://docs.astral.sh/uv/) for environment management; `uv.lock` is committed so local and CI builds match. `audit.py` is the source of truth for current tightening status — it emits a manifest after the tier counts showing which Tier 1 metrics carry the tightening pattern and which are still pending. Future work scope is derived from this output rather than from CHANGELOG prose.
 
 [`taxonomy/parse.py`](taxonomy/parse.py) extracts every metric from its dimension table; [`taxonomy/build_site.py`](taxonomy/build_site.py) renders the MkDocs site; [`taxonomy/_gaps.md`](taxonomy/_gaps.md) is the consolidated roadmap of 89 proposed candidates across five origins (RSET external review, NHSE IG, standards mapping, NHS T.E.S.T., Responsible AI Lens).
 

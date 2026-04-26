@@ -7,6 +7,9 @@ site/
 __pycache__/
 *.pyc
 
+# uv-managed virtual environment (uv.lock IS committed for reproducibility)
+.venv/
+
 # Editor / OS
 .DS_Store
 .vscode/
