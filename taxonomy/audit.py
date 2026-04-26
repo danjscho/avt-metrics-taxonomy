@@ -902,6 +902,67 @@ def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
     print()
 
 
+def check_reference_handles_resolve() -> list[Finding]:
+    """Every `[Handle]` reference-style link in the taxonomy source must
+    resolve to a catalogue entry in `_references.md`. Introduced in v3.9
+    Phase 0 alongside the references catalogue; in Phase 0 the catalogue is
+    deliberately incomplete (pilot scope only), so unresolved handles are
+    expected outside the pilot files. The check enforces that the handles
+    used inside the pilot scope all resolve, treating any unresolved handle
+    in the rest of the source as an INFO-level reminder (not an ERROR) until
+    the full sweep lands.
+
+    From v3.9 Phase 2 onwards, every unresolved handle becomes an ERROR.
+    """
+    import parse  # local import — audit.py is the gatekeeper, not parse
+
+    findings: list[Finding] = []
+    refs = parse.parse_references()
+    catalogue_handles = set(refs.keys())
+
+    if not refs:
+        # No catalogue file or empty — nothing to check yet
+        return findings
+
+    # Files in the v3.9 Phase 0 pilot scope where unresolved handles ARE
+    # treated as ERRORs. Outside this set, unresolved handles are deferred
+    # to later phases of the sweep.
+    pilot_scope = {
+        "part-e/nhs-compliance-regulatory.md",  # GV.CR-4
+        "part-e/security-adversarial-robustness.md",  # GV.SC-12
+        "part-e/vendor-transparency-contractual.md",  # GV.VT-13, GV.VT-14
+        "_standards-mapping.md",
+        "_references.md",  # the catalogue's own cross-references
+    }
+
+    seen_unresolved: dict[str, list[str]] = defaultdict(list)
+    for path in sorted(ROOT.rglob("*.md")):
+        rel = str(path.relative_to(ROOT))
+        text = path.read_text()
+        handles = parse.find_inline_handles(text)
+        for h in handles:
+            if h not in catalogue_handles:
+                seen_unresolved[h].append(rel)
+
+    for handle, files in seen_unresolved.items():
+        in_pilot = any(f in pilot_scope for f in files)
+        severity = "ERROR" if in_pilot else "INFO"
+        # Locate one representative file:line for the message
+        for f in files:
+            if f in pilot_scope or severity == "INFO":
+                findings.append(
+                    Finding(
+                        severity,
+                        "unresolved-reference-handle",
+                        f"`[{handle}]` not found in _references.md catalogue",
+                        f,
+                    )
+                )
+                break
+
+    return findings
+
+
 def main() -> int:
     all_metrics: list[Metric] = []
     metrics_by_file: dict[str, list[Metric]] = {}
@@ -925,10 +986,12 @@ def main() -> int:
     findings.extend(check_tightening_pattern(all_metrics))
     findings.extend(check_threshold_provenance(all_metrics))
     findings.extend(check_metric_cross_references(all_metrics))
+    findings.extend(check_reference_handles_resolve())
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]
     warns = [f for f in findings if f.severity == "WARN"]
+    infos = [f for f in findings if f.severity == "INFO"]
 
     print(f"Parsed {len(all_metrics)} metrics across {len(GROUP_FILES)} group files.")
     tier_counts = Counter(m.tier for m in all_metrics)
@@ -938,16 +1001,36 @@ def main() -> int:
     print()
     emit_tightening_manifest(all_metrics)
 
-    if not findings:
+    if not errors and not warns and not infos:
         print("✅ AUDIT CLEAN - no findings.")
+        return 0
+    if not errors and not warns:
+        # Only INFO findings — still clean for CI purposes, but report the
+        # info messages so they're visible (used by Phase 0 of the v3.9
+        # references sweep to surface unresolved handles outside pilot scope).
+        print("✅ AUDIT CLEAN - no errors or warnings.")
+        if infos:
+            print(f"({len(infos)} INFO findings — see below.)\n")
+            by_category: dict[str, list[Finding]] = defaultdict(list)
+            for f in infos:
+                by_category[f.category].append(f)
+            for cat, items in sorted(by_category.items()):
+                print(f"── {cat} ({len(items)}) ──")
+                for f in items[:50]:
+                    print(" ", f.format())
+                if len(items) > 50:
+                    print(f"  ... and {len(items) - 50} more")
+                print()
         return 0
 
     by_category: dict[str, list[Finding]] = defaultdict(list)
     for f in findings:
         by_category[f.category].append(f)
 
+    info_suffix = f", {len(infos)} info" if infos else ""
     print(
-        f"Found {len(errors)} errors, {len(warns)} warnings across {len(by_category)} categories.\n"
+        f"Found {len(errors)} errors, {len(warns)} warnings{info_suffix} "
+        f"across {len(by_category)} categories.\n"
     )
     for cat, items in sorted(by_category.items()):
         print(f"── {cat} ({len(items)}) ──")

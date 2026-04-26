@@ -833,6 +833,140 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
 
 
 # ---------------------------------------------------------------------------
+# References catalogue (v3.9)
+#
+# `_references.md` is the single source of truth for every external citation
+# the taxonomy makes. This section parses it into structured records for use
+# by audit.py (handle-resolution check) and build_site.py (cited-by back-
+# reference rendering, populated at build time).
+# ---------------------------------------------------------------------------
+
+
+REFERENCES_FILE = "_references.md"
+REFERENCE_HEADING = re.compile(r"^###\s+([A-Za-z0-9][A-Za-z0-9_-]*)\s*$")
+REFERENCE_FIELD = re.compile(r"^-\s+\*\*([^*]+?):\*\*\s*(.*?)\s*$")
+# Inline `[Handle]` reference-style links in metric files. Matches `[Foo]`
+# only when not followed by `(...)` (which would be an inline link) and not
+# preceded by `!` (image link). The Handle character set matches the catalogue
+# heading regex.
+INLINE_HANDLE = re.compile(r"(?<!!)\[([A-Za-z][A-Za-z0-9_-]*)\](?!\()")
+
+
+@dataclass
+class Reference:
+    handle: str
+    title: str = ""
+    publisher: str = ""
+    source_type: str = ""
+    url: str = ""
+    archive: str = ""
+    retrieved: str = ""
+    local_mirror: str = ""
+    description: str = ""
+
+    @property
+    def is_archived(self) -> bool:
+        # An entry counts as archived only if Archive is a real URL —
+        # the placeholder "(Phase 1 — pending snapshot.py)" does not count.
+        return self.archive.startswith("http")
+
+
+def parse_references() -> dict[str, Reference]:
+    """Parse `_references.md` into {handle: Reference}.
+
+    The grammar is: each entry is an h3 (`### Handle`) followed by a bullet
+    list of fields (`- **Field:** value`). Free-form prose between or after
+    the bullet list is captured as `description`. Field names are canonical
+    (Title, Publisher, Source-Type, URL, Archive, Retrieved, Local-Mirror);
+    Cited-by is auto-generated and is not stored.
+    """
+    path = ROOT / REFERENCES_FILE
+    if not path.exists():
+        return {}
+    refs: dict[str, Reference] = {}
+    current: Reference | None = None
+    description_lines: list[str] = []
+    for line in path.read_text().splitlines():
+        m = REFERENCE_HEADING.match(line)
+        if m:
+            if current is not None:
+                current.description = "\n".join(description_lines).strip()
+                refs[current.handle] = current
+            current = Reference(handle=m.group(1))
+            description_lines = []
+            continue
+        if current is None:
+            continue  # skip preamble before first entry
+        f = REFERENCE_FIELD.match(line)
+        if f:
+            field_name = f.group(1).strip().lower().replace("-", "_")
+            value = f.group(2).strip()
+            if field_name == "title":
+                current.title = value
+            elif field_name == "publisher":
+                current.publisher = value
+            elif field_name == "source_type":
+                current.source_type = value.split()[0] if value else ""
+            elif field_name == "url":
+                current.url = value
+            elif field_name == "archive":
+                current.archive = value
+            elif field_name == "retrieved":
+                current.retrieved = value
+            elif field_name == "local_mirror":
+                current.local_mirror = value
+            # `cited_by` is auto-generated; ignore any hand-written value.
+        else:
+            stripped = line.strip()
+            if stripped and not stripped.startswith("---"):
+                description_lines.append(line)
+    if current is not None:
+        current.description = "\n".join(description_lines).strip()
+        refs[current.handle] = current
+    return refs
+
+
+def find_inline_handles(text: str) -> list[str]:
+    """Return every `[Handle]` reference-style link in `text`.
+
+    Excludes:
+    - headings (any `#`-prefixed line)
+    - fenced code blocks (toggled on triple-backtick or triple-tilde fences)
+    - image links (filtered by the regex via the `!` lookbehind)
+    - inline links of the form `[label](url)` (filtered by the regex via the
+      lookahead for `(`)
+
+    The result is a list (not a set) so the same handle cited twice on a
+    page counts twice — useful for cited-by frequency in a future iteration.
+    """
+    out: list[str] = []
+    in_fence = False
+    fence_marker = ""
+    for line in text.splitlines():
+        stripped = line.lstrip()
+        # Toggle fence state on triple-backtick or triple-tilde lines.
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            marker = "```" if stripped.startswith("```") else "~~~"
+            if not in_fence:
+                in_fence = True
+                fence_marker = marker
+            elif marker == fence_marker:
+                in_fence = False
+                fence_marker = ""
+            continue
+        if in_fence:
+            continue
+        if line.startswith("#"):
+            continue
+        # Strip inline code spans (`...`) before matching, so a literal
+        # `[Handle]` appearing in prose-as-code-example doesn't register.
+        scrubbed = re.sub(r"`[^`]*`", "", line)
+        for m in INLINE_HANDLE.finditer(scrubbed):
+            out.append(m.group(1))
+    return out
+
+
+# ---------------------------------------------------------------------------
 # Convenience
 # ---------------------------------------------------------------------------
 

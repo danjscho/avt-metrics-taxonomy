@@ -208,7 +208,7 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
-|**Source**             |NHSE AVT Supplier Registry (January 2026)             |
+|**Source**             |[NHSE-AVT-Registry] (live since January 2026)         |
 
 **Why this tier?**
 
@@ -222,7 +222,7 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 **Reference Standard**
 
-> The NHS England AVT Self-Certified Supplier Registry as published at [digital.nhs.uk/services/ambient-scribing](https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry) (operational location) and the supplementary materials at the Transformation Directorate. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
+> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing with [NHSE-Transformation-Directorate-AVT] hosting the long-read context. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
 
 **Operational Specification**
 

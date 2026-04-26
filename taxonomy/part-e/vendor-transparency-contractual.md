@@ -402,7 +402,7 @@ Currency and provenance of the vendor's published evidence pack on the National 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHS England AVT Self-Certified Supplier Registry; National Commercial & Procurement Hub publication mechanism |
+| **Source** | [NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism |
 
 **Why this tier?**
 
@@ -445,7 +445,7 @@ Composite freshness score per component:
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 12-month freshness window mirrors the IASME Cyber Essentials Plus annual cadence and the typical UK GDPR DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the [IASME-Cyber-Essentials-Plus] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
@@ -453,7 +453,7 @@ Composite freshness score per component:
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
+- [NHSE-AVT-Registry] — see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
 
 **Limitations**
 
@@ -482,7 +482,7 @@ Publication and currency of the vendor's indicative pricing matrix per the NHS E
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | AVT-Specific |
-| **Source** | NHS England AVT Self-Certified Supplier Registry req #12 |
+| **Source** | [NHSE-AVT-Registry] req #12 |
 
 **Why this tier?**
 
@@ -531,7 +531,7 @@ Procurement-time scope-alignment check (deployer-side):
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: req #12 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- [NHSE-AVT-Registry] — req #12 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
 
 **Limitations**
 

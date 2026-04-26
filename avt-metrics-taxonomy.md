@@ -1073,7 +1073,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 ### NHS England AVT Self-Certified Supplier Registry
 
 **Publisher:** NHS England (Transformation Directorate / NHS England Digital)
-**Scheme reference:** Find a Tender Notice [069369-2025](https://www.find-tender.service.gov.uk/Notice/069369-2025); registry surfaces at the NHS England Transformation Directorate ([transform.england.nhs.uk](https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/)) and operationally at [digital.nhs.uk/services/ambient-scribing](https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry).
+**Scheme reference:** Procurement notice [NHSE-Find-a-Tender-069369]; the operational location is [NHSE-AVT-Registry] (digital.nhs.uk/services/ambient-scribing) and the long-read surfacing is [NHSE-Transformation-Directorate-AVT] (transform.england.nhs.uk).
 **Status:** **Live since January 2026.** First cohort of 19 suppliers listed January 2026, expanded to 23 by April 2026. Applications reopened 3 February 2026 and remain open indefinitely.
 **Mandatory status:** Effective procurement gate. Listing is voluntary at the supplier level but practically required for NHS deployment at scale. Adopting Trusts and PCNs are encouraged to procure from registered suppliers; deployment of unregistered suppliers carries local liability risk per NHS England guidance.
 **AVT relevance:** Purpose-built for AVT / ambient-scribing procurement at the national level. Sits structurally alongside [NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test) (T.E.S.T. is an ICS-level vendor-assessment framework; the Registry is the national-level certification list that draws on T.E.S.T. and other frameworks).
@@ -10221,7 +10221,7 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
-|**Source**             |NHSE AVT Supplier Registry (January 2026)             |
+|**Source**             |[NHSE-AVT-Registry] (live since January 2026)         |
 
 **Why this tier?**
 
@@ -10235,7 +10235,7 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 **Reference Standard**
 
-> The NHS England AVT Self-Certified Supplier Registry as published at [digital.nhs.uk/services/ambient-scribing](https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry) (operational location) and the supplementary materials at the Transformation Directorate. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
+> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing with [NHSE-Transformation-Directorate-AVT] hosting the long-read context. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
 
 **Operational Specification**
 
@@ -11024,7 +11024,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHS England AVT Self-Certified Supplier Registry (req #5); IASME Cyber Essentials scheme; NCSC guidance |
+| **Source** | [NHSE-AVT-Registry] (req #5); [IASME-Cyber-Essentials-Plus]; [NCSC-Cyber-Essentials] |
 
 **Why this tier?**
 
@@ -11050,7 +11050,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Reference Standard**
 
-> The IASME-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+> The [IASME-Cyber-Essentials-Plus]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
 
 **Operational Specification**
 
@@ -11062,7 +11062,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from the NHS England AVT Self-Certified Supplier Registry and the IASME scheme. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [IASME-Cyber-Essentials-Plus]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
 > - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
@@ -11070,9 +11070,9 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: registry req #5 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
-- **IASME**: Cyber Essentials Plus scheme administrator
-- **NCSC**: Cyber Essentials guidance
+- [NHSE-AVT-Registry] — registry req #5 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- [IASME-Cyber-Essentials-Plus] — Plus scheme administrator
+- [NCSC-Cyber-Essentials] — underlying scheme overview and technical control set
 
 **Limitations**
 
@@ -12758,7 +12758,7 @@ Currency and provenance of the vendor's published evidence pack on the National 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHS England AVT Self-Certified Supplier Registry; National Commercial & Procurement Hub publication mechanism |
+| **Source** | [NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism |
 
 **Why this tier?**
 
@@ -12801,7 +12801,7 @@ Composite freshness score per component:
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 12-month freshness window mirrors the IASME Cyber Essentials Plus annual cadence and the typical UK GDPR DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the [IASME-Cyber-Essentials-Plus] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
@@ -12809,7 +12809,7 @@ Composite freshness score per component:
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
+- [NHSE-AVT-Registry] — see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
 
 **Limitations**
 
@@ -12838,7 +12838,7 @@ Publication and currency of the vendor's indicative pricing matrix per the NHS E
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | AVT-Specific |
-| **Source** | NHS England AVT Self-Certified Supplier Registry req #12 |
+| **Source** | [NHSE-AVT-Registry] req #12 |
 
 **Why this tier?**
 
@@ -12887,7 +12887,7 @@ Procurement-time scope-alignment check (deployer-side):
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: req #12 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- [NHSE-AVT-Registry] — req #12 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
 
 **Limitations**
 
