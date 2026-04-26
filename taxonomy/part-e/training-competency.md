@@ -1,9 +1,3 @@
-## Training & Competency
-
-*Clinician readiness: training completion, failure mode awareness, and ongoing competency maintenance.*
-
-**Tier breakdown**: 🟢 1 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
-
 ### GV.TC-1 🟢 Clinician Training Completion Rate
 
 Percentage of AVT-using clinicians who have completed required training modules: vendor product training, local induction (review-before-signing, known failure modes, error reporting, opt-out processes), and periodic refresher training.
@@ -20,6 +14,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NAS Day Zero requirements; standard clinical governance |
 
 **Why this tier?**
@@ -86,6 +81,7 @@ Clinician knowledge of AVT-specific failure modes: can they identify hallucinati
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Proposed - extends error injection concept to training assessment |
 
 **Why this tier?**
@@ -124,6 +120,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard clinical governance CPD requirements; applied to AVT |
 
 **Why this tier?**
@@ -162,6 +159,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | **Responsible Actors** | Academic, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Medical education literature; GMC standards consideration |
 
 **Why this tier?**
@@ -200,6 +198,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard training governance |
 
 **Why this tier?**

@@ -1,13 +1,3 @@
-## Environmental & Sustainability
-
-*Energy, carbon, and water footprint of AVT operation. All three current metrics in this group are Tier 3 - not Day Zero priority for clinical safety assurance, but increasingly required for NHS procurement under Net Zero commitments and cascading through EU-market vendor compliance under forthcoming corporate sustainability reporting requirements.*
-
-*The group exists more as placeholder for an expected future than as a cluster of actionable metrics today. The measurement infrastructure is immature: vendors rarely expose per-inference telemetry; cloud providers are not consistent in sustainability reporting; methodology for attributing training emissions to individual inferences is contested; water consumption data is especially limited. None of the current metrics are deployer-measurable - they are vendor-reported, and deployers currently have no independent verification path.*
-
-*All three metrics may move to Tier 2 as the NHS Net Zero procurement framework matures and as vendor sustainability reporting becomes routine. At the scale of potential NHS AVT deployment (millions of consultations per year), even small per-note environmental differences compound into substantial total footprint, and procurement conversations are starting to ask the question even where answers are uneven.*
-
-**Tier breakdown**: 🔵 3 Tier 3
-
 ### GV.EN-1 🔵 Energy Consumption per Clinical Note
 
 Electrical energy cost of generating a single clinical note, measured in watt-hours. Depends on model architecture, hosting infrastructure, and query complexity. Published benchmarks for general-purpose LLM inference range from 0.42 Wh for simple queries to 29 Wh for complex prompts - a 70× range that makes provider choice consequential for total energy footprint.
@@ -24,6 +14,7 @@ Electrical energy cost of generating a single clinical note, measured in watt-ho
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Jegham et al., arXiv 2505.09598 (2025) - "How Hungry is AI?" |
 
 **Why this tier?**
@@ -62,6 +53,7 @@ Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalen
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Mistral AI lifecycle assessment; Jegham et al. 2025 - grid carbon intensity adjustment |
 
 **Why this tier?**
@@ -100,6 +92,7 @@ Water consumed by data centre cooling infrastructure per clinical note inference
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Jegham et al. 2025; Li et al. "Making AI Less Thirsty" |
 
 **Why this tier?**

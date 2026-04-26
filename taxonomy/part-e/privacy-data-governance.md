@@ -1,9 +1,3 @@
-## Privacy & Data Governance
-
-*Audio retention, data minimisation, consent verification, and compliance with UK GDPR and NHSE IG requirements.*
-
-**Tier breakdown**: 🟢 7 Tier 1 · 🟡 4 Tier 2
-
 ### GV.PD-1 🟢 Audio Retention Compliance
 
 Whether audio recordings are retained, for how long, and whether retention complies with the stated DPIA and privacy notice. Includes monitoring for unauthorised retention beyond stated periods.
@@ -20,6 +14,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | UK GDPR Article 5(1)(e) storage limitation; NHSE IG guidance on ambient scribing (March 2026) |
 
 **Why this tier?**
@@ -78,6 +73,7 @@ Measured time from consultation end to verified deletion of the captured audio. 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) storage limitation |
 
 **Why this tier?**
@@ -133,6 +129,7 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) |
 
 **Why this tier?**
@@ -191,6 +188,7 @@ Whether the AVT system processes only the minimum data necessary for its functio
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
 
 **Why this tier?**
@@ -229,6 +227,7 @@ Adversarial privacy testing: the rate at which a determined attacker can extract
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | IEEE S&P 2023 LLM PII leakage study; OWASP LLM Top 10 (Sensitive Information Disclosure) |
 
 **Why this tier?**
@@ -267,6 +266,7 @@ Structured assessment of the risk that de-identified data retained for quality i
 | **Responsible Actors** | Deployer, Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | ICO anonymisation code of practice; NIST privacy framework |
 
 **Why this tier?**
@@ -305,6 +305,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR transparency requirements; derived from emerging AVT procurement practice |
 
 **Why this tier?**
@@ -343,6 +344,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | CQC Mythbuster 109; NHSE IG guidance; common law implied consent requirements |
 
 **Why this tier?**
@@ -402,6 +404,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR Article 46; Schrems II implications |
 
 **Why this tier?**
@@ -444,6 +447,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR Article 15 right of access |
 
 **Why this tier?**
@@ -501,6 +505,7 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR Article 17 right to erasure; NHSE IG guidance on ambient scribing (Mar-2026) for individual-care exemption scope |
 
 **Why this tier?**

@@ -1,46 +1,3 @@
-# Part C - The Human Layer
-
-## Human Factors & Workflow
-
-*The human in the loop. Whether oversight actually functions or erodes over time.*
-
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 7 Tier 3
-
-### Family: Post-Generation Correction
-
-> **Parent construct** - what clinicians do to AI-generated notes between generation and sign-off, and what that behaviour tells us about both AI quality and human oversight.
->
-> The next four metrics all measure human correction of AI output but at different levels of resolution. Treating them as independent metrics misses the fact that they form a four-tier family, where each tier adds diagnostic depth at the cost of additional measurement infrastructure. A deployer with limited governance capacity can start at the first tier and add tiers as maturity grows.
->
-> **Four tiers of increasing resolution:**
->
-> 1. **Binary - was the note edited at all?** Cheapest to collect from EPR workflow telemetry. System-level monitoring metric. Useful for trending but clinically uninformative in isolation - a low edit rate can mean excellent AI or inadequate review, and only triangulation with other metrics distinguishes them. This is the Edit Rate metric.
->
-> 2. **Magnitude - how much was edited?** Measured via edit distance (Levenshtein, TER, HTER, or compression-based). Adds signal about the scale of correction effort. Critical refinement: distinguish **semantic edits** (changing clinical meaning - adding a missed symptom, correcting a drug name) from **stylistic edits** (formatting, phrasing preference). Compression-based edit distance (arXiv 2024) has been shown to correlate better with actual human effort than raw Levenshtein because it captures the structural nature of the change. Magnitude is implicit in the Edit Type Classification metric, which decomposes edits into categories that map to magnitude.
->
-> 3. **Effort and locus - what kind of work, and where in the note?** Measured via Edit Type Classification (additions / deletions / modifications / structural) and Edit Location Distribution (which sections of the note attract the most edits). Tells you which failure modes are active: predominantly additions indicate an omission problem; predominantly deletions indicate a hallucination problem; concentration in the "plan" section indicates the AI extracts facts well but struggles with clinical reasoning. This is where the family becomes diagnostic rather than just descriptive.
->
-> 4. **Longitudinal pattern - how is the behaviour changing over time?** The Edit-Pattern Monitoring at Scale metric (Abridge, across 1M+ encounters per week) captures fleet-wide edit dynamics and is the most scalable quality signal currently available - but it is locked inside one vendor's proprietary infrastructure. The open research question is whether similar pattern monitoring can be built as an open standard.
->
-> **A severity taxonomy for edits.** Not all edits carry equal weight. Adapted from CREOLA and edit-pattern disclosures, edits fall into four severity categories:
->
-> - **Safety-critical correction** - fixing a fabricated medication, corrected allergy, reversed negation, or wrong dose. These are the edits that prevent harm.
-> - **Clinical addition** - adding a missed symptom, examination finding, or plan element. Quality improvement, not harm prevention.
-> - **Stylistic preference** - clinician preference for phrasing, structure, or formatting. Often the majority of edits by count but the minority by safety value.
-> - **Structural reorganisation** - moving content between sections, consolidating or splitting points. Quality improvement.
->
-> Aggregate edit rate treats all four categories equally. A system with a 30% edit rate consisting mostly of safety-critical corrections is in much worse state than a system with a 60% edit rate consisting mostly of stylistic preference - but the raw numbers invert the assessment. Edit Type Classification is the metric in this family that makes severity visible.
->
-> **The complacency trajectory.** The family has a temporal dimension that individual measurements miss. At Day Zero, edit rate is a quality signal - higher rates mean more errors being caught. Over months, as clinicians develop trust in the system, edit rate declines - but the decline could reflect either improving AI or increasing complacency, and distinguishing them requires triangulation. This is why Edit Rate is a Tier 1 continuous metric but must be read alongside Review-Before-Signing Rate, Time-to-Sign Distribution, and periodic Automation Bias Detection error injection. Edit rate alone is an ambiguous signal; the family is diagnostic.
->
-> **Metrics in this family:**
-> - 🟢 **Edit Rate (% Notes Edited)** - tier 1 binary. The entry point; cheapest and most widely measured. Must be triangulated to interpret.
-> - 🟡 **Edit Type Classification** - tier 3 diagnostic decomposition. Reveals failure mode (omission-dominant vs hallucination-dominant vs stylistic).
-> - 🟡 **Edit Location Distribution** - tier 3 locus analysis. Reveals which sections of the note the AI handles well vs poorly.
-> - 🔵 **Edit-Pattern Monitoring at Scale** - tier 4 longitudinal fleet-level monitoring. Vendor-proprietary; informs what a national standard should require of all vendors.
-
----
-
 ### HL.HF-1 🟢 Edit Rate (% Notes Edited)
 
 Percentage of AI notes edited before approval. At Day Zero: quality signal. Declining trajectory: primary complacency indicator.
@@ -57,6 +14,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Responsible Actors** | Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Abridge; NAS; Stanford framework |
 
 **Why this tier?**
@@ -149,6 +107,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Abridge; DeepScore |
 
 **Why this tier?**
@@ -194,6 +153,7 @@ Notes demonstrably reviewed before sign-off. NAS: ≥95% threshold, <85% pause t
 | **Responsible Actors** | Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | NAS Day Zero SPI; Stanford |
 
 **Why this tier?**
@@ -236,6 +196,7 @@ Duration between generation and approval. Model as distribution - tail of very-f
 | **Responsible Actors** | Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | EPR workflow data; Stanford principles |
 
 **Why this tier?**
@@ -311,6 +272,7 @@ Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signa
 | **Responsible Actors** | Vendor |
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Abridge whitepaper |
 
 **Why this tier?**
@@ -355,6 +317,7 @@ Deliberately seeded errors to test clinician catch rate. The only metric directl
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Proposed in NAS framework |
 
 **Why this tier?**
@@ -401,6 +364,7 @@ Where in the note do clinicians make edits? Concentration in specific sections (
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Extends edit-pattern monitoring with structural awareness |
 
 **Why this tier?**
@@ -441,6 +405,7 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Human factors literature; NAS framework |
 
 **Why this tier?**
@@ -487,6 +452,7 @@ Frequency of clinicians abandoning AVT mid-consultation and starting again, or a
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as strong dissatisfaction signal |
 
 **Why this tier?**
@@ -525,6 +491,7 @@ Mental effort for review. Target: 'effortful but efficient' - enough to catch er
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | NASA-TLX adapted for clinical documentation review |
 
 **Why this tier?**
@@ -571,6 +538,7 @@ Do different clinicians edit the same AI output similarly? High variance suggest
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Extends inter-rater reliability concepts to AVT review |
 
 **Why this tier?**
@@ -609,6 +577,7 @@ Longitudinal ability to document without AI. Sleeper risk - if a generation trai
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Aviation skill degradation literature |
 
 **Why this tier?**
@@ -651,6 +620,7 @@ Proportion of clinicians who report relying on AI for content recall ('I don't n
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Cognitive offloading literature; distinct from automation bias |
 
 **Why this tier?**
@@ -689,6 +659,7 @@ Whether initial high trust persists after errors. Absent decay = dangerous over-
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Trust halo effect analysis |
 
 **Why this tier?**
@@ -731,6 +702,7 @@ Review quality degradation over a clinical session. The 9am note review may be d
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Clinical fatigue research applied to AVT review |
 
 **Why this tier?**
@@ -781,6 +753,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Responsible Actors** |Deployer, Academic                                                     |
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
+|**Applicability**      |General Healthcare AI                                                  |
 |**Source**             |Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations      |
 
 **Why this tier?**
@@ -819,6 +792,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Responsible Actors** |Deployer, Academic                                                  |
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
+|**Applicability**      |AVT-Contextualised                                                  |
 |**Source**             |JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data  |
 
 **Why this tier?**
@@ -857,6 +831,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 |**Responsible Actors** |Deployer, National Body, Academic                                 |
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
+|**Applicability**      |General Healthcare AI                                             |
 |**Source**             |Hollnagel Safety-II; FRAM methodology; resilience engineering literature|
 
 **Why this tier?**
@@ -900,6 +875,7 @@ Scheduled exercises where clinicians document a clinical encounter without AVT a
 |**Responsible Actors** |Deployer                                                                                              |
 |**Maturity**           |Proposed / Novel                                                                                      |
 |**Outcome Type**       |Distal                                                                                                |
+|**Applicability**      |General Healthcare AI                                                                                 |
 |**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)|
 
 **Why this tier?**

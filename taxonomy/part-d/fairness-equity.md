@@ -1,9 +1,3 @@
-## Fairness & Equity
-
-*Population-level justice: demographic performance, deployment equity, domain coverage.*
-
-**Tier breakdown**: 🟡 2 Tier 2 · 🔵 3 Tier 3
-
 ### IO.FE-1 🟡 Deployment Equity Index
 
 Whether AVT creates two-tier documentation quality across practices. Track against deprivation indices.
@@ -20,6 +14,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Responsible Actors** | Regional (ICB), National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NHSE LLM framework wider impact |
 
 **Why this tier?**
@@ -58,6 +53,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Responsible Actors** |Vendor, National Body                                         |
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |
+|**Applicability**      |AVT-Specific                                                  |
 |**Source**             |FAccT 2024 critique of ASR accent categorisation; sociolinguistics literature|
 
 **Why this tier?**
@@ -94,6 +90,7 @@ Accuracy variation across specialties and complexity. Compound boundary risk: de
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Compound boundary risk model |
 
 **Why this tier?**
@@ -132,6 +129,7 @@ Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women).
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Intersectionality literature applied to AI fairness |
 
 **Why this tier?**
@@ -170,6 +168,7 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 |**Responsible Actors** |Vendor, National Body, Academic                                                      |
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
+|**Applicability**      |General Healthcare AI                                                                |
 |**Source**             |FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)|
 
 **Why this tier?**
@@ -206,6 +205,7 @@ Accuracy on uncommon clinical presentations vs common ones. Long-tail performanc
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Long-tail performance analysis from machine learning literature |
 
 **Why this tier?**
@@ -244,6 +244,7 @@ Does AVT performance vary with patient health literacy level? Medically sophisti
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Health literacy and equity research |
 
 **Why this tier?**
@@ -284,6 +285,7 @@ Whether fairness properties are consistent across multiple AVT platforms deploye
 |**Responsible Actors** |Regional (ICB), National Body                                      |
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Distal                                                             |
+|**Applicability**      |General Healthcare AI                                              |
 |**Source**             |Extension of existing Cross-Practice Variance Coefficient into equity dimension|
 
 **Why this tier?**

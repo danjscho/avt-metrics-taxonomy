@@ -1,17 +1,3 @@
-## NHS Compliance & Regulatory
-
-*Process compliance metrics against defined external requirements, distinct from the safety performance metrics in the Safety & Governance group. Most entries here are binary or near-binary - the deployer is compliant or they are not - and most Tier 1 assignments reflect legal or guidance requirements that cannot be responsibly skipped regardless of clinical performance.*
-
-*The group was added to the taxonomy in response to the January–March 2026 NHS guidance suite: NHSE IG guidance on ambient scribing (March 2026), the NHSE AVT Supplier Registry (launched January 2026), and CIO/CCIO guidance v2 (January 2026). Taken together these documents defined a discrete compliance surface that is operationally distinct from clinical safety governance and that deserves its own cluster rather than being scattered across Safety & Governance and Privacy & Data Governance.*
-
-*The group also contains two international regulatory metrics (FDA PCCP-Equivalent Pre-Defined Acceptance Criteria, EU AI Act Event Logging Compliance) because vendor compliance cascades across jurisdictions - an AVT vendor with EU market exposure will typically apply EU AI Act requirements uniformly across their product rather than maintaining jurisdiction-specific variants, which means UK deployments inherit EU requirements through vendor compliance regardless of whether they would otherwise apply.*
-
-*Legal and statutory privacy metrics that pre-date the 2026 NHS guidance (Subject Access Request Fulfilment, Right to Erasure, Cross-Border Data Transfer Compliance, Sub-Processor Transparency) remain in the Privacy & Data Governance group to preserve the legal-basis cluster there. The split between "privacy legal requirements" and "NHS compliance process requirements" is analytical rather than hierarchical - a deployer is obliged to meet both, and neither group has precedence over the other.*
-
-**Tier breakdown**: 🟢 7 Tier 1 · 🟡 3 Tier 2 · 🔵 0 Tier 3
-
----
-
 ### GV.CR-1 🟢 Patient Dissent Recording Rate
 
 Per-encounter rate at which patient objections or dissent to AVT use are recorded and respected. Distinct from the existing Patient Opt-Out Rate, which is aggregate and applies at the registration or consent level. Patient Dissent Recording is the per-encounter process compliance metric: when a patient objects at the point of care, is that objection documented, is AVT actually paused for that encounter, and is the objection respected in subsequent encounters without re-litigation.
@@ -28,6 +14,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Responsible Actors** |Deployer                                                |
 |**Maturity**           |Established                                             |
 |**Outcome Type**       |Proximal                                                |
+|**Applicability**      |General Healthcare AI                                   |
 |**Source**             |NHSE IG guidance on ambient scribing (March 2026)       |
 
 **Why this tier?**
@@ -92,6 +79,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Responsible Actors** |Deployer                                                  |
 |**Maturity**           |Established                                               |
 |**Outcome Type**       |Proximal                                                  |
+|**Applicability**      |General Healthcare AI                                     |
 |**Source**             |NHSE IG guidance on ambient scribing (March 2026); CQC Mythbuster 109 context|
 
 **Why this tier?**
@@ -157,6 +145,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Responsible Actors** |Vendor, Deployer                                           |
 |**Maturity**           |Established                                                |
 |**Outcome Type**       |Proximal                                                   |
+|**Applicability**      |General Healthcare AI                                      |
 |**Source**             |NHSE IG guidance on ambient scribing (March 2026)          |
 
 **Why this tier?**
@@ -218,6 +207,7 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 |**Responsible Actors** |Deployer, Vendor                                      |
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
+|**Applicability**      |AVT-Specific                                          |
 |**Source**             |NHSE AVT Supplier Registry (January 2026)             |
 
 **Why this tier?**
@@ -256,6 +246,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |**Responsible Actors** |Deployer, Regional (ICB)                                     |
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
+|**Applicability**      |General Healthcare AI                                        |
 |**Source**             |CIO/CCIO guidance v2 (January 2026); NHS CIO priority notification|
 
 **Why this tier?**
@@ -314,6 +305,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |**Responsible Actors** |Deployer                                                                                         |
 |**Maturity**           |Established                                                                                      |
 |**Outcome Type**       |Proximal                                                                                         |
+|**Applicability**      |General Healthcare AI                                                                            |
 |**Source**             |DCB0129/0160 regulatory requirement; PubMed 41172285 FOI study of NHS digital safety standard compliance|
 
 **Why this tier?**
@@ -373,6 +365,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Responsible Actors** |Deployer                                              |
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
+|**Applicability**      |General Healthcare AI                                 |
 |**Source**             |UK GDPR Article 35; NHSE IG guidance template (March 2026)|
 
 **Why this tier?**
@@ -432,6 +425,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |**Responsible Actors** |Deployer, Vendor                              |
 |**Maturity**           |Established                                   |
 |**Outcome Type**       |Proximal                                      |
+|**Applicability**      |General Healthcare AI                         |
 |**Source**             |UK GDPR Article 28; NHS data protection guidance|
 
 **Why this tier?**
@@ -470,6 +464,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Responsible Actors** |Vendor                                                   |
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
 |**Source**             |FDA PCCP guidance (December 2024); EU AI Act Article 15; NICE ESF 2022 AI updates|
 
 **Why this tier?**
@@ -508,6 +503,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |**Responsible Actors** |Vendor                                              |
 |**Maturity**           |Emerging                                            |
 |**Outcome Type**       |Proximal                                            |
+|**Applicability**      |General Healthcare AI                               |
 |**Source**             |EU AI Act Article 12 (high-risk provisions effective August 2026)|
 
 **Why this tier?**

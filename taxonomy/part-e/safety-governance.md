@@ -1,11 +1,3 @@
-# Part E - System Governance
-
-## Safety & Governance
-
-*Cross-cutting safety monitoring, model tracking, incident reporting, and governance infrastructure.*
-
-**Tier breakdown**: 🟢 6 Tier 1 · 🟡 5 Tier 2 · 🔵 2 Tier 3
-
 ### GV.SG-1 🟢 Model Version Tracking
 
 Logging which model version produces each output. Foundation for all continuous metrics - without it, performance changes are uninterpretable.
@@ -22,6 +14,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Keyes et al., Stanford, Dec 2025 |
 
 **Why this tier?**
@@ -84,6 +77,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Responsible Actors** | Vendor, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NAS + Stanford frameworks |
 
 **Why this tier?**
@@ -133,6 +127,7 @@ Time delay between the onset of model performance degradation and its detection 
 |**Responsible Actors** |Regional (ICB), National Body                                      |
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Proximal                                                           |
+|**Applicability**      |General Healthcare AI                                              |
 |**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
 
 **Why this tier?**
@@ -171,6 +166,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Responsible Actors** |Vendor                                                            |
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
+|**Applicability**      |General Healthcare AI                                             |
 |**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
 
 **Why this tier?**
@@ -209,6 +205,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Responsible Actors** |Vendor, National Body                                                                            |
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
+|**Applicability**      |General Healthcare AI                                                                            |
 |**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
 
 **Why this tier?**
@@ -247,6 +244,7 @@ Statistical detection of drift in the distribution of clinical concepts present 
 |**Responsible Actors** |Regional (ICB), National Body, Academic                   |
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Distal                                                    |
+|**Applicability**      |General Healthcare AI                                     |
 |**Source**             |Concept drift literature from ML monitoring applied to clinical NLG|
 
 **Why this tier?**
@@ -283,6 +281,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | medRxiv, Nov 2025 |
 
 **Why this tier?**
@@ -325,6 +324,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 | **Responsible Actors** | Vendor |
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DeepScribe |
 
 **Why this tier?**
@@ -367,6 +367,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DSCMS methodology in NAS framework |
 
 **Why this tier?**
@@ -409,6 +410,7 @@ AVT use outside validated contexts. Well-intentioned scope creep - each boundary
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Compound boundary risk model; NHSE LLM framework |
 
 **Why this tier?**
@@ -455,6 +457,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Responsible Actors** | Deployer, National Body |
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | LFPSE national reporting |
 
 **Why this tier?**
@@ -497,6 +500,7 @@ Performance variation across practices within ICB. High variance = context-depen
 | **Responsible Actors** | Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -535,6 +539,7 @@ Gap between required and completed assurance. The honest metric - better visible
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -573,6 +578,7 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Patient safety leading vs lagging indicator literature |
 
 **Why this tier?**
@@ -637,6 +643,7 @@ When an AVT error is detected, how quickly is it corrected and the lessons disse
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard incident response metric applied to AVT |
 
 **Why this tier?**
@@ -675,6 +682,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Operational extension of DSCMS SPI framework |
 
 **Why this tier?**
@@ -713,6 +721,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DCB0129 compliance requirement |
 
 **Why this tier?**

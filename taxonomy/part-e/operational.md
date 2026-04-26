@@ -1,9 +1,3 @@
-## Operational
-
-*System performance, adoption, efficiency. Necessary but not sufficient for assurance.*
-
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 5 Tier 2 · 🔵 1 Tier 3
-
 ### GV.OP-1 🟢 Documentation Time per Consultation
 
 Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless - pair with quality.
@@ -20,6 +14,7 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Widely used; critiqued Coiera & Fraile-Navarro 2026 |
 
 **Why this tier?**
@@ -83,6 +78,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
 
 **Why this tier?**
@@ -121,6 +117,7 @@ Elapsed time from consultation end to note availability in the EPR, measured fro
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard operational workflow metric; extends Full-Pipeline Latency Budget |
 
 **Why this tier?**
@@ -159,6 +156,7 @@ Composite metric grouping Documentation Time per Consultation, Pyjama Time, and 
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
 
 **Why this tier?**
@@ -197,6 +195,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard SLA; NAS SPI |
 
 **Why this tier?**
@@ -231,6 +230,7 @@ Who uses AVT and for which consultations. Selective patterns reveal practical sy
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard deployment metric |
 
 **Why this tier?**
@@ -269,6 +269,7 @@ Total cost including licence, infrastructure, training, and governance overhead.
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard healthcare technology economic evaluation |
 
 **Why this tier?**
@@ -307,6 +308,7 @@ Clinician and admin time spent on AVT-related tasks: template updates, error rep
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Identified as systematically under-measured cost |
 
 **Why this tier?**
@@ -345,6 +347,7 @@ Initial and refresher training hours required per clinician. Affects both adopti
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard implementation metric |
 
 **Why this tier?**

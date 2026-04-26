@@ -1,11 +1,3 @@
-# Part A - The Technical Pipeline
-
-## Audio Capture & Environment
-
-*The physical layer before ASR. Microphone quality, acoustic conditions, and environmental factors that condition everything downstream.*
-
-**Tier breakdown**: 🟢 1 Tier 1 · 🟡 4 Tier 2 · 🔵 4 Tier 3
-
 ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
 Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably - the system may continue producing confident-looking but degraded output without alerting the clinician.
@@ -22,6 +14,7 @@ Continuous measurement of audio input quality. SNR below threshold degrades ASR 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard audio engineering; applied to AVT quality assurance |
 
 **Why this tier?**
@@ -90,6 +83,7 @@ Accuracy of detecting when speech is occurring vs silence/noise. VAD errors caus
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard speech processing; critical for clinical AVT given variable environment |
 
 **Why this tier?**
@@ -128,6 +122,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Proposed - extends validated use envelope concept to acoustic conditions |
 
 **Why this tier?**
@@ -166,6 +161,7 @@ Ability to detect and flag speech from individuals who have not consented to AVT
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Identified in NHSE IG guidance on ambient scribing privacy implications; CQC Mythbuster 109 context |
 
 **Why this tier?**
@@ -204,6 +200,7 @@ Verification that the capture hardware meets minimum specifications for the AVT 
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard audio hardware validation; vendor deployment requirements |
 
 **Why this tier?**
@@ -238,6 +235,7 @@ Proportion of audio time with simultaneous speech from multiple speakers. Common
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard speech processing; particularly relevant for clinical consultations |
 
 **Why this tier?**
@@ -276,6 +274,7 @@ Frequency of audio level exceeding the dynamic range of the capture system, caus
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard audio engineering |
 
 **Why this tier?**
@@ -330,6 +329,7 @@ Whether audio meets minimum bit depth and sample rate specifications for the AVT
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard audio engineering; vendor minimum specifications |
 
 **Why this tier?**
@@ -368,6 +368,7 @@ Detection of gradual hardware degradation over time: declining battery performan
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Proposed - extends hardware validation to ongoing monitoring |
 
 **Why this tier?**

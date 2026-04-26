@@ -1,11 +1,3 @@
-# Part F - Evaluation Science
-
-## Meta-evaluation
-
-*Are we measuring what matters? Structural critique of proximal vs distal outcomes and evaluation science itself.*
-
-**Tier breakdown**: 🟡 1 Tier 2 · 🔵 6 Tier 3
-
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
@@ -22,6 +14,7 @@ The most important structural critique: measuring easy things and assuming they 
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Coiera & Fraile-Navarro 2026; NIHR RSET |
 
 **Why this tier?**
@@ -65,6 +58,7 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 | **Responsible Actors** | Academic |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | VeriFact; MedHELM |
 
 **Why this tier?**
@@ -108,6 +102,7 @@ Do the metrics in the taxonomy correlate or conflict? A system optimised for low
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-metric evaluation literature |
 
 **Why this tier?**
@@ -146,6 +141,7 @@ When a metric becomes a target, does it cease to be a good measure? Specifically
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Goodhart's Law applied to clinical AI metrics |
 
 **Why this tier?**
@@ -184,6 +180,7 @@ What failure modes are not captured by any metric in the taxonomy? Periodic revi
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard safety engineering coverage analysis |
 
 **Why this tier?**
@@ -222,6 +219,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Responsible Actors** | Academic, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Croxford et al. 2025 (npj Digital Medicine); Rwanda clinical LLM evaluation study |
 
 **Why this tier?**
@@ -260,6 +258,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard meta-evaluation methodology; Croxford et al. 2025 (ROUGE Kendall-Tau 0.080) |
 
 **Why this tier?**
@@ -298,6 +297,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Responsible Actors** | Vendor, Deployer, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
+| **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
 
 **Why this tier?**
@@ -348,6 +348,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
+| **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
 
 **Why this tier?**

@@ -1,9 +1,3 @@
-## Diarisation
-
-*Who said what. Attribution errors cascade into summarisation.*
-
-**Tier breakdown**: 🟡 3 Tier 2 · 🔵 1 Tier 3
-
 ### TP.DI-1 🟡 Diarisation Error Rate (DER)
 
 Proportion of audio time with incorrect speaker labels. Combines missed speech, false alarm, and speaker confusion.
@@ -20,6 +14,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | SCRIBE framework; standard diarisation literature |
 
 **Why this tier?**
@@ -76,6 +71,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | SCRIBE framework |
 
 **Why this tier?**
@@ -118,6 +114,7 @@ Does the system correctly identify how many speakers are present? Particularly i
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard diarisation evaluation |
 
 **Why this tier?**
@@ -156,6 +153,7 @@ Temporal accuracy of where one speaker stops and another starts. Affects attribu
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard diarisation literature |
 
 **Why this tier?**
@@ -202,6 +200,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Responsible Actors** |Vendor                                                               |
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
+|**Applicability**      |AVT-Specific                                                         |
 |**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
 
 **Why this tier?**
@@ -240,6 +239,7 @@ Accuracy of detecting within-utterance language switching - a speaker moving bet
 |**Responsible Actors** |Vendor                                                |
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
+|**Applicability**      |AVT-Specific                                          |
 |**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
 
 **Why this tier?**
@@ -278,6 +278,7 @@ Accuracy of attributing words spoken during overlapping speech - when two or mor
 |**Responsible Actors** |Vendor                                         |
 |**Maturity**           |Established                                    |
 |**Outcome Type**       |Proximal                                       |
+|**Applicability**      |AVT-Specific                                   |
 |**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
 
 **Why this tier?**
@@ -316,6 +317,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 |**Responsible Actors** |Vendor, Academic                            |
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
+|**Applicability**      |AVT-Specific                                |
 |**Source**             |mpathic.ai clinical ASR benchmark 2025      |
 
 **Why this tier?**
@@ -354,6 +356,7 @@ In multi-party consultations, correctly identifying who the speaker is addressin
 |**Responsible Actors** |Vendor, Academic                                 |
 |**Maturity**           |Proposed / Novel                                 |
 |**Outcome Type**       |Proximal                                         |
+|**Applicability**      |AVT-Specific                                     |
 |**Source**             |Multi-party dialogue research; pragmatics literature|
 
 **Why this tier?**

@@ -1,13 +1,3 @@
-## Clinical Coding
-
-*SNOMED/Read code assignment. Individual care + population data quality.*
-
-**Tier breakdown**: 🟢 1 Tier 1 · 🟡 8 Tier 2 · 🔵 3 Tier 3
-
-### Coding Fidelity sub-cluster
-
-*Accuracy of individual code assignment across NHS terminology systems - SNOMED CT, ICD-10/11, OPCS-4, and dm+d. Each metric addresses a different coding standard or a different failure mode (wrong code, non-existent code, wrong specificity level, wrong concept mapping). Together they answer the question: when the system assigns a code, is it the right code at the right level of specificity in the right terminology?*
-
 ### TP.CC-1 🟡 SNOMED Code Accuracy
 
 AI-suggested code correctness. Precision, recall, and F1 reported separately for diagnosis, medication, procedure codes.
@@ -24,6 +14,7 @@ AI-suggested code correctness. Precision, recall, and F1 reported separately for
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Standard clinical audit; NAS baselines |
 
 **Why this tier?**
@@ -62,6 +53,7 @@ Accuracy of the mapping from extracted clinical entities in free-text to the cor
 |**Responsible Actors** |Vendor                                                                   |
 |**Maturity**           |Established                                                              |
 |**Outcome Type**       |Proximal                                                                 |
+|**Applicability**      |AVT-Contextualised                                                       |
 |**Source**             |NLP2FHIR pipeline literature; John Snow Labs FHIR-Ready AI; MedCAT benchmarks|
 
 **Why this tier?**
@@ -98,6 +90,7 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 |**Responsible Actors** |Vendor                                      |
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
+|**Applicability**      |AVT-Contextualised                          |
 |**Source**             |Hybrid-Code v2 (arXiv 2512.23743); WHO ICD-11 implementation guidance|
 
 **Why this tier?**
@@ -134,6 +127,7 @@ Accuracy of OPCS-4 procedure code assignment from consultation documentation. NH
 |**Responsible Actors** |Vendor                                        |
 |**Maturity**           |Proposed / Novel                              |
 |**Outcome Type**       |Proximal                                      |
+|**Applicability**      |AVT-Contextualised                            |
 |**Source**             |NHS Digital OPCS-4 coding standards; gap identified in published AVT literature|
 
 **Why this tier?**
@@ -170,6 +164,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 |**Responsible Actors** |Vendor                                                    |
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Proximal                                                  |
+|**Applicability**      |AVT-Contextualised                                        |
 |**Source**             |NHS BSA dm+d standard; gap identified in published AVT literature|
 
 **Why this tier?**
@@ -208,6 +203,7 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Responsible Actors** |Vendor, Deployer                                     |
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
+|**Applicability**      |AVT-Contextualised                                   |
 |**Source**             |Hybrid-Code v2 (arXiv 2512.23743) - neuro-symbolic verification approach|
 
 **Why this tier?**
@@ -263,6 +259,7 @@ Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality cor
 | **Responsible Actors** | Regional (ICB), National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | US payer countermeasures; NHS risk analysis |
 
 **Why this tier?**
@@ -320,6 +317,7 @@ Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and pos
 |**Responsible Actors** |Regional (ICB), National Body                                                        |
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
+|**Applicability**      |AVT-Contextualised                                                                   |
 |**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) - documented 3.0→4.1 diagnoses/encounter post-AVT|
 
 **Why this tier?**
@@ -356,6 +354,7 @@ Whether AVT-driven changes in coding distribution are equitably spread across pa
 |**Responsible Actors** |Regional (ICB), National Body                         |
 |**Maturity**           |Proposed / Novel                                      |
 |**Outcome Type**       |Distal                                                |
+|**Applicability**      |AVT-Contextualised                                    |
 |**Source**             |Extension of existing Deployment Equity Index to coding dimension|
 
 **Why this tier?**
@@ -392,6 +391,7 @@ Attribution of workload or tariff-relevant coding changes to AVT specifically, s
 |**Responsible Actors** |Regional (ICB), National Body, Academic     |
 |**Maturity**           |Proposed / Novel                             |
 |**Outcome Type**       |Distal                                       |
+|**Applicability**      |AVT-Contextualised                           |
 |**Source**             |Extends E/M Level Shift Monitoring with causal attribution methodology|
 
 **Why this tier?**
@@ -428,6 +428,7 @@ Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple 
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | SNOMED CT hierarchy semantics; clinical audit methodology |
 
 **Why this tier?**
@@ -466,6 +467,7 @@ Time from note generation to code suggestion availability. Affects coding workfl
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Standard latency metric |
 
 **Why this tier?**

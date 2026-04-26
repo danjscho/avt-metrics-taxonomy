@@ -1,9 +1,3 @@
-## Vendor Transparency & Contractual
-
-*Whether vendors provide the access, telemetry, and transparency needed for independent assurance. The meta-prerequisite for most other metrics.*
-
-**Tier breakdown**: 🟢 3 Tier 1 · 🟡 4 Tier 2 · 🔵 1 Tier 3
-
 ### GV.VT-1 🟢 Model Change Notification Compliance
 
 Whether the vendor notifies deployers of model updates before deployment, with sufficient detail to assess impact. Stanford framework finding: 'many vendors do not yet provide the access or telemetry necessary.'
@@ -20,6 +14,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Stanford monitoring framework; three-layer surveillance model |
 
 **Why this tier?**
@@ -83,6 +78,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Stanford monitoring framework; identified as prerequisite for most continuous monitoring metrics |
 
 **Why this tier?**
@@ -125,6 +121,7 @@ Whether the vendor provides access to benchmarking infrastructure: test datasets
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Proposed - vendors currently self-evaluate with proprietary benchmarks |
 
 **Why this tier?**
@@ -163,6 +160,7 @@ Whether the system maintains a complete, tamper-evident audit trail from audio i
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Clinical record governance requirements; applied to AI-generated documentation |
 
 **Why this tier?**
@@ -201,6 +199,7 @@ Does the vendor disclose security incidents, model failures, and known issues to
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard security incident disclosure practice |
 
 **Why this tier?**
@@ -260,6 +259,7 @@ When a deployer terminates their contract, can they export their data, audit tra
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard procurement practice; lock-in risk analysis |
 
 **Why this tier?**
@@ -298,6 +298,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | UK GDPR Article 28 |
 
 **Why this tier?**
@@ -361,6 +362,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Prerequisite for existing Error Attribution Analysis metric; Stanford monitoring framework |
 
 **Why this tier?**

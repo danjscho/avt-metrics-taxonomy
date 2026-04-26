@@ -370,40 +370,102 @@ def check_see_also_resolves(all_metrics: list[Metric]) -> list[Finding]:
     return findings
 
 
-def check_applicability_totals() -> list[Finding]:
+def check_applicability_presence(all_metrics: list[Metric]) -> list[Finding]:
+    """Every metric must carry an Applicability row in its dimension table
+    (v3.6+ — Applicability moved on-metric)."""
     findings: list[Finding] = []
+    valid = set(EXPECTED_APPLICABILITY.keys())
+    for m in all_metrics:
+        applic = m.dimensions.get("Applicability")
+        if applic is None:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-applicability",
+                    f"metric {m.ref_id} has no **Applicability** row in its dimension table",
+                    f"{m.file}:{m.line}",
+                )
+            )
+        elif applic not in valid:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-applicability",
+                    (
+                        f"metric {m.ref_id} has Applicability='{applic}', "
+                        f"expected one of {sorted(valid)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def check_applicability_totals(all_metrics: list[Metric]) -> list[Finding]:
+    """Reconcile per-metric Applicability values (the v3.6 source of truth)
+    against the EXPECTED_APPLICABILITY constants and against the legacy
+    _applicability.md declared totals (cross-validation during transition).
+    """
+    findings: list[Finding] = []
+
+    # Derive totals from per-metric values.
+    derived: dict[str, int] = Counter()
+    for m in all_metrics:
+        applic = m.dimensions.get("Applicability")
+        if applic in EXPECTED_APPLICABILITY:
+            derived[applic] += 1
+
+    for label, expected in EXPECTED_APPLICABILITY.items():
+        actual = derived.get(label, 0)
+        if actual != expected:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "applicability-total",
+                    (
+                        f"{label}: expected {expected} per-metric, "
+                        f"derived {actual} from dimension tables"
+                    ),
+                )
+            )
+
+    total = sum(derived.values())
+    if total != EXPECTED_TOTAL:
+        findings.append(
+            Finding(
+                "ERROR",
+                "applicability-sum",
+                f"per-metric applicability counts sum to {total}, expected {EXPECTED_TOTAL}",
+            )
+        )
+
+    # Cross-validation against legacy _applicability.md declared totals (transition only).
     path = ROOT / "_applicability.md"
     text = path.read_text()
-    # Table with |Classification|Count|...
     for label, expected in EXPECTED_APPLICABILITY.items():
         m = re.search(rf"\|\s*{re.escape(label)}\s*\|\s*(\d+)\s*\|", text)
         if not m:
             findings.append(
                 Finding(
                     "WARN",
-                    "applicability-missing",
+                    "applicability-legacy-missing",
                     f"could not find '{label}' count row in _applicability.md",
                 )
             )
             continue
-        actual = int(m.group(1))
-        if actual != expected:
+        legacy = int(m.group(1))
+        if legacy != expected:
             findings.append(
                 Finding(
-                    "ERROR",
-                    "applicability-total",
-                    f"{label}: expected {expected}, _applicability.md says {actual}",
+                    "WARN",
+                    "applicability-legacy-mismatch",
+                    (
+                        f"{label}: per-metric says {derived.get(label, 0)}, "
+                        f"_applicability.md declares {legacy}"
+                    ),
                 )
             )
-    total = sum(EXPECTED_APPLICABILITY.values())
-    if total != EXPECTED_TOTAL:
-        findings.append(
-            Finding(
-                "ERROR",
-                "applicability-sum",
-                f"applicability counts sum to {total}, expected {EXPECTED_TOTAL}",
-            )
-        )
+
     return findings
 
 
@@ -594,7 +656,8 @@ def main() -> int:
     findings.extend(check_prefixes(metrics_by_file))
     findings.extend(check_numbering(metrics_by_file))
     findings.extend(check_tier_totals(all_metrics))
-    findings.extend(check_applicability_totals())
+    findings.extend(check_applicability_presence(all_metrics))
+    findings.extend(check_applicability_totals(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))
     findings.extend(check_tightening_pattern(all_metrics))

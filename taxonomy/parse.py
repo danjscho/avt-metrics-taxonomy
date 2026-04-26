@@ -214,6 +214,7 @@ def parse_group_file(rel_path: str) -> list[Metric]:
                 group_file=rel_path,
                 heading_line=heading_line,
                 dimensions=dims,
+                applicability=dims.get("Applicability"),
             )
         )
         i = j
@@ -229,7 +230,12 @@ def parse_all_metrics() -> list[Metric]:
 
 
 # ---------------------------------------------------------------------------
-# Applicability - parsed from _applicability.md "Full Classification" tables
+# Applicability - now sourced from each metric's dimension table (v3.6+).
+# Legacy parse_applicability() reads _applicability.md and is kept only for
+# audit cross-validation during the transition. annotate_applicability() is
+# a no-op since parse_group_file() already populates metric.applicability
+# from the dimension table - retained as an idempotent safety net for any
+# call site that has not yet been updated.
 # ---------------------------------------------------------------------------
 
 _APPLICABILITY_ROW = re.compile(
@@ -237,8 +243,13 @@ _APPLICABILITY_ROW = re.compile(
 )
 
 
-def parse_applicability() -> dict[str, str]:
-    """Return a map of ref_id -> applicability label ('AVT-Specific' etc.)."""
+def parse_applicability_legacy() -> dict[str, str]:
+    """Read the per-metric applicability map from _applicability.md.
+
+    Used only by audit.py for cross-validation against the per-metric
+    dimension-table values during the v3.6 transition. The dimension
+    table is the source of truth from v3.6 onward.
+    """
     text = (ROOT / "_applicability.md").read_text()
     out: dict[str, str] = {}
     for line in text.splitlines():
@@ -248,9 +259,19 @@ def parse_applicability() -> dict[str, str]:
     return out
 
 
+# Backwards-compatible alias — some callers still import parse_applicability.
+parse_applicability = parse_applicability_legacy
+
+
 def annotate_applicability(metrics: list[Metric]) -> list[Metric]:
-    idx = parse_applicability()
-    for metric in metrics:
+    """Idempotent: parse_group_file already populates metric.applicability
+    from the dimension table. This function is retained as a safety net
+    for older callers and fills any None values from the legacy file."""
+    needs_fill = [m for m in metrics if not m.applicability]
+    if not needs_fill:
+        return metrics
+    idx = parse_applicability_legacy()
+    for metric in needs_fill:
         metric.applicability = idx.get(metric.ref_id)
     return metrics
 
