@@ -74,6 +74,7 @@ CSV_COLUMNS = [
     "tier",
     "tier_label",
     "part",
+    "part_name",
     "group",
     "applicability",
     "cadence",
@@ -114,6 +115,7 @@ def build_metric_outputs() -> int:
                     "tier": m.tier,
                     "tier_label": m.tier_label,
                     "part": m.part,
+                    "part_name": m.part_name,
                     "group": m.group,
                     "applicability": m.applicability or "",
                     "cadence": m.cadence,
@@ -133,7 +135,7 @@ def build_metric_outputs() -> int:
     # JSON - preserves full dimensions dict
     json_path = DIST / "metrics.json"
     payload = {
-        "version": "v3.2-dev",
+        "version": p.TAXONOMY_VERSION,
         "metric_count": len(metrics),
         "metrics": [
             {
@@ -143,6 +145,7 @@ def build_metric_outputs() -> int:
                 "tier_label": m.tier_label,
                 "tier_icon": m.tier_icon,
                 "part": m.part,
+                "part_name": m.part_name,
                 "group": m.group,
                 "applicability": m.applicability,
                 "dimensions": m.dimensions,

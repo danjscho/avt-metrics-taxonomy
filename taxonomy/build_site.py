@@ -21,7 +21,7 @@ DOCS = REPO / "docs"
 # Single source of truth for the version stamp shown on landing + downloads.
 # Bumped manually at each release as part of the release wrap; CI consumes
 # the same string so site, monolith, and download citation stay aligned.
-SITE_VERSION = "v3.8.2"
+SITE_VERSION = parse_src.TAXONOMY_VERSION
 
 # source file -> docs path
 MAPPING: dict[str, str] = {
@@ -279,14 +279,7 @@ def rewrite_anchors(text: str, current_page: str) -> str:
 # doesn't carry its own `# Part X - ...` heading (only one file per part
 # in the monolithic source does). These match the monolithic-build's
 # Part separators so the site and MD-download stay consistent.
-PART_TITLES = {
-    "A": "Part A - The Technical Pipeline",
-    "B": "Part B - Pipeline Interactions",
-    "C": "Part C - The Human Layer",
-    "D": "Part D - Impact & Outcomes",
-    "E": "Part E - System Governance",
-    "F": "Part F - Evaluation Science",
-}
+PART_TITLES = {letter: f"Part {letter} - {name}" for letter, name in parse_src.PART_NAMES.items()}
 
 
 def _part_title_for_group_file(src_rel: str) -> str | None:
