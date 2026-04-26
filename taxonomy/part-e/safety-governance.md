@@ -664,6 +664,8 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 > 💡 A long time-to-correct means errors persist in the system and may affect multiple patients before resolution. This is operationally important - a single error is bad, but a single error that took 3 weeks to correct is a governance failure.
 
+*See also: SPI Escalation Response Time - paired latency metric. GV.SG-15 measures the time to fix a single confirmed incident; GV.SG-16 measures the time to escalate an SPI threshold breach.*
+
 ---
 
 ### GV.SG-16 🟡 SPI Escalation Response Time
@@ -702,6 +704,8 @@ Escalation Response Time = t_governance_action - t_SPI_breach. Track per escalat
 **Novel Thinking / Implications**
 
 > 💡 An SPI framework that takes a week to respond to a breach is not protecting anyone. The whole point of pre-defined thresholds with escalation paths is to enable rapid response. Measuring response time reveals whether the framework is operationally functional or governance theatre.
+
+*See also: Safety Performance Indicators with Thresholds (DSCMS), Time-to-Correct - GV.SG-16 measures the response time to GV.SG-9 threshold breaches; meaningless without the SPI framework GV.SG-9 defines. Pair with GV.SG-15 as parallel response-latency metrics for different event types.*
 
 ---
 

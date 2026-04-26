@@ -550,6 +550,8 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 > 💡 If confidence scores are exposed and well-calibrated, downstream systems can route low-confidence segments for human review. If they're miscalibrated or absent, the AVT cannot signal its own uncertainty - which means the clinician must assume everything is equally reliable.
 
+*See also: ASR Confidence Exposure - paired metric. TP.ASR-10 asks whether confidence scores are accurate; TP.ASR-11 asks whether they are available at all. Both are needed for downstream uncertainty propagation.*
+
 ---
 
 ### TP.ASR-11 🟡 ASR Confidence Exposure
@@ -588,6 +590,10 @@ Exposure assessed on three levels: (1) Internal - confidence scores exist but ar
 **Novel Thinking / Implications**
 
 > 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally - which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
+
+*See also: ASR Confidence Calibration - paired metric. TP.ASR-11 asks whether confidence is available at all; TP.ASR-10 asks whether available confidence is accurate.*
+
+---
 
 ### TP.ASR-12 🟢 Hallucination-Under-Noise Rate
 

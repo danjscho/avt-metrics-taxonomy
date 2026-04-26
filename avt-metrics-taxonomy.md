@@ -3548,6 +3548,8 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 > 💡 If confidence scores are exposed and well-calibrated, downstream systems can route low-confidence segments for human review. If they're miscalibrated or absent, the AVT cannot signal its own uncertainty - which means the clinician must assume everything is equally reliable.
 
+*See also: ASR Confidence Exposure - paired metric. TP.ASR-10 asks whether confidence scores are accurate; TP.ASR-11 asks whether they are available at all. Both are needed for downstream uncertainty propagation.*
+
 ---
 
 ### TP.ASR-11 🟡 ASR Confidence Exposure
@@ -3586,6 +3588,10 @@ Exposure assessed on three levels: (1) Internal - confidence scores exist but ar
 **Novel Thinking / Implications**
 
 > 💡 Confidence display is the architectural prerequisite for intelligent review. A reviewer who can see which words or segments the system is uncertain about can focus their attention there. A reviewer looking at a flat wall of text must review everything equally - which in practice means reviewing nothing carefully. Clinician-visible confidence should be a standard AVT interface element, not an advanced feature.
+
+*See also: ASR Confidence Calibration - paired metric. TP.ASR-11 asks whether confidence is available at all; TP.ASR-10 asks whether available confidence is accurate.*
+
+---
 
 ### TP.ASR-12 🟢 Hallucination-Under-Noise Rate
 
@@ -9839,6 +9845,8 @@ Time-to-Correct = t_correction_implemented - t_error_detected. Track per error s
 
 > 💡 A long time-to-correct means errors persist in the system and may affect multiple patients before resolution. This is operationally important - a single error is bad, but a single error that took 3 weeks to correct is a governance failure.
 
+*See also: SPI Escalation Response Time - paired latency metric. GV.SG-15 measures the time to fix a single confirmed incident; GV.SG-16 measures the time to escalate an SPI threshold breach.*
+
 ---
 
 ### GV.SG-16 🟡 SPI Escalation Response Time
@@ -9877,6 +9885,8 @@ Escalation Response Time = t_governance_action - t_SPI_breach. Track per escalat
 **Novel Thinking / Implications**
 
 > 💡 An SPI framework that takes a week to respond to a breach is not protecting anyone. The whole point of pre-defined thresholds with escalation paths is to enable rapid response. Measuring response time reveals whether the framework is operationally functional or governance theatre.
+
+*See also: Safety Performance Indicators with Thresholds (DSCMS), Time-to-Correct - GV.SG-16 measures the response time to GV.SG-9 threshold breaches; meaningless without the SPI framework GV.SG-9 defines. Pair with GV.SG-15 as parallel response-latency metrics for different event types.*
 
 ---
 
@@ -11589,6 +11599,8 @@ Turnaround Time = t_note_available_in_EPR - t_consultation_end. Report distribut
 **Novel Thinking / Implications**
 
 > 💡 The existing Full-Pipeline Latency Budget captures technical processing time; note turnaround captures the clinically meaningful delay. The difference is everything else - queueing, EPR write-back latency, user interface delays, notification lag. A vendor who optimises only their pipeline latency without addressing end-to-end turnaround is optimising for the wrong metric.
+
+*See also: Documentation Time per Consultation - paired metric. GV.OP-1 measures clinician note-effort time (start-of-doc to signature); GV.OP-3 measures end-to-end record-availability time (consultation end to EPR availability). Easily confused; the names invite it.*
 
 ---
 
