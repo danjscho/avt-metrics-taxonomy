@@ -58,11 +58,25 @@ FILES = [
 ]
 
 
+_TEMPLATE_TOKENS = {
+    "{{TAXONOMY_VERSION}}": p.TAXONOMY_VERSION,
+    "{{TAXONOMY_DATE}}": p.TAXONOMY_DATE,
+}
+
+
+def _substitute_template_tokens(text: str) -> str:
+    """Mirror of build_site._substitute_template_tokens for the monolith
+    build pipeline. Single source of truth = parse.TAXONOMY_VERSION."""
+    for token, value in _TEMPLATE_TOKENS.items():
+        text = text.replace(token, value)
+    return text
+
+
 def build_monolithic_md() -> None:
     sections = []
     for name in FILES:
         path = ROOT / name
-        sections.append(path.read_text().rstrip("\n"))
+        sections.append(_substitute_template_tokens(path.read_text()).rstrip("\n"))
     output = "\n\n".join(sections) + "\n"
     OUTPUT_MD.write_text(output)
     print(f"Built {OUTPUT_MD.relative_to(ROOT.parent)} from {len(FILES)} files.")

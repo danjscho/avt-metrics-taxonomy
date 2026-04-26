@@ -1,5 +1,16 @@
 # Changelog
 
+## v3.8.4 (2026-04-26)
+
+Tooling-only patch — fixes site-wide version banner drift.
+
+- **Site-wide banner now live-derived.** The mkdocs-material announce banner in `overrides/main.html` was hardcoded as `Draft v3.1` since the v3.1 release and had been silently stale through six subsequent releases (v3.2 → v3.8.3). `build_site._refresh_announce_banner()` now regenerates the override on every build using `SITE_VERSION`.
+- **Template-token substitution in source files.** `_header.md` (and any future cross-cutting source file that wants the live version) can use `{{TAXONOMY_VERSION}}` / `{{TAXONOMY_DATE}}` placeholders, which both `build.py` (monolith assembly) and `build_site.py` (docs population) substitute at build time. Single source of truth = `parse.TAXONOMY_VERSION` + `parse.TAXONOMY_DATE`.
+- **`parse.TAXONOMY_DATE` constant** added alongside the existing `TAXONOMY_VERSION`. Bumped together at release.
+- **README.md** version stamps bumped to v3.8.4 (banner / current-draft / citation example / last-updated stamp).
+
+No taxonomy content changes; audit clean; counts unchanged.
+
 ## v3.8.3 (2026-04-26)
 
 Tooling-only patch.
