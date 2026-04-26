@@ -18,6 +18,11 @@ ROOT = pathlib.Path(__file__).parent
 REPO = ROOT.parent
 DOCS = REPO / "docs"
 
+# Single source of truth for the version stamp shown on landing + downloads.
+# Bumped manually at each release as part of the release wrap; CI consumes
+# the same string so site, monolith, and download citation stay aligned.
+SITE_VERSION = "v3.8.1"
+
 # source file -> docs path
 MAPPING: dict[str, str] = {
     "_header.md": "index.md",
@@ -26,6 +31,8 @@ MAPPING: dict[str, str] = {
     "_contents.md": "contents.md",
     "_applicability.md": "applicability.md",
     "_standards-mapping.md": "standards-mapping.md",
+    "_outcomes-boundary.md": "outcomes-boundary.md",
+    "_calibration-and-context.md": "calibration-and-context.md",
     "_responsible-ai-lens.md": "responsible-ai-lens.md",
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
@@ -82,6 +89,14 @@ ANCHOR_REWRITES: dict[str, str] = {
     "standards-mapping": "standards-mapping.md",
     "responsible-ai-lens": "responsible-ai-lens.md",
     "gaps-proposed-metrics-roadmap": "gaps.md",
+    "outcomes-boundary": "outcomes-boundary.md",
+    "calibration-context": "calibration-and-context.md",
+    # Sections inside _standards-mapping.md that other pages link to.
+    # Each is now an h2 on standards-mapping.md, so a fragment is preserved.
+    "nhs-england-avt-self-certified-supplier-registry": "standards-mapping.md#nhs-england-avt-self-certified-supplier-registry",
+    "nhs-test-framework-6-candidates": "gaps.md#3-nhs-test-framework-6-candidates",
+    "nhs-test-framework-technology-evaluation-safety-test": "standards-mapping.md#nhs-test-framework-technology-evaluation-safety-test",
+    "how-to-use-this-taxonomy": "how-to-use.md",
 }
 
 _MD_LINK = re.compile(r"(?<!!)\[([^\]]+?)\]\(#([a-z0-9][a-z0-9_-]*)\)")
@@ -92,7 +107,7 @@ _MD_LINK = re.compile(r"(?<!!)\[([^\]]+?)\]\(#([a-z0-9][a-z0-9_-]*)\)")
 # unstable if the metric name changes. Inject an explicit {#tp-ac-1} via the
 # attr_list extension (enabled in mkdocs.yml).
 _METRIC_HEADING = re.compile(
-    r"^(###\s+)([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)(\s+[🟢🟡🔵]\s+.+?)\s*$",
+    r"^(###\s+)([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)(\s+[🟢🟡🔵]\s+.+?)\s*$",
     re.MULTILINE,
 )
 
@@ -157,20 +172,104 @@ def add_metric_anchors(text: str) -> str:
     return _METRIC_HEADING.sub(sub, text)
 
 
+# Repo-root files that source authors link to (for the monolithic build and
+# GitHub README experience). These don't exist inside docs/, so MkDocs strict
+# mode flags them. Rewrite to the docs equivalent (or to the GitHub raw URL
+# for archive/* artefacts that are not part of the published site).
+GITHUB_BLOB = "https://github.com/danjscho/avt-metrics-taxonomy/blob/main"
+EXTERNAL_LINK_REWRITES: dict[str, str] = {
+    "CHANGELOG.md": "changelog.md",
+    "README.md": f"{GITHUB_BLOB}/README.md",
+}
+
+_EXTERNAL_LINK = re.compile(r"(?<!!)\[([^\]]+?)\]\(([^)#]+\.md)(#[^)]*)?\)")
+
+
+def rewrite_external_links(text: str) -> str:
+    """Rewrite source-side links that point outside docs/ to docs-internal
+    paths or to GitHub blob URLs. Strict-mode mkdocs warns on these.
+
+    Patterns handled:
+    - `[X](CHANGELOG.md)` → `[X](changelog.md)`  (mapped into docs/)
+    - `[X](README.md)` → GitHub blob URL  (lives at repo root only)
+    - `[X](archive/<file>.md)` → GitHub blob URL  (research artefacts, not
+       published)
+    """
+
+    def sub(m: re.Match) -> str:
+        label, href, frag = m.group(1), m.group(2), m.group(3) or ""
+        if href in EXTERNAL_LINK_REWRITES:
+            return f"[{label}]({EXTERNAL_LINK_REWRITES[href]}{frag})"
+        if href.startswith("archive/"):
+            return f"[{label}]({GITHUB_BLOB}/{href}{frag})"
+        return m.group(0)
+
+    return _EXTERNAL_LINK.sub(sub, text)
+
+
+_METRIC_SLUG_TO_PAGE_CACHE: dict[str, str] | None = None
+
+
+def _metric_slug_to_page() -> dict[str, str]:
+    """Build (and cache) a map from metric slug (e.g. "tp-ac-1", "hl-hf-3a")
+    to the docs page that hosts that metric (e.g. "groups/audio-capture.md").
+    Used to rewrite cross-page bare anchors during the per-page sweep.
+    """
+    global _METRIC_SLUG_TO_PAGE_CACHE
+    if _METRIC_SLUG_TO_PAGE_CACHE is not None:
+        return _METRIC_SLUG_TO_PAGE_CACHE
+    idx: dict[str, str] = {}
+    for m in parse_src.parse_all_metrics():
+        slug = m.ref_id.lower().replace(".", "-")
+        page = SRC_GROUP_FILE_TO_PAGE.get(m.group_file)
+        if page is not None:
+            idx[slug] = page
+    _METRIC_SLUG_TO_PAGE_CACHE = idx
+    return idx
+
+
 def rewrite_anchors(text: str, current_page: str) -> str:
     """Rewrite `[text](#slug)` links where `#slug` targets a section that
     has moved to another page in the site. Same-page anchors are left
     untouched.
+
+    Two layered passes:
+    1. ANCHOR_REWRITES — hand-curated section-level slugs (cross-cutting
+       principles, group landings, standards-mapping sections).
+    2. Metric ref-id slugs — `#tp-ac-1`, `#gv-vt-13`, `#hl-hf-3a` resolved
+       against the parsed catalogue. If the metric lives on a different
+       group page than the current one, rewrite to `<page>.md#slug`. If on
+       the same page, leave bare.
     """
+
+    metric_pages = _metric_slug_to_page()
 
     def sub(m: re.Match) -> str:
         label, slug = m.group(1), m.group(2)
         target = ANCHOR_REWRITES.get(slug)
         if target is None:
-            return m.group(0)  # unchanged - assumed same-page
+            metric_page = metric_pages.get(slug)
+            if metric_page is None:
+                return m.group(0)  # genuine same-page anchor
+            # Same-page metric — leave bare.
+            if metric_page == current_page:
+                return m.group(0)
+            # Cross-page metric — rewrite. Compute relative path from
+            # current_page (e.g. "groups/operational.md") to the target
+            # (e.g. "groups/safety-governance.md"). Both live in groups/,
+            # so the relative path is just the basename.
+            if "/" in current_page and metric_page.startswith("groups/"):
+                rel = metric_page.split("/", 1)[1]
+            else:
+                rel = metric_page
+            return f"[{label}]({rel}#{slug})"
         # Don't self-redirect if the current page is the target.
         if target.split("#", 1)[0] == current_page:
             return m.group(0)
+        # If we're on a group page and the target lives at docs root,
+        # prefix `../` so MkDocs can resolve.
+        if "/" in current_page and "/" not in target:
+            return f"[{label}](../{target})"
         return f"[{label}]({target})"
 
     return _MD_LINK.sub(sub, text)
@@ -276,6 +375,7 @@ def main() -> None:
         dst.parent.mkdir(parents=True, exist_ok=True)
         text = src.read_text()
         text = rewrite_anchors(text, dst_rel)
+        text = rewrite_external_links(text)
         text = add_metric_anchors(text)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)
@@ -307,10 +407,15 @@ def main() -> None:
             text = inject_legend(text, dst_rel)
         dst.write_text(text)
 
-    # Changelog at repo root is already Markdown - copy as-is.
+    # Changelog at repo root is already Markdown - copy with link rewrites
+    # so any `[X](README.md)` / `[X](archive/...)` references resolve in
+    # the rendered site.
     cl_src = REPO / "CHANGELOG.md"
     if cl_src.exists():
-        (DOCS / "changelog.md").write_text(cl_src.read_text())
+        cl_text = cl_src.read_text()
+        cl_text = rewrite_anchors(cl_text, "changelog.md")
+        cl_text = rewrite_external_links(cl_text)
+        (DOCS / "changelog.md").write_text(cl_text)
 
     # Downloads landing page - links resolve in CI where dist/* is copied
     # into docs/downloads/ before mkdocs build (see .github/workflows/site.yml).
@@ -1080,7 +1185,7 @@ def _landing_page(header_body: str) -> str:
     cross-references may change before public release. Treat as a working
     document, not a settled standard.
 
-!!! info "v3.8 - {metric_count} metrics across {group_count} groups"
+!!! info "{SITE_VERSION} - {metric_count} metrics across {group_count} groups"
     A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology
     in NHS and comparable settings. Each metric carries a formal definition,
     priority tier, responsible actors, and mappings to 13 healthcare,
@@ -1159,15 +1264,19 @@ def _landing_page(header_body: str) -> str:
 
 
 def _downloads_page() -> str:
-    return """# Downloads
+    summary = parse_src.summary()
+    metric_count = summary["metric_count"]
+    gap_count = summary["gap_count"]
+    version = SITE_VERSION
+    return f"""# Downloads
 
 Machine-readable and archival exports of the taxonomy, regenerated on every release.
 
 ## Structured data
 
-- [metrics.csv](downloads/metrics.csv) - all 214 metrics as a flat spreadsheet (17 columns: reference ID, name, tier, part, group, applicability, 8 dimension fields, source, pointer to source file).
+- [metrics.csv](downloads/metrics.csv) - all {metric_count} metrics as a flat spreadsheet (17 columns: reference ID, name, tier, part, group, applicability, 8 dimension fields, source, pointer to source file).
 - [metrics.json](downloads/metrics.json) - same metrics with full dimension dictionary preserved per entry. Stable for programmatic consumption.
-- [gaps.json](downloads/gaps.json) - 83 roadmap candidates (accepted + deferred), partitioned by origin (RSET, NHSE IG, standards mapping, Responsible AI lens).
+- [gaps.json](downloads/gaps.json) - {gap_count} roadmap candidates (accepted + deferred), partitioned by origin (RSET, NHSE IG, standards mapping, Responsible AI lens).
 - [summary.json](downloads/summary.json) - headline counts (metric count, tier distribution, group count, gap count).
 
 ## Archival Markdown
@@ -1178,7 +1287,7 @@ Machine-readable and archival exports of the taxonomy, regenerated on every rele
 
 Cite the taxonomy as:
 
-> AVT Metrics Taxonomy v3.1 (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
+> AVT Metrics Taxonomy {version} (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
 
 For a specific metric, use its reference ID (e.g. `TP.AC-1`) - these are stable across versions. Individual metric pages carry anchor links of the form `/groups/<group>/#tp-ac-1` suitable for deep citation.
 

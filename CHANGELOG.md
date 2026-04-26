@@ -1,5 +1,19 @@
 # Changelog
 
+## v3.8.1 (2026-04-26)
+
+Site-only patch release — no taxonomy content changes. Fixes broken cross-page links and download issues surfaced by reviewing the `mkdocs serve` output:
+
+- **Cross-cutting principle pages now in nav**: `_outcomes-boundary.md` and `_calibration-and-context.md` were authored as separate source files but never mapped into the rendered site. Every `[Calibration & Context principle](#calibration-context)` and `[Outcomes Boundary](#outcomes-boundary)` link from a group page resolved to nowhere. Mapped both into `docs/` and added to the nav under "Cross-cutting".
+- **Two orphan crosscut pages added to nav**: the auto-generated NHSE AVT Registry and NHS T.E.S.T. by-standard pages were rendered but missing from the nav block. Added to "Cross-cut views → By standard".
+- **Cross-page metric anchor rewriting**: bare `#tp-ac-1`-style references from one group page to a metric on a different group page are now rewritten to `<other-group>.md#tp-ac-1` at build time. The catalogue is parsed once and cached; sub-part suffixes (`-a`, `-b`) handled. Closes ~50 broken anchors that existed in the source taxonomy but only resolved in the monolith build.
+- **Sub-part anchor regex**: `add_metric_anchors` regex extended to capture trailing letter suffixes so `### HL.HF-3a` lands `id="hl-hf-3a"` on the rendered page (previously slugged as `hl-hf-3`).
+- **External-link rewrites for strict mode**: `[CHANGELOG.md](CHANGELOG.md)` → `changelog.md` (in-docs), `[README.md](README.md)` → GitHub blob URL, `[archive/<file>.md]` → GitHub blob URL. `mkdocs build --strict` was previously failing with three warnings; now passes.
+- **Live-derived downloads page**: replaced hardcoded `v3.1` citation example and "214 metrics" / "83 gaps" counts with values pulled from `parse.summary()` and a single `SITE_VERSION` constant. Same for the landing page version stamp.
+- **Stale slug fixes in CHANGELOG**: three legacy anchor refs (`#gvcr-6-...`, `#hlhf-1-...`, `#gvpd-1-...`) updated to current `#gv-cr-6` / `#hl-hf-1` / `#gv-pd-1` form so the cross-page rewrite resolves them to the right metric pages.
+
+Counts unchanged: 218 metrics, 43/96/79 tier split, 32/42 Tier 1 tightened, 13 frameworks. Audit clean. `mkdocs build --strict` now exits 0.
+
 ## v3.8 (2026-04-26)
 
 Adds the NHS England AVT Self-Certified Supplier Registry as the **13th mapped framework**, three registry-driven metrics, two new audit checks, and a tightening completion of HL.HF-3a (promoting the HL.HF-3 parent construct to fully tightened). Counts: 215 → **218 metrics**, tier split 43/93/79 → **43/96/79**, **32 of 42 Tier 1 constructs tightened**, 12 → **13 frameworks**.
@@ -278,18 +292,18 @@ The metrics a procurement officer reads first; loose definitions here had the hi
 
 - **GV.CR-5 ICB Engagement Documentation** — three sub-metrics (notification sent / acknowledged / conditions on file); latency reporting; carve-out logging with regional CCIO escalation after two unanswered notifications.
 - **GV.CR-6 Clinical Safety Case Completeness** — per-DCB0129-section reporting (8 sections); named CSO author requirement; differentiated currency windows (sections 2-5 within 30 days of trigger event; sections 1, 6, 8 annual; section 7 live-current); 24-month external-review cadence.
-- **GV.CR-7 DPIA Template Completion Rate** — per-section + DPO sign-off binary; significant-change definition mandatory; reconciliation against [GV.CR-6 Clinical Safety Case](#gvcr-6-clinical-safety-case-completeness) hazard list — DPIA risks must be cross-mappable to safety-case hazards.
+- **GV.CR-7 DPIA Template Completion Rate** — per-section + DPO sign-off binary; significant-change definition mandatory; reconciliation against [GV.CR-6 Clinical Safety Case](#gv-cr-6) hazard list — DPIA risks must be cross-mappable to safety-case hazards.
 - **GV.TC-1 Clinician Training Completion Rate** — four-module enumeration (M1 vendor / M2 local induction / M3 failure-mode awareness / M4 refresher) with per-module validity periods; engagement-time floors (30/20/15 min) prevent click-through completion; M3 as safety-critical pause trigger.
 - **GV.VT-1 Model Change Notification Compliance** — severity-classified lead times (major ≥ 14d / moderate ≥ 7d / minor ≥ 0d); five-element notification content schema; MHRA PMS substantial-change cross-link with separate compliance failure for missing flag.
 - **GV.VT-5 Incident Disclosure Compliance** — severity-driven timelines (24h critical / 72h high / 7d medium / 30d low); rebuttable knowing-time clause; cross-deployer scope mandated as fifth content element (most commonly omitted in vendor-frame disclosures).
 - **GV.VT-7 Sub-Processor Transparency** — seven-source discovered-set framework (cloud / model providers / annotation services / contractors / backups / sub-sub-processors); materiality classification; vendor self-cert insufficient — independent verification step required.
-- **GV.SG-14 Near-Miss Reporting Rate** — two-source construction (active reports + inferred via [HL.HF-1](#hlhf-1-edit-rate-notes-edited) safety-critical edit detection); active-to-inferred ratio as safety-culture diagnostic; pause when LFPSE rate rises but near-miss flat or falling.
+- **GV.SG-14 Near-Miss Reporting Rate** — two-source construction (active reports + inferred via [HL.HF-1](#hl-hf-1) safety-critical edit detection); active-to-inferred ratio as safety-culture diagnostic; pause when LFPSE rate rises but near-miss flat or falling.
 
 ### Wave 2 — Privacy-chain completion (4 metrics)
 
 Closes the v3.3 storage-location enumeration cascade and completes the privacy lifecycle (deletion → consent → access → erasure):
 
-- **GV.PD-2 Audio Time-to-Deletion** — inherits storage-location enumeration from [GV.PD-1](#gvpd-1-audio-retention-compliance), making the v3.3 cascade explicit; sign-off as `t_consultation_end` per NHSE IG; carve-out logging tracked separately from standard distribution.
+- **GV.PD-2 Audio Time-to-Deletion** — inherits storage-location enumeration from [GV.PD-1](#gv-pd-1), making the v3.3 cascade explicit; sign-off as `t_consultation_end` per NHSE IG; carve-out logging tracked separately from standard distribution.
 - **GV.PD-8 Consent Verification Accuracy** — gap (process compliance minus understanding rate) as the headline metric, not either rate alone; survey instrument declaration mandatory; ≥ 30 patients/quarter floor; demographic disaggregation reveals where understanding fails.
 - **GV.PD-10 Subject Access Request Fulfilment** — three sub-metrics (locate / export / timeliness) reported separately; **synthetic SAR test mandatory pre-deployment**, exercising every storage location and sub-processor; extension-pattern alert detects systematic locate/export failure.
 - **GV.PD-11 Right to Erasure Compliance** — three-class outcome distinction (deletable / anonymisable / technically-irreversible) operationalises the existing observation that some erasure cannot be fulfilled even in principle; privacy-notice cross-check; Article 17 individual-care exemption scope explicitly handled per NHSE IG March 2026.
