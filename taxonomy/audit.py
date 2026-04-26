@@ -76,6 +76,17 @@ EXPECTED_APPLICABILITY = {
 }
 EXPECTED_TOTAL = 215
 
+# v3.8: Maturity values are constrained to a four-value enum. Non-canonical
+# values (e.g. "Partly Established", "Experimental") would silently pass the
+# v3.7-and-earlier presence check; the v3.8 maturity-values check enforces
+# the enum.
+EXPECTED_MATURITY_VALUES = {
+    "Established",
+    "Emerging",
+    "Vendor-Proprietary",
+    "Proposed / Novel",
+}
+
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
 METRIC_HEADING = re.compile(
@@ -521,6 +532,56 @@ def check_applicability_totals(all_metrics: list[Metric]) -> list[Finding]:
     return findings
 
 
+def check_maturity_values(all_metrics: list[Metric]) -> list[Finding]:
+    """Every countable metric's Maturity dimension must hold one of the four
+    canonical values in EXPECTED_MATURITY_VALUES. Non-canonical values
+    (e.g. "Partly Established", "Experimental") silently passed the v3.7-
+    and-earlier presence check; v3.8 enforces the enum so values surfaced
+    in _summary.md's Maturity inventory are reliable."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        maturity = m.dimensions.get("Maturity")
+        if maturity is None:
+            # Presence is already enforced by the existing missing-dimension
+            # check on REQUIRED_DIMENSIONS; don't double-report
+            continue
+        if maturity not in EXPECTED_MATURITY_VALUES:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-maturity",
+                    (
+                        f"metric {m.ref_id} has Maturity='{maturity}', "
+                        f"expected one of {sorted(EXPECTED_MATURITY_VALUES)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def check_source_presence(all_metrics: list[Metric]) -> list[Finding]:
+    """Every countable metric must carry a non-empty Source dimension row.
+    Pre-v3.8 the dimension table audit only checked presence of named axes
+    against REQUIRED_DIMENSIONS; Source was on that list, but the audit did
+    not catch a row whose value was blank or only whitespace. v3.8 enforces
+    a non-empty Source value because downstream tools index by Source for
+    citation lookup; silent gaps are lookup hazards."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        source = m.dimensions.get("Source")
+        if source is None or not source.strip():
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-source",
+                    f"metric {m.ref_id} has missing or empty **Source** row",
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
 def check_tier1_quickref(all_metrics: list[Metric]) -> list[Finding]:
     findings: list[Finding] = []
     path = ROOT / "_tier-1-quick-reference.md"
@@ -836,6 +897,8 @@ def main() -> int:
     findings.extend(check_tier_totals(all_metrics))
     findings.extend(check_applicability_presence(all_metrics))
     findings.extend(check_applicability_totals(all_metrics))
+    findings.extend(check_maturity_values(all_metrics))
+    findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))
     findings.extend(check_tightening_pattern(all_metrics))
