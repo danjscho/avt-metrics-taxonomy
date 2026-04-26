@@ -129,6 +129,8 @@ nav:
   - Cross-cutting:
       - Applicability: applicability.md
       - Standards Mapping: standards-mapping.md
+      - Outcomes Boundary: outcomes-boundary.md
+      - Calibration & Context: calibration-and-context.md
       - Responsible AI Lens: responsible-ai-lens.md
   - Cross-cut views:
       - Overview: crosscuts/index.md
@@ -159,6 +161,8 @@ nav:
           - DSPT (NDG): crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
           - DCB0129 / DCB0160: crosscuts/by-standard/dcb0129-dcb0160.md
           - NHS LLM Framework: crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2.md
+          - NHS T.E.S.T.: crosscuts/by-standard/nhs-t-e-s-t-framework-technology-evaluation-safety-test.md
+          - NHSE AVT Registry: crosscuts/by-standard/nhs-england-avt-self-certified-supplier-registry.md
           - MHRA SaMD/AIaMD: crosscuts/by-standard/mhra-software-and-ai-as-a-medical-device-samd-aiamd.md
           - NICE ESF (ECD7): crosscuts/by-standard/nice-evidence-standards-framework-for-digital-health-technologies-ecd7.md
           - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
