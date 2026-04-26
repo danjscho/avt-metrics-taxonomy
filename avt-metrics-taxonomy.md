@@ -10196,9 +10196,29 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 Listing Verification: at procurement, confirm vendor is on the live Registry. Quarterly re-verification during deployment. Binary: listed or not listed. Where not listed, deployment should not proceed (pre-deployment) or should trigger formal risk review (during deployment). Also track: date of most recent vendor compliance attestation, scope of attested compliance (which AVT products are covered).
 ```
 
+**Reference Standard**
+
+> The NHS England AVT Self-Certified Supplier Registry as published at [digital.nhs.uk/services/ambient-scribing](https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry) (operational location) and the supplementary materials at the Transformation Directorate. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
+
+**Operational Specification**
+
+> - **Window:** at procurement decision; quarterly re-verification during deployment; ad-hoc re-verification on any vendor change-event per [GV.SG-1 Model Version Tracking](#gv-sg-1).
+> - **Three sub-metrics MANDATORY:** (a) listing status (binary); (b) scope alignment with deployer's contracted use cases (vendor's registry-submission scope is a superset of deployer's contracted scope); (c) attestation currency (vendor's signed declaration ≤ 12 months old). Aggregate-only reporting hides the failure pattern.
+> - **Self-certification disclosure MANDATORY:** every quarterly verification record carries an explicit reminder that the registry is self-certified (NHSE preliminary checks only; no endorsement). Pair with [GV.VT-13 Evidence Pack Freshness](#gv-vt-13) for the substantive evidence-pack-quality assessment.
+> - **Multi-product handling:** for vendors with multiple AVT products, the verification records the specific product covered. A vendor's overall registry listing does not transfer to a sibling product without explicit registry-submission scope coverage.
+> - **Delisting watch:** the deployer's IG file records the registry status at each verification; any change from listed to not-listed (or vice versa) triggers an explicit governance review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the binary registry status, the 12-month attestation currency window, and the quarterly re-verification cadence are cited from the NHS England registry mechanics. The "12-month signed declaration" threshold and the multi-product scope-alignment requirement are **proposed in v3.8 as starting points**, not externally validated by NHSE — registry's specific re-listing rules are still pending publication. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's procurement risk appetite before contractual use.
+>
+> - **Pre-deployment gate:** vendor listed on live Registry; vendor's registry-submission scope covers deployer's contracted use cases; vendor's signed declaration ≤ 12 months old; companion metrics ([GV.VT-13](#gv-vt-13), [GV.VT-14](#gv-vt-14), [GV.SC-12](#gv-sc-12)) all pass their pre-deployment gates.
+> - **Continuous monitoring:** quarterly verification of all three sub-metrics; alert on attestation > 9 months old (60-day grace); alert on any scope-coverage gap discovered post-procurement.
+> - **Pause / escalation trigger:** vendor delisted (single instance — registry status loss is governance-event-grade); OR contracted use case discovered outside vendor's registry-submission scope; OR attestation > 12 months and not renewed.
+
 **Limitations**
 
-> Registry is self-certified - listing indicates vendor attestation rather than independent verification. Listing scope may not cover all deployed AVT modules from a vendor with multiple products.
+> Registry is self-certified - listing indicates vendor attestation rather than independent verification. Listing scope may not cover all deployed AVT modules from a vendor with multiple products. The Operational Specification's self-certification disclosure makes this explicit at every verification, but does not eliminate the structural asymmetry. Substantive evidence-quality assessment lives in [GV.VT-13 Evidence Pack Freshness](#gv-vt-13); this metric verifies the listing fact, not the underlying evidence pack.
 
 **Novel Thinking / Implications**
 
