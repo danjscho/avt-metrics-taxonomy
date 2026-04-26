@@ -2,6 +2,8 @@
 
 The smallest set of metrics that a deployer cannot responsibly skip. All are measurable today with existing tools, data, and governance capacity.
 
+> ⚠️ **This list is a calibrated starting point, not a fixed checklist.** Local deployment context — specialty mix, patient population, platform maturity, governance capacity, risk appetite, and volume — shifts both tier assignments and threshold numbers. A deployment with elevated risk on any of these axes should promote relevant Tier 2 or Tier 3 metrics to Tier 1; a deployment with low risk on a given axis may treat a Tier 1 metric as Tier 2 with explicit justification. See the [Calibration & Context principle](#calibration-context) for the structural commitment, the six axes, and the local-calibration documentation expectation.
+
 **Tier 1 expanded substantially with the January–March 2026 NHS guidance suite.** Nine metrics moved into Tier 1 or were added as new Tier 1 entries reflecting compliance requirements that did not exist when the taxonomy was first drafted: the NHS Compliance & Regulatory cluster (Patient Dissent Recording, Verbal Notification, AI-Generated Content Labelling, AVT Supplier Registry, ICB Engagement, Clinical Safety Case, DPIA Template, Audio Time-to-Deletion, Transcript Retention) plus Code Hallucination Rate. For NHS deployers, the shape of Day Zero minimum assurance has changed materially since early-2025 vendor procurement; re-assess existing deployments against the expanded Tier 1 set.
 
 ### Tier 1 by Responsible Actor

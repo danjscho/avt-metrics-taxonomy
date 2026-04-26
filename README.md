@@ -13,6 +13,7 @@ A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) system
 - **Structured data:** [`dist/metrics.csv`](dist/metrics.csv) (flat 216-row export), [`dist/metrics.json`](dist/metrics.json) (full structured catalogue), [`dist/gaps.json`](dist/gaps.json) (89 roadmap candidates)
 - **Release history:** [CHANGELOG.md](CHANGELOG.md)
 - **What's in scope vs out of scope:** [Outcomes Boundary](taxonomy/_outcomes-boundary.md) — this taxonomy assures deployment safety; clinical-outcome validation is national-research-body work
+- **How to apply the metrics to your deployment:** [Calibration & Context principle](taxonomy/_calibration-and-context.md) — tier assignments and threshold numbers are calibration starting points; six deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume) drive local calibration
 
 ## What this is for
 
@@ -24,13 +25,15 @@ The taxonomy organises measurable indicators that NHS deployers, vendors, and as
 
 As of v3.6, **25 of 43 Tier 1 metrics** carry a structured **Reference Standard / Operational Specification / Threshold Guidance** sub-block pattern with explicit ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points.
 
+The taxonomy commits to two parallel principles that govern how it should be applied: the [Outcomes Boundary](taxonomy/_outcomes-boundary.md) names what's *out of scope* (clinical-outcome validation belongs elsewhere); the [Calibration & Context principle](taxonomy/_calibration-and-context.md) names what's *in scope but context-dependent* (tier assignments and threshold numbers are deployer-calibrated starting points). Read both before applying any metric in procurement or operational governance.
+
 ## Per-audience entry points
 
 ### Procurement officer / Clinical Safety Officer
 
-Start with the **Tier 1 Quick Reference** in the rendered site or [taxonomy/_tier-1-quick-reference.md](taxonomy/_tier-1-quick-reference.md). The 43 Tier 1 metrics are organised by responsible actor (Vendor, Deployer, Regional, National Body).
+Start with the **Tier 1 Quick Reference** in the rendered site or [taxonomy/_tier-1-quick-reference.md](taxonomy/_tier-1-quick-reference.md). The 43 Tier 1 metrics are organised by responsible actor (Vendor, Deployer, Regional, National Body). **The Tier 1 list is a calibrated starting point, not a fixed checklist** — your specialty mix, patient population, platform maturity, governance capacity, risk appetite, and volume all shift which metrics belong in your Tier 1 set; see the [Calibration & Context principle](taxonomy/_calibration-and-context.md) for the structural commitment and the documentation expectation.
 
-For the 25 tightened metrics, the **Operational Specification** sub-block tells you what your vendor must comply with at procurement; the **Threshold Guidance** sub-block tells you what triggers escalation post-deployment. Read the ⚠️ Provenance line in each Threshold Guidance block — it distinguishes thresholds derived from cited sources (e.g. NAS Day Zero SPI, UK GDPR, NHSE IG guidance March 2026) from numbers proposed in this taxonomy as starting points that require local calibration.
+For the 25 tightened metrics, the **Operational Specification** sub-block tells you what your vendor must comply with at procurement; the **Threshold Guidance** sub-block tells you what triggers escalation post-deployment. Read the ⚠️ Provenance line in each Threshold Guidance block — it distinguishes thresholds derived from cited sources (e.g. NAS Day Zero SPI, UK GDPR, NHSE IG guidance March 2026) from numbers proposed in this taxonomy as starting points that require local calibration before contractual use.
 
 For NHS T.E.S.T. assurance, see the [NHS T.E.S.T. Framework section in standards-mapping](taxonomy/_standards-mapping.md) — the framework's 22 Section A platform-assurance requirements and 12 Section B benefit domains are mapped to specific metrics in this taxonomy.
 
@@ -39,6 +42,8 @@ For NHS T.E.S.T. assurance, see the [NHS T.E.S.T. Framework section in standards
 The standards-mapping section ([taxonomy/_standards-mapping.md](taxonomy/_standards-mapping.md)) maps every metric against twelve NHS / regulatory frameworks: DTAC, DSPT, DCB0129/0160, NHS England LLM Evaluation Framework, NHS T.E.S.T., MHRA SaMD/AIaMD, NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, Caldicott. Use it to identify which metrics satisfy which compliance obligation.
 
 The [Outcomes Boundary](taxonomy/_outcomes-boundary.md) is worth reading first — it sets the explicit limit of what this taxonomy assures (deployment safety) versus what national research bodies must validate (clinical outcomes). Vendors making outcome claims should also see [ES.ME-8 Outcome Evidence Commitment Status](taxonomy/part-f/meta-evaluation.md) and [ES.ME-9 Causal Model Operationalisation](taxonomy/part-f/meta-evaluation.md), which operationalise vendor-side commitment to outcome evaluation.
+
+When pricing or scoping AVT contracts against this taxonomy, note that the [Calibration & Context principle](taxonomy/_calibration-and-context.md) means the contractual gate is the *deployer's local calibration*, not the taxonomy's published starting-point thresholds. Vendors should expect deployer calibration documents that name the local tier assignments and threshold values; once a deployer has calibrated, the calibrated number is the contract.
 
 ### Developer / contributor
 
@@ -57,10 +62,11 @@ The [`archive/`](archive/) directory holds prior plans and research artefacts: t
 
 ### Researcher
 
-Three cross-cutting documents frame the policy and ethics surface:
+Four cross-cutting documents frame the policy, ethics, and application surface:
 
 - [taxonomy/_responsible-ai-lens.md](taxonomy/_responsible-ai-lens.md) — DSIT AI Playbook (Feb 2025) ten principles and the six Responsible AI ethical themes (Safety/Security/Robustness; Transparency/Explainability; Fairness; Accountability/Governance; Contestability/Redress; Societal Wellbeing). Covers 38 cross-cutting policy gaps.
 - [taxonomy/_outcomes-boundary.md](taxonomy/_outcomes-boundary.md) — explicit out-of-scope statement (this taxonomy does not assure clinical outcomes; that work belongs elsewhere) plus pointers to [ES.ME-1](taxonomy/part-f/meta-evaluation.md), [ES.ME-8](taxonomy/part-f/meta-evaluation.md), [ES.ME-9](taxonomy/part-f/meta-evaluation.md) for the proximal/distal causal-logic framework.
+- [taxonomy/_calibration-and-context.md](taxonomy/_calibration-and-context.md) — parallel principle to the Outcomes Boundary: tier assignments and threshold numbers are calibration starting points, not universal gates. Six deployment-setting axes drive local calibration. Research-side relevance: studies citing the taxonomy should specify both the version and the calibration applied to the deployment under study.
 - [taxonomy/_gaps.md](taxonomy/_gaps.md) — 89 proposed metric candidates with classification (proposed / accepted / deferred / rejected). Single source of truth across five origins.
 
 ## Status / version
