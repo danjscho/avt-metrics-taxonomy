@@ -86,6 +86,16 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 | VT | Vendor Transparency & Contractual | GV |
 | ME | Meta-evaluation | ES |
 
+### Applicability dimension
+
+Every metric carries an **Applicability** row in its dimension table (added in v3.6) classifying it as one of:
+
+- **AVT-Specific** (48 metrics) — only meaningful for ambient voice technology; would not transfer to other clinical AI without significant reformulation
+- **AVT-Contextualised** (77 metrics) — has wider relevance to clinical AI but needs AVT-specific context to be operational
+- **General Healthcare AI** (91 metrics) — applies to clinical AI generally; AVT is one application
+
+Use the classification when reading the taxonomy as a whole: the `AVT-Specific` set is the irreducible core of *this* taxonomy; the `General Healthcare AI` set is the part most likely to be reused by adjacent assurance frameworks. The classification is also exposed as a column in `dist/metrics.csv` for downstream filtering. The summary tables in [`_applicability.md`](#applicability-classification) provide the per-group breakdown.
+
 ### Tightened Tier 1 metrics (Reference Standard / Operational Specification / Threshold Guidance)
 
 A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard Formal Definition: **Reference Standard** (what counts as ground truth and how reliability is established), **Operational Specification** (concrete decisions about measurement window, population, mandatory breakdowns, and aggregation rule), and **Threshold Guidance** (pre-deployment gate, continuous-monitoring alert, pause / escalation trigger). Where a metric carries these sub-blocks, the Operational Specification is what your vendor must comply with at procurement, and the Threshold Guidance is what triggers escalation post-deployment.
