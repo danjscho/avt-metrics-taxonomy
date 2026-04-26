@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-A healthcare metrics taxonomy for assuring NHS Ambient Voice Technology (AVT) systems — ambient scribes and clinical AI documentation tools.
+A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
 **216 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.6, 2026-04-26** — under active review, not yet stakeholder-approved.
 
