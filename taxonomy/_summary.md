@@ -3,7 +3,7 @@
 ### By Priority Tier
 
 - **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 94 metrics - recommended with reasonable governance capacity
+- **🟡 Tier 2 - Recommended Assurance**: 93 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity

@@ -243,9 +243,9 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation - the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### TP.CC-7 🟡 Coding Inflation Detection
+### TP.CC-7 🟡 Coding Drift Detection (NHS framing; was Coding Inflation Detection)
 
-Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality corruption of epidemiological data, QOF, and population health.
+Systematic detection of pre/post-AVT shifts in clinical coding distributions. In the NHS, the primary concern is **data-quality corruption** — coding drift that distorts epidemiological data, QOF returns, Hospital Episode Statistics, population-health analytics, and SNOMED specificity profiles. The equivalent US concern is revenue inflation via E/M level upcoding (which TP.CC-8 was a US-specific specialisation of pre-v3.7); the framing differs because NHS coding incentives differ from US payer-billing incentives, but the underlying SPC + distribution-shift detection methodology applies in both contexts. v3.7 folds the previous TP.CC-8 (E/M Level Shift Monitoring) into this metric — its KL-divergence and demographic-disaggregation content survives in the Operational Specification.
 
 | Dimension | Value |
 |-----------|-------|
@@ -255,22 +255,37 @@ Systematic upcoding monitoring via SPC. In NHS, primary risk is data quality cor
 | **Pipeline Layer** | Clinical Coding |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Continuous |
+| **Lifecycle Phases** | Day Zero Baseline, Continuous |
 | **Responsible Actors** | Regional (ICB), National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | US payer countermeasures; NHS risk analysis |
+| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature, npj Digital Medicine policy brief Nature s41746-025-02272-z documented 3.0→4.1 diagnoses/encounter post-AVT) |
 
 **Why this tier?**
 
-> Regional (ICB) monitoring using SPC on coding distributions. Requires pre-AVT baseline. National data integrity implication.
+> Regional (ICB) and national monitoring using SPC on coding distributions. Requires pre-AVT baseline. National data-integrity implication: AVT-driven drift in NHS coding distributions corrupts the epidemiological surveillance, public-health analytics, and resource-allocation data the NHS depends on. Deployers cannot assess population-level shifts from their own data alone — cross-practice and ICB-level aggregation needed.
 
 **Formal Definition**
 
 ```
-SPC on pre/post-AVT code distributions. Track: code density (avg codes/encounter), severity shift, novel code rate. Flag if >2σ from baseline for ≥4 weeks (Western Electric rules).
+Two complementary methodologies, applied jointly:
+
+1. SPC on pre/post-AVT code distributions. Track: code density (avg codes/encounter), severity shift, novel code rate. Flag if >2σ from baseline for ≥4 weeks (Western Electric rules).
+
+2. Distribution-shift index per tariff-relevant or coding-level category: compute pre-AVT baseline distribution and post-AVT distribution. Shift Index = KL divergence or earth-mover's distance between distributions. Flag categories with shift > 0.1 (magnitude calibrated to historical coding drift). Disaggregate by demographic and clinical complexity to identify selective amplification.
+
+Both methods require minimum 12-month pre-AVT baseline for seasonal pattern stability.
 ```
+
+**Operational Specification (folded from former TP.CC-8)**
+
+> - **Window:** continuous; monthly aggregate per practice / per ICB.
+> - **Population:** all coded encounters in scope. Pre-AVT baseline minimum 12 months for seasonal pattern stability.
+> - **Per-category reporting MANDATORY:** SPC and KL/EMD analysis applied per code category (chronic-disease registers, QOF indicators, tariff-relevant codes, novel codes) — not as a single rolled-up number. The shift pattern matters more than aggregate magnitude.
+> - **Demographic disaggregation MANDATORY:** shift indices reported by patient demographic strata (age band, deprivation, ethnicity where data permits) to surface selective amplification — AVT-driven drift that benefits some populations more than others (cross-link [TP.CC-9 Coding Equity Index](#tp-cc-9)).
+> - **Confounder-handling MANDATORY:** distribution shift is confounded with independent coding-policy changes, QOF updates, training interventions, and natural epidemiological drift. Quasi-experimental design (interrupted time series, cross-practice synthetic control) required for attribution to AVT specifically.
+> - **NHS-specific scope:** reporting frame is QOF returns, HES diagnostic codes, SNOMED specificity profiles, and population-health analytics datasets. The US E/M-level analogue is named in Source for cross-context comparison but does not drive the metric structure.
 
 **Code: SPC-based coding drift**
 
@@ -293,50 +308,15 @@ def coding_drift_spc(pre_counts, post_counts):
 
 **Limitations**
 
-> NHS coding incentives differ from US.
+> NHS coding incentives differ structurally from US payer incentives — the framing focus is data integrity rather than revenue extraction. The SPC and distribution-shift methodologies transfer; the interpretation does not. The Operational Specification's confounder-handling requirement makes the attribution problem visible (shifts can be driven by AVT, by independent coding-policy changes, by training interventions, or by genuine epidemiological change); it does not solve it. Quasi-experimental design at deployment-cohort scale is genuinely hard.
 
 **Novel Thinking / Implications**
 
-> 💡 Risk is data quality: systematically different codes corrupt epidemiological data, QOF, population health analytics.
+> 💡 The US evidence (14% HCC capture increase, 11% wRVU increase post-AVT) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently. The metric exists to make this visible at the regional and national level — deployers measuring on their own cannot distinguish AVT-driven drift from population-level coding-policy change.
+
+*See also: Coding Equity Index, HRG / Tariff Impact Attribution - TP.CC-9 disaggregates the shift by demographic strata to surface inequitable AVT-driven drift; TP.CC-10 provides quasi-experimental causal attribution for the tariff-impact dimension.*
 
 ---
-
-### TP.CC-8 🟡 E/M Level Shift Monitoring
-
-Monitoring of shifts in Evaluation & Management (E/M) coding levels pre- and post-AVT deployment. In US settings, E/M level shift has been a primary revenue impact channel; in NHS settings, the equivalent concern is SNOMED specificity shift and its effect on QOF, Hospital Episode Statistics, and population health analytics. Extension of the existing Coding Inflation Detection metric with a specific focus on tariff-relevant code distributions.
-
-|Dimension              |Value                                                                                |
-|-----------------------|-------------------------------------------------------------------------------------|
-| **Reference** | TP.CC-8 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                                               |
-|**Measurement Cadence**|Continuous                                                                           |
-|**Pipeline Layer**     |Clinical Coding                                                                      |
-|**Assurance Question** |Safety                                                                               |
-|**Measurement Method** |Computational                                                                        |
-|**Lifecycle Phases**   |Day Zero Baseline, Continuous                                                        |
-|**Responsible Actors** |Regional (ICB), National Body                                                        |
-|**Maturity**           |Emerging                                                                             |
-|**Outcome Type**       |Distal                                                                               |
-|**Applicability**      |AVT-Contextualised                                                                   |
-|**Source**             |npj Digital Medicine policy brief (Nature s41746-025-02272-z) - documented 3.0→4.1 diagnoses/encounter post-AVT|
-
-**Why this tier?**
-
-> Regional (ICB) and national monitoring. Deployers cannot assess population-level shifts from their own data alone. Requires pre/post AVT baseline and cross-practice aggregation.
-
-**Formal Definition**
-
-```
-For each coding level or tariff-relevant category: compute pre-AVT baseline distribution and post-AVT distribution. Shift Index = KL divergence or earth-mover's distance between distributions. Flag categories with shift > 0.1 (magnitude calibrated to historical coding drift). Disaggregate by demographic and clinical complexity to identify selective amplification.
-```
-
-**Limitations**
-
-> Requires pre-AVT baseline of sufficient duration (minimum 12 months) for seasonal pattern stability. Confounded with independent coding policy changes, QOF updates, and training interventions. Attribution to AVT specifically requires quasi-experimental design.
-
-**Novel Thinking / Implications**
-
-> 💡 The US evidence (14% HCC capture increase, 11% wRVU increase) is alarming because it's unclear whether the shift represents more complete capture (legitimate) or documentation-driven inflation (governance failure). In the NHS context, the same ambiguity applies: are we seeing better coding, or AVT-driven drift that will corrupt epidemiological data? Without monitoring, the distinction is invisible and the data integrity risk is absorbed silently.
 
 ### TP.CC-9 🟡 Coding Equity Index
 
@@ -375,9 +355,9 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### TP.CC-10 🔵 wRVU / Tariff Impact Attribution
+### TP.CC-10 🔵 HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)
 
-Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to PbR tariffs, QOF achievement, and secondary care activity-based funding.
+Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to **HRG (Healthcare Resource Group) tariffs under Payment by Results (PbR)**, QOF achievement, and secondary-care activity-based funding. The US analogue is **wRVU** (work Relative Value Units in CMS Medicare); the underlying causal-attribution methodology applies in both contexts but the framing focus and tariff structures differ. v3.7 reframes this metric as NHS-primary with the US wRVU analogue called out for cross-context comparison.
 
 |Dimension              |Value                                        |
 |-----------------------|---------------------------------------------|
@@ -392,11 +372,11 @@ Attribution of workload or tariff-relevant coding changes to AVT specifically, s
 |**Maturity**           |Proposed / Novel                             |
 |**Outcome Type**       |Distal                                       |
 |**Applicability**      |AVT-Contextualised                           |
-|**Source**             |Extends E/M Level Shift Monitoring with causal attribution methodology|
+|**Source**             |Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent|
 
 **Why this tier?**
 
-> Research-grade metric requiring quasi-experimental design. National or academic responsibility. Not routinely measurable at deployer level.
+> Research-grade metric requiring quasi-experimental design (interrupted time series, difference-in-differences, or synthetic control). National or academic responsibility. Not routinely measurable at deployer level.
 
 **Formal Definition**
 

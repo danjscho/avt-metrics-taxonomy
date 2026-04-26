@@ -68,13 +68,13 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 43, 2: 94, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 43, 2: 93, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 48,
-    "AVT-Contextualised": 77,
+    "AVT-Contextualised": 76,
     "General Healthcare AI": 91,
 }
-EXPECTED_TOTAL = 216
+EXPECTED_TOTAL = 215
 
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
