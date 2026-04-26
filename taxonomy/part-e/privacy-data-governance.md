@@ -29,7 +29,7 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 **Reference Standard**
 
-> The deployer-approved DPIA and privacy notice are the authoritative retention policy. "Compliant" means the audio is deleted from every named storage location within the policy-stated period. Storage locations in scope MUST include: primary vendor storage, vendor backups and disaster-recovery systems, vendor logs, any downstream analytic or quality-monitoring system, deployer-side caches, and any sub-processor systems named in the vendor's [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) declaration. "Deletion" means cryptographic erasure or physical deletion; logical deletion (flagged-deleted-but-retained) does not count without an explicit DPIA carve-out.
+> The deployer-approved DPIA and privacy notice are the authoritative retention policy. "Compliant" means the audio is deleted from every named storage location within the policy-stated period. Storage locations in scope MUST include: primary vendor storage, vendor backups and disaster-recovery systems, vendor logs, any downstream analytic or quality-monitoring system, deployer-side caches, and any sub-processor systems named in the vendor's [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) declaration. "Deletion" means cryptographic erasure or physical deletion; logical deletion (flagged-deleted-but-retained) does not count without an explicit DPIA carve-out.
 
 **Operational Specification**
 
@@ -88,7 +88,7 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 **Reference Standard**
 
-> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under the NHSE IG March 2026 guidance); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
+> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under the NHSE IG March 2026 guidance); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
 
 **Operational Specification**
 
@@ -144,7 +144,7 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 
 **Reference Standard**
 
-> Same DPIA + privacy notice authority as [GV.PD-1](#gvpd-1-audio-retention-compliance). Retention purposes MUST be enumerated in the DPIA with a maximum retention period per purpose; an unenumerated purpose is not a valid retention basis. "Compliance" is per-purpose, per-storage-location, and verified the same way as GV.PD-1: cryptographic erasure or physical deletion, not logical deletion. Storage locations in scope add: deployer-side analytics warehouses, research databases (where consent permits), and any redaction-pipeline intermediates.
+> Same DPIA + privacy notice authority as [GV.PD-1](#gv-pd-1). Retention purposes MUST be enumerated in the DPIA with a maximum retention period per purpose; an unenumerated purpose is not a valid retention basis. "Compliance" is per-purpose, per-storage-location, and verified the same way as GV.PD-1: cryptographic erasure or physical deletion, not logical deletion. Storage locations in scope add: deployer-side analytics warehouses, research databases (where consent permits), and any redaction-pipeline intermediates.
 
 **Operational Specification**
 
@@ -361,10 +361,10 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 
 > Two distinct sources combined:
 >
-> - **Process compliance** inherits the reference standard from [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) — the deployer-approved patient notification script with the four content elements (what / what / who / how) delivered before AVT activation
-> - **Understanding rate** is measured by structured patient survey using a published instrument (e.g. validated comprehension instrument, or where unavailable, a deployer-defined survey with at least four comprehension items mapped to the notification content elements)
+> - **Process compliance** inherits the reference standard from [GV.CR-2 Verbal Notification Compliance](#gv-cr-2) — the deployer-approved patient notification script with the four content elements (what / what / who / how) delivered before AVT activation
+> - **Understanding rate** is measured by structured patient survey. **No validated AVT-specific patient-comprehension instrument exists at the time of v3.6.** Deployers should either (a) select the closest healthcare-IT-comprehension instrument (e.g. eHealth Literacy items adapted for AVT context, Decision Conflict Scale items) and document the adaptation as a limitation, or (b) commission a deployer-defined survey reviewed by the IG team containing at least four comprehension items mapped to the [GV.CR-2 Verbal Notification Compliance](#gv-cr-2) content elements (what / what / who / how)
 >
-> The headline metric is the **gap** (process compliance minus understanding rate), not either rate alone. Gap > 25 percentage points triggers a substantive review; the consent model's legitimacy depends on understanding, not just notification (per the Novel Thinking section). Cross-link to [IO.PX-1 Patient Opt-Out Rate](#iopx-1-patient-opt-out-rate) — opt-out behaviour disaggregated by demographics may indicate where the understanding gap is concentrated even before survey detects it.
+> The headline metric is the **gap** (process compliance minus understanding rate), not either rate alone. Gap > 25 percentage points triggers a substantive review; the consent model's legitimacy depends on understanding, not just notification (per the Novel Thinking section). Cross-link to [IO.PX-1 Patient Opt-Out Rate](#io-px-1) — opt-out behaviour disaggregated by demographics may indicate where the understanding gap is concentrated even before survey detects it.
 
 **Operational Specification**
 
@@ -462,7 +462,7 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 **Reference Standard**
 
-> UK GDPR Article 15 is the legal floor; ICO 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gvpd-11-right-to-erasure-compliance) — the same data-locating capability underpins both rights.
+> UK GDPR Article 15 is the legal floor; ICO 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11) — the same data-locating capability underpins both rights.
 
 **Operational Specification**
 
@@ -520,13 +520,13 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 **Reference Standard**
 
-> UK GDPR Article 17 with the NHSE IG March 2026 individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gvpd-1-audio-retention-compliance) plus three Article-17-specific additions:
+> UK GDPR Article 17 with the NHSE IG March 2026 individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus three Article-17-specific additions:
 >
 > - **Model training pipelines** — any AVT data ingested for model fine-tuning, validation set construction, or A/B testing
 > - **Downstream secondary use** — research databases, quality-monitoring archives, business-intelligence pipelines
-> - **Sub-processor systems** — every entity in the [GV.VT-7 Sub-Processor Transparency](#gvvt-7-sub-processor-transparency) discovered set
+> - **Sub-processor systems** — every entity in the [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) discovered set
 >
-> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the ICO standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gvpd-7-training-data-inclusion-status) — patients should know at consent time whether their data may end up in the irreversible class.
+> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the ICO standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gv-pd-7) — patients should know at consent time whether their data may end up in the irreversible class.
 
 **Operational Specification**
 
@@ -535,7 +535,7 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 > - **Three-class outcome reporting MANDATORY:** every erasure-test location classified deletable / anonymisable / technically-irreversible. Aggregate "verification rate" alone hides the irreversible-class failure mode.
 > - **Privacy-notice cross-check MANDATORY:** the technically-irreversible class enumerated at procurement must match the disclosure in the privacy notice. Drift between the two (locations becoming irreversible without privacy-notice update) is itself a flag.
 > - **Article-17-exempt vs in-scope:** every erasure request classified as exempt (individual-care purpose, public-task carve-out) or in-scope (secondary use, research, training data, best-interest case). The exempt class is logged with reason but not subject to the same fulfilment expectation as in-scope.
-> - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gvpd-10-subject-access-request-fulfilment) — sub-processor latency per erasure request recorded.
+> - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gv-pd-10) — sub-processor latency per erasure request recorded.
 
 **Threshold Guidance**
 

@@ -38,7 +38,7 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **Novel Thinking / Implications**
 
-> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
+> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#es-me-9) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
 
 ---
 
@@ -334,7 +334,7 @@ Score = number of checks passed (0-4). Tier 2 expectation: ≥ 2 of 4 at procure
 
 ### ES.ME-9 🟡 Causal Model Operationalisation
 
-Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)'s "burden of proof" requirement operational.
+Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#es-me-1)'s "burden of proof" requirement operational.
 
 | Dimension | Value |
 |-----------|-------|
@@ -378,7 +378,7 @@ made at procurement.
 
 **Limitations**
 
-> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#esme-7-automated-human-metric-concordance) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) for the distal evidence.
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
 
 **Novel Thinking / Implications**
 

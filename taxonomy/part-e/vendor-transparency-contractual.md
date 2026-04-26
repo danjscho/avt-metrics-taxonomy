@@ -29,14 +29,14 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **Reference Standard**
 
-> Vendor change-event log paired with deployer notification record. The change-event taxonomy follows [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking) — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to MHRA Post-Market Surveillance Regulations 2024 (SI 2024 No. 1368): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.
+> Vendor change-event log paired with deployer notification record. The change-event taxonomy follows [GV.SG-1 Model Version Tracking](#gv-sg-1) — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to MHRA Post-Market Surveillance Regulations 2024 (SI 2024 No. 1368): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.
 
 **Operational Specification**
 
 > - **Window:** continuous; per-change-event tracking with monthly compliance reporting.
-> - **Population:** every change-event recorded by [GV.SG-1](#gvsg-1-model-version-tracking) telemetry. Denominator is change-events, not calendar months.
+> - **Population:** every change-event recorded by [GV.SG-1](#gv-sg-1) telemetry. Denominator is change-events, not calendar months.
 > - **Severity classification MANDATORY:** every change classified as **major** (component-level rewrite, scope expansion, retraining with new data, regulatory-substantial), **moderate** (incremental retraining, prompt revision, retrieval index update), or **minor** (bug fix, performance optimisation without behavioural change). Lead-time requirements differ per severity (Threshold Guidance below).
-> - **Four mandatory content elements per notification:** (a) what changed (component, version-from, version-to); (b) expected impact (clinical-benchmark deltas, edge cases, known failure modes affected); (c) validation results (named benchmarks, test corpora, sample sizes); (d) deployer action required (re-run [GV.SG-2 Model Update Impact Score](#gvsg-2-model-update-impact-score), schedule [GV.CR-6 Safety Case](#gvcr-6-clinical-safety-case-completeness) update, etc.). Notifications missing any element count as non-compliant regardless of timing.
+> - **Four mandatory content elements per notification:** (a) what changed (component, version-from, version-to); (b) expected impact (clinical-benchmark deltas, edge cases, known failure modes affected); (c) validation results (named benchmarks, test corpora, sample sizes); (d) deployer action required (re-run [GV.SG-2 Model Update Impact Score](#gv-sg-2), schedule [GV.CR-6 Safety Case](#gv-cr-6) update, etc.). Notifications missing any element count as non-compliant regardless of timing.
 > - **Substantial-change flag MANDATORY:** any change meeting MHRA PMS substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
 > - **Per-deployment notification:** notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.
 
@@ -54,7 +54,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **Limitations**
 
-> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes - which requires model version tracking infrastructure. The Operational Specification's reliance on [GV.SG-1](#gvsg-1-model-version-tracking) telemetry surfaces this dependency: the metric is only as reliable as the per-component versioning the vendor exposes.
+> Vendor compliance is only verifiable if independent monitoring can detect undisclosed model changes - which requires model version tracking infrastructure. The Operational Specification's reliance on [GV.SG-1](#gv-sg-1) telemetry surfaces this dependency: the metric is only as reliable as the per-component versioning the vendor exposes.
 
 **Novel Thinking / Implications**
 
@@ -221,7 +221,7 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 > - **Window:** continuous; per-incident tracking with monthly compliance reporting.
 > - **Population:** every incident the vendor knows about, with cross-deployer scope explicit (an incident at deployer A that affects deployer B's exposure must reach deployer B).
 > - **Severity classification MANDATORY:** every incident classified critical / high / medium / low with disclosure-timeline expectations differing per severity.
-> - **Five mandatory content elements:** (a) incident description with affected components named per [GV.SG-1](#gvsg-1-model-version-tracking) taxonomy; (b) affected functionality and known scope of impact; (c) mitigation in progress or completed (with timeline); (d) recommended deployer actions; (e) cross-deployer scope (which deployers / configurations / use cases are affected). The fifth element is the most commonly omitted — vendors often disclose in vendor-frame ("we patched X") without translating to deployer impact ("you should check Y in your deployment"). Notifications missing any element count as non-compliant regardless of timing.
+> - **Five mandatory content elements:** (a) incident description with affected components named per [GV.SG-1](#gv-sg-1) taxonomy; (b) affected functionality and known scope of impact; (c) mitigation in progress or completed (with timeline); (d) recommended deployer actions; (e) cross-deployer scope (which deployers / configurations / use cases are affected). The fifth element is the most commonly omitted — vendors often disclose in vendor-frame ("we patched X") without translating to deployer impact ("you should check Y in your deployment"). Notifications missing any element count as non-compliant regardless of timing.
 > - **Update cadence MANDATORY:** initial disclosure plus material updates as new information emerges; final closure report on resolution. A single one-off notification without updates is non-compliant where the incident has not been resolved.
 > - **Escalation path MANDATORY:** named deployer contact for critical and high incidents; vendor must demonstrate the escalation path was used, not just the standard support inbox.
 
@@ -313,7 +313,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **Reference Standard**
 
-> Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. UK GDPR Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place ([GV.PD-9 Cross-Border Data Transfer Compliance](#gvpd-9-cross-border-data-transfer-compliance) cross-link for non-UK locations).
+> Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. UK GDPR Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place ([GV.PD-9 Cross-Border Data Transfer Compliance](#gv-pd-9) cross-link for non-UK locations).
 
 **Operational Specification**
 
@@ -321,7 +321,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 > - **Population:** every sub-processor with any data-access path (transitively). The discovered set explicitly extends to sub-sub-processors — a vendor's cloud provider's storage region's sub-contractor for backup is in scope if it can reach personal data.
 > - **Per-sub-processor reporting MANDATORY:** for each sub-processor: name, processing purpose, data categories, location, DPA status (in-place / signed / pending), Article 46 safeguard (where non-UK). Aggregate completeness ratio insufficient — the failure pattern (which sub-processor is undisclosed) matters more than the count.
 > - **Discovery method MANDATORY:** the deployer's verification method MUST be declared (data-flow diagram review / cloud-architecture audit / contract trace / penetration test). Pure self-certification by the vendor is not Tier 1 sufficient; some independent verification step required.
-> - **Change-notification mandate:** vendor contract MUST specify advance notice of sub-processor changes ([GV.VT-1 Model Change Notification Compliance](#gvvt-1-model-change-notification-compliance) cross-link); change-events tracked per sub-processor with notification timestamps.
+> - **Change-notification mandate:** vendor contract MUST specify advance notice of sub-processor changes ([GV.VT-1 Model Change Notification Compliance](#gv-vt-1) cross-link); change-events tracked per sub-processor with notification timestamps.
 > - **Materiality flag:** sub-processors handling personal data classified material; sub-processors handling only metadata or aggregated telemetry classified non-material. Material sub-processors required to be in scope; non-material classification must be evidenced.
 
 **Threshold Guidance**
