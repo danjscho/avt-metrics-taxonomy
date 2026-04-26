@@ -1,5 +1,89 @@
 # Changelog
 
+## v3.8 (2026-04-26)
+
+Adds the NHS England AVT Self-Certified Supplier Registry as the **13th mapped framework**, three registry-driven metrics, two new audit checks, and a tightening completion of HL.HF-3a (promoting the HL.HF-3 parent construct to fully tightened). Counts: 215 → **218 metrics**, tier split 43/93/79 → **43/96/79**, **32 of 42 Tier 1 constructs tightened**, 12 → **13 frameworks**.
+
+Roadmap promotions explicitly deferred — user direction holds all 89 `_gaps.md` candidates for a dedicated future release after the registry mapping has time to settle and may reframe priorities.
+
+### Phase 0 — Documentation drift sweep
+
+User-facing files updated for v3.7-shipped state: `README.md` (v3.6 → v3.7; 216 → 215; "25 of 43" → "30 of 42 constructs"; tag history; citation example; last-updated stamp), `docs/index.md` (was wildly stale at v3.1; now v3.7 / 215 with correct framework list), `_outcomes-boundary.md` (216 → 215), `_privacy-data-governance.md` GV.PD-8 reference text (v3.6 → v3.7).
+
+### Phase 1 — Audit-tooling hygiene
+
+Two new `audit.py` checks closing silent-failure modes:
+
+- **`check_maturity_values`** — Maturity dimension must hold one of the four canonical enum values (Established / Emerging / Vendor-Proprietary / Proposed/Novel). Pre-v3.8 audit only checked presence; non-canonical values like "Partly Established" silently passed.
+- **`check_source_presence`** — Source row must be non-empty. Pre-v3.8 audit checked row presence but not value content.
+
+New `EXPECTED_MATURITY_VALUES` constant. Smoke-tested under fault injection.
+
+### Phase 2 — NHSE AVT Registry mapping
+
+#### Phase 2.1 — Standards-mapping section (13th framework)
+
+New section in `_standards-mapping.md` for the NHS England AVT Self-Certified Supplier Registry — live since January 2026 (first cohort 19 vendors, expanded to 23 by April 2026; applications reopen indefinitely from 3 February 2026). Self-certification scheme; NHSE undertakes preliminary completion checks only and does not endorse listed suppliers; evidence published via the National Commercial & Procurement Hub.
+
+13-row vendor requirements table cross-referencing each registry category to existing framework mappings (DTAC, DSPT, DCB0129, MHRA, NHS T.E.S.T., NHS LLM Framework). 11 of 13 categories already covered by existing metrics; 2 had genuine gaps closed by Phase 2.2; 1 self-certification-integrity gap closed by Phase 2.2; 1 placeholder for AI/LLM-specific sub-criteria (NHSE has not yet published detail).
+
+Standards-mapping preamble updated: 214 → 215 metrics; twelve → thirteen frameworks. Section positioned immediately after NHS T.E.S.T. since both are AVT-specific procurement tools.
+
+#### Phase 2.2 — Three new registry-driven metrics
+
+- **GV.SC-12 Cyber Essentials Plus Certification Status** (Tier 2; Security & Adversarial Robustness; AVT-Contextualised). Closes registry req #5 gap. Three sub-metrics (status / currency / in-scope coverage); annual cadence per IASME scheme; per-sub-processor coverage cross-linked to GV.VT-7. Limitations name the AI-specific threat surface that Cyber Essentials Plus does **not** cover.
+- **GV.VT-13 Evidence Pack Freshness** (Tier 2; Vendor Transparency & Contractual; AVT-Specific). Closes self-certification-integrity gap. Quarterly Hub-publication review; Fresh / Aging / Stale per-component classification; signed-declaration-provenance check. Cross-linked to GV.CR-4 — VT-13 measures evidence pack quality, CR-4 measures listing.
+- **GV.VT-14 Indicative Pricing Transparency** (Tier 2; Vendor Transparency & Contractual; AVT-Specific). Closes registry req #12 gap. Three sub-metrics (published / coverage / currency); deployer-side scope-alignment audit; ±20% materiality threshold on contracted use cases.
+
+All three drafted with the v3.7 tightening pattern from inception (Reference Standard / Operational Specification / Threshold Guidance + ⚠️ Provenance prelude + Calibration & Context cross-reference).
+
+**ID-allocation note:** GV.VT-9/-10/-11/-12 were already reserved by `_gaps.md` roadmap entries (proposed metrics from MHRA SaMD/AIaMD and NHS T.E.S.T. mappings). New metrics use GV.VT-13/-14 to preserve those slots. New "Reserved IDs (roadmap-allocated)" section added to `_retired-ids.md`; `audit.py` refactored (`_load_skipped_ids_sections`) to load both retired and reserved IDs; manifest output prints them on separate lines.
+
+#### Phase 2.3 — GV.CR-4 tightening
+
+GV.CR-4 (AVT Supplier Registry Listing Verification) now carries the v3.7 tightening pattern. Three mandatory sub-metrics (listing status / scope alignment / attestation currency); self-certification disclosure mandatory at every verification; multi-product handling; delisting watch.
+
+### Phase 3 — Carry-forwards
+
+#### Phase 3.1 — HL.HF-3a tightening
+
+HL.HF-3a Review-Before-Signing Rate was promoted to a Tier 1 sub-part in v3.7 Phase 2.1 but did not yet carry the tightening pattern. v3.8 adds Reference Standard / Operational Specification / Threshold Guidance with mandatory pairing to HL.HF-3b (rubber-stamping detection lives in the conjunction). The parent HL.HF-3 (Inadequate-Review Detection) now classified as **tightened** in the manifest since both sub-parts carry the pattern.
+
+#### Phase 3.2 — GV.TC-1 / GV.TC-3 redundancy resolution
+
+v3.6 duplication review flagged GV.TC-3 (Refresher & CPD Compliance) as adjacent to GV.TC-1's M4 module after v3.5 tightening. Decision recorded: **option (b) keep both with explicit framing**. New "Relationship to GV.TC-1" section on GV.TC-3 distinguishes:
+
+- GV.TC-1 M4 = process-compliance (per-clinician completion rate against the rolling validity window)
+- GV.TC-3 = content-currency (the four update sources: locally discovered failure modes, national safety alerts, model-update implications, new attack vectors)
+
+Headline reporting should pair the two; either alone is incomplete. No metric retired.
+
+### Phase 4 — Cross-cutting consistency
+
+- **Calibration ↔ Outcomes Boundary cross-references** strengthened. Soft-vs-hard distinction now explicit: Outcomes Boundary is a hard limit (calibration cannot import out-of-scope work); Calibration is a soft instruction (parameter values are local within the in-scope set).
+- **`build_site.py` parent-handling consistency:** v3.6/v3.7 review found 5 places using `parse_all_metrics()` without consistent parent filtering. Audited each call site; one (`build_crosscuts`) was incorrectly including parents in applicability cross-cuts (would land in 'Unclassified'). Now filters to countable_metrics. Three other call sites correctly include parents (cross-reference resolution by name; ref_id → group_file lookup; related-metric chip generation).
+- **`_landing_page` template fixes:** hardcoded "v3.1", "11 healthcare and AI standards", and applicability counts (48/77/89) replaced with live values derived from `parse.summary()` and `countable_metrics`. Prevents v3.7 → v3.8 docs/index.md staleness pattern from recurring.
+
+### Counts
+
+- **218 metrics** (was 215; +3 from Phase 2.2)
+- Tier split **43 / 96 / 79** (Tier 2 +3 from Phase 2.2; Tier 1 and Tier 3 unchanged)
+- 20 groups unchanged
+- **32 of 42 Tier 1 constructs tightened** (was 30/42; HL.HF-3 promoted to tightened via Phase 3.1; GV.CR-4 tightened via Phase 2.3). Individual entries: 33 of 43 (counting sub-parts).
+- Applicability: AVT-Specific 48 → **50** (+2 from GV.VT-13/-14); AVT-Contextualised 76 → **77** (+1 from GV.SC-12); General Healthcare AI 91 unchanged.
+- Frameworks mapped: 12 → **13**.
+- Roadmap unchanged at 89 candidates (no promotions in v3.8).
+
+### Deferred to v3.9+
+
+- **Big roadmap review** — 89 `_gaps.md` candidates held for a dedicated future release after the registry mapping settles. Three previously-flagged high-leverage candidates (GV.CR-12 Board-Level AI Governance, GV.SG-19 Systems-Based Incident Analysis, TP.WB-11 PRSB Semantic Completeness) remain queued.
+- **NHSE registry AI/LLM-specific sub-criteria** — req #13 placeholder; NHSE detail not yet published.
+- **Remaining 4 of 5 v3.4 deferred-pool metrics** (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13) — bespoke per-metric scoping owed.
+- **Remaining ~10 cross-reference / framing additions** from the v3.6 duplication review.
+- **Outcomes layer** stays at ES.ME-8/9.
+
+---
+
 ## v3.7 (2026-04-26)
 
 Establishes the **Calibration & Context principle** as a first-class taxonomy commitment alongside the Outcomes Boundary; tightens 6 pipeline narrow Tier 1 metrics; restructures 3 redundancy candidates as parent-with-sub-parts; reframes US-flavour metrics with NHS-primary framing. Tightened-count manifest reaches 30/42 (constructs); flat tightened count is 31/43 (sub-parts). Headline metric count 216 → 215 (TP.CC-8 folded).
