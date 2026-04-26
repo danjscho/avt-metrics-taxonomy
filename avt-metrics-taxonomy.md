@@ -690,7 +690,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ## Standards Mapping
 
-This section maps the taxonomy's 214 metrics against twelve NHS/regulatory frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
+This section maps the taxonomy's 215 metrics against thirteen NHS / regulatory / procurement frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
 
 Where a standard criterion has no corresponding taxonomy metric, this is flagged as a **gap**. Where the taxonomy provides coverage beyond the standard's scope, this is noted as **taxonomy extends**.
 
@@ -1059,6 +1059,65 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 | GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | Part E Vendor Transparency | 🔵 3 |
 | IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | Part D Fairness & Equity | 🔵 3 |
 | GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | Part E Vendor Transparency | 🔵 3 |
+
+---
+
+### NHS England AVT Self-Certified Supplier Registry
+
+**Publisher:** NHS England (Transformation Directorate / NHS England Digital)
+**Scheme reference:** Find a Tender Notice [069369-2025](https://www.find-tender.service.gov.uk/Notice/069369-2025); registry surfaces at the NHS England Transformation Directorate ([transform.england.nhs.uk](https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/)) and operationally at [digital.nhs.uk/services/ambient-scribing](https://digital.nhs.uk/services/ambient-scribing/ambient-voice-technology-self-certified-supplier-registry).
+**Status:** **Live since January 2026.** First cohort of 19 suppliers listed January 2026, expanded to 23 by April 2026. Applications reopened 3 February 2026 and remain open indefinitely.
+**Mandatory status:** Effective procurement gate. Listing is voluntary at the supplier level but practically required for NHS deployment at scale. Adopting Trusts and PCNs are encouraged to procure from registered suppliers; deployment of unregistered suppliers carries local liability risk per NHS England guidance.
+**AVT relevance:** Purpose-built for AVT / ambient-scribing procurement at the national level. Sits structurally alongside [NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test) (T.E.S.T. is an ICS-level vendor-assessment framework; the Registry is the national-level certification list that draws on T.E.S.T. and other frameworks).
+
+**Important: self-certification, not accreditation.** NHS England undertakes only "preliminary completion checks against the requirements and standards" and **does not endorse** listed suppliers. Evidence is published via the National Commercial and Procurement Hub for adopting Trusts to inspect. The registry is a discovery and evidence-pack-publication mechanism; clinical safety, IG, and assurance responsibility remain with the deployer.
+
+#### Registry vendor requirements
+
+The registry as published in the Find a Tender notice and the NHS England long-read guidance (April 2025, updated through 2026) lists thirteen evidence categories. This mapping shows how each requirement aligns to existing taxonomy metrics and to other framework mappings already present.
+
+| # | Registry requirement | Cross-references existing framework | Taxonomy metrics |
+|---|---|---|---|
+| 1 | **MHRA Class I medical device registration** (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028 | MHRA SaMD/AIaMD WP1-WP2 (classification) | GV.CR-6 Clinical Safety Case Completeness |
+| 2 | **DCB0129 clinical safety case + hazard log** (supplier-side) | DCB0129/0160 Stages 1-7 | GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness |
+| 3 | **DTAC** (Digital Technology Assessment Criteria) — current assessment | DTAC C1-C4 / D1 | Composite via DTAC mapping |
+| 4 | **DSPT** (Data Security & Protection Toolkit) compliance | DSPT Standards 1-10 | Composite via DSPT mapping |
+| 5 | **Cyber Essentials** certification | *Not in current taxonomy framework set* | **GV.SC-12 Cyber Essentials Plus Certification Status** (new in v3.8) |
+| 6 | **UK GDPR / ICO compliance** (DPIA expected; ICO registration) | DSPT + Caldicott | GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance |
+| 7 | **Post-market surveillance evidence** (per MHRA Class I obligations) | MHRA WP4 + SI 2024 No. 1368 | GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance |
+| 8 | **Real-world benefit evidence in NHS settings** ("proven impact and experience") | T.E.S.T. Section B Clinical Effectiveness (50 pts RCT) | ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation |
+| 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance |
+| 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
+| 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
+| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-10 Indicative Pricing Transparency** (new in v3.8) |
+| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across Part E and Part F. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
+
+#### Self-certification provenance
+
+Because the scheme is self-certified, the *integrity* of the published evidence pack (currency, signed declarations, change-tracking against the Hub) is itself a procurement-relevant signal. The taxonomy treats this as a separate concern:
+
+- **GV.VT-9 Evidence Pack Freshness** (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial & Procurement Hub
+- **GV.CR-4 AVT Supplier Registry Listing Verification** (existing, tightened in v3.8) — verifies listing status, attestation date, and scope of attested compliance
+
+#### Registry operational shape
+
+- **Single-tier** listing (binary). No provisional / full distinction documented in public sources.
+- **Re-certification** cadence implied via DTAC currency and continuing MHRA registration; explicit re-listing rules not yet published.
+- **Failure modes / delisting policy** not publicly documented.
+- **Ongoing change-notification** via DCB0129 hazard-log updates and MHRA post-market surveillance, both already covered by the GV.SG-3 / GV.VT-1 metric pair.
+
+#### Summary of taxonomy alignment with the Registry
+
+- **11 of 13 registry categories** have direct or strong coverage from existing metrics and prior framework mappings (DTAC, DSPT, DCB0129/0160, MHRA, NHS T.E.S.T.).
+- **2 categories** previously lacked taxonomy metrics — **Cyber Essentials** (registry req #5) and **Indicative Pricing Transparency** (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-10 to close these.
+- **1 category** is registry-internal and warrants its own metric — **Evidence Pack Freshness** for the self-certified Hub publication. v3.8 introduces GV.VT-9.
+- **1 category** (registry req #13, AI/LLM-specific monitoring) is referenced but not yet specified; v3.8 documents the gap without a metric, pending NHS England publication of detail.
+
+The Registry is best understood as an **integration / aggregation layer** over the framework set already mapped, plus three registry-specific procurement-signal gaps that the v3.8 metrics address.
+
+#### Currency note
+
+Last researched 2026-04-26. The registry's AI/LLM-specific sub-criteria (req #13) are not yet publicly enumerated; revisit when NHS England publishes detail. Both surfacing pages have indicated content migration during 2026 — the operational page at digital.nhs.uk is the authoritative current location.
 
 ---
 
