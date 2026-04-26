@@ -141,6 +141,15 @@ Compliance = |clinicians_current_on_refresher| / |clinicians_using_AVT|. Refresh
 
 > 💡 Refresher content should be data-driven: if edit-pattern monitoring reveals a new failure mode (e.g. systematic omission of safety-netting advice), the refresher should include examples of that specific failure. Generic refresher training is less effective than targeted, evidence-based updates.
 
+**Relationship to [GV.TC-1 Clinician Training Completion Rate](#gv-tc-1)**
+
+> v3.5 tightening of GV.TC-1 enumerated four mandatory training modules with **M4 Refresher** as one of them, and v3.6 duplication review flagged the apparent overlap with GV.TC-3. v3.8 retains both with explicit framing rather than folding:
+>
+> - **GV.TC-1 M4** measures *whether* refresher engagement has occurred (per-clinician completion rate against the rolling 12-month validity window); a process-compliance metric for the four-module training framework.
+> - **GV.TC-3** (this metric) measures *what* the refresher contains: the four content-currency requirements (locally discovered failure modes, national safety alerts, model-update implications, new attack vectors). The metric exists to prevent generic CPD theatre — a clinician completing M4 against content that hasn't been updated in three years passes GV.TC-1's M4 check but fails GV.TC-3's content-currency check.
+>
+> Headline reporting at the deployment level should pair the two: GV.TC-1 M4 completion rate alongside GV.TC-3 content-currency compliance. Either alone is incomplete.
+
 ---
 
 ### GV.TC-4 🔵 Trainee Impact Assessment
