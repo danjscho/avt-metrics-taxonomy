@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
-**216 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.6, 2026-04-26** — under active review, not yet stakeholder-approved.
+**215 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.7, 2026-04-26** — under active review, not yet stakeholder-approved.
 
 > ⚠️ This is a draft. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so early feedback can shape the content. Do not yet cite as a settled standard.
 
@@ -10,7 +10,7 @@ A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) system
 
 - **Published site:** <https://danjscho.github.io/avt-metrics-taxonomy/> — readable navigation, search, per-standard cross-cut pages
 - **Monolithic markdown:** [avt-metrics-taxonomy.md](avt-metrics-taxonomy.md) — single-file assembled output
-- **Structured data:** [`dist/metrics.csv`](dist/metrics.csv) (flat 216-row export), [`dist/metrics.json`](dist/metrics.json) (full structured catalogue), [`dist/gaps.json`](dist/gaps.json) (89 roadmap candidates)
+- **Structured data:** [`dist/metrics.csv`](dist/metrics.csv) (flat 215-row export), [`dist/metrics.json`](dist/metrics.json) (full structured catalogue), [`dist/gaps.json`](dist/gaps.json) (89 roadmap candidates)
 - **Release history:** [CHANGELOG.md](CHANGELOG.md)
 - **What's in scope vs out of scope:** [Outcomes Boundary](taxonomy/_outcomes-boundary.md) — this taxonomy assures deployment safety; clinical-outcome validation is national-research-body work
 - **How to apply the metrics to your deployment:** [Calibration & Context principle](taxonomy/_calibration-and-context.md) — tier assignments and threshold numbers are calibration starting points; six deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume) drive local calibration
@@ -20,10 +20,10 @@ A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) system
 The taxonomy organises measurable indicators that NHS deployers, vendors, and assurance teams can use to evaluate AVT systems. Metrics are tiered:
 
 - **🟢 Tier 1 (43 metrics) — Minimum Viable Assurance.** What every deployer must measure to operate safely.
-- **🟡 Tier 2 (94 metrics) — Recommended Assurance.** Add with reasonable governance capacity.
+- **🟡 Tier 2 (93 metrics) — Recommended Assurance.** Add with reasonable governance capacity.
 - **🔵 Tier 3 (79 metrics) — Advanced / Research.** Requires infrastructure that often doesn't yet exist.
 
-As of v3.6, **25 of 43 Tier 1 metrics** carry a structured **Reference Standard / Operational Specification / Threshold Guidance** sub-block pattern with explicit ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points.
+As of v3.7, **30 of 42 Tier 1 constructs** (31 of 43 individual entries when sub-parts are counted separately) carry a structured **Reference Standard / Operational Specification / Threshold Guidance** sub-block pattern with explicit ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points.
 
 The taxonomy commits to two parallel principles that govern how it should be applied: the [Outcomes Boundary](taxonomy/_outcomes-boundary.md) names what's *out of scope* (clinical-outcome validation belongs elsewhere); the [Calibration & Context principle](taxonomy/_calibration-and-context.md) names what's *in scope but context-dependent* (tier assignments and threshold numbers are deployer-calibrated starting points). Read both before applying any metric in procurement or operational governance.
 
@@ -71,9 +71,9 @@ Four cross-cutting documents frame the policy, ethics, and application surface:
 
 ## Status / version
 
-**Current draft:** v3.6, released 2026-04-26.
+**Current draft:** v3.7, released 2026-04-26.
 
-Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → **v3.6** (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README).
+Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → **v3.7** (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family).
 
 See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
@@ -81,9 +81,9 @@ See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
 Until the draft reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v3.6* [draft]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v3.7* [draft]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
-Note: draft status means content / tier assignments / cross-references may change. Cite the specific version (e.g. v3.6) so subsequent users can reproduce what you read.
+Note: draft status means content / tier assignments / cross-references may change. Cite the specific version (e.g. v3.7) so subsequent users can reproduce what you read.
 
 ## Contributing
 
@@ -99,4 +99,4 @@ Licence TBD. Until a licence is declared in this repository, treat the taxonomy 
 
 ---
 
-*Last updated: v3.6 / 2026-04-26.*
+*Last updated: v3.7 / 2026-04-26.*
