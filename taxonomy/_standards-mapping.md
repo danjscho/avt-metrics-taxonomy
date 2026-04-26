@@ -399,14 +399,14 @@ The registry as published in the Find a Tender notice and the NHS England long-r
 | 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance |
 | 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
 | 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
-| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-10 Indicative Pricing Transparency** (new in v3.8) |
+| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
 | 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across Part E and Part F. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
 
 #### Self-certification provenance
 
 Because the scheme is self-certified, the *integrity* of the published evidence pack (currency, signed declarations, change-tracking against the Hub) is itself a procurement-relevant signal. The taxonomy treats this as a separate concern:
 
-- **GV.VT-9 Evidence Pack Freshness** (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial & Procurement Hub
+- **GV.VT-13 Evidence Pack Freshness** (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial & Procurement Hub
 - **GV.CR-4 AVT Supplier Registry Listing Verification** (existing, tightened in v3.8) — verifies listing status, attestation date, and scope of attested compliance
 
 #### Registry operational shape
@@ -419,8 +419,8 @@ Because the scheme is self-certified, the *integrity* of the published evidence 
 #### Summary of taxonomy alignment with the Registry
 
 - **11 of 13 registry categories** have direct or strong coverage from existing metrics and prior framework mappings (DTAC, DSPT, DCB0129/0160, MHRA, NHS T.E.S.T.).
-- **2 categories** previously lacked taxonomy metrics — **Cyber Essentials** (registry req #5) and **Indicative Pricing Transparency** (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-10 to close these.
-- **1 category** is registry-internal and warrants its own metric — **Evidence Pack Freshness** for the self-certified Hub publication. v3.8 introduces GV.VT-9.
+- **2 categories** previously lacked taxonomy metrics — **Cyber Essentials** (registry req #5) and **Indicative Pricing Transparency** (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-14 to close these.
+- **1 category** is registry-internal and warrants its own metric — **Evidence Pack Freshness** for the self-certified Hub publication. v3.8 introduces GV.VT-13.
 - **1 category** (registry req #13, AI/LLM-specific monitoring) is referenced but not yet specified; v3.8 documents the gap without a metric, pending NHS England publication of detail.
 
 The Registry is best understood as an **integration / aggregation layer** over the framework set already mapped, plus three registry-specific procurement-signal gaps that the v3.8 metrics address.

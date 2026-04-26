@@ -384,3 +384,159 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 > 💡 Many of the highest-value metrics in this taxonomy - Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis - depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
 
 ---
+
+### GV.VT-13 🟡 Evidence Pack Freshness
+
+Currency and provenance of the vendor's published evidence pack on the National Commercial & Procurement Hub. The NHS England AVT Self-Certified Supplier Registry is a self-certification scheme — NHSE undertakes only preliminary completion checks; the substantive evidence (DCB0129 hazard log, DTAC, DSPT, DPIA, MHRA registration, post-market surveillance plans, etc.) is published by the vendor for adopting Trusts to inspect. The integrity of that evidence pack is therefore a procurement-relevant signal: stale evidence published two years ago against a system that has since changed three times is materially worse than current evidence against a stable system, even if both vendors appear listed.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.VT-13 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
+| **Source** | NHS England AVT Self-Certified Supplier Registry; National Commercial & Procurement Hub publication mechanism |
+
+**Why this tier?**
+
+> The Registry is self-certified; evidence pack integrity carries the substantive procurement signal that NHSE's preliminary completion check does not. Tier 2 because it is documentary, periodic, and the Hub-publication mechanism is itself emerging — re-audit cadence rules are not yet fully published by NHSE.
+
+**Formal Definition**
+
+```
+For each evidence-pack component published on the Hub (DCB0129 safety case,
+DTAC self-assessment, DSPT compliance statement, DPIA reference, MHRA
+registration, Cyber Essentials Plus certificate, post-market surveillance
+plan, indicative pricing matrix, performance-and-monitoring response
+document, AI/LLM-specific safety governance evidence):
+
+  Currency = age of the published artefact at audit time
+  Latest-version-match = whether the Hub-published version matches the
+    vendor's current internal version
+  Signed-declaration provenance = whether the publication carries a
+    dated signed declaration from a named accountable individual at the
+    vendor
+
+Composite freshness score per component:
+  Fresh: published ≤ 12 months ago AND latest-version-match TRUE AND
+    signed-declaration present and ≤ 12 months old
+  Aging: 12-24 months on any axis
+  Stale: > 24 months on any axis OR signed-declaration missing
+```
+
+**Reference Standard**
+
+> The National Commercial & Procurement Hub-published evidence pack is the authoritative source. The vendor's *current internal* version of each artefact (held in their own governance file) is the comparator for latest-version-match. Where the Hub publication and the vendor's internal version diverge, the divergence itself is the finding — irrespective of which is "right" — because the deployer's procurement decision is made against the Hub-published version. Cross-link to [GV.CR-4 AVT Supplier Registry Listing Verification](#gv-cr-4) — that metric verifies the *listing*; this metric verifies the *evidence pack quality*.
+
+**Operational Specification**
+
+> - **Window:** quarterly Hub-publication review at minimum; ad-hoc re-audit on any vendor change-event per [GV.SG-1 Model Version Tracking](#gv-sg-1).
+> - **Population:** all evidence-pack components in the registry's 13-category schema. Per-component reporting MANDATORY.
+> - **Composite freshness MANDATORY:** Fresh / Aging / Stale label per component. Aggregate-only reporting hides the failure pattern (e.g. an evidence pack with current DCB0129 but stale DPIA is materially different from one with the inverse).
+> - **Latest-version-match audit:** at procurement time, the deployer's IG file records the Hub-published version-strings observed and the vendor-attested current versions; subsequent quarterly audits compare against those baselines.
+> - **Signed-declaration provenance MANDATORY:** every component carries a dated signed declaration from a named accountable individual; absence is a Stale finding regardless of artefact age.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the IASME Cyber Essentials Plus annual cadence and the typical UK GDPR DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
+> - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
+> - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component (DCB0129 safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
+
+**Limitations**
+
+> The metric depends on the National Commercial & Procurement Hub being a stable publication channel; NHSE's content-migration activity during 2026 is a current operational risk. Quarterly review cadence is a proposal, not a registry-prescribed rule; deployers may need to coordinate audit cadence with their own procurement-cycle calendar. Self-attested signed declarations carry only as much weight as the vendor's internal governance — the metric does not validate the underlying evidence, only the publication-and-provenance integrity.
+
+**Novel Thinking / Implications**
+
+> 💡 The Registry is a self-certification scheme; the substantive procurement signal lives in the evidence pack quality, not the listing. A vendor with a fresh, version-matched, signed evidence pack on the Hub is materially distinct from a vendor with stale evidence and missing declarations, even though both appear "registered". Treating Hub-publication freshness as a measurable axis lets deployers act on this distinction in their procurement decisions, rather than treating registry presence as binary.
+
+---
+
+### GV.VT-14 🟡 Indicative Pricing Transparency
+
+Publication and currency of the vendor's indicative pricing matrix per the NHS England AVT Self-Certified Supplier Registry requirement (req #12 of 13). The Registry mandates publication of indicative pricing as a listing condition; this metric measures whether the published pricing is current, complete (covers the declared use cases), and aligned with the deployer's contracted scope.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.VT-14 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Applicability** | AVT-Specific |
+| **Source** | NHS England AVT Self-Certified Supplier Registry req #12 |
+
+**Why this tier?**
+
+> Registry listing requirement; documentary check; quarterly cadence aligns with the broader [GV.VT-13 Evidence Pack Freshness](#gv-vt-13) audit. Tier 2 because pricing transparency is a procurement-grade signal but does not directly affect clinical safety; it shapes commercial decision-making and prevents post-procurement scope/price drift.
+
+**Formal Definition**
+
+```
+Three sub-metrics, all binary at the registry-listing-decision threshold:
+
+1. Pricing matrix published: vendor has an indicative pricing matrix on
+   the National Commercial & Procurement Hub.
+2. Coverage of declared use cases: the matrix prices every use case the
+   vendor lists in its registry submission (primary care consultations,
+   secondary care outpatient, mental health, etc.). Use cases listed but
+   not priced are coverage gaps.
+3. Currency: matrix issued ≤ 12 months ago at procurement-decision time;
+   re-published or re-attested annually.
+
+Procurement-time scope-alignment check (deployer-side):
+  scope_aligned = (deployer's contracted scope is a subset of the matrix's
+                   priced use cases) AND (no contracted use case is priced
+                   above the matrix indicative range without explicit
+                   justification)
+```
+
+**Reference Standard**
+
+> The Hub-published pricing matrix is the authoritative source. The deployer's contracted scope (from procurement documentation) is the comparator for scope-alignment. "Indicative" is interpreted as a public reference point — the contracted price may be lower (deployer negotiates down), but a contracted price materially above the matrix figure for the same use case is a transparency failure that the deployer should record. Cross-link to [GV.VT-13 Evidence Pack Freshness](#gv-vt-13) — pricing matrix is one of the 13 components there; this metric provides the substantive content check that VT-13 wraps as a freshness check.
+
+**Operational Specification**
+
+> - **Window:** annual at procurement decision; ad-hoc re-audit on any vendor pricing change-event.
+> - **Population:** all use cases the vendor lists in its registry submission (declared scope) AND all use cases the deployer is contracting for (procurement scope).
+> - **Per-use-case reporting MANDATORY:** the use-case × {priced / not-priced / contracted-above-indicative} matrix per registry submission. Aggregate-only reporting hides scope-coverage gaps.
+> - **Scope-alignment audit:** deployer's IG file records the matched / mismatched use cases; mismatches recorded with reason and accepted-risk decision.
+> - **Currency re-verification:** annual cadence; matrix re-publication date logged; any change > ±20 % from the prior matrix on a contracted use case triggers a procurement-side review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the publication-and-currency requirement is cited from registry req #12. The 12-month annual cadence aligns with [GV.VT-13](#gv-vt-13)'s freshness window. The ±20 % materiality threshold for matrix changes is **proposed in v3.8 as a starting point**, not externally validated — deployers' procurement risk appetite will vary. Indicative; require local calibration against contracted SLA terms before procurement use.
+>
+> - **Pre-deployment gate (procurement):** matrix published; coverage of all contracted use cases; matrix < 12 months old; deployer's scope-alignment audit logged.
+> - **Periodic audit:** annual matrix re-verification; alert on any contracted use case dropping out of the matrix; alert on matrix change > ±20 % on contracted use cases.
+> - **Pause / escalation trigger:** matrix removed from Hub publication; OR contracted use case priced materially above indicative matrix without prior notification; OR matrix > 24 months stale on any contracted use case.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: req #12 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+
+**Limitations**
+
+> "Indicative" pricing is exactly that — the contracted price is what counts commercially. The metric measures publication-and-coverage rather than commercial fairness; a vendor with a transparent matrix that lists very high indicative prices is not necessarily worse than a vendor with a less transparent matrix at lower prices. Commercial assessment sits outside the taxonomy. The registry's enforcement mechanism on pricing matrix currency is also not yet detailed — the metric anticipates that NHSE will publish operational rules that may shift the cadence or scope expectations.
+
+**Novel Thinking / Implications**
+
+> 💡 Pricing transparency is the most commercially-loaded of the registry's 13 categories — it forces vendors to publish what would otherwise be commercially-confidential information as a condition of NHS procurement access. Treating it as a measurable axis of vendor transparency, alongside sub-processor disclosure (GV.VT-7), incident disclosure (GV.VT-5), and audit-trail completeness (GV.VT-4), positions the registry's pricing requirement as part of a broader procurement-time transparency regime rather than an isolated commercial item.

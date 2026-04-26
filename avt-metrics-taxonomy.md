@@ -1,10 +1,10 @@
 # AVT Metrics Taxonomy
 
-> **Draft - v3.7, 2026-04-26.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Draft - v3.8, 2026-04-26 (in progress).** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**215 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extended the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promoted the convention to machine-enforced via two new `audit.py` checks, and published the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics. v3.5 landed the two highest-value tightening waves identified in that classification: 8 compliance/governance core metrics (Wave 1) and 4 privacy-chain metrics (Wave 2). The pattern is now applied to **25 of 43 Tier 1 metrics**. v3.6 completed architectural alignment (Applicability is now a 12th dimension on every metric, removing a parallel-source-of-truth inconsistency), published the [duplication review](archive/v3.6-duplication-review.md) classifying every within-group metric pair as `distinct` / `overlapping` / `redundant` (input to v3.7+ scoping), and addressed four v3.5 self-review follow-ups including a new audit check that catches broken cross-reference anchors before they reach the rendered site. v3.7 establishes the [Calibration & Context principle](#calibration-context) as a first-class commitment alongside the [Outcomes Boundary](#outcomes-boundary): tier assignments and threshold numbers are calibration starting points for the deployer to localise against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
+**218 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters within existing groups, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. Version 3 incorporates metrics responding to the January–March 2026 NHS guidance suite, the 2025–2026 evaluation science literature (SCRIBE, CREOLA, VeriFact, MedHELM, CHECK), and regulatory developments (FDA PCCP, EU AI Act high-risk provisions). v3.3 added an explicit [Outcomes Boundary](#outcomes-boundary) statement (this taxonomy assures deployment safety, not clinical-outcome validation) and a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes on nine Tier 1 metrics. v3.4 extended the pattern to 13 Tier 1 metrics (adding the operational/proxy class), promoted the convention to machine-enforced via two new `audit.py` checks, and published the full TIGHT / LOOSE / SURROGATE classification of the remaining 30 Tier 1 metrics. v3.5 landed the two highest-value tightening waves identified in that classification: 8 compliance/governance core metrics (Wave 1) and 4 privacy-chain metrics (Wave 2). The pattern is now applied to **25 of 43 Tier 1 metrics**. v3.6 completed architectural alignment (Applicability is now a 12th dimension on every metric, removing a parallel-source-of-truth inconsistency), published the [duplication review](archive/v3.6-duplication-review.md) classifying every within-group metric pair as `distinct` / `overlapping` / `redundant` (input to v3.7+ scoping), and addressed four v3.5 self-review follow-ups including a new audit check that catches broken cross-reference anchors before they reach the rendered site. v3.7 establishes the [Calibration & Context principle](#calibration-context) as a first-class commitment alongside the [Outcomes Boundary](#outcomes-boundary): tier assignments and threshold numbers are calibration starting points for the deployer to localise against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
 ## How to Use This Taxonomy
 
@@ -145,7 +145,7 @@ A trust with multiple AVT platforms deployed across different services should pr
 ### By Priority Tier
 
 - **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 93 metrics - recommended with reasonable governance capacity
+- **🟡 Tier 2 - Recommended Assurance**: 96 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -302,12 +302,12 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 - [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
 - [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
-- [Security & Adversarial Robustness](#security-adversarial-robustness) (11 metrics)
+- [Security & Adversarial Robustness](#security-adversarial-robustness) (12 metrics)
 - [Privacy & Data Governance](#privacy-data-governance) (11 metrics - 7 Tier 1)
 - [Operational](#operational) (9 metrics - 3 Tier 1)
 - [Environmental & Sustainability](#environmental-sustainability) (3 metrics) *NEW GROUP*
 - [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
-- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (8 metrics - 3 Tier 1)
+- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (10 metrics - 3 Tier 1)
 
 **Part F - Evaluation Science**
 
@@ -340,10 +340,10 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 | Classification | Count | Percentage |
 |----------------|-------|------------|
-| AVT-Specific | 48 | 22% |
-| AVT-Contextualised | 76 | 35% |
-| General Healthcare AI | 91 | 43% |
-| **Total** | **215** | **100%** |
+| AVT-Specific | 50 | 23% |
+| AVT-Contextualised | 77 | 35% |
+| General Healthcare AI | 91 | 42% |
+| **Total** | **218** | **100%** |
 
 ### By Part
 
@@ -353,9 +353,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | B - Pipeline Interactions | 8 | 13 | 0 | 21 |
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
-| E - System Governance | 6 | 0 | 68 | 74 |
+| E - System Governance | 8 | 1 | 68 | 77 |
 | F - Evaluation Science | 0 | 0 | 9 | 9 |
-| **Total** | **48** | **76** | **91** | **215** |
+| **Total** | **50** | **77** | **91** | **218** |
 
 
 ### Full Classification
@@ -595,7 +595,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.CR-9 | FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 Tier 2 | General Healthcare AI |
 | GV.CR-10 | EU AI Act Event Logging Compliance | 🟡 Tier 2 | General Healthcare AI |
 
-**Security & Adversarial Robustness** (11 metrics)
+**Security & Adversarial Robustness** (12 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -610,6 +610,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.SC-9 | Cross-Patient Information Leakage Rate | 🟡 Tier 2 | General Healthcare AI |
 | GV.SC-10 | Clinician Identity Authentication | 🟡 Tier 2 | General Healthcare AI |
 | GV.SC-11 | Membership Inference Attack AUC | 🔵 Tier 3 | General Healthcare AI |
+| GV.SC-12 | Cyber Essentials Plus Certification Status | 🟡 Tier 2 | AVT-Contextualised |
 
 **Privacy & Data Governance** (11 metrics)
 
@@ -659,7 +660,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.TC-4 | Trainee Impact Assessment | 🔵 Tier 3 | General Healthcare AI |
 | GV.TC-5 | Training Material Currency | 🟡 Tier 2 | General Healthcare AI |
 
-**Vendor Transparency & Contractual** (8 metrics)
+**Vendor Transparency & Contractual** (10 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -671,6 +672,8 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-6 | Exit & Data Portability Provisions | 🟡 Tier 2 | General Healthcare AI |
 | GV.VT-7 | Sub-Processor Transparency | 🟢 Tier 1 | General Healthcare AI |
 | GV.VT-8 | Intermediate Output Access | 🟡 Tier 2 | General Healthcare AI |
+| GV.VT-13 | Evidence Pack Freshness | 🟡 Tier 2 | AVT-Specific |
+| GV.VT-14 | Indicative Pricing Transparency | 🟡 Tier 2 | AVT-Specific |
 
 #### Part F - Evaluation Science
 
@@ -1089,14 +1092,14 @@ The registry as published in the Find a Tender notice and the NHS England long-r
 | 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance |
 | 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
 | 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
-| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-10 Indicative Pricing Transparency** (new in v3.8) |
+| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
 | 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across Part E and Part F. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
 
 #### Self-certification provenance
 
 Because the scheme is self-certified, the *integrity* of the published evidence pack (currency, signed declarations, change-tracking against the Hub) is itself a procurement-relevant signal. The taxonomy treats this as a separate concern:
 
-- **GV.VT-9 Evidence Pack Freshness** (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial & Procurement Hub
+- **GV.VT-13 Evidence Pack Freshness** (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial & Procurement Hub
 - **GV.CR-4 AVT Supplier Registry Listing Verification** (existing, tightened in v3.8) — verifies listing status, attestation date, and scope of attested compliance
 
 #### Registry operational shape
@@ -1109,8 +1112,8 @@ Because the scheme is self-certified, the *integrity* of the published evidence 
 #### Summary of taxonomy alignment with the Registry
 
 - **11 of 13 registry categories** have direct or strong coverage from existing metrics and prior framework mappings (DTAC, DSPT, DCB0129/0160, MHRA, NHS T.E.S.T.).
-- **2 categories** previously lacked taxonomy metrics — **Cyber Essentials** (registry req #5) and **Indicative Pricing Transparency** (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-10 to close these.
-- **1 category** is registry-internal and warrants its own metric — **Evidence Pack Freshness** for the self-certified Hub publication. v3.8 introduces GV.VT-9.
+- **2 categories** previously lacked taxonomy metrics — **Cyber Essentials** (registry req #5) and **Indicative Pricing Transparency** (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-14 to close these.
+- **1 category** is registry-internal and warrants its own metric — **Evidence Pack Freshness** for the self-certified Hub publication. v3.8 introduces GV.VT-13.
 - **1 category** (registry req #13, AI/LLM-specific monitoring) is referenced but not yet specified; v3.8 documents the gap without a metric, pending NHS England publication of detail.
 
 The Registry is best understood as an **integration / aggregation layer** over the framework set already mapped, plus three registry-specific procurement-signal gaps that the v3.8 metrics address.
@@ -10945,6 +10948,83 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 
 > 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
 
+---
+
+### GV.SC-12 🟡 Cyber Essentials Plus Certification Status
+
+Whether the AVT vendor holds current **Cyber Essentials Plus** certification (the UK government-backed cyber-security baseline scheme administered by IASME under NCSC oversight). Cyber Essentials is **a registry listing requirement** under the NHS England AVT Self-Certified Supplier Registry (req #5 of 13) and is increasingly treated as a baseline expectation across NHS digital procurement; the taxonomy did not previously have a dedicated metric for it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.SC-12 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; annual re-verification |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Security |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | NHS England AVT Self-Certified Supplier Registry (req #5); IASME Cyber Essentials scheme; NCSC guidance |
+
+**Why this tier?**
+
+> Registry listing requirement plus baseline NHS digital-procurement expectation. Documentary check (annual re-verification cadence is fixed by the IASME scheme). Tier 2 because it is a procurement-time check rather than a continuous-monitoring signal; Cyber Essentials Plus itself does not address AI-specific threats (those are covered by other GV.SC metrics), but its absence is a procurement-grade red flag.
+
+**Formal Definition**
+
+```
+Three sub-metrics, all binary:
+
+1. Certification status: vendor holds a valid Cyber Essentials Plus
+   certificate (basic Cyber Essentials is insufficient — the registry
+   requires Plus for the audited variant).
+2. Certificate currency: certificate issued ≤ 12 months ago at the time
+   of the deployer's procurement decision and re-verified annually
+   thereafter (IASME re-certification cadence is annual).
+3. In-scope coverage: the certificate's scope statement covers the AVT
+   product and its hosting infrastructure (not just a parent corporate
+   entity unrelated to the deployed product).
+
+Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
+```
+
+**Reference Standard**
+
+> The IASME-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+
+**Operational Specification**
+
+> - **Window:** annual; re-verified at each procurement decision and on certificate renewal.
+> - **Population:** the AVT vendor entity and every sub-processor named in [GV.VT-7](#gv-vt-7) handling personal data. Sub-processor certificates can be theirs (independent Cyber Essentials Plus) or covered explicitly under the vendor's certificate scope.
+> - **Three sub-metrics MANDATORY:** certification status / currency / in-scope coverage reported separately. Aggregate-only reporting hides the failure mode (e.g. a vendor with current certification but scope that doesn't cover the AVT product).
+> - **Scope-mismatch handling:** any sub-processor without certification AND without explicit coverage under the vendor's certificate is a flagged exception; the deployer's IG file must record reason and accepted-risk decision.
+> - **Re-verification cadence:** annual at minimum; on certificate renewal; on any change to vendor's [GV.SG-1 Model Version Tracking](#gv-sg-1) hosting-or-sub-processor stack.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from the NHS England AVT Self-Certified Supplier Registry and the IASME scheme. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+>
+> - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
+> - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
+> - **Pause / escalation trigger:** certificate lapsed; OR certificate scope demonstrably does not cover deployed AVT product or in-scope sub-processors; OR vendor has descended from Plus to basic Cyber Essentials.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: registry req #5 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- **IASME**: Cyber Essentials Plus scheme administrator
+- **NCSC**: Cyber Essentials guidance
+
+**Limitations**
+
+> Cyber Essentials Plus is a baseline scheme — it covers patch management, secure configuration, user-access control, malware protection, and firewalls / boundary-defences. It does **not** cover AI-specific threats (prompt injection, model-extraction, training-data poisoning), which are handled by other GV.SC metrics in the taxonomy. A vendor with current Plus certification can still be deeply vulnerable on AI-specific surfaces; the metric is a necessary-but-not-sufficient procurement check. Annual cadence also lags the change-rate of cloud architectures — between certifications, sub-processor changes can move parts of the stack out of certified scope without triggering an immediate re-cert.
+
+**Novel Thinking / Implications**
+
+> 💡 Cyber Essentials Plus is the most baseline cyber-hygiene assurance in UK public procurement, and its absence is a hard signal. But the registry treats it as a checkbox, and treating it as anything more than that risks substituting compliance theatre for genuine security analysis. The metric exists to make the checkbox visible at procurement and to flag the scope-coverage drift problem (cloud-architecture change outpaces annual certification) — not to suggest that Cyber Essentials Plus is itself sufficient AVT security assurance.
+
 ### GV.PD-1 🟢 Audio Retention Compliance
 
 Whether audio recordings are retained, for how long, and whether retention complies with the stated DPIA and privacy notice. Includes monitoring for unauthorised retention beyond stated periods.
@@ -12594,6 +12674,162 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 > 💡 Many of the highest-value metrics in this taxonomy - Error Attribution Analysis, Source-to-Record Concordance, Safety-Critical Information Chain of Custody, Error Cascade Analysis - depend on intermediate output access that vendors rarely provide. Making this a procurement gate creates pressure for vendors to either provide access or compete on terms with those who do. Without contractual intermediate output access, most sophisticated assurance metrics are theoretical rather than operational.
 
 ---
+
+### GV.VT-13 🟡 Evidence Pack Freshness
+
+Currency and provenance of the vendor's published evidence pack on the National Commercial & Procurement Hub. The NHS England AVT Self-Certified Supplier Registry is a self-certification scheme — NHSE undertakes only preliminary completion checks; the substantive evidence (DCB0129 hazard log, DTAC, DSPT, DPIA, MHRA registration, post-market surveillance plans, etc.) is published by the vendor for adopting Trusts to inspect. The integrity of that evidence pack is therefore a procurement-relevant signal: stale evidence published two years ago against a system that has since changed three times is materially worse than current evidence against a stable system, even if both vendors appear listed.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.VT-13 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
+| **Source** | NHS England AVT Self-Certified Supplier Registry; National Commercial & Procurement Hub publication mechanism |
+
+**Why this tier?**
+
+> The Registry is self-certified; evidence pack integrity carries the substantive procurement signal that NHSE's preliminary completion check does not. Tier 2 because it is documentary, periodic, and the Hub-publication mechanism is itself emerging — re-audit cadence rules are not yet fully published by NHSE.
+
+**Formal Definition**
+
+```
+For each evidence-pack component published on the Hub (DCB0129 safety case,
+DTAC self-assessment, DSPT compliance statement, DPIA reference, MHRA
+registration, Cyber Essentials Plus certificate, post-market surveillance
+plan, indicative pricing matrix, performance-and-monitoring response
+document, AI/LLM-specific safety governance evidence):
+
+  Currency = age of the published artefact at audit time
+  Latest-version-match = whether the Hub-published version matches the
+    vendor's current internal version
+  Signed-declaration provenance = whether the publication carries a
+    dated signed declaration from a named accountable individual at the
+    vendor
+
+Composite freshness score per component:
+  Fresh: published ≤ 12 months ago AND latest-version-match TRUE AND
+    signed-declaration present and ≤ 12 months old
+  Aging: 12-24 months on any axis
+  Stale: > 24 months on any axis OR signed-declaration missing
+```
+
+**Reference Standard**
+
+> The National Commercial & Procurement Hub-published evidence pack is the authoritative source. The vendor's *current internal* version of each artefact (held in their own governance file) is the comparator for latest-version-match. Where the Hub publication and the vendor's internal version diverge, the divergence itself is the finding — irrespective of which is "right" — because the deployer's procurement decision is made against the Hub-published version. Cross-link to [GV.CR-4 AVT Supplier Registry Listing Verification](#gv-cr-4) — that metric verifies the *listing*; this metric verifies the *evidence pack quality*.
+
+**Operational Specification**
+
+> - **Window:** quarterly Hub-publication review at minimum; ad-hoc re-audit on any vendor change-event per [GV.SG-1 Model Version Tracking](#gv-sg-1).
+> - **Population:** all evidence-pack components in the registry's 13-category schema. Per-component reporting MANDATORY.
+> - **Composite freshness MANDATORY:** Fresh / Aging / Stale label per component. Aggregate-only reporting hides the failure pattern (e.g. an evidence pack with current DCB0129 but stale DPIA is materially different from one with the inverse).
+> - **Latest-version-match audit:** at procurement time, the deployer's IG file records the Hub-published version-strings observed and the vendor-attested current versions; subsequent quarterly audits compare against those baselines.
+> - **Signed-declaration provenance MANDATORY:** every component carries a dated signed declaration from a named accountable individual; absence is a Stale finding regardless of artefact age.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the IASME Cyber Essentials Plus annual cadence and the typical UK GDPR DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+>
+> - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
+> - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
+> - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component (DCB0129 safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry)
+
+**Limitations**
+
+> The metric depends on the National Commercial & Procurement Hub being a stable publication channel; NHSE's content-migration activity during 2026 is a current operational risk. Quarterly review cadence is a proposal, not a registry-prescribed rule; deployers may need to coordinate audit cadence with their own procurement-cycle calendar. Self-attested signed declarations carry only as much weight as the vendor's internal governance — the metric does not validate the underlying evidence, only the publication-and-provenance integrity.
+
+**Novel Thinking / Implications**
+
+> 💡 The Registry is a self-certification scheme; the substantive procurement signal lives in the evidence pack quality, not the listing. A vendor with a fresh, version-matched, signed evidence pack on the Hub is materially distinct from a vendor with stale evidence and missing declarations, even though both appear "registered". Treating Hub-publication freshness as a measurable axis lets deployers act on this distinction in their procurement decisions, rather than treating registry presence as binary.
+
+---
+
+### GV.VT-14 🟡 Indicative Pricing Transparency
+
+Publication and currency of the vendor's indicative pricing matrix per the NHS England AVT Self-Certified Supplier Registry requirement (req #12 of 13). The Registry mandates publication of indicative pricing as a listing condition; this metric measures whether the published pricing is current, complete (covers the declared use cases), and aligned with the deployer's contracted scope.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.VT-14 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | Periodic audit |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Meta-evaluation |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Process |
+| **Applicability** | AVT-Specific |
+| **Source** | NHS England AVT Self-Certified Supplier Registry req #12 |
+
+**Why this tier?**
+
+> Registry listing requirement; documentary check; quarterly cadence aligns with the broader [GV.VT-13 Evidence Pack Freshness](#gv-vt-13) audit. Tier 2 because pricing transparency is a procurement-grade signal but does not directly affect clinical safety; it shapes commercial decision-making and prevents post-procurement scope/price drift.
+
+**Formal Definition**
+
+```
+Three sub-metrics, all binary at the registry-listing-decision threshold:
+
+1. Pricing matrix published: vendor has an indicative pricing matrix on
+   the National Commercial & Procurement Hub.
+2. Coverage of declared use cases: the matrix prices every use case the
+   vendor lists in its registry submission (primary care consultations,
+   secondary care outpatient, mental health, etc.). Use cases listed but
+   not priced are coverage gaps.
+3. Currency: matrix issued ≤ 12 months ago at procurement-decision time;
+   re-published or re-attested annually.
+
+Procurement-time scope-alignment check (deployer-side):
+  scope_aligned = (deployer's contracted scope is a subset of the matrix's
+                   priced use cases) AND (no contracted use case is priced
+                   above the matrix indicative range without explicit
+                   justification)
+```
+
+**Reference Standard**
+
+> The Hub-published pricing matrix is the authoritative source. The deployer's contracted scope (from procurement documentation) is the comparator for scope-alignment. "Indicative" is interpreted as a public reference point — the contracted price may be lower (deployer negotiates down), but a contracted price materially above the matrix figure for the same use case is a transparency failure that the deployer should record. Cross-link to [GV.VT-13 Evidence Pack Freshness](#gv-vt-13) — pricing matrix is one of the 13 components there; this metric provides the substantive content check that VT-13 wraps as a freshness check.
+
+**Operational Specification**
+
+> - **Window:** annual at procurement decision; ad-hoc re-audit on any vendor pricing change-event.
+> - **Population:** all use cases the vendor lists in its registry submission (declared scope) AND all use cases the deployer is contracting for (procurement scope).
+> - **Per-use-case reporting MANDATORY:** the use-case × {priced / not-priced / contracted-above-indicative} matrix per registry submission. Aggregate-only reporting hides scope-coverage gaps.
+> - **Scope-alignment audit:** deployer's IG file records the matched / mismatched use cases; mismatches recorded with reason and accepted-risk decision.
+> - **Currency re-verification:** annual cadence; matrix re-publication date logged; any change > ±20 % from the prior matrix on a contracted use case triggers a procurement-side review.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the publication-and-currency requirement is cited from registry req #12. The 12-month annual cadence aligns with [GV.VT-13](#gv-vt-13)'s freshness window. The ±20 % materiality threshold for matrix changes is **proposed in v3.8 as a starting point**, not externally validated — deployers' procurement risk appetite will vary. Indicative; require local calibration against contracted SLA terms before procurement use.
+>
+> - **Pre-deployment gate (procurement):** matrix published; coverage of all contracted use cases; matrix < 12 months old; deployer's scope-alignment audit logged.
+> - **Periodic audit:** annual matrix re-verification; alert on any contracted use case dropping out of the matrix; alert on matrix change > ±20 % on contracted use cases.
+> - **Pause / escalation trigger:** matrix removed from Hub publication; OR contracted use case priced materially above indicative matrix without prior notification; OR matrix > 24 months stale on any contracted use case.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: req #12 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+
+**Limitations**
+
+> "Indicative" pricing is exactly that — the contracted price is what counts commercially. The metric measures publication-and-coverage rather than commercial fairness; a vendor with a transparent matrix that lists very high indicative prices is not necessarily worse than a vendor with a less transparent matrix at lower prices. Commercial assessment sits outside the taxonomy. The registry's enforcement mechanism on pricing matrix currency is also not yet detailed — the metric anticipates that NHSE will publish operational rules that may shift the cadence or scope expectations.
+
+**Novel Thinking / Implications**
+
+> 💡 Pricing transparency is the most commercially-loaded of the registry's 13 categories — it forces vendors to publish what would otherwise be commercially-confidential information as a condition of NHS procurement access. Treating it as a measurable axis of vendor transparency, alongside sub-processor disclosure (GV.VT-7), incident disclosure (GV.VT-5), and audit-trail completeness (GV.VT-4), positions the registry's pricing requirement as part of a broader procurement-time transparency regime rather than an isolated commercial item.
 
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
