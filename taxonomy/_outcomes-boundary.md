@@ -42,10 +42,10 @@ Three reasons this is drawn explicitly rather than left implicit:
 
 For the questions this taxonomy does not answer, deployers should:
 
-- **Require post-market outcome studies** in vendor contracts. The two new meta-metrics in this v3.3 release operationalise this requirement: [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether a vendor has committed (protocol, registration, post-market surveillance plan) to outcome evaluation; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) measures whether the vendor has specified how the proximal metrics in this taxonomy connect to claimed distal outcomes.
+- **Require post-market outcome studies** in vendor contracts. The two new meta-metrics in this v3.3 release operationalise this requirement: [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) measures whether a vendor has committed (protocol, registration, post-market surveillance plan) to outcome evaluation; [ES.ME-9 Causal Model Operationalisation](#es-me-9) measures whether the vendor has specified how the proximal metrics in this taxonomy connect to claimed distal outcomes.
 - **Require T.E.S.T. Section B RCT evidence** where Gold certification (national-scale deployment) is sought. T.E.S.T. awards 50 of 420 points for clinical validation through RCTs or sufficiently powered NHS pilot studies; this taxonomy treats that evidence as input to procurement, not output of measurement.
 - **Treat proximal metrics as deployment-safety signals, not as evidence of clinical benefit.** Hallucination rate is a safety-floor signal; edit rate is a workflow-and-attention signal; cumulative information yield is a fidelity signal. None of these establish that the deployed system improves care.
-- **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
+- **Consult [ES.ME-1 Proximal vs Distal Outcome Distinction](#es-me-1)** for the causal-logic framework that names what proximal-to-distal evidence vendors must supply, and what this taxonomy's metrics do and do not establish.
 
 ### Cross-references
 

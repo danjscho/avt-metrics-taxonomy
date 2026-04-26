@@ -1,11 +1,3 @@
-# Part D - Impact & Outcomes
-
-## Patient Experience
-
-*Direct impact on the individual patient: consent, disclosure, therapeutic relationship.*
-
-**Tier breakdown**: 🟢 1 Tier 1 · 🔵 5 Tier 3
-
 ### IO.PX-1 🟢 Patient Opt-Out Rate
 
 Percentage declining AVT. Disaggregate by demographics to reveal equity issues in consent model.
@@ -22,6 +14,7 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | NAS SPI; CQC Mythbuster 109 |
 
 **Why this tier?**
@@ -39,14 +32,14 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 > EPR + AVT product workflow telemetry. Two distinct opt-out events MUST be tracked separately:
 >
 > - **Registration-level opt-out** - patient declines AVT use across all encounters with the practice (status set in patient record)
-> - **Per-encounter opt-out** - patient declines AVT for a specific consultation while remaining eligible elsewhere (cross-link to [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate))
+> - **Per-encounter opt-out** - patient declines AVT for a specific consultation while remaining eligible elsewhere (cross-link to [GV.CR-1 Patient Dissent Recording Rate](#gv-cr-1))
 >
-> Aggregating the two hides the underlying signal. The denominator `P_offered` is the count of patients to whom AVT use was offered (not consultations); a patient declining once and accepting later contributes once to numerator and once to denominator. Pre-conditions for inclusion: the patient was demonstrably informed (cross-link to [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)) - undocumented offers are excluded with reason.
+> Aggregating the two hides the underlying signal. The denominator `P_offered` is the count of patients to whom AVT use was offered (not consultations); a patient declining once and accepting later contributes once to numerator and once to denominator. Pre-conditions for inclusion: the patient was demonstrably informed (cross-link to [GV.CR-2 Verbal Notification Compliance](#gv-cr-2)) - undocumented offers are excluded with reason.
 
 **Operational Specification**
 
 > - **Window:** continuous; monthly aggregate per practice and per clinician.
-> - **Population:** all patients offered AVT during the window. Excludes patients for whom AVT was not offered (e.g. consultation type explicitly carved out under [GV.CR-14 Consultation-Type Appropriateness Assessment](#gvcr-14-consultation-type-appropriateness-assessment) when implemented).
+> - **Population:** all patients offered AVT during the window. Excludes patients for whom AVT was not offered (e.g. consultation type explicitly carved out under proposed metric *GV.CR-14 Consultation-Type Appropriateness Assessment* — see Roadmap — when implemented).
 > - **Demographic disaggregation MANDATORY:** opt-out rate stratified by age band, sex, ethnicity, and primary language at minimum. Disability status and deprivation index where the data is available. Aggregate-only reporting hides the equity signal that is the metric's primary purpose.
 > - **Statistical test MANDATORY:** χ² (or Fisher's exact for small cells) test for independence between opt-out and each demographic axis, with multiple-comparison correction (Holm-Bonferroni or FDR) across axes. Report both raw rates and significance.
 > - **Trajectory MANDATORY:** monthly opt-out rate trajectory per practice; rising aggregate rate is a separate signal from disparate rate, and both matter.
@@ -57,7 +50,7 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
 > - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.
-> - **Pause / review trigger:** demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises > 5 percentage points (signals trust deterioration). Pair with [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance) to test whether the consent model is the cause.
+> - **Pause / review trigger:** demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises > 5 percentage points (signals trust deterioration). Pair with [GV.CR-2 Verbal Notification Compliance](#gv-cr-2) to test whether the consent model is the cause.
 
 **References**
 
@@ -89,6 +82,7 @@ When patients are shown their AVT-generated notes, do they recognise the consult
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Patient-centred care evaluation methodology |
 
 **Why this tier?**
@@ -127,6 +121,7 @@ Does the note capture the patient's emotional state when clinically relevant? AV
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified gap in clinical AI evaluation - affective content is systematically deprioritised |
 
 **Why this tier?**
@@ -165,6 +160,7 @@ Does the note use language that respects the patient's cultural and linguistic c
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Patient-centred care literature; growing concern with patient access to records |
 
 **Why this tier?**
@@ -203,6 +199,7 @@ Whether AVT suppresses sensitive disclosures. Most under-researched risk - popul
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | NHSE LLM framework gap analysis |
 
 **Why this tier?**
@@ -241,6 +238,7 @@ How AVT affects consultation quality. Net impact depends on whether review is in
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Consultation quality literature |
 
 **Why this tier?**
@@ -287,6 +285,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Responsible Actors** |Deployer, Academic                                              |
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
+|**Applicability**      |AVT-Contextualised                                              |
 |**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
 
 **Why this tier?**
@@ -325,6 +324,7 @@ When AI-generated clinical summaries are shared with patients (via NHS App, pati
 |**Responsible Actors** |Deployer, Academic                                                       |
 |**Maturity**           |Proposed / Novel                                                         |
 |**Outcome Type**       |Distal                                                                   |
+|**Applicability**      |General Healthcare AI                                                    |
 |**Source**             |Health literacy research; growing relevance as patient access to records expands|
 
 **Why this tier?**
@@ -363,6 +363,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 |**Responsible Actors** |Academic, National Body                                           |
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
+|**Applicability**      |General Healthcare AI                                             |
 |**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
 
 **Why this tier?**
@@ -401,6 +402,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Responsible Actors** |National Body, Academic                                              |
 |**Maturity**           |Proposed / Novel                                                     |
 |**Outcome Type**       |Distal                                                               |
+|**Applicability**      |General Healthcare AI                                                |
 |**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
 
 **Why this tier?**

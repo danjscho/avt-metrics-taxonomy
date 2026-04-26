@@ -1,38 +1,3 @@
-## ASR / Transcription
-
-*Audio → text. Foundational accuracy everything depends on.*
-
-**Tier breakdown**: 🟢 2 Tier 1 · 🟡 6 Tier 2 · 🔵 4 Tier 3
-
-### Family: Clinical Transcription Accuracy
-
-> **Parent construct** - how accurately the ASR layer transcribes the source audio, with clinical significance weighting that reflects the asymmetric cost of errors on clinical vs non-clinical content.
->
-> The next three metrics form one family of increasing clinical sophistication. Treating them as separate unrelated metrics obscures the progression: each one answers the same fundamental question - *how many words did the ASR get wrong, and how bad were the wrong ones?* - at a different level of clinical awareness.
->
-> **Three implementation levels of one construct:**
->
-> 1. **Raw WER** - all word errors weighted equally. A misheard "the" counts the same as a misheard drug name. Technically rigorous and widely reported, but clinically uninformative because a 5% WER could be safe or dangerous depending on which words are wrong. Acceptable as a technical benchmark and for cross-system comparison on common test sets; inadequate as a clinical safety indicator.
->
-> 2. **Medical WER (M-WER)** - errors weighted by whether the token belongs to a clinically significant class (drug names, dosages, diagnoses, safety-critical terminology). Reveals whether the system preserves the content that matters most, independent of filler and non-clinical speech accuracy. Abridge's **Medical Term Recall (MTR)** and DeepScribe's **Medical Word Hit Rate** are functionally equivalent implementations of the same underlying construct, even though they are reported under different names - a vendor reporting MTR is reporting the same thing as a vendor reporting M-WER, with different clinical term lists and weighting schemes. The **⚠️ Underspecification Warning** applies: no standardised clinical significance ontology exists, so cross-vendor M-WER comparison is not currently meaningful.
->
-> 3. **Clinical Keyword Error Rate (CK-ER)** - binary per clinical keyword: was each safety-critical term captured correctly, yes or no? A more actionable variant of M-WER that can run as an automated guardrail on every encounter. Better suited to continuous monitoring than to benchmarking because its sensitivity depends entirely on the keyword dictionary used.
->
-> **Cross-vendor comparability problem.** All three tiers suffer from the same fundamental issue: **without a standardised clinical term list or significance ontology, vendor-reported values are not directly comparable**. A vendor claiming 95% M-WER against one term list is not comparable to another vendor claiming 95% against a different term list. Cross-vendor procurement comparisons should either use a nationally standardised term list (which does not yet exist for NHS) or explicitly require the vendor to publish their term list and provenance alongside the reported value. This is a candidate area for NHS England or equivalent national body specification work - a canonical clinical term list mapped to SNOMED safety-critical concept classes would make the family's metrics meaningful as procurement signals for the first time.
->
-> **How this family relates to other ASR metrics in the taxonomy.** Three ASR metrics sit outside this family because they measure different things:
->
-> - **Character Error Rate (CER)** is orthogonal - it measures error rate at character level rather than word level, and is used to detect subword errors in medical terminology (e.g. "amoxicillin" vs "amoxycillin") that WER at the word level misses.
-> - **Demographic-Disaggregated WER** and **Speaker-Stratified WER** are disaggregation axes that can be applied to any of the three metrics in this family. You can compute raw WER disaggregated by accent, or M-WER disaggregated by speaker role, etc.
-> - **Numeric Accuracy** is a category-specific extension that measures accuracy on numbers (dosages, dates, vital signs). Treat it as a mandatory companion metric to Clinical Transcription Accuracy because numeric errors have outsized clinical consequences.
->
-> **Metrics in this family:**
-> - 🟡 **Word Error Rate (WER)** - level 1, raw. Necessary as a technical benchmark; insufficient alone for clinical safety.
-> - 🔵 **Medical Word Error Rate (M-WER)** - level 2, significance-weighted. Reveals whether clinical content is preserved. Underspecified pending a standardised ontology.
-> - 🔵 **Clinical Keyword Error Rate (CK-ER)** - level 3, per-keyword binary. Usable as an automated guardrail on every encounter. Underspecified pending a standardised keyword dictionary.
-
----
-
 ### TP.ASR-1 🟡 Word Error Rate (WER)
 
 Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' counts the same as a misheard drug name.
@@ -49,6 +14,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard ASR literature; used in SCRIBE framework (Wang et al. 2025) |
 
 **Why this tier?**
@@ -106,6 +72,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Proposed in OxonFair extension analysis |
 
 **Why this tier?**
@@ -186,6 +153,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Derived from OxonFair healthcare voice fairness analysis |
 
 **Why this tier?**
@@ -276,6 +244,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | NAS framework Day Zero SPIs; NHSE IG guidance (March 2026) |
 
 **Why this tier?**
@@ -346,6 +315,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | OxonFair extension analysis |
 
 **Why this tier?**
@@ -388,6 +358,7 @@ Proportion of ASR transcription errors that survive into the final clinical note
 |**Responsible Actors** |Vendor                                                                 |
 |**Maturity**           |Emerging                                                               |
 |**Outcome Type**       |Proximal                                                               |
+|**Applicability**      |AVT-Specific                                                           |
 |**Source**             |Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)|
 
 **Why this tier?**
@@ -424,6 +395,7 @@ Processing speed relative to audio duration. RTF < 1.0 = faster than real-time.
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard ASR performance metric |
 
 **Why this tier?**
@@ -458,6 +430,7 @@ Character-level edit distance between reference and hypothesis. More sensitive t
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard ASR literature |
 
 **Why this tier?**
@@ -513,6 +486,7 @@ Proportion of tokens the ASR model doesn't recognise as valid vocabulary. New dr
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard speech recognition literature |
 
 **Why this tier?**
@@ -551,6 +525,7 @@ Whether the ASR's stated confidence scores correlate with actual accuracy. A poo
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Machine learning calibration literature |
 
 **Why this tier?**
@@ -593,6 +568,7 @@ Whether the ASR system exposes per-token or per-segment confidence scores to dow
 |**Responsible Actors** |Vendor                                                          |
 |**Maturity**           |Proposed / Novel                                                |
 |**Outcome Type**       |Proximal                                                        |
+|**Applicability**      |AVT-Specific                                                    |
 |**Source**             |Derived from Abridge Linked Evidence architecture; confidence-based routing literature|
 
 **Why this tier?**
@@ -629,6 +605,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Koenecke et al. 2024 'Careless Whisper'; specific to neural end-to-end ASR architectures |
 
 **Why this tier?**
@@ -671,6 +648,7 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Identified as critical gap in clinical ASR evaluation |
 
 **Why this tier?**
@@ -709,6 +687,7 @@ Accuracy of sentence boundary detection, punctuation, and capitalisation. Affect
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard ASR post-processing literature |
 
 **Why this tier?**

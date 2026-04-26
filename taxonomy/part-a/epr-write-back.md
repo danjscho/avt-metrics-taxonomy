@@ -1,13 +1,3 @@
-## EPR Write-back
-
-*Data to permanent record. Where errors become patient safety events.*
-
-**Tier breakdown**: 🟢 4 Tier 1 · 🟡 2 Tier 2 · 🔵 1 Tier 3
-
-### Write-back Safety sub-cluster
-
-*The four Tier 1 metrics that must pass before any AVT system writes to a live patient record. Each addresses a distinct failure mode at the EPR integration boundary: content correctness (Write-back Fidelity), pipeline reliability (Integration Error Rate), field routing (Field Mapping Accuracy), and data update semantics (Update vs Append Behaviour). All are pre-deployment gates; all are safety-critical.*
-
 ### TP.WB-1 🟢 Write-back Fidelity
 
 Data transfer accuracy to EPR structured fields. Where errors become patient safety events - hallucinated allergy in allergy field propagates to all future decisions.
@@ -24,6 +14,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
 
 **Why this tier?**
@@ -41,7 +32,7 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 > Pre-defined gold-standard test corpus per target EPR (EMIS, SystmOne, Epic, others as applicable). Each test case specifies: source AVT output (transcript + summary), expected target EPR field, expected content semantically equivalent to a clinician-authored entry. "Content correct" decomposes into:
 >
 > - **Structural equivalence** - the value lands in the field of the correct datatype (string, coded value, numeric, date) with correct units where applicable
-> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tpsn-6-omission-rate) reference standard
+> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tp-sn-6) reference standard
 > - **No content addition** - the value introduces no information absent from the AVT output. Hallucinated content reaching a structured field counts as a write-back failure even where the same content in free text would be a TP.SN-5 hallucination
 >
 > Inter-rater target on test-case construction: ICC ≥ 0.85 (write-back fidelity is a more constrained task than free-text fidelity; higher reliability expected).
@@ -92,6 +83,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Standard integration monitoring; IM1 requirements |
 
 **Why this tier?**
@@ -126,6 +118,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as distinct failure mode within write-back |
 
 **Why this tier?**
@@ -164,6 +157,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as safety-critical EPR integration behaviour |
 
 **Why this tier?**
@@ -202,6 +196,7 @@ When errors are detected, can the write-back be reversed cleanly? Particularly i
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as essential for incident response |
 
 **Why this tier?**
@@ -240,6 +235,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Responsible Actors** |Vendor                                   |
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
+|**Applicability**      |AVT-Contextualised                       |
 |**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
 
 **Why this tier?**
@@ -278,6 +274,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |**Responsible Actors** |Vendor                                    |
 |**Maturity**           |Established                               |
 |**Outcome Type**       |Proximal                                  |
+|**Applicability**      |AVT-Contextualised                        |
 |**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
 
 **Why this tier?**

@@ -1,11 +1,3 @@
-# Part B - Pipeline Interactions
-
-## Partial-Pipeline
-
-*Metrics spanning adjacent pipeline stages. Error interactions between components that single-stage metrics miss.*
-
-**Tier breakdown**: 🟡 3 Tier 2 · 🔵 6 Tier 3
-
 ### PI.PP-1 🔵 Speaker-Attributed Transcript Accuracy
 
 Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this - a transcript can have low WER and low DER but still misattribute a critical utterance.
@@ -22,6 +14,7 @@ Combined ASR + diarisation: was the right text assigned to the right person? Nei
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Identified as compound metric gap - neither WER nor DER alone captures this |
 
 **Why this tier?**
@@ -93,6 +86,7 @@ Combined ASR + diarisation degradation when >2 speakers present: interpreter, fa
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Identified in NHS consultation pattern analysis - interpreter-mediated, family-present, and MDT consultations are common |
 
 **Why this tier?**
@@ -131,6 +125,7 @@ Spans ASR + summarisation: what proportion of clinically relevant content in sou
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as structural gap - component metrics don't capture cross-stage information loss |
 
 **Why this tier?**
@@ -197,6 +192,7 @@ Spans ASR + summarisation: how gracefully does the final note quality degrade as
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Proposed for pre-deployment testing - NHS clinical environments have variable acoustics |
 
 **Why this tier?**
@@ -235,6 +231,7 @@ Spans diarisation + summarisation: does the note correctly distinguish what was 
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as critical clinical documentation quality dimension not captured by existing metrics |
 
 **Why this tier?**
@@ -307,6 +304,7 @@ WER computed separately for each speaker after diarisation. Captures the compoun
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Compound metric exposing diarisation impact on ASR measurement |
 
 **Why this tier?**
@@ -345,6 +343,7 @@ Spans summarisation + coding: do the SNOMED codes match the clinical concepts in
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Proposed as automated internal consistency check - no ground truth needed |
 
 **Why this tier?**
@@ -415,6 +414,7 @@ Whether the system correctly identifies where an utterance ends. Affects both di
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Standard speech processing metric |
 
 **Why this tier?**
@@ -453,6 +453,7 @@ Spans summarisation + write-back: does the coded allergy entry agree with allerg
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as post-write-back automated safety check |
 
 **Why this tier?**

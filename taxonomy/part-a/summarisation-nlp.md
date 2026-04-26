@@ -1,35 +1,3 @@
-## Summarisation / NLP
-
-*Transcript → clinical note. Where most safety-critical evaluation science concentrates.*
-
-**Tier breakdown**: 🟢 4 Tier 1 · 🟡 8 Tier 2 · 🔵 8 Tier 3
-
-### Family: Reference-Based Text Similarity
-
-> **Parent construct** - the family of metrics that compare generated text to a reference text and report a similarity score. Technically rigorous; clinically weak.
->
-> The next two metrics are the most widely reported automated metrics in the clinical NLG literature, and the most dangerously misleading when used in isolation. Grouping them makes explicit what the published evidence has shown repeatedly: **reference-based text similarity is a poor proxy for clinical quality in ambient scribe evaluation.**
->
-> **Two implementations, one underlying limitation.** ROUGE and BERTScore differ in their matching algorithms - ROUGE uses n-gram overlap, BERTScore uses contextual embedding similarity - but they share the same fundamental weakness: they measure how closely the generated text resembles a reference text, not whether it represents clinical reality. A note can be clinically accurate while differing substantially from the reference (because the reference itself is one of many valid ways to document the encounter), or clinically wrong while closely matching the reference (because the reference was itself generated from a flawed transcript).
->
-> **The published evidence is clear and damning.** Three specific findings from peer-reviewed clinical evaluation studies should govern how these metrics are used:
->
-> - **ROUGE-L achieved a Kendall-Tau of 0.080** with human expert clinical judgment on clinical diagnosis generation - indistinguishable from random for practical purposes (ar5iv 2305.17364). Croxford et al. (2025, npj Digital Medicine) confirmed this pattern in clinical summarisation evaluation.
-> - **Catastrophic failure modes for ROUGE** were documented with Spearman ρ between −0.66 and −0.77 in some medical contexts - meaning higher ROUGE scores actively correlated with *worse* human judgments.
-> - **BERTScore-R achieved Pearson 0.62 with omission rate** (Croxford et al. 2025), which is materially better than ROUGE but still insufficient as a standalone quality indicator, and the correlation is with one specific error type rather than with overall clinical quality.
->
-> The root cause is the same for both: string matching (ROUGE) and semantic similarity (BERTScore) penalise clinically valid paraphrase and reward surface overlap regardless of clinical meaning.
->
-> **Why the family still exists in the taxonomy.** These metrics retain value in three specific roles: (1) technical benchmarking and regression testing during model development, where the goal is to detect regression in string or semantic overlap against a stable reference; (2) minimum-floor screening at pre-deployment, where a system scoring very badly on both is unlikely to be clinically adequate even if passing is not sufficient; (3) cross-model comparison where the reference is held constant, which controls for the reference-dependence problem. None of these roles justify using the family as the primary quality indicator in deployed clinical assurance.
->
-> **The architectural rule.** Reference-based similarity metrics must be reported alongside a validated clinical instrument - PDSQI-9, CREOLA error taxonomy, or an LLM-as-a-Judge protocol that has been subjected to bias quantification. They must never be reported in isolation as evidence of clinical quality. A vendor reporting ROUGE or BERTScore as their primary or only quality metric should be treated as a procurement red flag: either they do not understand the measurement-science gap in their own field, or they are choosing the metric that flatters their system regardless of clinical relevance. Neither is compatible with NHS clinical deployment.
->
-> **Metrics in this family:**
-> - 🟡 **ROUGE Scores** - n-gram overlap. Technically rigorous; Kendall-Tau 0.080 with clinical judgment. Retain for benchmarking only.
-> - 🔵 **BERTScore** - contextual embedding similarity. Better than ROUGE (Pearson 0.62 with omission rate) but still insufficient alone.
-
----
-
 ### TP.SN-1 🟡 ROUGE Scores
 
 N-gram overlap between generated and reference text. Demonstrably inadequate for clinical safety evaluation.
@@ -46,6 +14,7 @@ N-gram overlap between generated and reference text. Demonstrably inadequate for
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Lin 2004; inadequacy shown by Croxford et al. 2025 |
 
 **Why this tier?**
@@ -114,6 +83,7 @@ Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Zhang et al. 2020; Croxford et al. 2025 |
 
 **Why this tier?**
@@ -171,6 +141,7 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Responsible Actors** | Deployer, Academic |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Stetson et al.; Croxford et al. 2025 |
 
 **Why this tier?**
@@ -214,6 +185,7 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 | **Responsible Actors** | Deployer, Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Asgari et al. 2025 (Tortus/GOSH). Now underpins automated guardrails. |
 
 **Why this tier?**
@@ -285,6 +257,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Various; Tortus 1.47% per sentence |
 
 **Why this tier?**
@@ -378,6 +351,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Tortus 3.45%; CREOLA taxonomy |
 
 **Why this tier?**
@@ -442,6 +416,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Abridge whitepaper (50,000+ training examples) |
 
 **Why this tier?**
@@ -486,6 +461,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 | **Responsible Actors** | Deployer, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Chung et al., Stanford, Jan 2025; NEJM AI |
 
 **Why this tier?**
@@ -555,6 +531,7 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 | **Responsible Actors** | Deployer, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Croxford et al. 2025 |
 
 **Why this tier?**
@@ -601,6 +578,7 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Bedi et al., Stanford CRFM, May 2025 |
 
 **Why this tier?**
@@ -643,6 +621,7 @@ One LLM interrogates another to detect hallucinations without references. Identi
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Kanithi et al. 2025 |
 
 **Why this tier?**
@@ -685,6 +664,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Responsible Actors** | Vendor |
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Abridge Linked Evidence |
 
 **Why this tier?**
@@ -727,6 +707,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Responsible Actors** | Academic, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Wang et al. 2025 (Duke/MedStar) |
 
 **Why this tier?**
@@ -769,6 +750,7 @@ INSYTE underspecification delta when clinicians modify AVT templates. Every modi
 | **Responsible Actors** | Deployer, Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | INSYTE analysis; DCB0129 gap |
 
 **Why this tier?**
@@ -811,6 +793,7 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Clinical NLP literature; identified as systematic LLM failure mode |
 
 **Why this tier?**
@@ -875,6 +858,7 @@ Preservation of when things happened. 'Patient had chest pain three weeks ago' v
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Clinical NLP literature on temporal expression extraction |
 
 **Why this tier?**
@@ -913,6 +897,7 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Responsible Actors** |Vendor, Deployer                                        |
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
+|**Applicability**      |AVT-Contextualised                                      |
 |**Source**             |i2b2 2012 temporal challenge (F1 0.876 state of art); clinical temporal reasoning literature|
 
 **Why this tier?**
@@ -949,6 +934,7 @@ Preservation of clinical qualifiers: 'occasional', 'frequent', 'constant', 'mild
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as systematic LLM summarisation failure mode |
 
 **Why this tier?**
@@ -1001,6 +987,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Responsible Actors** |Vendor                                                       |
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
+|**Applicability**      |AVT-Contextualised                                           |
 |**Source**             |n2c2 shared task benchmarks (attribute-level F1 >0.92 for strong systems)|
 
 **Why this tier?**
@@ -1037,6 +1024,7 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Clinical NLP hedging/uncertainty literature |
 
 **Why this tier?**
@@ -1077,6 +1065,7 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Responsible Actors** |Vendor                                             |
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
+|**Applicability**      |AVT-Contextualised                                 |
 |**Source**             |n2c2 2018 shared task on medication event classification|
 
 **Why this tier?**
@@ -1113,6 +1102,7 @@ Does the system produce notes in the same structure each time? Inconsistency inc
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Human factors literature on documentation consistency |
 
 **Why this tier?**
@@ -1151,6 +1141,7 @@ Over-summarisation (losing detail) vs under-summarisation (verbatim transcript).
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
 | **Source** | Identified as quality dimension not captured by accuracy metrics |
 
 **Why this tier?**
@@ -1191,6 +1182,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Responsible Actors** |Vendor, Deployer                                                            |
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
+|**Applicability**      |AVT-Contextualised                                                          |
 |**Source**             |Barcelona et al., JAMA Network Open 2025 (Black patients 2.54× odds of negative descriptors)|
 
 **Why this tier?**

@@ -1,11 +1,3 @@
-# Part F - Evaluation Science
-
-## Meta-evaluation
-
-*Are we measuring what matters? Structural critique of proximal vs distal outcomes and evaluation science itself.*
-
-**Tier breakdown**: 🟡 1 Tier 2 · 🔵 6 Tier 3
-
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
@@ -22,6 +14,7 @@ The most important structural critique: measuring easy things and assuming they 
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Coiera & Fraile-Navarro 2026; NIHR RSET |
 
 **Why this tier?**
@@ -45,7 +38,7 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **Novel Thinking / Implications**
 
-> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#esme-9-causal-model-operationalisation) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
+> 💡 National evaluation standard should require explicit causal logic models with burden of proof on vendors. ES.ME-1 names that burden; [ES.ME-9 Causal Model Operationalisation](#es-me-9) makes it a measurable procurement requirement, and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) measures whether the distal evidence is being generated. See also [Outcomes Boundary](#outcomes-boundary) for the explicit scope statement.
 
 ---
 
@@ -65,6 +58,7 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 | **Responsible Actors** | Academic |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | VeriFact; MedHELM |
 
 **Why this tier?**
@@ -108,6 +102,7 @@ Do the metrics in the taxonomy correlate or conflict? A system optimised for low
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-metric evaluation literature |
 
 **Why this tier?**
@@ -146,6 +141,7 @@ When a metric becomes a target, does it cease to be a good measure? Specifically
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Goodhart's Law applied to clinical AI metrics |
 
 **Why this tier?**
@@ -184,6 +180,7 @@ What failure modes are not captured by any metric in the taxonomy? Periodic revi
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard safety engineering coverage analysis |
 
 **Why this tier?**
@@ -222,6 +219,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Responsible Actors** | Academic, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Croxford et al. 2025 (npj Digital Medicine); Rwanda clinical LLM evaluation study |
 
 **Why this tier?**
@@ -260,6 +258,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Responsible Actors** | National Body, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard meta-evaluation methodology; Croxford et al. 2025 (ROUGE Kendall-Tau 0.080) |
 
 **Why this tier?**
@@ -298,6 +297,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Responsible Actors** | Vendor, Deployer, National Body |
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
+| **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
 
 **Why this tier?**
@@ -334,7 +334,7 @@ Score = number of checks passed (0-4). Tier 2 expectation: ≥ 2 of 4 at procure
 
 ### ES.ME-9 🟡 Causal Model Operationalisation
 
-Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#esme-1-proximal-vs-distal-outcome-distinction)'s "burden of proof" requirement operational.
+Whether the vendor has documented an explicit causal chain from the proximal metrics in this taxonomy (or its own equivalents) to the distal outcomes claimed at procurement. Makes [ES.ME-1 Proximal vs Distal Outcome Distinction](#es-me-1)'s "burden of proof" requirement operational.
 
 | Dimension | Value |
 |-----------|-------|
@@ -348,6 +348,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
+| **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
 
 **Why this tier?**
@@ -377,7 +378,7 @@ made at procurement.
 
 **Limitations**
 
-> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#esme-7-automated-human-metric-concordance) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#esme-8-outcome-evidence-commitment-status) for the distal evidence.
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
 
 **Novel Thinking / Implications**
 

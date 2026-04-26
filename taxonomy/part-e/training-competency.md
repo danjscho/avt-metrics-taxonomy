@@ -1,9 +1,3 @@
-## Training & Competency
-
-*Clinician readiness: training completion, failure mode awareness, and ongoing competency maintenance.*
-
-**Tier breakdown**: 🟢 1 Tier 1 · 🟡 3 Tier 2 · 🔵 1 Tier 3
-
 ### GV.TC-1 🟢 Clinician Training Completion Rate
 
 Percentage of AVT-using clinicians who have completed required training modules: vendor product training, local induction (review-before-signing, known failure modes, error reporting, opt-out processes), and periodic refresher training.
@@ -20,6 +14,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NAS Day Zero requirements; standard clinical governance |
 
 **Why this tier?**
@@ -37,7 +32,7 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 > Authoritative source: the deployer's clinical governance training record (LMS or equivalent), with module catalogue mapped against the NAS Day Zero training requirements and local induction policy. Four mandatory modules MUST be enumerated:
 >
 > - **M1: Vendor product training** — system mechanics, activation, opt-out, error reporting per the specific AVT product
-> - **M2: Local induction** — review-before-signing workflow, opt-out and dissent procedures (cross-link [GV.CR-1 Patient Dissent Recording Rate](#gvcr-1-patient-dissent-recording-rate) and [GV.CR-2 Verbal Notification Compliance](#gvcr-2-verbal-notification-compliance)), incident-reporting pathway
+> - **M2: Local induction** — review-before-signing workflow, opt-out and dissent procedures (cross-link [GV.CR-1 Patient Dissent Recording Rate](#gv-cr-1) and [GV.CR-2 Verbal Notification Compliance](#gv-cr-2)), incident-reporting pathway
 > - **M3: Failure-mode awareness** — AVT-specific failure modes (hallucination/omission asymmetry, speaker misattribution, accent-related accuracy variation, complacency trajectory, system-unavailable fallback)
 > - **M4: Refresher** — annual re-engagement on M1-M3 with updates reflecting deployed system changes
 >
@@ -48,7 +43,7 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 > - **Window:** continuous; monthly compliance reporting per practice / per clinician.
 > - **Population:** every clinician using AVT (denominator). Clinicians who have stopped using AVT but remain on the practice register are excluded with reason.
 > - **Per-module reporting MANDATORY:** four sub-rates (M1/M2/M3/M4 completion). Aggregate TCR alone is insufficient — a clinician missing M3 (failure-mode awareness) is a different risk from one missing M4 (refresher overdue).
-> - **Validity periods MANDATORY (per module):** M1 valid for the lifetime of the deployed system version (revoked on major vendor product upgrade per [GV.SG-1 Model Version Tracking](#gvsg-1-model-version-tracking)); M2 valid until significant local-policy change; M3 valid 12 months; M4 must be completed within 12 months of the previous engagement (rolling).
+> - **Validity periods MANDATORY (per module):** M1 valid for the lifetime of the deployed system version (revoked on major vendor product upgrade per [GV.SG-1 Model Version Tracking](#gv-sg-1)); M2 valid until significant local-policy change; M3 valid 12 months; M4 must be completed within 12 months of the previous engagement (rolling).
 > - **Engagement-time floor MANDATORY:** minimum 30 minutes recorded engagement on M3 specifically (the failure-mode-awareness module is the most subject to "click-through" completion); 15 minutes on M1; 20 minutes on M2.
 > - **Coverage check:** any clinician active on AVT in the previous 30 days appears in the denominator. Late-onboarders given a 14-day grace window from first AVT use to completion of M1 + M2.
 
@@ -62,7 +57,7 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 
 **Limitations**
 
-> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything. The Operational Specification's engagement-time floors prevent the most blatant click-through pattern but cannot test actual understanding; pair with [GV.TC-2 Failure Mode Awareness Score](#gvtc-2-failure-mode-awareness-score) for an outcome-side check on whether training has produced competence.
+> Completion ≠ competence. A clinician who completed e-learning in 5 minutes has 'completed' training but may not have learned anything. The Operational Specification's engagement-time floors prevent the most blatant click-through pattern but cannot test actual understanding; pair with [GV.TC-2 Failure Mode Awareness Score](#gv-tc-2) for an outcome-side check on whether training has produced competence.
 
 **Novel Thinking / Implications**
 
@@ -86,6 +81,7 @@ Clinician knowledge of AVT-specific failure modes: can they identify hallucinati
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Proposed - extends error injection concept to training assessment |
 
 **Why this tier?**
@@ -124,6 +120,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard clinical governance CPD requirements; applied to AVT |
 
 **Why this tier?**
@@ -162,6 +159,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | **Responsible Actors** | Academic, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Medical education literature; GMC standards consideration |
 
 **Why this tier?**
@@ -200,6 +198,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard training governance |
 
 **Why this tier?**

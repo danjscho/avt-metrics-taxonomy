@@ -1,5 +1,73 @@
 # Changelog
 
+## v3.6 (2026-04-26)
+
+Architectural alignment, duplication-review research artefact, four v3.5 self-review follow-ups, and a repo-root README. No new metrics; no new tightenings. Counts unchanged at 216 metrics, 43 / 94 / 79; tightened count unchanged at 25/43.
+
+### Phase A — Applicability-on-metric alignment
+
+Adds an **Applicability** row to every metric's dimension table (216 metrics across 20 group files), placed immediately after Outcome Type. Values (AVT-Specific / AVT-Contextualised / General Healthcare AI) extracted from the existing `_applicability.md` classification tables.
+
+`taxonomy/parse.py` now sources `metric.applicability` from the dimension table — consistent with every other axis. The legacy `parse_applicability` lookup against `_applicability.md` is renamed to `parse_applicability_legacy` and retained only for audit cross-validation; `annotate_applicability()` becomes an idempotent no-op safety net for any caller that hasn't migrated.
+
+`taxonomy/audit.py` gains `check_applicability_presence` (every metric must carry the row, value must be one of the three valid labels) and reworks `check_applicability_totals` to derive totals from per-metric dimension-table values (the new source of truth). Cross-validation against `_applicability.md` declared totals continues as a transition-period WARN.
+
+The classification rationale prose in `_applicability.md` stays; per-metric tables become derivable. v3.7+ may move them to script generation.
+
+### Phase B — Duplication review (research artefact)
+
+[`archive/v3.6-duplication-review.md`](archive/v3.6-duplication-review.md) classifies every within-group metric pair as `distinct` / `overlapping` / `redundant`, with cross-group analysis for surfaced candidates. Frozen at v3.6 ship date; **no metrics changed**.
+
+Headline findings:
+
+- **3 redundancy candidates** flagged for v3.7 review with explicit user sign-off:
+  - **TP.SN-7 Confabulation Detection ↔ TP.SN-8 VeriFact** — same construct (factual verification), different instruments
+  - **TP.SN-9 LLM-as-a-Judge ↔ TP.SN-10 MedHELM LLM-Jury** — same construct (LLM-judge methodology), different ensemble configurations
+  - **HL.HF-3 Review-Before-Signing ↔ HL.HF-4 Time-to-Sign Distribution** — both detect inadequate review (v3.4 already mandates pairing)
+- 2 adjacent candidates: HL.HF-1 ↔ HL.HF-11 (v3.4 mandate substantially overlaps); GV.TC-1 M4 module ↔ GV.TC-3 (v3.5 tightening overlaps)
+- ~15 overlapping-but-not-framed pairs flagged for v3.7 lightweight cross-reference additions (See-also, sub-cluster notes)
+- Most apparent overlap turned out to be already framed — named families / sub-clusters and v3.3-v3.5 tightenings did substantial framing work; the artefact records this rather than re-flagging
+
+v3.7 Phase B disposition split into B.1 (redundancy review with user sign-off, expected 0–2 merges) and B.2 (mechanical cross-reference additions).
+
+### Phase C — v3.5 follow-up items
+
+**C.1 Cross-reference anchor validation.** Inspection revealed that internal cross-references inside metric bodies were using a collapsed-prefix-with-heading-text-suffix format (e.g. `#gvsg-2-model-update-impact-score`) when the rendered site uses explicit anchors of form `#gv-sg-2`. **58 broken cross-references** were silently failing on the site. All mass-fixed. New audit check `check_metric_cross_references` validates every metric-shaped link against the set of real metric anchors; non-metric anchors (group anchors, section anchors) are skipped. Smoke-tested under fault injection.
+
+A genuine forward-reference was caught in the process: IO.PX-1 referenced `GV.CR-14` (a roadmap candidate, not yet a real metric). Replaced with a prose pointer to the roadmap.
+
+**C.2 GV.CR-5 carve-out circularity.** Limitations section now acknowledges that the regional CCIO escalation pathway assumes capacity that the CIO/CCIO guidance v2 (Jan 2026) does not mandate or fund. Where capacity is absent, the metric's escalation route is non-operational; deployers should document the gap and surface via routes other than this metric (e.g. ICS digital risk register).
+
+**C.3 GV.CR-6 30-day window honesty fix.** The Operational Specification's 30-day post-trigger update requirement now explicitly notes that DCB0129 itself does not specify a numeric window — the 30 days is proposed in v3.5 (already covered in Threshold Guidance Provenance), not a regulatory expectation.
+
+**C.4 GV.PD-8 survey-instrument honesty.** The reference-standard sub-block now explicitly states no validated AVT-specific patient-comprehension instrument exists at the time of v3.6, with two named options: (a) adapt the closest healthcare-IT-comprehension instrument with documented adaptation, or (b) commission a deployer-defined survey reviewed by the IG team mapping to GV.CR-2 content elements.
+
+### Phase D — Repo-root README.md
+
+New [`README.md`](README.md) at the repository root for the GitHub-arrival experience. Per-audience entry points (procurement officer, vendor, developer, researcher); quick links to the published site, monolithic markdown, structured data, and the Outcomes Boundary; status / version block with full tag history; citation guidance with explicit draft warning; contributing pointer (GitHub issues until a CONTRIBUTING file exists); licence TBD with explicit "draft work shared for early feedback" framing pending a licence declaration.
+
+### Counts and audit
+
+- 216 metrics; 43 / 94 / 79 tier split; **25 / 43** Tier 1 metrics tightened — all unchanged from v3.5.
+- Three audit checks introduced or reworked: `check_applicability_presence` (new), `check_applicability_totals` (rewritten to derive from per-metric values), `check_metric_cross_references` (new).
+- Build clean; audit clean. All four checks fire under fault injection.
+
+### Cross-cutting
+
+- `taxonomy/_header.md` bumped to v3.6 / 2026-04-26 with narrative covering applicability alignment + duplication review + cross-reference audit
+- `taxonomy/_how-to-use.md` adds an Applicability dimension paragraph naming the three labels and their counts (48 / 77 / 91)
+
+### Deferred to v3.7
+
+- **Phase A — Pipeline narrow tightening (6 metrics):** TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20 → would reach 31/43 tightened
+- **Phase B — Action on duplication-review findings:** B.1 redundancy review with user sign-off (expected 0–2 merges); B.2 mechanical cross-reference additions to the ~15 overlapping-but-not-framed pairs
+- **Phase C — Bespoke deferred-pool scoping:** scope and progress 1–2 of GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (each needs bespoke shape; standard pattern is the wrong fit for some)
+- 8 TIGHT metrics will not be tightened (pattern would be structural cleanup, not substantive)
+- Outcomes layer stays at ES.ME-8/9; the [Outcomes Boundary](#outcomes-boundary) position holds
+- Roadmap (`_gaps.md`) untouched in v3.6 — 89 candidates still queued
+
+---
+
 ## v3.5 (2026-04-25)
 
 Tightens 12 additional Tier 1 metrics — the two highest-value waves identified in the v3.4 classification artefact. Tightened count: **13/43 → 25/43**. No new metrics; counts unchanged at 216.

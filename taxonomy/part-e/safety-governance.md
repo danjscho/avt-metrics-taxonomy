@@ -1,11 +1,3 @@
-# Part E - System Governance
-
-## Safety & Governance
-
-*Cross-cutting safety monitoring, model tracking, incident reporting, and governance infrastructure.*
-
-**Tier breakdown**: 🟢 6 Tier 1 · 🟡 5 Tier 2 · 🔵 2 Tier 3
-
 ### GV.SG-1 🟢 Model Version Tracking
 
 Logging which model version produces each output. Foundation for all continuous metrics - without it, performance changes are uninterpretable.
@@ -22,6 +14,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Keyes et al., Stanford, Dec 2025 |
 
 **Why this tier?**
@@ -43,8 +36,8 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 > - **Window:** continuous logging; per-inference granularity.
 > - **Per-component versioning MANDATORY:** the six components above each have a recorded version on every inference. A single rolled-up "system version" is not Tier 1 sufficient - downstream incident attribution requires component-level provenance.
 > - **Change-event log MANDATORY:** every change to any component generates a structured change-event record with component name, old version, new version, change type (weights / prompt / retrieval / classifier), timestamp, and notification status (notified / not-yet-notified).
-> - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gvsg-2-model-update-impact-score) workflow and the monitoring window referenced in the Formal Definition.
-> - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under MHRA Post-Market Surveillance regulations must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gvvt-1-model-change-notification-compliance).
+> - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gv-sg-2) workflow and the monitoring window referenced in the Formal Definition.
+> - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under MHRA Post-Market Surveillance regulations must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gv-vt-1).
 
 **Threshold Guidance**
 
@@ -84,6 +77,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Responsible Actors** | Vendor, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NAS + Stanford frameworks |
 
 **Why this tier?**
@@ -133,6 +127,7 @@ Time delay between the onset of model performance degradation and its detection 
 |**Responsible Actors** |Regional (ICB), National Body                                      |
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Proximal                                                           |
+|**Applicability**      |General Healthcare AI                                              |
 |**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
 
 **Why this tier?**
@@ -171,6 +166,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Responsible Actors** |Vendor                                                            |
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
+|**Applicability**      |General Healthcare AI                                             |
 |**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
 
 **Why this tier?**
@@ -209,6 +205,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Responsible Actors** |Vendor, National Body                                                                            |
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
+|**Applicability**      |General Healthcare AI                                                                            |
 |**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
 
 **Why this tier?**
@@ -247,6 +244,7 @@ Statistical detection of drift in the distribution of clinical concepts present 
 |**Responsible Actors** |Regional (ICB), National Body, Academic                   |
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Distal                                                    |
+|**Applicability**      |General Healthcare AI                                     |
 |**Source**             |Concept drift literature from ML monitoring applied to clinical NLG|
 
 **Why this tier?**
@@ -283,6 +281,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | medRxiv, Nov 2025 |
 
 **Why this tier?**
@@ -325,6 +324,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 | **Responsible Actors** | Vendor |
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DeepScribe |
 
 **Why this tier?**
@@ -367,6 +367,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DSCMS methodology in NAS framework |
 
 **Why this tier?**
@@ -409,6 +410,7 @@ AVT use outside validated contexts. Well-intentioned scope creep - each boundary
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Compound boundary risk model; NHSE LLM framework |
 
 **Why this tier?**
@@ -455,6 +457,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Responsible Actors** | Deployer, National Body |
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | LFPSE national reporting |
 
 **Why this tier?**
@@ -497,6 +500,7 @@ Performance variation across practices within ICB. High variance = context-depen
 | **Responsible Actors** | Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -535,6 +539,7 @@ Gap between required and completed assurance. The honest metric - better visible
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -573,6 +578,7 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Patient safety leading vs lagging indicator literature |
 
 **Why this tier?**
@@ -590,26 +596,26 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 > Two distinct sources MUST be combined to construct the numerator:
 >
 > - **Active reports:** clinician-submitted near-miss reports through a deployer-provided reporting mechanism (in-product button, EPR form, or dedicated channel)
-> - **Inferred near-misses:** safety-critical edits detected by [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited)'s severity stratification — substantive edits flagged as safety-critical (allergy / medication / dose / red-flag / diagnosis / plan changes between AI output and clinician signature) constitute presumptive near-misses
+> - **Inferred near-misses:** safety-critical edits detected by [HL.HF-1 Edit Rate](#hl-hf-1)'s severity stratification — substantive edits flagged as safety-critical (allergy / medication / dose / red-flag / diagnosis / plan changes between AI output and clinician signature) constitute presumptive near-misses
 >
-> Both are required because active-only reporting under-counts (clinicians under busy conditions edit-and-move-on without reporting), and edit-only inference over-counts (some safety-critical edits are stylistic refinements not error corrections). Cross-validate the two sources monthly; ratio of active-to-inferred is itself a safety-culture signal. The denominator is total AI outputs reaching clinician review (excludes outputs aborted before review per [HL.HF-9 Re-record / Abandonment Rate](#hlhf-9-re-record-abandonment-rate)).
+> Both are required because active-only reporting under-counts (clinicians under busy conditions edit-and-move-on without reporting), and edit-only inference over-counts (some safety-critical edits are stylistic refinements not error corrections). Cross-validate the two sources monthly; ratio of active-to-inferred is itself a safety-culture signal. The denominator is total AI outputs reaching clinician review (excludes outputs aborted before review per [HL.HF-9 Re-record / Abandonment Rate](#hl-hf-9)).
 
 **Operational Specification**
 
 > - **Window:** continuous; weekly aggregate per practice and per clinician.
 > - **Population:** all AVT-generated outputs reviewed by clinicians during the window.
 > - **Two-source reporting MANDATORY:** active near-miss rate and inferred near-miss rate reported separately, with composite headline rate = max(active, inferred) where the two sources contradict (the higher source is the more conservative safety estimate). Cross-validation report monthly with the active-to-inferred ratio.
-> - **Severity classification MANDATORY:** near-misses classified by clinical category (allergy / medication / red-flag / diagnosis / plan / other) parallel to [HL.HF-1](#hlhf-1-edit-rate-notes-edited) severity stratification. Per-category breakdown reported.
-> - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gvsg-11-adverse-event-incident-rate-lfpse). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
+> - **Severity classification MANDATORY:** near-misses classified by clinical category (allergy / medication / red-flag / diagnosis / plan / other) parallel to [HL.HF-1](#hl-hf-1) severity stratification. Per-category breakdown reported.
+> - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gv-sg-11). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
 > - **No-blame culture check:** if active reporting rate is < 25 % of inferred rate sustained two months, this is a safety-culture flag (clinicians editing-without-reporting), not a metric failure. Triggers a separate qualitative review.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hlhf-1-edit-rate-notes-edited)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
+> ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hl-hf-1)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline active near-miss rate and inferred near-miss rate during the first 4 weeks; record per-category breakdown; pair with concurrent LFPSE rate.
 > - **Continuous monitoring:** weekly two-source reporting; monthly cross-validation; alert when active-to-inferred ratio < 25 % sustained two months (under-reporting culture flag); alert when near-miss-to-LFPSE ratio falls (rising LFPSE without rising near-miss = review layer is failing, not improving).
-> - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hlhf-1-edit-rate-notes-edited) trajectory).
+> - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hl-hf-1) trajectory).
 
 **Limitations**
 
@@ -637,6 +643,7 @@ When an AVT error is detected, how quickly is it corrected and the lessons disse
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard incident response metric applied to AVT |
 
 **Why this tier?**
@@ -675,6 +682,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Responsible Actors** | Deployer, Regional (ICB) |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Operational extension of DSCMS SPI framework |
 
 **Why this tier?**
@@ -713,6 +721,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Responsible Actors** | Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | DCB0129 compliance requirement |
 
 **Why this tier?**

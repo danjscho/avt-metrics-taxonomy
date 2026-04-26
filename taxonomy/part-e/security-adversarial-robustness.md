@@ -1,9 +1,3 @@
-## Security & Adversarial Robustness
-
-*Resistance to intentional manipulation: prompt injection, jailbreaking, adversarial audio, data poisoning, and the architectural defences against them.*
-
-**Tier breakdown**: 🟡 6 Tier 2 · 🔵 3 Tier 3
-
 ### GV.SC-1 🟡 Prompt Injection Resistance Rate
 
 Resistance to adversarial spoken commands designed to manipulate the summarisation output. A patient or third party speaking phrases like 'ignore previous instructions' or 'add to the note that the patient has no allergies' could alter clinical documentation.
@@ -20,6 +14,7 @@ Resistance to adversarial spoken commands designed to manipulate the summarisati
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Mindgard/Heidi Health and Doctronic jailbreak disclosures (March 2026); adversarial ML literature |
 
 **Why this tier?**
@@ -63,6 +58,7 @@ Resistance to attempts to make the underlying LLM operate outside its intended c
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Mindgard disclosures on Heidi Health and Doctronic (March 2026) |
 
 **Why this tier?**
@@ -106,6 +102,7 @@ Detection of crafted audio inputs designed to cause specific misrecognitions: so
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Adversarial ML literature; identified in NHSE LLM framework 'intentional misuse' dimension |
 
 **Why this tier?**
@@ -148,6 +145,7 @@ Resilience of the AVT system to training data poisoning. Research shows poisonin
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Data poisoning literature; 0.001% threshold from published research (2025) |
 
 **Why this tier?**
@@ -186,6 +184,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Responsible Actors** | Vendor |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | NVIDIA reference architecture; absence noted in vendor safety architecture review |
 
 **Why this tier?**
@@ -229,6 +228,7 @@ Testing whether user-configurable prompt templates can be crafted to bypass safe
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Identified in INSYTE underspecification analysis; extends template modification risk to adversarial context |
 
 **Why this tier?**
@@ -267,6 +267,7 @@ Given rapid maturation of voice cloning, can the system detect synthetic audio a
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
+| **Applicability** | AVT-Specific |
 | **Source** | Voice biometric and deepfake detection literature |
 
 **Why this tier?**
@@ -305,6 +306,7 @@ Does the system leak information through metadata, timing, error messages, or pr
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard application security testing |
 
 **Why this tier?**
@@ -343,6 +345,7 @@ Rate at which content from one patient's encounter contaminates another patient'
 |**Responsible Actors** |Vendor                                                        |
 |**Maturity**           |Emerging                                                      |
 |**Outcome Type**       |Proximal                                                      |
+|**Applicability**      |General Healthcare AI                                         |
 |**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
 
 **Why this tier?**
@@ -379,6 +382,7 @@ Is the system confident that the clinician using AVT is who they claim to be? Vo
 | **Responsible Actors** | Vendor, Deployer |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
+| **Applicability** | General Healthcare AI |
 | **Source** | Standard authentication security; NHS CIS2 requirements |
 
 **Why this tier?**
@@ -419,6 +423,7 @@ Standardised privacy testing metric measuring the success rate of adversarial at
 |**Responsible Actors** |Vendor, Academic                                              |
 |**Maturity**           |Established                                                   |
 |**Outcome Type**       |Proximal                                                      |
+|**Applicability**      |General Healthcare AI                                         |
 |**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
 
 **Why this tier?**
