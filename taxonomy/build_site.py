@@ -356,17 +356,59 @@ def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
     return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
 
+_TEMPLATE_TOKENS = {
+    "{{TAXONOMY_VERSION}}": parse_src.TAXONOMY_VERSION,
+    "{{TAXONOMY_DATE}}": parse_src.TAXONOMY_DATE,
+}
+
+
+def _substitute_template_tokens(text: str) -> str:
+    """Replace `{{TAXONOMY_VERSION}}` / `{{TAXONOMY_DATE}}` in source files
+    so version stamps stay live across the monolith, the rendered site, and
+    every per-page banner. Single source of truth = parse.TAXONOMY_VERSION.
+    """
+    for token, value in _TEMPLATE_TOKENS.items():
+        text = text.replace(token, value)
+    return text
+
+
+def _refresh_announce_banner() -> None:
+    """Rewrite the site-wide announce banner in overrides/main.html with the
+    current version. The banner is pre-existing Jinja but mkdocs-material's
+    template context doesn't expose our SITE_VERSION easily, so we treat the
+    file as a build artefact: rebuilt every run with the live version baked
+    in. Keeps the banner in sync with TAXONOMY_VERSION without a manual bump.
+    """
+    overrides = REPO / "overrides" / "main.html"
+    if not overrides.exists():
+        return
+    content = (
+        '{% extends "base.html" %}\n'
+        "\n"
+        "{% block announce %}\n"
+        f"  <strong>Draft {SITE_VERSION}</strong> - this taxonomy is under active review "
+        "and has not yet been stakeholder-approved. Content, tier assignments, and gap "
+        "analysis may change before public release. See the\n"
+        "  <a href=\"{{ 'changelog/' | url }}\" style=\"color: inherit; text-decoration: underline;\">changelog</a> for recent changes and the\n"
+        "  <a href=\"{{ 'gaps/' | url }}\" style=\"color: inherit; text-decoration: underline;\">roadmap</a> for what's pending.\n"
+        "{% endblock %}\n"
+    )
+    overrides.write_text(content)
+
+
 def main() -> None:
     if DOCS.exists():
         shutil.rmtree(DOCS)
     DOCS.mkdir()
     (DOCS / "groups").mkdir()
 
+    _refresh_announce_banner()
+
     for src_rel, dst_rel in MAPPING.items():
         src = ROOT / src_rel
         dst = DOCS / dst_rel
         dst.parent.mkdir(parents=True, exist_ok=True)
-        text = src.read_text()
+        text = _substitute_template_tokens(src.read_text())
         text = rewrite_anchors(text, dst_rel)
         text = rewrite_external_links(text)
         text = add_metric_anchors(text)
