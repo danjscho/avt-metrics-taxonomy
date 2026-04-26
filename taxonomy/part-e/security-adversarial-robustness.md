@@ -463,7 +463,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHS England AVT Self-Certified Supplier Registry (req #5); IASME Cyber Essentials scheme; NCSC guidance |
+| **Source** | [NHSE-AVT-Registry] (req #5); [IASME-Cyber-Essentials-Plus]; [NCSC-Cyber-Essentials] |
 
 **Why this tier?**
 
@@ -489,7 +489,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Reference Standard**
 
-> The IASME-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+> The [IASME-Cyber-Essentials-Plus]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
 
 **Operational Specification**
 
@@ -501,7 +501,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from the NHS England AVT Self-Certified Supplier Registry and the IASME scheme. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [IASME-Cyber-Essentials-Plus]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
 > - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
@@ -509,9 +509,9 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **References**
 
-- **NHS England AVT Self-Certified Supplier Registry**: registry req #5 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
-- **IASME**: Cyber Essentials Plus scheme administrator
-- **NCSC**: Cyber Essentials guidance
+- [NHSE-AVT-Registry] — registry req #5 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- [IASME-Cyber-Essentials-Plus] — Plus scheme administrator
+- [NCSC-Cyber-Essentials] — underlying scheme overview and technical control set
 
 **Limitations**
 

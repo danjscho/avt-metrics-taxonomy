@@ -36,6 +36,7 @@ MAPPING: dict[str, str] = {
     "_responsible-ai-lens.md": "responsible-ai-lens.md",
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
+    "_references.md": "references.md",
     "part-a/audio-capture.md": "groups/audio-capture.md",
     "part-a/asr-transcription.md": "groups/asr-transcription.md",
     "part-a/diarisation.md": "groups/diarisation.md",
@@ -208,6 +209,92 @@ def rewrite_external_links(text: str) -> str:
 
 
 _METRIC_SLUG_TO_PAGE_CACHE: dict[str, str] | None = None
+_REFERENCE_HANDLES_CACHE: set[str] | None = None
+
+
+def _reference_handles() -> set[str]:
+    """Catalogue handle set, cached for the duration of a build run.
+
+    Used to decide whether a given `[Handle]` token in a metric file should
+    be rewritten as a hyperlink to references.md, or left as literal text
+    (the latter shouldn't happen post-Phase 0; the audit catches unresolved
+    handles in pilot files).
+    """
+    global _REFERENCE_HANDLES_CACHE
+    if _REFERENCE_HANDLES_CACHE is None:
+        _REFERENCE_HANDLES_CACHE = set(parse_src.parse_references().keys())
+    return _REFERENCE_HANDLES_CACHE
+
+
+_HANDLE_PATTERN = re.compile(r"(?<!!)\[([A-Za-z][A-Za-z0-9_-]*)\](?!\(|:|\[)")
+
+
+def rewrite_reference_handles(text: str, current_page: str) -> str:
+    """Rewrite reference-style `[Handle]` tokens to inline links pointing at
+    the catalogue page (`references.md#<slug>`). Slugs are MkDocs's default
+    lowercase-hyphenated slug from the catalogue h3 (handle).
+
+    Skips:
+    - tokens followed by `(` (already an inline link)
+    - tokens followed by `:` (markdown reference-style link definition)
+    - tokens followed by `[` (markdown reference-style link reference, rare)
+    - inline code spans (handled by stripping `…` before scanning)
+    - fenced code blocks
+    - heading lines
+    - the catalogue page itself (`references.md` is `current_page`); leaving
+      catalogue cross-refs as plain `[Handle]` tokens that resolve via the
+      h3 anchors on the same page would also work, but for now we just
+      leave them untouched on the catalogue page.
+    """
+    if current_page == "references.md":
+        return text
+    handles = _reference_handles()
+    if not handles:
+        return text
+
+    # Path from current_page to references.md (which lives at docs/ root).
+    if "/" in current_page:
+        target_prefix = "../references.md"
+    else:
+        target_prefix = "references.md"
+
+    out_lines: list[str] = []
+    in_fence = False
+    fence_marker = ""
+    for line in text.splitlines():
+        stripped = line.lstrip()
+        if stripped.startswith("```") or stripped.startswith("~~~"):
+            marker = "```" if stripped.startswith("```") else "~~~"
+            if not in_fence:
+                in_fence = True
+                fence_marker = marker
+            elif marker == fence_marker:
+                in_fence = False
+                fence_marker = ""
+            out_lines.append(line)
+            continue
+        if in_fence or line.startswith("#"):
+            out_lines.append(line)
+            continue
+
+        # Inline-code-aware substitution: split the line on backtick spans,
+        # only rewrite handles in the non-code segments.
+        parts = re.split(r"(`[^`]*`)", line)
+        for i, part in enumerate(parts):
+            if i % 2 == 1:  # code span — leave untouched
+                continue
+
+            def sub(m: re.Match) -> str:
+                handle = m.group(1)
+                if handle not in handles:
+                    return m.group(0)
+                slug = handle.lower()
+                return f"[{handle}]({target_prefix}#{slug})"
+
+            parts[i] = _HANDLE_PATTERN.sub(sub, part)
+        out_lines.append("".join(parts))
+
+    return "\n".join(out_lines) + ("\n" if text.endswith("\n") else "")
 
 
 def _metric_slug_to_page() -> dict[str, str]:
@@ -410,6 +497,7 @@ def main() -> None:
         dst.parent.mkdir(parents=True, exist_ok=True)
         text = _substitute_template_tokens(src.read_text())
         text = rewrite_anchors(text, dst_rel)
+        text = rewrite_reference_handles(text, dst_rel)
         text = rewrite_external_links(text)
         text = add_metric_anchors(text)
         if dst_rel == "tier-1-quick-reference.md":
@@ -449,6 +537,7 @@ def main() -> None:
     if cl_src.exists():
         cl_text = cl_src.read_text()
         cl_text = rewrite_anchors(cl_text, "changelog.md")
+        cl_text = rewrite_reference_handles(cl_text, "changelog.md")
         cl_text = rewrite_external_links(cl_text)
         (DOCS / "changelog.md").write_text(cl_text)
 
