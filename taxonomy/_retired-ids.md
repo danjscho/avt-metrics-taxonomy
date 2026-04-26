@@ -22,6 +22,17 @@ The audit (`taxonomy/audit.py`) reads this registry. The `check_numbering` check
 | HL.HF-4 | v3.7 (Phase 2.1) | HL.HF-3b | Folded as sub-part under new parent **HL.HF-3 Inadequate-Review Detection**. HL.HF-4 (Time-to-Sign Distribution) and previous HL.HF-3 (Review-Before-Signing Rate) both detect inadequate clinician review; v3.6 duplication review flagged as redundant; v3.4 already mandated pairing. Now HL.HF-3a (Review-Before-Signing Rate) and HL.HF-3b (Time-to-Sign Distribution) under parent HL.HF-3. HL.HF-3b retains its v3.4 tightening pattern. |
 | TP.CC-8 | v3.7 (Phase 2.3) | TP.CC-7 | Folded into TP.CC-7 (renamed *Coding Drift Detection — UK Framing*). TP.CC-8 (E/M Level Shift Monitoring) was a US-specific specialisation of TP.CC-7's SPC-based drift detection; the v3.6 duplication review and v3.7 US-flavour audit identified the overlap. KL-divergence and demographic-disaggregation content from TP.CC-8 absorbed into TP.CC-7's Operational Specification; E/M coding called out as US analogue. |
 
+## Reserved IDs (roadmap-allocated)
+
+Some metric ID slots are *reserved* by entries in [`_gaps.md`](_gaps.md) — they are proposed but not yet promoted to real metrics. To preserve those slot allocations across releases, the audit's `check_numbering` tolerates integer gaps matching reserved IDs the same way it tolerates retired IDs. When a reserved ID is promoted to a real metric, its row is removed from this section (reverse of the retirement workflow). When a roadmap candidate is rejected and the slot freed for re-use, the row is also removed.
+
+| Reserved ID | Reserved in | Roadmap source | Reason |
+|---|---|---|---|
+| GV.VT-9 | v3.1 (Standards Mapping) | MHRA SaMD/AIaMD | Proposed: Post-Market Surveillance Report Currency. PMSR (Class I/IIa) availability on demand; PSUR (Class IIb/III) annual currency. |
+| GV.VT-10 | v3.1 (Standards Mapping) | MHRA SaMD/AIaMD | Proposed: MHRA Transparency Content Completeness. Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle). |
+| GV.VT-11 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section B.3 | Proposed: Multi-Specialty Validation Coverage. Count and breadth of clinical specialties in which the AVT has been formally validated. |
+| GV.VT-12 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section B.12 | Proposed: Sovereign AI / UK Supply Chain Disclosure. Disclosure of whether the vendor and underlying model stack are UK-based. |
+
 ## Convention
 
 - **Don't reuse retired IDs.** A new metric in the same group takes the next free integer (or sub-part suffix), never a retired-ID slot.

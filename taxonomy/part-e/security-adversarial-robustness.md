@@ -443,3 +443,80 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 **Novel Thinking / Implications**
 
 > 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
+
+---
+
+### GV.SC-12 🟡 Cyber Essentials Plus Certification Status
+
+Whether the AVT vendor holds current **Cyber Essentials Plus** certification (the UK government-backed cyber-security baseline scheme administered by IASME under NCSC oversight). Cyber Essentials is **a registry listing requirement** under the NHS England AVT Self-Certified Supplier Registry (req #5 of 13) and is increasingly treated as a baseline expectation across NHS digital procurement; the taxonomy did not previously have a dedicated metric for it.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.SC-12 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate; annual re-verification |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Security |
+| **Measurement Method** | Documentary |
+| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Established |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | NHS England AVT Self-Certified Supplier Registry (req #5); IASME Cyber Essentials scheme; NCSC guidance |
+
+**Why this tier?**
+
+> Registry listing requirement plus baseline NHS digital-procurement expectation. Documentary check (annual re-verification cadence is fixed by the IASME scheme). Tier 2 because it is a procurement-time check rather than a continuous-monitoring signal; Cyber Essentials Plus itself does not address AI-specific threats (those are covered by other GV.SC metrics), but its absence is a procurement-grade red flag.
+
+**Formal Definition**
+
+```
+Three sub-metrics, all binary:
+
+1. Certification status: vendor holds a valid Cyber Essentials Plus
+   certificate (basic Cyber Essentials is insufficient — the registry
+   requires Plus for the audited variant).
+2. Certificate currency: certificate issued ≤ 12 months ago at the time
+   of the deployer's procurement decision and re-verified annually
+   thereafter (IASME re-certification cadence is annual).
+3. In-scope coverage: the certificate's scope statement covers the AVT
+   product and its hosting infrastructure (not just a parent corporate
+   entity unrelated to the deployed product).
+
+Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
+```
+
+**Reference Standard**
+
+> The IASME-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+
+**Operational Specification**
+
+> - **Window:** annual; re-verified at each procurement decision and on certificate renewal.
+> - **Population:** the AVT vendor entity and every sub-processor named in [GV.VT-7](#gv-vt-7) handling personal data. Sub-processor certificates can be theirs (independent Cyber Essentials Plus) or covered explicitly under the vendor's certificate scope.
+> - **Three sub-metrics MANDATORY:** certification status / currency / in-scope coverage reported separately. Aggregate-only reporting hides the failure mode (e.g. a vendor with current certification but scope that doesn't cover the AVT product).
+> - **Scope-mismatch handling:** any sub-processor without certification AND without explicit coverage under the vendor's certificate is a flagged exception; the deployer's IG file must record reason and accepted-risk decision.
+> - **Re-verification cadence:** annual at minimum; on certificate renewal; on any change to vendor's [GV.SG-1 Model Version Tracking](#gv-sg-1) hosting-or-sub-processor stack.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from the NHS England AVT Self-Certified Supplier Registry and the IASME scheme. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+>
+> - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
+> - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
+> - **Pause / escalation trigger:** certificate lapsed; OR certificate scope demonstrably does not cover deployed AVT product or in-scope sub-processors; OR vendor has descended from Plus to basic Cyber Essentials.
+
+**References**
+
+- **NHS England AVT Self-Certified Supplier Registry**: registry req #5 (see [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
+- **IASME**: Cyber Essentials Plus scheme administrator
+- **NCSC**: Cyber Essentials guidance
+
+**Limitations**
+
+> Cyber Essentials Plus is a baseline scheme — it covers patch management, secure configuration, user-access control, malware protection, and firewalls / boundary-defences. It does **not** cover AI-specific threats (prompt injection, model-extraction, training-data poisoning), which are handled by other GV.SC metrics in the taxonomy. A vendor with current Plus certification can still be deeply vulnerable on AI-specific surfaces; the metric is a necessary-but-not-sufficient procurement check. Annual cadence also lags the change-rate of cloud architectures — between certifications, sub-processor changes can move parts of the stack out of certified scope without triggering an immediate re-cert.
+
+**Novel Thinking / Implications**
+
+> 💡 Cyber Essentials Plus is the most baseline cyber-hygiene assurance in UK public procurement, and its absence is a hard signal. But the registry treats it as a checkbox, and treating it as anything more than that risks substituting compliance theatre for genuine security analysis. The metric exists to make the checkbox visible at procurement and to flag the scope-coverage drift problem (cloud-architecture change outpaces annual certification) — not to suggest that Cyber Essentials Plus is itself sufficient AVT security assurance.

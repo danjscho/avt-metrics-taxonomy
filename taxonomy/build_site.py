@@ -445,7 +445,7 @@ def _crosscut_index_page(
     lines = [
         "# Cross-cut views",
         "",
-        "Auto-generated views that slice the 214-metric catalogue along three additional axes. "
+        f"Auto-generated views that slice the catalogue along three additional axes. "
         "Each view links back to individual metric pages - nothing here is authoritative, "
         "just a different way to read the same source.",
         "",
@@ -616,8 +616,18 @@ def _render_metric_refs(
 
 
 def build_crosscuts() -> int:
-    """Emit applicability / principle / theme cross-cut pages. Returns page count."""
-    metrics = parse_src.annotate_applicability(parse_src.parse_all_metrics())
+    """Emit applicability / principle / theme cross-cut pages. Returns page count.
+
+    Parents (with sub-parts; v3.7+) are excluded from these aggregations —
+    they carry construct framing only, no applicability dimension, and
+    would land in 'Unclassified' if included. Sub-parts and flat metrics
+    are the unit of measurement and the unit of cross-cutting membership.
+    """
+    all_metrics = parse_src.annotate_applicability(parse_src.parse_all_metrics())
+    parent_ids = {
+        sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id is not None
+    }
+    metrics = [m for m in all_metrics if m.ref_id not in parent_ids]
     apps = parse_src.group_metrics_by_applicability(metrics)
     principles = parse_src.parse_rai_principle_membership()
     themes = parse_src.parse_rai_theme_membership()
@@ -1054,6 +1064,15 @@ def _landing_page(header_body: str) -> str:
     t2 = summary["tier_counts"].get("2", 0)
     t3 = summary["tier_counts"].get("3", 0)
     gap_count = summary["gap_count"]
+    # Live applicability counts (parents excluded — countable units only)
+    all_metrics = parse_src.annotate_applicability(parse_src.parse_all_metrics())
+    parent_ids = {sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id}
+    countable = [m for m in all_metrics if m.ref_id not in parent_ids]
+    from collections import Counter
+    app_counts = Counter(m.applicability for m in countable)
+    avt_specific = app_counts.get("AVT-Specific", 0)
+    avt_contextualised = app_counts.get("AVT-Contextualised", 0)
+    general = app_counts.get("General Healthcare AI", 0)
     return f"""# AVT Metrics Taxonomy
 
 !!! warning "Draft - not yet stakeholder-approved"
@@ -1061,11 +1080,11 @@ def _landing_page(header_body: str) -> str:
     cross-references may change before public release. Treat as a working
     document, not a settled standard.
 
-!!! info "v3.1 - {metric_count} metrics across {group_count} groups"
+!!! info "v3.8 - {metric_count} metrics across {group_count} groups"
     A healthcare-AI assurance metrics taxonomy for Ambient Voice Technology
     in NHS and comparable settings. Each metric carries a formal definition,
-    priority tier, responsible actors, and mappings to 11 healthcare and
-    AI standards.
+    priority tier, responsible actors, and mappings to 13 healthcare,
+    AI, and procurement standards.
 
 ## At a glance
 
@@ -1085,8 +1104,9 @@ def _landing_page(header_body: str) -> str:
 
     ---
 
-    Mapped to DTAC, DSPT, DCB0129/0160, NHS LLM Framework, MHRA SaMD,
-    NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, and Caldicott Principles.
+    Mapped to DTAC, DSPT, DCB0129/0160, NHS LLM Framework, NHS T.E.S.T.,
+    NHSE AVT Self-Certified Supplier Registry, MHRA SaMD, NICE ESF,
+    FHIR UK Core, CQC, PSIRF, PRSB, and Caldicott Principles.
 
     [Full standards mapping](standards-mapping.md)
 
@@ -1117,9 +1137,9 @@ def _landing_page(header_body: str) -> str:
     Quickly filter the catalogue by whether the metric is specific to
     ambient voice, applies to any healthcare AI, or sits in between.
 
-    🎯 [48 AVT-Specific](crosscuts/by-applicability/avt-specific.md) ·
-    🔀 [77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md) ·
-    🌐 [89 General Healthcare AI](crosscuts/by-applicability/general.md)
+    🎯 [{avt_specific} AVT-Specific](crosscuts/by-applicability/avt-specific.md) ·
+    🔀 [{avt_contextualised} AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md) ·
+    🌐 [{general} General Healthcare AI](crosscuts/by-applicability/general.md)
 
 </div>
 

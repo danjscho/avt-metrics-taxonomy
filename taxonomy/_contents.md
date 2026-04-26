@@ -27,12 +27,12 @@
 
 - [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
 - [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
-- [Security & Adversarial Robustness](#security-adversarial-robustness) (11 metrics)
+- [Security & Adversarial Robustness](#security-adversarial-robustness) (12 metrics)
 - [Privacy & Data Governance](#privacy-data-governance) (11 metrics - 7 Tier 1)
 - [Operational](#operational) (9 metrics - 3 Tier 1)
 - [Environmental & Sustainability](#environmental-sustainability) (3 metrics) *NEW GROUP*
 - [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
-- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (8 metrics - 3 Tier 1)
+- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (10 metrics - 3 Tier 1)
 
 **Part F - Evaluation Science**
 

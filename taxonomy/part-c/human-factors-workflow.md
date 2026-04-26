@@ -204,13 +204,40 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll events, or dwell > T_min. T_min = max(15s, 3s × word_count/100).
 ```
 
+**Reference Standard**
+
+> EPR + AVT product telemetry. A "review event" is any of three telemetry signals between AVT note availability (`t_generated`) and clinician signature (`t_approve`):
+>
+> - **Edit event** — any keystroke or text mutation in the note body (orthographic, semantic, or stylistic; no severity filter at this metric — severity classification is HL.HF-1's domain)
+> - **Scroll event** — viewport movement within the note body, indicating the clinician moved past first-screen content
+> - **Dwell event** — focused time on the note exceeding `T_min = max(15 s, 3 s × word_count / 100)` continuously
+>
+> Inter-rater target on event-classification: ICC ≥ 0.90 (mechanical telemetry signals; tighter than human-judgement metrics). Where the EPR cannot distinguish foreground from background dwell (clinician opens the note then switches tabs), the conservative interpretation is to count the elapsed time with the metric's limitation declared. Cross-link to [HL.HF-3b Time-to-Sign Distribution](#hl-hf-3b) — pairing is mandatory; either signal alone is ambiguous.
+
+**Operational Specification**
+
+> - **Window:** continuous; weekly aggregate per clinician and per practice.
+> - **Population:** all AVT-generated notes signed by the clinician during the window. Notes signed by a different clinician (delegated workflow) excluded; flagged separately.
+> - **Per-clinician baseline MANDATORY:** baseline RBS computed across the first 4 weeks of clinician live use; subsequent reporting referenced to per-clinician baseline (parallel to [HL.HF-1 Edit Rate](#hl-hf-1) and [HL.HF-3b](#hl-hf-3b)).
+> - **Pairing with HL.HF-3b MANDATORY:** RBS is reported jointly with HL.HF-3b's TTS_norm distribution for the same clinician-window. The conjunction is the rubber-stamping signal — a note with edit events but TTS_norm < 0.5 s/word passes RBS but fails HL.HF-3b. Headline construct-level reporting is the joint pair, not RBS alone.
+> - **T_min calibration:** T_min as published is a default; per the [Calibration & Context principle](#calibration-context), specialty mix shifts the threshold. A complex consultation summary in mental health may legitimately need longer dwell than a routine medication review; deployers should record local T_min calibration in their governance file.
+> - **Review-quality proxy gap:** RBS is a surrogate for review *quality*, not a measure of it (see Limitations). Telemetry-detected review behaviour does not guarantee review effectiveness. The construct-level pairing with HL.HF-3b narrows but does not close the proxy gap.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the NAS Day Zero SPI specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
+>
+> - **Pre-deployment / Day Zero gate:** RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.
+> - **Continuous monitoring alert:** weekly RBS < 95 % aggregate; OR any single clinician's RBS drops > 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 < 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).
+> - **Pause / review trigger:** RBS < 85 % aggregate for two consecutive weeks (NAS pause trigger); OR per-clinician RBS < 75 % for one week (individual-level severe failure); OR confirmed rubber-stamping pattern (low RBS AND low TTS_norm AND low HL.HF-1 substantive edit rate). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+
 **References**
 
 - **NAS**: ≥95% threshold, <85% pause trigger
 
 **Limitations**
 
-> Scrolling ≠ meaningful review. The T_min threshold values are concrete but unvalidated against actual review quality — see the parent construct's Limitations and the v3.4 classification artefact's note that this sub-part is a surrogate for review quality without a bounded proxy gap. v3.8+ work may add a quality bound or pairing rule.
+> Scrolling ≠ meaningful review. The T_min threshold values are concrete but unvalidated against actual review quality — see the parent construct's Limitations and the v3.4 classification artefact's note that this sub-part is a surrogate for review quality without a bounded proxy gap. The Operational Specification's mandatory pairing with HL.HF-3b narrows the gap (a note with edit events but rapid signature is caught by HL.HF-3b's tail analysis), but the joint signal still measures *behaviour*, not review *effectiveness*. v3.8+ work may add a quality bound via paired automation-bias error-injection (HL.HF-6) or counterfactual AI-off testing (HL.HF-19).
 
 **Novel Thinking / Implications**
 

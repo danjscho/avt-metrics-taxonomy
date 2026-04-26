@@ -68,13 +68,24 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 43, 2: 93, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 43, 2: 96, 3: 79}
 EXPECTED_APPLICABILITY = {
-    "AVT-Specific": 48,
-    "AVT-Contextualised": 76,
+    "AVT-Specific": 50,
+    "AVT-Contextualised": 77,
     "General Healthcare AI": 91,
 }
-EXPECTED_TOTAL = 215
+EXPECTED_TOTAL = 218
+
+# v3.8: Maturity values are constrained to a four-value enum. Non-canonical
+# values (e.g. "Partly Established", "Experimental") would silently pass the
+# v3.7-and-earlier presence check; the v3.8 maturity-values check enforces
+# the enum.
+EXPECTED_MATURITY_VALUES = {
+    "Established",
+    "Emerging",
+    "Vendor-Proprietary",
+    "Proposed / Novel",
+}
 
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
@@ -246,22 +257,41 @@ def check_prefixes(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
     return findings
 
 
-def load_retired_ids() -> set[str]:
-    """Read taxonomy/_retired-ids.md and return the set of retired ref IDs.
+def _load_skipped_ids_sections() -> tuple[set[str], set[str]]:
+    """Read taxonomy/_retired-ids.md and return (retired, reserved) ID sets.
 
-    Format: any markdown table row in the file whose first cell is a valid
-    ref ID (e.g. TP.SN-8). Header rows and prose are ignored.
+    The file has two sections: 'Reserved IDs' (roadmap-allocated, not yet
+    promoted to real metrics) and the rest (genuinely retired). Returned
+    sets are disjoint and either may be empty.
     """
     path = ROOT / "_retired-ids.md"
     if not path.exists():
-        return set()
-    retired: set[str] = set()
+        return set(), set()
+    text = path.read_text()
     ref_id_re = re.compile(r"^\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s*\|")
-    for line in path.read_text().splitlines():
+    # Split on the Reserved-IDs section header
+    parts = re.split(r"^##\s+Reserved IDs.*$", text, maxsplit=1, flags=re.MULTILINE)
+    retired_text = parts[0]
+    reserved_text = parts[1] if len(parts) > 1 else ""
+    retired: set[str] = set()
+    reserved: set[str] = set()
+    for line in retired_text.splitlines():
         m = ref_id_re.match(line)
         if m:
             retired.add(m.group(1))
-    return retired
+    for line in reserved_text.splitlines():
+        m = ref_id_re.match(line)
+        if m:
+            reserved.add(m.group(1))
+    return retired, reserved
+
+
+def load_retired_ids() -> set[str]:
+    """Backward-compatible accessor: returns the union of retired and
+    reserved IDs (both groups are tolerated by check_numbering's gap rule).
+    Callers wanting the distinction should use _load_skipped_ids_sections."""
+    retired, reserved = _load_skipped_ids_sections()
+    return retired | reserved
 
 
 def check_numbering(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
@@ -518,6 +548,56 @@ def check_applicability_totals(all_metrics: list[Metric]) -> list[Finding]:
                 )
             )
 
+    return findings
+
+
+def check_maturity_values(all_metrics: list[Metric]) -> list[Finding]:
+    """Every countable metric's Maturity dimension must hold one of the four
+    canonical values in EXPECTED_MATURITY_VALUES. Non-canonical values
+    (e.g. "Partly Established", "Experimental") silently passed the v3.7-
+    and-earlier presence check; v3.8 enforces the enum so values surfaced
+    in _summary.md's Maturity inventory are reliable."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        maturity = m.dimensions.get("Maturity")
+        if maturity is None:
+            # Presence is already enforced by the existing missing-dimension
+            # check on REQUIRED_DIMENSIONS; don't double-report
+            continue
+        if maturity not in EXPECTED_MATURITY_VALUES:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-maturity",
+                    (
+                        f"metric {m.ref_id} has Maturity='{maturity}', "
+                        f"expected one of {sorted(EXPECTED_MATURITY_VALUES)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def check_source_presence(all_metrics: list[Metric]) -> list[Finding]:
+    """Every countable metric must carry a non-empty Source dimension row.
+    Pre-v3.8 the dimension table audit only checked presence of named axes
+    against REQUIRED_DIMENSIONS; Source was on that list, but the audit did
+    not catch a row whose value was blank or only whitespace. v3.8 enforces
+    a non-empty Source value because downstream tools index by Source for
+    citation lookup; silent gaps are lookup hazards."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        source = m.dimensions.get("Source")
+        if source is None or not source.strip():
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "missing-source",
+                    f"metric {m.ref_id} has missing or empty **Source** row",
+                    f"{m.file}:{m.line}",
+                )
+            )
     return findings
 
 
@@ -813,10 +893,12 @@ def emit_tightening_manifest(all_metrics: list[Metric]) -> None:
             f"  ⚠️ Partial (audit error): "
             f"{', '.join(sorted(m.ref_id for m in partial))}"
         )
-    # Retired IDs status line (v3.7+)
-    retired = sorted(load_retired_ids())
+    # Retired and reserved IDs status lines (v3.7+ retired; v3.8+ reserved)
+    retired, reserved = _load_skipped_ids_sections()
     if retired:
-        print(f"Retired IDs: {', '.join(retired)}")
+        print(f"Retired IDs: {', '.join(sorted(retired))}")
+    if reserved:
+        print(f"Reserved IDs (roadmap-allocated): {', '.join(sorted(reserved))}")
     print()
 
 
@@ -836,6 +918,8 @@ def main() -> int:
     findings.extend(check_tier_totals(all_metrics))
     findings.extend(check_applicability_presence(all_metrics))
     findings.extend(check_applicability_totals(all_metrics))
+    findings.extend(check_maturity_values(all_metrics))
+    findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))
     findings.extend(check_tightening_pattern(all_metrics))
