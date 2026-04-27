@@ -15,7 +15,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Standard ASR literature; used in SCRIBE framework (Wang et al. 2025) |
+| **Source** | [SCRIBE-Wang-2025]; standard ASR literature |
 
 **Why this tier?**
 
@@ -73,7 +73,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Proposed in OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (proposed AVT extension; future work) |
 
 **Why this tier?**
 
@@ -154,7 +154,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Derived from OxonFair healthcare voice fairness analysis |
+| **Source** | [OxonFair-2024] (healthcare voice fairness extension; future work) |
 
 **Why this tier?**
 
@@ -245,7 +245,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NAS framework Day Zero SPIs; NHSE IG guidance (March 2026) |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
 
@@ -316,7 +316,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (extension analysis; future work) |
 
 **Why this tier?**
 
@@ -612,7 +612,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Koenecke et al. 2024 'Careless Whisper'; specific to neural end-to-end ASR architectures |
+| **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
 
 **Why this tier?**
 

@@ -21,6 +21,19 @@ Handles are stable, ASCII, kebab-case-or-mixed-case (the prefix-on-ref-IDs conve
 
 ---
 
+### AIDRS-NHS
+
+- **Title:** AI and Digital Regulations Service — multi-regulator hub for digital health
+- **Publisher:** NHS England (in partnership with MHRA, NICE, ICO, CQC, HRA)
+- **Source-Type:** framework
+- **URL:** https://www.digitalregulations.innovation.nhs.uk/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA in one navigation. Used where the taxonomy reasons about NHS regulatory context generically rather than naming a single regulator. Where prose names multiple regulators in passing, prefer [AIDRS-NHS]; where prose names a specific one, prefer the regulator-specific handle ([MHRA-SaMD], [NICE-ESF], [ICO], [CQC], etc.).
+
 ### DCB0129
 
 - **Title:** Clinical Risk Management: its Application in the Manufacture of Health IT Systems
@@ -73,19 +86,6 @@ Annual self-assessment toolkit for NHS-related organisations against the Nationa
 
 National baseline for new digital health technologies seeking NHS deployment, covering clinical safety (C1), data protection (C2), technical security (C3), interoperability (C4), and usability/accessibility (D1).
 
-### IASME-Cyber-Essentials-Plus
-
-- **Title:** Cyber Essentials Plus (audited variant)
-- **Publisher:** IASME Consortium (NCSC-appointed accreditation body for Cyber Essentials)
-- **Source-Type:** framework
-- **URL:** https://iasme.co.uk/cyber-essentials/
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-The audited variant of Cyber Essentials, with on-site verification by an IASME-approved certification body. Annual cadence (12-month validity window). Scheme rules at iasme.co.uk; underlying technical controls and guidance at [NCSC-Cyber-Essentials].
-
 ### MHRA-SaMD
 
 - **Title:** Software and AI as a Medical Device — guidance for manufacturers
@@ -110,7 +110,7 @@ MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-NCSC scheme overview and the technical control set that underpins both basic Cyber Essentials and [IASME-Cyber-Essentials-Plus] (the audited variant).
+NCSC scheme overview and the technical control set. Two variants exist: basic Cyber Essentials (self-assessment) and Cyber Essentials Plus (audited; 12-month validity window). The Plus variant is administered by IASME (https://iasme.co.uk/cyber-essentials/), the NCSC-appointed delivery partner — citation handle remains [NCSC-Cyber-Essentials] for both variants since NCSC is the scheme owner.
 
 ### NHSE-AVT-Registry
 
@@ -123,33 +123,20 @@ NCSC scheme overview and the technical control set that underpins both basic Cyb
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NHS England self-certification list for AVT vendors, live since January 2026. Listing is binary; vendors publish 13 evidence categories on the National Commercial & Procurement Hub. NHSE undertakes only preliminary completion checks. See also the cross-listing on the Transformation Directorate at [NHSE-Transformation-Directorate-AVT].
+The NHS England self-certification list for AVT vendors, live since January 2026. Listing is binary; vendors publish 13 evidence categories on the National Commercial & Procurement Hub. NHSE undertakes only preliminary completion checks. The same scheme is cross-listed on the NHS Transformation Directorate at https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/, which hosts the long-read context — the operational page (digital.nhs.uk) is the authoritative current location.
 
 ### NHSE-Find-a-Tender-069369
 
-- **Title:** Find a Tender Notice 069369-2025 — AVT Self-Certified Supplier Registry
+- **Title:** Find a Tender Notice 009501-2026 — AVT Self-Certified Supplier Registry (current notice)
 - **Publisher:** UK Cabinet Office (Find a Tender service) / NHS England
 - **Source-Type:** regulator-guidance
-- **URL:** https://www.find-tender.service.gov.uk/Notice/069369-2025
+- **URL:** https://www.find-tender.service.gov.uk/Notice/009501-2026
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The procurement-notice form of the [NHSE-AVT-Registry], referenced for scheme reference / mandatory-status purposes.
-
-### NHSE-Transformation-Directorate-AVT
-
-- **Title:** AVT Self-Certified Supplier Registry — Transformation Directorate landing
-- **Publisher:** NHS England (Transformation Directorate)
-- **Source-Type:** framework
-- **URL:** https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-The Transformation Directorate-side surfacing of the same scheme as [NHSE-AVT-Registry]. Both pages exist during the 2026 content-migration window; the operational page (digital.nhs.uk) is the authoritative current location and the Transformation Directorate hosts long-read context.
+The most up-to-date Find a Tender notice for the [NHSE-AVT-Registry] scheme. Earlier notice 069369-2025 was superseded by 009501-2026; the handle name is retained for citation continuity (renaming would break the v3.8 prose that references it). Reserved for tender-procurement provenance discussions.
 
 ### SI-2024-1368
 
@@ -201,20 +188,20 @@ ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO c
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The eight Caldicott Principles as restated by the National Data Guardian in 2020. The principle of "no surprises" (principle 7) and the proportionality framing (principles 1-5) are the most cited in the AVT context.
+The eight Caldicott Principles as restated by the National Data Guardian in 2020. The principle of "no surprises" (principle 7) and the proportionality framing (principles 1-5) are the most cited in the AVT context. NDG's organisation page is at https://www.gov.uk/government/organisations/national-data-guardian for guidance beyond the principles publication.
 
 ### CQC
 
-- **Title:** Care Quality Commission — assessment framework
+- **Title:** Care Quality Commission — guidance and regulation hub
 - **Publisher:** Care Quality Commission (CQC)
 - **Source-Type:** regulator-guidance
-- **URL:** https://www.cqc.org.uk/about-us/how-we-do-our-job/single-assessment-framework
+- **URL:** https://www.cqc.org.uk/guidance-regulation
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The CQC's single assessment framework for health and social-care providers, the regulatory frame that surrounds AVT deployment. CQC Mythbuster 109 on documentation accuracy is the specific guidance most cited in the human-factors sections.
+The CQC's broad guidance-and-regulation hub for health and social-care providers, the regulatory frame that surrounds AVT deployment. For the deeper-dive into the assessment framework specifically (the most cited slice in the human-factors sections), see https://www.cqc.org.uk/guidance-regulation/providers/assessment/assessment-framework. CQC Mythbuster 109 on documentation accuracy is the specific guidance most cited in the human-factors sections.
 
 ### PSIRF
 
@@ -227,7 +214,20 @@ The CQC's single assessment framework for health and social-care providers, the 
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NHS England framework for systems-based patient-safety-incident response, replacing the older Serious Incident Framework. Cited where the taxonomy reasons about safety-event reporting and incident learning.
+The NHS England framework for systems-based patient-safety-incident response, replacing the older Serious Incident Framework. Cited where the taxonomy reasons about safety-event reporting and incident learning. Pair with [LFPSE] for the corresponding learning-from-events recording mechanism.
+
+### LFPSE
+
+- **Title:** Learning from Patient Safety Events
+- **Publisher:** NHS England
+- **Source-Type:** framework
+- **URL:** https://www.england.nhs.uk/patient-safety/patient-safety-insight/learning-from-patient-safety-events/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NHS England's national service for recording and learning from patient-safety events. Sibling to [PSIRF]: PSIRF is the response framework, LFPSE is the recording-and-learning mechanism. Cite both where Source rows currently say "PSIRF + LFPSE" or where a metric reasons about both reactive incident response (PSIRF) and prospective learning (LFPSE).
 
 ### PRSB
 
@@ -244,23 +244,23 @@ PRSB's information-standard set, including clinical-headings standards for consu
 
 ### NHS-LLM-Framework
 
-- **Title:** NHS England LLM Evaluation and Monitoring Framework v0.2.2
+- **Title:** NHS England LLM Evaluation and Monitoring Framework v0.2.2 (DRAFT)
 - **Publisher:** NHS England
 - **Source-Type:** framework
-- **URL:** https://transform.england.nhs.uk/key-tools-and-info/llm-evaluation-and-monitoring-framework/
+- **URL:** https://nhsengland.github.io/llm-eval-monitor-framework
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NHS England framework for evaluating LLM-based clinical applications, structured as three groups of dimensions: Suitability in Context (11), Wider Impact (11), Quantifiable Changes (8). Mapped to the taxonomy's metrics in `_standards-mapping.md`.
+The NHS England framework for evaluating LLM-based clinical applications. **Status: DRAFT** at v0.2.2; cited as a working reference rather than a settled standard. Structured as three groups of dimensions: Suitability in Context (11), Wider Impact (11), Quantifiable Changes (8). Mapped to the taxonomy's metrics in `_standards-mapping.md`.
 
 ### NHS-TEST
 
-- **Title:** NHS T.E.S.T. (Technology Evaluation Safety Test) Framework
-- **Publisher:** NHS / ICS-level vendor-assessment scheme
+- **Title:** NHS T.E.S.T. — An Intelligent Framework to Choose New Technologies
+- **Publisher:** Health Innovation Network (publisher of the framework)
 - **Source-Type:** framework
-- **URL:** https://transform.england.nhs.uk/key-tools-and-info/technology-evaluation-safety-test/
+- **URL:** https://healthinnovationnetwork.com/resources/nhs-test-an-intelligent-framework-to-choose-new-technologies/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -283,42 +283,42 @@ NICE's evidence-tiering framework for digital health technologies. Tier 3 (activ
 
 ### FHIR-UK-Core
 
-- **Title:** FHIR UK Core — InterOpen-developed national interoperability profile
-- **Publisher:** NHS England (FHIR UK Core programme) / InterOpen
+- **Title:** FHIR UK Core — NHS Digital organisation page on Simplifier
+- **Publisher:** NHS England (FHIR UK Core programme) / Simplifier hosting
 - **Source-Type:** framework
-- **URL:** https://simplifier.net/HL7FHIRUKCoreR4
+- **URL:** https://simplifier.net/organization/NHSDIgital/~home
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The UK Core FHIR R4 profile set used by NHS Digital interoperability work. Cited where the taxonomy reasons about EPR write-back resource conformance.
+The NHS Digital organisation page on Simplifier, the canonical hosting location for UK Core FHIR profiles. Cited where the taxonomy reasons about EPR write-back resource conformance.
 
 ### NHSE-IG-Guidance-2026-03
 
-- **Title:** NHS England Information Governance guidance on ambient scribing — March 2026 update
+- **Title:** NHS England ambient scribing guidance hub (Information Governance content under the operational landing page)
 - **Publisher:** NHS England (Information Governance team)
 - **Source-Type:** regulator-guidance
-- **URL:** https://transform.england.nhs.uk/information-governance/guidance/ambient-voice-technology/
+- **URL:** https://digital.nhs.uk/services/ambient-scribing
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The March 2026 NHSE IG-team update covering consent, audio retention, and patient notification expectations for ambient scribing. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics.
+NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
 
-### NAS-Day-Zero-SPI
+### NAS-Day-Zero-SPI-internal
 
-- **Title:** NAS Framework Day Zero Safety Performance Indicators (SPIs)
-- **Publisher:** NHS England Patient Safety / NAS framework
-- **Source-Type:** framework
-- **URL:** https://www.england.nhs.uk/patient-safety/national-incident-management-system/nas-framework/
+- **Title:** NAS Day Zero Safety Performance Indicators (internal / pre-publication)
+- **Publisher:** NHS England Patient Safety (parent programme)
+- **Source-Type:** internal-derivation
+- **URL:** https://www.england.nhs.uk/patient-safety/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NAS-framework Day Zero SPI set. Cited as the source of several pre-deployment gating thresholds in the human-factors and pipeline-narrow tightenings (especially HL.HF-3a's review-quality detection ≥ 95 % gate).
+> ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
 
 ### GMC
 
@@ -344,27 +344,27 @@ GMC's professional-conduct standard. Cited where the taxonomy reasons about clin
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NHS national authentication service. Referenced in security-baseline discussions where authentication / identity is a procurement requirement.
+The NHS national authentication service. Referenced in security-baseline discussions where authentication / identity is a procurement requirement. The URL points at the parent service landing page; specific architecture / integration / role-based-access content is nested below — readers wanting the implementation detail should navigate from this landing into the relevant sub-page.
 
 ### Mindgard-Heidi-2026
 
-- **Title:** Mindgard disclosure — Heidi Health prompt-injection / jailbreak findings (March 2026)
+- **Title:** Heidi Health: how AI can show doctors how to steal your identity — Mindgard disclosure (2026)
 - **Publisher:** Mindgard (security-research firm)
 - **Source-Type:** disclosure
-- **URL:** https://mindgard.ai/blog/heidi-health-disclosure
+- **URL:** https://mindgard.ai/blog/heidi-health-ai-can-show-doctors-how-to-steal-your-identity
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Mindgard's March 2026 security-disclosure on Heidi Health AVT vulnerabilities, including spoken-prompt-injection success and jailbreak-via-AVT-interface results. The canonical reference for GV.SC-1 and GV.SC-2 prompt-injection / jailbreak resistance metrics.
+Mindgard's 2026 security-disclosure on Heidi Health AVT vulnerabilities, including spoken-prompt-injection success and jailbreak-via-AVT-interface results. The canonical reference for GV.SC-1 and GV.SC-2 prompt-injection / jailbreak resistance metrics.
 
 ### Mindgard-Doctronic-2026
 
-- **Title:** Mindgard disclosure — Doctronic prompt-injection / jailbreak findings (March 2026)
+- **Title:** Doctronic is now accepting new patients and unsafe instructions — Mindgard disclosure (2026)
 - **Publisher:** Mindgard
 - **Source-Type:** disclosure
-- **URL:** https://mindgard.ai/blog/doctronic-disclosure
+- **URL:** https://mindgard.ai/blog/doctronic-is-now-accepting-new-patients-and-unsafe-instructions
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -374,21 +374,21 @@ Mindgard's parallel disclosure on Doctronic AVT vulnerabilities; pairs with [Min
 
 ### MIT-Jameel-2026
 
-- **Title:** MIT Jameel Clinic — cross-patient leakage finding (2026)
-- **Publisher:** MIT Jameel Clinic
+- **Title:** MIT scientists investigate memorization risk in clinical AI (Jan 2026 news report)
+- **Publisher:** MIT News (Jameel Clinic research)
 - **Source-Type:** disclosure
-- **URL:** https://www.jameelclinic.mit.edu/news/avt-cross-patient-leakage-2026/
+- **URL:** https://news.mit.edu/2026/mit-scientists-investigate-memorization-risk-clinical-ai-0105
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The 2026 MIT Jameel Clinic disclosure on cross-patient information leakage in AVT systems. Cited from the GV.SC family on data-leakage and adversarial robustness.
+The 2026 MIT Jameel Clinic finding on cross-patient information memorisation / leakage in clinical AI systems. The MIT News report is the primary public disclosure; the underlying study was presented as a NeurIPS 2025 poster (https://neurips.cc/virtual/2025/loc/san-diego/poster/118370). Cited from the GV.SC family on data-leakage and adversarial robustness.
 
 ### OxonFair-2024
 
-- **Title:** OxonFair — fairness-testing extension for clinical voice systems (2024 healthcare voice extension)
-- **Publisher:** University of Oxford research collaboration
+- **Title:** OxonFair — fairness-testing toolkit (foundational); AVT/clinical-voice extension proposed but not yet published
+- **Publisher:** Oxford Internet Institute / OxonFair maintainers
 - **Source-Type:** internal-derivation
 - **URL:** https://github.com/oxfordinternetinstitute/oxonfair
 - **Archive:** _(Phase 1 — pending snapshot.py)_
@@ -396,46 +396,46 @@ The 2026 MIT Jameel Clinic disclosure on cross-patient information leakage in AV
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-OxonFair's fairness-testing extensions for clinical voice systems. Cited as the source of several proposed-but-not-yet-validated demographic-disaggregation metrics in the taxonomy's fairness/equity group.
+The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clinical-voice extension** of OxonFair that is not yet published — treat citing this handle as a pointer to **emerging research / future work** rather than a settled methodology. Used to flag where the taxonomy proposes a demographic-disaggregation metric whose validated form depends on work yet to land.
 
 ### INSYTE-2025
 
-- **Title:** INSYTE — under-specification analysis of AVT-adjacent metrics (2025)
-- **Publisher:** Internal research analysis (INSYTE study)
-- **Source-Type:** internal-derivation
-- **URL:** https://github.com/danjscho/insyte-analysis
+- **Title:** INSYTE — Investigating Sociotechnical Yardsticks for Trustworthy clinical AI Evaluation
+- **Publisher:** Schofield et al., ACM 2024 (DOI 10.1145/3760424)
+- **Source-Type:** paper
+- **URL:** https://dl.acm.org/doi/10.1145/3760424
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The INSYTE under-specification analysis (2025) that surfaced several adversarial-context extension metrics. Cited where the taxonomy proposes a metric that extends an INSYTE-identified gap.
+The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cites this as the foundational reference; the **AVT-specific extension application** of INSYTE is not yet public — citing INSYTE on an AVT-specific metric should be read as **future work pending publication**.
 
 ### SCRIBE-Wang-2025
 
-- **Title:** SCRIBE — Synthetic Clinical Research-Informed Benchmarks for Evaluation (Wang et al., 2025)
-- **Publisher:** Wang et al., 2025 (academic publication)
+- **Title:** SCRIBE — Synthetic Clinical Research-Informed Benchmarks for Evaluation (Wang et al., npj Digital Medicine 2025)
+- **Publisher:** Wang et al., npj Digital Medicine (Nature Portfolio), 2025
 - **Source-Type:** paper
-- **URL:** https://arxiv.org/abs/2502.SCRIBE
+- **URL:** https://www.nature.com/articles/s41746-025-01622-1
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The SCRIBE benchmark suite for synthetic clinical-conversation evaluation, used as a reference dataset in several pipeline metrics.
+The SCRIBE benchmark suite for synthetic clinical-conversation evaluation, published in npj Digital Medicine 2025. Used as a reference dataset in several pipeline metrics.
 
 ### PDSQI-9
 
-- **Title:** Physician Documentation Quality Instrument-9 (PDSQI-9)
-- **Publisher:** Stetson et al., academic publication
+- **Title:** Physician Documentation Quality Instrument (PDQI / PDSQI-9 lineage)
+- **Publisher:** Stetson et al. (original PDQI, 2012); subsequent PDSQI-9 work
 - **Source-Type:** paper
-- **URL:** https://academic.oup.com/jamia/article/19/6/1088/4537085
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/22577483/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The 9-item Physician Documentation Quality Instrument. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric.
+The original Physician Documentation Quality Instrument paper (Stetson et al., 2012; PubMed 22577483) is the canonical reference. A more recent paper exploring PDSQI applied to LLM-generated clinical documentation is at https://pubmed.ncbi.nlm.nih.gov/40323321/. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric.
 
 ### ROUGE-Lin-2004
 
@@ -462,6 +462,370 @@ The original ROUGE paper. Cited where the taxonomy uses ROUGE-{1,2,L} or notes t
 - **Cited-by:** _(auto-generated)_
 
 The BERTScore paper. Cited where the taxonomy uses BERTScore variants or notes the Tier-C-validity-unproven limitation for clinical text.
+
+### ACL-SIGDIAL-2023
+
+- **Title:** ACL SIGDIAL 2023 — paper #45, track 1 (overlap-aware ASR / turn-taking)
+- **Publisher:** ACL Anthology, SIGDIAL 2023 proceedings
+- **Source-Type:** paper
+- **URL:** https://aclanthology.org/2023.sigdial-1.45/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited by TP.DI-7 (Turn-Taking Accuracy in Overlap) as the source of the overlap-aware diarisation methodology. URL points at SIGDIAL 2023 paper #45, track 1 — confirm at next pass that this paper actually covers turn-taking-in-overlap before snapshot.py runs. Handle currently retains the generic `ACL-SIGDIAL-2023` form; rename to `<Author-Year>-style` once the paper is verified.
+
+### Sitaram-Code-Switching-Survey-2019
+
+- **Title:** A Survey of Code-switched Speech and Language Processing — Sitaram et al. (2019)
+- **Publisher:** Sitaram et al., arxiv 1904.00784 (preprint, 2019)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1904.00784
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Sitaram et al. survey of code-switched speech and language processing. Cited by TP.DI-6 (Code-Switching Detection Rate). The taxonomy's original Source row prose mentioned "IJCAI-22 multi-party conversation survey", which was a misremembering — the cited content is the Sitaram 2019 arxiv preprint, which covers code-switching specifically. Handle renamed in v3.9 Phase 2 to reflect the actual paper.
+
+### Koenecke-Careless-Whisper-2024
+
+- **Title:** Careless Whisper: Speech-to-Text Hallucinations — Koenecke et al. (FAccT 2024)
+- **Publisher:** Koenecke et al., ACM FAccT 2024
+- **Source-Type:** paper
+- **URL:** https://dl.acm.org/doi/10.1145/3630106.3658996
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The "Careless Whisper" paper documenting hallucination behaviour specific to neural end-to-end ASR architectures (Whisper-class models). Cited in the TP.ASR family for hallucination-rate metrics.
+
+### mpathic-Clinical-ASR-Benchmark-2025
+
+- **Title:** mpathic.ai clinical ASR benchmark — September 2025 poster
+- **Publisher:** mpathic.ai
+- **Source-Type:** disclosure
+- **URL:** https://mpathic.ai/wp-content/uploads/ASR-Poster-September-2025.pdf
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speaker Role Identification F1) and TP.DI-8 (Clinical-Perspective HEWER). `Source-Type: disclosure` because the benchmark is vendor-published rather than peer-reviewed. cpHEWER (the clinical-importance-weighted DER variant cited in TP.DI-8) is introduced by this benchmark; future academic publication may supersede.
+
+### Croxford-2025
+
+- **Title:** Croxford et al. 2025 — clinical-summarisation evaluation findings
+- **Publisher:** Croxford et al., 2025 (specific DOI / venue TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing. Resolve at the Phase 2 follow-up review.
+
+### Asgari-Tortus-GOSH-2025
+
+- **Title:** Asgari et al. 2025 — Tortus AI / GOSH hallucination-rate findings
+- **Publisher:** Asgari et al., 2025 (Tortus AI in collaboration with Great Ormond Street Hospital)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters. Resolve at the Phase 2 follow-up review.
+
+### CREOLA-Hallucination-Taxonomy
+
+- **Title:** CREOLA hallucination taxonomy (specific reference TBC)
+- **Publisher:** _(unknown — possibly an academic benchmark or vendor framework; please clarify)_
+- **Source-Type:** _(unknown — paper or disclosure; please clarify)_
+- **URL:** _(pending v3.9 Phase 2 follow-up review — original reference to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-6 (Hallucination Severity Classification sub-part) as the source of the hallucination-taxonomy categories. Source row prose names "CREOLA taxonomy" but does not specify whether this is an academic benchmark, a research-group-internal taxonomy, or a vendor framework. Resolve at the Phase 2 follow-up review.
+
+### Abridge-Whitepaper-2025
+
+- **Title:** Abridge whitepaper — clinical-AI training methodology (50,000+ examples)
+- **Publisher:** Abridge (vendor)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor whitepaper URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published. Resolve at the Phase 2 follow-up review.
+
+### Chung-NEJM-AI-2025
+
+- **Title:** Chung et al. 2025 — Stanford AI clinical-evaluation findings (NEJM AI, January 2025)
+- **Publisher:** Chung et al., NEJM AI January 2025
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 paper from Chung et al. at Stanford. Resolve at the Phase 2 follow-up review.
+
+### Bedi-Stanford-CRFM-2025
+
+- **Title:** Bedi et al. 2025 — Stanford CRFM findings (May 2025)
+- **Publisher:** Bedi et al., Stanford Center for Research on Foundation Models, May 2025
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / arxiv ID to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-10 (Tier 3 advanced metric) as Bedi et al.'s Stanford CRFM May 2025 paper. Resolve at the Phase 2 follow-up review.
+
+### Kanithi-2025
+
+- **Title:** Kanithi et al. 2025 — clinical-summarisation paper (specific venue TBC)
+- **Publisher:** Kanithi et al., 2025
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper. Resolve at the Phase 2 follow-up review.
+
+### Abridge-Linked-Evidence
+
+- **Title:** Abridge Linked Evidence — confidence-routed clinical-AI architecture (vendor disclosure)
+- **Publisher:** Abridge (vendor)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor disclosure URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-12 (architecture-derived metric) and TP.ASR-11 (ASR Confidence Exposure) as the source of the confidence-based routing architecture pattern. `Source-Type: disclosure` because the architecture is vendor-described rather than peer-reviewed. Resolve at the Phase 2 follow-up review.
+
+### Wang-Duke-MedStar-2025
+
+- **Title:** Wang et al. 2025 — Duke / MedStar clinical-AI findings
+- **Publisher:** Wang et al., 2025 (Duke / MedStar collaboration)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-13 (Tier 3 advanced metric) as Wang et al.'s Duke/MedStar 2025 paper. **Note:** distinct from [SCRIBE-Wang-2025] — different Wang, different institution, different paper. Resolve at the Phase 2 follow-up review.
+
+### i2b2-2012-Temporal-Challenge
+
+- **Title:** i2b2 2012 Temporal Challenge — clinical temporal-reasoning benchmark
+- **Publisher:** i2b2 / Harvard Medical School (challenge organisers, 2012)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — challenge overview / paper DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.876 state-of-the-art figure. The i2b2 2012 challenge is a well-known clinical-NLP benchmark; published as Sun et al. or similar — exact citation to confirm at the Phase 2 follow-up review.
+
+### n2c2-Shared-Tasks
+
+- **Title:** n2c2 NLP shared tasks — multi-year benchmark series (i2b2 successor)
+- **Publisher:** Department of Biomedical Informatics, Harvard Medical School (n2c2 organisers)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — n2c2 program landing page or specific shared-task DOIs to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, and in TP.SN-21 (medication event classification) referencing the 2018 n2c2 shared task specifically. Multi-year benchmark series; the catalogue handle covers all year-shared-tasks generically with year-specific qualification given inline. Resolve at the Phase 2 follow-up review whether to keep one handle or split per shared-task year.
+
+### Barcelona-JAMA-Network-Open-2025
+
+- **Title:** Barcelona et al. 2025 — JAMA Network Open paper on biased clinical-note language
+- **Publisher:** Barcelona et al., JAMA Network Open 2025
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — JAMA Network Open DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.SN-25 (Bias in Patient Descriptors) as the source of the "Black patients 2.54× odds of negative descriptors" finding. Resolve at the Phase 2 follow-up review.
+
+### NLP2FHIR-Pipeline
+
+- **Title:** NLP2FHIR pipeline — clinical NLP to FHIR resource conversion
+- **Publisher:** _(specific publication / project TBC)_
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / project URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.CC-2 (SNOMED CT Concept Mapping Accuracy) as one of three references underwriting the SNOMED-mapping methodology. Specific publication to confirm at the Phase 2 follow-up review.
+
+### John-Snow-Labs-FHIR-Ready-AI
+
+- **Title:** John Snow Labs FHIR-Ready AI — clinical-NLP-to-FHIR commercial product disclosure
+- **Publisher:** John Snow Labs (vendor)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor product page URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type: disclosure` because it's a vendor product disclosure rather than an academic publication.
+
+### MedCAT-Benchmarks
+
+- **Title:** MedCAT — Medical Concept Annotation Toolkit benchmarks
+- **Publisher:** Kraljevic et al. (MedCAT maintainers, KCL / SLaM)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — specific MedCAT paper or project URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.CC-2 as benchmark reference for medical-concept annotation. MedCAT is a well-known King's-College-London / South London & Maudsley NHS-backed clinical-NLP toolkit; specific benchmark paper to confirm at the Phase 2 follow-up review.
+
+### Hybrid-Code-v2-2025
+
+- **Title:** Hybrid-Code v2 — neuro-symbolic clinical-coding verification
+- **Publisher:** _(authors TBC)_; arxiv 2512.23743
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2512.23743
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Hybrid-Code v2 neuro-symbolic clinical-coding verification approach. Cited in TP.CC-3 (ICD coding accuracy) and TP.CC-6 (verification metric). arxiv ID supplied directly from the original Source row prose. Authors / specific title can be confirmed by reading the arxiv abstract.
+
+### WHO-ICD-11
+
+- **Title:** WHO ICD-11 — International Classification of Diseases, 11th revision
+- **Publisher:** World Health Organisation
+- **Source-Type:** framework
+- **URL:** https://icd.who.int/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+WHO's authoritative ICD-11 portal. Cited in TP.CC-3 as the reference standard for diagnosis classification. URL is the canonical WHO ICD landing — confirm at follow-up that this is the right entry-point vs. the implementation-guidance specifically.
+
+### NHS-Digital-OPCS-4
+
+- **Title:** NHS Digital OPCS-4 — Office of Population Censuses and Surveys Classification of Surgical Operations and Procedures (4.x)
+- **Publisher:** NHS England (formerly NHS Digital)
+- **Source-Type:** framework
+- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS Digital OPCS-4 standards page URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS UK procedure-coding standard (OPCS-4 / OPCS-4.10). Cited in TP.CC-4 (OPCS-4 Procedure Coding Accuracy) as the reference standard. URL likely under digital.nhs.uk/services/terminology-and-classifications.
+
+### NHS-BSA-dm-plus-d
+
+- **Title:** NHS Business Services Authority (BSA) dm+d — Dictionary of Medicines and Devices
+- **Publisher:** NHS Business Services Authority
+- **Source-Type:** framework
+- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS BSA dm+d landing page URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS UK medication-coding standard (dm+d). Cited in TP.CC-5 (dm+d Medication Coding Accuracy) as the reference standard. URL likely under nhsbsa.nhs.uk.
+
+### npj-DM-AI-Coding-Drift-2025
+
+- **Title:** AI clinical coding drift — npj Digital Medicine policy brief (2025)
+- **Publisher:** Nature Portfolio (npj Digital Medicine), DOI 10.1038/s41746-025-02272-z
+- **Source-Type:** paper
+- **URL:** https://www.nature.com/articles/s41746-025-02272-z
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The npj Digital Medicine policy brief documenting AI-coding drift (3.0 → 4.1 diagnoses per encounter post-AVT). Cited in TP.CC-7 (Coding Drift Detection) as the load-bearing empirical reference. DOI extracted from the original Source row prose; confirm authors / exact title by reading the article.
+
+### SNOMED-CT
+
+- **Title:** SNOMED CT — Systematized Nomenclature of Medicine — Clinical Terms (UK Edition)
+- **Publisher:** SNOMED International / NHS Digital (UK release)
+- **Source-Type:** framework
+- **URL:** _(pending v3.9 Phase 2 follow-up review — SNOMED International or NHS UK SNOMED landing URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The SNOMED CT clinical terminology, used as the reference standard in TP.CC-2 (SNOMED concept mapping) and TP.CC-9 (hierarchy-aware coding accuracy). UK Edition is the relevant variant for NHS deployment. URL options include snomed.org (international) or the NHS Digital SNOMED landing under digital.nhs.uk/services/terminology-and-classifications.
+
+### SPIE-14009E-2025
+
+- **Title:** SPIE 14009E 2025 — interoperability study (specific paper TBC)
+- **Publisher:** SPIE 2025 proceedings, paper 14009E
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — SPIE Digital Library DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in TP.WB-6 (FHIR R4 Resource Conformance) as a 2025 SPIE interoperability study. SPIE proceedings papers are at spiedigitallibrary.org; specific DOI to confirm at follow-up review.
+
+### openEHR-Foundation
+
+- **Title:** openEHR Foundation standards
+- **Publisher:** openEHR Foundation
+- **Source-Type:** framework
+- **URL:** https://specifications.openehr.org/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The openEHR Foundation specification suite for clinical-information modelling. Cited in TP.WB-7 (or whichever TP.WB metric covers archetype-based EPR integration) as the alternative-architecture reference standard alongside FHIR.
+
+### openEHR-Clinical-Knowledge-Manager
+
+- **Title:** openEHR Clinical Knowledge Manager (CKM) — archetype library
+- **Publisher:** openEHR Foundation
+- **Source-Type:** framework
+- **URL:** https://ckm.openehr.org/ckm/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The openEHR community-curated archetype library, used as the reference for archetype-validation work alongside [openEHR-Foundation]. URL is the canonical CKM landing.
 
 ---
 

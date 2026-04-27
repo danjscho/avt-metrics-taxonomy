@@ -15,7 +15,7 @@ AI-suggested code correctness. Precision, recall, and F1 reported separately for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Standard clinical audit; NAS baselines |
+| **Source** | Standard clinical audit; [NAS-Day-Zero-SPI-internal] baselines |
 
 **Why this tier?**
 
@@ -54,7 +54,7 @@ Accuracy of the mapping from extracted clinical entities in free-text to the cor
 |**Maturity**           |Established                                                              |
 |**Outcome Type**       |Proximal                                                                 |
 |**Applicability**      |AVT-Contextualised                                                       |
-|**Source**             |NLP2FHIR pipeline literature; John Snow Labs FHIR-Ready AI; MedCAT benchmarks|
+|**Source**             |[NLP2FHIR-Pipeline]; [John-Snow-Labs-FHIR-Ready-AI]; [MedCAT-Benchmarks]|
 
 **Why this tier?**
 
@@ -91,7 +91,7 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Contextualised                          |
-|**Source**             |Hybrid-Code v2 (arXiv 2512.23743); WHO ICD-11 implementation guidance|
+|**Source**             |[Hybrid-Code-v2-2025]; [WHO-ICD-11]|
 
 **Why this tier?**
 
@@ -128,7 +128,7 @@ Accuracy of OPCS-4 procedure code assignment from consultation documentation. NH
 |**Maturity**           |Proposed / Novel                              |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |AVT-Contextualised                            |
-|**Source**             |NHS Digital OPCS-4 coding standards; gap identified in published AVT literature|
+|**Source**             |[NHS-Digital-OPCS-4]; gap identified in published AVT literature|
 
 **Why this tier?**
 
@@ -165,7 +165,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |AVT-Contextualised                                        |
-|**Source**             |NHS BSA dm+d standard; gap identified in published AVT literature|
+|**Source**             |[NHS-BSA-dm-plus-d]; gap identified in published AVT literature|
 
 **Why this tier?**
 
@@ -204,7 +204,7 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
 |**Applicability**      |AVT-Contextualised                                   |
-|**Source**             |Hybrid-Code v2 (arXiv 2512.23743) - neuro-symbolic verification approach|
+|**Source**             |[Hybrid-Code-v2-2025] (neuro-symbolic verification approach)|
 
 **Why this tier?**
 
@@ -260,7 +260,7 @@ Systematic detection of pre/post-AVT shifts in clinical coding distributions. In
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature, npj Digital Medicine policy brief Nature s41746-025-02272-z documented 3.0→4.1 diagnoses/encounter post-AVT) |
+| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT |
 
 **Why this tier?**
 
@@ -409,7 +409,7 @@ Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | SNOMED CT hierarchy semantics; clinical audit methodology |
+| **Source** | [SNOMED-CT] hierarchy semantics; clinical audit methodology |
 
 **Why this tier?**
 

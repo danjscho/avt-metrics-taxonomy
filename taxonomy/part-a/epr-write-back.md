@@ -320,7 +320,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
-|**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
+|**Source**             |[FHIR-UK-Core] R4 validation tooling; [SPIE-14009E-2025] interoperability study|
 
 **Why this tier?**
 
@@ -359,7 +359,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |**Maturity**           |Established                               |
 |**Outcome Type**       |Proximal                                  |
 |**Applicability**      |AVT-Contextualised                        |
-|**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
+|**Source**             |[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library|
 
 **Why this tier?**
 

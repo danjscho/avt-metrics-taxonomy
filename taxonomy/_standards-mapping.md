@@ -375,7 +375,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 ### NHS England AVT Self-Certified Supplier Registry
 
 **Publisher:** NHS England (Transformation Directorate / NHS England Digital)
-**Scheme reference:** Procurement notice [NHSE-Find-a-Tender-069369]; the operational location is [NHSE-AVT-Registry] (digital.nhs.uk/services/ambient-scribing) and the long-read surfacing is [NHSE-Transformation-Directorate-AVT] (transform.england.nhs.uk).
+**Scheme reference:** Procurement notice [NHSE-Find-a-Tender-069369]; the operational location is [NHSE-AVT-Registry] (digital.nhs.uk/services/ambient-scribing). Long-read context is also hosted on the NHS Transformation Directorate (transform.england.nhs.uk).
 **Status:** **Live since January 2026.** First cohort of 19 suppliers listed January 2026, expanded to 23 by April 2026. Applications reopened 3 February 2026 and remain open indefinitely.
 **Mandatory status:** Effective procurement gate. Listing is voluntary at the supplier level but practically required for NHS deployment at scale. Adopting Trusts and PCNs are encouraged to procure from registered suppliers; deployment of unregistered suppliers carries local liability risk per NHS England guidance.
 **AVT relevance:** Purpose-built for AVT / ambient-scribing procurement at the national level. Sits structurally alongside [NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test) (T.E.S.T. is an ICS-level vendor-assessment framework; the Registry is the national-level certification list that draws on T.E.S.T. and other frameworks).

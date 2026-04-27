@@ -15,7 +15,7 @@ N-gram overlap between generated and reference text. Demonstrably inadequate for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Lin 2004; inadequacy shown by Croxford et al. 2025 |
+| **Source** | [ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025] |
 
 **Why this tier?**
 
@@ -84,7 +84,7 @@ Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Zhang et al. 2020; Croxford et al. 2025 |
+| **Source** | [BERTScore-Zhang-2020]; [Croxford-2025] |
 
 **Why this tier?**
 
@@ -142,7 +142,7 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Stetson et al.; Croxford et al. 2025 |
+| **Source** | [PDSQI-9]; [Croxford-2025] |
 
 **Why this tier?**
 
@@ -186,7 +186,7 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Asgari et al. 2025 (Tortus/GOSH). Now underpins automated guardrails. |
+| **Source** | [Asgari-Tortus-GOSH-2025]. Now underpins automated guardrails. |
 
 **Why this tier?**
 
@@ -258,7 +258,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Various; Tortus 1.47% per sentence |
+| **Source** | Various; [Asgari-Tortus-GOSH-2025] reports 1.47% per sentence |
 
 **Why this tier?**
 
@@ -352,7 +352,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Tortus 3.45%; CREOLA taxonomy |
+| **Source** | [Asgari-Tortus-GOSH-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
 
@@ -455,7 +455,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge whitepaper (50,000+ training examples) |
+| **Source** | [Abridge-Whitepaper-2025] (50,000+ training examples) |
 
 **Why this tier?**
 
@@ -500,7 +500,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Chung et al., Stanford, Jan 2025; NEJM AI |
+| **Source** | [Chung-NEJM-AI-2025] |
 
 **Why this tier?**
 
@@ -608,7 +608,7 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Croxford et al. 2025 |
+| **Source** | [Croxford-2025] |
 
 **Why this tier?**
 
@@ -655,7 +655,7 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Bedi et al., Stanford CRFM, May 2025 |
+| **Source** | [Bedi-Stanford-CRFM-2025] |
 
 **Why this tier?**
 
@@ -698,7 +698,7 @@ One LLM interrogates another to detect hallucinations without references. Identi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Kanithi et al. 2025 |
+| **Source** | [Kanithi-2025] |
 
 **Why this tier?**
 
@@ -741,7 +741,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge Linked Evidence |
+| **Source** | [Abridge-Linked-Evidence] |
 
 **Why this tier?**
 
@@ -784,7 +784,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Wang et al. 2025 (Duke/MedStar) |
+| **Source** | [Wang-Duke-MedStar-2025] |
 
 **Why this tier?**
 
@@ -827,7 +827,7 @@ INSYTE underspecification delta when clinicians modify AVT templates. Every modi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | INSYTE analysis; DCB0129 gap |
+| **Source** | [INSYTE-2025]; [DCB0129] gap |
 
 **Why this tier?**
 
@@ -974,7 +974,7 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |AVT-Contextualised                                      |
-|**Source**             |i2b2 2012 temporal challenge (F1 0.876 state of art); clinical temporal reasoning literature|
+|**Source**             |[i2b2-2012-Temporal-Challenge] (F1 0.876 state of art); clinical temporal reasoning literature|
 
 **Why this tier?**
 
@@ -1064,7 +1064,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
-|**Source**             |n2c2 shared task benchmarks (attribute-level F1 >0.92 for strong systems)|
+|**Source**             |[n2c2-Shared-Tasks] benchmarks (attribute-level F1 >0.92 for strong systems)|
 
 **Why this tier?**
 
@@ -1172,7 +1172,7 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
-|**Source**             |n2c2 2018 shared task on medication event classification|
+|**Source**             |[n2c2-Shared-Tasks] (2018 shared task on medication event classification)|
 
 **Why this tier?**
 
@@ -1289,7 +1289,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
 |**Applicability**      |AVT-Contextualised                                                          |
-|**Source**             |Barcelona et al., JAMA Network Open 2025 (Black patients 2.54× odds of negative descriptors)|
+|**Source**             |[Barcelona-JAMA-Network-Open-2025] (Black patients 2.54× odds of negative descriptors)|
 
 **Why this tier?**
 

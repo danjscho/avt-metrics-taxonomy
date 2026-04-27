@@ -445,7 +445,7 @@ Composite freshness score per component:
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 12-month freshness window mirrors the [IASME-Cyber-Essentials-Plus] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the [NCSC-Cyber-Essentials] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.

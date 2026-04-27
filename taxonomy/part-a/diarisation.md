@@ -15,7 +15,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework; standard diarisation literature |
+| **Source** | [SCRIBE-Wang-2025]; standard diarisation literature |
 
 **Why this tier?**
 
@@ -72,7 +72,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework |
+| **Source** | [SCRIBE-Wang-2025] |
 
 **Why this tier?**
 
@@ -201,7 +201,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
 |**Applicability**      |AVT-Specific                                                         |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]; extends standard diarisation |
 
 **Why this tier?**
 
@@ -240,7 +240,7 @@ Accuracy of detecting within-utterance language switching - a speaker moving bet
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
-|**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
+|**Source**             |[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature|
 
 **Why this tier?**
 
@@ -279,7 +279,7 @@ Accuracy of attributing words spoken during overlapping speech - when two or mor
 |**Maturity**           |Established                                    |
 |**Outcome Type**       |Proximal                                       |
 |**Applicability**      |AVT-Specific                                   |
-|**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
+|**Source**             |[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature|
 
 **Why this tier?**
 
@@ -318,7 +318,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Specific                                |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025      |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]                     |
 
 **Why this tier?**
 

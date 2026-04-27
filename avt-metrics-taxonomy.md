@@ -1073,7 +1073,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 ### NHS England AVT Self-Certified Supplier Registry
 
 **Publisher:** NHS England (Transformation Directorate / NHS England Digital)
-**Scheme reference:** Procurement notice [NHSE-Find-a-Tender-069369]; the operational location is [NHSE-AVT-Registry] (digital.nhs.uk/services/ambient-scribing) and the long-read surfacing is [NHSE-Transformation-Directorate-AVT] (transform.england.nhs.uk).
+**Scheme reference:** Procurement notice [NHSE-Find-a-Tender-069369]; the operational location is [NHSE-AVT-Registry] (digital.nhs.uk/services/ambient-scribing). Long-read context is also hosted on the NHS Transformation Directorate (transform.england.nhs.uk).
 **Status:** **Live since January 2026.** First cohort of 19 suppliers listed January 2026, expanded to 23 by April 2026. Applications reopened 3 February 2026 and remain open indefinitely.
 **Mandatory status:** Effective procurement gate. Listing is voluntary at the supplier level but practically required for NHS deployment at scale. Adopting Trusts and PCNs are encouraged to procure from registered suppliers; deployment of unregistered suppliers carries local liability risk per NHS England guidance.
 **AVT relevance:** Purpose-built for AVT / ambient-scribing procurement at the national level. Sits structurally alongside [NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test) (T.E.S.T. is an ICS-level vendor-assessment framework; the Registry is the national-level certification list that draws on T.E.S.T. and other frameworks).
@@ -3084,7 +3084,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Standard ASR literature; used in SCRIBE framework (Wang et al. 2025) |
+| **Source** | [SCRIBE-Wang-2025]; standard ASR literature |
 
 **Why this tier?**
 
@@ -3142,7 +3142,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Proposed in OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (proposed AVT extension; future work) |
 
 **Why this tier?**
 
@@ -3223,7 +3223,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Derived from OxonFair healthcare voice fairness analysis |
+| **Source** | [OxonFair-2024] (healthcare voice fairness extension; future work) |
 
 **Why this tier?**
 
@@ -3314,7 +3314,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NAS framework Day Zero SPIs; NHSE IG guidance (March 2026) |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
 
@@ -3385,7 +3385,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (extension analysis; future work) |
 
 **Why this tier?**
 
@@ -3681,7 +3681,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Koenecke et al. 2024 'Careless Whisper'; specific to neural end-to-end ASR architectures |
+| **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
 
 **Why this tier?**
 
@@ -3854,7 +3854,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework; standard diarisation literature |
+| **Source** | [SCRIBE-Wang-2025]; standard diarisation literature |
 
 **Why this tier?**
 
@@ -3911,7 +3911,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework |
+| **Source** | [SCRIBE-Wang-2025] |
 
 **Why this tier?**
 
@@ -4040,7 +4040,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
 |**Applicability**      |AVT-Specific                                                         |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]; extends standard diarisation |
 
 **Why this tier?**
 
@@ -4079,7 +4079,7 @@ Accuracy of detecting within-utterance language switching - a speaker moving bet
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
-|**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
+|**Source**             |[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature|
 
 **Why this tier?**
 
@@ -4118,7 +4118,7 @@ Accuracy of attributing words spoken during overlapping speech - when two or mor
 |**Maturity**           |Established                                    |
 |**Outcome Type**       |Proximal                                       |
 |**Applicability**      |AVT-Specific                                   |
-|**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
+|**Source**             |[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature|
 
 **Why this tier?**
 
@@ -4157,7 +4157,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Specific                                |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025      |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]                     |
 
 **Why this tier?**
 
@@ -4233,7 +4233,7 @@ N-gram overlap between generated and reference text. Demonstrably inadequate for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Lin 2004; inadequacy shown by Croxford et al. 2025 |
+| **Source** | [ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025] |
 
 **Why this tier?**
 
@@ -4302,7 +4302,7 @@ Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Zhang et al. 2020; Croxford et al. 2025 |
+| **Source** | [BERTScore-Zhang-2020]; [Croxford-2025] |
 
 **Why this tier?**
 
@@ -4360,7 +4360,7 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Stetson et al.; Croxford et al. 2025 |
+| **Source** | [PDSQI-9]; [Croxford-2025] |
 
 **Why this tier?**
 
@@ -4404,7 +4404,7 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Asgari et al. 2025 (Tortus/GOSH). Now underpins automated guardrails. |
+| **Source** | [Asgari-Tortus-GOSH-2025]. Now underpins automated guardrails. |
 
 **Why this tier?**
 
@@ -4476,7 +4476,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Various; Tortus 1.47% per sentence |
+| **Source** | Various; [Asgari-Tortus-GOSH-2025] reports 1.47% per sentence |
 
 **Why this tier?**
 
@@ -4570,7 +4570,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Tortus 3.45%; CREOLA taxonomy |
+| **Source** | [Asgari-Tortus-GOSH-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
 
@@ -4673,7 +4673,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge whitepaper (50,000+ training examples) |
+| **Source** | [Abridge-Whitepaper-2025] (50,000+ training examples) |
 
 **Why this tier?**
 
@@ -4718,7 +4718,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Chung et al., Stanford, Jan 2025; NEJM AI |
+| **Source** | [Chung-NEJM-AI-2025] |
 
 **Why this tier?**
 
@@ -4826,7 +4826,7 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Croxford et al. 2025 |
+| **Source** | [Croxford-2025] |
 
 **Why this tier?**
 
@@ -4873,7 +4873,7 @@ Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Bedi et al., Stanford CRFM, May 2025 |
+| **Source** | [Bedi-Stanford-CRFM-2025] |
 
 **Why this tier?**
 
@@ -4916,7 +4916,7 @@ One LLM interrogates another to detect hallucinations without references. Identi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Kanithi et al. 2025 |
+| **Source** | [Kanithi-2025] |
 
 **Why this tier?**
 
@@ -4959,7 +4959,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge Linked Evidence |
+| **Source** | [Abridge-Linked-Evidence] |
 
 **Why this tier?**
 
@@ -5002,7 +5002,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Wang et al. 2025 (Duke/MedStar) |
+| **Source** | [Wang-Duke-MedStar-2025] |
 
 **Why this tier?**
 
@@ -5045,7 +5045,7 @@ INSYTE underspecification delta when clinicians modify AVT templates. Every modi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | INSYTE analysis; DCB0129 gap |
+| **Source** | [INSYTE-2025]; [DCB0129] gap |
 
 **Why this tier?**
 
@@ -5192,7 +5192,7 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |AVT-Contextualised                                      |
-|**Source**             |i2b2 2012 temporal challenge (F1 0.876 state of art); clinical temporal reasoning literature|
+|**Source**             |[i2b2-2012-Temporal-Challenge] (F1 0.876 state of art); clinical temporal reasoning literature|
 
 **Why this tier?**
 
@@ -5282,7 +5282,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
-|**Source**             |n2c2 shared task benchmarks (attribute-level F1 >0.92 for strong systems)|
+|**Source**             |[n2c2-Shared-Tasks] benchmarks (attribute-level F1 >0.92 for strong systems)|
 
 **Why this tier?**
 
@@ -5390,7 +5390,7 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
-|**Source**             |n2c2 2018 shared task on medication event classification|
+|**Source**             |[n2c2-Shared-Tasks] (2018 shared task on medication event classification)|
 
 **Why this tier?**
 
@@ -5507,7 +5507,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
 |**Applicability**      |AVT-Contextualised                                                          |
-|**Source**             |Barcelona et al., JAMA Network Open 2025 (Black patients 2.54× odds of negative descriptors)|
+|**Source**             |[Barcelona-JAMA-Network-Open-2025] (Black patients 2.54× odds of negative descriptors)|
 
 **Why this tier?**
 
@@ -5581,7 +5581,7 @@ AI-suggested code correctness. Precision, recall, and F1 reported separately for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Standard clinical audit; NAS baselines |
+| **Source** | Standard clinical audit; [NAS-Day-Zero-SPI-internal] baselines |
 
 **Why this tier?**
 
@@ -5620,7 +5620,7 @@ Accuracy of the mapping from extracted clinical entities in free-text to the cor
 |**Maturity**           |Established                                                              |
 |**Outcome Type**       |Proximal                                                                 |
 |**Applicability**      |AVT-Contextualised                                                       |
-|**Source**             |NLP2FHIR pipeline literature; John Snow Labs FHIR-Ready AI; MedCAT benchmarks|
+|**Source**             |[NLP2FHIR-Pipeline]; [John-Snow-Labs-FHIR-Ready-AI]; [MedCAT-Benchmarks]|
 
 **Why this tier?**
 
@@ -5657,7 +5657,7 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Contextualised                          |
-|**Source**             |Hybrid-Code v2 (arXiv 2512.23743); WHO ICD-11 implementation guidance|
+|**Source**             |[Hybrid-Code-v2-2025]; [WHO-ICD-11]|
 
 **Why this tier?**
 
@@ -5694,7 +5694,7 @@ Accuracy of OPCS-4 procedure code assignment from consultation documentation. NH
 |**Maturity**           |Proposed / Novel                              |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |AVT-Contextualised                            |
-|**Source**             |NHS Digital OPCS-4 coding standards; gap identified in published AVT literature|
+|**Source**             |[NHS-Digital-OPCS-4]; gap identified in published AVT literature|
 
 **Why this tier?**
 
@@ -5731,7 +5731,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |AVT-Contextualised                                        |
-|**Source**             |NHS BSA dm+d standard; gap identified in published AVT literature|
+|**Source**             |[NHS-BSA-dm-plus-d]; gap identified in published AVT literature|
 
 **Why this tier?**
 
@@ -5770,7 +5770,7 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
 |**Applicability**      |AVT-Contextualised                                   |
-|**Source**             |Hybrid-Code v2 (arXiv 2512.23743) - neuro-symbolic verification approach|
+|**Source**             |[Hybrid-Code-v2-2025] (neuro-symbolic verification approach)|
 
 **Why this tier?**
 
@@ -5826,7 +5826,7 @@ Systematic detection of pre/post-AVT shifts in clinical coding distributions. In
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature, npj Digital Medicine policy brief Nature s41746-025-02272-z documented 3.0→4.1 diagnoses/encounter post-AVT) |
+| **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT |
 
 **Why this tier?**
 
@@ -5975,7 +5975,7 @@ Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | SNOMED CT hierarchy semantics; clinical audit methodology |
+| **Source** | [SNOMED-CT] hierarchy semantics; clinical audit methodology |
 
 **Why this tier?**
 
@@ -6354,7 +6354,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
-|**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
+|**Source**             |[FHIR-UK-Core] R4 validation tooling; [SPIE-14009E-2025] interoperability study|
 
 **Why this tier?**
 
@@ -6393,7 +6393,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |**Maturity**           |Established                               |
 |**Outcome Type**       |Proximal                                  |
 |**Applicability**      |AVT-Contextualised                        |
-|**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
+|**Source**             |[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library|
 
 **Why this tier?**
 
@@ -10235,7 +10235,7 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 **Reference Standard**
 
-> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing with [NHSE-Transformation-Directorate-AVT] hosting the long-read context. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
+> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing (long-read context also hosted on the NHS Transformation Directorate site). **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
 
 **Operational Specification**
 
@@ -11024,7 +11024,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NHSE-AVT-Registry] (req #5); [IASME-Cyber-Essentials-Plus]; [NCSC-Cyber-Essentials] |
+| **Source** | [NHSE-AVT-Registry] (req #5); [NCSC-Cyber-Essentials] (Plus variant administered by IASME) |
 
 **Why this tier?**
 
@@ -11050,7 +11050,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Reference Standard**
 
-> The [IASME-Cyber-Essentials-Plus]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+> The [NCSC-Cyber-Essentials]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
 
 **Operational Specification**
 
@@ -11062,7 +11062,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [IASME-Cyber-Essentials-Plus]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [NCSC-Cyber-Essentials]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
 > - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
@@ -11071,8 +11071,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 **References**
 
 - [NHSE-AVT-Registry] — registry req #5 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
-- [IASME-Cyber-Essentials-Plus] — Plus scheme administrator
-- [NCSC-Cyber-Essentials] — underlying scheme overview and technical control set
+- [NCSC-Cyber-Essentials] — scheme overview and technical control set; the audited "Plus" variant is administered by IASME, the NCSC-appointed delivery partner
 
 **Limitations**
 
@@ -12801,7 +12800,7 @@ Composite freshness score per component:
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 12-month freshness window mirrors the [IASME-Cyber-Essentials-Plus] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the 12-month freshness window mirrors the [NCSC-Cyber-Essentials] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
