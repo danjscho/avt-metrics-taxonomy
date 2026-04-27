@@ -15,7 +15,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Stanford monitoring framework; three-layer surveillance model |
+| **Source** | [Stanford-Monitoring-Framework]; three-layer surveillance model |
 
 **Why this tier?**
 
@@ -79,7 +79,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Stanford monitoring framework; identified as prerequisite for most continuous monitoring metrics |
+| **Source** | [Stanford-Monitoring-Framework]; identified as prerequisite for most continuous monitoring metrics |
 
 **Why this tier?**
 
@@ -299,7 +299,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 28 |
+| **Source** | [UK-GDPR] Article 28 |
 
 **Why this tier?**
 
@@ -363,7 +363,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Prerequisite for existing Error Attribution Analysis metric; Stanford monitoring framework |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 

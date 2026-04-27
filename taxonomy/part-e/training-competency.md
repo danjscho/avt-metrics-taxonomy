@@ -15,7 +15,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NAS Day Zero requirements; standard clinical governance |
+| **Source** | [NAS-Day-Zero-SPI-internal] requirements; standard clinical governance |
 
 **Why this tier?**
 
@@ -169,7 +169,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Medical education literature; GMC standards consideration |
+| **Source** | Medical education literature; [GMC] standards consideration |
 
 **Why this tier?**
 

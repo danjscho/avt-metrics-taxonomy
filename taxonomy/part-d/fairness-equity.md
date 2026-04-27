@@ -15,7 +15,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NHSE LLM framework wider impact |
+| **Source** | [NHS-LLM-Framework] wider impact |
 
 **Why this tier?**
 
@@ -54,7 +54,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |AVT-Specific                                                  |
-|**Source**             |FAccT 2024 critique of ASR accent categorisation; sociolinguistics literature|
+|**Source**             |[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature|
 
 **Why this tier?**
 
@@ -169,7 +169,7 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
-|**Source**             |FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)|
+|**Source**             |[FAIR-MED-Springer-2025] (Bias Detection and Fairness Evaluation in Healthcare Focused XAI)|
 
 **Why this tier?**
 

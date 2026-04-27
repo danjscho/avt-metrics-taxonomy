@@ -827,6 +827,474 @@ The openEHR Foundation specification suite for clinical-information modelling. C
 
 The openEHR community-curated archetype library, used as the reference for archetype-validation work alongside [openEHR-Foundation]. URL is the canonical CKM landing.
 
+### Stanford-Monitoring-Framework
+
+- **Title:** Stanford monitoring framework for clinical AI deployment (three-layer surveillance model)
+- **Publisher:** Stanford (specific paper / authors TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — Stanford monitoring-framework paper DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The "Stanford monitoring framework" / "Stanford principles" / "three-layer surveillance model" referenced repeatedly in the human-factors group (HL.HF) and several governance metrics. Multiple Source rows cite "Stanford" generically — assumed to be the same framework. Resolve at Phase 2 follow-up review whether this is one paper or several; possible split into multiple handles.
+
+### DeepScore
+
+- **Title:** DeepScore (specific source TBC — vendor benchmark or research project)
+- **Publisher:** _(unknown)_
+- **Source-Type:** _(unknown — paper or disclosure)_
+- **URL:** _(pending v3.9 Phase 2 follow-up review — origin to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodology. Origin (vendor product, research project, or third-party benchmark) to confirm at the Phase 2 follow-up review.
+
+### NASA-TLX
+
+- **Title:** NASA Task Load Index (NASA-TLX) — workload measurement instrument
+- **Publisher:** NASA / Hart & Staveland (1988); long-standing human-factors instrument
+- **Source-Type:** paper
+- **URL:** https://humansystems.arc.nasa.gov/groups/tlx/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NASA-TLX is the standard cognitive-workload measurement instrument from human factors. Cited in HL.HF-9 (or similar) where the taxonomy adapts NASA-TLX for clinical-documentation-review workload. URL is the NASA TLX programme page.
+
+### Hollnagel-FRAM
+
+- **Title:** Hollnagel — Functional Resonance Analysis Method (FRAM) and Safety-II
+- **Publisher:** Erik Hollnagel (academic — multiple publications)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — choose canonical paper / book reference)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Hollnagel's FRAM methodology and Safety-II framing for resilience engineering. Cited in HL.HF-17 (Hollnagel FRAM for SEIPS-based AVT evaluation) and HL.HF-18 (Safety-II framing of resilience). Resolve to a specific Hollnagel publication (FRAM book is 2012, Safety-II White Paper is 2013, both candidates) at Phase 2 follow-up review.
+
+### JMIR-2026-SEIPS-AVT
+
+- **Title:** JMIR 2026 — SEIPS-based AVT evaluation (e86166)
+- **Publisher:** JMIR (Journal of Medical Internet Research) 2026, paper e86166
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — JMIR DOI / direct article URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in HL.HF-17 and HL.HF-18 as a 2026 JMIR paper applying the SEIPS framework to AVT evaluation, identifier e86166. Direct article URL to supply at the Phase 2 follow-up review (JMIR articles are at jmir.org).
+
+### GOSH-Phase-4-TimeCat
+
+- **Title:** GOSH AAI Phase 4 — TimeCat AVT-time-allocation data
+- **Publisher:** Great Ormond Street Hospital (GOSH) AVT-Adoption Initiative, Phase 4 report
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — GOSH Phase 4 report URL or DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-allocation evidence. Cited in HL.HF-18 as the empirical companion to the JMIR SEIPS paper. `Source-Type: disclosure` because GOSH reports are typically institutional rather than peer-reviewed. The taxonomy's `.gitignore` references "GOSH-AAI-Phase4-NHSE-report.pdf" suggesting a local copy may exist.
+
+### Lancet-Gastroenterology-Endoscopist-AI-Off-2025
+
+- **Title:** Lancet Gastroenterology 2025 — endoscopist AI-off study (ADR 28.4%→22.4%)
+- **Publisher:** The Lancet Gastroenterology & Hepatology, 2025
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — Lancet DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 study showing endoscopist AI-off ADR fell from 28.4% to 22.4% — a load-bearing empirical reference for the skill-degradation framing. DOI to supply at Phase 2 follow-up review.
+
+### CQC-Mythbuster-109
+
+- **Title:** CQC Mythbuster 109 — record-keeping standards for digital documentation
+- **Publisher:** Care Quality Commission
+- **Source-Type:** regulator-guidance
+- **URL:** _(pending v3.9 Phase 2 follow-up review — CQC mythbuster URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported documentation. Cited in TP.AC-4 audio-capture context, IO.PX-1 patient experience, and several human-factors metrics. Distinct from the broader [CQC] handle which points at the assessment-framework hub.
+
+### Stults-2025
+
+- **Title:** Stults et al. 2025 — patient-experience improvement study (57.9%→93.0% with ambient AI)
+- **Publisher:** Stults et al., 2025 (specific venue TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Stults et al. 2025 — cited in IO.PX-7 as the source of the 57.9% → 93.0% patient-experience improvement-with-ambient-AI figure. Specific venue / DOI to supply at the Phase 2 follow-up review.
+
+### Coiera-Fraile-Navarro-JMIR-2026
+
+- **Title:** Coiera & Fraile-Navarro — JMIR Medical Informatics 2026 critique of clinical-AI evaluation
+- **Publisher:** Coiera & Fraile-Navarro, JMIR Medical Informatics, February 2026
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — JMIR Med Inform DOI / direct article URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited multiple times across the taxonomy — IO.PX-9, IO.PX-10, ES.ME family — as the structural critique of clinical-AI evaluation methodology. JMIR Med Inform is at medinform.jmir.org; direct article URL to supply.
+
+### FAccT-2024-ASR-Accent-Critique
+
+- **Title:** FAccT 2024 — critique of ASR accent categorisation
+- **Publisher:** ACM FAccT 2024 (specific paper / authors TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — ACM FAccT 2024 DOI / paper title to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+A FAccT 2024 paper critiquing ASR accent-categorisation methodology. Cited in IO.FE-2 (or similar fairness/equity metric on accent-stratified ASR) as the sociolinguistics-informed evaluation reference. Specific paper title and DOI to supply.
+
+### FAIR-MED-Springer-2025
+
+- **Title:** FAIR-MED — Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)
+- **Publisher:** Springer 2025 (specific volume / authors TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — Springer DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The FAIR-MED bias-detection and fairness-evaluation framework, published Springer 2025. Cited in IO.FE-5 (or similar) as the methodology for AVT-focused fairness evaluation. Specific Springer DOI to supply.
+
+### CIO-CCIO-Guidance-2026
+
+- **Title:** NHS CIO/CCIO guidance v2 (January 2026)
+- **Publisher:** NHS England (CIO/CCIO joint guidance)
+- **Source-Type:** regulator-guidance
+- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS CIO/CCIO guidance URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS CIO/CCIO joint guidance v2 (January 2026) covering ICB engagement and digital-deployment-notification expectations. Cited in GV.CR-5 (ICB Engagement Documentation). URL to supply at follow-up review.
+
+### PubMed-41172285-FOI-Study
+
+- **Title:** FOI study of NHS digital safety standard compliance (PubMed 41172285)
+- **Publisher:** _(authors / journal TBC)_; PubMed 41172285
+- **Source-Type:** paper
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/41172285/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+A Freedom-of-Information study of NHS digital safety standard compliance, PubMed ID 41172285. Cited in GV.CR-6 (Clinical Safety Case Completeness). URL constructed from the PubMed ID supplied in the original Source row prose.
+
+### FDA-PCCP-Guidance-2024
+
+- **Title:** FDA Predetermined Change Control Plan (PCCP) guidance — December 2024
+- **Publisher:** US Food and Drug Administration
+- **Source-Type:** regulator-guidance
+- **URL:** _(pending v3.9 Phase 2 follow-up review — FDA PCCP guidance URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The FDA's December 2024 final guidance on Predetermined Change Control Plans for AI/ML-based medical devices. Cited in GV.SG-4 (model-update governance) and GV.CR-12 (or similar). URL likely under fda.gov/medical-devices/software-medical-device-samd; resolve at follow-up.
+
+### EU-AI-Act
+
+- **Title:** EU AI Act (Regulation (EU) 2024/1689)
+- **Publisher:** European Union
+- **Source-Type:** regulator-guidance
+- **URL:** https://eur-lex.europa.eu/eli/reg/2024/1689/oj
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The EU AI Act. **Note:** taxonomy-wide audit of EU AI Act citations is queued (see `archive/plan-v3.9.md` deferred items) — UK NHS deployments are not directly subject post-Brexit, so per-citation triage will determine whether each EU AI Act reference is (a) genuinely irrelevant, (b) carrying useful structural ideas worth keeping with cross-jurisdictional framing, or (c) genuinely cross-jurisdictional. Currently cited in GV.CR-12 / GV.CR-13.
+
+### IEEE-S-and-P-2023-LLM-PII-Leakage
+
+- **Title:** IEEE S&P 2023 LLM PII leakage study (specific paper TBC)
+- **Publisher:** IEEE Symposium on Security and Privacy 2023
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — IEEE Xplore DOI / specific paper title to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The IEEE S&P 2023 paper on LLM PII leakage. Cited in GV.PD-5 (PII Memorisation Detection) and GV.SC-11 (Memorisation Risk). Specific paper title and IEEE Xplore DOI to confirm at follow-up.
+
+### OWASP-LLM-Top-10
+
+- **Title:** OWASP Top 10 for Large Language Model Applications
+- **Publisher:** OWASP Foundation
+- **Source-Type:** framework
+- **URL:** https://owasp.org/www-project-top-10-for-large-language-model-applications/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+OWASP's Top 10 risks for LLM-based applications. Cited in GV.PD-5 (Sensitive Information Disclosure category) and likely several GV.SC metrics. URL is OWASP's project landing page.
+
+### NIST-Privacy-Framework
+
+- **Title:** NIST Privacy Framework
+- **Publisher:** US National Institute of Standards and Technology
+- **Source-Type:** framework
+- **URL:** https://www.nist.gov/privacy-framework
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NIST's Privacy Framework. Cited in GV.PD-6 (anonymisation) alongside ICO's anonymisation code. URL is the canonical NIST landing.
+
+### Schrems-II
+
+- **Title:** Schrems II — CJEU ruling on EU-US data transfers (Case C-311/18)
+- **Publisher:** Court of Justice of the European Union
+- **Source-Type:** regulator-guidance
+- **URL:** https://curia.europa.eu/juris/liste.jsf?num=C-311/18
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Schrems II ruling on transatlantic data transfers. Cited in GV.PD-9 (International Data Transfer Compliance). URL is the CJEU case page.
+
+### Sinsky-Mayo-EHR-Studies
+
+- **Title:** Sinsky et al. — Mayo Clinic Proceedings EHR/burnout studies (multi-paper series)
+- **Publisher:** Christine A. Sinsky et al., Mayo Clinic Proceedings
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — pick canonical Sinsky paper or series landing)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Sinsky et al.'s long-running clinician-EHR-time / burnout research series. Cited in GV.OP-2 and GV.OP-4. Multiple papers exist; resolve to a canonical entry-point (the most-cited 2016 Annals of Internal Medicine paper is one candidate) at follow-up.
+
+### Jegham-AI-Hunger-2025
+
+- **Title:** "How Hungry is AI?" — Jegham et al. (arxiv 2505.09598, 2025)
+- **Publisher:** Jegham et al., 2025 (arxiv preprint)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2505.09598
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Jegham et al. 2025 environmental-AI paper, "How Hungry is AI?". Cited as the load-bearing reference for ES.EN family environmental metrics. arxiv ID supplied directly from the original Source row prose.
+
+### Mistral-AI-LCA
+
+- **Title:** Mistral AI lifecycle assessment (LCA)
+- **Publisher:** Mistral AI (vendor disclosure)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — Mistral LCA report URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Mistral AI's lifecycle assessment publication. Cited in ES.EN-2 (grid-carbon-intensity adjustment). `Source-Type: disclosure` because vendor-published rather than peer-reviewed.
+
+### Li-Making-AI-Less-Thirsty
+
+- **Title:** "Making AI Less 'Thirsty'" — Li et al. (water-footprint of AI)
+- **Publisher:** Li et al. (specific venue / DOI TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / arxiv ID to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training and inference. Cited in ES.EN-3 alongside [Jegham-AI-Hunger-2025]. arxiv ID 2304.03271 is a likely candidate; confirm at follow-up.
+
+### Keyes-Stanford-2025
+
+- **Title:** Keyes et al. — Stanford clinical-AI safety paper (December 2025)
+- **Publisher:** Keyes et al., Stanford, December 2025 (specific venue TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Keyes et al. December 2025 paper from Stanford. Cited in GV.SG-1 (Model Version Tracking). Specific venue / DOI to supply.
+
+### medRxiv-Model-Autophagy-2026
+
+- **Title:** medRxiv 2026 — model autophagy / training-on-output study
+- **Publisher:** medRxiv preprint, 2026 (specific authors / DOI TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — medRxiv DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+A 2026 medRxiv preprint on model autophagy (training models on their own outputs) applied to clinical AI. Cited in GV.SG-5 alongside [Shumailov-Curse-of-Recursion]. medRxiv DOI to supply.
+
+### Shumailov-Curse-of-Recursion
+
+- **Title:** Shumailov et al. — "The Curse of Recursion: Training on Generated Data Makes Models Forget"
+- **Publisher:** Shumailov et al., 2023 / 2024 (Nature)
+- **Source-Type:** paper
+- **URL:** https://www.nature.com/articles/s41586-024-07566-y
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Shumailov et al. "Curse of Recursion" paper on model collapse from training on generated data. Cited in GV.SG-5 (Concept Drift in Clinical Notes). URL is the Nature publication; the earlier 2023 arxiv preprint (2305.17493) is also a valid alternative.
+
+### medRxiv-Nov-2025-AVT-Drift
+
+- **Title:** medRxiv November 2025 — AVT drift study
+- **Publisher:** medRxiv preprint, November 2025 (specific authors / DOI TBC)
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — medRxiv DOI to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+A November 2025 medRxiv preprint on AVT-system performance drift. Cited in GV.SG-7. medRxiv DOI to supply.
+
+### DeepScribe
+
+- **Title:** DeepScribe — vendor disclosure / product reference
+- **Publisher:** DeepScribe (vendor)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+DeepScribe vendor reference. Cited in HL.HF-2 alongside Abridge for edit-rate methodology, and in GV.SG-8 for performance-degradation-detection methodology. URL likely deepscribe.ai; resolve at follow-up.
+
+### DSCMS-SPI-Framework
+
+- **Title:** Digital Safety Case Management System (DSCMS) Safety Performance Indicator framework
+- **Publisher:** NHS England (DSCMS programme)
+- **Source-Type:** framework
+- **URL:** _(pending v3.9 Phase 2 follow-up review — DSCMS programme URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NHS DSCMS Safety Performance Indicator framework. Cited in GV.SG-9 and GV.SG-15 as the methodological source for clinical-safety SPIs. URL likely under digital.nhs.uk; resolve at follow-up.
+
+### NVIDIA-Reference-Architecture
+
+- **Title:** NVIDIA reference architecture for clinical AI safety
+- **Publisher:** NVIDIA (vendor disclosure)
+- **Source-Type:** disclosure
+- **URL:** _(pending v3.9 Phase 2 follow-up review — NVIDIA reference-architecture URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NVIDIA's reference architecture for clinical-AI safety / Llama-Guard-style input-validation. Cited in GV.SC-5 (Architecture-Level Safety Pattern). `Source-Type: disclosure` because vendor-described.
+
+### arXiv-2601-03791-Cue-Resistant-Memorisation
+
+- **Title:** Cue-Resistant Memorisation framework — arxiv 2601.03791
+- **Publisher:** _(authors TBC)_; arxiv 2601.03791
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2601.03791
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Cue-Resistant Memorisation framework arxiv preprint (2601.03791). Cited in GV.SC-11 (Memorisation Risk). arxiv ID supplied directly from the original Source row prose.
+
+### NIHR-RSET
+
+- **Title:** NIHR RSET — Rapid Service Evaluation Team
+- **Publisher:** National Institute for Health and Care Research (NIHR)
+- **Source-Type:** framework
+- **URL:** https://www.bsms.ac.uk/research/centres-and-units/rapid-service-evaluation-team/index.aspx
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner that informed this taxonomy's framing of evaluation methodology. Cited in ES.ME-1. URL is the BSMS-hosted RSET landing; resolve at follow-up if a NIHR-direct URL exists.
+
+### VeriFact
+
+- **Title:** VeriFact — clinical-AI factual-verification framework
+- **Publisher:** _(authors / venue TBC)_
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — VeriFact paper / project URL to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The VeriFact factual-verification framework. Cited in TP.SN-7 (Factual Verification, parent metric) as one of the methodological references. Specific paper / project URL to supply.
+
+### MedHELM
+
+- **Title:** MedHELM — Medical Holistic Evaluation of Language Models
+- **Publisher:** Stanford CRFM (HELM team) — medical extension
+- **Source-Type:** paper
+- **URL:** https://crfm.stanford.edu/helm/medhelm/latest/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The MedHELM benchmark — Stanford CRFM's medical extension of the HELM (Holistic Evaluation of Language Models) framework. Cited in TP.SN-7 (Factual Verification) and TP.SN-9b (LLM-Jury). URL is the Stanford CRFM MedHELM landing; confirm at follow-up.
+
+### Rwanda-Clinical-LLM-Evaluation
+
+- **Title:** Rwanda clinical LLM evaluation study
+- **Publisher:** _(authors / venue TBC)_
+- **Source-Type:** paper
+- **URL:** _(pending v3.9 Phase 2 follow-up review — paper DOI / venue to supply)_
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-04-26
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+The Rwanda clinical-LLM evaluation study. Cited in ES.ME-6 alongside [Croxford-2025] as comparative LMIC-context evidence on clinical-LLM evaluation. Specific paper DOI / venue to supply.
+
 ---
 
 ## Discipline representatives

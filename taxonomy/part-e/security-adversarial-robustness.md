@@ -15,7 +15,7 @@ Resistance to adversarial spoken commands designed to manipulate the summarisati
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard/Heidi Health and Doctronic jailbreak disclosures (March 2026); adversarial ML literature |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026]; adversarial ML literature |
 
 **Why this tier?**
 
@@ -59,7 +59,7 @@ Resistance to attempts to make the underlying LLM operate outside its intended c
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard disclosures on Heidi Health and Doctronic (March 2026) |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026] |
 
 **Why this tier?**
 
@@ -103,7 +103,7 @@ Detection of crafted audio inputs designed to cause specific misrecognitions: so
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Adversarial ML literature; identified in NHSE LLM framework 'intentional misuse' dimension |
+| **Source** | Adversarial ML literature; identified in [NHS-LLM-Framework] 'intentional misuse' dimension |
 
 **Why this tier?**
 
@@ -185,7 +185,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NVIDIA reference architecture; absence noted in vendor safety architecture review |
+| **Source** | [NVIDIA-Reference-Architecture]; absence noted in vendor safety architecture review |
 
 **Why this tier?**
 
@@ -229,7 +229,7 @@ Testing whether user-configurable prompt templates can be crafted to bypass safe
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Identified in INSYTE underspecification analysis; extends template modification risk to adversarial context |
+| **Source** | Identified in [INSYTE-2025] underspecification analysis; extends template modification risk to adversarial context |
 
 **Why this tier?**
 
@@ -346,7 +346,7 @@ Rate at which content from one patient's encounter contaminates another patient'
 |**Maturity**           |Emerging                                                      |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
+|**Source**             |[MIT-Jameel-2026] cross-patient leakage disclosure            |
 
 **Why this tier?**
 
@@ -383,7 +383,7 @@ Is the system confident that the clinician using AVT is who they claim to be? Vo
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard authentication security; NHS CIS2 requirements |
+| **Source** | Standard authentication security; [CIS2] requirements |
 
 **Why this tier?**
 
@@ -424,7 +424,7 @@ Standardised privacy testing metric measuring the success rate of adversarial at
 |**Maturity**           |Established                                                   |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
+|**Source**             |[IEEE-S-and-P-2023-LLM-PII-Leakage]; [arXiv-2601-03791-Cue-Resistant-Memorisation]|
 
 **Why this tier?**
 

@@ -15,7 +15,7 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Widely used; critiqued Coiera & Fraile-Navarro 2026 |
+| **Source** | Widely used; critiqued [Coiera-Fraile-Navarro-JMIR-2026] |
 
 **Why this tier?**
 
@@ -79,7 +79,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
+| **Source** | [Sinsky-Mayo-EHR-Studies]; American Medical Association EHR use studies |
 
 **Why this tier?**
 
@@ -159,7 +159,7 @@ Composite metric grouping Documentation Time per Consultation, Pyjama Time, and 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
+| **Source** | [Sinsky-Mayo-EHR-Studies] extended to AVT context; NHS workforce wellbeing frameworks |
 
 **Why this tier?**
 
@@ -198,7 +198,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard SLA; NAS SPI |
+| **Source** | Standard SLA; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 

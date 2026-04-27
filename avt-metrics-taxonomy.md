@@ -7578,7 +7578,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge; NAS; Stanford framework |
+| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -7671,7 +7671,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge; DeepScore |
+| **Source** | [Abridge-Whitepaper-2025]; [DeepScore] |
 
 **Why this tier?**
 
@@ -7717,7 +7717,7 @@ Parent construct covering two complementary telemetry approaches to detecting in
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS Day Zero SPI; Stanford |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -7755,7 +7755,7 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS Day Zero SPI; Stanford |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -7825,7 +7825,7 @@ Distribution of duration between generation and approval. Model as distribution 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | EPR workflow data; Stanford principles |
+| **Source** | EPR workflow data; [Stanford-Monitoring-Framework] principles |
 
 **Why this tier?**
 
@@ -7901,7 +7901,7 @@ Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signa
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge whitepaper |
+| **Source** | [Abridge-Whitepaper-2025] |
 
 **Why this tier?**
 
@@ -7946,7 +7946,7 @@ Deliberately seeded errors to test clinician catch rate. The only metric directl
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Proposed in NAS framework |
+| **Source** | Proposed in [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -8034,7 +8034,7 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Human factors literature; NAS framework |
+| **Source** | Human factors literature; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -8120,7 +8120,7 @@ Mental effort for review. Target: 'effortful but efficient' - enough to catch er
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NASA-TLX adapted for clinical documentation review |
+| **Source** | [NASA-TLX] adapted for clinical documentation review |
 
 **Why this tier?**
 
@@ -8382,7 +8382,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
 |**Applicability**      |General Healthcare AI                                                  |
-|**Source**             |Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations      |
+|**Source**             |[Hollnagel-FRAM]; [JMIR-2026-SEIPS-AVT]                                |
 
 **Why this tier?**
 
@@ -8421,7 +8421,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
 |**Applicability**      |AVT-Contextualised                                                  |
-|**Source**             |JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data  |
+|**Source**             |[JMIR-2026-SEIPS-AVT] (e86166); [GOSH-Phase-4-TimeCat]              |
 
 **Why this tier?**
 
@@ -8460,7 +8460,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |Hollnagel Safety-II; FRAM methodology; resilience engineering literature|
+|**Source**             |[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature|
 
 **Why this tier?**
 
@@ -8504,7 +8504,7 @@ Scheduled exercises where clinicians document a clinical encounter without AVT a
 |**Maturity**           |Proposed / Novel                                                                                      |
 |**Outcome Type**       |Distal                                                                                                |
 |**Applicability**      |General Healthcare AI                                                                                 |
-|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)|
+|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)|
 
 **Why this tier?**
 
@@ -8541,7 +8541,7 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS SPI; CQC Mythbuster 109 |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [CQC-Mythbuster-109] |
 
 **Why this tier?**
 
@@ -8726,7 +8726,7 @@ Whether AVT suppresses sensitive disclosures. Most under-researched risk - popul
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHSE LLM framework gap analysis |
+| **Source** | [NHS-LLM-Framework] gap analysis |
 
 **Why this tier?**
 
@@ -8812,7 +8812,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
-|**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
+|**Source**             |[Stults-2025] (57.9%→93.0% improvement with ambient AI)          |
 
 **Why this tier?**
 
@@ -8890,7 +8890,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026]                                 |
 
 **Why this tier?**
 
@@ -8929,7 +8929,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Maturity**           |Proposed / Novel                                                     |
 |**Outcome Type**       |Distal                                                               |
 |**Applicability**      |General Healthcare AI                                                |
-|**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories|
 
 **Why this tier?**
 
@@ -8966,7 +8966,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NHSE LLM framework wider impact |
+| **Source** | [NHS-LLM-Framework] wider impact |
 
 **Why this tier?**
 
@@ -9005,7 +9005,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |AVT-Specific                                                  |
-|**Source**             |FAccT 2024 critique of ASR accent categorisation; sociolinguistics literature|
+|**Source**             |[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature|
 
 **Why this tier?**
 
@@ -9120,7 +9120,7 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
-|**Source**             |FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)|
+|**Source**             |[FAIR-MED-Springer-2025] (Bias Detection and Fairness Evaluation in Healthcare Focused XAI)|
 
 **Why this tier?**
 
@@ -9274,7 +9274,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Keyes et al., Stanford, Dec 2025 |
+| **Source** | [Keyes-Stanford-2025] |
 
 **Why this tier?**
 
@@ -9337,7 +9337,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NAS + Stanford frameworks |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -9387,7 +9387,7 @@ Time delay between the onset of model performance degradation and its detection 
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
-|**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
+|**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
 
 **Why this tier?**
 
@@ -9426,7 +9426,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
+|**Source**             |[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions|
 
 **Why this tier?**
 
@@ -9465,7 +9465,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
+|**Source**             |[medRxiv-Model-Autophagy-2026]; [Shumailov-Curse-of-Recursion]                                  |
 
 **Why this tier?**
 
@@ -9541,7 +9541,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | medRxiv, Nov 2025 |
+| **Source** | [medRxiv-Nov-2025-AVT-Drift] |
 
 **Why this tier?**
 
@@ -9584,7 +9584,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DeepScribe |
+| **Source** | [DeepScribe] |
 
 **Why this tier?**
 
@@ -9627,7 +9627,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DSCMS methodology in NAS framework |
+| **Source** | [DSCMS-SPI-Framework]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -9670,7 +9670,7 @@ AVT use outside validated contexts. Well-intentioned scope creep - each boundary
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Compound boundary risk model; NHSE LLM framework |
+| **Source** | Compound boundary risk model; [NHS-LLM-Framework] |
 
 **Why this tier?**
 
@@ -9717,7 +9717,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | LFPSE national reporting |
+| **Source** | [LFPSE] national reporting |
 
 **Why this tier?**
 
@@ -9944,7 +9944,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Operational extension of DSCMS SPI framework |
+| **Source** | Operational extension of [DSCMS-SPI-Framework] |
 
 **Why this tier?**
 
@@ -9985,7 +9985,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DCB0129 compliance requirement |
+| **Source** | [DCB0129] compliance requirement |
 
 **Why this tier?**
 
@@ -10028,7 +10028,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Maturity**           |Established                                             |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |General Healthcare AI                                   |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)       |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                              |
 
 **Why this tier?**
 
@@ -10093,7 +10093,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Maturity**           |Established                                               |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |General Healthcare AI                                     |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026); CQC Mythbuster 109 context|
+|**Source**             |[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context|
 
 **Why this tier?**
 
@@ -10159,7 +10159,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Maturity**           |Established                                                |
 |**Outcome Type**       |Proximal                                                   |
 |**Applicability**      |General Healthcare AI                                      |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)          |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                                 |
 
 **Why this tier?**
 
@@ -10280,7 +10280,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |General Healthcare AI                                        |
-|**Source**             |CIO/CCIO guidance v2 (January 2026); NHS CIO priority notification|
+|**Source**             |[CIO-CCIO-Guidance-2026]; NHS CIO priority notification|
 
 **Why this tier?**
 
@@ -10341,7 +10341,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |**Maturity**           |Established                                                                                      |
 |**Outcome Type**       |Proximal                                                                                         |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |DCB0129/0160 regulatory requirement; PubMed 41172285 FOI study of NHS digital safety standard compliance|
+|**Source**             |[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]|
 
 **Why this tier?**
 
@@ -10401,7 +10401,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
-|**Source**             |UK GDPR Article 35; NHSE IG guidance template (March 2026)|
+|**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
 
 **Why this tier?**
 
@@ -10461,7 +10461,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |**Maturity**           |Established                                   |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |General Healthcare AI                         |
-|**Source**             |UK GDPR Article 28; NHS data protection guidance|
+|**Source**             |[UK-GDPR] Article 28; NHS data protection guidance|
 
 **Why this tier?**
 
@@ -10500,7 +10500,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |FDA PCCP guidance (December 2024); EU AI Act Article 15; NICE ESF 2022 AI updates|
+|**Source**             |[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates|
 
 **Why this tier?**
 
@@ -10539,7 +10539,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |**Maturity**           |Emerging                                            |
 |**Outcome Type**       |Proximal                                            |
 |**Applicability**      |General Healthcare AI                               |
-|**Source**             |EU AI Act Article 12 (high-risk provisions effective August 2026)|
+|**Source**             |[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)|
 
 **Why this tier?**
 
@@ -10576,7 +10576,7 @@ Resistance to adversarial spoken commands designed to manipulate the summarisati
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard/Heidi Health and Doctronic jailbreak disclosures (March 2026); adversarial ML literature |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026]; adversarial ML literature |
 
 **Why this tier?**
 
@@ -10620,7 +10620,7 @@ Resistance to attempts to make the underlying LLM operate outside its intended c
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard disclosures on Heidi Health and Doctronic (March 2026) |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026] |
 
 **Why this tier?**
 
@@ -10664,7 +10664,7 @@ Detection of crafted audio inputs designed to cause specific misrecognitions: so
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Adversarial ML literature; identified in NHSE LLM framework 'intentional misuse' dimension |
+| **Source** | Adversarial ML literature; identified in [NHS-LLM-Framework] 'intentional misuse' dimension |
 
 **Why this tier?**
 
@@ -10746,7 +10746,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NVIDIA reference architecture; absence noted in vendor safety architecture review |
+| **Source** | [NVIDIA-Reference-Architecture]; absence noted in vendor safety architecture review |
 
 **Why this tier?**
 
@@ -10790,7 +10790,7 @@ Testing whether user-configurable prompt templates can be crafted to bypass safe
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Identified in INSYTE underspecification analysis; extends template modification risk to adversarial context |
+| **Source** | Identified in [INSYTE-2025] underspecification analysis; extends template modification risk to adversarial context |
 
 **Why this tier?**
 
@@ -10907,7 +10907,7 @@ Rate at which content from one patient's encounter contaminates another patient'
 |**Maturity**           |Emerging                                                      |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
+|**Source**             |[MIT-Jameel-2026] cross-patient leakage disclosure            |
 
 **Why this tier?**
 
@@ -10944,7 +10944,7 @@ Is the system confident that the clinician using AVT is who they claim to be? Vo
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard authentication security; NHS CIS2 requirements |
+| **Source** | Standard authentication security; [CIS2] requirements |
 
 **Why this tier?**
 
@@ -10985,7 +10985,7 @@ Standardised privacy testing metric measuring the success rate of adversarial at
 |**Maturity**           |Established                                                   |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
+|**Source**             |[IEEE-S-and-P-2023-LLM-PII-Leakage]; [arXiv-2601-03791-Cue-Resistant-Memorisation]|
 
 **Why this tier?**
 
@@ -11098,7 +11098,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | UK GDPR Article 5(1)(e) storage limitation; NHSE IG guidance on ambient scribing (March 2026) |
+| **Source** | [UK-GDPR] Article 5(1)(e) storage limitation; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
 
@@ -11157,7 +11157,7 @@ Measured time from consultation end to verified deletion of the captured audio. 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) storage limitation |
+| **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage limitation |
 
 **Why this tier?**
 
@@ -11213,7 +11213,7 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) |
+| **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) |
 
 **Why this tier?**
 
@@ -11272,7 +11272,7 @@ Whether the AVT system processes only the minimum data necessary for its functio
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
+| **Source** | [UK-GDPR] Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
 
 **Why this tier?**
 
@@ -11311,7 +11311,7 @@ Adversarial privacy testing: the rate at which a determined attacker can extract
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | IEEE S&P 2023 LLM PII leakage study; OWASP LLM Top 10 (Sensitive Information Disclosure) |
+| **Source** | [IEEE-S-and-P-2023-LLM-PII-Leakage]; [OWASP-LLM-Top-10] (Sensitive Information Disclosure) |
 
 **Why this tier?**
 
@@ -11350,7 +11350,7 @@ Structured assessment of the risk that de-identified data retained for quality i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | ICO anonymisation code of practice; NIST privacy framework |
+| **Source** | [ICO] anonymisation code of practice; [NIST-Privacy-Framework] |
 
 **Why this tier?**
 
@@ -11389,7 +11389,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR transparency requirements; derived from emerging AVT procurement practice |
+| **Source** | [UK-GDPR] transparency requirements; derived from emerging AVT procurement practice |
 
 **Why this tier?**
 
@@ -11428,7 +11428,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | CQC Mythbuster 109; NHSE IG guidance; common law implied consent requirements |
+| **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
 
@@ -11488,7 +11488,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 46; Schrems II implications |
+| **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
 
@@ -11531,7 +11531,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 15 right of access |
+| **Source** | [UK-GDPR] Article 15 right of access |
 
 **Why this tier?**
 
@@ -11589,7 +11589,7 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 17 right to erasure; NHSE IG guidance on ambient scribing (Mar-2026) for individual-care exemption scope |
+| **Source** | [UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope |
 
 **Why this tier?**
 
@@ -11651,7 +11651,7 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Widely used; critiqued Coiera & Fraile-Navarro 2026 |
+| **Source** | Widely used; critiqued [Coiera-Fraile-Navarro-JMIR-2026] |
 
 **Why this tier?**
 
@@ -11715,7 +11715,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
+| **Source** | [Sinsky-Mayo-EHR-Studies]; American Medical Association EHR use studies |
 
 **Why this tier?**
 
@@ -11795,7 +11795,7 @@ Composite metric grouping Documentation Time per Consultation, Pyjama Time, and 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
+| **Source** | [Sinsky-Mayo-EHR-Studies] extended to AVT context; NHS workforce wellbeing frameworks |
 
 **Why this tier?**
 
@@ -11834,7 +11834,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard SLA; NAS SPI |
+| **Source** | Standard SLA; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -12021,7 +12021,7 @@ Electrical energy cost of generating a single clinical note, measured in watt-ho
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Jegham et al., arXiv 2505.09598 (2025) - "How Hungry is AI?" |
+| **Source** | [Jegham-AI-Hunger-2025] ("How Hungry is AI?") |
 
 **Why this tier?**
 
@@ -12060,7 +12060,7 @@ Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalen
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mistral AI lifecycle assessment; Jegham et al. 2025 - grid carbon intensity adjustment |
+| **Source** | [Mistral-AI-LCA]; [Jegham-AI-Hunger-2025] grid carbon intensity adjustment |
 
 **Why this tier?**
 
@@ -12099,7 +12099,7 @@ Water consumed by data centre cooling infrastructure per clinical note inference
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Jegham et al. 2025; Li et al. "Making AI Less Thirsty" |
+| **Source** | [Jegham-AI-Hunger-2025]; [Li-Making-AI-Less-Thirsty] |
 
 **Why this tier?**
 
@@ -12138,7 +12138,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NAS Day Zero requirements; standard clinical governance |
+| **Source** | [NAS-Day-Zero-SPI-internal] requirements; standard clinical governance |
 
 **Why this tier?**
 
@@ -12292,7 +12292,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Medical education literature; GMC standards consideration |
+| **Source** | Medical education literature; [GMC] standards consideration |
 
 **Why this tier?**
 
@@ -12370,7 +12370,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Stanford monitoring framework; three-layer surveillance model |
+| **Source** | [Stanford-Monitoring-Framework]; three-layer surveillance model |
 
 **Why this tier?**
 
@@ -12434,7 +12434,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Stanford monitoring framework; identified as prerequisite for most continuous monitoring metrics |
+| **Source** | [Stanford-Monitoring-Framework]; identified as prerequisite for most continuous monitoring metrics |
 
 **Why this tier?**
 
@@ -12654,7 +12654,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 28 |
+| **Source** | [UK-GDPR] Article 28 |
 
 **Why this tier?**
 
@@ -12718,7 +12718,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Prerequisite for existing Error Attribution Analysis metric; Stanford monitoring framework |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -12913,7 +12913,7 @@ The most important structural critique: measuring easy things and assuming they 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Coiera & Fraile-Navarro 2026; NIHR RSET |
+| **Source** | [Coiera-Fraile-Navarro-JMIR-2026]; [NIHR-RSET] |
 
 **Why this tier?**
 
@@ -12957,7 +12957,7 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | VeriFact; MedHELM |
+| **Source** | [VeriFact]; [MedHELM] |
 
 **Why this tier?**
 
@@ -13118,7 +13118,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Croxford et al. 2025 (npj Digital Medicine); Rwanda clinical LLM evaluation study |
+| **Source** | [Croxford-2025] (npj Digital Medicine); [Rwanda-Clinical-LLM-Evaluation] |
 
 **Why this tier?**
 
@@ -13157,7 +13157,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard meta-evaluation methodology; Croxford et al. 2025 (ROUGE Kendall-Tau 0.080) |
+| **Source** | Standard meta-evaluation methodology; [Croxford-2025] (ROUGE Kendall-Tau 0.080) |
 
 **Why this tier?**
 
@@ -13196,7 +13196,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
-| **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
+| **Source** | This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368] |
 
 **Why this tier?**
 
@@ -13247,7 +13247,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
-| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
+| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique) |
 
 **Why this tier?**
 

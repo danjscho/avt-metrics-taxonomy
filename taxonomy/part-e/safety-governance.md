@@ -15,7 +15,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Keyes et al., Stanford, Dec 2025 |
+| **Source** | [Keyes-Stanford-2025] |
 
 **Why this tier?**
 
@@ -78,7 +78,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NAS + Stanford frameworks |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
 
 **Why this tier?**
 
@@ -128,7 +128,7 @@ Time delay between the onset of model performance degradation and its detection 
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
-|**Source**             |NICE Evidence Standards Framework 2022 AI-specific updates; drift detection literature|
+|**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
 
 **Why this tier?**
 
@@ -167,7 +167,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |FDA PCCP guidance (December 2024); NICE ESF 2022 AI-specific additions|
+|**Source**             |[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions|
 
 **Why this tier?**
 
@@ -206,7 +206,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |medRxiv 2026 model autophagy study; Shumailov et al. curse of recursion literature             |
+|**Source**             |[medRxiv-Model-Autophagy-2026]; [Shumailov-Curse-of-Recursion]                                  |
 
 **Why this tier?**
 
@@ -282,7 +282,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | medRxiv, Nov 2025 |
+| **Source** | [medRxiv-Nov-2025-AVT-Drift] |
 
 **Why this tier?**
 
@@ -325,7 +325,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sou
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DeepScribe |
+| **Source** | [DeepScribe] |
 
 **Why this tier?**
 
@@ -368,7 +368,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DSCMS methodology in NAS framework |
+| **Source** | [DSCMS-SPI-Framework]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -411,7 +411,7 @@ AVT use outside validated contexts. Well-intentioned scope creep - each boundary
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Compound boundary risk model; NHSE LLM framework |
+| **Source** | Compound boundary risk model; [NHS-LLM-Framework] |
 
 **Why this tier?**
 
@@ -458,7 +458,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | LFPSE national reporting |
+| **Source** | [LFPSE] national reporting |
 
 **Why this tier?**
 
@@ -685,7 +685,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Operational extension of DSCMS SPI framework |
+| **Source** | Operational extension of [DSCMS-SPI-Framework] |
 
 **Why this tier?**
 
@@ -726,7 +726,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | DCB0129 compliance requirement |
+| **Source** | [DCB0129] compliance requirement |
 
 **Why this tier?**
 

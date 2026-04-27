@@ -15,7 +15,7 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS SPI; CQC Mythbuster 109 |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [CQC-Mythbuster-109] |
 
 **Why this tier?**
 
@@ -200,7 +200,7 @@ Whether AVT suppresses sensitive disclosures. Most under-researched risk - popul
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHSE LLM framework gap analysis |
+| **Source** | [NHS-LLM-Framework] gap analysis |
 
 **Why this tier?**
 
@@ -286,7 +286,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
-|**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
+|**Source**             |[Stults-2025] (57.9%→93.0% improvement with ambient AI)          |
 
 **Why this tier?**
 
@@ -364,7 +364,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026]                                 |
 
 **Why this tier?**
 
@@ -403,7 +403,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Maturity**           |Proposed / Novel                                                     |
 |**Outcome Type**       |Distal                                                               |
 |**Applicability**      |General Healthcare AI                                                |
-|**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories|
 
 **Why this tier?**
 

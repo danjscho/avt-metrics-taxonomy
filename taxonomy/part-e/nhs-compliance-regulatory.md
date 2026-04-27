@@ -15,7 +15,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Maturity**           |Established                                             |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |General Healthcare AI                                   |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)       |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                              |
 
 **Why this tier?**
 
@@ -80,7 +80,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Maturity**           |Established                                               |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |General Healthcare AI                                     |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026); CQC Mythbuster 109 context|
+|**Source**             |[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context|
 
 **Why this tier?**
 
@@ -146,7 +146,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Maturity**           |Established                                                |
 |**Outcome Type**       |Proximal                                                   |
 |**Applicability**      |General Healthcare AI                                      |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)          |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                                 |
 
 **Why this tier?**
 
@@ -267,7 +267,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |General Healthcare AI                                        |
-|**Source**             |CIO/CCIO guidance v2 (January 2026); NHS CIO priority notification|
+|**Source**             |[CIO-CCIO-Guidance-2026]; NHS CIO priority notification|
 
 **Why this tier?**
 
@@ -328,7 +328,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |**Maturity**           |Established                                                                                      |
 |**Outcome Type**       |Proximal                                                                                         |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |DCB0129/0160 regulatory requirement; PubMed 41172285 FOI study of NHS digital safety standard compliance|
+|**Source**             |[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]|
 
 **Why this tier?**
 
@@ -388,7 +388,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
-|**Source**             |UK GDPR Article 35; NHSE IG guidance template (March 2026)|
+|**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
 
 **Why this tier?**
 
@@ -448,7 +448,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |**Maturity**           |Established                                   |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |General Healthcare AI                         |
-|**Source**             |UK GDPR Article 28; NHS data protection guidance|
+|**Source**             |[UK-GDPR] Article 28; NHS data protection guidance|
 
 **Why this tier?**
 
@@ -487,7 +487,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |FDA PCCP guidance (December 2024); EU AI Act Article 15; NICE ESF 2022 AI updates|
+|**Source**             |[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates|
 
 **Why this tier?**
 
@@ -526,7 +526,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |**Maturity**           |Emerging                                            |
 |**Outcome Type**       |Proximal                                            |
 |**Applicability**      |General Healthcare AI                               |
-|**Source**             |EU AI Act Article 12 (high-risk provisions effective August 2026)|
+|**Source**             |[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)|
 
 **Why this tier?**
 
