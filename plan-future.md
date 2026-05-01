@@ -94,17 +94,23 @@ This is a substantial body of work and should not start without an explicit user
 
 ---
 
-## 5. Verify code snippets and definitions against sources
+## 5. Verify code snippets *and* Formal Definitions against sources
 
 **Status:** queued.
 
-**Context:** Roughly a dozen metrics include code snippets (e.g. the `pyannote` DER snippet at TP.DI-1, scikit-learn calibration code at calibration metrics, the stigmatising-language detection lexicon at TP.SN-24). These snippets were authored by Claude during earlier integration passes and have not been independently verified against their cited sources or run end-to-end. Some Formal Definition blocks have the same provenance and the same risk. The v3.9 Phase 2 URL review surfaced multiple cases where Source-row claims didn't match the cited paper — the same review hasn't been done for code/formula content yet.
+**Context:** Two adjacent bodies of content carry the same provenance risk and should be reviewed together:
+
+1. **Code snippets** — roughly a dozen metrics include them (e.g. the `pyannote` DER snippet at TP.DI-1, scikit-learn calibration code at calibration metrics, the stigmatising-language detection lexicon at TP.SN-24). Authored by Claude during earlier integration passes; not independently verified against cited sources or run end-to-end.
+2. **Formal Definition blocks** — every metric has one, and many were authored or edited by Claude in the same passes. The mathematical / operational definition is the load-bearing part of each metric — if it doesn't match what the cited source actually defines, downstream implementers will measure something subtly different from what the catalogue claims to standardise. The v3.9 Phase 2 URL review surfaced multiple cases where Source-row *claims* didn't match the cited paper; the same drift is plausible in Formal Definitions and has not yet been checked.
+
+The two need to be verified **as a pair, per metric**, not as two separate sweeps. The snippet should implement the definition, and the definition should match the cited source — checking either in isolation misses the cross-consistency case where snippet and definition agree with each other but both diverge from the source.
 
 **Starting points:**
-- Grep `taxonomy/` for code blocks: ` ```python` and ` ```` (other language tags).
-- For each snippet: check that the imports / API surface matches the current version of the cited library (pyannote, scikit-learn, dscore, FHIR validators, etc.) and that the formula in the surrounding Formal Definition matches the snippet.
-- Cross-reference with the Source row — if the snippet implements a paper's methodology, verify the paper actually defines it that way.
-- Likely high-yield places to start: the pipeline metrics in part-a (where the most code lives) and the calibration / fairness metrics in part-d (where formulas are most load-bearing).
+- For code: grep `taxonomy/` for code blocks (` ```python ` and other language tags). Check imports / API surface against the current version of the cited library (pyannote, scikit-learn, dscore, FHIR validators, etc.).
+- For definitions: every metric file has a **Formal Definition** block — these are the primary review target, not an afterthought. Compare the formula / operational rule in the block against the Source-row citation.
+- Cross-consistency check, per metric: (a) does the snippet implement the Formal Definition? (b) does the Formal Definition match the cited source? Both must hold.
+- Likely high-yield places to start: the pipeline metrics in part-a (where the most code lives and the most precise mathematical definitions sit), and the calibration / fairness metrics in part-d (where formulas are most load-bearing and most paper-derived).
+- Sequencing: definitions are the larger surface area (every metric) and the higher-risk content (the standardisation contract). If the work has to be split, do definitions first, snippets second.
 
 ---
 
