@@ -205,7 +205,7 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
-Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 - but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
 
 | Dimension | Value |
 |-----------|-------|
@@ -220,7 +220,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Croxford-2025] (npj Digital Medicine); [Rwanda-Clinical-LLM-Evaluation] |
+| **Source** | [Croxford-2025] (npj Digital Medicine) |
 
 **Why this tier?**
 
@@ -238,7 +238,7 @@ Bias tests: (1) Position bias - reverse pairwise ordering and measure agreement 
 
 **Novel Thinking / Implications**
 
-> 💡 The Rwanda finding is the uncomfortable one: LLM judges may correlate well with human evaluators while correlating poorly with ground truth. This is the worst failure mode for evaluation - apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
+> 💡 The uncomfortable failure mode: LLM judges may correlate well with human evaluators while correlating poorly with ground truth — apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
 
 ---
 

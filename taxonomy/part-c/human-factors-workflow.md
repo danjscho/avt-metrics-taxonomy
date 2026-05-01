@@ -15,7 +15,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -154,7 +154,7 @@ Parent construct covering two complementary telemetry approaches to detecting in
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -192,7 +192,7 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -262,7 +262,7 @@ Distribution of duration between generation and approval. Model as distribution 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | EPR workflow data; [Stanford-Monitoring-Framework] principles |
+| **Source** | EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles |
 
 **Why this tier?**
 
@@ -819,7 +819,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
 |**Applicability**      |General Healthcare AI                                                  |
-|**Source**             |[Hollnagel-FRAM]; [JMIR-2026-SEIPS-AVT]                                |
+|**Source**             |[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)|
 
 **Why this tier?**
 
@@ -858,7 +858,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
 |**Applicability**      |AVT-Contextualised                                                  |
-|**Source**             |[JMIR-2026-SEIPS-AVT] (e86166); [GOSH-Phase-4-TimeCat]              |
+|**Source**             |[GOSH-Phase-4-TimeCat]                                              |
 
 **Why this tier?**
 

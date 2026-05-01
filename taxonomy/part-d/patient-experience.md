@@ -286,7 +286,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
-|**Source**             |[Stults-2025] (57.9%→93.0% improvement with ambient AI)          |
+|**Source**             |See-also [Stults-2025] (clinician self-reported attentiveness gains; different construct from objective time-on-task)|
 
 **Why this tier?**
 

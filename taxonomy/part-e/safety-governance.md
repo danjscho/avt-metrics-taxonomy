@@ -15,7 +15,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Keyes-Stanford-2025] |
+| **Source** | [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -41,7 +41,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the three-layer surveillance framing carries from the Novel Thinking section and Keyes et al. 2025; the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+> ⚠️ **Provenance:** the monitoring framing carries from the Novel Thinking section and Keyes et al. 2025 (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
 > - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
@@ -57,7 +57,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **Novel Thinking / Implications**
 
-> 💡 Three-layer surveillance: detected nationally (contractual), evaluated regionally (benchmark), monitored locally (edit-pattern shift).
+> 💡 NHS-context three-tier surveillance shape (taxonomy-original; distinct from the Keyes et al. three-principle monitoring framework that this metric's Source row anchors to): detected nationally (contractual), evaluated regionally (benchmark), monitored locally (edit-pattern shift).
 
 ---
 
@@ -78,11 +78,11 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
-> Triggered by model version changes. Requires vendor notification and deployer/regional benchmark suite. The three-layer surveillance model depends on this.
+> Triggered by model version changes. Requires vendor notification and deployer/regional benchmark suite. The Keyes et al. monitoring framework (system integrity / performance / impact) depends on this.
 
 **Formal Definition**
 
@@ -92,8 +92,8 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 **References**
 
-- **NAS**: Three-layer surveillance
-- **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
+- **NAS-Day-Zero-SPI-internal**: internal NAS Day-Zero SPI work (taxonomy-author's prior framing, internal source)
+- **Stanford / Keyes et al. (2025)**: [arXiv 2512.09048](https://arxiv.org/abs/2512.09048) — three-principle monitoring framework (system integrity, performance, impact)
 
 **Limitations**
 
@@ -206,7 +206,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |[medRxiv-Model-Autophagy-2026]; [Shumailov-Curse-of-Recursion]                                  |
+|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]                                  |
 
 **Why this tier?**
 
@@ -267,7 +267,7 @@ For each reference time window W_ref and comparison window W_t: compute the dist
 
 ### GV.SG-7 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
-Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ from 2.0×10⁻⁸ to 2.6×10⁻⁴.
+Medical device safety paradigm for LLMs. Applies the Kalinich et al. 2025 simulation-based PRA framework — demonstrated on suicide-risk chatbot safety classification across 14 open-source models — to AVT contexts.
 
 | Dimension | Value |
 |-----------|-------|
@@ -282,7 +282,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [medRxiv-Nov-2025-AVT-Drift] |
+| **Source** | [Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT) |
 
 **Why this tier?**
 
@@ -296,7 +296,7 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 **References**
 
-- **Preprint**: medRxiv, Nov 2025 - 14 open-source LLMs
+- [Kalinich et al. 2025](https://www.medrxiv.org/content/10.1101/2025.11.10.25339903v1) — simulation-based PRA framework, 14 open-source LLMs (Qwen / Gemma / LLaMA, 270M–70B), evaluated on suicide-ideation / therapy-request / therapy-like-interaction safety classification. Provides P₁ and P₂ estimation methodology that GV.SG-7 applies to AVT.
 
 **Limitations**
 
@@ -339,7 +339,7 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 **References**
 
-- **DeepScore**: DeepScribe, arXiv Sept 2024
+- **DeepScore**: [DeepScribe vendor-published methodology page](https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation) (vendor whitepaper; not a peer-reviewed academic preprint)
 
 **Limitations**
 
@@ -368,7 +368,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [DSCMS-SPI-Framework]; [NAS-Day-Zero-SPI-internal] |
+| **Source** | [AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -685,7 +685,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Operational extension of [DSCMS-SPI-Framework] |
+| **Source** | Operational extension of [AMLAS-AAIP] |
 
 **Why this tier?**
 

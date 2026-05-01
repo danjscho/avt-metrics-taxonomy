@@ -608,16 +608,16 @@ Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper. Resolve at the Ph
 
 ### Abridge-Linked-Evidence
 
-- **Title:** Abridge Linked Evidence — confidence-routed clinical-AI architecture (vendor disclosure)
+- **Title:** Verify a note with Linked Evidence (Abridge support article — feature description)
 - **Publisher:** Abridge (vendor)
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor disclosure URL to supply)_
+- **URL:** https://support.abridge.com/hc/en-us/articles/30022691519635-Verify-a-note-with-Linked-Evidence
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-12 (architecture-derived metric) and TP.ASR-11 (ASR Confidence Exposure) as the source of the confidence-based routing architecture pattern. `Source-Type: disclosure` because the architecture is vendor-described rather than peer-reviewed. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-12 (Evidence Linking Coverage) and TP.ASR-11 (ASR Confidence Exposure) as a representative vendor implementation of the span-to-source-segment provenance pattern. `Source-Type: disclosure` because the URL is a user-facing support article describing the feature, not an architectural specification — the metric stands on its own conceptual merits and the Abridge citation is an existence-proof for the pattern. (v3.9 round-2 review reframed the Source-row prose accordingly: TP.SN-12 cites it as "architectural pattern; representative vendor implementation" rather than implying it is the spec.)
 
 ### Wang-Duke-MedStar-2025
 
@@ -658,18 +658,19 @@ Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.8
 
 Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, and in TP.SN-21 (medication event classification) referencing the 2018 n2c2 shared task specifically. Multi-year benchmark series; the catalogue handle covers all year-shared-tasks generically with year-specific qualification given inline. Resolve at the Phase 2 follow-up review whether to keep one handle or split per shared-task year.
 
-### Barcelona-JAMA-Network-Open-2025
+### Himmelstein-Stigmatising-EHR-JAMA-2022
 
-- **Title:** Barcelona et al. 2025 — JAMA Network Open paper on biased clinical-note language
-- **Publisher:** Barcelona et al., JAMA Network Open 2025
+- **Title:** Examination of Stigmatizing Language in the Electronic Health Record
+- **Publisher:** Himmelstein G, Bates DW, Zhou L. *JAMA Network Open* 2022;5(1):e2144967
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — JAMA Network Open DOI to supply)_
+- **URL:** https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2788860
+- **DOI:** 10.1001/jamanetworkopen.2021.44967
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-25 (Bias in Patient Descriptors) as the source of the "Black patients 2.54× odds of negative descriptors" finding. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-24 (Stigmatising Language Rate) as the canonical paper documenting stigmatising-language patterns in the EHR. The taxonomy previously cited a "Barcelona-JAMA-Network-Open-2025" handle with a "Black patients 2.54× odds of negative descriptors" parenthetical; v3.9 round-2 review found the 2.54× number is not in this paper (the Himmelstein paper documents stigmatising-language patterns without that specific odds-ratio claim), so the parenthetical has been dropped and the handle re-anchored to the actual paper.
 
 ### NLP2FHIR-Pipeline
 
@@ -788,19 +789,6 @@ The npj Digital Medicine policy brief documenting AI-coding drift (3.0 → 4.1 d
 
 The SNOMED CT clinical terminology, used as the reference standard in TP.CC-2 (SNOMED concept mapping) and TP.CC-9 (hierarchy-aware coding accuracy). UK Edition is the relevant variant for NHS deployment. URL options include snomed.org (international) or the NHS Digital SNOMED landing under digital.nhs.uk/services/terminology-and-classifications.
 
-### SPIE-14009E-2025
-
-- **Title:** SPIE 14009E 2025 — interoperability study (specific paper TBC)
-- **Publisher:** SPIE 2025 proceedings, paper 14009E
-- **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — SPIE Digital Library DOI to supply)_
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-Cited in TP.WB-6 (FHIR R4 Resource Conformance) as a 2025 SPIE interoperability study. SPIE proceedings papers are at spiedigitallibrary.org; specific DOI to confirm at follow-up review.
-
 ### openEHR-Foundation
 
 - **Title:** openEHR Foundation standards
@@ -827,31 +815,18 @@ The openEHR Foundation specification suite for clinical-information modelling. C
 
 The openEHR community-curated archetype library, used as the reference for archetype-validation work alongside [openEHR-Foundation]. URL is the canonical CKM landing.
 
-### Stanford-Monitoring-Framework
-
-- **Title:** Stanford monitoring framework for clinical AI deployment (three-layer surveillance model)
-- **Publisher:** Stanford (specific paper / authors TBC)
-- **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — Stanford monitoring-framework paper DOI to supply)_
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-The "Stanford monitoring framework" / "Stanford principles" / "three-layer surveillance model" referenced repeatedly in the human-factors group (HL.HF) and several governance metrics. Multiple Source rows cite "Stanford" generically — assumed to be the same framework. Resolve at Phase 2 follow-up review whether this is one paper or several; possible split into multiple handles.
-
 ### DeepScore
 
-- **Title:** DeepScore (specific source TBC — vendor benchmark or research project)
-- **Publisher:** _(unknown)_
-- **Source-Type:** _(unknown — paper or disclosure)_
-- **URL:** _(pending v3.9 Phase 2 follow-up review — origin to supply)_
+- **Title:** DeepScore: Measuring the Performance of Ambient AI Clinical Documentation (vendor methodology page)
+- **Publisher:** DeepScribe (vendor)
+- **Source-Type:** disclosure
+- **URL:** https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodology. Origin (vendor product, research project, or third-party benchmark) to confirm at the Phase 2 follow-up review.
+Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodology, and in GV.SG-8 (DeepScore Defect-Free Rate) as the vendor methodology reference. `Source-Type: disclosure` because this is a vendor-published methodology page, not a peer-reviewed paper. (v3.9 round-2 review found that an earlier inline citation of "DeepScribe, arXiv Sept 2024" did not correspond to a verifiable arXiv submission; the inline reference has been corrected to point at this vendor page.)
 
 ### NASA-TLX
 
@@ -879,18 +854,19 @@ The NASA-TLX is the standard cognitive-workload measurement instrument from huma
 
 Hollnagel's FRAM methodology and Safety-II framing for resilience engineering. Cited in HL.HF-17 (Hollnagel FRAM for SEIPS-based AVT evaluation) and HL.HF-18 (Safety-II framing of resilience). Resolve to a specific Hollnagel publication (FRAM book is 2012, Safety-II White Paper is 2013, both candidates) at Phase 2 follow-up review.
 
-### JMIR-2026-SEIPS-AVT
+### Park-SEIPS-Transfusion-2026
 
-- **Title:** JMIR 2026 — SEIPS-based AVT evaluation (e86166)
-- **Publisher:** JMIR (Journal of Medical Internet Research) 2026, paper e86166
+- **Title:** Assessing Health Care Professionals' Perceptions of a New System in Clinical Workflows: Systems Engineering Initiative for Patient Safety–Based Consensual Qualitative Research
+- **Publisher:** Park Y-E, Ock M, Lee J-H, Ko J, Lee H-J, Park T, Yoo S, Lee Y. *Journal of Medical Internet Research* 2026;28:e86166
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — JMIR DOI / direct article URL to supply)_
+- **URL:** https://www.jmir.org/2026/1/e86166
+- **DOI:** 10.2196/86166
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in HL.HF-17 and HL.HF-18 as a 2026 JMIR paper applying the SEIPS framework to AVT evaluation, identifier e86166. Direct article URL to supply at the Phase 2 follow-up review (JMIR articles are at jmir.org).
+Park et al. 2026 *JMIR* — applies SEIPS-based Consensual Qualitative Research (CQR) to assess healthcare-professional perceptions of a new clinical-workflow information system. **The system studied is a blood-transfusion decision-support system, not AVT**; the paper is methodology-relevant for AVT (the SEIPS-CQR approach generalises) but is not itself an AVT study. Cited in HL.HF-16 (Work-as-Imagined vs Work-as-Done Gap) as a SEIPS methodology demonstration. (v3.9 round-2 review renamed an earlier `JMIR-2026-SEIPS-AVT` placeholder, which incorrectly framed the paper as AVT-specific; HL.HF-17, where the citation was used for verification-burden quantification, has been re-anchored to [GOSH-Phase-4-TimeCat] alone.)
 
 ### GOSH-Phase-4-TimeCat
 
@@ -903,7 +879,7 @@ Cited in HL.HF-17 and HL.HF-18 as a 2026 JMIR paper applying the SEIPS framework
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-allocation evidence. Cited in HL.HF-18 as the empirical companion to the JMIR SEIPS paper. `Source-Type: disclosure` because GOSH reports are typically institutional rather than peer-reviewed. The taxonomy's `.gitignore` references "GOSH-AAI-Phase4-NHSE-report.pdf" suggesting a local copy may exist.
+The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-allocation evidence. Cited in HL.HF-17 (Verification Burden) as the load-bearing time-on-task source, and in HL.HF-18 as empirical resilience evidence. `Source-Type: disclosure` because GOSH reports are typically institutional rather than peer-reviewed. The taxonomy's `.gitignore` references "GOSH-AAI-Phase4-NHSE-report.pdf" suggesting a local copy may exist.
 
 ### Lancet-Gastroenterology-Endoscopist-AI-Off-2025
 
@@ -933,16 +909,16 @@ CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported docume
 
 ### Stults-2025
 
-- **Title:** Stults et al. 2025 — patient-experience improvement study (57.9%→93.0% with ambient AI)
-- **Publisher:** Stults et al., 2025 (specific venue TBC)
+- **Title:** Stults et al. 2025 — clinician-reported attentiveness with ambient AI documentation
+- **Publisher:** Stults et al., *JAMA Network Open* 2025 (specific DOI TBC)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **URL:** _(pending v3.9 Phase 2 follow-up review — JAMA Network Open DOI to supply)_
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Stults et al. 2025 — cited in IO.PX-7 as the source of the 57.9% → 93.0% patient-experience improvement-with-ambient-AI figure. Specific venue / DOI to supply at the Phase 2 follow-up review.
+Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-reported gains in undivided attention with ambient AI (Likert response: 57.9% → 93.0% "agree/strongly agree"). v3.9 round-2 review found this figure is a self-report Likert finding, not an objective time-motion measurement, and so does not directly anchor IO.PX-7's TimeCat-based metric — it is retained as a see-also for the related self-reported construct. Specific DOI to supply at the Phase 2 follow-up review.
 
 ### Coiera-Fraile-Navarro-JMIR-2026
 
@@ -959,16 +935,17 @@ Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited mu
 
 ### FAccT-2024-ASR-Accent-Critique
 
-- **Title:** FAccT 2024 — critique of ASR accent categorisation
-- **Publisher:** ACM FAccT 2024 (specific paper / authors TBC)
+- **Title:** Speaking of accent: A content analysis of accent misconceptions in ASR research
+- **Publisher:** Prinos K, Patwari N, Power A. *ACM FAccT '24* (2024)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — ACM FAccT 2024 DOI / paper title to supply)_
+- **URL:** https://dl.acm.org/doi/10.1145/3630106.3658969
+- **DOI:** 10.1145/3630106.3658969
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-A FAccT 2024 paper critiquing ASR accent-categorisation methodology. Cited in IO.FE-2 (or similar fairness/equity metric on accent-stratified ASR) as the sociolinguistics-informed evaluation reference. Specific paper title and DOI to supply.
+Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation methodology — content analysis of how race-based, geography-based, and native/non-native categories function as flawed proxies for acoustic variation. Cited in IO.FE-2 (Accent Taxonomy Standardisation) as the sociolinguistics-informed evaluation reference. (v3.9 round-2 review verified authorship via Crossref; corrected from earlier "Markl & Lai" attribution.)
 
 ### FAIR-MED-Springer-2025
 
@@ -1037,16 +1014,18 @@ The EU AI Act. **Note:** taxonomy-wide audit of EU AI Act citations is queued (s
 
 ### IEEE-S-and-P-2023-LLM-PII-Leakage
 
-- **Title:** IEEE S&P 2023 LLM PII leakage study (specific paper TBC)
-- **Publisher:** IEEE Symposium on Security and Privacy 2023
+- **Title:** Analyzing Leakage of Personally Identifiable Information in Language Models
+- **Publisher:** Lukas N, Salem A, Sim R, Tople S, Wutschitz L, Zanella-Béguelin S. *2023 IEEE Symposium on Security and Privacy (SP)*
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — IEEE Xplore DOI / specific paper title to supply)_
+- **URL:** https://arxiv.org/abs/2302.00539
+- **DOI:** 10.1109/SP46215.2023.10179300
+- **arXiv:** 2302.00539
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The IEEE S&P 2023 paper on LLM PII leakage. Cited in GV.PD-5 (PII Memorisation Detection) and GV.SC-11 (Memorisation Risk). Specific paper title and IEEE Xplore DOI to confirm at follow-up.
+Lukas et al. 2023 IEEE S&P — foundational study of PII leakage in language models, covering both extraction-attack and membership-inference-attack methodologies. Cited in GV.PD-5 (PII Extraction Attack Success Rate) and GV.SC-11 (Membership Inference Attack AUC). (v3.9 round-2 review verified the citation; the previous "AUC 0.96 for undefended LLMs" specific figure has been dropped from GV.SC-11's Novel Thinking section pending direct paper verification — the metric framing stands without it.)
 
 ### OWASP-LLM-Top-10
 
@@ -1089,16 +1068,31 @@ The Schrems II ruling on transatlantic data transfers. Cited in GV.PD-9 (Interna
 
 ### Sinsky-Mayo-EHR-Studies
 
-- **Title:** Sinsky et al. — Mayo Clinic Proceedings EHR/burnout studies (multi-paper series)
-- **Publisher:** Christine A. Sinsky et al., Mayo Clinic Proceedings
+- **Title:** Allocation of Physician Time in Ambulatory Practice: A Time and Motion Study in 4 Specialties (concept reference for physician documentation time-allocation)
+- **Publisher:** Sinsky C, Colligan L, Li L, et al. *Annals of Internal Medicine* 2016;165(11):753-760
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — pick canonical Sinsky paper or series landing)_
+- **URL:** https://www.acpjournals.org/doi/10.7326/M16-0961
+- **DOI:** 10.7326/M16-0961
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Sinsky et al.'s long-running clinician-EHR-time / burnout research series. Cited in GV.OP-2 and GV.OP-4. Multiple papers exist; resolve to a canonical entry-point (the most-cited 2016 Annals of Internal Medicine paper is one candidate) at follow-up.
+Sinsky 2016 *Annals of Internal Medicine* — the canonical observational time-and-motion study of physician documentation time across 4 specialties. Cited in GV.OP-2 (Pyjama Time / After-Hours EHR Use) and GV.OP-4 (Documentation Workload Composite) as the **concept** reference for clinician-documentation time-allocation. The audit-log methodology that Pyjama Time actually depends on is formalised in a separate paper — see [Sinsky-Adler-Milstein-EHR-Logs-2020].
+
+### Sinsky-Adler-Milstein-EHR-Logs-2020
+
+- **Title:** Metrics for assessing physician activity using electronic health record log data
+- **Publisher:** Sinsky CA, Rule A, Cohen G, Arndt BG, Shanafelt TD, Sharp CD, Baxter SL, Tai-Seale M, Yan S, Chen Y, Adler-Milstein J, Hribar M. *Journal of the American Medical Informatics Association* 2020;27(4):639-643
+- **Source-Type:** paper
+- **URL:** https://academic.oup.com/jamia/article/27/4/639/5722714
+- **DOI:** 10.1093/jamia/ocz223
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-01
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Sinsky / Adler-Milstein / Rule et al. 2020 *JAMIA* — formalises the EHR-audit-log-derived metrics used to compute physician activity (active-use time, after-hours work, documentation burden) from log data. Cited in GV.OP-2 (Pyjama Time / After-Hours EHR Use) as the **methodology** reference for audit-log-derived after-hours-EHR computation, complementing the [Sinsky-Mayo-EHR-Studies] 2016 *Annals* concept reference. (v3.9 round-2 review added this entry to give Pyjama Time a faithful methodology citation — the 2016 paper is observational, the 2020 paper is the audit-log methodology paper.)
 
 ### Jegham-AI-Hunger-2025
 
@@ -1139,31 +1133,33 @@ Mistral AI's lifecycle assessment publication. Cited in ES.EN-2 (grid-carbon-int
 
 Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training and inference. Cited in ES.EN-3 alongside [Jegham-AI-Hunger-2025]. arxiv ID 2304.03271 is a likely candidate; confirm at follow-up.
 
-### Keyes-Stanford-2025
+### Keyes-Stanford-Monitoring-2025
 
-- **Title:** Keyes et al. — Stanford clinical-AI safety paper (December 2025)
-- **Publisher:** Keyes et al., Stanford, December 2025 (specific venue TBC)
+- **Title:** Monitoring Deployed AI Systems in Health Care
+- **Publisher:** Keyes et al. (Stanford Health Care). *arXiv preprint*, 2025-12-09
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **URL:** https://arxiv.org/abs/2512.09048
+- **arXiv:** 2512.09048
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Keyes et al. December 2025 paper from Stanford. Cited in GV.SG-1 (Model Version Tracking). Specific venue / DOI to supply.
+Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-AI monitoring around three complementary principles: **system integrity, performance, and impact**. Cited as the canonical monitoring-framework reference across GV.SG-1 (Model Version Tracking), GV.SG-2 (Model Update Impact Score), GV.VT-1 (Model Change Notification Compliance), GV.VT-2 (Telemetry Provision Completeness), GV.VT-3, and several human-factors metrics. (v3.9 round-2 review merged the earlier separate `Keyes-Stanford-2025` and `Stanford-Monitoring-Framework` handles into this single anchor; the taxonomy's earlier "three-layer surveillance model" phrasing was a paraphrase — the paper's own framing is "three principles".)
 
-### medRxiv-Model-Autophagy-2026
+### Alemohammad-MAD-2023
 
-- **Title:** medRxiv 2026 — model autophagy / training-on-output study
-- **Publisher:** medRxiv preprint, 2026 (specific authors / DOI TBC)
+- **Title:** Self-Consuming Generative Models Go MAD (Model Autophagy Disorder)
+- **Publisher:** Alemohammad S, Casco-Rodriguez J, Luzi L, Humayun AI, Babaei H, LeJeune D, Siahkoohi A, Baraniuk RG. *arXiv preprint*, 2023
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — medRxiv DOI to supply)_
+- **URL:** https://arxiv.org/abs/2307.01850
+- **arXiv:** 2307.01850
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-A 2026 medRxiv preprint on model autophagy (training models on their own outputs) applied to clinical AI. Cited in GV.SG-5 alongside [Shumailov-Curse-of-Recursion]. medRxiv DOI to supply.
+Alemohammad et al. 2023 — the canonical "model autophagy disorder" (MAD) paper, formalising the failure mode of generative models trained on their own outputs. Cited in GV.SG-5 (Training Data Contamination Score) alongside [Shumailov-Curse-of-Recursion]. (v3.9 round-2 review replaced an earlier `medRxiv-Model-Autophagy-2026` placeholder handle that did not correspond to a verifiable paper; Alemohammad is the actual primary source for the "model autophagy" framing.)
 
 ### Shumailov-Curse-of-Recursion
 
@@ -1178,57 +1174,58 @@ A 2026 medRxiv preprint on model autophagy (training models on their own outputs
 
 The Shumailov et al. "Curse of Recursion" paper on model collapse from training on generated data. Cited in GV.SG-5 (Concept Drift in Clinical Notes). URL is the Nature publication; the earlier 2023 arxiv preprint (2305.17493) is also a valid alternative.
 
-### medRxiv-Nov-2025-AVT-Drift
+### Kalinich-LLM-SaMD-PRA-2025
 
-- **Title:** medRxiv November 2025 — AVT drift study
-- **Publisher:** medRxiv preprint, November 2025 (specific authors / DOI TBC)
+- **Title:** Leveraging simulation to provide a practical framework for assessing the novel scope of risk of LLMs in healthcare
+- **Publisher:** Kalinich M, Luccarelli J, Moss S, Torous J. *medRxiv preprint*, 2025-11-13
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — medRxiv DOI to supply)_
+- **URL:** https://www.medrxiv.org/content/10.1101/2025.11.10.25339903v1
+- **DOI:** 10.1101/2025.11.10.25339903
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-A November 2025 medRxiv preprint on AVT-system performance drift. Cited in GV.SG-7. medRxiv DOI to supply.
+Kalinich et al. 2025 — simulation-based PRA framework for LLM-SaMDs, demonstrated on suicide-risk chatbot safety classification across 14 open-source models (270M–70B). Provides P₁ (probability hazard → hazardous situation) and P₂ (probability hazardous situation → harm) estimation methodology. Cited in GV.SG-7 (Quantitative Risk Analysis Framework) for the methodology, applied to AVT context — the paper itself is on suicide-risk safety classification, not AVT. (v3.9 round-2 review renamed an earlier `medRxiv-Nov-2025-AVT-Drift` placeholder; the paper is neither AVT-specific nor about drift.)
 
 ### DeepScribe
 
-- **Title:** DeepScribe — vendor disclosure / product reference
+- **Title:** DeepScribe — vendor product reference
 - **Publisher:** DeepScribe (vendor)
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor URL to supply)_
+- **URL:** https://www.deepscribe.ai/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-DeepScribe vendor reference. Cited in HL.HF-2 alongside Abridge for edit-rate methodology, and in GV.SG-8 for performance-degradation-detection methodology. URL likely deepscribe.ai; resolve at follow-up.
+DeepScribe vendor reference. Cited in GV.SG-8 (DeepScore Defect-Free Rate) for the proprietary defect-free-rate methodology. For the specific DeepScore methodology page see [DeepScore].
 
-### DSCMS-SPI-Framework
+### AMLAS-AAIP
 
-- **Title:** Digital Safety Case Management System (DSCMS) Safety Performance Indicator framework
-- **Publisher:** NHS England (DSCMS programme)
+- **Title:** Guidance on the Assurance of Machine Learning in Autonomous Systems (AMLAS)
+- **Publisher:** Hawkins R, Paterson C, Picardi C, Jia Y, Calinescu R, Habli I. *Assuring Autonomy International Programme (AAIP), University of York*, 2021
 - **Source-Type:** framework
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DSCMS programme URL to supply)_
+- **URL:** https://www.york.ac.uk/assuring-autonomy/guidance/amlas/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The NHS DSCMS Safety Performance Indicator framework. Cited in GV.SG-9 and GV.SG-15 as the methodological source for clinical-safety SPIs. URL likely under digital.nhs.uk; resolve at follow-up.
+AMLAS — the AAIP / York University assurance-case methodology for machine-learning components in autonomous and AI-enabled systems. Cited in GV.SG-9 (Safety Performance Indicator) and GV.SG-16 (SPI Escalation Response Time) as the published methodology grounding the dynamic-safety-case + SPI framing. (v3.9 round-2 review replaced an earlier `DSCMS-SPI-Framework` placeholder, which referred to a "Dynamic Safety Case Management System" framework that does not appear to exist as a published NHS artefact — AMLAS is the actual published methodology that the taxonomy's SPI framing maps to.)
 
-### NVIDIA-Reference-Architecture
+### NeMo-Guardrails
 
-- **Title:** NVIDIA reference architecture for clinical AI safety
-- **Publisher:** NVIDIA (vendor disclosure)
+- **Title:** NVIDIA NeMo Guardrails — open-source toolkit for adding programmable guardrails (output classifiers / safety filters) to LLM applications
+- **Publisher:** NVIDIA
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — NVIDIA reference-architecture URL to supply)_
+- **URL:** https://github.com/NVIDIA/NeMo-Guardrails
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-NVIDIA's reference architecture for clinical-AI safety / Llama-Guard-style input-validation. Cited in GV.SC-5 (Architecture-Level Safety Pattern). `Source-Type: disclosure` because vendor-described.
+NeMo Guardrails — NVIDIA's open-source toolkit implementing the output-safety-classifier pattern that GV.SC-5 (Output Safety Classifier Coverage) measures. Cited as a representative existence-proof for the pattern; the metric is not anchored to NVIDIA-specific implementation. (v3.9 round-2 review replaced an earlier `NVIDIA-Reference-Architecture` placeholder that did not correspond to a specific verifiable NVIDIA whitepaper.)
 
 ### arXiv-2601-03791-Cue-Resistant-Memorisation
 
@@ -1281,19 +1278,6 @@ The VeriFact factual-verification framework. Cited in TP.SN-7 (Factual Verificat
 - **Cited-by:** _(auto-generated)_
 
 The MedHELM benchmark — Stanford CRFM's medical extension of the HELM (Holistic Evaluation of Language Models) framework. Cited in TP.SN-7 (Factual Verification) and TP.SN-9b (LLM-Jury). URL is the Stanford CRFM MedHELM landing; confirm at follow-up.
-
-### Rwanda-Clinical-LLM-Evaluation
-
-- **Title:** Rwanda clinical LLM evaluation study
-- **Publisher:** _(authors / venue TBC)_
-- **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — paper DOI / venue to supply)_
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-The Rwanda clinical-LLM evaluation study. Cited in ES.ME-6 alongside [Croxford-2025] as comparative LMIC-context evidence on clinical-LLM evaluation. Specific paper DOI / venue to supply.
 
 ---
 

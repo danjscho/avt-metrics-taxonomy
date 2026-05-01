@@ -15,11 +15,11 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Stanford-Monitoring-Framework]; three-layer surveillance model |
+| **Source** | [Keyes-Stanford-Monitoring-2025]; three-principle monitoring framework (system integrity, performance, impact) |
 
 **Why this tier?**
 
-> Should be a contractual requirement in NHS procurement. The three-layer surveillance model depends on it. Without vendor notification, governance is reactive.
+> Should be a contractual requirement in NHS procurement. The three-principle monitoring framework (system integrity, performance, impact) depends on it. Without vendor notification, governance is reactive.
 
 **Formal Definition**
 
@@ -58,7 +58,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **Novel Thinking / Implications**
 
-> 💡 This should be a contractual requirement in NHS procurement, not a voluntary practice. The three-layer surveillance model depends on it: national detection → regional evaluation → local monitoring. Without vendor notification, the entire surveillance chain is reactive rather than proactive.
+> 💡 This should be a contractual requirement in NHS procurement, not a voluntary practice. The Keyes et al. monitoring framework — system integrity, performance, impact — depends on it; without vendor notification, the entire surveillance chain is reactive rather than proactive. (The "national detection → regional evaluation → local monitoring" three-tier governance shape is the NHS-context layering this taxonomy proposes for applying that framework, not the framework itself.)
 
 ---
 
@@ -79,7 +79,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Stanford-Monitoring-Framework]; identified as prerequisite for most continuous monitoring metrics |
+| **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
 **Why this tier?**
 
@@ -363,7 +363,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Stanford-Monitoring-Framework] |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 

@@ -185,7 +185,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [NVIDIA-Reference-Architecture]; absence noted in vendor safety architecture review |
+| **Source** | [NeMo-Guardrails] (representative implementation of the output-classifier pattern); absence noted in vendor safety architecture review |
 
 **Why this tier?**
 
@@ -442,7 +442,7 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 
 **Novel Thinking / Implications**
 
-> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
+> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The IEEE S&P 2023 PII-leakage findings on undefended LLMs are a sobering baseline for what "no privacy defences" looks like in practice.
 
 ---
 

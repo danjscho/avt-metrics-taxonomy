@@ -66,7 +66,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - 🚪 **Cross-Border Data Transfer Compliance** - Legal compliance requirement. Must be assessed at procurement. Non-compliance is a regulatory breach.
 - 🚪 **Subject Access Request Fulfilment** - Legal compliance requirement. Must be tested before go-live to confirm vendor supports SAR fulfilment workflow.
 - 🚪 **Right to Erasure Compliance** - Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.
-- 📡 **Model Change Notification Compliance** - Should be a contractual requirement in NHS procurement. The three-layer surveillance model depends on it. Without vendor notification, governance is reactive.
+- 📡 **Model Change Notification Compliance** - Should be a contractual requirement in NHS procurement. The Keyes et al. monitoring framework (system integrity / performance / impact) depends on it. Without vendor notification, governance is reactive.
 - 📡 **Incident Disclosure Compliance** - Should be a contractual requirement. Without timely incident disclosure, deployers cannot respond to vendor-side security issues.
 - 📡 **Sub-Processor Transparency** - Legal compliance requirement under UK GDPR Article 28. Must be assessed at procurement and monitored for changes.
 

@@ -320,7 +320,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
-|**Source**             |[FHIR-UK-Core] R4 validation tooling; [SPIE-14009E-2025] interoperability study|
+|**Source**             |[FHIR-UK-Core] R4 validation tooling|
 
 **Why this tier?**
 

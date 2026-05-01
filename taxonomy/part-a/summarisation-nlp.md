@@ -741,7 +741,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Abridge-Linked-Evidence] |
+| **Source** | architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification) |
 
 **Why this tier?**
 
@@ -1289,7 +1289,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
 |**Applicability**      |AVT-Contextualised                                                          |
-|**Source**             |[Barcelona-JAMA-Network-Open-2025] (Black patients 2.54× odds of negative descriptors)|
+|**Source**             |[Himmelstein-Stigmatising-EHR-JAMA-2022]|
 
 **Why this tier?**
 

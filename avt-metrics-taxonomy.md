@@ -263,7 +263,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - 🚪 **Cross-Border Data Transfer Compliance** - Legal compliance requirement. Must be assessed at procurement. Non-compliance is a regulatory breach.
 - 🚪 **Subject Access Request Fulfilment** - Legal compliance requirement. Must be tested before go-live to confirm vendor supports SAR fulfilment workflow.
 - 🚪 **Right to Erasure Compliance** - Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.
-- 📡 **Model Change Notification Compliance** - Should be a contractual requirement in NHS procurement. The three-layer surveillance model depends on it. Without vendor notification, governance is reactive.
+- 📡 **Model Change Notification Compliance** - Should be a contractual requirement in NHS procurement. The Keyes et al. monitoring framework (system integrity / performance / impact) depends on it. Without vendor notification, governance is reactive.
 - 📡 **Incident Disclosure Compliance** - Should be a contractual requirement. Without timely incident disclosure, deployers cannot respond to vendor-side security issues.
 - 📡 **Sub-Processor Transparency** - Legal compliance requirement under UK GDPR Article 28. Must be assessed at procurement and monitored for changes.
 
@@ -4959,7 +4959,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Abridge-Linked-Evidence] |
+| **Source** | architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification) |
 
 **Why this tier?**
 
@@ -5507,7 +5507,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
 |**Applicability**      |AVT-Contextualised                                                          |
-|**Source**             |[Barcelona-JAMA-Network-Open-2025] (Black patients 2.54× odds of negative descriptors)|
+|**Source**             |[Himmelstein-Stigmatising-EHR-JAMA-2022]|
 
 **Why this tier?**
 
@@ -6354,7 +6354,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
-|**Source**             |[FHIR-UK-Core] R4 validation tooling; [SPIE-14009E-2025] interoperability study|
+|**Source**             |[FHIR-UK-Core] R4 validation tooling|
 
 **Why this tier?**
 
@@ -7578,7 +7578,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -7717,7 +7717,7 @@ Parent construct covering two complementary telemetry approaches to detecting in
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -7755,7 +7755,7 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -7825,7 +7825,7 @@ Distribution of duration between generation and approval. Model as distribution 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | EPR workflow data; [Stanford-Monitoring-Framework] principles |
+| **Source** | EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles |
 
 **Why this tier?**
 
@@ -8382,7 +8382,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
 |**Applicability**      |General Healthcare AI                                                  |
-|**Source**             |[Hollnagel-FRAM]; [JMIR-2026-SEIPS-AVT]                                |
+|**Source**             |[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)|
 
 **Why this tier?**
 
@@ -8421,7 +8421,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
 |**Applicability**      |AVT-Contextualised                                                  |
-|**Source**             |[JMIR-2026-SEIPS-AVT] (e86166); [GOSH-Phase-4-TimeCat]              |
+|**Source**             |[GOSH-Phase-4-TimeCat]                                              |
 
 **Why this tier?**
 
@@ -8812,7 +8812,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
-|**Source**             |[Stults-2025] (57.9%→93.0% improvement with ambient AI)          |
+|**Source**             |See-also [Stults-2025] (clinician self-reported attentiveness gains; different construct from objective time-on-task)|
 
 **Why this tier?**
 
@@ -9274,7 +9274,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Keyes-Stanford-2025] |
+| **Source** | [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -9300,7 +9300,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the three-layer surveillance framing carries from the Novel Thinking section and Keyes et al. 2025; the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+> ⚠️ **Provenance:** the monitoring framing carries from the Novel Thinking section and Keyes et al. 2025 (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from SI 2024 No. 1368 in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
 > - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
@@ -9316,7 +9316,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **Novel Thinking / Implications**
 
-> 💡 Three-layer surveillance: detected nationally (contractual), evaluated regionally (benchmark), monitored locally (edit-pattern shift).
+> 💡 NHS-context three-tier surveillance shape (taxonomy-original; distinct from the Keyes et al. three-principle monitoring framework that this metric's Source row anchors to): detected nationally (contractual), evaluated regionally (benchmark), monitored locally (edit-pattern shift).
 
 ---
 
@@ -9337,11 +9337,11 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [NAS-Day-Zero-SPI-internal]; [Stanford-Monitoring-Framework] |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
-> Triggered by model version changes. Requires vendor notification and deployer/regional benchmark suite. The three-layer surveillance model depends on this.
+> Triggered by model version changes. Requires vendor notification and deployer/regional benchmark suite. The Keyes et al. monitoring framework (system integrity / performance / impact) depends on this.
 
 **Formal Definition**
 
@@ -9351,8 +9351,8 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 **References**
 
-- **NAS**: Three-layer surveillance
-- **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
+- **NAS-Day-Zero-SPI-internal**: internal NAS Day-Zero SPI work (taxonomy-author's prior framing, internal source)
+- **Stanford / Keyes et al. (2025)**: [arXiv 2512.09048](https://arxiv.org/abs/2512.09048) — three-principle monitoring framework (system integrity, performance, impact)
 
 **Limitations**
 
@@ -9465,7 +9465,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |[medRxiv-Model-Autophagy-2026]; [Shumailov-Curse-of-Recursion]                                  |
+|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]                                  |
 
 **Why this tier?**
 
@@ -9526,7 +9526,7 @@ For each reference time window W_ref and comparison window W_t: compute the dist
 
 ### GV.SG-7 🔵 Probabilistic Risk Quantification (P₁/P₂)
 
-Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ from 2.0×10⁻⁸ to 2.6×10⁻⁴.
+Medical device safety paradigm for LLMs. Applies the Kalinich et al. 2025 simulation-based PRA framework — demonstrated on suicide-risk chatbot safety classification across 14 open-source models — to AVT contexts.
 
 | Dimension | Value |
 |-----------|-------|
@@ -9541,7 +9541,7 @@ Medical device safety paradigm for LLMs. First quantitative risk analysis: P₁ 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [medRxiv-Nov-2025-AVT-Drift] |
+| **Source** | [Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT) |
 
 **Why this tier?**
 
@@ -9555,7 +9555,7 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 **References**
 
-- **Preprint**: medRxiv, Nov 2025 - 14 open-source LLMs
+- [Kalinich et al. 2025](https://www.medrxiv.org/content/10.1101/2025.11.10.25339903v1) — simulation-based PRA framework, 14 open-source LLMs (Qwen / Gemma / LLaMA, 270M–70B), evaluated on suicide-ideation / therapy-request / therapy-like-interaction safety classification. Provides P₁ and P₂ estimation methodology that GV.SG-7 applies to AVT.
 
 **Limitations**
 
@@ -9598,7 +9598,7 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 **References**
 
-- **DeepScore**: DeepScribe, arXiv Sept 2024
+- **DeepScore**: [DeepScribe vendor-published methodology page](https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation) (vendor whitepaper; not a peer-reviewed academic preprint)
 
 **Limitations**
 
@@ -9627,7 +9627,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [DSCMS-SPI-Framework]; [NAS-Day-Zero-SPI-internal] |
+| **Source** | [AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -9944,7 +9944,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Operational extension of [DSCMS-SPI-Framework] |
+| **Source** | Operational extension of [AMLAS-AAIP] |
 
 **Why this tier?**
 
@@ -10746,7 +10746,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [NVIDIA-Reference-Architecture]; absence noted in vendor safety architecture review |
+| **Source** | [NeMo-Guardrails] (representative implementation of the output-classifier pattern); absence noted in vendor safety architecture review |
 
 **Why this tier?**
 
@@ -11003,7 +11003,7 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 
 **Novel Thinking / Implications**
 
-> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
+> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The IEEE S&P 2023 PII-leakage findings on undefended LLMs are a sobering baseline for what "no privacy defences" looks like in practice.
 
 ---
 
@@ -11715,7 +11715,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Sinsky-Mayo-EHR-Studies]; American Medical Association EHR use studies |
+| **Source** | [Sinsky-Mayo-EHR-Studies] (concept: physician time-allocation); [Sinsky-Adler-Milstein-EHR-Logs-2020] (methodology: audit-log-derived activity metrics); American Medical Association EHR use studies |
 
 **Why this tier?**
 
@@ -12370,11 +12370,11 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Stanford-Monitoring-Framework]; three-layer surveillance model |
+| **Source** | [Keyes-Stanford-Monitoring-2025]; three-principle monitoring framework (system integrity, performance, impact) |
 
 **Why this tier?**
 
-> Should be a contractual requirement in NHS procurement. The three-layer surveillance model depends on it. Without vendor notification, governance is reactive.
+> Should be a contractual requirement in NHS procurement. The three-principle monitoring framework (system integrity, performance, impact) depends on it. Without vendor notification, governance is reactive.
 
 **Formal Definition**
 
@@ -12413,7 +12413,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **Novel Thinking / Implications**
 
-> 💡 This should be a contractual requirement in NHS procurement, not a voluntary practice. The three-layer surveillance model depends on it: national detection → regional evaluation → local monitoring. Without vendor notification, the entire surveillance chain is reactive rather than proactive.
+> 💡 This should be a contractual requirement in NHS procurement, not a voluntary practice. The Keyes et al. monitoring framework — system integrity, performance, impact — depends on it; without vendor notification, the entire surveillance chain is reactive rather than proactive. (The "national detection → regional evaluation → local monitoring" three-tier governance shape is the NHS-context layering this taxonomy proposes for applying that framework, not the framework itself.)
 
 ---
 
@@ -12434,7 +12434,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Stanford-Monitoring-Framework]; identified as prerequisite for most continuous monitoring metrics |
+| **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
 **Why this tier?**
 
@@ -12718,7 +12718,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Stanford-Monitoring-Framework] |
+| **Source** | Prerequisite for existing Error Attribution Analysis metric; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -13103,7 +13103,7 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
-Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 - but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
 
 | Dimension | Value |
 |-----------|-------|
@@ -13118,7 +13118,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Croxford-2025] (npj Digital Medicine); [Rwanda-Clinical-LLM-Evaluation] |
+| **Source** | [Croxford-2025] (npj Digital Medicine) |
 
 **Why this tier?**
 
@@ -13136,7 +13136,7 @@ Bias tests: (1) Position bias - reverse pairwise ordering and measure agreement 
 
 **Novel Thinking / Implications**
 
-> 💡 The Rwanda finding is the uncomfortable one: LLM judges may correlate well with human evaluators while correlating poorly with ground truth. This is the worst failure mode for evaluation - apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
+> 💡 The uncomfortable failure mode: LLM judges may correlate well with human evaluators while correlating poorly with ground truth — apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
 
 ---
 

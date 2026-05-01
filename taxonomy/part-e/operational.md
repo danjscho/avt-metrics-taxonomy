@@ -79,7 +79,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Sinsky-Mayo-EHR-Studies]; American Medical Association EHR use studies |
+| **Source** | [Sinsky-Mayo-EHR-Studies] (concept: physician time-allocation); [Sinsky-Adler-Milstein-EHR-Logs-2020] (methodology: audit-log-derived activity metrics); American Medical Association EHR use studies |
 
 **Why this tier?**
 
