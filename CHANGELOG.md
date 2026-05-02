@@ -1,5 +1,25 @@
 # Changelog
 
+## v4.1.0 (2026-05-02)
+
+**Minor release: deprecation/decommissioning metrics + AVT Registry tier column.**
+
+Two plan-future items land together:
+
+- **#6 Deprecation/decommissioning metrics promoted from `_gaps.md`.** Three new metrics covering the wind-down phase of an AVT deployment, all carrying the Reference Standard / Operational Specification / Threshold Guidance pattern:
+  - **GV.VT-15 Retirement Notification Compliance** (🟢 Tier 1) — vendor → deployer notification when a product is retired or end-of-lifed, paralleling GV.VT-1 (model-change notification) but for retirement events. Cross-links GV.PD-16 and GV.OP-14.
+  - **GV.PD-16 Decommissioning Data Handling Compliance** (🟢 Tier 1) — what happens to audio, transcripts, notes, and training data when a deployment is wound down. Three sub-checks: procedure-document gate, per-storage-location disposition, post-execution attestation. Inherits storage-location enumeration from GV.PD-1 and three-class outcome (deletable/anonymisable/migratable) from GV.PD-11.
+  - **GV.OP-14 Historical Output Continuity** (🟡 Tier 2) — can clinicians and patients still access AI-generated content after AVT retirement? Three sub-checks: EPR-commit independence, provenance dereference, patient-portal access. 7-year contractual access window aligned with NHS clinical record retention.
+- **#2 Tier column added to AVT Registry table** in `taxonomy/_standards-mapping.md`. The NHSE AVT Self-Certified Supplier Registry was added as the 13th framework in v3.8 but the registry-requirement table didn't carry a Priority Tier column, so registry-driven metrics couldn't be filtered by tier the way the rest of the catalogue can. Tier values lifted directly from the cross-referenced metric files.
+
+**Counts:** 218 → **221** total. Tier breakdown: 43-96-79 → **45-97-79** (two new Tier 1, one new Tier 2). Applicability breakdown: 50/77/91 → **50/79/92**. GV cluster grows 77 → 80 metrics.
+
+**Reserved-ID hygiene.** Reserved roadmap slots GV.PD-12 through GV.PD-15 and GV.OP-10 through GV.OP-13 were previously implicit (in `_gaps.md`) and tripped the audit's `check_numbering` after the new metrics broke contiguity. Migrated to explicit rows in `taxonomy/_retired-ids.md` under the "Reserved IDs" section, the same way GV.VT-9 through GV.VT-12 were already handled.
+
+**Plan-future cleanup.** Items #2 and #6 removed (now shipped); item #10 (code test suite) removed (shipped in v3.9.1, was kept for index continuity).
+
+No content changes to any pre-existing metric. No standards-mapping changes beyond the registry tier column. CSV/JSON downloads unchanged in shape; row count grows by 3.
+
 ## v4.0.1 (2026-05-02)
 
 **Patch release: drop the v4.0 backwards-compat `Metric.part` / `Metric.part_name` aliases.**

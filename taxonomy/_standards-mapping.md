@@ -396,21 +396,21 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 The registry as published in the Find a Tender notice and the NHS England long-read guidance (April 2025, updated through 2026) lists thirteen evidence categories. This mapping shows how each requirement aligns to existing taxonomy metrics and to other framework mappings already present.
 
-| # | Registry requirement | Cross-references existing framework | Taxonomy metrics |
-|---|---|---|---|
-| 1 | **MHRA Class I medical device registration** (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028 | MHRA SaMD/AIaMD WP1-WP2 (classification) | GV.CR-6 Clinical Safety Case Completeness |
-| 2 | **DCB0129 clinical safety case + hazard log** (supplier-side) | DCB0129/0160 Stages 1-7 | GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness |
-| 3 | **DTAC** (Digital Technology Assessment Criteria) — current assessment | DTAC C1-C4 / D1 | Composite via DTAC mapping |
-| 4 | **DSPT** (Data Security & Protection Toolkit) compliance | DSPT Standards 1-10 | Composite via DSPT mapping |
-| 5 | **Cyber Essentials** certification | *Not in current taxonomy framework set* | **GV.SC-12 Cyber Essentials Plus Certification Status** (new in v3.8) |
-| 6 | **UK GDPR / ICO compliance** (DPIA expected; ICO registration) | DSPT + Caldicott | GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance |
-| 7 | **Post-market surveillance evidence** (per MHRA Class I obligations) | MHRA WP4 + SI 2024 No. 1368 | GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance |
-| 8 | **Real-world benefit evidence in NHS settings** ("proven impact and experience") | T.E.S.T. Section B Clinical Effectiveness (50 pts RCT) | ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation |
-| 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance |
-| 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
-| 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
-| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
-| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
+| # | Registry requirement | Cross-references existing framework | Taxonomy metrics | Tier |
+|---|---|---|---|---|
+| 1 | **MHRA Class I medical device registration** (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028 | MHRA SaMD/AIaMD WP1-WP2 (classification) | GV.CR-6 Clinical Safety Case Completeness | 🟢 1 |
+| 2 | **DCB0129 clinical safety case + hazard log** (supplier-side) | DCB0129/0160 Stages 1-7 | GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness | 🟢 1 |
+| 3 | **DTAC** (Digital Technology Assessment Criteria) — current assessment | DTAC C1-C4 / D1 | Composite via DTAC mapping | *composite* |
+| 4 | **DSPT** (Data Security & Protection Toolkit) compliance | DSPT Standards 1-10 | Composite via DSPT mapping | *composite* |
+| 5 | **Cyber Essentials** certification | *Not in current taxonomy framework set* | **GV.SC-12 Cyber Essentials Plus Certification Status** (new in v3.8) | 🟡 2 |
+| 6 | **UK GDPR / ICO compliance** (DPIA expected; ICO registration) | DSPT + Caldicott | GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance | 🟢 1 |
+| 7 | **Post-market surveillance evidence** (per MHRA Class I obligations) | MHRA WP4 + SI 2024 No. 1368 | GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance | 🟡 2 / 🟢 1 |
+| 8 | **Real-world benefit evidence in NHS settings** ("proven impact and experience") | T.E.S.T. Section B Clinical Effectiveness (50 pts RCT) | ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation | 🟡 2 |
+| 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance | 🟢 1 / 🟡 2 |
+| 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation | 🟢 1 / 🟡 2 |
+| 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection | 🟢 1 / 🟡 2 |
+| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) | 🟡 2 |
+| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. | *composite* |
 
 #### Self-certification provenance
 

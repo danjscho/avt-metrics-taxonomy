@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
-**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v4.0.1, 2026-05-02.** Shared to provoke conversation; not a settled standard.
+**221 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v4.1.0, 2026-05-02.** Shared to provoke conversation; not a settled standard.
 
 > ⚠️ This is an **AI-coauthored prototype for discussion**, not a finished taxonomy. Substantial portions were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. It is shared openly to provoke conversation about what an AVT assurance frame should look like — *not* as an NHS-endorsed standard, regulatory document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. **You are invited to disagree, propose changes, point at gaps, flag errors, and share with colleagues. You should not paste threshold numbers into contracts, cite metrics as authoritative without flagging the prototype status, or treat any specific metric as policy.** See [docs site → Prototype status](https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/) for the full framing.
 
@@ -10,7 +10,7 @@ A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) system
 
 - **Published site:** <https://danjscho.github.io/avt-metrics-taxonomy/> — readable navigation, search, per-standard cross-cut pages
 - **Monolithic markdown:** [avt-metrics-taxonomy.md](avt-metrics-taxonomy.md) — single-file assembled output
-- **Structured data:** [`dist/metrics.csv`](dist/metrics.csv) (flat 218-row export), [`dist/metrics.json`](dist/metrics.json) (full structured catalogue), [`dist/gaps.json`](dist/gaps.json) (89 roadmap candidates)
+- **Structured data:** [`dist/metrics.csv`](dist/metrics.csv) (flat 221-row export), [`dist/metrics.json`](dist/metrics.json) (full structured catalogue), [`dist/gaps.json`](dist/gaps.json) (89 roadmap candidates)
 - **Release history:** [CHANGELOG.md](CHANGELOG.md)
 - **What's in scope vs out of scope:** [Outcomes Boundary](taxonomy/_outcomes-boundary.md) — this taxonomy assures deployment safety; clinical-outcome validation is national-research-body work
 - **How to apply the metrics to your deployment:** [Calibration & Context principle](taxonomy/_calibration-and-context.md) — tier assignments and threshold numbers are calibration starting points; six deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume) drive local calibration
@@ -19,8 +19,8 @@ A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) system
 
 The taxonomy organises measurable indicators that NHS deployers, vendors, and assurance teams can use to evaluate AVT systems. Metrics are tiered:
 
-- **🟢 Tier 1 (43 metrics) — Minimum Viable Assurance.** What every deployer must measure to operate safely.
-- **🟡 Tier 2 (96 metrics) — Recommended Assurance.** Add with reasonable governance capacity.
+- **🟢 Tier 1 (45 metrics) — Minimum Viable Assurance.** What every deployer must measure to operate safely.
+- **🟡 Tier 2 (97 metrics) — Recommended Assurance.** Add with reasonable governance capacity.
 - **🔵 Tier 3 (79 metrics) — Advanced / Research.** Requires infrastructure that often doesn't yet exist.
 
 As of v3.8, **32 of 42 Tier 1 constructs** (33 of 43 individual entries when sub-parts are counted separately) carry a structured **Reference Standard / Operational Specification / Threshold Guidance** sub-block pattern with explicit ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points.
@@ -31,7 +31,7 @@ The taxonomy commits to two parallel principles that govern how it should be app
 
 ### Procurement officer / Clinical Safety Officer
 
-Start with the **Tier 1 Quick Reference** in the rendered site or [taxonomy/_tier-1-quick-reference.md](taxonomy/_tier-1-quick-reference.md). The 43 Tier 1 metrics are organised by responsible actor (Vendor, Deployer, Regional, National Body). **The Tier 1 list is a calibrated starting point, not a fixed checklist** — your specialty mix, patient population, platform maturity, governance capacity, risk appetite, and volume all shift which metrics belong in your Tier 1 set; see the [Calibration & Context principle](taxonomy/_calibration-and-context.md) for the structural commitment and the documentation expectation.
+Start with the **Tier 1 Quick Reference** in the rendered site or [taxonomy/_tier-1-quick-reference.md](taxonomy/_tier-1-quick-reference.md). The 45 Tier 1 metrics are organised by responsible actor (Vendor, Deployer, Regional, National Body). **The Tier 1 list is a calibrated starting point, not a fixed checklist** — your specialty mix, patient population, platform maturity, governance capacity, risk appetite, and volume all shift which metrics belong in your Tier 1 set; see the [Calibration & Context principle](taxonomy/_calibration-and-context.md) for the structural commitment and the documentation expectation.
 
 For the 25 tightened metrics, the **Operational Specification** sub-block tells you what your vendor must comply with at procurement; the **Threshold Guidance** sub-block tells you what triggers escalation post-deployment. Read the ⚠️ Provenance line in each Threshold Guidance block — it distinguishes thresholds derived from cited sources (e.g. NAS Day Zero SPI, UK GDPR, NHSE IG guidance March 2026) from numbers proposed in this taxonomy as starting points that require local calibration before contractual use.
 
@@ -86,9 +86,9 @@ Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance
 
 ## Status / version
 
-**Current prototype version:** v4.0.1, released 2026-05-02.
+**Current prototype version:** v4.1.0, released 2026-05-02.
 
-Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → `v3.8` (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening) → `v3.9` (citation grammar + References catalogue: ~100 entries, every external authority resolves through `_references.md` with handles + URLs + Wayback snapshots + retrieval dates; audit-enforced handle resolution; cited-by back-references at build time) → `v3.9.1` (88-test pytest suite under `taxonomy/tests/` covering parse / build / build_site / audit / tools/snapshot; CI runs on every push) → `v4.0.0` (cluster-code naming throughout: folders renamed `part-a/` → `tp/`, `part-b/` → `pi/`, etc.; Pipeline Layer "EPR Write-back" → "Downstream Write-back"; CSV/JSON breaking change `part`/`part_name` → `cluster`/`cluster_name`; mkdocs-redirects added so old URLs still resolve) → **v4.0.1** (drop the v4.0 backwards-compat `Metric.part` / `Metric.part_name` aliases; one in-repo reader fixed; clean break for v4.x consumers).
+Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → `v3.8` (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening) → `v3.9` (citation grammar + References catalogue: ~100 entries, every external authority resolves through `_references.md` with handles + URLs + Wayback snapshots + retrieval dates; audit-enforced handle resolution; cited-by back-references at build time) → `v3.9.1` (88-test pytest suite under `taxonomy/tests/` covering parse / build / build_site / audit / tools/snapshot; CI runs on every push) → `v4.0.0` (cluster-code naming throughout: folders renamed `part-a/` → `tp/`, `part-b/` → `pi/`, etc.; Pipeline Layer "EPR Write-back" → "Downstream Write-back"; CSV/JSON breaking change `part`/`part_name` → `cluster`/`cluster_name`; mkdocs-redirects added so old URLs still resolve) → `v4.0.1` (drop the v4.0 backwards-compat `Metric.part` / `Metric.part_name` aliases; one in-repo reader fixed; clean break for v4.x consumers) → **v4.1.0** (3 deprecation/decommissioning metrics promoted from `_gaps.md` — GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity; Tier column added to AVT Registry table in standards-mapping; counts 218 → 221, tiers 43-96-79 → 45-97-79).
 
 See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
@@ -96,7 +96,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
 Until the prototype reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v4.0.1* [prototype-for-discussion]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v4.1.0* [prototype-for-discussion]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
 Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v3.9) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
 
@@ -114,4 +114,4 @@ Licence TBD. Until a licence is declared in this repository, treat the taxonomy 
 
 ---
 
-*Last updated: v4.0.1 / 2026-05-02.*
+*Last updated: v4.1.0 / 2026-05-02.*

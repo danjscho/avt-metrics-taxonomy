@@ -1,15 +1,15 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.0.1, 2026-05-02.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v4.1.0, 2026-05-02.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**218 metrics** across **20 groups**, organised in six parts. Includes 4 named metric families, 4 sub-clusters, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. The taxonomy maps to **13 NHS / regulatory / procurement frameworks** in [Standards Mapping](#standards-mapping). Two cross-cutting principles govern application:
+**221 metrics** across **20 groups**, organised in six clusters. Includes 4 named metric families, 4 sub-clusters, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. The taxonomy maps to **13 NHS / regulatory / procurement frameworks** in [Standards Mapping](#standards-mapping). Two cross-cutting principles govern application:
 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -230,8 +230,8 @@ A trust with multiple AVT platforms deployed across different services should pr
 
 ### By Priority Tier
 
-- **🟢 Tier 1 - Minimum Viable Assurance**: 43 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 96 metrics - recommended with reasonable governance capacity
+- **🟢 Tier 1 - Minimum Viable Assurance**: 45 metrics - what every deployer must measure to operate safely
+- **🟡 Tier 2 - Recommended Assurance**: 97 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -251,7 +251,7 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **Unaffiliated**: 191 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 194 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -391,11 +391,11 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
 - [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
 - [Security & Adversarial Robustness](#security-adversarial-robustness) (12 metrics)
-- [Privacy & Data Governance](#privacy-data-governance) (11 metrics - 7 Tier 1)
-- [Operational](#operational) (9 metrics - 3 Tier 1)
+- [Privacy & Data Governance](#privacy-data-governance) (12 metrics - 8 Tier 1)
+- [Operational](#operational) (10 metrics - 3 Tier 1)
 - [Environmental & Sustainability](#environmental-sustainability) (3 metrics) *NEW GROUP*
 - [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
-- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (10 metrics - 3 Tier 1)
+- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (11 metrics - 4 Tier 1)
 
 **ES — Evaluation Science**
 
@@ -429,9 +429,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | Classification | Count | Percentage |
 |----------------|-------|------------|
 | AVT-Specific | 50 | 23% |
-| AVT-Contextualised | 77 | 35% |
-| General Healthcare AI | 91 | 42% |
-| **Total** | **218** | **100%** |
+| AVT-Contextualised | 79 | 36% |
+| General Healthcare AI | 92 | 42% |
+| **Total** | **221** | **100%** |
 
 ### By Cluster
 
@@ -441,9 +441,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | B - Pipeline Interactions | 8 | 13 | 0 | 21 |
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
-| E - System Governance | 8 | 1 | 68 | 77 |
+| E - System Governance | 8 | 3 | 69 | 80 |
 | F - Evaluation Science | 0 | 0 | 9 | 9 |
-| **Total** | **50** | **77** | **91** | **218** |
+| **Total** | **50** | **79** | **92** | **221** |
 
 
 ### Full Classification
@@ -700,7 +700,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.SC-11 | Membership Inference Attack AUC | 🔵 Tier 3 | General Healthcare AI |
 | GV.SC-12 | Cyber Essentials Plus Certification Status | 🟡 Tier 2 | AVT-Contextualised |
 
-**Privacy & Data Governance** (11 metrics)
+**Privacy & Data Governance** (12 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -715,8 +715,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.PD-9 | Cross-Border Data Transfer Compliance | 🟢 Tier 1 | General Healthcare AI |
 | GV.PD-10 | Subject Access Request Fulfilment | 🟢 Tier 1 | General Healthcare AI |
 | GV.PD-11 | Right to Erasure Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.PD-16 | Decommissioning Data Handling Compliance | 🟢 Tier 1 | AVT-Contextualised |
 
-**Operational** (9 metrics)
+**Operational** (10 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -729,6 +730,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.OP-7 | Cost per Consultation | 🟡 Tier 2 | General Healthcare AI |
 | GV.OP-8 | Governance & Maintenance Burden | 🔵 Tier 3 | General Healthcare AI |
 | GV.OP-9 | Training Time per Clinician | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-14 | Historical Output Continuity | 🟡 Tier 2 | AVT-Contextualised |
 
 **Environmental & Sustainability** (3 metrics)
 
@@ -748,7 +750,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.TC-4 | Trainee Impact Assessment | 🔵 Tier 3 | General Healthcare AI |
 | GV.TC-5 | Training Material Currency | 🟡 Tier 2 | General Healthcare AI |
 
-**Vendor Transparency & Contractual** (10 metrics)
+**Vendor Transparency & Contractual** (11 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -762,6 +764,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-8 | Intermediate Output Access | 🟡 Tier 2 | General Healthcare AI |
 | GV.VT-13 | Evidence Pack Freshness | 🟡 Tier 2 | AVT-Specific |
 | GV.VT-14 | Indicative Pricing Transparency | 🟡 Tier 2 | AVT-Specific |
+| GV.VT-15 | Retirement Notification Compliance | 🟢 Tier 1 | General Healthcare AI |
 
 #### ES — Evaluation Science
 
@@ -1177,21 +1180,21 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 The registry as published in the Find a Tender notice and the NHS England long-read guidance (April 2025, updated through 2026) lists thirteen evidence categories. This mapping shows how each requirement aligns to existing taxonomy metrics and to other framework mappings already present.
 
-| # | Registry requirement | Cross-references existing framework | Taxonomy metrics |
-|---|---|---|---|
-| 1 | **MHRA Class I medical device registration** (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028 | MHRA SaMD/AIaMD WP1-WP2 (classification) | GV.CR-6 Clinical Safety Case Completeness |
-| 2 | **DCB0129 clinical safety case + hazard log** (supplier-side) | DCB0129/0160 Stages 1-7 | GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness |
-| 3 | **DTAC** (Digital Technology Assessment Criteria) — current assessment | DTAC C1-C4 / D1 | Composite via DTAC mapping |
-| 4 | **DSPT** (Data Security & Protection Toolkit) compliance | DSPT Standards 1-10 | Composite via DSPT mapping |
-| 5 | **Cyber Essentials** certification | *Not in current taxonomy framework set* | **GV.SC-12 Cyber Essentials Plus Certification Status** (new in v3.8) |
-| 6 | **UK GDPR / ICO compliance** (DPIA expected; ICO registration) | DSPT + Caldicott | GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance |
-| 7 | **Post-market surveillance evidence** (per MHRA Class I obligations) | MHRA WP4 + SI 2024 No. 1368 | GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance |
-| 8 | **Real-world benefit evidence in NHS settings** ("proven impact and experience") | T.E.S.T. Section B Clinical Effectiveness (50 pts RCT) | ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation |
-| 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance |
-| 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
-| 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
-| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
-| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
+| # | Registry requirement | Cross-references existing framework | Taxonomy metrics | Tier |
+|---|---|---|---|---|
+| 1 | **MHRA Class I medical device registration** (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028 | MHRA SaMD/AIaMD WP1-WP2 (classification) | GV.CR-6 Clinical Safety Case Completeness | 🟢 1 |
+| 2 | **DCB0129 clinical safety case + hazard log** (supplier-side) | DCB0129/0160 Stages 1-7 | GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness | 🟢 1 |
+| 3 | **DTAC** (Digital Technology Assessment Criteria) — current assessment | DTAC C1-C4 / D1 | Composite via DTAC mapping | *composite* |
+| 4 | **DSPT** (Data Security & Protection Toolkit) compliance | DSPT Standards 1-10 | Composite via DSPT mapping | *composite* |
+| 5 | **Cyber Essentials** certification | *Not in current taxonomy framework set* | **GV.SC-12 Cyber Essentials Plus Certification Status** (new in v3.8) | 🟡 2 |
+| 6 | **UK GDPR / ICO compliance** (DPIA expected; ICO registration) | DSPT + Caldicott | GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance | 🟢 1 |
+| 7 | **Post-market surveillance evidence** (per MHRA Class I obligations) | MHRA WP4 + SI 2024 No. 1368 | GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance | 🟡 2 / 🟢 1 |
+| 8 | **Real-world benefit evidence in NHS settings** ("proven impact and experience") | T.E.S.T. Section B Clinical Effectiveness (50 pts RCT) | ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation | 🟡 2 |
+| 9 | **Integration capability with NHS digital infrastructure** (EPR, etc.) | FHIR UK Core | TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance | 🟢 1 / 🟡 2 |
+| 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation | 🟢 1 / 🟡 2 |
+| 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection | 🟢 1 / 🟡 2 |
+| 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) | 🟡 2 |
+| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. | *composite* |
 
 #### Self-certification provenance
 
@@ -2616,8 +2619,8 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | P3 - Security | AI-specific red-teaming cadence | Medium | - |
 | P4 - Human control | Formal escalation paths when AI output is rejected | Medium | - |
 | P4 - Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
-| P5 - Lifecycle | Decommissioning plan | Medium | - |
-| P5 - Lifecycle | Model retirement criteria | Low | - |
+| P5 - Lifecycle | Decommissioning plan | — | Promoted in v4.1: GV.PD-16 (data handling), GV.OP-14 (output continuity), GV.VT-15 (retirement notification) |
+| P5 - Lifecycle | Model retirement criteria | — | Promoted in v4.1 alongside decommissioning plan (GV.VT-15 covers vendor-side retirement triggers/notification) |
 | P6 - Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
 | P6 - Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
 | P7 - Openness | ATRS publication completeness (where applicable) | Low | ATRS referenced but not mapped |
@@ -11741,6 +11744,69 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 ---
 
+
+### GV.PD-16 🟢 Decommissioning Data Handling Compliance
+
+When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.PD-16 |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | One-off gate + per-event |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
+
+**Why this tier?**
+
+> Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.
+
+**Formal Definition**
+
+```
+Compliance gate (pre-deployment) = the deployer's DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
+
+Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
+
+Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance's three-class outcome distinction).
+```
+
+**Reference Standard**
+
+> Inherits the storage-location enumeration from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7), model training pipelines per [GV.PD-11 Right to Erasure Compliance](#gv-pd-11), and any data ingested for fine-tuning per [GV.PD-7 Training Data Inclusion Status](#gv-pd-7). The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to [DCB0129] / [DCB0160] retirement provisions and to [SI-2024-1368] post-market surveillance closure for any MHRA-classified component.
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when decommissioning occurs.
+> - **Three sub-metrics MANDATORY:** (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).
+> - **Per-storage-location reporting MANDATORY:** the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).
+> - **Sub-processor cooperation tracked:** every sub-processor in the [GV.VT-7](#gv-vt-7) discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.
+> - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
+> - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
+> - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
+> - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
+
+**Limitations**
+
+> Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.
+
+**Novel Thinking / Implications**
+
+> 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
+
 ### GV.OP-1 🟢 Documentation Time per Consultation
 
 Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is meaningless - pair with quality.
@@ -12110,6 +12176,70 @@ Initial Training = hours required to reach minimum competency. Refresher Trainin
 > Vendor-claimed training time often differs from actual time required.
 
 ---
+
+
+### GV.OP-14 🟡 Historical Output Continuity
+
+After an AVT product is retired, replaced, or decommissioned, can clinicians and patients still access the AI-generated content (notes, transcripts, structured codings) that was committed to clinical records during the deployment's operational period? Distinct from [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) (which covers *deletion* of operational data on decommissioning) — this metric covers the inverse case: data that *should* persist (i.e. the clinical records produced during operational use) and remain accessible after the product is gone.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.OP-14 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate + per-event |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | Promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; complements [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) and [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) |
+
+**Why this tier?**
+
+> Clinical records are durable: a note signed in the EPR in 2026 must remain accessible for the patient's clinical lifetime, regardless of whether the AVT vendor that helped produce it is still in business. The continuity question — *can the deployer still serve up that note as evidence of decision-making, or has the AVT layer's retirement broken the audit trail?* — is medium-stakes (continuity of care, medico-legal evidence preservation) but not as time-sensitive as the GV.VT-15 / GV.PD-16 events themselves. Tier 2 because the failure mode is recoverable (alternative records of the same consultation usually exist) and because the pre-deployment gate (does the contract specify post-retirement read-access?) is the load-bearing part; per-event verification only matters when retirement actually happens.
+
+**Formal Definition**
+
+```
+Compliance gate (pre-deployment) = the deployer's procurement contract specifies post-retirement access provisions for: (a) AI-generated content committed to the EPR (must remain accessible from the EPR independent of the AVT vendor); (b) audit trail / provenance metadata (linked-evidence provenance per TP.SN-12 must remain dereferenceable); (c) any structured-data commitments (FHIR resources per TP.WB-6, openEHR per TP.WB-7).
+
+Per-event compliance (when retirement occurs) = (every committed-record category remains accessible AND the audit trail dereferences correctly AND patient-facing access is preserved) for the contractual access window.
+
+Three sub-metrics: (i) EPR-commit independence (does the AI-generated content live in the EPR record without runtime dependency on the vendor?); (ii) provenance dereference (do TP.SN-12 evidence-link mappings still resolve?); (iii) patient-portal access preservation (can patients still see AI-generated content shared with them, e.g. via SAR or patient portal?).
+```
+
+**Reference Standard**
+
+> Inherits the EPR-commit envelope from [TP.WB-1 Write-back Fidelity](#tp-wb-1): once an AI-generated note is committed to the EPR, the EPR is the system of record. This metric verifies that the commit is *complete* — that no field, attachment, or cross-reference depends on the AVT vendor's continuing presence at read time. Specific dependencies to check: (i) provenance metadata (linked-evidence per [TP.SN-12 Evidence Linking Coverage](#tp-sn-12)) — are the source-segment references stored in the EPR, or do they resolve only via vendor APIs?; (ii) confidence scores (per [TP.ASR-11 ASR Confidence Exposure](#tp-asr-11)) — are they committed as field values or rendered live from vendor systems?; (iii) audit trails (per [GV.VT-4 Audit Trail Completeness](#gv-vt-4)) — does the vendor hold the only copy?
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when retirement occurs.
+> - **Three sub-metrics MANDATORY:** (a) commit-completeness gate (does every AI-generated artefact land in the EPR with no vendor-runtime dependency?); (b) provenance-dereference compliance (do evidence links and audit trails remain accessible?); (c) patient-access preservation (does the patient portal / SAR pathway continue to surface AI-generated content?).
+> - **Pre-deployment verification MANDATORY:** synthetic-retirement test before go-live — disconnect the AVT vendor for 24 hours and verify that committed records remain readable in the EPR, the audit trail still dereferences, and the patient-portal pathway continues to function. Failures discovered in this test are remediated before go-live, not after.
+> - **Cross-link to retirement notification:** every retirement event triggered by [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) activates this metric's per-event verification. The vendor-side migration plan (per GV.VT-15's mandatory content element (iv)) MUST address the three sub-metrics above.
+> - **Contractual access window MANDATORY:** the procurement contract specifies the minimum period during which the vendor will support read-access to historical content post-retirement (typical floor: 7 years to align with NHS clinical-record retention).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the EPR-as-system-of-record framing carries from [TP.WB-1 Write-back Fidelity](#tp-wb-1) and the broader v3.x write-back metrics. The 7-year contractual access window aligns with NHS clinical-record retention but is **proposed in v4.0.2 as a starting point** for AVT deployments; specialty-specific retention rules may apply (paediatric records up to 25 years, mental health to 20). Specific thresholds (24-hour synthetic-retirement test, 100 % three-sub-metric pre-deployment gate, 95 % provenance-dereference compliance per-event) are **proposed in v4.0.2 as starting points**, not externally validated.
+>
+> - **Pre-deployment gate:** synthetic-retirement test passes — committed records readable; provenance links resolve; patient-portal access preserved. Contract specifies post-retirement access window ≥ 7 years (or specialty-appropriate floor).
+> - **Per-event monitoring:** retirement events trigger logging of (a) commit-completeness verification rerun, (b) provenance-dereference rate at retirement-day +30, (c) patient-portal access verification. Aggregate compliance reported per retirement event.
+> - **Pause / escalation trigger:** synthetic-retirement test reveals any committed-content category that cannot be read without the vendor running (pre-deployment gate failure); OR per-event provenance-dereference rate < 90 % at retirement-day +30; OR patient-portal access pathway degrades.
+
+**Limitations**
+
+> Architecture-dependent: deployments where AI-generated content is properly committed to the EPR with all provenance metadata co-located fare well on this metric; deployments where the EPR holds only a pointer to vendor-hosted content are structurally exposed regardless of the contractual access window. Many vendor implementations split the difference (note text in EPR; provenance lookup via vendor API). The metric makes the architecture-vs-contract trade-off visible but cannot resolve it — the architectural choice is made at procurement, before the contract addresses retirement.
+>
+> Distinct from but related to [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6), which measures contract-clause completeness; this metric measures whether the *underlying architecture* supports the post-retirement access the contract describes. Both are needed: a contract guaranteeing post-retirement access for content that's architecturally vendor-runtime-dependent is not an effective guarantee.
+
+**Novel Thinking / Implications**
+
+> 💡 Vendor retirement is the AVT-procurement failure mode the field hasn't faced at scale. When it does — whether because a vendor exits, pivots, or is acquired and consolidated — the question that surfaces will not be "did we have the right contract clauses?" but "can we still read the notes?" Treating historical-output continuity as a Tier 2 metric — verified pre-deployment via a synthetic-retirement test — moves the discovery to procurement time, where the architectural choice can still be made. Without the synthetic-retirement test, deployers learn at retirement time which of their commit-completeness assumptions were correct.
 
 ### GV.EN-1 🔵 Energy Consumption per Clinical Note
 
@@ -13003,6 +13133,71 @@ Procurement-time scope-alignment check (deployer-side):
 
 > 💡 Pricing transparency is the most commercially-loaded of the registry's 13 categories — it forces vendors to publish what would otherwise be commercially-confidential information as a condition of NHS procurement access. Treating it as a measurable axis of vendor transparency, alongside sub-processor disclosure (GV.VT-7), incident disclosure (GV.VT-5), and audit-trail completeness (GV.VT-4), positions the registry's pricing requirement as part of a broader procurement-time transparency regime rather than an isolated commercial item.
 
+---
+
+### GV.VT-15 🟢 Retirement Notification Compliance
+
+Whether the vendor provides advance notice of AVT product retirement, end-of-life, or feature withdrawal, with sufficient lead time for deployers to plan transition. Distinct from [GV.VT-1 Model Change Notification Compliance](#gv-vt-1) (which covers updates to a continuing product) and from [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) (which covers contractual exit clauses): this metric measures whether the vendor *actually notifies* deployers when retirement is imminent, separately from whether the contract says they should.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.VT-15 |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | One-off gate + per-event |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Applicability** | General Healthcare AI |
+| **Source** | Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry |
+
+**Why this tier?**
+
+> Vendor retirement creates regulatory and clinical-safety exposure: a deployment that loses its underlying product without warning is a continuity-of-care event. The notification is the part of retirement that vendors most often elide; making it a Tier 1 procurement requirement gives deployers the lead time to plan transition, satisfy DCB0160 retirement provisions, and trigger the data-handling compliance ([GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16)) and historical-output continuity ([GV.OP-14 Historical Output Continuity](#gv-op-14)) workflows.
+
+**Formal Definition**
+
+```
+Compliance gate = vendor's procurement contract specifies (a) minimum notice period before retirement / EOL / feature-withdrawal, (b) what triggers the notification, and (c) the named deployer contact.
+
+Per-event compliance = (notification_received AND notification_lead_time ≥ contracted_lead_time AND notification_content_complete) for every retirement event affecting the deployment.
+
+Notification content (mandatory): (i) what is being retired (product, feature, integration); (ii) effective retirement date; (iii) reason (commercial, regulatory, technical); (iv) recommended migration path / successor product if any; (v) deployer-side actions required (data handling per GV.PD-16, historical-output continuity per GV.OP-14, contract notice per GV.VT-6).
+```
+
+**Reference Standard**
+
+> Vendor's signed procurement contract paired with retirement-event log (where applicable). "Retirement" includes end-of-life of the entire AVT product, withdrawal of a feature critical to the deployment (e.g. a specific specialty configuration), withdrawal of an integration (e.g. EPR connector), or unscheduled service termination outside the standard upgrade cycle. Distinguish from major version changes covered by [GV.VT-1 Model Change Notification Compliance](#gv-vt-1) — version changes leave the product in continuing use; retirement removes it.
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when retirement events occur.
+> - **Three sub-metrics MANDATORY:** (a) contractual coverage (gate — does the contract specify lead time, triggers, and notification content?); (b) lead-time compliance (per-event — was the actual notice ≥ contracted lead time?); (c) content completeness (per-event — were all five mandatory content elements present?).
+> - **Five mandatory content elements per notification:** what / when / why / migration-path / deployer-actions. Notifications missing any element count as non-compliant regardless of timing.
+> - **Cross-link to deployer workflows MANDATORY:** every retirement notification triggers (i) [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) procedure; (ii) [GV.OP-14 Historical Output Continuity](#gv-op-14) procedure; (iii) [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) data-portability execution. The notification is the fan-out trigger for these three downstream metrics.
+> - **Failure-mode logging:** any retirement event where notification was absent, late, or incomplete logged with deployer-side accepted-risk decision and reportable to the deployer's IG file.
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the contractual-gate framing carries from [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) and the v3.4 `_gaps.md` P5-Lifecycle "Decommissioning plan" entry. Specific lead-time thresholds (≥ 12 months notice for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal, 100 % content-element gate) are **proposed in v4.0.2 as starting points**, not externally validated. The lead-time numbers are calibrated to typical NHS procurement cycle and DCB0160 retirement-provisioning timelines but require local calibration before contractual use.
+>
+> - **Pre-deployment gate (procurement):** vendor contract specifies minimum lead times (≥ 12 months for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal); five-element notification content schema committed; named deployer contact recorded.
+> - **Continuous monitoring:** every retirement event triggers logging of (a) notification received yes/no, (b) lead-time delivered, (c) content-completeness rate. Aggregate compliance reported per contract year.
+> - **Pause / escalation trigger:** any retirement event with no prior notification (single instance — this is a contract-breach event); OR notification < 50 % of contracted lead time; OR content-completeness < 80 % on a single notification.
+
+**Limitations**
+
+> Vendor retirement events are rare (most vendors do not retire AVT products on a routine cadence), which means per-event compliance data is sparse. The contractual-gate sub-metric is the load-bearing measurement; the per-event sub-metrics activate only when retirement events occur. Vendor failure modes around retirement (silent EOL via "we no longer support this configuration" rather than formal retirement) require the deployer's IG team to pattern-match on de-facto retirement signals, which is a qualitative judgement; the metric makes this visible but does not eliminate the judgement call.
+>
+> Distinct from but related to [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) which measures *whether the contract has the right exit clauses*; this metric measures *whether the vendor uses them in good faith when retirement comes*. Both are needed; neither is sufficient.
+
+**Novel Thinking / Implications**
+
+> 💡 Vendor retirement is the failure mode the AVT procurement landscape has not yet faced at scale. The first few cases — a vendor exits the market, a vendor pivots away from primary care, a vendor deprecates a specialty configuration — will set the precedent for what "good notification practice" looks like. Treating retirement notification as Tier 1 from now means deployers writing procurement contracts today specify the lead times and content requirements explicitly, rather than discovering at retirement time that their contract is silent on what notice they're owed.
+
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
@@ -13436,7 +13631,7 @@ The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
 
 The information standard governing clinical risk management for health IT manufacturers. Vendor-side; the deployer-side equivalent is [DCB0160].
 
@@ -13449,7 +13644,7 @@ The information standard governing clinical risk management for health IT manufa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`
 
 Deployer-side companion to [DCB0129]. Together the pair form the operating model for clinical-safety case authoring (vendor) and clinical-safety case integration into local deployment governance (deployer).
 
@@ -13540,7 +13735,7 @@ The most up-to-date Find a Tender notice for the [NHSE-AVT-Registry] scheme. Ear
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `es/meta-evaluation.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`
+- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `es/meta-evaluation.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`
 
 The post-market surveillance regulations supplementing UK MDR 2002 for medical devices, in force from 16 June 2025. Cited from registry req #7.
 

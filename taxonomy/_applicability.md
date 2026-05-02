@@ -15,9 +15,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | Classification | Count | Percentage |
 |----------------|-------|------------|
 | AVT-Specific | 50 | 23% |
-| AVT-Contextualised | 77 | 35% |
-| General Healthcare AI | 91 | 42% |
-| **Total** | **218** | **100%** |
+| AVT-Contextualised | 79 | 36% |
+| General Healthcare AI | 92 | 42% |
+| **Total** | **221** | **100%** |
 
 ### By Cluster
 
@@ -27,9 +27,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | B - Pipeline Interactions | 8 | 13 | 0 | 21 |
 | C - The Human Layer | 0 | 16 | 3 | 19 |
 | D - Impact & Outcomes | 1 | 6 | 11 | 18 |
-| E - System Governance | 8 | 1 | 68 | 77 |
+| E - System Governance | 8 | 3 | 69 | 80 |
 | F - Evaluation Science | 0 | 0 | 9 | 9 |
-| **Total** | **50** | **77** | **91** | **218** |
+| **Total** | **50** | **79** | **92** | **221** |
 
 
 ### Full Classification
@@ -286,7 +286,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.SC-11 | Membership Inference Attack AUC | 🔵 Tier 3 | General Healthcare AI |
 | GV.SC-12 | Cyber Essentials Plus Certification Status | 🟡 Tier 2 | AVT-Contextualised |
 
-**Privacy & Data Governance** (11 metrics)
+**Privacy & Data Governance** (12 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -301,8 +301,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.PD-9 | Cross-Border Data Transfer Compliance | 🟢 Tier 1 | General Healthcare AI |
 | GV.PD-10 | Subject Access Request Fulfilment | 🟢 Tier 1 | General Healthcare AI |
 | GV.PD-11 | Right to Erasure Compliance | 🟢 Tier 1 | General Healthcare AI |
+| GV.PD-16 | Decommissioning Data Handling Compliance | 🟢 Tier 1 | AVT-Contextualised |
 
-**Operational** (9 metrics)
+**Operational** (10 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -315,6 +316,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.OP-7 | Cost per Consultation | 🟡 Tier 2 | General Healthcare AI |
 | GV.OP-8 | Governance & Maintenance Burden | 🔵 Tier 3 | General Healthcare AI |
 | GV.OP-9 | Training Time per Clinician | 🟡 Tier 2 | General Healthcare AI |
+| GV.OP-14 | Historical Output Continuity | 🟡 Tier 2 | AVT-Contextualised |
 
 **Environmental & Sustainability** (3 metrics)
 
@@ -334,7 +336,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.TC-4 | Trainee Impact Assessment | 🔵 Tier 3 | General Healthcare AI |
 | GV.TC-5 | Training Material Currency | 🟡 Tier 2 | General Healthcare AI |
 
-**Vendor Transparency & Contractual** (10 metrics)
+**Vendor Transparency & Contractual** (11 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -348,6 +350,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-8 | Intermediate Output Access | 🟡 Tier 2 | General Healthcare AI |
 | GV.VT-13 | Evidence Pack Freshness | 🟡 Tier 2 | AVT-Specific |
 | GV.VT-14 | Indicative Pricing Transparency | 🟡 Tier 2 | AVT-Specific |
+| GV.VT-15 | Retirement Notification Compliance | 🟢 Tier 1 | General Healthcare AI |
 
 #### ES — Evaluation Science
 

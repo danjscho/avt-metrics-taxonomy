@@ -35,7 +35,7 @@ For a one-off static build into `site/` (what gets published) use `uv run mkdocs
 
 The downloadable CSV / JSON / monolithic-Markdown artefacts on the published site are produced by `python taxonomy/build.py`:
 
-- `dist/metrics.csv` — flat 218-row spreadsheet (17 columns)
+- `dist/metrics.csv` — flat 221-row spreadsheet (17 columns)
 - `dist/metrics.json` — same metrics with full structured dimension data preserved per entry
 - `dist/gaps.json` — 89 roadmap candidates partitioned by origin
 - `dist/summary.json` — headline counts (metric / tier / group / gap)

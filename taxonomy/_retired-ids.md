@@ -32,6 +32,14 @@ Some metric ID slots are *reserved* by entries in [`_gaps.md`](_gaps.md) — the
 | GV.VT-10 | v3.1 (Standards Mapping) | MHRA SaMD/AIaMD | Proposed: MHRA Transparency Content Completeness. Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle). |
 | GV.VT-11 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section B.3 | Proposed: Multi-Specialty Validation Coverage. Count and breadth of clinical specialties in which the AVT has been formally validated. |
 | GV.VT-12 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section B.12 | Proposed: Sovereign AI / UK Supply Chain Disclosure. Disclosure of whether the vendor and underlying model stack are UK-based. |
+| GV.PD-12 | v3.1 (Standards Mapping) | Bias / Equity gap | Proposed: Training Data Representativeness Documentation. Evidence that training data covers intended patient population. |
+| GV.PD-13 | v3.1 (Standards Mapping) | DPIA / UK GDPR | Proposed: DPIA Justification Quality. Independent review of DPIA purpose justification. |
+| GV.PD-14 | v3.1 (Standards Mapping) | DPIA / UK GDPR | Proposed: Per-Data-Item Necessity Documentation. Granular DPIA-level documentation. |
+| GV.PD-15 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section A req 4 | Proposed: Training Data Anonymisation Provenance. ICO-aligned documentation of anonymisation technique. |
+| GV.OP-10 | v3.1 (Standards Mapping) | NICE economic | Proposed: Cost-Effectiveness Analysis Availability. CEA with QALY for Tier C AVT. |
+| GV.OP-11 | v3.1 (Standards Mapping) | NICE economic | Proposed: Budget Impact Analysis Completeness. Direct/indirect costs; sensitivity analysis. |
+| GV.OP-12 | v3.1 (Standards Mapping) | CQC Reg 17 | Proposed: Record Quality Composite. Composite of content accuracy, completeness, timeliness. |
+| GV.OP-13 | v3.2 (NHS T.E.S.T. mapping) | NHS T.E.S.T. Section B domain 2 | Proposed: Total Cost of Ownership / Formal Economic Evaluation. Multi-dimensional economic evaluation. |
 
 ## Convention
 

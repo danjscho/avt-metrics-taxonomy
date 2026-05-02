@@ -179,8 +179,8 @@ Derived from the DSIT AI Playbook principle mapping and the six ethical theme ma
 | P3 - Security | AI-specific red-teaming cadence | Medium | - |
 | P4 - Human control | Formal escalation paths when AI output is rejected | Medium | - |
 | P4 - Human control | Board-level visibility of aggregate override patterns | Medium | Partial via GV.SG-13 |
-| P5 - Lifecycle | Decommissioning plan | Medium | - |
-| P5 - Lifecycle | Model retirement criteria | Low | - |
+| P5 - Lifecycle | Decommissioning plan | — | Promoted in v4.1: GV.PD-16 (data handling), GV.OP-14 (output continuity), GV.VT-15 (retirement notification) |
+| P5 - Lifecycle | Model retirement criteria | — | Promoted in v4.1 alongside decommissioning plan (GV.VT-15 covers vendor-side retirement triggers/notification) |
 | P6 - Right tool | Formal comparison against non-AI alternatives at procurement | High | No existing metric |
 | P6 - Right tool | Procurement-stage tool-fit assessment | High | No existing metric |
 | P7 - Openness | ATRS publication completeness (where applicable) | Low | ATRS referenced but not mapped |

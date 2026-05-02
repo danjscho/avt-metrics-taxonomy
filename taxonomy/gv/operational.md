@@ -368,3 +368,66 @@ Initial Training = hours required to reach minimum competency. Refresher Trainin
 
 ---
 
+
+### GV.OP-14 🟡 Historical Output Continuity
+
+After an AVT product is retired, replaced, or decommissioned, can clinicians and patients still access the AI-generated content (notes, transcripts, structured codings) that was committed to clinical records during the deployment's operational period? Distinct from [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) (which covers *deletion* of operational data on decommissioning) — this metric covers the inverse case: data that *should* persist (i.e. the clinical records produced during operational use) and remain accessible after the product is gone.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.OP-14 |
+| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Measurement Cadence** | One-off gate + per-event |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Operational |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Distal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | Promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; complements [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) and [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) |
+
+**Why this tier?**
+
+> Clinical records are durable: a note signed in the EPR in 2026 must remain accessible for the patient's clinical lifetime, regardless of whether the AVT vendor that helped produce it is still in business. The continuity question — *can the deployer still serve up that note as evidence of decision-making, or has the AVT layer's retirement broken the audit trail?* — is medium-stakes (continuity of care, medico-legal evidence preservation) but not as time-sensitive as the GV.VT-15 / GV.PD-16 events themselves. Tier 2 because the failure mode is recoverable (alternative records of the same consultation usually exist) and because the pre-deployment gate (does the contract specify post-retirement read-access?) is the load-bearing part; per-event verification only matters when retirement actually happens.
+
+**Formal Definition**
+
+```
+Compliance gate (pre-deployment) = the deployer's procurement contract specifies post-retirement access provisions for: (a) AI-generated content committed to the EPR (must remain accessible from the EPR independent of the AVT vendor); (b) audit trail / provenance metadata (linked-evidence provenance per TP.SN-12 must remain dereferenceable); (c) any structured-data commitments (FHIR resources per TP.WB-6, openEHR per TP.WB-7).
+
+Per-event compliance (when retirement occurs) = (every committed-record category remains accessible AND the audit trail dereferences correctly AND patient-facing access is preserved) for the contractual access window.
+
+Three sub-metrics: (i) EPR-commit independence (does the AI-generated content live in the EPR record without runtime dependency on the vendor?); (ii) provenance dereference (do TP.SN-12 evidence-link mappings still resolve?); (iii) patient-portal access preservation (can patients still see AI-generated content shared with them, e.g. via SAR or patient portal?).
+```
+
+**Reference Standard**
+
+> Inherits the EPR-commit envelope from [TP.WB-1 Write-back Fidelity](#tp-wb-1): once an AI-generated note is committed to the EPR, the EPR is the system of record. This metric verifies that the commit is *complete* — that no field, attachment, or cross-reference depends on the AVT vendor's continuing presence at read time. Specific dependencies to check: (i) provenance metadata (linked-evidence per [TP.SN-12 Evidence Linking Coverage](#tp-sn-12)) — are the source-segment references stored in the EPR, or do they resolve only via vendor APIs?; (ii) confidence scores (per [TP.ASR-11 ASR Confidence Exposure](#tp-asr-11)) — are they committed as field values or rendered live from vendor systems?; (iii) audit trails (per [GV.VT-4 Audit Trail Completeness](#gv-vt-4)) — does the vendor hold the only copy?
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when retirement occurs.
+> - **Three sub-metrics MANDATORY:** (a) commit-completeness gate (does every AI-generated artefact land in the EPR with no vendor-runtime dependency?); (b) provenance-dereference compliance (do evidence links and audit trails remain accessible?); (c) patient-access preservation (does the patient portal / SAR pathway continue to surface AI-generated content?).
+> - **Pre-deployment verification MANDATORY:** synthetic-retirement test before go-live — disconnect the AVT vendor for 24 hours and verify that committed records remain readable in the EPR, the audit trail still dereferences, and the patient-portal pathway continues to function. Failures discovered in this test are remediated before go-live, not after.
+> - **Cross-link to retirement notification:** every retirement event triggered by [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) activates this metric's per-event verification. The vendor-side migration plan (per GV.VT-15's mandatory content element (iv)) MUST address the three sub-metrics above.
+> - **Contractual access window MANDATORY:** the procurement contract specifies the minimum period during which the vendor will support read-access to historical content post-retirement (typical floor: 7 years to align with NHS clinical-record retention).
+
+**Threshold Guidance**
+
+> ⚠️ **Provenance:** the EPR-as-system-of-record framing carries from [TP.WB-1 Write-back Fidelity](#tp-wb-1) and the broader v3.x write-back metrics. The 7-year contractual access window aligns with NHS clinical-record retention but is **proposed in v4.0.2 as a starting point** for AVT deployments; specialty-specific retention rules may apply (paediatric records up to 25 years, mental health to 20). Specific thresholds (24-hour synthetic-retirement test, 100 % three-sub-metric pre-deployment gate, 95 % provenance-dereference compliance per-event) are **proposed in v4.0.2 as starting points**, not externally validated.
+>
+> - **Pre-deployment gate:** synthetic-retirement test passes — committed records readable; provenance links resolve; patient-portal access preserved. Contract specifies post-retirement access window ≥ 7 years (or specialty-appropriate floor).
+> - **Per-event monitoring:** retirement events trigger logging of (a) commit-completeness verification rerun, (b) provenance-dereference rate at retirement-day +30, (c) patient-portal access verification. Aggregate compliance reported per retirement event.
+> - **Pause / escalation trigger:** synthetic-retirement test reveals any committed-content category that cannot be read without the vendor running (pre-deployment gate failure); OR per-event provenance-dereference rate < 90 % at retirement-day +30; OR patient-portal access pathway degrades.
+
+**Limitations**
+
+> Architecture-dependent: deployments where AI-generated content is properly committed to the EPR with all provenance metadata co-located fare well on this metric; deployments where the EPR holds only a pointer to vendor-hosted content are structurally exposed regardless of the contractual access window. Many vendor implementations split the difference (note text in EPR; provenance lookup via vendor API). The metric makes the architecture-vs-contract trade-off visible but cannot resolve it — the architectural choice is made at procurement, before the contract addresses retirement.
+>
+> Distinct from but related to [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6), which measures contract-clause completeness; this metric measures whether the *underlying architecture* supports the post-retirement access the contract describes. Both are needed: a contract guaranteeing post-retirement access for content that's architecturally vendor-runtime-dependent is not an effective guarantee.
+
+**Novel Thinking / Implications**
+
+> 💡 Vendor retirement is the AVT-procurement failure mode the field hasn't faced at scale. When it does — whether because a vendor exits, pivots, or is acquired and consolidated — the question that surfaces will not be "did we have the right contract clauses?" but "can we still read the notes?" Treating historical-output continuity as a Tier 2 metric — verified pre-deployment via a synthetic-retirement test — moves the discovery to procurement time, where the architectural choice can still be made. Without the synthetic-retirement test, deployers learn at retirement time which of their commit-completeness assumptions were correct.
