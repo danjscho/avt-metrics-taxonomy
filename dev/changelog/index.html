@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v3.9.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v3.9.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3265,6 +3265,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v391-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.9.1 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v39-2026-05-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4242,6 +4253,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v391-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.9.1 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v39-2026-05-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5197,6 +5219,24 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v391-2026-05-02">v3.9.1 (2026-05-02)<a class="headerlink" href="#v391-2026-05-02" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: code test suite (pytest).</strong></p>
+<p>The repo had grown from ~v3.7 thin assembly to ~1,500 lines across <code>parse.py</code> / <code>build.py</code> / <code>build_site.py</code> / <code>audit.py</code> / <code>tools/snapshot.py</code> with 13 audit checks plus the v3.9 references catalogue parser, cited-by walker, handle resolver, and slug helper. Until v3.9.1, the only safety net was the integration check (does <code>audit.py</code> run cleanly + does the build produce a clean site?), which catches <em>whether something broke</em> but not <em>what</em>. The v3.9 round-2 / FILLED reviews reminded us why per-function tests pay off — wrong DOIs, phantom catalogue entries, and unresolved handles that per-function tests would have caught immediately.</p>
+<p>This patch adds an 88-test pytest suite that lands <em>before</em> v4.0 starts, so the test suite is the safety net for the v4.0 cluster rename rather than a follow-on cleanup.</p>
+<p><strong>Highlights.</strong></p>
+<ul>
+<li><strong><code>taxonomy/tests/</code></strong> — 5 test files, 88 tests, runs in ~0.3s:</li>
+<li><code>test_parse.py</code> (26 tests): <code>ref_id_to_anchor</code> (4), <code>find_inline_handles</code> (11 — covers heading/code-block/inline-link/image/inline-code-span exclusions), <code>parse_references</code> (7 — field extraction, is_archived, missing file, empty file), <code>populate_cited_by</code> (2), <code>build_cited_by</code> (2 — walks group + cross-cutting files; excludes _references.md self-citations).</li>
+<li><code>test_audit.py</code> (21 tests): one passing + one failing fixture per check function. Catches the silent-regression case where a check accidentally stops detecting its target invariant. Covers <code>check_prefixes</code>, <code>check_numbering</code>, <code>check_tier_totals</code>, <code>check_applicability_presence</code>, <code>check_maturity_values</code>, <code>check_source_presence</code>, <code>check_reference_handles_resolve</code>, <code>check_archive_present</code> (URL/archive pending paths), <code>check_retrieved_date_format</code> (ISO + non-ISO + empty-skipped).</li>
+<li><code>test_build_site.py</code> (22 tests): <code>rewrite_external_links</code> (CHANGELOG / README / archive paths / fragments / image-link non-match), <code>add_metric_anchors</code> (Tier 1 + sub-part + h2 non-match + non-metric-h3 non-match), <code>_substitute_template_tokens</code>, <code>_inject_changelog_dates_frontmatter</code> (with stubbed <code>_git_dates_for</code>), <code>rewrite_anchors</code> (cross-page + same-page + unknown-anchor cases), <code>link_tier1_quickref</code> (links Tier-1 metrics, skips Tier-2, skips unknown bolds, preserves <code>⚠️</code> outside link).</li>
+<li><code>test_build.py</code> (11 tests): <code>_substitute_template_tokens</code> (independently — different module-level constant table), <code>CSV_COLUMNS</code> schema sanity (no duplicates; required columns present), <code>FILES</code> ordering invariants (header first; prototype-status second; <code>_references.md</code> after <code>part-f</code>), <code>build_summary</code> payload shape (status field, version, counts).</li>
+<li><code>test_snapshot.py</code> (8 tests): <code>_is_placeholder</code> (5 cases — empty, whitespace, Phase-1 marker, real archive URL, non-http value); <code>snapshot_one</code> mocked HTTP smoke tests (success path, HTTP 401 retries-then-error, robots-disallowed returns unavailable immediately).</li>
+<li><strong><code>pyproject.toml</code></strong> — pytest added as <code>[project.optional-dependencies] dev</code> extra; <code>[tool.pytest.ini_options]</code> points at <code>taxonomy/tests/</code> with <code>python_files = "test_*.py"</code>. <code>uv sync --extra dev</code> picks it up.</li>
+<li><strong><code>.github/workflows/site.yml</code></strong> — runs <code>uv run pytest</code> on every push to main and on every pull request, before the audit step. Failing tests fail the build.</li>
+<li><strong>No production-code refactoring.</strong> Tests use monkeypatch + tmp_path to swap module-level constants (<code>parse.ROOT</code>, <code>audit.GROUP_FILES</code>, <code>build_mod.DIST</code>) at test time. The fixtures are inline strings; <code>taxonomy/tests/fixtures/</code> is not yet needed.</li>
+<li><strong>Coverage philosophy:</strong> no percentage target. Coverage as a metric drives the wrong behaviour in a small focused suite. The bar is "every audit check has both a passing and a failing test; every public function in parse / build / build_site that anyone calls more than once has a test". Audit by reading the test file, not by running coverage.</li>
+</ul>
+<p><strong>No metric content changes. No tier shifts. No new metrics.</strong> Counts unchanged at 218 / 43-96-79.</p>
 <h2 id="v39-2026-05-02">v3.9 (2026-05-02)<a class="headerlink" href="#v39-2026-05-02" title="Permanent link">&para;</a></h2>
 <p>References validity sweep — every external citation in the taxonomy now resolves through a structured catalogue with handles, URLs, Wayback snapshots, retrieval dates, and a forward-compatible local-mirror field.</p>
 <p><strong>Why now.</strong> The taxonomy made 221 cited claims (Source rows) and ~37 Reference Standard / ~37 Threshold Guidance blocks naming authoritative documents (DCB0129, NHSE IG guidance, MHRA SaMD, OxonFair, etc.) — none of them previously linked out. NHS-domain URLs in particular reorganise frequently; without snapshots the citations would silently rot. v3.9 makes the taxonomy independently auditable and link-rot-resistant.</p>
