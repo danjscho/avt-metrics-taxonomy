@@ -132,6 +132,29 @@ So this is **promote-from-gaps-to-metrics** rather than identify-new-gaps. The a
 
 ---
 
+## 7. Citation grammar review — should inline links carry a human-readable name?
+
+**Status:** queued — revisit after the v3.9 release lands and the catalogue + Phase 3 inline-linking has had a release cycle to sit.
+
+**Context:** v3.9 settled on bare-handle inline links for the new citation grammar — `[NHSE-IG-Guidance-2026-03]`, `[UK-GDPR]`, `[DCB0129]`, etc. — with the catalogue entry in `_references.md` carrying the full bibliographic record. This is clean for audit (every handle resolves) and clean for the catalogue (single source of truth), but it has one cost: the inline reference reads as a slug, not as prose. A clinician scanning a Threshold Guidance block sees `[NHSE-IG-Guidance-2026-03]` rather than "NHSE IG guidance March 2026", and has to either know the slug-to-name mapping or click through to find out what the citation actually points at.
+
+The alternative shape — **human-readable name + parenthetical handle** — would render as: "the NHSE IG guidance ([NHSE-IG-Guidance-2026-03])" or "UK GDPR Article 5(1)(e) ([UK-GDPR])". More readable in prose; more verbose to maintain; arguably duplicates information that the catalogue already holds. Other options worth considering:
+- **Markdown reference-style links** with a display name: `[NHSE IG guidance][NHSE-IG-Guidance-2026-03]`. Render-time the name shows; the handle is the link target. Cost: more characters in source, but readers see the name not the slug.
+- **Bare-name inline + audit on prose-handle correspondence.** Don't link at all in prose; rely on the Source row + catalogue. Cost: easier to drift over time.
+
+The trade-off is **maintainer burden vs reader experience**. Bare handles are fine for maintainers who recognise them; human-readable forms are friendlier for first-time readers (which is most readers, for a public taxonomy).
+
+**When to revisit:** after v3.9 ships and Phase 3 has been read by enough people for there to be evidence either way. Don't make this call mid-Phase 3 — sweeping ~110 blocks twice (once to bare handles, once to enriched form) is wasteful; better to land Phase 3 in the simpler shape, get feedback, decide.
+
+**Starting points:**
+- Sample reader test: pick 3 readers (one clinician, one IG officer, one taxonomy maintainer) and show them a Reference Standard block in both shapes. Ask which they'd prefer to read at speed.
+- Consider partial adoption: human-readable form for prose-heavy contexts (Reference Standard, Threshold Guidance, Novel Thinking) but bare handles for compact contexts (Source rows, Provenance preludes). Mixed conventions are a maintainer cost but may be the right reader experience.
+- Check what comparable taxonomies do. NIST AI RMF, NHS DTAC, and the OWASP LLM Top 10 each handle citation density differently — worth a brief scan for prior art before re-sweeping.
+
+**Decision needed before re-sweep:** which shape, and whether to apply uniformly or contextually.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.
