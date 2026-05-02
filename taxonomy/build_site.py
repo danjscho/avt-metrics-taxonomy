@@ -379,11 +379,6 @@ CLUSTER_TITLES = {
     code: f"{code} — {name}" for code, name in parse_src.CLUSTER_NAMES.items()
 }
 
-# Backwards-compat alias — pre-v4.0 callers used PART_TITLES. Aliased to
-# CLUSTER_TITLES in v4.0 Phase 3; flagged for removal in v4.1.
-PART_TITLES = CLUSTER_TITLES
-
-
 def _cluster_title_for_group_file(src_rel: str) -> str | None:
     """Look up the cluster title for a source group file, via the parser's
     canonical group list. Returns None for non-group files."""
@@ -391,10 +386,6 @@ def _cluster_title_for_group_file(src_rel: str) -> str | None:
     if info is None:
         return None
     return CLUSTER_TITLES.get(info["cluster"])
-
-
-# Backwards-compat alias — pre-v4.0 callers used `_part_title_for_group_file`.
-_part_title_for_group_file = _cluster_title_for_group_file
 
 
 def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
@@ -446,9 +437,9 @@ def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
         return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
     # Case B: group file without a Part heading - inject the kicker from
-    # the canonical Part title lookup so every group page starts the same.
+    # the canonical cluster title lookup so every group page starts the same.
     if first.startswith("## ") and src_rel is not None:
-        part_title = _part_title_for_group_file(src_rel)
+        part_title = _cluster_title_for_group_file(src_rel)
         if part_title is not None:
             group_title = first[3:].strip()
             kicker = f"*{part_title}*"

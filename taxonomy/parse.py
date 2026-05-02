@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v3.9.1"
+TAXONOMY_VERSION = "v4.0.0"
 TAXONOMY_DATE = "2026-05-02"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -33,17 +33,11 @@ def ref_id_to_anchor(ref_id: str) -> str:
     return ref_id.lower().replace(".", "-")
 
 
-# Human-readable part names. Single source of truth — both build.py (for the
-# CSV / JSON downloads) and build_site.py (for the rendered Part eyebrow on
-# group pages) consume this.
-# v4.0 cluster-code naming. The two-letter prefix on every ref-ID is the
-# canonical cluster identifier (TP / PI / HL / IO / GV / ES). v4.0 retires
-# the old Part-letter scheme (A–F) and uses cluster codes throughout. The
-# v4.0 Phase 0 pilot migrates one cluster at a time; until the pilot
-# completes, GROUP_FILES rows for non-pilot clusters carry the old letter
-# and CLUSTER_NAMES keeps both the legacy letters and the new cluster codes
-# so Metric.part_name resolves correctly during the migration. Phase 1
-# strips legacy letters as each cluster migrates; Phase 5 drops them all.
+# Cluster naming. The two-letter prefix on every ref-ID is the canonical
+# cluster identifier (TP / PI / HL / IO / GV / ES). Single source of truth —
+# both build.py (for the CSV / JSON downloads) and build_site.py (for the
+# rendered cluster eyebrow on group pages) consume this. v4.0 retired the
+# v3.x Part-letter scheme (A–F).
 CLUSTER_ORDER: list[str] = ["TP", "PI", "HL", "IO", "GV", "ES"]
 
 CLUSTER_NAMES: dict[str, str] = {
@@ -54,12 +48,6 @@ CLUSTER_NAMES: dict[str, str] = {
     "GV": "System Governance",
     "ES": "Evaluation Science",
 }
-
-# Backwards-compatibility alias — pre-v4.0 code may still reference
-# PART_NAMES. Renamed to CLUSTER_NAMES in v4.0 Phase 0; alias dropped at
-# Phase 5 release wrap.
-PART_NAMES = CLUSTER_NAMES
-
 
 GROUP_FILES: dict[str, dict[str, str]] = {
     "tp/audio-capture.md": {
