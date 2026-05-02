@@ -1,4 +1,6 @@
 {
+  "status": "prototype-for-discussion",
+  "version": "v3.9",
   "metric_count": 218,
   "tier_counts": {
     "1": 43,

@@ -1,5 +1,7 @@
 {
   "version": "v3.9",
+  "status": "prototype-for-discussion",
+  "status_note": "This taxonomy is a prototype-for-discussion, not a settled standard. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 218,
   "metrics": [
     {
