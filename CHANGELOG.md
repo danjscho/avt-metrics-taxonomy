@@ -1,5 +1,24 @@
 # Changelog
 
+## v3.9 (2026-05-02)
+
+References validity sweep — every external citation in the taxonomy now resolves through a structured catalogue with handles, URLs, Wayback snapshots, retrieval dates, and a forward-compatible local-mirror field.
+
+**Why now.** The taxonomy made 221 cited claims (Source rows) and ~37 Reference Standard / ~37 Threshold Guidance blocks naming authoritative documents (DCB0129, NHSE IG guidance, MHRA SaMD, OxonFair, etc.) — none of them previously linked out. NHS-domain URLs in particular reorganise frequently; without snapshots the citations would silently rot. v3.9 makes the taxonomy independently auditable and link-rot-resistant.
+
+**Highlights.**
+
+- **New file `taxonomy/_references.md`** — citation catalogue with ~104 entries spanning every external authority cited by the taxonomy. Each entry carries `Title`, `Publisher`, `Source-Type`, `URL`, `Archive` (Wayback snapshot URL), `Retrieved` (ISO date), `Local-Mirror` (reserved for a future option-(c) release of locally mirrored canonical PDFs), and an auto-generated `Cited-by` back-reference list emitted at build time.
+- **Citation grammar.** Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections now use `[Handle]` reference-style links (e.g. `[DCB0129]`, `[UK-GDPR]`, `[Keyes-Stanford-Monitoring-2025]`) resolving to entries in `_references.md`. The `audit.py check_reference_handles_resolve` check enforces every handle resolves.
+- **Round-2 review of 16 flagged citations.** Phase 2 surfaced 16 citations needing a closer look; round-2 review documented in `archive/v3.9-reviews/v3.9-phase2-urls-review-round2.md` resolved each. Notable corrections: Barcelona-JAMA-Network-Open-2025 → Himmelstein-Stigmatising-EHR-JAMA-2022 (paper at the cited DOI is by Himmelstein/Bates/Zhou, not Sun); medRxiv-Model-Autophagy-2026 → Alemohammad-MAD-2023 (canonical model-autophagy paper); medRxiv-Nov-2025-AVT-Drift → Kalinich-LLM-SaMD-PRA-2025 (paper is suicide-risk safety classification, not AVT drift); Keyes-Stanford-2025 + Stanford-Monitoring-Framework merged into Keyes-Stanford-Monitoring-2025 (5 metrics) with "three-layer surveillance model" paraphrase corrected to "three-principle monitoring framework"; DSCMS-SPI-Framework → AMLAS-AAIP (the actual published methodology); JMIR-2026-SEIPS-AVT → Park-SEIPS-Transfusion-2026 (paper is a transfusion-system SEIPS-CQR study, not AVT); DeepScribe inline "arXiv Sept 2024" reference replaced with the actual vendor methodology page; NVIDIA-Reference-Architecture → NeMo-Guardrails. Specific numeric claims that could not be verified against the cited paper (Stults 57.9%→93.0%, Barcelona 2.54×, GV.SG-7 P₁ 2.0×10⁻⁸–2.6×10⁻⁴, GV.SC-11 AUC 0.96) dropped pending direct paper verification.
+- **New audit checks.** `check_reference_handles_resolve` (every `[Handle]` resolves), `check_archive_present` (every catalogue entry has a real URL and Wayback Archive URL), `check_retrieved_date_format` (Retrieved: field is ISO-8601). The two new Phase 5 checks emit INFO until the snapshot pass completes.
+- **`taxonomy/tools/snapshot.py`** — Wayback Save Page Now driver. Reads `_references.md`, snapshots every entry whose `Archive:` field is empty, throttled and retried per Wayback rate limits. Idempotent.
+- **`build.py` and `build_site.py`** assemble the catalogue with auto-populated cited-by lists; the source `_references.md` keeps the `_(auto-generated)_` placeholder so version-control diffs stay stable.
+- **Standards-mapping**: every framework section now carries a "**Reference:** [Handle]" line under its heading, linking the framework to its catalogue entry.
+- **~11 placeholder URLs remain** for specific medical-AI papers and institutional preprints needing direct DOI / venue verification (Asgari-Tortus-GOSH-2025, CREOLA-Hallucination-Taxonomy, Chung-NEJM-AI-2025, Kanithi-2025, Wang-Duke-MedStar-2025, NLP2FHIR-Pipeline, GOSH-Phase-4-TimeCat, Stults-2025, Coiera-Fraile-Navarro-JMIR-2026, FAIR-MED-Springer-2025, VeriFact). These are flagged INFO by the audit and queued for v3.9.x or v3.10 follow-up.
+
+No metric content changes. No tier shifts. No new metrics. Counts unchanged at 218 / 43-96-79.
+
 ## v3.8.4 (2026-04-26)
 
 Tooling-only patch — fixes site-wide version banner drift.
