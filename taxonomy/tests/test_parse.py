@@ -227,7 +227,7 @@ class TestPopulateCitedBy:
         monkeypatch.setattr(
             parse,
             "GROUP_FILES",
-            {"tp/audio-capture.md": {"part": "A", "group": "Audio capture"}},
+            {"tp/audio-capture.md": {"cluster": "TP", "group": "Audio capture"}},
         )
 
         text = "### DCB0129\n\n- **Title:** X\n- **Cited-by:** _(auto-generated)_\n"
@@ -263,7 +263,7 @@ class TestBuildCitedBy:
         monkeypatch.setattr(
             parse,
             "GROUP_FILES",
-            {"tp/audio-capture.md": {"part": "A", "group": "Audio capture"}},
+            {"tp/audio-capture.md": {"cluster": "TP", "group": "Audio capture"}},
         )
 
         cited = parse.build_cited_by()

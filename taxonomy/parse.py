@@ -64,94 +64,94 @@ PART_NAMES = CLUSTER_NAMES
 GROUP_FILES: dict[str, dict[str, str]] = {
     "tp/audio-capture.md": {
         "prefix": "TP.AC",
-        "part": "TP",
+        "cluster": "TP",
         "group": "Audio Capture & Environment",
     },
     "tp/asr-transcription.md": {
         "prefix": "TP.ASR",
-        "part": "TP",
+        "cluster": "TP",
         "group": "ASR / Transcription",
     },
-    "tp/diarisation.md": {"prefix": "TP.DI", "part": "TP", "group": "Diarisation"},
+    "tp/diarisation.md": {"prefix": "TP.DI", "cluster": "TP", "group": "Diarisation"},
     "tp/summarisation-nlp.md": {
         "prefix": "TP.SN",
-        "part": "TP",
+        "cluster": "TP",
         "group": "Summarisation / NLP",
     },
     "tp/clinical-coding.md": {
         "prefix": "TP.CC",
-        "part": "TP",
+        "cluster": "TP",
         "group": "Clinical Coding",
     },
     "tp/downstream-write-back.md": {
         "prefix": "TP.WB",
-        "part": "TP",
+        "cluster": "TP",
         "group": "Downstream Write-back",
     },
     "pi/partial-pipeline.md": {
         "prefix": "PI.PP",
-        "part": "PI",
+        "cluster": "PI",
         "group": "Partial-Pipeline",
     },
     "pi/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",
-        "part": "PI",
+        "cluster": "PI",
         "group": "End-to-End Pipeline",
     },
     "hl/human-factors-workflow.md": {
         "prefix": "HL.HF",
-        "part": "HL",
+        "cluster": "HL",
         "group": "Human Factors & Workflow",
     },
     "io/patient-experience.md": {
         "prefix": "IO.PX",
-        "part": "IO",
+        "cluster": "IO",
         "group": "Patient Experience",
     },
     "io/fairness-equity.md": {
         "prefix": "IO.FE",
-        "part": "IO",
+        "cluster": "IO",
         "group": "Fairness & Equity",
     },
     "gv/safety-governance.md": {
         "prefix": "GV.SG",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Safety & Governance",
     },
     "gv/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",
-        "part": "GV",
+        "cluster": "GV",
         "group": "NHS Compliance & Regulatory",
     },
     "gv/security-adversarial-robustness.md": {
         "prefix": "GV.SC",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Security & Adversarial Robustness",
     },
     "gv/privacy-data-governance.md": {
         "prefix": "GV.PD",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Privacy & Data Governance",
     },
-    "gv/operational.md": {"prefix": "GV.OP", "part": "GV", "group": "Operational"},
+    "gv/operational.md": {"prefix": "GV.OP", "cluster": "GV", "group": "Operational"},
     "gv/environmental-sustainability.md": {
         "prefix": "GV.EN",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Environmental & Sustainability",
     },
     "gv/training-competency.md": {
         "prefix": "GV.TC",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Training & Competency",
     },
     "gv/vendor-transparency-contractual.md": {
         "prefix": "GV.VT",
-        "part": "GV",
+        "cluster": "GV",
         "group": "Vendor Transparency & Contractual",
     },
     "es/meta-evaluation.md": {
         "prefix": "ES.ME",
-        "part": "ES",
+        "cluster": "ES",
         "group": "Meta-Evaluation",
     },
 }
@@ -176,7 +176,7 @@ class Metric:
     ref_id: str
     name: str
     tier: int  # 1 / 2 / 3
-    part: str  # cluster code: TP / PI / HL / IO / GV / ES
+    cluster: str  # cluster code: TP / PI / HL / IO / GV / ES
     group: str  # human-readable group name
     group_file: str  # relative path, e.g. "tp/audio-capture.md"
     heading_line: int  # 1-indexed line number of `### ...` heading in group file
@@ -188,8 +188,19 @@ class Metric:
         return {1: "🟢", 2: "🟡", 3: "🔵"}[self.tier]
 
     @property
+    def cluster_name(self) -> str:
+        return CLUSTER_NAMES.get(self.cluster, "")
+
+    # Backwards-compat aliases — pre-v4.0 callers used `metric.part` and
+    # `metric.part_name`. Renamed to `cluster` and `cluster_name` in v4.0
+    # Phase 3. Aliases retained until v4.1; flagged for removal there.
+    @property
+    def part(self) -> str:
+        return self.cluster
+
+    @property
     def part_name(self) -> str:
-        return PART_NAMES.get(self.part, "")
+        return self.cluster_name
 
     @property
     def tier_label(self) -> str:
@@ -273,7 +284,7 @@ def parse_group_file(rel_path: str) -> list[Metric]:
                 ref_id=ref_id,
                 name=name,
                 tier=tier,
-                part=info["part"],
+                cluster=info["cluster"],
                 group=info["group"],
                 group_file=rel_path,
                 heading_line=heading_line,

@@ -372,20 +372,29 @@ def rewrite_anchors(text: str, current_page: str) -> str:
     return _MD_LINK.sub(sub, text)
 
 
-# Hand-written Part titles keyed by part letter, used when a source file
-# doesn't carry its own `# Part X - ...` heading (only one file per part
-# in the monolithic source does). These match the monolithic-build's
-# Part separators so the site and MD-download stay consistent.
-PART_TITLES = {letter: f"Part {letter} - {name}" for letter, name in parse_src.PART_NAMES.items()}
+# Hand-written cluster titles keyed by cluster code, used as the eyebrow
+# heading on each group page. v4.0 retired the v3.x "Part X - …" prefix
+# in favour of the cluster-code form "TP — Technical Pipeline".
+CLUSTER_TITLES = {
+    code: f"{code} — {name}" for code, name in parse_src.CLUSTER_NAMES.items()
+}
+
+# Backwards-compat alias — pre-v4.0 callers used PART_TITLES. Aliased to
+# CLUSTER_TITLES in v4.0 Phase 3; flagged for removal in v4.1.
+PART_TITLES = CLUSTER_TITLES
 
 
-def _part_title_for_group_file(src_rel: str) -> str | None:
-    """Look up the Part title for a source group file, via the parser's
+def _cluster_title_for_group_file(src_rel: str) -> str | None:
+    """Look up the cluster title for a source group file, via the parser's
     canonical group list. Returns None for non-group files."""
     info = parse_src.GROUP_FILES.get(src_rel)
     if info is None:
         return None
-    return PART_TITLES.get(info["part"])
+    return CLUSTER_TITLES.get(info["cluster"])
+
+
+# Backwards-compat alias — pre-v4.0 callers used `_part_title_for_group_file`.
+_part_title_for_group_file = _cluster_title_for_group_file
 
 
 def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:

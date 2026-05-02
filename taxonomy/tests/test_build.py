@@ -53,15 +53,16 @@ class TestBuildSubstituteTemplateTokens:
 
 class TestCSVColumns:
     def test_has_expected_columns(self):
-        # Schema invariants: ref_id and tier are always present; part_name
-        # was added in v3.8.3; status is intentionally NOT a column (status
-        # belongs in summary.json metadata, not per-row).
+        # Schema invariants: ref_id and tier are always present;
+        # part/part_name renamed to cluster/cluster_name in v4.0;
+        # status is intentionally NOT a column (status belongs in
+        # summary.json metadata, not per-row).
         cols = build_mod.CSV_COLUMNS
         assert "ref_id" in cols
         assert "name" in cols
         assert "tier" in cols
-        assert "part" in cols
-        assert "part_name" in cols
+        assert "cluster" in cols
+        assert "cluster_name" in cols
         assert "group" in cols
         assert "applicability" in cols
         assert "source" in cols
