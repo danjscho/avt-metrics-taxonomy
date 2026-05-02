@@ -92,6 +92,7 @@ ANCHOR_REWRITES: dict[str, str] = {
     "gaps-proposed-metrics-roadmap": "gaps.md",
     "outcomes-boundary": "outcomes-boundary.md",
     "calibration-context": "calibration-and-context.md",
+    "references": "references.md",
     # Sections inside _standards-mapping.md that other pages link to.
     # Each is now an h2 on standards-mapping.md, so a fragment is preserved.
     "nhs-england-avt-self-certified-supplier-registry": "standards-mapping.md#nhs-england-avt-self-certified-supplier-registry",
