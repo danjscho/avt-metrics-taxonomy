@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
-**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v3.9, 2026-05-02.** Shared to provoke conversation; not a settled standard.
+**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v3.9.1, 2026-05-02.** Shared to provoke conversation; not a settled standard.
 
 > ⚠️ This is an **AI-coauthored prototype for discussion**, not a finished taxonomy. Substantial portions were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. It is shared openly to provoke conversation about what an AVT assurance frame should look like — *not* as an NHS-endorsed standard, regulatory document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. **You are invited to disagree, propose changes, point at gaps, flag errors, and share with colleagues. You should not paste threshold numbers into contracts, cite metrics as authoritative without flagging the prototype status, or treat any specific metric as policy.** See [docs site → Prototype status](https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/) for the full framing.
 
@@ -50,11 +50,12 @@ When pricing or scoping AVT contracts against this taxonomy, note that the [Cali
 [taxonomy/README.md](taxonomy/README.md) covers the full local-build recipe (uv-based) and the file layout. Quick version:
 
 ```
-uv sync                                # one-off: install deps into .venv from uv.lock
+uv sync --extra dev                    # one-off: install deps + pytest from uv.lock
 uv run python taxonomy/build.py        # → avt-metrics-taxonomy.md + dist/* CSV/JSON
 uv run python taxonomy/build_site.py   # → populates docs/ and mirrors dist/* into docs/downloads/
 uv run mkdocs serve                    # → http://127.0.0.1:8000/avt-metrics-taxonomy/
 uv run python taxonomy/audit.py        # → structural + Tier 1 tightening + cross-reference audits
+uv run pytest                          # → 88 unit tests (parse / build / build_site / audit / snapshot)
 ```
 
 The project uses [uv](https://docs.astral.sh/uv/) for environment management; `uv.lock` is committed so local and CI builds match. `audit.py` is the source of truth for current tightening status — it emits a manifest after the tier counts showing which Tier 1 metrics carry the tightening pattern and which are still pending. Future work scope is derived from this output rather than from CHANGELOG prose.
@@ -85,7 +86,7 @@ Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance
 
 ## Status / version
 
-**Current prototype version:** v3.9, released 2026-05-02.
+**Current prototype version:** v3.9.1, released 2026-05-02.
 
 Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → `v3.8` (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening) → **v3.9** (citation grammar + References catalogue: ~104 entries, every external authority resolves through `_references.md` with handles + URLs + Wayback snapshots + retrieval dates; audit-enforced handle resolution; cited-by back-references at build time).
 
@@ -113,4 +114,4 @@ Licence TBD. Until a licence is declared in this repository, treat the taxonomy 
 
 ---
 
-*Last updated: v3.9 / 2026-05-02.*
+*Last updated: v3.9.1 / 2026-05-02.*

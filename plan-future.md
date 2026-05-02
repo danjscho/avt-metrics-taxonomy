@@ -256,7 +256,7 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 
 ## 10. Code test suite — unit tests for the build pipeline
 
-**Status:** **promoted — in flight in v3.9.1** (see `plan-v3.9.1.md`). Item retained here for reference until v3.9.1 ships; archived after.
+**Status:** **shipped in v3.9.1.** 88 pytest tests covering parse / build / build_site / audit / tools/snapshot under `taxonomy/tests/`. CI runs them on every push. See `archive/plans/plan-v3.9.1.md` for the original plan and the v3.9.1 CHANGELOG entry for what landed. Item kept here for index continuity; can be removed in a future plan-future cleanup.
 
 **Context.** The repo is documentation-first but the code that assembles it has grown. v1 → v3.7 was thin mechanical assembly that didn't really need testing — the audit + build + strict mkdocs build were sufficient integration safety nets. v3.8 onwards added load-bearing logic:
 
