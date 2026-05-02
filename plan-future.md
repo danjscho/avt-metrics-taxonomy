@@ -244,6 +244,7 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 
 **Starting points.**
 
+- **Start with [AIDRS-NHS] (the AI and Digital Regulations Service hub, `digitalregulations.innovation.nhs.uk`).** AIDRS is NHS England's multi-regulator hub bringing together MHRA, NICE, ICO, CQC, and HRA guidance for digital-health AI; its explicit job is to surface where each regulatory frame applies and to point at the international standards each NHS framework rests on. It is the natural first stop for any ISO/BSI mapping exercise: AIDRS already does some of the lineage work (which NHS framework cites which ISO/BSI standard) and a pre-existing catalogue entry exists. Starting here means we don't redo work AIDRS has already done; we use AIDRS's surfacing as the spine for the mapping decisions below.
 - Sketch a "ISO / BSI standards lineage" section in `_standards-mapping.md` that *cites* (not maps) the 8–9 candidates above, with one paragraph each explaining how the standard relates to existing NHS frameworks the taxonomy already maps. Lighter touch than full mapping; tests whether readers find this useful before committing to the heavier work.
 - Specifically prototype **BS 30440** mapping (it's the closest peer to this taxonomy's purpose): how many of the taxonomy's metrics naturally serve as evidence for its requirements? If the answer is "most of them, with light annotation", BS 30440 deserves promotion to a full 14th-framework mapping. If the answer is "BS 30440 covers different ground", a citation-only treatment is the right shape.
 - Cross-check existing NHS framework prose. DCB0129 explicitly references ISO 14971; MHRA SaMD references BS EN 62304 / IEC 82304-1. The lineage exists but the taxonomy doesn't surface it. A first cheap win is making the *existing* implicit references explicit.
@@ -255,7 +256,7 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 
 ## 10. Code test suite — unit tests for the build pipeline
 
-**Status:** queued. Most likely shape is a **v3.9.x patch** *before* v4.0 starts, so the test suite serves as a safety net for the v4.0 rename. Could also fold into v4.0 Phase 0 if v4.0 starts soon — author's choice based on capacity.
+**Status:** **promoted — in flight in v3.9.1** (see `plan-v3.9.1.md`). Item retained here for reference until v3.9.1 ships; archived after.
 
 **Context.** The repo is documentation-first but the code that assembles it has grown. v1 → v3.7 was thin mechanical assembly that didn't really need testing — the audit + build + strict mkdocs build were sufficient integration safety nets. v3.8 onwards added load-bearing logic:
 
