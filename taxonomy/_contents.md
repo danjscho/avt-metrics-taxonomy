@@ -1,6 +1,6 @@
 ## Contents
 
-**Part A - The Technical Pipeline**
+**TP — The Technical Pipeline**
 
 - [Audio Capture & Environment](#audio-capture-environment) (9 metrics - 1 Tier 1)
 - [ASR / Transcription](#asr-transcription) (14 metrics - 2 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
@@ -9,21 +9,21 @@
 - [Clinical Coding](#clinical-coding) (11 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
 - [Downstream Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
 
-**Part B - Pipeline Interactions**
+**PI — Pipeline Interactions**
 
 - [Partial-Pipeline](#partial-pipeline) (9 metrics)
 - [End-to-End Pipeline](#end-to-end-pipeline) (12 metrics)
 
-**Part C - The Human Layer**
+**HL — The Human Layer**
 
 - [Human Factors & Workflow](#human-factors-workflow) (19 metrics - 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
 
-**Part D - Impact & Outcomes**
+**IO — Impact & Outcomes**
 
 - [Patient Experience](#patient-experience) (10 metrics - 1 Tier 1) *contains Patient Clinical Outcomes sub-cluster*
 - [Fairness & Equity](#fairness-equity) (8 metrics)
 
-**Part E - System Governance**
+**GV — System Governance**
 
 - [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
 - [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
@@ -34,7 +34,7 @@
 - [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
 - [Vendor Transparency & Contractual](#vendor-transparency-contractual) (10 metrics - 3 Tier 1)
 
-**Part F - Evaluation Science**
+**ES — Evaluation Science**
 
 - [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 

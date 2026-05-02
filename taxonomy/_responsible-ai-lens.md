@@ -24,11 +24,11 @@ The Playbook is explicit that its principles and themes can be in tension:
 - Tighter security may reduce usability
 - Stronger human oversight may reduce workflow benefit
 
-Metrics in this lens often serve multiple principles/themes - the [Coverage Matrix](#part-c-coverage-matrix) in Part C highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
+Metrics in this lens often serve multiple principles/themes - the [Coverage Matrix](#coverage-matrix) below highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
 
 ---
 
-## Part A - DSIT AI Playbook: 10 Principles
+## DSIT AI Playbook: 10 Principles
 
 The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI use across UK government. While the Playbook targets central government and arm's length bodies, its principles are referenced in NHS AI governance and many of its requirements (notably ATRS transparency publication) cascade to NHS ALBs. The principles are numbered P1–P10 for reference throughout this document.
 
@@ -261,7 +261,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 ---
 
-## Part B - Six Responsible AI Ethical Themes
+## Six Responsible AI Ethical Themes
 
 The AI Regulation White Paper (March 2023) articulated five cross-sectoral principles for responsible AI; the DSIT AI Playbook (Feb 2025) ethics chapter extends this with a sixth theme (Societal Wellbeing and Public Good). These six themes are the **policy-intent axes** that the more operational NHS LLM Evaluation Framework's three groups (Suitability in Context, Wider Impact, Quantifiable Changes) help measure. The themes are labelled T1–T6 for reference.
 
@@ -429,7 +429,7 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 
 ---
 
-## Part C - Coverage Matrix
+## Coverage Matrix
 
 Some metrics serve multiple Playbook principles *and* multiple ethical themes simultaneously. These are **policy-lever metrics** - a single measurement supports several assurance goals at once, making them high-leverage procurement and governance signals. Implementing or monitoring these metrics gives the broadest coverage for the least measurement burden.
 
@@ -478,14 +478,14 @@ These five metrics are the "policy-lever megas" - implementing and monitoring th
 
 **Concentration by group:**
 - Safety & Governance, NHS Compliance & Regulatory, and Vendor Transparency groups dominate the cross-cutting list
-- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only Part A metrics that reach 4+ axes - reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
+- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only TP-cluster metrics that reach 4+ axes - reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
 - Human Factors metrics (HL.HF-1, HL.HF-3, HL.HF-6, HL.HF-8) are heavily cross-cutting because human-AI interaction intersects every principle
 
 **Tier distribution:** Nearly all cross-cutting metrics are Tier 1 or Tier 2. This is expected - the most load-bearing assurance metrics are the ones that multiple principles converge on.
 
 ---
 
-## Part D - Gaps
+## Gaps
 
 Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed Metrics](#gaps-proposed-metrics-roadmap) § 3 (Responsible AI Lens). 38 candidates are tracked there: 20 organised by Playbook principle, 18 organised by ethical theme. Cross-references to standards-mapping gaps (e.g. PSIRF → GV.SG-19, CQC → GV.CR-12) are preserved in the roadmap. Highest-severity cross-cutting findings are summarised below.
 

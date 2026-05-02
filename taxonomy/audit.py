@@ -1035,6 +1035,39 @@ def check_retrieved_date_format() -> list[Finding]:
     return findings
 
 
+def check_no_part_letter_prose() -> list[Finding]:
+    """v4.0 retired the Part-letter scheme (A-F) in favour of cluster
+    codes (TP/PI/HL/IO/GV/ES). Any `Part [A-F]\\b` match in non-archive
+    source files is a regression — flag as ERROR. Archive content is
+    deliberately frozen and not checked.
+    """
+    findings: list[Finding] = []
+    pattern = re.compile(r"\bPart [A-F]\b")
+    skip_dirs = {"archive", "site", "docs", "dist", ".venv", ".git", "node_modules", "__pycache__"}
+
+    for path in sorted(ROOT.parent.rglob("*.md")):
+        rel = path.relative_to(ROOT.parent)
+        # Skip files in excluded directories
+        if any(part in skip_dirs for part in rel.parts):
+            continue
+        # Skip files that describe the v3.x → v4.0 rename itself —
+        # they refer to Part X by necessity (historical / migration prose).
+        if rel.name in {"CHANGELOG.md", "plan-v4.0.md", "plan-future.md"}:
+            continue
+        text = path.read_text()
+        for match in pattern.finditer(text):
+            line_num = text[: match.start()].count("\n") + 1
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "v4-part-letter-prose",
+                    f"`{match.group(0)}` is the retired Part-letter scheme; use cluster code (TP/PI/HL/IO/GV/ES) instead",
+                    f"{rel}:{line_num}",
+                )
+            )
+    return findings
+
+
 def main() -> int:
     all_metrics: list[Metric] = []
     metrics_by_file: dict[str, list[Metric]] = {}
@@ -1061,6 +1094,7 @@ def main() -> int:
     findings.extend(check_reference_handles_resolve())
     findings.extend(check_archive_present())
     findings.extend(check_retrieved_date_format())
+    findings.extend(check_no_part_letter_prose())
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]

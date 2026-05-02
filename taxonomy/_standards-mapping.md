@@ -373,12 +373,12 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 | Proposed Ref | Title | T.E.S.T. Source | Suggested Placement | Tier |
 |---|---|---|---|---|
-| TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | Part A (Summarisation/NLP) or new translation sub-group | 🟡 2 |
-| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | Part E Privacy & Data Governance | 🟡 2 |
-| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | Part E Operational | 🟡 2 |
-| GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | Part E Vendor Transparency | 🔵 3 |
-| IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | Part D Fairness & Equity | 🔵 3 |
-| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | Part E Vendor Transparency | 🔵 3 |
+| TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | TP (Summarisation/NLP) or new translation sub-group | 🟡 2 |
+| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | GV Privacy & Data Governance | 🟡 2 |
+| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | GV Operational | 🟡 2 |
+| GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | GV Vendor Transparency | 🔵 3 |
+| IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | IO Fairness & Equity | 🔵 3 |
+| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | GV Vendor Transparency | 🔵 3 |
 
 ---
 
@@ -410,7 +410,7 @@ The registry as published in the Find a Tender notice and the NHS England long-r
 | 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
 | 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
 | 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
-| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across Part E and Part F. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
+| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
 
 #### Self-certification provenance
 
@@ -621,7 +621,7 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 - Budget impact analysis composite (Standard 17) - GV.OP-7 is partial
 - Real-world performance data plan documentation (Standard 15)
 
-**Taxonomy extends:** Standards 14–16 (Performance) are well covered. Part A (Technical Pipeline) and Part B (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.
+**Taxonomy extends:** Standards 14–16 (Performance) are well covered. TP (Technical Pipeline) and PI (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.
 
 ---
 

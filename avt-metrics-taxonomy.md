@@ -363,7 +363,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 ## Contents
 
-**Part A - The Technical Pipeline**
+**TP — The Technical Pipeline**
 
 - [Audio Capture & Environment](#audio-capture-environment) (9 metrics - 1 Tier 1)
 - [ASR / Transcription](#asr-transcription) (14 metrics - 2 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
@@ -372,21 +372,21 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - [Clinical Coding](#clinical-coding) (11 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
 - [Downstream Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
 
-**Part B - Pipeline Interactions**
+**PI — Pipeline Interactions**
 
 - [Partial-Pipeline](#partial-pipeline) (9 metrics)
 - [End-to-End Pipeline](#end-to-end-pipeline) (12 metrics)
 
-**Part C - The Human Layer**
+**HL — The Human Layer**
 
 - [Human Factors & Workflow](#human-factors-workflow) (19 metrics - 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
 
-**Part D - Impact & Outcomes**
+**IO — Impact & Outcomes**
 
 - [Patient Experience](#patient-experience) (10 metrics - 1 Tier 1) *contains Patient Clinical Outcomes sub-cluster*
 - [Fairness & Equity](#fairness-equity) (8 metrics)
 
-**Part E - System Governance**
+**GV — System Governance**
 
 - [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
 - [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
@@ -397,7 +397,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
 - [Vendor Transparency & Contractual](#vendor-transparency-contractual) (10 metrics - 3 Tier 1)
 
-**Part F - Evaluation Science**
+**ES — Evaluation Science**
 
 - [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 
@@ -433,7 +433,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | General Healthcare AI | 91 | 42% |
 | **Total** | **218** | **100%** |
 
-### By Part
+### By Cluster
 
 | Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
 |------|-------------|--------------------|--------------------|-------|
@@ -448,7 +448,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ### Full Classification
 
-#### Part A - The Technical Pipeline
+#### TP — The Technical Pipeline
 
 **Audio Capture & Environment** (9 metrics)
 
@@ -554,7 +554,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.WB-6 | FHIR R4 Resource Conformance Rate | 🟡 Tier 2 | AVT-Contextualised |
 | TP.WB-7 | openEHR Archetype Conformance | 🔵 Tier 3 | AVT-Contextualised |
 
-#### Part B - Pipeline Interactions
+#### PI — Pipeline Interactions
 
 **Partial-Pipeline** (9 metrics)
 
@@ -587,7 +587,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | PI.E2E-11 | Pipeline Failure Recovery | 🟡 Tier 2 | AVT-Contextualised |
 | PI.E2E-12 | Round-Trip Information Loss | 🔵 Tier 3 | AVT-Specific |
 
-#### Part C - The Human Layer
+#### HL — The Human Layer
 
 **Human Factors & Workflow** (19 metrics)
 
@@ -614,7 +614,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | HL.HF-19 | AI-Off Performance Test | 🟡 Tier 2 | General Healthcare AI |
 
 
-#### Part D - Impact & Outcomes
+#### IO — Impact & Outcomes
 
 **Patient Experience** (10 metrics)
 
@@ -644,7 +644,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | IO.FE-7 | Health Literacy Performance Variation | 🔵 Tier 3 | General Healthcare AI |
 | IO.FE-8 | Cross-Platform Fairness Consistency | 🔵 Tier 3 | General Healthcare AI |
 
-#### Part E - System Governance
+#### GV — System Governance
 
 **Safety & Governance** (17 metrics)
 
@@ -763,7 +763,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-13 | Evidence Pack Freshness | 🟡 Tier 2 | AVT-Specific |
 | GV.VT-14 | Indicative Pricing Transparency | 🟡 Tier 2 | AVT-Specific |
 
-#### Part F - Evaluation Science
+#### ES — Evaluation Science
 
 **Meta-evaluation** (9 metrics)
 
@@ -1154,12 +1154,12 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 
 | Proposed Ref | Title | T.E.S.T. Source | Suggested Placement | Tier |
 |---|---|---|---|---|
-| TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | Part A (Summarisation/NLP) or new translation sub-group | 🟡 2 |
-| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | Part E Privacy & Data Governance | 🟡 2 |
-| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | Part E Operational | 🟡 2 |
-| GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | Part E Vendor Transparency | 🔵 3 |
-| IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | Part D Fairness & Equity | 🔵 3 |
-| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | Part E Vendor Transparency | 🔵 3 |
+| TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | TP (Summarisation/NLP) or new translation sub-group | 🟡 2 |
+| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | GV Privacy & Data Governance | 🟡 2 |
+| GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | GV Operational | 🟡 2 |
+| GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | GV Vendor Transparency | 🔵 3 |
+| IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | IO Fairness & Equity | 🔵 3 |
+| GV.VT-12 | Sovereign AI / UK Supply Chain Disclosure | Section B.12 | GV Vendor Transparency | 🔵 3 |
 
 ---
 
@@ -1191,7 +1191,7 @@ The registry as published in the Find a Tender notice and the NHS England long-r
 | 10 | **Scalability evidence** | T.E.S.T. Section B.4 Integration & Interoperability | GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation |
 | 11 | **Solution performance and monitoring response document** | NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22 | GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection |
 | 12 | **Indicative pricing matrix** published via the National Commercial & Procurement Hub | *Not in current taxonomy framework set* | **GV.VT-14 Indicative Pricing Transparency** (new in v3.8) |
-| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across Part E and Part F. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
+| 13 | **AI/LLM-specific safety governance and performance monitoring** criteria — described as going beyond baseline regulatory/IG/interoperability standards | NHS LLM Framework Suitability in Context + Wider Impact | Multiple metrics across GV and ES. **Note:** the registry's specific LLM sub-criteria are not yet publicly enumerated; further guidance promised through 2026-2027. |
 
 #### Self-certification provenance
 
@@ -1402,7 +1402,7 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 - Budget impact analysis composite (Standard 17) - GV.OP-7 is partial
 - Real-world performance data plan documentation (Standard 15)
 
-**Taxonomy extends:** Standards 14–16 (Performance) are well covered. Part A (Technical Pipeline) and Part B (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.
+**Taxonomy extends:** Standards 14–16 (Performance) are well covered. TP (Technical Pipeline) and PI (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.
 
 ---
 
@@ -1779,11 +1779,11 @@ The Playbook is explicit that its principles and themes can be in tension:
 - Tighter security may reduce usability
 - Stronger human oversight may reduce workflow benefit
 
-Metrics in this lens often serve multiple principles/themes - the [Coverage Matrix](#part-c-coverage-matrix) in Part C highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
+Metrics in this lens often serve multiple principles/themes - the [Coverage Matrix](#coverage-matrix) below highlights cross-cutting "policy-lever" metrics where a single measurement supports several assurance goals simultaneously. Metrics are listed against a principle/theme when they genuinely operationalise that principle, not when they merely touch on it.
 
 ---
 
-## Part A - DSIT AI Playbook: 10 Principles
+## DSIT AI Playbook: 10 Principles
 
 The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI use across UK government. While the Playbook targets central government and arm's length bodies, its principles are referenced in NHS AI governance and many of its requirements (notably ATRS transparency publication) cascade to NHS ALBs. The principles are numbered P1–P10 for reference throughout this document.
 
@@ -2016,7 +2016,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 
 ---
 
-## Part B - Six Responsible AI Ethical Themes
+## Six Responsible AI Ethical Themes
 
 The AI Regulation White Paper (March 2023) articulated five cross-sectoral principles for responsible AI; the DSIT AI Playbook (Feb 2025) ethics chapter extends this with a sixth theme (Societal Wellbeing and Public Good). These six themes are the **policy-intent axes** that the more operational NHS LLM Evaluation Framework's three groups (Suitability in Context, Wider Impact, Quantifiable Changes) help measure. The themes are labelled T1–T6 for reference.
 
@@ -2184,7 +2184,7 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 
 ---
 
-## Part C - Coverage Matrix
+## Coverage Matrix
 
 Some metrics serve multiple Playbook principles *and* multiple ethical themes simultaneously. These are **policy-lever metrics** - a single measurement supports several assurance goals at once, making them high-leverage procurement and governance signals. Implementing or monitoring these metrics gives the broadest coverage for the least measurement burden.
 
@@ -2233,14 +2233,14 @@ These five metrics are the "policy-lever megas" - implementing and monitoring th
 
 **Concentration by group:**
 - Safety & Governance, NHS Compliance & Regulatory, and Vendor Transparency groups dominate the cross-cutting list
-- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only Part A metrics that reach 4+ axes - reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
+- Content fidelity metrics (TP.SN-5, TP.SN-6, TP.SN-20) are the only TP-cluster metrics that reach 4+ axes - reflecting how clinical content integrity sits at the intersection of safety, transparency, limits-awareness, and human control
 - Human Factors metrics (HL.HF-1, HL.HF-3, HL.HF-6, HL.HF-8) are heavily cross-cutting because human-AI interaction intersects every principle
 
 **Tier distribution:** Nearly all cross-cutting metrics are Tier 1 or Tier 2. This is expected - the most load-bearing assurance metrics are the ones that multiple principles converge on.
 
 ---
 
-## Part D - Gaps
+## Gaps
 
 Gap analysis has been consolidated into the single roadmap at [Gaps & Proposed Metrics](#gaps-proposed-metrics-roadmap) § 3 (Responsible AI Lens). 38 candidates are tracked there: 20 organised by Playbook principle, 18 organised by ethical theme. Cross-references to standards-mapping gaps (e.g. PSIRF → GV.SG-19, CQC → GV.CR-12) are preserved in the roadmap. Highest-severity cross-cutting findings are summarised below.
 
@@ -2267,12 +2267,12 @@ This section is an explicit scope statement: what this taxonomy assures, what it
 The 215 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
 
 - **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
-- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (Part A — Summarisation / NLP)
-- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (Part C — Human Factors)
-- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (Part D — Fairness & Equity)
-- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (Part E — Safety & Governance)
-- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (Part E)
-- **Measurement quality** — is the evaluation methodology itself sound? (Part F — Meta-evaluation)
+- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (TP — Summarisation / NLP)
+- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (HL — Human Factors)
+- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (IO — Fairness & Equity)
+- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (GV — Safety & Governance)
+- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (GV)
+- **Measurement quality** — is the evaluation methodology itself sound? (ES — Meta-evaluation)
 
 These are **process, structure, and proximal-outcome measures**. They tell a deployer whether the system is *operating as specified* and whether the conditions for safe use are in place.
 
