@@ -52,6 +52,12 @@ extra_css:
 
 plugins:
   - search
+  - redirects:
+      # v3.x → v4.0 page renames. Keys = old paths; values = new paths.
+      # Preserves bookmarks for any reader who saved a deep link before
+      # the rename.
+      redirect_maps:
+        groups/epr-write-back.md: groups/downstream-write-back.md
   - rss:
       match_path: "changelog\\.md"
       date_from_meta:
@@ -115,13 +121,13 @@ nav:
   - Quick start (Tier 1): tier-1-quick-reference.md
   - Browse metrics:
       - Contents: contents.md
-      - A - Technical Pipeline:
+      - TP - Technical Pipeline:
           - Audio Capture & Environment: groups/audio-capture.md
           - ASR / Transcription: groups/asr-transcription.md
           - Diarisation: groups/diarisation.md
           - Summarisation / NLP: groups/summarisation-nlp.md
           - Clinical Coding: groups/clinical-coding.md
-          - EPR Write-back: groups/epr-write-back.md
+          - Downstream Write-back: groups/downstream-write-back.md
       - B - Pipeline Interactions:
           - Partial-Pipeline: groups/partial-pipeline.md
           - End-to-End Pipeline: groups/end-to-end-pipeline.md

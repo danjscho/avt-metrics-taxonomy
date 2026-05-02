@@ -126,7 +126,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 | HL.HF-17 | Verification Burden | Human Factors | 🟡 2 | Cognitive cost of oversight |
 | HL.HF-19 | AI-Off Performance Test | Human Factors | 🟡 2 | Graceful degradation |
 | HL.HF-9 | Re-record / Abandonment Rate | Human Factors | 🟡 2 | User-initiated override |
-| TP.WB-5 | Write-back Rollback Capability | EPR Write-back | 🟡 2 | Reversibility after error |
+| TP.WB-5 | Write-back Rollback Capability | Downstream Write-back | 🟡 2 | Reversibility after error |
 
 **Gaps:** Formal escalation paths when AI output is rejected. Board-level visibility of aggregate override patterns.
 
@@ -279,9 +279,9 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | TP.SN-5 | Hallucination Rate | Summarisation / NLP | 🟢 1 | Content safety |
 | TP.SN-6 | Omission Rate | Summarisation / NLP | 🟢 1 | Content safety |
 | TP.ASR-12 | Hallucination-Under-Noise Rate | ASR / Transcription | 🟢 1 | Robustness under degraded input |
-| TP.WB-1 | Write-back Fidelity | EPR Write-back | 🟢 1 | Safety at integration boundary |
-| TP.WB-3 | Field Mapping Accuracy | EPR Write-back | 🟢 1 | Safety-critical field routing |
-| TP.WB-4 | Update vs Append Behaviour | EPR Write-back | 🟢 1 | Data integrity safety |
+| TP.WB-1 | Write-back Fidelity | Downstream Write-back | 🟢 1 | Safety at integration boundary |
+| TP.WB-3 | Field Mapping Accuracy | Downstream Write-back | 🟢 1 | Safety-critical field routing |
+| TP.WB-4 | Update vs Append Behaviour | Downstream Write-back | 🟢 1 | Data integrity safety |
 | GV.SG-9 | Safety Performance Indicators with Thresholds (DSCMS) | Safety & Governance | 🟢 1 | Ongoing safety threshold monitoring |
 | GV.SG-11 | Adverse Event / Incident Rate (LFPSE) | Safety & Governance | 🟢 1 | Incident tracking |
 | GV.SG-14 | Near-Miss Reporting Rate | Safety & Governance | 🟢 1 | Precursor signal |
@@ -396,7 +396,7 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | GV.SG-15 | Time-to-Correct | Safety & Governance | 🟡 2 | Redress speed |
 | GV.VT-5 | Incident Disclosure Compliance | Vendor Transparency | 🟢 1 | Incident-level redress signal |
 | GV.VT-6 | Exit & Data Portability Provisions | Vendor Transparency | 🟡 2 | Organisation-level redress |
-| TP.WB-5 | Write-back Rollback Capability | EPR Write-back | 🟡 2 | Technical redress |
+| TP.WB-5 | Write-back Rollback Capability | Downstream Write-back | 🟡 2 | Technical redress |
 | HL.HF-17 | Verification Burden | Human Factors | 🟡 2 | Cost of contestability |
 
 **Relationship to other themes:** Overlaps with T4 (Accountability - contestability requires clear accountability). Overlaps with T2 (Transparency - you must see to contest). Trade-off with T1 (Safety - too-easy reversal may allow errors to propagate before correction).

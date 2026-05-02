@@ -18,15 +18,15 @@ ROOT = pathlib.Path(__file__).parent
 # Part directory -> expected reference-ID prefix(es) used by metrics in that dir.
 # Prefixes are observed from actual source; any mismatch is a violation.
 GROUP_FILES = {
-    "part-a/audio-capture.md": {
+    "tp/audio-capture.md": {
         "prefix": "TP.AC",
         "label": "Audio Capture & Environment",
     },
-    "part-a/asr-transcription.md": {"prefix": "TP.ASR", "label": "ASR / Transcription"},
-    "part-a/diarisation.md": {"prefix": "TP.DI", "label": "Diarisation"},
-    "part-a/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
-    "part-a/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
-    "part-a/epr-write-back.md": {"prefix": "TP.WB", "label": "EPR Write-back"},
+    "tp/asr-transcription.md": {"prefix": "TP.ASR", "label": "ASR / Transcription"},
+    "tp/diarisation.md": {"prefix": "TP.DI", "label": "Diarisation"},
+    "tp/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
+    "tp/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
+    "tp/downstream-write-back.md": {"prefix": "TP.WB", "label": "Downstream Write-back"},
     "part-b/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
     "part-b/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",

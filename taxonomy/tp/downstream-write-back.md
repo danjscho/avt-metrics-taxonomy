@@ -7,7 +7,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Reference** | TP.WB-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment, Continuous |
@@ -76,7 +76,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | **Reference** | TP.WB-2 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Operational |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Continuous |
@@ -137,7 +137,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Reference** | TP.WB-3 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment, Continuous |
@@ -202,7 +202,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | **Reference** | TP.WB-4 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment |
@@ -273,7 +273,7 @@ When errors are detected, can the write-back be reversed cleanly? Particularly i
 | **Reference** | TP.WB-5 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
 | **Lifecycle Phases** | Pre-deployment |
@@ -312,7 +312,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 | **Reference** | TP.WB-6 |
 |**Priority Tier**      |🟡 Tier 2 - Recommended                   |
 |**Measurement Cadence**|Continuous                               |
-|**Pipeline Layer**     |EPR Write-back                           |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Fidelity & Accuracy                      |
 |**Measurement Method** |Computational                            |
 |**Lifecycle Phases**   |Pre-deployment, Continuous               |
@@ -351,7 +351,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 | **Reference** | TP.WB-7 |
 |**Priority Tier**      |🔵 Tier 3 - Advanced / Research            |
 |**Measurement Cadence**|Continuous                                |
-|**Pipeline Layer**     |EPR Write-back                            |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Fidelity & Accuracy                       |
 |**Measurement Method** |Computational                             |
 |**Lifecycle Phases**   |Pre-deployment, Continuous                |

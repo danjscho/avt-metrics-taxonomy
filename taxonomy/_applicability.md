@@ -128,7 +128,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.CC-11 | Code Specificity Index | 🔵 Tier 3 | AVT-Contextualised |
 | TP.CC-12 | Code Suggestion Latency | 🔵 Tier 3 | AVT-Contextualised |
 
-**EPR Write-back** (7 metrics)
+**Downstream Write-back** (7 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|

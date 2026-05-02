@@ -164,7 +164,7 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 | DI | Diarisation | TP |
 | SN | Summarisation / NLP | TP |
 | CC | Clinical Coding | TP |
-| WB | EPR Write-back | TP |
+| WB | Downstream Write-back | TP |
 | PP | Partial-Pipeline | PI |
 | E2E | End-to-End Pipeline | PI |
 | HF | Human Factors & Workflow | HL |
@@ -370,7 +370,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - [Diarisation](#diarisation) (9 metrics) *contains Conversation Analysis sub-cluster*
 - [Summarisation / NLP](#summarisation-nlp) (24 metrics - 4 Tier 1) *contains Clinical Content Fidelity, Reference-Based Text Similarity, and Medication Safety Thread families*
 - [Clinical Coding](#clinical-coding) (11 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
-- [EPR Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
+- [Downstream Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
 
 **Part B - Pipeline Interactions**
 
@@ -542,7 +542,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.CC-11 | Code Specificity Index | 🔵 Tier 3 | AVT-Contextualised |
 | TP.CC-12 | Code Suggestion Latency | 🔵 Tier 3 | AVT-Contextualised |
 
-**EPR Write-back** (7 metrics)
+**Downstream Write-back** (7 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -1118,7 +1118,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 | 13 | AI language translation liability remains with vendor (not clinician) | Clinical Safety | *Gap - no metric for translation accuracy or liability locus* | - | **Gap** - taxonomy does not currently address AI translation; candidate for roadmap |
 | 14 | Disclosure of underlying AI models (even if proprietary) | Bias & Inclusivity | GV.VT-7 Sub-Processor Transparency, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟢 1 / 🔵 3 | Partial coverage - sub-processor transparency captures model stack disclosure |
 | 15 | Evidence of testing on diverse populations; bias-free operation | Bias & Inclusivity | TP.ASR-4 Demographic-Disaggregated WER, IO.FE-4 Intersectional Performance, IO.FE-2 Accent Taxonomy Standardisation | 🟡 2 / 🔵 3 | Strong coverage through Demographic Equity Disaggregation family |
-| 16 | Mandatory EHR integration (front-end or back-end) for write-back, provenance | Technical | TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-4 Update vs Append Behaviour | 🟢 1 | Direct mapping to EPR Write-back group |
+| 16 | Mandatory EHR integration (front-end or back-end) for write-back, provenance | Technical | TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-4 Update vs Append Behaviour | 🟢 1 | Direct mapping to Downstream Write-back group |
 | 17 | Offer simple VR/dictation alongside ambient AI as standard | Technical | *Product-feature requirement - no metric equivalent* | - | Procurement feature check |
 | 18 | Routine reporting of hallucination rate, omission rate, word-error-rate | Technical | TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.ASR-1 Word Error Rate (WER), TP.ASR-12 Hallucination-Under-Noise Rate | 🟢 1 / 🟡 2 | **Direct mapping** - T.E.S.T. names these three exact metrics |
 | 19 | Handle multiple consultations; allow edit/correct pre-session-close | Technical | HL.HF-1 Edit Rate, HL.HF-7 Edit Location Distribution | 🟢 1 / 🟡 2 | Edit-pattern metrics cover in-session correction |
@@ -1133,7 +1133,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 | 1 | **Clinical Effectiveness** (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each) | 90 | ES.ME-8 Outcome Evidence Commitment Status (RCT-validation checkbox proxy), ES.ME-9 Causal Model Operationalisation, PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index | 🟡 2 / 🔵 3 / 🟢 1 | ES.ME-8 measures **commitment to** RCT evidence (the closest the taxonomy gets to the 50-point RCT item without overstepping the [Outcomes Boundary](#outcomes-boundary)); ES.ME-9 measures whether vendor causal claims are documented. **Gap** - no metric for "timeliness of correspondence across care teams"; the taxonomy does not itself constitute RCT evidence |
 | 2 | **Operational Cost-Effectiveness** (economic evaluation 25; ROI 10; cost savings 15; operational savings 10) | 60 | GV.OP-7 Cost per Consultation, GV.OP-8 Governance & Maintenance Burden | 🟡 2 / 🔵 3 | **Partial gap** - taxonomy lacks explicit ROI, total cost of ownership, formal economic-evaluation metric |
 | 3 | **Workforce Impact Assessment** (settings, specialties, foci, burnout, job satisfaction) | 60 | GV.OP-6 Adoption Rate & Selective Use Patterns, IO.FE-1 Deployment Equity Index, GV.OP-2 Pyjama Time / After-Hours EHR Use, HL.HF-8 Trust Calibration Survey | 🟢 1 / 🟡 2 | Burnout and pyjama time well-covered. **Gap** - no direct "job satisfaction" metric; no "multi-specialty validation" metric |
-| 4 | **Integration and Interoperability** (EHR integration, interoperability synergy, narrative quality) | 35 | TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency | 🟡 2 / 🔵 3 | Strong coverage through EPR Write-back group |
+| 4 | **Integration and Interoperability** (EHR integration, interoperability synergy, narrative quality) | 35 | TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency | 🟡 2 / 🔵 3 | Strong coverage through Downstream Write-back group |
 | 5 | **Clinician Experience and Usability** (friction, speed, workflow, cognitive load, human factors) | 30 | HL.HF-10 Cognitive Load Assessment, HL.HF-17 Verification Burden, GV.OP-3 Note Turnaround Time, HL.HF-16 Work-as-Imagined vs Work-as-Done Gap | 🔵 3 / 🟡 2 | Strong coverage through Human Factors group |
 | 6 | **Training, Adoption, and Human Factors** (ease of use, AI/human labelling, personalisation, learning, training) | 25 | GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.CR-3 AI-Generated Content Labelling Compliance, GV.TC-5 Training Material Currency | 🟢 1 / 🟡 2 | Direct mapping to Training & Competency group |
 | 7 | **Patient Safety and Quality of Care** (time for care 15; documentation accuracy 5) | 20 | IO.PX-7 Full Attentiveness Rate, GV.SG-11 Adverse Event / Incident Rate (LFPSE), PI.E2E-1 Source-to-Record Concordance | 🟡 2 / 🟢 1 / 🔵 3 | Strong coverage; Full Attentiveness Rate is a direct proxy for "time for care" |
@@ -1881,7 +1881,7 @@ The DSIT AI Playbook (February 2025) sets out ten principles for responsible AI 
 | HL.HF-17 | Verification Burden | Human Factors | 🟡 2 | Cognitive cost of oversight |
 | HL.HF-19 | AI-Off Performance Test | Human Factors | 🟡 2 | Graceful degradation |
 | HL.HF-9 | Re-record / Abandonment Rate | Human Factors | 🟡 2 | User-initiated override |
-| TP.WB-5 | Write-back Rollback Capability | EPR Write-back | 🟡 2 | Reversibility after error |
+| TP.WB-5 | Write-back Rollback Capability | Downstream Write-back | 🟡 2 | Reversibility after error |
 
 **Gaps:** Formal escalation paths when AI output is rejected. Board-level visibility of aggregate override patterns.
 
@@ -2034,9 +2034,9 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | TP.SN-5 | Hallucination Rate | Summarisation / NLP | 🟢 1 | Content safety |
 | TP.SN-6 | Omission Rate | Summarisation / NLP | 🟢 1 | Content safety |
 | TP.ASR-12 | Hallucination-Under-Noise Rate | ASR / Transcription | 🟢 1 | Robustness under degraded input |
-| TP.WB-1 | Write-back Fidelity | EPR Write-back | 🟢 1 | Safety at integration boundary |
-| TP.WB-3 | Field Mapping Accuracy | EPR Write-back | 🟢 1 | Safety-critical field routing |
-| TP.WB-4 | Update vs Append Behaviour | EPR Write-back | 🟢 1 | Data integrity safety |
+| TP.WB-1 | Write-back Fidelity | Downstream Write-back | 🟢 1 | Safety at integration boundary |
+| TP.WB-3 | Field Mapping Accuracy | Downstream Write-back | 🟢 1 | Safety-critical field routing |
+| TP.WB-4 | Update vs Append Behaviour | Downstream Write-back | 🟢 1 | Data integrity safety |
 | GV.SG-9 | Safety Performance Indicators with Thresholds (DSCMS) | Safety & Governance | 🟢 1 | Ongoing safety threshold monitoring |
 | GV.SG-11 | Adverse Event / Incident Rate (LFPSE) | Safety & Governance | 🟢 1 | Incident tracking |
 | GV.SG-14 | Near-Miss Reporting Rate | Safety & Governance | 🟢 1 | Precursor signal |
@@ -2151,7 +2151,7 @@ The AI Regulation White Paper (March 2023) articulated five cross-sectoral princ
 | GV.SG-15 | Time-to-Correct | Safety & Governance | 🟡 2 | Redress speed |
 | GV.VT-5 | Incident Disclosure Compliance | Vendor Transparency | 🟢 1 | Incident-level redress signal |
 | GV.VT-6 | Exit & Data Portability Provisions | Vendor Transparency | 🟡 2 | Organisation-level redress |
-| TP.WB-5 | Write-back Rollback Capability | EPR Write-back | 🟡 2 | Technical redress |
+| TP.WB-5 | Write-back Rollback Capability | Downstream Write-back | 🟡 2 | Technical redress |
 | HL.HF-17 | Verification Burden | Human Factors | 🟡 2 | Cost of contestability |
 
 **Relationship to other themes:** Overlaps with T4 (Accountability - contestability requires clear accountability). Overlaps with T2 (Transparency - you must see to contest). Trade-off with T1 (Safety - too-easy reversal may allow errors to propagate before correction).
@@ -6148,7 +6148,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Reference** | TP.WB-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment, Continuous |
@@ -6217,7 +6217,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | **Reference** | TP.WB-2 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Operational |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Continuous |
@@ -6278,7 +6278,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Reference** | TP.WB-3 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment, Continuous |
@@ -6343,7 +6343,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | **Reference** | TP.WB-4 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
 | **Lifecycle Phases** | Pre-deployment |
@@ -6414,7 +6414,7 @@ When errors are detected, can the write-back be reversed cleanly? Particularly i
 | **Reference** | TP.WB-5 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
 | **Measurement Cadence** | One-off gate |
-| **Pipeline Layer** | EPR Write-back |
+| **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
 | **Lifecycle Phases** | Pre-deployment |
@@ -6453,7 +6453,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 | **Reference** | TP.WB-6 |
 |**Priority Tier**      |🟡 Tier 2 - Recommended                   |
 |**Measurement Cadence**|Continuous                               |
-|**Pipeline Layer**     |EPR Write-back                           |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Fidelity & Accuracy                      |
 |**Measurement Method** |Computational                            |
 |**Lifecycle Phases**   |Pre-deployment, Continuous               |
@@ -6492,7 +6492,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 | **Reference** | TP.WB-7 |
 |**Priority Tier**      |🔵 Tier 3 - Advanced / Research            |
 |**Measurement Cadence**|Continuous                                |
-|**Pipeline Layer**     |EPR Write-back                            |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Fidelity & Accuracy                       |
 |**Measurement Method** |Computational                             |
 |**Lifecycle Phases**   |Pre-deployment, Continuous                |
@@ -10258,7 +10258,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 | **Reference** | GV.CR-3 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                 |
 |**Measurement Cadence**|Continuous                                                 |
-|**Pipeline Layer**     |EPR Write-back                                             |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Meta-evaluation                                            |
 |**Measurement Method** |Computational                                              |
 |**Lifecycle Phases**   |Pre-deployment, Continuous                                 |
@@ -13436,7 +13436,7 @@ The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-a/summarisation-nlp.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
 
 The information standard governing clinical risk management for health IT manufacturers. Vendor-side; the deployer-side equivalent is [DCB0160].
 
@@ -13683,7 +13683,7 @@ NICE's evidence-tiering framework for digital health technologies. Tier 3 (activ
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-a/epr-write-back.md`
+- **Cited-by:** `_standards-mapping.md`, `tp/downstream-write-back.md`
 
 The NHS Digital organisation page on Simplifier, the canonical hosting location for UK Core FHIR profiles. Cited where the taxonomy reasons about EPR write-back resource conformance.
 
@@ -13696,7 +13696,7 @@ The NHS Digital organisation page on Simplifier, the canonical hosting location 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-a/asr-transcription.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`, `tp/asr-transcription.md`
 
 NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
 
@@ -13709,7 +13709,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-a/asr-transcription.md`, `part-a/clinical-coding.md`, `part-c/human-factors-workflow.md`, `part-d/patient-experience.md`, `part-e/operational.md`, `part-e/safety-governance.md`, `part-e/training-competency.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-c/human-factors-workflow.md`, `part-d/patient-experience.md`, `part-e/operational.md`, `part-e/safety-governance.md`, `part-e/training-competency.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
 
 > ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
 
@@ -13787,7 +13787,7 @@ The 2026 MIT Jameel Clinic finding on cross-patient information memorisation / l
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/asr-transcription.md`
+- **Cited-by:** `tp/asr-transcription.md`
 
 The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clinical-voice extension** of OxonFair that is not yet published — treat citing this handle as a pointer to **emerging research / future work** rather than a settled methodology. Used to flag where the taxonomy proposes a demographic-disaggregation metric whose validated form depends on work yet to land.
 
@@ -13800,7 +13800,7 @@ The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clini
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`, `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `part-e/security-adversarial-robustness.md`, `tp/summarisation-nlp.md`
 
 The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cites this as the foundational reference; the **AVT-specific extension application** of INSYTE is not yet public — citing INSYTE on an AVT-specific metric should be read as **future work pending publication**.
 
@@ -13813,7 +13813,7 @@ The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cite
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/asr-transcription.md`, `part-a/diarisation.md`, `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/asr-transcription.md`, `tp/diarisation.md`, `tp/summarisation-nlp.md`
 
 Wang et al. 2025 — Duke / MedStar evaluation framework for ambient digital scribing (ADS) tools. The paper introduces a four-modality triangulation framework (human review, automated computational metrics, simulation, LLM-as-evaluator). The acronym used in the paper diagrams is "SCRIBE" (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation). Cited across TP.ASR (transcription), TP.DI (diarisation), and TP.SN (summarisation) metrics. (v3.9 round-2 audit: handle renamed from `SCRIBE-Wang-2025`; replaces a phantom `Wang-Duke-MedStar-2025` entry that was the same paper; the DOI `s41746-025-01449-w` previously cited inline at three locations was wrong and has been corrected to `s41746-025-01622-1`.)
 
@@ -13826,7 +13826,7 @@ Wang et al. 2025 — Duke / MedStar evaluation framework for ambient digital scr
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 The Physician Documentation Quality Instrument lineage. Two anchor papers: (a) Stetson et al. 2012 (PubMed 22577483) — original PDQI; (b) Croxford et al. 2025 — "Development and validation of the provider documentation summarization quality instrument for large language models" (*J Am Med Inform Assoc* 32:1050-1060), at https://pubmed.ncbi.nlm.nih.gov/40323321/, which is the concrete PDSQI-9 instrument validation for LLM-generated clinical documentation. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric. Distinct from [Croxford-2025] which references the broader 2025 conceptual review of LLM medical-summarisation evaluation (npj Health Systems).
 
@@ -13839,7 +13839,7 @@ The Physician Documentation Quality Instrument lineage. Two anchor papers: (a) S
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 The original ROUGE paper. Cited where the taxonomy uses ROUGE-{1,2,L} or notes the underspecification limitation of n-gram-based summary evaluation in clinical contexts.
 
@@ -13852,7 +13852,7 @@ The original ROUGE paper. Cited where the taxonomy uses ROUGE-{1,2,L} or notes t
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 The BERTScore paper. Cited where the taxonomy uses BERTScore variants or notes the Tier-C-validity-unproven limitation for clinical text.
 
@@ -13865,7 +13865,7 @@ The BERTScore paper. Cited where the taxonomy uses BERTScore variants or notes t
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/diarisation.md`
+- **Cited-by:** `tp/diarisation.md`
 
 Cited by TP.DI-7 (Turn-Taking Accuracy in Overlap) as the source of the overlap-aware diarisation methodology. URL points at SIGDIAL 2023 paper #45, track 1 — confirm at next pass that this paper actually covers turn-taking-in-overlap before snapshot.py runs. Handle currently retains the generic `ACL-SIGDIAL-2023` form; rename to `<Author-Year>-style` once the paper is verified.
 
@@ -13878,7 +13878,7 @@ Cited by TP.DI-7 (Turn-Taking Accuracy in Overlap) as the source of the overlap-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/diarisation.md`
+- **Cited-by:** `tp/diarisation.md`
 
 The Sitaram et al. survey of code-switched speech and language processing. Cited by TP.DI-6 (Code-Switching Detection Rate). The taxonomy's original Source row prose mentioned "IJCAI-22 multi-party conversation survey", which was a misremembering — the cited content is the Sitaram 2019 arxiv preprint, which covers code-switching specifically. Handle renamed in v3.9 Phase 2 to reflect the actual paper.
 
@@ -13891,7 +13891,7 @@ The Sitaram et al. survey of code-switched speech and language processing. Cited
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/asr-transcription.md`
+- **Cited-by:** `tp/asr-transcription.md`
 
 The "Careless Whisper" paper documenting hallucination behaviour specific to neural end-to-end ASR architectures (Whisper-class models). Cited in the TP.ASR family for hallucination-rate metrics.
 
@@ -13904,7 +13904,7 @@ The "Careless Whisper" paper documenting hallucination behaviour specific to neu
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/diarisation.md`
+- **Cited-by:** `tp/diarisation.md`
 
 The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speaker Role Identification F1) and TP.DI-8 (Clinical-Perspective HEWER). `Source-Type: disclosure` because the benchmark is vendor-published rather than peer-reviewed. cpHEWER (the clinical-importance-weighted DER variant cited in TP.DI-8) is introduced by this benchmark; future academic publication may supersede.
 
@@ -13917,7 +13917,7 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `part-f/meta-evaluation.md`, `tp/summarisation-nlp.md`
 
 Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing.
 
@@ -13930,7 +13930,7 @@ Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters.
 
@@ -13943,7 +13943,7 @@ Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safe
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation). Introduced in Asgari et al. 2025 *npj Digital Medicine* — same paper as [Asgari-Tortus-GOSH-2025]; CREOLA is the framework name Tortus AI uses for the assessment approach described in that paper. The two handles are kept separate so Source rows can cite the *taxonomy* vs the *paper*; both resolve to the same underlying publication.
 
@@ -13956,7 +13956,7 @@ The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`, `part-c/human-factors-workflow.md`
+- **Cited-by:** `part-c/human-factors-workflow.md`, `tp/summarisation-nlp.md`
 
 Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published.
 
@@ -13969,7 +13969,7 @@ Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpu
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 paper from Chung et al. at Stanford.
 
@@ -13982,7 +13982,7 @@ Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 p
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-10 (Tier 3 advanced metric) as Bedi et al.'s Stanford CRFM May 2025 paper.
 
@@ -13995,7 +13995,7 @@ Cited in TP.SN-10 (Tier 3 advanced metric) as Bedi et al.'s Stanford CRFM May 20
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper.
 
@@ -14008,7 +14008,7 @@ Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper.
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-12 (Evidence Linking Coverage) and TP.ASR-11 (ASR Confidence Exposure) as a representative vendor implementation of the span-to-source-segment provenance pattern. `Source-Type: disclosure` because the URL is a user-facing support article describing the feature, not an architectural specification — the metric stands on its own conceptual merits and the Abridge citation is an existence-proof for the pattern. (v3.9 round-2 review reframed the Source-row prose accordingly: TP.SN-12 cites it as "architectural pattern; representative vendor implementation" rather than implying it is the spec.)
 
@@ -14021,7 +14021,7 @@ Cited in TP.SN-12 (Evidence Linking Coverage) and TP.ASR-11 (ASR Confidence Expo
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.876 state-of-the-art figure. The i2b2 2012 challenge is a well-known clinical-NLP benchmark; published as Sun et al. or similar — exact citation to confirm at the Phase 2 follow-up review.
 
@@ -14034,7 +14034,7 @@ Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.8
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, and in TP.SN-21 (medication event classification) referencing the 2018 n2c2 shared task specifically. Multi-year benchmark series; the catalogue handle covers all year-shared-tasks generically with year-specific qualification given inline.
 
@@ -14048,7 +14048,7 @@ Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/summarisation-nlp.md`
+- **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-24 (Stigmatising Language Rate) as the canonical paper documenting stigmatising-language patterns in the EHR. The taxonomy previously cited a "Barcelona-JAMA-Network-Open-2025" handle with a "Black patients 2.54× odds of negative descriptors" parenthetical; v3.9 round-2 review found the 2.54× number is not in this paper (the Himmelstein paper documents stigmatising-language patterns without that specific odds-ratio claim), so the parenthetical has been dropped and the handle re-anchored to the actual paper.
 
@@ -14061,7 +14061,7 @@ Cited in TP.SN-24 (Stigmatising Language Rate) as the canonical paper documentin
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 Cited in TP.CC-2 (SNOMED CT Concept Mapping Accuracy) as one of three references underwriting the SNOMED-mapping methodology. Specific publication to confirm at the Phase 2 follow-up review.
 
@@ -14074,7 +14074,7 @@ Cited in TP.CC-2 (SNOMED CT Concept Mapping Accuracy) as one of three references
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type: disclosure` because it's a vendor product disclosure rather than an academic publication.
 
@@ -14087,7 +14087,7 @@ Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 Cited in TP.CC-2 as benchmark reference for medical-concept annotation. MedCAT is a well-known King's-College-London / South London & Maudsley NHS-backed clinical-NLP toolkit; specific benchmark paper to confirm at the Phase 2 follow-up review.
 
@@ -14100,7 +14100,7 @@ Cited in TP.CC-2 as benchmark reference for medical-concept annotation. MedCAT i
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 Yu (Zyter|TruCare) Hybrid-Code v2 — neuro-symbolic clinical-coding verification with automated knowledge-base expansion. Cited in TP.CC-3 (ICD coding accuracy) and TP.CC-6 (verification metric). (v3.9 round-2 review renamed handle from `Hybrid-Code-v2-2025` because v2 was published March 2026, not 2025.)
 
@@ -14113,7 +14113,7 @@ Yu (Zyter|TruCare) Hybrid-Code v2 — neuro-symbolic clinical-coding verificatio
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 WHO's authoritative ICD-11 portal. Cited in TP.CC-3 as the reference standard for diagnosis classification. URL is the canonical WHO ICD landing — confirm at follow-up that this is the right entry-point vs. the implementation-guidance specifically.
 
@@ -14126,7 +14126,7 @@ WHO's authoritative ICD-11 portal. Cited in TP.CC-3 as the reference standard fo
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 The NHS UK procedure-coding standard (OPCS-4 / OPCS-4.10). Cited in TP.CC-4 (OPCS-4 Procedure Coding Accuracy) as the reference standard. URL likely under digital.nhs.uk/services/terminology-and-classifications.
 
@@ -14139,7 +14139,7 @@ The NHS UK procedure-coding standard (OPCS-4 / OPCS-4.10). Cited in TP.CC-4 (OPC
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 The NHS UK medication-coding standard (dm+d). Cited in TP.CC-5 (dm+d Medication Coding Accuracy) as the reference standard. URL likely under nhsbsa.nhs.uk.
 
@@ -14152,7 +14152,7 @@ The NHS UK medication-coding standard (dm+d). Cited in TP.CC-5 (dm+d Medication 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`
+- **Cited-by:** `tp/clinical-coding.md`
 
 The npj Digital Medicine policy brief documenting AI-coding drift (3.0 → 4.1 diagnoses per encounter post-AVT). Cited in TP.CC-7 (Coding Drift Detection) as the load-bearing empirical reference. DOI extracted from the original Source row prose; confirm authors / exact title by reading the article.
 
@@ -14165,7 +14165,7 @@ The npj Digital Medicine policy brief documenting AI-coding drift (3.0 → 4.1 d
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/clinical-coding.md`, `part-a/epr-write-back.md`
+- **Cited-by:** `tp/clinical-coding.md`, `tp/downstream-write-back.md`
 
 The SNOMED CT clinical terminology, used as the reference standard in TP.CC-2 (SNOMED concept mapping) and TP.CC-9 (hierarchy-aware coding accuracy). UK Edition is the relevant variant for NHS deployment. URL options include snomed.org (international) or the NHS Digital SNOMED landing under digital.nhs.uk/services/terminology-and-classifications.
 
@@ -14178,7 +14178,7 @@ The SNOMED CT clinical terminology, used as the reference standard in TP.CC-2 (S
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/epr-write-back.md`
+- **Cited-by:** `tp/downstream-write-back.md`
 
 The openEHR Foundation specification suite for clinical-information modelling. Cited in TP.WB-7 (or whichever TP.WB metric covers archetype-based EPR integration) as the alternative-architecture reference standard alongside FHIR.
 
@@ -14191,7 +14191,7 @@ The openEHR Foundation specification suite for clinical-information modelling. C
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-a/epr-write-back.md`
+- **Cited-by:** `tp/downstream-write-back.md`
 
 The openEHR community-curated archetype library, used as the reference for archetype-validation work alongside [openEHR-Foundation]. URL is the canonical CKM landing.
 

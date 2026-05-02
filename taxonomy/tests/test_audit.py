@@ -30,7 +30,7 @@ def _make_metric(
     ref_id: str = "TP.AC-1",
     name: str = "Test Metric",
     tier: int = 1,
-    file: str = "part-a/audio-capture.md",
+    file: str = "tp/audio-capture.md",
     line: int = 1,
     dimensions: dict | None = None,
     body: str = "",
@@ -60,20 +60,20 @@ class TestCheckPrefixes:
         monkeypatch.setattr(
             audit,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
+            {"tp/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
         )
-        m = _make_metric(ref_id="TP.AC-1", file="part-a/audio-capture.md")
-        findings = audit.check_prefixes({"part-a/audio-capture.md": [m]})
+        m = _make_metric(ref_id="TP.AC-1", file="tp/audio-capture.md")
+        findings = audit.check_prefixes({"tp/audio-capture.md": [m]})
         assert findings == []
 
     def test_fail(self, monkeypatch):
         monkeypatch.setattr(
             audit,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
+            {"tp/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
         )
-        m = _make_metric(ref_id="GV.PD-1", file="part-a/audio-capture.md")
-        findings = audit.check_prefixes({"part-a/audio-capture.md": [m]})
+        m = _make_metric(ref_id="GV.PD-1", file="tp/audio-capture.md")
+        findings = audit.check_prefixes({"tp/audio-capture.md": [m]})
         assert len(findings) == 1
         assert findings[0].category == "prefix-mismatch"
         assert findings[0].severity == "ERROR"
@@ -91,14 +91,14 @@ class TestCheckNumbering:
         monkeypatch.setattr(
             audit,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
+            {"tp/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
         )
         ms = [
-            _make_metric(ref_id="TP.AC-1", file="part-a/audio-capture.md"),
-            _make_metric(ref_id="TP.AC-2", file="part-a/audio-capture.md"),
-            _make_metric(ref_id="TP.AC-3", file="part-a/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-1", file="tp/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-2", file="tp/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-3", file="tp/audio-capture.md"),
         ]
-        findings = audit.check_numbering({"part-a/audio-capture.md": ms})
+        findings = audit.check_numbering({"tp/audio-capture.md": ms})
         assert "numbering-gap" not in _categories(findings)
 
     def test_fail_with_gap(self, monkeypatch, tmp_path):
@@ -106,15 +106,15 @@ class TestCheckNumbering:
         monkeypatch.setattr(
             audit,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
+            {"tp/audio-capture.md": {"prefix": "TP.AC", "label": "Audio"}},
         )
         # 1, 2, 4 — gap at 3 with no retired-ids file present
         ms = [
-            _make_metric(ref_id="TP.AC-1", file="part-a/audio-capture.md"),
-            _make_metric(ref_id="TP.AC-2", file="part-a/audio-capture.md"),
-            _make_metric(ref_id="TP.AC-4", file="part-a/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-1", file="tp/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-2", file="tp/audio-capture.md"),
+            _make_metric(ref_id="TP.AC-4", file="tp/audio-capture.md"),
         ]
-        findings = audit.check_numbering({"part-a/audio-capture.md": ms})
+        findings = audit.check_numbering({"tp/audio-capture.md": ms})
         assert "numbering-gap" in _categories(findings)
 
 

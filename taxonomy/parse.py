@@ -36,8 +36,26 @@ def ref_id_to_anchor(ref_id: str) -> str:
 # Human-readable part names. Single source of truth — both build.py (for the
 # CSV / JSON downloads) and build_site.py (for the rendered Part eyebrow on
 # group pages) consume this.
-PART_NAMES: dict[str, str] = {
-    "A": "The Technical Pipeline",
+# v4.0 cluster-code naming. The two-letter prefix on every ref-ID is the
+# canonical cluster identifier (TP / PI / HL / IO / GV / ES). v4.0 retires
+# the old Part-letter scheme (A–F) and uses cluster codes throughout. The
+# v4.0 Phase 0 pilot migrates one cluster at a time; until the pilot
+# completes, GROUP_FILES rows for non-pilot clusters carry the old letter
+# and CLUSTER_NAMES keeps both the legacy letters and the new cluster codes
+# so Metric.part_name resolves correctly during the migration. Phase 1
+# strips legacy letters as each cluster migrates; Phase 5 drops them all.
+CLUSTER_ORDER: list[str] = ["TP", "PI", "HL", "IO", "GV", "ES"]
+
+CLUSTER_NAMES: dict[str, str] = {
+    "TP": "The Technical Pipeline",
+    "PI": "Pipeline Interactions",
+    "HL": "The Human Layer",
+    "IO": "Impact & Outcomes",
+    "GV": "System Governance",
+    "ES": "Evaluation Science",
+    # Legacy Part-letter keys retained during the v4.0 Phase 0 pilot so
+    # non-migrated clusters' Metric.part_name lookups still work. Removed
+    # cluster-by-cluster in Phase 1; all gone by Phase 5.
     "B": "Pipeline Interactions",
     "C": "The Human Layer",
     "D": "Impact & Outcomes",
@@ -45,33 +63,38 @@ PART_NAMES: dict[str, str] = {
     "F": "Evaluation Science",
 }
 
+# Backwards-compatibility alias — pre-v4.0 code may still reference
+# PART_NAMES. Renamed to CLUSTER_NAMES in v4.0 Phase 0; alias dropped at
+# Phase 5 release wrap.
+PART_NAMES = CLUSTER_NAMES
+
 
 GROUP_FILES: dict[str, dict[str, str]] = {
-    "part-a/audio-capture.md": {
+    "tp/audio-capture.md": {
         "prefix": "TP.AC",
-        "part": "A",
+        "part": "TP",
         "group": "Audio Capture & Environment",
     },
-    "part-a/asr-transcription.md": {
+    "tp/asr-transcription.md": {
         "prefix": "TP.ASR",
-        "part": "A",
+        "part": "TP",
         "group": "ASR / Transcription",
     },
-    "part-a/diarisation.md": {"prefix": "TP.DI", "part": "A", "group": "Diarisation"},
-    "part-a/summarisation-nlp.md": {
+    "tp/diarisation.md": {"prefix": "TP.DI", "part": "TP", "group": "Diarisation"},
+    "tp/summarisation-nlp.md": {
         "prefix": "TP.SN",
-        "part": "A",
+        "part": "TP",
         "group": "Summarisation / NLP",
     },
-    "part-a/clinical-coding.md": {
+    "tp/clinical-coding.md": {
         "prefix": "TP.CC",
-        "part": "A",
+        "part": "TP",
         "group": "Clinical Coding",
     },
-    "part-a/epr-write-back.md": {
+    "tp/downstream-write-back.md": {
         "prefix": "TP.WB",
-        "part": "A",
-        "group": "EPR Write-back",
+        "part": "TP",
+        "group": "Downstream Write-back",
     },
     "part-b/partial-pipeline.md": {
         "prefix": "PI.PP",

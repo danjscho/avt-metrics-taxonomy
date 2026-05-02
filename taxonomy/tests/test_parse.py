@@ -216,24 +216,24 @@ class TestPopulateCitedBy:
         (tmp_path / "_references.md").write_text(
             "### DCB0129\n\n- **Title:** X\n- **Cited-by:** _(auto-generated)_\n"
         )
-        # GROUP_FILES uses keys like "part-a/audio-capture.md"; we need at least
+        # GROUP_FILES uses keys like "tp/audio-capture.md"; we need at least
         # one file in that shape that contains a [DCB0129] citation.
         # Build a minimal GROUP_FILES override.
-        (tmp_path / "part-a").mkdir()
-        (tmp_path / "part-a" / "audio-capture.md").write_text(
+        (tmp_path / "tp").mkdir()
+        (tmp_path / "tp" / "audio-capture.md").write_text(
             "## Audio capture\n\nUses [DCB0129] for the safety case."
         )
         monkeypatch.setattr(parse, "ROOT", tmp_path)
         monkeypatch.setattr(
             parse,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"part": "A", "group": "Audio capture"}},
+            {"tp/audio-capture.md": {"part": "A", "group": "Audio capture"}},
         )
 
         text = "### DCB0129\n\n- **Title:** X\n- **Cited-by:** _(auto-generated)_\n"
         result = parse.populate_cited_by(text)
         assert "_(auto-generated)_" not in result
-        assert "part-a/audio-capture.md" in result
+        assert "tp/audio-capture.md" in result
 
     def test_no_citations_emits_explicit_marker(self, tmp_path, monkeypatch):
         (tmp_path / "_references.md").write_text(
@@ -254,8 +254,8 @@ class TestPopulateCitedBy:
 
 class TestBuildCitedBy:
     def test_walks_group_files_and_cross_cutting(self, tmp_path, monkeypatch):
-        (tmp_path / "part-a").mkdir()
-        (tmp_path / "part-a" / "audio-capture.md").write_text(
+        (tmp_path / "tp").mkdir()
+        (tmp_path / "tp" / "audio-capture.md").write_text(
             "Uses [DCB0129] and [UK-GDPR]."
         )
         (tmp_path / "_standards-mapping.md").write_text("Refs [UK-GDPR].")
@@ -263,13 +263,13 @@ class TestBuildCitedBy:
         monkeypatch.setattr(
             parse,
             "GROUP_FILES",
-            {"part-a/audio-capture.md": {"part": "A", "group": "Audio capture"}},
+            {"tp/audio-capture.md": {"part": "A", "group": "Audio capture"}},
         )
 
         cited = parse.build_cited_by()
         assert set(cited.keys()) == {"DCB0129", "UK-GDPR"}
-        assert cited["DCB0129"] == ["part-a/audio-capture.md"]
-        assert cited["UK-GDPR"] == ["_standards-mapping.md", "part-a/audio-capture.md"]
+        assert cited["DCB0129"] == ["tp/audio-capture.md"]
+        assert cited["UK-GDPR"] == ["_standards-mapping.md", "tp/audio-capture.md"]
 
     def test_excludes_references_md_self_citations(self, tmp_path, monkeypatch):
         # _references.md is the catalogue itself; its intra-catalogue cross-refs

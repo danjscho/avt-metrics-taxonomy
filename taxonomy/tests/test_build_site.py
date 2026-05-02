@@ -182,7 +182,7 @@ class TestLinkTier1Quickref:
             tier=1,
             part="A",
             group="Summarisation",
-            group_file="part-a/summarisation-nlp.md",
+            group_file="tp/summarisation-nlp.md",
             heading_line=1,
         )
         monkeypatch.setattr(
@@ -193,7 +193,7 @@ class TestLinkTier1Quickref:
         # SRC_GROUP_FILE_TO_PAGE needs to know where summarisation-nlp lives
         monkeypatch.setitem(
             build_site.SRC_GROUP_FILE_TO_PAGE,
-            "part-a/summarisation-nlp.md",
+            "tp/summarisation-nlp.md",
             "groups/summarisation-nlp.md",
         )
 
@@ -211,7 +211,7 @@ class TestLinkTier1Quickref:
             tier=2,
             part="A",
             group="Summarisation",
-            group_file="part-a/summarisation-nlp.md",
+            group_file="tp/summarisation-nlp.md",
             heading_line=1,
         )
         monkeypatch.setattr(
@@ -233,7 +233,7 @@ class TestLinkTier1Quickref:
             tier=1,
             part="A",
             group="Summarisation",
-            group_file="part-a/summarisation-nlp.md",
+            group_file="tp/summarisation-nlp.md",
             heading_line=1,
         )
         monkeypatch.setattr(
@@ -243,7 +243,7 @@ class TestLinkTier1Quickref:
         )
         monkeypatch.setitem(
             build_site.SRC_GROUP_FILE_TO_PAGE,
-            "part-a/summarisation-nlp.md",
+            "tp/summarisation-nlp.md",
             "groups/summarisation-nlp.md",
         )
         text = "- 🔄 **Hallucination Rate** ⚠️ - underspecified"
