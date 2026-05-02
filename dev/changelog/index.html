@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v3.9.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -674,7 +674,7 @@
   <span class="md-ellipsis">
     
   
-    A - Technical Pipeline
+    TP - Technical Pipeline
   
 
     
@@ -690,7 +690,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    A - Technical Pipeline
+    TP - Technical Pipeline
   
 
           </label>
@@ -843,14 +843,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../groups/epr-write-back/" class="md-nav__link">
+      <a href="../groups/downstream-write-back/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    EPR Write-back
+    Downstream Write-back
   
 
     
@@ -908,7 +908,7 @@
   <span class="md-ellipsis">
     
   
-    B - Pipeline Interactions
+    PI - Pipeline Interactions
   
 
     
@@ -924,7 +924,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    B - Pipeline Interactions
+    PI - Pipeline Interactions
   
 
           </label>
@@ -1028,7 +1028,7 @@
   <span class="md-ellipsis">
     
   
-    C - The Human Layer
+    HL - The Human Layer
   
 
     
@@ -1044,7 +1044,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    C - The Human Layer
+    HL - The Human Layer
   
 
           </label>
@@ -1122,7 +1122,7 @@
   <span class="md-ellipsis">
     
   
-    D - Impact & Outcomes
+    IO - Impact & Outcomes
   
 
     
@@ -1138,7 +1138,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    D - Impact & Outcomes
+    IO - Impact & Outcomes
   
 
           </label>
@@ -1256,7 +1256,7 @@
   <span class="md-ellipsis">
     
   
-    E - System Governance
+    GV - System Governance
   
 
     
@@ -1272,7 +1272,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    E - System Governance
+    GV - System Governance
   
 
           </label>
@@ -1544,7 +1544,7 @@
   <span class="md-ellipsis">
     
   
-    F - Evaluation Science
+    ES - Evaluation Science
   
 
     
@@ -1560,7 +1560,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    F - Evaluation Science
+    ES - Evaluation Science
   
 
           </label>
@@ -3265,6 +3265,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v400-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.0.0 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v391-2026-05-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4253,6 +4264,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v400-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.0.0 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v391-2026-05-02" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5219,6 +5241,78 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v400-2026-05-02">v4.0.0 (2026-05-02)<a class="headerlink" href="#v400-2026-05-02" title="Permanent link">&para;</a></h2>
+<p><strong>Major release: cluster-code naming throughout. Breaking changes.</strong></p>
+<p>v4.0 retires the v3.x <strong>Part-letter scheme (A–F)</strong> in favour of the
+<strong>two-letter cluster code</strong> (TP / PI / HL / IO / GV / ES) that's already
+the canonical identifier on every ref-ID. The Part-letter was a holdover
+from when the taxonomy was a single monolithic file that needed top-level
+sequencing; once ref-IDs were introduced, the Part letter became
+redundant. Every external surface (folder structure, file paths, prose
+references, CSV/JSON downloads, site nav) now uses cluster codes.</p>
+<p><strong>Breaking changes (consumers update once):</strong></p>
+<ul>
+<li><strong><code>dist/metrics.csv</code></strong> — column 5 / 6 renamed from <code>part</code> / <code>part_name</code>
+  → <code>cluster</code> / <code>cluster_name</code>. Values changed: <code>A</code>/<code>B</code>/<code>C</code>/<code>D</code>/<code>E</code>/<code>F</code>
+  → <code>TP</code>/<code>PI</code>/<code>HL</code>/<code>IO</code>/<code>GV</code>/<code>ES</code>. Mapping: A→TP, B→PI, C→HL, D→IO,
+  E→GV, F→ES.</li>
+<li><strong><code>dist/metrics.json</code></strong> — same field renames as CSV; same value changes
+  in the per-metric <code>cluster</code> field.</li>
+<li><strong>Folder structure</strong> — <code>taxonomy/part-a/</code> through <code>taxonomy/part-f/</code>
+  renamed to <code>taxonomy/tp/</code> through <code>taxonomy/es/</code>. Affects anyone with
+  local clones holding work-in-progress against the old paths.</li>
+<li><strong>Site nav headings</strong> — <code>A - Technical Pipeline</code> → <code>TP - Technical
+  Pipeline</code>, etc. Reader-visible change in the left-hand nav.</li>
+</ul>
+<p><strong>No backwards-compat shim</strong> in CSV/JSON; this is the major-version
+break and consumers update once. <code>Metric.part</code> / <code>Metric.part_name</code>
+attribute aliases retained on the Python <code>Metric</code> dataclass for v4.x
+ecosystem code (flagged for removal in v4.1).</p>
+<p><strong>Companion rename: "EPR Write-back" → "Downstream Write-back".</strong> The
+TP.WB group is renamed to reflect that write-back targets are not
+limited to full EPRs (they include GP clinical systems, e-prescribing
+systems, order-management, referral systems, FHIR endpoints, openEHR
+repositories, patient portals). The file basename also moved
+<code>taxonomy/tp/epr-write-back.md</code> → <code>taxonomy/tp/downstream-write-back.md</code>;
+the <code>mkdocs-redirects</code> plugin preserves the old <code>/groups/epr-write-back/</code>
+URL via a 301 redirect.</p>
+<p><strong>Highlights of what landed:</strong></p>
+<ul>
+<li><strong>Folder rename</strong> in 3 commits: TP cluster pilot (Phase 0); PI/HL/IO
+  sweep (Phase 1a); GV/ES sweep (Phase 1b). One commit per cluster
+  group makes <code>git log --follow taxonomy/tp/audio-capture.md</code> reliable
+  through the rename.</li>
+<li><strong><code>parse.CLUSTER_NAMES</code> + <code>CLUSTER_ORDER</code></strong> replace the v3.x
+  <code>PART_NAMES</code> constant. Inner <code>GROUP_FILES</code> key renamed <code>"part"</code> →
+  <code>"cluster"</code>.</li>
+<li><strong><code>Metric.cluster</code></strong> field replaces <code>Metric.part</code>. New
+  <code>Metric.cluster_name</code> property (was <code>Metric.part_name</code>). Both
+  <code>part</code> and <code>part_name</code> retained as backwards-compat properties on
+  the dataclass; flagged for removal in v4.1.</li>
+<li><strong>28 prose substitutions</strong> across <code>_outcomes-boundary.md</code>,
+  <code>_contents.md</code>, <code>_applicability.md</code>, <code>_standards-mapping.md</code>. The
+  <code>_responsible-ai-lens.md</code> doc-internal "Part A / B / C / D" sub-section
+  labels (DSIT Playbook / Themes / Coverage Matrix / Gaps) renamed to
+  direct content names to avoid confusion with the retired cluster Part
+  scheme.</li>
+<li><strong><code>audit.check_no_part_letter_prose</code></strong> — new audit check enforcing
+  no <code>Part [A-F]\b</code> matches in non-archive source files. CHANGELOG.md,
+  plan-v4.0.md, and plan-future.md are skipped (they describe the
+  migration itself).</li>
+<li><strong><code>mkdocs-redirects</code> plugin</strong> added to handle the EPR → Downstream
+  filename change. <code>redirect_maps</code> entry preserves the old URL.</li>
+<li><strong>Site nav updated</strong>: cluster headings in <code>mkdocs.yml</code> use cluster
+  codes (<code>TP - Technical Pipeline</code>, <code>PI - Pipeline Interactions</code>, etc.).</li>
+<li><strong>88-test pytest suite</strong> carried through every Phase: each commit
+  passed <code>pytest &amp;&amp; audit &amp;&amp; build &amp;&amp; build_site &amp;&amp; mkdocs build
+  --strict</code> before being staged. Test fixtures updated for the new
+  paths in Phase 0 and Phase 3.</li>
+<li><strong>No metric content changes. No tier shifts. No new metrics.</strong>
+  Counts unchanged at 218 / 43-96-79 / 32-of-42 tightened.</li>
+</ul>
+<p><strong>Pre-v4.0 archive content</strong> in <code>archive/plan-*.md</code> and
+<code>archive/v*-*.md</code> retains the original Part-letter wording — those are
+historical artefacts, deliberately frozen.</p>
 <h2 id="v391-2026-05-02">v3.9.1 (2026-05-02)<a class="headerlink" href="#v391-2026-05-02" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: code test suite (pytest).</strong></p>
 <p>The repo had grown from ~v3.7 thin assembly to ~1,500 lines across <code>parse.py</code> / <code>build.py</code> / <code>build_site.py</code> / <code>audit.py</code> / <code>tools/snapshot.py</code> with 13 audit checks plus the v3.9 references catalogue parser, cited-by walker, handle resolver, and slug helper. Until v3.9.1, the only safety net was the integration check (does <code>audit.py</code> run cleanly + does the build produce a clean site?), which catches <em>whether something broke</em> but not <em>what</em>. The v3.9 round-2 / FILLED reviews reminded us why per-function tests pay off — wrong DOIs, phantom catalogue entries, and unresolved handles that per-function tests would have caught immediately.</p>

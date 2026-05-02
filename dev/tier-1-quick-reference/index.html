@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v3.9.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -734,7 +734,7 @@
   <span class="md-ellipsis">
     
   
-    A - Technical Pipeline
+    TP - Technical Pipeline
   
 
     
@@ -750,7 +750,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    A - Technical Pipeline
+    TP - Technical Pipeline
   
 
           </label>
@@ -903,14 +903,14 @@
   
   
     <li class="md-nav__item">
-      <a href="../groups/epr-write-back/" class="md-nav__link">
+      <a href="../groups/downstream-write-back/" class="md-nav__link">
         
   
   
   <span class="md-ellipsis">
     
   
-    EPR Write-back
+    Downstream Write-back
   
 
     
@@ -968,7 +968,7 @@
   <span class="md-ellipsis">
     
   
-    B - Pipeline Interactions
+    PI - Pipeline Interactions
   
 
     
@@ -984,7 +984,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    B - Pipeline Interactions
+    PI - Pipeline Interactions
   
 
           </label>
@@ -1088,7 +1088,7 @@
   <span class="md-ellipsis">
     
   
-    C - The Human Layer
+    HL - The Human Layer
   
 
     
@@ -1104,7 +1104,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    C - The Human Layer
+    HL - The Human Layer
   
 
           </label>
@@ -1182,7 +1182,7 @@
   <span class="md-ellipsis">
     
   
-    D - Impact & Outcomes
+    IO - Impact & Outcomes
   
 
     
@@ -1198,7 +1198,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    D - Impact & Outcomes
+    IO - Impact & Outcomes
   
 
           </label>
@@ -1316,7 +1316,7 @@
   <span class="md-ellipsis">
     
   
-    E - System Governance
+    GV - System Governance
   
 
     
@@ -1332,7 +1332,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    E - System Governance
+    GV - System Governance
   
 
           </label>
@@ -1604,7 +1604,7 @@
   <span class="md-ellipsis">
     
   
-    F - Evaluation Science
+    ES - Evaluation Science
   
 
     
@@ -1620,7 +1620,7 @@
             <span class="md-nav__icon md-icon"></span>
             
   
-    F - Evaluation Science
+    ES - Evaluation Science
   
 
           </label>
@@ -3379,10 +3379,10 @@
 <li>🔄 <a href="../groups/summarisation-nlp/#tp-sn-6"><code>TP.SN-6</code> <strong>Omission Rate</strong></a> - Arguably more dangerous than hallucination because omissions are invisible to the reviewer. Must be included in periodic clinical note audit alongside hallucination rate.</li>
 <li>🔄 <a href="../groups/summarisation-nlp/#tp-sn-15"><code>TP.SN-15</code> <strong>Negation Handling Accuracy</strong></a> - Safety-critical and well-documented LLM failure mode. Should be tested pre-deployment and periodically re-audited. Negation errors directly cause clinical harm.</li>
 <li>🔄 <a href="../groups/summarisation-nlp/#tp-sn-20"><code>TP.SN-20</code> <strong>Uncertainty Marker Preservation</strong></a> - Safety-critical: certainty inflation creates false diagnostic confidence in the record. Should be tested with adversarial cases as part of pre-deployment and periodic audit.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a> - Highest-priority pre-deployment gate. A hallucinated allergy written to the EPR allergy field is a system-level safety failure that propagates to every future clinical decision. Must test per EPR system before go-live.</li>
-<li>📡 <a href="../groups/epr-write-back/#tp-wb-2"><code>TP.WB-2</code> <strong>Integration Error Rate</strong></a> - Standard integration monitoring. Automated, low-burden, and catches data pipeline failures that directly affect patient records.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-3"><code>TP.WB-3</code> <strong>Field Mapping Accuracy</strong></a> - Safety-critical pre-deployment test. Wrong-field placement of safety-critical content (allergies, medications) bypasses downstream safety mechanisms entirely.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-4"><code>TP.WB-4</code> <strong>Update vs Append Behaviour</strong></a> - Safety-critical pre-deployment test. Must be tested per EPR system before go-live. Overwriting existing safety-critical data is a patient safety event.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a> - Highest-priority pre-deployment gate. A hallucinated allergy written to the EPR allergy field is a system-level safety failure that propagates to every future clinical decision. Must test per EPR system before go-live.</li>
+<li>📡 <a href="../groups/downstream-write-back/#tp-wb-2"><code>TP.WB-2</code> <strong>Integration Error Rate</strong></a> - Standard integration monitoring. Automated, low-burden, and catches data pipeline failures that directly affect patient records.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-3"><code>TP.WB-3</code> <strong>Field Mapping Accuracy</strong></a> - Safety-critical pre-deployment test. Wrong-field placement of safety-critical content (allergies, medications) bypasses downstream safety mechanisms entirely.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-4"><code>TP.WB-4</code> <strong>Update vs Append Behaviour</strong></a> - Safety-critical pre-deployment test. Must be tested per EPR system before go-live. Overwriting existing safety-critical data is a patient safety event.</li>
 <li>📡 <a href="../groups/human-factors-workflow/#hl-hf-1"><code>HL.HF-1</code> <strong>Edit Rate (% Notes Edited)</strong></a> - Primary continuous complacency indicator. Deployer-measurable from EPR workflow data. NAS Day Zero SPI. The single most important human factors metric - trajectory reveals automation bias before incidents occur.</li>
 <li>📡 <a href="../groups/human-factors-workflow/#hl-hf-3a"><code>HL.HF-3a</code> <strong>Review-Before-Signing Rate</strong></a> - NAS Day Zero SPI with ≥95% threshold and &lt;85% pause trigger. Deployer-measurable from EPR workflow telemetry. Directly monitors whether human oversight is functioning.</li>
 <li>📡 <a href="../groups/human-factors-workflow/#hl-hf-3b"><code>HL.HF-3b</code> <strong>Time-to-Sign Distribution</strong></a> - Deployer-measurable from EPR data. The tail of very-fast approvals (&lt;5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns.</li>
@@ -3420,10 +3420,10 @@
 <li>🔄 <a href="../groups/summarisation-nlp/#tp-sn-15"><code>TP.SN-15</code> <strong>Negation Handling Accuracy</strong></a> - Safety-critical and well-documented LLM failure mode. Should be tested pre-deployment and periodically re-audited. Negation errors directly cause clinical harm.</li>
 <li>🔄 <a href="../groups/summarisation-nlp/#tp-sn-20"><code>TP.SN-20</code> <strong>Uncertainty Marker Preservation</strong></a> - Safety-critical: certainty inflation creates false diagnostic confidence in the record. Should be tested with adversarial cases as part of pre-deployment and periodic audit.</li>
 <li>📡 <a href="../groups/clinical-coding/#tp-cc-6"><code>TP.CC-6</code> <strong>Code Hallucination Rate</strong></a> - Zero-tolerance metric. Any non-zero rate indicates architectural failure in generation constraints. Vendor must demonstrate 0% pre-deployment and maintain continuous monitoring. A vendor who cannot achieve zero has unconstrained code generation, which is a procurement red flag.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a> - Highest-priority pre-deployment gate. A hallucinated allergy written to the EPR allergy field is a system-level safety failure that propagates to every future clinical decision. Must test per EPR system before go-live.</li>
-<li>📡 <a href="../groups/epr-write-back/#tp-wb-2"><code>TP.WB-2</code> <strong>Integration Error Rate</strong></a> - Standard integration monitoring. Automated, low-burden, and catches data pipeline failures that directly affect patient records.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-3"><code>TP.WB-3</code> <strong>Field Mapping Accuracy</strong></a> - Safety-critical pre-deployment test. Wrong-field placement of safety-critical content (allergies, medications) bypasses downstream safety mechanisms entirely.</li>
-<li>🚪 <a href="../groups/epr-write-back/#tp-wb-4"><code>TP.WB-4</code> <strong>Update vs Append Behaviour</strong></a> - Safety-critical pre-deployment test. Must be tested per EPR system before go-live. Overwriting existing safety-critical data is a patient safety event.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a> - Highest-priority pre-deployment gate. A hallucinated allergy written to the EPR allergy field is a system-level safety failure that propagates to every future clinical decision. Must test per EPR system before go-live.</li>
+<li>📡 <a href="../groups/downstream-write-back/#tp-wb-2"><code>TP.WB-2</code> <strong>Integration Error Rate</strong></a> - Standard integration monitoring. Automated, low-burden, and catches data pipeline failures that directly affect patient records.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-3"><code>TP.WB-3</code> <strong>Field Mapping Accuracy</strong></a> - Safety-critical pre-deployment test. Wrong-field placement of safety-critical content (allergies, medications) bypasses downstream safety mechanisms entirely.</li>
+<li>🚪 <a href="../groups/downstream-write-back/#tp-wb-4"><code>TP.WB-4</code> <strong>Update vs Append Behaviour</strong></a> - Safety-critical pre-deployment test. Must be tested per EPR system before go-live. Overwriting existing safety-critical data is a patient safety event.</li>
 <li>📡 <a href="../groups/safety-governance/#gv-sg-1"><code>GV.SG-1</code> <strong>Model Version Tracking</strong></a> - Foundation for all continuous assurance. Without knowing which model version produced which output, no performance change is interpretable. Must be contractually required.</li>
 <li>📡 <a href="../groups/operational/#gv-op-5"><code>GV.OP-5</code> <strong>System Availability / Uptime</strong></a> - Standard SLA monitoring. NAS Day Zero SPI (≥99.5%). Automated, zero-burden continuous metric.</li>
 <li>📡 <a href="../groups/privacy-data-governance/#gv-pd-1"><code>GV.PD-1</code> <strong>Audio Retention Compliance</strong></a> - UK GDPR storage limitation requirement. Non-compliance is a regulatory breach. Deployer must verify vendor retention practices align with DPIA.</li>
