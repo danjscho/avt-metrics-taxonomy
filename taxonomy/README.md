@@ -69,29 +69,31 @@ taxonomy/
   _summary.md                   # By priority tier, by maturity
   _tier-1-quick-reference.md    # All Tier 1 metrics organised by responsible actor
   _contents.md                  # Table of contents
-  part-a/                       # The Technical Pipeline
+  tp/                           # Technical Pipeline
     audio-capture.md
     asr-transcription.md
     diarisation.md
     summarisation-nlp.md
     clinical-coding.md
-    epr-write-back.md
-  part-b/                       # Pipeline Interactions
+    downstream-write-back.md
+  pi/                           # Pipeline Interactions
     partial-pipeline.md
     end-to-end-pipeline.md
-  part-c/                       # The Human Layer
+  hl/                           # The Human Layer
     human-factors-workflow.md
-  part-d/                       # Impact & Outcomes
+  io/                           # Impact & Outcomes
     patient-experience.md
     fairness-equity.md
-  part-e/                       # System Governance
+  gv/                           # System Governance
     safety-governance.md
+    nhs-compliance-regulatory.md
     security-adversarial-robustness.md
     privacy-data-governance.md
     operational.md
+    environmental-sustainability.md
     training-competency.md
     vendor-transparency-contractual.md
-  part-f/                       # Evaluation Science
+  es/                           # Evaluation Science
     meta-evaluation.md
   build.py
   README.md

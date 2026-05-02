@@ -18,53 +18,53 @@ ROOT = pathlib.Path(__file__).parent
 # Part directory -> expected reference-ID prefix(es) used by metrics in that dir.
 # Prefixes are observed from actual source; any mismatch is a violation.
 GROUP_FILES = {
-    "part-a/audio-capture.md": {
+    "tp/audio-capture.md": {
         "prefix": "TP.AC",
         "label": "Audio Capture & Environment",
     },
-    "part-a/asr-transcription.md": {"prefix": "TP.ASR", "label": "ASR / Transcription"},
-    "part-a/diarisation.md": {"prefix": "TP.DI", "label": "Diarisation"},
-    "part-a/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
-    "part-a/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
-    "part-a/epr-write-back.md": {"prefix": "TP.WB", "label": "EPR Write-back"},
-    "part-b/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
-    "part-b/end-to-end-pipeline.md": {
+    "tp/asr-transcription.md": {"prefix": "TP.ASR", "label": "ASR / Transcription"},
+    "tp/diarisation.md": {"prefix": "TP.DI", "label": "Diarisation"},
+    "tp/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
+    "tp/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
+    "tp/downstream-write-back.md": {"prefix": "TP.WB", "label": "Downstream Write-back"},
+    "pi/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
+    "pi/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",
         "label": "End-to-End Pipeline",
     },
-    "part-c/human-factors-workflow.md": {
+    "hl/human-factors-workflow.md": {
         "prefix": "HL.HF",
         "label": "Human Factors & Workflow",
     },
-    "part-d/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
-    "part-d/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
-    "part-e/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
-    "part-e/nhs-compliance-regulatory.md": {
+    "io/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
+    "io/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
+    "gv/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
+    "gv/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",
         "label": "NHS Compliance & Regulatory",
     },
-    "part-e/security-adversarial-robustness.md": {
+    "gv/security-adversarial-robustness.md": {
         "prefix": "GV.SC",
         "label": "Security & Adversarial Robustness",
     },
-    "part-e/privacy-data-governance.md": {
+    "gv/privacy-data-governance.md": {
         "prefix": "GV.PD",
         "label": "Privacy & Data Governance",
     },
-    "part-e/operational.md": {"prefix": "GV.OP", "label": "Operational"},
-    "part-e/environmental-sustainability.md": {
+    "gv/operational.md": {"prefix": "GV.OP", "label": "Operational"},
+    "gv/environmental-sustainability.md": {
         "prefix": "GV.EN",
         "label": "Environmental & Sustainability",
     },
-    "part-e/training-competency.md": {
+    "gv/training-competency.md": {
         "prefix": "GV.TC",
         "label": "Training & Competency",
     },
-    "part-e/vendor-transparency-contractual.md": {
+    "gv/vendor-transparency-contractual.md": {
         "prefix": "GV.VT",
         "label": "Vendor Transparency & Contractual",
     },
-    "part-f/meta-evaluation.md": {"prefix": "ES.ME", "label": "Meta-Evaluation"},
+    "es/meta-evaluation.md": {"prefix": "ES.ME", "label": "Meta-Evaluation"},
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
@@ -927,9 +927,9 @@ def check_reference_handles_resolve() -> list[Finding]:
     # treated as ERRORs. Outside this set, unresolved handles are deferred
     # to later phases of the sweep.
     pilot_scope = {
-        "part-e/nhs-compliance-regulatory.md",  # GV.CR-4
-        "part-e/security-adversarial-robustness.md",  # GV.SC-12
-        "part-e/vendor-transparency-contractual.md",  # GV.VT-13, GV.VT-14
+        "gv/nhs-compliance-regulatory.md",  # GV.CR-4
+        "gv/security-adversarial-robustness.md",  # GV.SC-12
+        "gv/vendor-transparency-contractual.md",  # GV.VT-13, GV.VT-14
         "_standards-mapping.md",
         "_references.md",  # the catalogue's own cross-references
     }
@@ -1035,6 +1035,39 @@ def check_retrieved_date_format() -> list[Finding]:
     return findings
 
 
+def check_no_part_letter_prose() -> list[Finding]:
+    """v4.0 retired the Part-letter scheme (A-F) in favour of cluster
+    codes (TP/PI/HL/IO/GV/ES). Any `Part [A-F]\\b` match in non-archive
+    source files is a regression — flag as ERROR. Archive content is
+    deliberately frozen and not checked.
+    """
+    findings: list[Finding] = []
+    pattern = re.compile(r"\bPart [A-F]\b")
+    skip_dirs = {"archive", "site", "docs", "dist", ".venv", ".git", "node_modules", "__pycache__"}
+
+    for path in sorted(ROOT.parent.rglob("*.md")):
+        rel = path.relative_to(ROOT.parent)
+        # Skip files in excluded directories
+        if any(part in skip_dirs for part in rel.parts):
+            continue
+        # Skip files that describe the v3.x → v4.0 rename itself —
+        # they refer to Part X by necessity (historical / migration prose).
+        if rel.name in {"CHANGELOG.md", "plan-v4.0.md", "plan-future.md"}:
+            continue
+        text = path.read_text()
+        for match in pattern.finditer(text):
+            line_num = text[: match.start()].count("\n") + 1
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "v4-part-letter-prose",
+                    f"`{match.group(0)}` is the retired Part-letter scheme; use cluster code (TP/PI/HL/IO/GV/ES) instead",
+                    f"{rel}:{line_num}",
+                )
+            )
+    return findings
+
+
 def main() -> int:
     all_metrics: list[Metric] = []
     metrics_by_file: dict[str, list[Metric]] = {}
@@ -1061,6 +1094,7 @@ def main() -> int:
     findings.extend(check_reference_handles_resolve())
     findings.extend(check_archive_present())
     findings.extend(check_retrieved_date_format())
+    findings.extend(check_no_part_letter_prose())
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]

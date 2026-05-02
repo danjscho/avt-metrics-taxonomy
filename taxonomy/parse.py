@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v3.9.1"
+TAXONOMY_VERSION = "v4.0.0"
 TAXONOMY_DATE = "2026-05-02"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -33,110 +33,113 @@ def ref_id_to_anchor(ref_id: str) -> str:
     return ref_id.lower().replace(".", "-")
 
 
-# Human-readable part names. Single source of truth — both build.py (for the
-# CSV / JSON downloads) and build_site.py (for the rendered Part eyebrow on
-# group pages) consume this.
-PART_NAMES: dict[str, str] = {
-    "A": "The Technical Pipeline",
-    "B": "Pipeline Interactions",
-    "C": "The Human Layer",
-    "D": "Impact & Outcomes",
-    "E": "System Governance",
-    "F": "Evaluation Science",
+# Cluster naming. The two-letter prefix on every ref-ID is the canonical
+# cluster identifier (TP / PI / HL / IO / GV / ES). Single source of truth —
+# both build.py (for the CSV / JSON downloads) and build_site.py (for the
+# rendered cluster eyebrow on group pages) consume this. v4.0 retired the
+# v3.x Part-letter scheme (A–F).
+CLUSTER_ORDER: list[str] = ["TP", "PI", "HL", "IO", "GV", "ES"]
+
+CLUSTER_NAMES: dict[str, str] = {
+    "TP": "The Technical Pipeline",
+    "PI": "Pipeline Interactions",
+    "HL": "The Human Layer",
+    "IO": "Impact & Outcomes",
+    "GV": "System Governance",
+    "ES": "Evaluation Science",
 }
 
-
 GROUP_FILES: dict[str, dict[str, str]] = {
-    "part-a/audio-capture.md": {
+    "tp/audio-capture.md": {
         "prefix": "TP.AC",
-        "part": "A",
+        "cluster": "TP",
         "group": "Audio Capture & Environment",
     },
-    "part-a/asr-transcription.md": {
+    "tp/asr-transcription.md": {
         "prefix": "TP.ASR",
-        "part": "A",
+        "cluster": "TP",
         "group": "ASR / Transcription",
     },
-    "part-a/diarisation.md": {"prefix": "TP.DI", "part": "A", "group": "Diarisation"},
-    "part-a/summarisation-nlp.md": {
+    "tp/diarisation.md": {"prefix": "TP.DI", "cluster": "TP", "group": "Diarisation"},
+    "tp/summarisation-nlp.md": {
         "prefix": "TP.SN",
-        "part": "A",
+        "cluster": "TP",
         "group": "Summarisation / NLP",
     },
-    "part-a/clinical-coding.md": {
+    "tp/clinical-coding.md": {
         "prefix": "TP.CC",
-        "part": "A",
+        "cluster": "TP",
         "group": "Clinical Coding",
     },
-    "part-a/epr-write-back.md": {
+    "tp/downstream-write-back.md": {
         "prefix": "TP.WB",
-        "part": "A",
-        "group": "EPR Write-back",
+        "cluster": "TP",
+        "group": "Downstream Write-back",
     },
-    "part-b/partial-pipeline.md": {
+    "pi/partial-pipeline.md": {
         "prefix": "PI.PP",
-        "part": "B",
+        "cluster": "PI",
         "group": "Partial-Pipeline",
     },
-    "part-b/end-to-end-pipeline.md": {
+    "pi/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",
-        "part": "B",
+        "cluster": "PI",
         "group": "End-to-End Pipeline",
     },
-    "part-c/human-factors-workflow.md": {
+    "hl/human-factors-workflow.md": {
         "prefix": "HL.HF",
-        "part": "C",
+        "cluster": "HL",
         "group": "Human Factors & Workflow",
     },
-    "part-d/patient-experience.md": {
+    "io/patient-experience.md": {
         "prefix": "IO.PX",
-        "part": "D",
+        "cluster": "IO",
         "group": "Patient Experience",
     },
-    "part-d/fairness-equity.md": {
+    "io/fairness-equity.md": {
         "prefix": "IO.FE",
-        "part": "D",
+        "cluster": "IO",
         "group": "Fairness & Equity",
     },
-    "part-e/safety-governance.md": {
+    "gv/safety-governance.md": {
         "prefix": "GV.SG",
-        "part": "E",
+        "cluster": "GV",
         "group": "Safety & Governance",
     },
-    "part-e/nhs-compliance-regulatory.md": {
+    "gv/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",
-        "part": "E",
+        "cluster": "GV",
         "group": "NHS Compliance & Regulatory",
     },
-    "part-e/security-adversarial-robustness.md": {
+    "gv/security-adversarial-robustness.md": {
         "prefix": "GV.SC",
-        "part": "E",
+        "cluster": "GV",
         "group": "Security & Adversarial Robustness",
     },
-    "part-e/privacy-data-governance.md": {
+    "gv/privacy-data-governance.md": {
         "prefix": "GV.PD",
-        "part": "E",
+        "cluster": "GV",
         "group": "Privacy & Data Governance",
     },
-    "part-e/operational.md": {"prefix": "GV.OP", "part": "E", "group": "Operational"},
-    "part-e/environmental-sustainability.md": {
+    "gv/operational.md": {"prefix": "GV.OP", "cluster": "GV", "group": "Operational"},
+    "gv/environmental-sustainability.md": {
         "prefix": "GV.EN",
-        "part": "E",
+        "cluster": "GV",
         "group": "Environmental & Sustainability",
     },
-    "part-e/training-competency.md": {
+    "gv/training-competency.md": {
         "prefix": "GV.TC",
-        "part": "E",
+        "cluster": "GV",
         "group": "Training & Competency",
     },
-    "part-e/vendor-transparency-contractual.md": {
+    "gv/vendor-transparency-contractual.md": {
         "prefix": "GV.VT",
-        "part": "E",
+        "cluster": "GV",
         "group": "Vendor Transparency & Contractual",
     },
-    "part-f/meta-evaluation.md": {
+    "es/meta-evaluation.md": {
         "prefix": "ES.ME",
-        "part": "F",
+        "cluster": "ES",
         "group": "Meta-Evaluation",
     },
 }
@@ -161,9 +164,9 @@ class Metric:
     ref_id: str
     name: str
     tier: int  # 1 / 2 / 3
-    part: str  # A–F
+    cluster: str  # cluster code: TP / PI / HL / IO / GV / ES
     group: str  # human-readable group name
-    group_file: str  # relative path, e.g. "part-a/audio-capture.md"
+    group_file: str  # relative path, e.g. "tp/audio-capture.md"
     heading_line: int  # 1-indexed line number of `### ...` heading in group file
     dimensions: dict[str, str] = field(default_factory=dict)
     applicability: str | None = None  # populated by annotate_applicability()
@@ -173,8 +176,19 @@ class Metric:
         return {1: "🟢", 2: "🟡", 3: "🔵"}[self.tier]
 
     @property
+    def cluster_name(self) -> str:
+        return CLUSTER_NAMES.get(self.cluster, "")
+
+    # Backwards-compat aliases — pre-v4.0 callers used `metric.part` and
+    # `metric.part_name`. Renamed to `cluster` and `cluster_name` in v4.0
+    # Phase 3. Aliases retained until v4.1; flagged for removal there.
+    @property
+    def part(self) -> str:
+        return self.cluster
+
+    @property
     def part_name(self) -> str:
-        return PART_NAMES.get(self.part, "")
+        return self.cluster_name
 
     @property
     def tier_label(self) -> str:
@@ -258,7 +272,7 @@ def parse_group_file(rel_path: str) -> list[Metric]:
                 ref_id=ref_id,
                 name=name,
                 tier=tier,
-                part=info["part"],
+                cluster=info["cluster"],
                 group=info["group"],
                 group_file=rel_path,
                 heading_line=heading_line,

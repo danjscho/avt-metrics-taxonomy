@@ -7,12 +7,12 @@ This section is an explicit scope statement: what this taxonomy assures, what it
 The 215 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
 
 - **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
-- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (Part A — Summarisation / NLP)
-- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (Part C — Human Factors)
-- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (Part D — Fairness & Equity)
-- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (Part E — Safety & Governance)
-- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (Part E)
-- **Measurement quality** — is the evaluation methodology itself sound? (Part F — Meta-evaluation)
+- **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (TP — Summarisation / NLP)
+- **Clinician oversight** — do clinicians review, edit, and sign in ways that catch system errors? (HL — Human Factors)
+- **Equitable performance** — does the system work across demographic groups, accents, disabilities, and clinical settings? (IO — Fairness & Equity)
+- **Hazard identification and incident response** — are safety events detected, investigated, and learned from? (GV — Safety & Governance)
+- **Compliance and governance** — privacy, consent, data protection, regulatory classification, vendor transparency, training, business continuity. (GV)
+- **Measurement quality** — is the evaluation methodology itself sound? (ES — Meta-evaluation)
 
 These are **process, structure, and proximal-outcome measures**. They tell a deployer whether the system is *operating as specified* and whether the conditions for safe use are in place.
 

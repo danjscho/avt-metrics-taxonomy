@@ -1,5 +1,83 @@
 # Changelog
 
+## v4.0.0 (2026-05-02)
+
+**Major release: cluster-code naming throughout. Breaking changes.**
+
+v4.0 retires the v3.x **Part-letter scheme (A–F)** in favour of the
+**two-letter cluster code** (TP / PI / HL / IO / GV / ES) that's already
+the canonical identifier on every ref-ID. The Part-letter was a holdover
+from when the taxonomy was a single monolithic file that needed top-level
+sequencing; once ref-IDs were introduced, the Part letter became
+redundant. Every external surface (folder structure, file paths, prose
+references, CSV/JSON downloads, site nav) now uses cluster codes.
+
+**Breaking changes (consumers update once):**
+
+- **`dist/metrics.csv`** — column 5 / 6 renamed from `part` / `part_name`
+  → `cluster` / `cluster_name`. Values changed: `A`/`B`/`C`/`D`/`E`/`F`
+  → `TP`/`PI`/`HL`/`IO`/`GV`/`ES`. Mapping: A→TP, B→PI, C→HL, D→IO,
+  E→GV, F→ES.
+- **`dist/metrics.json`** — same field renames as CSV; same value changes
+  in the per-metric `cluster` field.
+- **Folder structure** — `taxonomy/part-a/` through `taxonomy/part-f/`
+  renamed to `taxonomy/tp/` through `taxonomy/es/`. Affects anyone with
+  local clones holding work-in-progress against the old paths.
+- **Site nav headings** — `A - Technical Pipeline` → `TP - Technical
+  Pipeline`, etc. Reader-visible change in the left-hand nav.
+
+**No backwards-compat shim** in CSV/JSON; this is the major-version
+break and consumers update once. `Metric.part` / `Metric.part_name`
+attribute aliases retained on the Python `Metric` dataclass for v4.x
+ecosystem code (flagged for removal in v4.1).
+
+**Companion rename: "EPR Write-back" → "Downstream Write-back".** The
+TP.WB group is renamed to reflect that write-back targets are not
+limited to full EPRs (they include GP clinical systems, e-prescribing
+systems, order-management, referral systems, FHIR endpoints, openEHR
+repositories, patient portals). The file basename also moved
+`taxonomy/tp/epr-write-back.md` → `taxonomy/tp/downstream-write-back.md`;
+the `mkdocs-redirects` plugin preserves the old `/groups/epr-write-back/`
+URL via a 301 redirect.
+
+**Highlights of what landed:**
+
+- **Folder rename** in 3 commits: TP cluster pilot (Phase 0); PI/HL/IO
+  sweep (Phase 1a); GV/ES sweep (Phase 1b). One commit per cluster
+  group makes `git log --follow taxonomy/tp/audio-capture.md` reliable
+  through the rename.
+- **`parse.CLUSTER_NAMES` + `CLUSTER_ORDER`** replace the v3.x
+  `PART_NAMES` constant. Inner `GROUP_FILES` key renamed `"part"` →
+  `"cluster"`.
+- **`Metric.cluster`** field replaces `Metric.part`. New
+  `Metric.cluster_name` property (was `Metric.part_name`). Both
+  `part` and `part_name` retained as backwards-compat properties on
+  the dataclass; flagged for removal in v4.1.
+- **28 prose substitutions** across `_outcomes-boundary.md`,
+  `_contents.md`, `_applicability.md`, `_standards-mapping.md`. The
+  `_responsible-ai-lens.md` doc-internal "Part A / B / C / D" sub-section
+  labels (DSIT Playbook / Themes / Coverage Matrix / Gaps) renamed to
+  direct content names to avoid confusion with the retired cluster Part
+  scheme.
+- **`audit.check_no_part_letter_prose`** — new audit check enforcing
+  no `Part [A-F]\b` matches in non-archive source files. CHANGELOG.md,
+  plan-v4.0.md, and plan-future.md are skipped (they describe the
+  migration itself).
+- **`mkdocs-redirects` plugin** added to handle the EPR → Downstream
+  filename change. `redirect_maps` entry preserves the old URL.
+- **Site nav updated**: cluster headings in `mkdocs.yml` use cluster
+  codes (`TP - Technical Pipeline`, `PI - Pipeline Interactions`, etc.).
+- **88-test pytest suite** carried through every Phase: each commit
+  passed `pytest && audit && build && build_site && mkdocs build
+  --strict` before being staged. Test fixtures updated for the new
+  paths in Phase 0 and Phase 3.
+- **No metric content changes. No tier shifts. No new metrics.**
+  Counts unchanged at 218 / 43-96-79 / 32-of-42 tightened.
+
+**Pre-v4.0 archive content** in `archive/plan-*.md` and
+`archive/v*-*.md` retains the original Part-letter wording — those are
+historical artefacts, deliberately frozen.
+
 ## v3.9.1 (2026-05-02)
 
 **Patch release: code test suite (pytest).**

@@ -53,15 +53,16 @@ class TestBuildSubstituteTemplateTokens:
 
 class TestCSVColumns:
     def test_has_expected_columns(self):
-        # Schema invariants: ref_id and tier are always present; part_name
-        # was added in v3.8.3; status is intentionally NOT a column (status
-        # belongs in summary.json metadata, not per-row).
+        # Schema invariants: ref_id and tier are always present;
+        # part/part_name renamed to cluster/cluster_name in v4.0;
+        # status is intentionally NOT a column (status belongs in
+        # summary.json metadata, not per-row).
         cols = build_mod.CSV_COLUMNS
         assert "ref_id" in cols
         assert "name" in cols
         assert "tier" in cols
-        assert "part" in cols
-        assert "part_name" in cols
+        assert "cluster" in cols
+        assert "cluster_name" in cols
         assert "group" in cols
         assert "applicability" in cols
         assert "source" in cols
@@ -86,14 +87,21 @@ class TestFilesOrder:
         # encounter it immediately after the version banner.
         assert build_mod.FILES[1] == "_prototype-status.md"
 
-    def test_references_after_part_f(self):
-        # _references.md must come after part-f/* so the catalogue lives
-        # at the end of the monolith (after Part F meta-evaluation).
+    def test_references_after_clusters(self):
+        # _references.md must come after every cluster's metric files so
+        # the catalogue lives at the end of the monolith.
         idx = build_mod.FILES.index("_references.md")
-        last_part = max(
-            i for i, name in enumerate(build_mod.FILES) if name.startswith("part-")
+        # Match either v3.x Part-letter folders (`part-a/`...) or v4.0
+        # cluster-code folders (`tp/`, `pi/`, `hl/`, `io/`, `gv/`, `es/`).
+        cluster_prefixes = (
+            "part-a/", "part-b/", "part-c/", "part-d/", "part-e/", "part-f/",
+            "tp/", "pi/", "hl/", "io/", "gv/", "es/",
         )
-        assert idx > last_part
+        last_metric = max(
+            i for i, name in enumerate(build_mod.FILES)
+            if name.startswith(cluster_prefixes)
+        )
+        assert idx > last_metric
 
 
 # ---------------------------------------------------------------------------

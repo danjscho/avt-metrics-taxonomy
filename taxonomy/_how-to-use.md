@@ -70,7 +70,7 @@ Each metric carries a unique reference ID in the format `{Part}.{Group}-{Number}
 | DI | Diarisation | TP |
 | SN | Summarisation / NLP | TP |
 | CC | Clinical Coding | TP |
-| WB | EPR Write-back | TP |
+| WB | Downstream Write-back | TP |
 | PP | Partial-Pipeline | PI |
 | E2E | End-to-End Pipeline | PI |
 | HF | Human Factors & Workflow | HL |

@@ -39,26 +39,26 @@ MAPPING: dict[str, str] = {
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
     "_references.md": "references.md",
-    "part-a/audio-capture.md": "groups/audio-capture.md",
-    "part-a/asr-transcription.md": "groups/asr-transcription.md",
-    "part-a/diarisation.md": "groups/diarisation.md",
-    "part-a/summarisation-nlp.md": "groups/summarisation-nlp.md",
-    "part-a/clinical-coding.md": "groups/clinical-coding.md",
-    "part-a/epr-write-back.md": "groups/epr-write-back.md",
-    "part-b/partial-pipeline.md": "groups/partial-pipeline.md",
-    "part-b/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
-    "part-c/human-factors-workflow.md": "groups/human-factors-workflow.md",
-    "part-d/patient-experience.md": "groups/patient-experience.md",
-    "part-d/fairness-equity.md": "groups/fairness-equity.md",
-    "part-e/safety-governance.md": "groups/safety-governance.md",
-    "part-e/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
-    "part-e/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
-    "part-e/privacy-data-governance.md": "groups/privacy-data-governance.md",
-    "part-e/operational.md": "groups/operational.md",
-    "part-e/environmental-sustainability.md": "groups/environmental-sustainability.md",
-    "part-e/training-competency.md": "groups/training-competency.md",
-    "part-e/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
-    "part-f/meta-evaluation.md": "groups/meta-evaluation.md",
+    "tp/audio-capture.md": "groups/audio-capture.md",
+    "tp/asr-transcription.md": "groups/asr-transcription.md",
+    "tp/diarisation.md": "groups/diarisation.md",
+    "tp/summarisation-nlp.md": "groups/summarisation-nlp.md",
+    "tp/clinical-coding.md": "groups/clinical-coding.md",
+    "tp/downstream-write-back.md": "groups/downstream-write-back.md",
+    "pi/partial-pipeline.md": "groups/partial-pipeline.md",
+    "pi/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
+    "hl/human-factors-workflow.md": "groups/human-factors-workflow.md",
+    "io/patient-experience.md": "groups/patient-experience.md",
+    "io/fairness-equity.md": "groups/fairness-equity.md",
+    "gv/safety-governance.md": "groups/safety-governance.md",
+    "gv/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
+    "gv/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
+    "gv/privacy-data-governance.md": "groups/privacy-data-governance.md",
+    "gv/operational.md": "groups/operational.md",
+    "gv/environmental-sustainability.md": "groups/environmental-sustainability.md",
+    "gv/training-competency.md": "groups/training-competency.md",
+    "gv/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
+    "es/meta-evaluation.md": "groups/meta-evaluation.md",
 }
 
 
@@ -72,7 +72,8 @@ ANCHOR_REWRITES: dict[str, str] = {
     "diarisation": "groups/diarisation.md",
     "summarisation-nlp": "groups/summarisation-nlp.md",
     "clinical-coding": "groups/clinical-coding.md",
-    "epr-write-back": "groups/epr-write-back.md",
+    "epr-write-back": "groups/downstream-write-back.md",  # legacy alias from v3.x
+    "downstream-write-back": "groups/downstream-write-back.md",
     "partial-pipeline": "groups/partial-pipeline.md",
     "end-to-end-pipeline": "groups/end-to-end-pipeline.md",
     "human-factors-workflow": "groups/human-factors-workflow.md",
@@ -371,20 +372,20 @@ def rewrite_anchors(text: str, current_page: str) -> str:
     return _MD_LINK.sub(sub, text)
 
 
-# Hand-written Part titles keyed by part letter, used when a source file
-# doesn't carry its own `# Part X - ...` heading (only one file per part
-# in the monolithic source does). These match the monolithic-build's
-# Part separators so the site and MD-download stay consistent.
-PART_TITLES = {letter: f"Part {letter} - {name}" for letter, name in parse_src.PART_NAMES.items()}
+# Hand-written cluster titles keyed by cluster code, used as the eyebrow
+# heading on each group page. v4.0 retired the v3.x "Part X - …" prefix
+# in favour of the cluster-code form "TP — Technical Pipeline".
+CLUSTER_TITLES = {
+    code: f"{code} — {name}" for code, name in parse_src.CLUSTER_NAMES.items()
+}
 
-
-def _part_title_for_group_file(src_rel: str) -> str | None:
-    """Look up the Part title for a source group file, via the parser's
+def _cluster_title_for_group_file(src_rel: str) -> str | None:
+    """Look up the cluster title for a source group file, via the parser's
     canonical group list. Returns None for non-group files."""
     info = parse_src.GROUP_FILES.get(src_rel)
     if info is None:
         return None
-    return PART_TITLES.get(info["part"])
+    return CLUSTER_TITLES.get(info["cluster"])
 
 
 def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
@@ -436,9 +437,9 @@ def promote_h2_to_h1(text: str, src_rel: str | None = None) -> str:
         return "\n".join(lines) + ("\n" if not text.endswith("\n") else "")
 
     # Case B: group file without a Part heading - inject the kicker from
-    # the canonical Part title lookup so every group page starts the same.
+    # the canonical cluster title lookup so every group page starts the same.
     if first.startswith("## ") and src_rel is not None:
-        part_title = _part_title_for_group_file(src_rel)
+        part_title = _cluster_title_for_group_file(src_rel)
         if part_title is not None:
             group_title = first[3:].strip()
             kicker = f"*{part_title}*"
@@ -691,26 +692,26 @@ THEME_SHORT = {
 }
 
 SRC_GROUP_FILE_TO_PAGE = {
-    "part-a/audio-capture.md": "groups/audio-capture.md",
-    "part-a/asr-transcription.md": "groups/asr-transcription.md",
-    "part-a/diarisation.md": "groups/diarisation.md",
-    "part-a/summarisation-nlp.md": "groups/summarisation-nlp.md",
-    "part-a/clinical-coding.md": "groups/clinical-coding.md",
-    "part-a/epr-write-back.md": "groups/epr-write-back.md",
-    "part-b/partial-pipeline.md": "groups/partial-pipeline.md",
-    "part-b/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
-    "part-c/human-factors-workflow.md": "groups/human-factors-workflow.md",
-    "part-d/patient-experience.md": "groups/patient-experience.md",
-    "part-d/fairness-equity.md": "groups/fairness-equity.md",
-    "part-e/safety-governance.md": "groups/safety-governance.md",
-    "part-e/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
-    "part-e/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
-    "part-e/privacy-data-governance.md": "groups/privacy-data-governance.md",
-    "part-e/operational.md": "groups/operational.md",
-    "part-e/environmental-sustainability.md": "groups/environmental-sustainability.md",
-    "part-e/training-competency.md": "groups/training-competency.md",
-    "part-e/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
-    "part-f/meta-evaluation.md": "groups/meta-evaluation.md",
+    "tp/audio-capture.md": "groups/audio-capture.md",
+    "tp/asr-transcription.md": "groups/asr-transcription.md",
+    "tp/diarisation.md": "groups/diarisation.md",
+    "tp/summarisation-nlp.md": "groups/summarisation-nlp.md",
+    "tp/clinical-coding.md": "groups/clinical-coding.md",
+    "tp/downstream-write-back.md": "groups/downstream-write-back.md",
+    "pi/partial-pipeline.md": "groups/partial-pipeline.md",
+    "pi/end-to-end-pipeline.md": "groups/end-to-end-pipeline.md",
+    "hl/human-factors-workflow.md": "groups/human-factors-workflow.md",
+    "io/patient-experience.md": "groups/patient-experience.md",
+    "io/fairness-equity.md": "groups/fairness-equity.md",
+    "gv/safety-governance.md": "groups/safety-governance.md",
+    "gv/nhs-compliance-regulatory.md": "groups/nhs-compliance-regulatory.md",
+    "gv/security-adversarial-robustness.md": "groups/security-adversarial-robustness.md",
+    "gv/privacy-data-governance.md": "groups/privacy-data-governance.md",
+    "gv/operational.md": "groups/operational.md",
+    "gv/environmental-sustainability.md": "groups/environmental-sustainability.md",
+    "gv/training-competency.md": "groups/training-competency.md",
+    "gv/vendor-transparency-contractual.md": "groups/vendor-transparency-contractual.md",
+    "es/meta-evaluation.md": "groups/meta-evaluation.md",
 }
 
 

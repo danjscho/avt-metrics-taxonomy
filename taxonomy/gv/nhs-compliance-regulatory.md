@@ -138,7 +138,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 | **Reference** | GV.CR-3 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                 |
 |**Measurement Cadence**|Continuous                                                 |
-|**Pipeline Layer**     |EPR Write-back                                             |
+|**Pipeline Layer**     |Downstream Write-back |
 |**Assurance Question** |Meta-evaluation                                            |
 |**Measurement Method** |Computational                                              |
 |**Lifecycle Phases**   |Pre-deployment, Continuous                                 |

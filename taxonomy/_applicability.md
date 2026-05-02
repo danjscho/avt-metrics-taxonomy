@@ -19,7 +19,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | General Healthcare AI | 91 | 42% |
 | **Total** | **218** | **100%** |
 
-### By Part
+### By Cluster
 
 | Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
 |------|-------------|--------------------|--------------------|-------|
@@ -34,7 +34,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ### Full Classification
 
-#### Part A - The Technical Pipeline
+#### TP — The Technical Pipeline
 
 **Audio Capture & Environment** (9 metrics)
 
@@ -128,7 +128,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.CC-11 | Code Specificity Index | 🔵 Tier 3 | AVT-Contextualised |
 | TP.CC-12 | Code Suggestion Latency | 🔵 Tier 3 | AVT-Contextualised |
 
-**EPR Write-back** (7 metrics)
+**Downstream Write-back** (7 metrics)
 
 | Ref | Metric | Tier | Applicability |
 |-----|--------|------|---------------|
@@ -140,7 +140,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.WB-6 | FHIR R4 Resource Conformance Rate | 🟡 Tier 2 | AVT-Contextualised |
 | TP.WB-7 | openEHR Archetype Conformance | 🔵 Tier 3 | AVT-Contextualised |
 
-#### Part B - Pipeline Interactions
+#### PI — Pipeline Interactions
 
 **Partial-Pipeline** (9 metrics)
 
@@ -173,7 +173,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | PI.E2E-11 | Pipeline Failure Recovery | 🟡 Tier 2 | AVT-Contextualised |
 | PI.E2E-12 | Round-Trip Information Loss | 🔵 Tier 3 | AVT-Specific |
 
-#### Part C - The Human Layer
+#### HL — The Human Layer
 
 **Human Factors & Workflow** (19 metrics)
 
@@ -200,7 +200,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | HL.HF-19 | AI-Off Performance Test | 🟡 Tier 2 | General Healthcare AI |
 
 
-#### Part D - Impact & Outcomes
+#### IO — Impact & Outcomes
 
 **Patient Experience** (10 metrics)
 
@@ -230,7 +230,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | IO.FE-7 | Health Literacy Performance Variation | 🔵 Tier 3 | General Healthcare AI |
 | IO.FE-8 | Cross-Platform Fairness Consistency | 🔵 Tier 3 | General Healthcare AI |
 
-#### Part E - System Governance
+#### GV — System Governance
 
 **Safety & Governance** (17 metrics)
 
@@ -349,7 +349,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | GV.VT-13 | Evidence Pack Freshness | 🟡 Tier 2 | AVT-Specific |
 | GV.VT-14 | Indicative Pricing Transparency | 🟡 Tier 2 | AVT-Specific |
 
-#### Part F - Evaluation Science
+#### ES — Evaluation Science
 
 **Meta-evaluation** (9 metrics)
 

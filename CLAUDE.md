@@ -22,11 +22,11 @@ Output: `avt-metrics-taxonomy.md` at the repo root. The script is idempotent - r
 
 **Build file order** (defined in `build.py`):
 1. `_header.md`, `_contents.md`, `_how-to-use.md`, `_summary.md`, `_tier-1-quick-reference.md`
-2. `part-a/` through `part-f/` - alphabetical filename order within each part directory
+2. Cluster directories `tp/` / `pi/` / `hl/` / `io/` / `gv/` / `es/` — explicit per-cluster filename order (see `build.FILES`)
 
 To verify a build: diff the output against the previous version. Phase 1 gate requires whitespace-only differences vs v1.
 
-## File structure (post-split)
+## File structure (v4.0 cluster-code naming)
 
 ```
 taxonomy/
@@ -35,18 +35,18 @@ taxonomy/
   _summary.md                   # By tier, maturity, family, underspecification warning
   _tier-1-quick-reference.md    # All Tier 1 metrics organised by responsible actor
   _contents.md                  # Table of contents with family convention note
-  part-a/                       # Technical pipeline (audio → EPR write-back)
-  part-b/                       # Partial and end-to-end pipeline assessments
-  part-c/                       # Human factors and workflow
-  part-d/                       # Patient experience and fairness/equity
-  part-e/                       # System governance (safety, compliance, security, privacy,
+  tp/                           # Technical Pipeline (audio → downstream write-back)
+  pi/                           # Pipeline Interactions (partial + end-to-end)
+  hl/                           # Human Layer (human factors and workflow)
+  io/                           # Impact & Outcomes (patient experience + fairness/equity)
+  gv/                           # System Governance (safety, compliance, security, privacy,
                                 #   operations, sustainability, training, vendor transparency)
-  part-f/                       # Meta-evaluation
+  es/                           # Evaluation Science (meta-evaluation)
   build.py
   README.md
 ```
 
-Underscore-prefixed files sort to the top and contain cross-cutting content (not group content). Group files within each part directory are one file per metric group.
+Underscore-prefixed files sort to the top and contain cross-cutting content (not group content). Group files within each cluster directory are one file per metric group. v4.0 retired the v3.x Part-letter scheme (A–F); the two-letter cluster code (TP / PI / HL / IO / GV / ES) is the canonical naming surface throughout. Pre-v4.0 documents in `archive/` retain the old Part-letter wording.
 
 ## Metric entry format
 
@@ -79,8 +79,8 @@ Input artefact files in the repo root are the source of truth. Where `avt-metric
 Do not revisit these without explicit user instruction:
 
 - All v2 changes are **additive only** - no metric renames, no deletions, no reordering of existing sections
-- **NHS Compliance & Regulatory** is a new top-level group in Part E (not a sub-cluster of Safety & Governance)
-- **Environmental & Sustainability** is a new top-level group in Part E, all Tier 3, placed between Operational and Training & Competency
+- **NHS Compliance & Regulatory** is a new top-level group in the GV cluster (not a sub-cluster of Safety & Governance)
+- **Environmental & Sustainability** is a new top-level group in the GV cluster, all Tier 3, placed between Operational and Training & Competency
 - **Sub-clusters** are thematic groupings within an existing group (4 in scope). **Named metric families** are parent-construct groupings that may span sub-clusters (4 in scope). No other groupings should be invented.
 - The Pass 1 / Pass 2 overlap on ROUGE, BERTScore, M-WER, and CK-ER is resolved by keeping the family framing full and using trimmed warning versions - see `avt-cross-cutting-additions.md` "One small interaction to resolve during integration"
 
