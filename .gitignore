@@ -20,3 +20,7 @@ __pycache__/
 
 # Large supporting reference material not directly cited by the taxonomy
 reference-docs/GOSH-AAI-Phase4-NHSE-report.pdf
+
+# v4.2 Pass B: locally cached source excerpts (papers/repos/standards) used
+# during Formal Definition verification. Working material, not committed.
+reference-docs/v4.2-pass-b/
