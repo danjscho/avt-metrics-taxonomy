@@ -13436,7 +13436,7 @@ The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
 
 The information standard governing clinical risk management for health IT manufacturers. Vendor-side; the deployer-side equivalent is [DCB0160].
 
@@ -13449,7 +13449,7 @@ The information standard governing clinical risk management for health IT manufa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`
 
 Deployer-side companion to [DCB0129]. Together the pair form the operating model for clinical-safety case authoring (vendor) and clinical-safety case integration into local deployment governance (deployer).
 
@@ -13501,7 +13501,7 @@ MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`, `gv/vendor-transparency-contractual.md`
 
 NCSC scheme overview and the technical control set. Two variants exist: basic Cyber Essentials (self-assessment) and Cyber Essentials Plus (audited; 12-month validity window). The Plus variant is administered by IASME (https://iasme.co.uk/cyber-essentials/), the NCSC-appointed delivery partner — citation handle remains [NCSC-Cyber-Essentials] for both variants since NCSC is the scheme owner.
 
@@ -13514,7 +13514,7 @@ NCSC scheme overview and the technical control set. Two variants exist: basic Cy
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/security-adversarial-robustness.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/security-adversarial-robustness.md`, `gv/vendor-transparency-contractual.md`
 
 The NHS England self-certification list for AVT vendors, live since January 2026. Listing is binary; vendors publish 13 evidence categories on the National Commercial & Procurement Hub. NHSE undertakes only preliminary completion checks. The same scheme is cross-listed on the NHS Transformation Directorate at https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/, which hosts the long-read context — the operational page (digital.nhs.uk) is the authoritative current location.
 
@@ -13540,7 +13540,7 @@ The most up-to-date Find a Tender notice for the [NHSE-AVT-Registry] scheme. Ear
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `es/meta-evaluation.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`
 
 The post-market surveillance regulations supplementing UK MDR 2002 for medical devices, in force from 16 June 2025. Cited from registry req #7.
 
@@ -13553,7 +13553,7 @@ The post-market surveillance regulations supplementing UK MDR 2002 for medical d
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/vendor-transparency-contractual.md`
 
 ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU-law form of the General Data Protection Regulation as amended by the Data Protection Act 2018.
 
@@ -13566,7 +13566,7 @@ ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/privacy-data-governance.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `gv/privacy-data-governance.md`, `gv/vendor-transparency-contractual.md`
 
 ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO compliance generically; specific UK-GDPR-derived guidance uses [UK-GDPR].
 
@@ -13618,7 +13618,7 @@ The NHS England framework for systems-based patient-safety-incident response, re
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `io/patient-experience.md`, `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`, `io/patient-experience.md`
 
 NHS England's national service for recording and learning from patient-safety events. Sibling to [PSIRF]: PSIRF is the response framework, LFPSE is the recording-and-learning mechanism. Cite both where Source rows currently say "PSIRF + LFPSE" or where a metric reasons about both reactive incident response (PSIRF) and prospective learning (LFPSE).
 
@@ -13644,7 +13644,7 @@ PRSB's information-standard set, including clinical-headings standards for consu
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `io/fairness-equity.md`, `io/patient-experience.md`, `part-e/safety-governance.md`, `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/safety-governance.md`, `gv/security-adversarial-robustness.md`, `io/fairness-equity.md`, `io/patient-experience.md`
 
 The NHS England framework for evaluating LLM-based clinical applications. **Status: DRAFT** at v0.2.2; cited as a working reference rather than a settled standard. Structured as three groups of dimensions: Suitability in Context (11), Wider Impact (11), Quantifiable Changes (8). Mapped to the taxonomy's metrics in `_standards-mapping.md`.
 
@@ -13657,7 +13657,7 @@ The NHS England framework for evaluating LLM-based clinical applications. **Stat
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `_standards-mapping.md`, `es/meta-evaluation.md`
 
 ICS-level vendor-assessment framework: 22 binary platform-assurance requirements (Section A) and 420 points across 12 benefit-domain categories (Section B). The Section B clinical-effectiveness sub-score (90 pts of 420, with 50 pts gated on RCT evidence) is the most cited slice in the taxonomy's outcomes-boundary discussion.
 
@@ -13670,7 +13670,7 @@ ICS-level vendor-assessment framework: 22 binary platform-assurance requirements
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`
+- **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`
 
 NICE's evidence-tiering framework for digital health technologies. Tier 3 (active monitoring tools and treatment-modifying tools) is the relevant tier for AVT systems that influence documentation-quality and therefore indirectly clinical decisions.
 
@@ -13696,7 +13696,7 @@ The NHS Digital organisation page on Simplifier, the canonical hosting location 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`, `tp/asr-transcription.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `tp/asr-transcription.md`
 
 NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
 
@@ -13709,7 +13709,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `hl/human-factors-workflow.md`, `io/patient-experience.md`, `part-e/operational.md`, `part-e/safety-governance.md`, `part-e/training-competency.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/operational.md`, `gv/safety-governance.md`, `gv/training-competency.md`, `hl/human-factors-workflow.md`, `io/patient-experience.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
 
 > ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
 
@@ -13722,7 +13722,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/training-competency.md`
+- **Cited-by:** `gv/training-competency.md`
 
 GMC's professional-conduct standard. Cited where the taxonomy reasons about clinician accountability for AVT-mediated documentation.
 
@@ -13735,7 +13735,7 @@ GMC's professional-conduct standard. Cited where the taxonomy reasons about clin
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 The NHS national authentication service. Referenced in security-baseline discussions where authentication / identity is a procurement requirement. The URL points at the parent service landing page; specific architecture / integration / role-based-access content is nested below — readers wanting the implementation detail should navigate from this landing into the relevant sub-page.
 
@@ -13748,7 +13748,7 @@ The NHS national authentication service. Referenced in security-baseline discuss
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 Mindgard's 2026 security-disclosure on Heidi Health AVT vulnerabilities, including spoken-prompt-injection success and jailbreak-via-AVT-interface results. The canonical reference for GV.SC-1 and GV.SC-2 prompt-injection / jailbreak resistance metrics.
 
@@ -13761,7 +13761,7 @@ Mindgard's 2026 security-disclosure on Heidi Health AVT vulnerabilities, includi
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 Mindgard's parallel disclosure on Doctronic AVT vulnerabilities; pairs with [Mindgard-Heidi-2026]. Together they form the canonical pair establishing that AVT-system prompt-injection / jailbreak resistance is non-optional.
 
@@ -13774,7 +13774,7 @@ Mindgard's parallel disclosure on Doctronic AVT vulnerabilities; pairs with [Min
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 The 2026 MIT Jameel Clinic finding on cross-patient information memorisation / leakage in clinical AI systems. The MIT News report is the primary public disclosure; the underlying study was presented as a NeurIPS 2025 poster (https://neurips.cc/virtual/2025/loc/san-diego/poster/118370). Cited from the GV.SC family on data-leakage and adversarial robustness.
 
@@ -13800,7 +13800,7 @@ The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clini
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`, `tp/summarisation-nlp.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`, `tp/summarisation-nlp.md`
 
 The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cites this as the foundational reference; the **AVT-specific extension application** of INSYTE is not yet public — citing INSYTE on an AVT-specific metric should be read as **future work pending publication**.
 
@@ -13917,7 +13917,7 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-f/meta-evaluation.md`, `tp/summarisation-nlp.md`
+- **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
 
 Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing.
 
@@ -14283,7 +14283,7 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `io/patient-experience.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `io/patient-experience.md`
 
 CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported documentation. Cited in TP.AC-4 audio-capture context, IO.PX-1 patient experience, and several human-factors metrics. Distinct from the broader [CQC] handle which points at the assessment-framework hub.
 
@@ -14309,7 +14309,7 @@ Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-rep
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `io/patient-experience.md`, `part-e/operational.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `es/meta-evaluation.md`, `gv/operational.md`, `io/patient-experience.md`
 
 Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited multiple times across the taxonomy — IO.PX-9, IO.PX-10, ES.ME family — as the structural critique of clinical-AI evaluation methodology. JMIR Med Inform is at medinform.jmir.org; direct article URL to supply.
 
@@ -14349,7 +14349,7 @@ The FAIR-MED bias-detection and fairness-evaluation framework, published Springe
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/nhs-compliance-regulatory.md`
+- **Cited-by:** `gv/nhs-compliance-regulatory.md`
 
 The NHS CIO/CCIO joint guidance v2 (January 2026) covering ICB engagement and digital-deployment-notification expectations. Cited in GV.CR-5 (ICB Engagement Documentation). URL to supply at follow-up review.
 
@@ -14362,7 +14362,7 @@ The NHS CIO/CCIO joint guidance v2 (January 2026) covering ICB engagement and di
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/nhs-compliance-regulatory.md`
+- **Cited-by:** `gv/nhs-compliance-regulatory.md`
 
 A Freedom-of-Information study of NHS digital safety standard compliance, PubMed ID 41172285. Cited in GV.CR-6 (Clinical Safety Case Completeness). URL constructed from the PubMed ID supplied in the original Source row prose.
 
@@ -14375,7 +14375,7 @@ A Freedom-of-Information study of NHS digital safety standard compliance, PubMed
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/nhs-compliance-regulatory.md`, `part-e/safety-governance.md`
+- **Cited-by:** `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`
 
 The FDA's December 2024 final guidance on Predetermined Change Control Plans for AI/ML-based medical devices. Cited in GV.SG-4 (model-update governance) and GV.CR-12 (or similar). URL likely under fda.gov/medical-devices/software-medical-device-samd; resolve at follow-up.
 
@@ -14388,7 +14388,7 @@ The FDA's December 2024 final guidance on Predetermined Change Control Plans for
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/nhs-compliance-regulatory.md`
+- **Cited-by:** `gv/nhs-compliance-regulatory.md`
 
 The EU AI Act. **Note:** taxonomy-wide audit of EU AI Act citations is queued (see `archive/plan-v3.9.md` deferred items) — UK NHS deployments are not directly subject post-Brexit, so per-citation triage will determine whether each EU AI Act reference is (a) genuinely irrelevant, (b) carrying useful structural ideas worth keeping with cross-jurisdictional framing, or (c) genuinely cross-jurisdictional. Currently cited in GV.CR-12 / GV.CR-13.
 
@@ -14403,7 +14403,7 @@ The EU AI Act. **Note:** taxonomy-wide audit of EU AI Act citations is queued (s
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/privacy-data-governance.md`, `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/privacy-data-governance.md`, `gv/security-adversarial-robustness.md`
 
 Lukas et al. 2023 IEEE S&P — foundational study of PII leakage in language models, covering both extraction-attack and membership-inference-attack methodologies. Cited in GV.PD-5 (PII Extraction Attack Success Rate) and GV.SC-11 (Membership Inference Attack AUC). (v3.9 round-2 review verified the citation; the previous "AUC 0.96 for undefended LLMs" specific figure has been dropped from GV.SC-11's Novel Thinking section pending direct paper verification — the metric framing stands without it.)
 
@@ -14416,7 +14416,7 @@ Lukas et al. 2023 IEEE S&P — foundational study of PII leakage in language mod
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/privacy-data-governance.md`
+- **Cited-by:** `gv/privacy-data-governance.md`
 
 OWASP's Top 10 risks for LLM-based applications. Cited in GV.PD-5 (Sensitive Information Disclosure category) and likely several GV.SC metrics. URL is OWASP's project landing page.
 
@@ -14429,7 +14429,7 @@ OWASP's Top 10 risks for LLM-based applications. Cited in GV.PD-5 (Sensitive Inf
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/privacy-data-governance.md`
+- **Cited-by:** `gv/privacy-data-governance.md`
 
 NIST's Privacy Framework. Cited in GV.PD-6 (anonymisation) alongside ICO's anonymisation code. URL is the canonical NIST landing.
 
@@ -14442,7 +14442,7 @@ NIST's Privacy Framework. Cited in GV.PD-6 (anonymisation) alongside ICO's anony
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/privacy-data-governance.md`
+- **Cited-by:** `gv/privacy-data-governance.md`
 
 The Schrems II ruling on transatlantic data transfers. Cited in GV.PD-9 (International Data Transfer Compliance). URL is the CJEU case page.
 
@@ -14456,7 +14456,7 @@ The Schrems II ruling on transatlantic data transfers. Cited in GV.PD-9 (Interna
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/operational.md`
+- **Cited-by:** `gv/operational.md`
 
 Sinsky 2016 *Annals of Internal Medicine* — the canonical observational time-and-motion study of physician documentation time across 4 specialties. Cited in GV.OP-2 (Pyjama Time / After-Hours EHR Use) and GV.OP-4 (Documentation Workload Composite) as the **concept** reference for clinician-documentation time-allocation. The audit-log methodology that Pyjama Time actually depends on is formalised in a separate paper — see [Sinsky-Adler-Milstein-EHR-Logs-2020].
 
@@ -14470,7 +14470,7 @@ Sinsky 2016 *Annals of Internal Medicine* — the canonical observational time-a
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/operational.md`
+- **Cited-by:** `gv/operational.md`
 
 Sinsky / Adler-Milstein / Rule et al. 2020 *JAMIA* — formalises the EHR-audit-log-derived metrics used to compute physician activity (active-use time, after-hours work, documentation burden) from log data. Cited in GV.OP-2 (Pyjama Time / After-Hours EHR Use) as the **methodology** reference for audit-log-derived after-hours-EHR computation, complementing the [Sinsky-Mayo-EHR-Studies] 2016 *Annals* concept reference. (v3.9 round-2 review added this entry to give Pyjama Time a faithful methodology citation — the 2016 paper is observational, the 2020 paper is the audit-log methodology paper.)
 
@@ -14483,7 +14483,7 @@ Sinsky / Adler-Milstein / Rule et al. 2020 *JAMIA* — formalises the EHR-audit-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/environmental-sustainability.md`
+- **Cited-by:** `gv/environmental-sustainability.md`
 
 The Jegham et al. 2025 environmental-AI paper, "How Hungry is AI?". Cited as the load-bearing reference for ES.EN family environmental metrics. arxiv ID supplied directly from the original Source row prose.
 
@@ -14496,7 +14496,7 @@ The Jegham et al. 2025 environmental-AI paper, "How Hungry is AI?". Cited as the
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/environmental-sustainability.md`
+- **Cited-by:** `gv/environmental-sustainability.md`
 
 Mistral AI's lifecycle assessment publication. Cited in ES.EN-2 (grid-carbon-intensity adjustment). `Source-Type: disclosure` because vendor-published rather than peer-reviewed.
 
@@ -14509,7 +14509,7 @@ Mistral AI's lifecycle assessment publication. Cited in ES.EN-2 (grid-carbon-int
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/environmental-sustainability.md`
+- **Cited-by:** `gv/environmental-sustainability.md`
 
 Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training and inference. Cited in ES.EN-3 alongside [Jegham-AI-Hunger-2025]. arxiv ID 2304.03271 is a likely candidate; confirm at follow-up.
 
@@ -14523,7 +14523,7 @@ Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `hl/human-factors-workflow.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `hl/human-factors-workflow.md`
 
 Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-AI monitoring around three complementary principles: **system integrity, performance, and impact**. Cited as the canonical monitoring-framework reference across GV.SG-1 (Model Version Tracking), GV.SG-2 (Model Update Impact Score), GV.VT-1 (Model Change Notification Compliance), GV.VT-2 (Telemetry Provision Completeness), GV.VT-3, and several human-factors metrics. (v3.9 round-2 review merged the earlier separate `Keyes-Stanford-2025` and `Stanford-Monitoring-Framework` handles into this single anchor; the taxonomy's earlier "three-layer surveillance model" phrasing was a paraphrase — the paper's own framing is "three principles".)
 
@@ -14537,7 +14537,7 @@ Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`
 
 Alemohammad et al. 2023 — the canonical "model autophagy disorder" (MAD) paper, formalising the failure mode of generative models trained on their own outputs. Cited in GV.SG-5 (Training Data Contamination Score) alongside [Shumailov-Curse-of-Recursion]. (v3.9 round-2 review replaced an earlier `medRxiv-Model-Autophagy-2026` placeholder handle that did not correspond to a verifiable paper; Alemohammad is the actual primary source for the "model autophagy" framing.)
 
@@ -14550,7 +14550,7 @@ Alemohammad et al. 2023 — the canonical "model autophagy disorder" (MAD) paper
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`
 
 The Shumailov et al. "Curse of Recursion" paper on model collapse from training on generated data. Cited in GV.SG-5 (Concept Drift in Clinical Notes). URL is the Nature publication; the earlier 2023 arxiv preprint (2305.17493) is also a valid alternative.
 
@@ -14564,7 +14564,7 @@ The Shumailov et al. "Curse of Recursion" paper on model collapse from training 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`
 
 Kalinich et al. 2025 — simulation-based PRA framework for LLM-SaMDs, demonstrated on suicide-risk chatbot safety classification across 14 open-source models (270M–70B). Provides P₁ (probability hazard → hazardous situation) and P₂ (probability hazardous situation → harm) estimation methodology. Cited in GV.SG-7 (Quantitative Risk Analysis Framework) for the methodology, applied to AVT context — the paper itself is on suicide-risk safety classification, not AVT. (v3.9 round-2 review renamed an earlier `medRxiv-Nov-2025-AVT-Drift` placeholder; the paper is neither AVT-specific nor about drift.)
 
@@ -14577,7 +14577,7 @@ Kalinich et al. 2025 — simulation-based PRA framework for LLM-SaMDs, demonstra
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`
 
 DeepScribe vendor reference. Cited in GV.SG-8 (DeepScore Defect-Free Rate) for the proprietary defect-free-rate methodology. For the specific DeepScore methodology page see [DeepScore].
 
@@ -14590,7 +14590,7 @@ DeepScribe vendor reference. Cited in GV.SG-8 (DeepScore Defect-Free Rate) for t
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/safety-governance.md`
+- **Cited-by:** `gv/safety-governance.md`
 
 AMLAS — the AAIP / York University assurance-case methodology for machine-learning components in autonomous and AI-enabled systems. Cited in GV.SG-9 (Safety Performance Indicator) and GV.SG-16 (SPI Escalation Response Time) as the published methodology grounding the dynamic-safety-case + SPI framing. (v3.9 round-2 review replaced an earlier `DSCMS-SPI-Framework` placeholder, which referred to a "Dynamic Safety Case Management System" framework that does not appear to exist as a published NHS artefact — AMLAS is the actual published methodology that the taxonomy's SPI framing maps to.)
 
@@ -14603,7 +14603,7 @@ AMLAS — the AAIP / York University assurance-case methodology for machine-lear
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 NeMo Guardrails — NVIDIA's open-source toolkit implementing the output-safety-classifier pattern that GV.SC-5 (Output Safety Classifier Coverage) measures. Cited as a representative existence-proof for the pattern; the metric is not anchored to NVIDIA-specific implementation. (v3.9 round-2 review replaced an earlier `NVIDIA-Reference-Architecture` placeholder that did not correspond to a specific verifiable NVIDIA whitepaper.)
 
@@ -14616,7 +14616,7 @@ NeMo Guardrails — NVIDIA's open-source toolkit implementing the output-safety-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 Luo et al. 2026 — revisits PII leakage in LLMs using a cue-controlled memorisation framework that improves on earlier MIA methodology by controlling for evaluation artefacts (showing prior MIA estimates were inflated by control-set selection). Cited in GV.SC-11 (Membership Inference Attack AUC) alongside [IEEE-S-and-P-2023-LLM-PII-Leakage]. (v3.9 round-2 review renamed handle from `arXiv-2601-03791-Cue-Resistant-Memorisation` for clarity.)
 
@@ -14629,7 +14629,7 @@ Luo et al. 2026 — revisits PII leakage in LLMs using a cue-controlled memorisa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_outcomes-boundary.md`, `part-e/operational.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `_outcomes-boundary.md`, `es/meta-evaluation.md`, `gv/operational.md`
 
 The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner that informed this taxonomy's framing of evaluation methodology. Cited in ES.ME-1. URL is the BSMS-hosted RSET landing; resolve at follow-up if a NIHR-direct URL exists.
 
@@ -14642,7 +14642,7 @@ The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner t
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-f/meta-evaluation.md`
+- **Cited-by:** `es/meta-evaluation.md`
 
 The VeriFact factual-verification framework. Cited in TP.SN-7 (Factual Verification, parent metric) as one of the methodological references. Specific paper / project URL to supply.
 
@@ -14655,7 +14655,7 @@ The VeriFact factual-verification framework. Cited in TP.SN-7 (Factual Verificat
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-f/meta-evaluation.md`
+- **Cited-by:** `es/meta-evaluation.md`
 
 The MedHELM benchmark — Stanford CRFM's medical extension of the HELM (Holistic Evaluation of Language Models) framework. Cited in TP.SN-7 (Factual Verification) and TP.SN-9b (LLM-Jury). URL is the Stanford CRFM MedHELM landing; confirm at follow-up.
 
@@ -14702,7 +14702,7 @@ Discipline-representative for "adversarial ML literature". The Carlini & Wagner 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 Discipline-representative for "data poisoning literature". The Biggio et al. paper is the foundational training-time-poisoning reference; stands in for the body of work informing GV.SC-4's 0.001 % threshold framing.
 
@@ -14715,7 +14715,7 @@ Discipline-representative for "data poisoning literature". The Biggio et al. pap
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `gv/security-adversarial-robustness.md`
 
 Carlini et al. 2024 IEEE S&P — practical demonstration that real web-scale training datasets can be poisoned at low cost (~0.001 % budget). The load-bearing modern reference for the data-poisoning threat model in GV.SC-4 (Data Poisoning Resilience). Distinct from [discipline-data-poisoning] which keeps the Biggio 2012 SVM-poisoning historical anchor; cite Carlini-2024 where the claim is about modern web-scale practical poisoning thresholds, Biggio where the claim is about the historical/conceptual basis.
 

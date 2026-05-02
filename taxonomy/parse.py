@@ -53,12 +53,6 @@ CLUSTER_NAMES: dict[str, str] = {
     "IO": "Impact & Outcomes",
     "GV": "System Governance",
     "ES": "Evaluation Science",
-    # Legacy Part-letter keys retained during the v4.0 migration so
-    # non-migrated clusters' Metric.part_name lookups still work. Removed
-    # cluster-by-cluster in Phase 1 as each cluster migrates; all gone
-    # by Phase 5. Phase 1a removed B/C/D (PI/HL/IO migrated).
-    "E": "System Governance",
-    "F": "Evaluation Science",
 }
 
 # Backwards-compatibility alias — pre-v4.0 code may still reference
@@ -119,45 +113,45 @@ GROUP_FILES: dict[str, dict[str, str]] = {
         "part": "IO",
         "group": "Fairness & Equity",
     },
-    "part-e/safety-governance.md": {
+    "gv/safety-governance.md": {
         "prefix": "GV.SG",
-        "part": "E",
+        "part": "GV",
         "group": "Safety & Governance",
     },
-    "part-e/nhs-compliance-regulatory.md": {
+    "gv/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",
-        "part": "E",
+        "part": "GV",
         "group": "NHS Compliance & Regulatory",
     },
-    "part-e/security-adversarial-robustness.md": {
+    "gv/security-adversarial-robustness.md": {
         "prefix": "GV.SC",
-        "part": "E",
+        "part": "GV",
         "group": "Security & Adversarial Robustness",
     },
-    "part-e/privacy-data-governance.md": {
+    "gv/privacy-data-governance.md": {
         "prefix": "GV.PD",
-        "part": "E",
+        "part": "GV",
         "group": "Privacy & Data Governance",
     },
-    "part-e/operational.md": {"prefix": "GV.OP", "part": "E", "group": "Operational"},
-    "part-e/environmental-sustainability.md": {
+    "gv/operational.md": {"prefix": "GV.OP", "part": "GV", "group": "Operational"},
+    "gv/environmental-sustainability.md": {
         "prefix": "GV.EN",
-        "part": "E",
+        "part": "GV",
         "group": "Environmental & Sustainability",
     },
-    "part-e/training-competency.md": {
+    "gv/training-competency.md": {
         "prefix": "GV.TC",
-        "part": "E",
+        "part": "GV",
         "group": "Training & Competency",
     },
-    "part-e/vendor-transparency-contractual.md": {
+    "gv/vendor-transparency-contractual.md": {
         "prefix": "GV.VT",
-        "part": "E",
+        "part": "GV",
         "group": "Vendor Transparency & Contractual",
     },
-    "part-f/meta-evaluation.md": {
+    "es/meta-evaluation.md": {
         "prefix": "ES.ME",
-        "part": "F",
+        "part": "ES",
         "group": "Meta-Evaluation",
     },
 }
@@ -182,9 +176,9 @@ class Metric:
     ref_id: str
     name: str
     tier: int  # 1 / 2 / 3
-    part: str  # A–F
+    part: str  # cluster code: TP / PI / HL / IO / GV / ES
     group: str  # human-readable group name
-    group_file: str  # relative path, e.g. "part-a/audio-capture.md"
+    group_file: str  # relative path, e.g. "tp/audio-capture.md"
     heading_line: int  # 1-indexed line number of `### ...` heading in group file
     dimensions: dict[str, str] = field(default_factory=dict)
     applicability: str | None = None  # populated by annotate_applicability()

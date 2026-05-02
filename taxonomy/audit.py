@@ -38,33 +38,33 @@ GROUP_FILES = {
     },
     "io/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
     "io/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
-    "part-e/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
-    "part-e/nhs-compliance-regulatory.md": {
+    "gv/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
+    "gv/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",
         "label": "NHS Compliance & Regulatory",
     },
-    "part-e/security-adversarial-robustness.md": {
+    "gv/security-adversarial-robustness.md": {
         "prefix": "GV.SC",
         "label": "Security & Adversarial Robustness",
     },
-    "part-e/privacy-data-governance.md": {
+    "gv/privacy-data-governance.md": {
         "prefix": "GV.PD",
         "label": "Privacy & Data Governance",
     },
-    "part-e/operational.md": {"prefix": "GV.OP", "label": "Operational"},
-    "part-e/environmental-sustainability.md": {
+    "gv/operational.md": {"prefix": "GV.OP", "label": "Operational"},
+    "gv/environmental-sustainability.md": {
         "prefix": "GV.EN",
         "label": "Environmental & Sustainability",
     },
-    "part-e/training-competency.md": {
+    "gv/training-competency.md": {
         "prefix": "GV.TC",
         "label": "Training & Competency",
     },
-    "part-e/vendor-transparency-contractual.md": {
+    "gv/vendor-transparency-contractual.md": {
         "prefix": "GV.VT",
         "label": "Vendor Transparency & Contractual",
     },
-    "part-f/meta-evaluation.md": {"prefix": "ES.ME", "label": "Meta-Evaluation"},
+    "es/meta-evaluation.md": {"prefix": "ES.ME", "label": "Meta-Evaluation"},
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
@@ -927,9 +927,9 @@ def check_reference_handles_resolve() -> list[Finding]:
     # treated as ERRORs. Outside this set, unresolved handles are deferred
     # to later phases of the sweep.
     pilot_scope = {
-        "part-e/nhs-compliance-regulatory.md",  # GV.CR-4
-        "part-e/security-adversarial-robustness.md",  # GV.SC-12
-        "part-e/vendor-transparency-contractual.md",  # GV.VT-13, GV.VT-14
+        "gv/nhs-compliance-regulatory.md",  # GV.CR-4
+        "gv/security-adversarial-robustness.md",  # GV.SC-12
+        "gv/vendor-transparency-contractual.md",  # GV.VT-13, GV.VT-14
         "_standards-mapping.md",
         "_references.md",  # the catalogue's own cross-references
     }
