@@ -136,10 +136,15 @@ def _metric_name_index() -> dict[str, "parse_src.Metric"]:
 
 
 def link_tier1_quickref(text: str) -> str:
-    """Convert `**Name**` → `[Name](../groups/<group>.md#ref-id)` when the
-    bolded text matches a known Tier-1 metric. Non-metric bold phrases (e.g.
-    **Deployer** actor subsection headings) are left untouched because they
-    don't match the name index.
+    """Convert `**Name**` → `[REF-ID Name](../groups/<group>.md#ref-id)` when
+    the bolded text matches a known Tier-1 metric. Non-metric bold phrases
+    (e.g. **Deployer** actor subsection headings) are left untouched because
+    they don't match the name index.
+
+    The ref-ID prefix (e.g. `TP.SN-5`) is added inside the link to give
+    readers cluster context (TP = Technical Pipeline, GV = Governance,
+    etc.) and a stable shorthand for cross-referencing without losing the
+    bolded human-readable name.
     """
     idx = _metric_name_index()
 
@@ -159,7 +164,8 @@ def link_tier1_quickref(text: str) -> str:
             return m.group(0)
         # Keep the warning suffix outside the link if present.
         suffix = " ⚠️" if raw.endswith("⚠️") else ""
-        return f"[**{candidate}**]({page}#{slug}){suffix}"
+        # Prefix the ref-ID inside the link so readers see cluster context.
+        return f"[`{hit.ref_id}` **{candidate}**]({page}#{slug}){suffix}"
 
     return _BOLD_METRIC_TOKEN.sub(sub, text)
 
@@ -675,7 +681,7 @@ def _crosscut_index_page(
     standards: dict[str, dict] | None = None,
 ) -> str:
     lines = [
-        "# Cross-cut views",
+        "# Catalogue views",
         "",
         f"Auto-generated views that slice the catalogue along three additional axes. "
         "Each view links back to individual metric pages - nothing here is authoritative, "
