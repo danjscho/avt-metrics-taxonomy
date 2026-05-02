@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v4.0.0"
+TAXONOMY_VERSION = "v4.0.1"
 TAXONOMY_DATE = "2026-05-02"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -178,17 +178,6 @@ class Metric:
     @property
     def cluster_name(self) -> str:
         return CLUSTER_NAMES.get(self.cluster, "")
-
-    # Backwards-compat aliases — pre-v4.0 callers used `metric.part` and
-    # `metric.part_name`. Renamed to `cluster` and `cluster_name` in v4.0
-    # Phase 3. Aliases retained until v4.1; flagged for removal there.
-    @property
-    def part(self) -> str:
-        return self.cluster
-
-    @property
-    def part_name(self) -> str:
-        return self.cluster_name
 
     @property
     def tier_label(self) -> str:

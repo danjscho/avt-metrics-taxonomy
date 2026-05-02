@@ -1,5 +1,15 @@
 # Changelog
 
+## v4.0.1 (2026-05-02)
+
+**Patch release: drop the v4.0 backwards-compat `Metric.part` / `Metric.part_name` aliases.**
+
+The v4.0 Phase 3 field rename (`Metric.part` → `Metric.cluster`, `Metric.part_name` → `Metric.cluster_name`) left the old names as proxy properties on the dataclass, defensively in case any internal or downstream code still read them. A scan immediately after release found exactly one reader (`build_site.py:812`, a sort key); it has been updated to use `x.cluster`. With no other readers identified, the aliases are dropped now rather than scheduled into a hypothetical "v4.1" — the migration was clean enough that the safety net was unnecessary.
+
+If you have v4.0-vintage code that reads `metric.part` or `metric.part_name`, replace with `metric.cluster` / `metric.cluster_name`.
+
+No metric content changes. No tier shifts. Counts unchanged at 218 / 43-96-79.
+
 ## v4.0.0 (2026-05-02)
 
 **Major release: cluster-code naming throughout. Breaking changes.**
@@ -29,7 +39,7 @@ references, CSV/JSON downloads, site nav) now uses cluster codes.
 **No backwards-compat shim** in CSV/JSON; this is the major-version
 break and consumers update once. `Metric.part` / `Metric.part_name`
 attribute aliases retained on the Python `Metric` dataclass for v4.x
-ecosystem code (flagged for removal in v4.1).
+ecosystem code (removed in v4.0.1).
 
 **Companion rename: "EPR Write-back" → "Downstream Write-back".** The
 TP.WB group is renamed to reflect that write-back targets are not
@@ -52,7 +62,7 @@ URL via a 301 redirect.
 - **`Metric.cluster`** field replaces `Metric.part`. New
   `Metric.cluster_name` property (was `Metric.part_name`). Both
   `part` and `part_name` retained as backwards-compat properties on
-  the dataclass; flagged for removal in v4.1.
+  the dataclass; removed in v4.0.1.
 - **28 prose substitutions** across `_outcomes-boundary.md`,
   `_contents.md`, `_applicability.md`, `_standards-mapping.md`. The
   `_responsible-ai-lens.md` doc-internal "Part A / B / C / D" sub-section

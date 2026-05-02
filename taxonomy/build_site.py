@@ -809,7 +809,7 @@ def _applicability_page(label: str, metrics: list) -> str:
         "| Ref | Metric | Group | Tier |",
         "|-----|--------|-------|------|",
     ]
-    for m in sorted(metrics, key=lambda x: (x.part, x.group, x.ref_id)):
+    for m in sorted(metrics, key=lambda x: (x.cluster, x.group, x.ref_id)):
         link = _metric_page_link(m.ref_id, m.name, m.group_file)
         lines.append(
             f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |"
