@@ -46,7 +46,7 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the NAS SPI and CQC Mythbuster 109 cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
+> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the [NAS-Day-Zero-SPI-internal] and [CQC-Mythbuster-109] cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
 > - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.

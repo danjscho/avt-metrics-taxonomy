@@ -272,7 +272,7 @@ HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generat
 
 **Reference Standard**
 
-> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the CREOLA subtype taxonomy (Asgari et al. 2025). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
+> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the [CREOLA-Hallucination-Taxonomy] subtype taxonomy ([Asgari-Tortus-GOSH-2025]). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
 
 **Operational Specification**
 
@@ -366,7 +366,7 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 **Reference Standard**
 
-> Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the CREOLA mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.
+> Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the [CREOLA-Hallucination-Taxonomy] mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.
 
 **Operational Specification**
 

@@ -29,7 +29,7 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 
 **Reference Standard**
 
-> Authoritative source: the deployer's clinical governance training record (LMS or equivalent), with module catalogue mapped against the NAS Day Zero training requirements and local induction policy. Four mandatory modules MUST be enumerated:
+> Authoritative source: the deployer's clinical governance training record (LMS or equivalent), with module catalogue mapped against the [NAS-Day-Zero-SPI-internal] training requirements and local induction policy. Four mandatory modules MUST be enumerated:
 >
 > - **M1: Vendor product training** — system mechanics, activation, opt-out, error reporting per the specific AVT product
 > - **M2: Local induction** — review-before-signing workflow, opt-out and dissent procedures (cross-link [GV.CR-1 Patient Dissent Recording Rate](#gv-cr-1) and [GV.CR-2 Verbal Notification Compliance](#gv-cr-2)), incident-reporting pathway
@@ -49,7 +49,7 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the NAS Day Zero requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
+> ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the [NAS-Day-Zero-SPI-internal] requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** every clinician scheduled to use AVT has M1 + M2 + M3 complete within validity periods; M4 not yet applicable for new starters.
 > - **Continuous monitoring:** monthly per-module TCR ≥ 100 %; alert on any clinician active on AVT with any module out of date by > 14 days.

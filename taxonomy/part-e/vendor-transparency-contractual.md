@@ -29,7 +29,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **Reference Standard**
 
-> Vendor change-event log paired with deployer notification record. The change-event taxonomy follows [GV.SG-1 Model Version Tracking](#gv-sg-1) — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to MHRA Post-Market Surveillance Regulations 2024 (SI 2024 No. 1368): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.
+> Vendor change-event log paired with deployer notification record. The change-event taxonomy follows [GV.SG-1 Model Version Tracking](#gv-sg-1) — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to [SI-2024-1368] (MHRA Post-Market Surveillance Regulations 2024): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.
 
 **Operational Specification**
 
@@ -37,12 +37,12 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 > - **Population:** every change-event recorded by [GV.SG-1](#gv-sg-1) telemetry. Denominator is change-events, not calendar months.
 > - **Severity classification MANDATORY:** every change classified as **major** (component-level rewrite, scope expansion, retraining with new data, regulatory-substantial), **moderate** (incremental retraining, prompt revision, retrieval index update), or **minor** (bug fix, performance optimisation without behavioural change). Lead-time requirements differ per severity (Threshold Guidance below).
 > - **Four mandatory content elements per notification:** (a) what changed (component, version-from, version-to); (b) expected impact (clinical-benchmark deltas, edge cases, known failure modes affected); (c) validation results (named benchmarks, test corpora, sample sizes); (d) deployer action required (re-run [GV.SG-2 Model Update Impact Score](#gv-sg-2), schedule [GV.CR-6 Safety Case](#gv-cr-6) update, etc.). Notifications missing any element count as non-compliant regardless of timing.
-> - **Substantial-change flag MANDATORY:** any change meeting MHRA PMS substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
+> - **Substantial-change flag MANDATORY:** any change meeting [SI-2024-1368] substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
 > - **Per-deployment notification:** notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises Stanford monitoring framework requirements (cited Source) with MHRA PMS notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+> ⚠️ **Provenance:** the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises [Keyes-Stanford-Monitoring-2025] requirements (cited Source) with [SI-2024-1368] notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to the four-element schema and the per-severity lead times below; vendor demonstrates a recent change-event with full notification on file.
 > - **Continuous monitoring:** major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.
@@ -214,7 +214,7 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 
 **Reference Standard**
 
-> Authoritative source: vendor incident log paired with deployer notification record. `t_incident_known_by_vendor` is the earliest of: (a) vendor's own detection telemetry; (b) report from another deployer; (c) external (e.g. researcher) disclosure. Vendor self-classification of "knowing time" is rebuttable — if independent evidence (security advisories, public disclosure, regulator notice) establishes earlier knowledge, that timestamp is authoritative. Cross-link to UK NIS regulations and ICO Article 33 timelines for data-breach incidents (72-hour deployer-side notification obligation cascades from vendor disclosure). Incident severity classified per a deployer-defined schema; default: critical (active patient safety risk or active data exposure), high (potential exposure pending mitigation), medium (vulnerability disclosed and patched), low (informational).
+> Authoritative source: vendor incident log paired with deployer notification record. `t_incident_known_by_vendor` is the earliest of: (a) vendor's own detection telemetry; (b) report from another deployer; (c) external (e.g. researcher) disclosure. Vendor self-classification of "knowing time" is rebuttable — if independent evidence (security advisories, public disclosure, regulator notice) establishes earlier knowledge, that timestamp is authoritative. Cross-link to UK NIS regulations and [UK-GDPR] Article 33 timelines for data-breach incidents (72-hour deployer-side notification obligation cascades from vendor disclosure). Incident severity classified per a deployer-defined schema; default: critical (active patient safety risk or active data exposure), high (potential exposure pending mitigation), medium (vulnerability disclosed and patched), low (informational).
 
 **Operational Specification**
 
@@ -227,7 +227,7 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with ICO Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
+> ⚠️ **Provenance:** the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with [UK-GDPR] Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to severity-classified disclosure timelines and the five-element content schema; named deployer contact recorded; one tabletop test of the disclosure path.
 > - **Continuous monitoring:** critical incidents disclosed ≤ 24 hours from `t_known`; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.
@@ -313,7 +313,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **Reference Standard**
 
-> Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. UK GDPR Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place ([GV.PD-9 Cross-Border Data Transfer Compliance](#gv-pd-9) cross-link for non-UK locations).
+> Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. [UK-GDPR] Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place ([GV.PD-9 Cross-Border Data Transfer Compliance](#gv-pd-9) cross-link for non-UK locations).
 
 **Operational Specification**
 
@@ -326,7 +326,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the seven-source discovered-set framing follows from UK GDPR Article 28(2) and standard DPIA practice; the materiality distinction synthesises ICO guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
+> ⚠️ **Provenance:** the seven-source discovered-set framing follows from [UK-GDPR] Article 28(2) and standard DPIA practice; the materiality distinction synthesises [ICO] guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate (procurement):** vendor publishes complete sub-processor list with the per-sub-processor information schema above; deployer-side verification step completed (not vendor self-cert alone); DPAs in place for every material sub-processor.
 > - **Continuous monitoring:** quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.
@@ -449,7 +449,7 @@ Composite freshness score per component:
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
-> - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component (DCB0129 safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
+> - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component ([DCB0129] safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
 
 **References**
 

@@ -225,7 +225,7 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the NAS Day Zero SPI specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
+> ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the [NAS-Day-Zero-SPI-internal] specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.
 > - **Continuous monitoring alert:** weekly RBS < 95 % aggregate; OR any single clinician's RBS drops > 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 < 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).
@@ -289,7 +289,7 @@ TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and Stanford principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
+> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the [Keyes-Stanford-Monitoring-2025] principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
 > - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
