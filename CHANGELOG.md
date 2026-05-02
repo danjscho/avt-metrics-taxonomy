@@ -25,6 +25,12 @@ References validity sweep — every external citation in the taxonomy now resolv
 
 No metric content changes. No tier shifts. No new metrics. Counts unchanged at 218 / 43-96-79.
 
+**Known not-yet-done items (deferred to v3.9.x or v3.10):**
+
+- **Wayback snapshot pass.** `snapshot.py` runs but anonymous Save-Page-Now is rejected with HTTP 401; needs Internet Archive S3-style credentials (`IA_ACCESS_KEY` / `IA_SECRET_KEY`). 100 catalogue Archive: fields stay placeholder until creds are supplied and `snapshot.py` is re-run; `audit.py check_archive_present` flags this at INFO.
+- **Vague-literature Source rows under new grammar.** Plan-v3.9's strict reading was "all 221 Source rows" use `[Handle]` grammar; in practice ~95 rows are vague-literature ("standard ASR literature", "machine learning calibration literature") or proposed/derived ("identified as critical gap in clinical ASR evaluation"). FILLED's D-section triage explicitly settled the vague-literature handling as **prose, not handles** — a citation should match the claim being made; existence-of-literature gestures get prose, specific quantitative claims get specific papers. The current 126-of-221 [Handle]-cited rows reflect this revised intent rather than the original plan; the catalogue keeps `discipline-data-poisoning`, `discipline-calibration`, `discipline-adversarial-ml`, `discipline-human-factors` as opt-in handles for the four cases where a discipline genuinely has a single dominant entry-point paper.
+- **`check_source_row_grammar`.** The Phase 5 audit check the plan called for was not added. `check_reference_handles_resolve` enforces the operationally-meaningful invariant (every `[Handle]` used resolves to a catalogue entry); a strict `check_source_row_grammar` that mandates handle-shaped rows everywhere would conflict with the prose-where-appropriate decision above.
+
 ## v3.8.4 (2026-04-26)
 
 Tooling-only patch — fixes site-wide version banner drift.
