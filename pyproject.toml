@@ -1,6 +1,6 @@
 [project]
 name = "avt-metrics-taxonomy"
-version = "3.9"
+version = "3.9.1"
 description = "Healthcare metrics taxonomy for assuring Ambient Voice Technology in NHS and comparable settings"
 requires-python = ">=3.10"
 dependencies = [
@@ -9,7 +9,16 @@ dependencies = [
     "mkdocs-rss-plugin",
 ]
 
+[project.optional-dependencies]
+dev = [
+    "pytest",
+]
+
 # This project is documentation + Python tooling, not a distributable package.
 # uv reads `dependencies` for environment management; nothing is published to PyPI.
 [tool.uv]
 package = false
+
+[tool.pytest.ini_options]
+testpaths = ["taxonomy/tests"]
+python_files = "test_*.py"
