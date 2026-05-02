@@ -26,6 +26,7 @@ SITE_VERSION = parse_src.TAXONOMY_VERSION
 # source file -> docs path
 MAPPING: dict[str, str] = {
     "_header.md": "index.md",
+    "_prototype-status.md": "prototype-status.md",
     "_how-to-use.md": "how-to-use.md",
     "_tier-1-quick-reference.md": "tier-1-quick-reference.md",
     "_contents.md": "contents.md",
@@ -93,6 +94,7 @@ ANCHOR_REWRITES: dict[str, str] = {
     "outcomes-boundary": "outcomes-boundary.md",
     "calibration-context": "calibration-and-context.md",
     "references": "references.md",
+    "prototype-status": "prototype-status.md",
     # Sections inside _standards-mapping.md that other pages link to.
     # Each is now an h2 on standards-mapping.md, so a fragment is preserved.
     "nhs-england-avt-self-certified-supplier-registry": "standards-mapping.md#nhs-england-avt-self-certified-supplier-registry",
@@ -479,10 +481,13 @@ def _refresh_announce_banner() -> None:
         '{% extends "base.html" %}\n'
         "\n"
         "{% block announce %}\n"
-        f"  <strong>Draft {SITE_VERSION}</strong> - this taxonomy is under active review "
-        "and has not yet been stakeholder-approved. Content, tier assignments, and gap "
-        "analysis may change before public release. See the\n"
-        "  <a href=\"{{ 'changelog/' | url }}\" style=\"color: inherit; text-decoration: underline;\">changelog</a> for recent changes and the\n"
+        f"  <strong>Prototype for discussion — {SITE_VERSION}.</strong> "
+        "This taxonomy is shared openly to provoke conversation about what an AVT "
+        "assurance frame should look like. It is <strong>not</strong> a settled "
+        "standard, an NHS-endorsed document, or a procurement gate. Tier assignments, "
+        "threshold numbers, and metric framings will change in response to feedback. See the\n"
+        "  <a href=\"{{ 'prototype-status/' | url }}\" style=\"color: inherit; text-decoration: underline;\">prototype status</a> page for what you're invited to do (and what you shouldn't), the\n"
+        "  <a href=\"{{ 'changelog/' | url }}\" style=\"color: inherit; text-decoration: underline;\">changelog</a> for recent changes, and the\n"
         "  <a href=\"{{ 'gaps/' | url }}\" style=\"color: inherit; text-decoration: underline;\">roadmap</a> for what's pending.\n"
         "{% endblock %}\n"
     )
@@ -556,6 +561,13 @@ def main() -> None:
     (DOCS / "downloads.md").write_text(_downloads_page())
     _mirror_downloads()
     _copy_stylesheets()
+
+    # Placeholder versions.json so local `mkdocs serve` doesn't 404 on
+    # mkdocs-material's mike version-selector fetch. In production, `mike
+    # deploy` overwrites this with the real multi-version index.
+    (DOCS / "versions.json").write_text(
+        '[{"version": "latest", "title": "latest", "aliases": []}]\n'
+    )
 
     # Cross-cut auto-generated pages (applicability / principle / theme).
     crosscut_count = build_crosscuts()

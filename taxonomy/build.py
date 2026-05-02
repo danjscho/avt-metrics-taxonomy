@@ -24,6 +24,7 @@ DIST = ROOT.parent / "dist"
 # Cross-cutting files first, matching the original document structure.
 FILES = [
     "_header.md",
+    "_prototype-status.md",
     "_how-to-use.md",
     "_summary.md",
     "_tier-1-quick-reference.md",
@@ -154,6 +155,13 @@ def build_metric_outputs() -> int:
     json_path = DIST / "metrics.json"
     payload = {
         "version": p.TAXONOMY_VERSION,
+        "status": "prototype-for-discussion",
+        "status_note": (
+            "This taxonomy is a prototype-for-discussion, not a settled standard. "
+            "Tier assignments and threshold numbers will change in response to feedback. "
+            "Do not paste threshold numbers into contracts or treat any specific metric "
+            "as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/"
+        ),
         "metric_count": len(metrics),
         "metrics": [
             {
@@ -198,6 +206,11 @@ def build_gap_output() -> int:
 
 def build_summary() -> None:
     summary = p.summary()
+    summary = {
+        "status": "prototype-for-discussion",
+        "version": p.TAXONOMY_VERSION,
+        **summary,
+    }
     path = DIST / "summary.json"
     path.write_text(json.dumps(summary, indent=2) + "\n")
     print(f"Built {path.relative_to(ROOT.parent)} ({summary}).")

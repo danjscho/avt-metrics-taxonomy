@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **Draft - {{TAXONOMY_VERSION}}, {{TAXONOMY_DATE}}.** This taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so that early feedback can shape the content, but it should not yet be cited as a settled standard.
+> **Prototype for discussion — {{TAXONOMY_VERSION}}, {{TAXONOMY_DATE}}.** This taxonomy is shared openly to provoke conversation about what an AVT assurance frame should look like. It is **not** a settled standard, an NHS-endorsed document, or a procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 

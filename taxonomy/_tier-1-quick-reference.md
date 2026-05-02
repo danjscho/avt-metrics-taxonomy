@@ -81,3 +81,5 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 ---
 
+> **Disagree, want to propose a metric, or think a tier should shift?** This Tier 1 list is a [prototype-for-discussion](#prototype-status), not a settled checklist. Open an issue at [github.com/danjscho/avt-metrics-taxonomy/issues](https://github.com/danjscho/avt-metrics-taxonomy/issues) — the roadmap is shaped by reader pushback as much as by the author's pre-baked plan.
+

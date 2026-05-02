@@ -2,9 +2,9 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
-**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.9, 2026-05-02** — under active review, not yet stakeholder-approved.
+**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Prototype for discussion — v3.9, 2026-05-02.** Shared to provoke conversation; not a settled standard.
 
-> ⚠️ This is a draft. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so early feedback can shape the content. Do not yet cite as a settled standard.
+> ⚠️ This is a **prototype for discussion**, not a finished taxonomy. It is shared openly to provoke conversation about what an AVT assurance frame should look like — *not* as an NHS-endorsed standard, regulatory document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. **You are invited to disagree, propose changes, point at gaps, and share with colleagues. You should not paste threshold numbers into contracts, cite metrics as authoritative without flagging the prototype status, or treat any specific metric as policy.** See [docs site → Prototype status](https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/) for the full framing.
 
 ## Quick links
 
@@ -85,7 +85,7 @@ Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance
 
 ## Status / version
 
-**Current draft:** v3.9, released 2026-05-02.
+**Current prototype version:** v3.9, released 2026-05-02.
 
 Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → `v3.8` (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening) → **v3.9** (citation grammar + References catalogue: ~104 entries, every external authority resolves through `_references.md` with handles + URLs + Wayback snapshots + retrieval dates; audit-enforced handle resolution; cited-by back-references at build time).
 
@@ -93,11 +93,11 @@ See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
 ## Citation
 
-Until the draft reaches a settled state, please cite as:
+Until the prototype reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v3.9* [draft]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v3.9* [prototype-for-discussion]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
-Note: draft status means content / tier assignments / cross-references may change. Cite the specific version (e.g. v3.9) so subsequent users can reproduce what you read.
+Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v3.9) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
 
 ## Contributing
 
@@ -109,7 +109,7 @@ A formal CONTRIBUTING file does not yet exist. Issues are the right entry point 
 
 ## Licence
 
-Licence TBD. Until a licence is declared in this repository, treat the taxonomy as **draft work shared for early feedback**, not as a settled standard or a freely re-licensable artefact.
+Licence TBD. Until a licence is declared in this repository, treat the taxonomy as **prototype work shared for discussion**, not as a settled standard or a freely re-licensable artefact.
 
 ---
 

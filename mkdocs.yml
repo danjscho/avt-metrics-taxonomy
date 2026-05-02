@@ -99,6 +99,7 @@ markdown_extensions:
 
 nav:
   - Home: index.md
+  - Prototype status: prototype-status.md
   - How to use: how-to-use.md
   - Quick start (Tier 1): tier-1-quick-reference.md
   - Browse metrics:
