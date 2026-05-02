@@ -767,9 +767,9 @@ For each span sᵢ, mapping M(sᵢ) → {(t_start, t_end)}. Requirements: Covera
 
 ---
 
-### TP.SN-13 🔵 SCRIBE Framework Composite
+### TP.SN-13 🔵 ADS Evaluation Framework Composite
 
-First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment.
+First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment. Based on Wang et al. 2025's four-modality triangulation framework for ambient digital scribing (ADS) evaluation; the paper diagrams use the acronym SCRIBE for the four-modality combination.
 
 | Dimension | Value |
 |-----------|-------|
@@ -784,7 +784,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | [Wang-Duke-MedStar-2025] |
+| **Source** | [Wang-ADS-Eval-2025] |
 
 **Why this tier?**
 
@@ -793,12 +793,12 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 **Formal Definition**
 
 ```
-Four modalities: (1) Simulated encounters with ground truth; (2) Computational metrics on outputs; (3) Structured clinician review; (4) LLM evaluation. Composite requires passing all four - no single modality compensates for another.
+Four-modality triangulation per Wang et al. 2025: (1) Simulated encounters with ground truth; (2) Computational metrics on outputs; (3) Structured clinician review; (4) LLM-as-evaluator. The paper proposes the four modalities as triangulation methodology — no single modality is sufficient on its own. The "pass all four" composite formulation below is a taxonomy-recommended pre-deployment shape; the paper itself does not impose a hard pass/fail gate across all four.
 ```
 
 **References**
 
-- **Paper**: [Wang et al. (2025) - SCRIBE, npj Digital Medicine](https://doi.org/10.1038/s41746-025-01449-w)
+- **Paper**: [Wang et al. (2025) — npj Digital Medicine](https://doi.org/10.1038/s41746-025-01622-1) — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym **SCRIBE** (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).
 
 **Limitations**
 

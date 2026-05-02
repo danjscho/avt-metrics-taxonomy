@@ -411,31 +411,31 @@ The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clini
 
 The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cites this as the foundational reference; the **AVT-specific extension application** of INSYTE is not yet public — citing INSYTE on an AVT-specific metric should be read as **future work pending publication**.
 
-### SCRIBE-Wang-2025
+### Wang-ADS-Eval-2025
 
-- **Title:** SCRIBE — Synthetic Clinical Research-Informed Benchmarks for Evaluation (Wang et al., npj Digital Medicine 2025)
-- **Publisher:** Wang et al., npj Digital Medicine (Nature Portfolio), 2025
+- **Title:** An evaluation framework for ambient digital scribing tools in clinical applications
+- **Publisher:** Wang H et al. (Duke / MedStar collaboration: Pencina, Poon, Bedoya, Economou-Zavlanos, Pollak, Hong, Wang… and MedStar: Ratwani, Biro, Sorrentino, Handley). *npj Digital Medicine* 2025;8:358 (online 2025-06-13). DOI 10.1038/s41746-025-01622-1
 - **Source-Type:** paper
 - **URL:** https://www.nature.com/articles/s41746-025-01622-1
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The SCRIBE benchmark suite for synthetic clinical-conversation evaluation, published in npj Digital Medicine 2025. Used as a reference dataset in several pipeline metrics.
+Wang et al. 2025 — Duke / MedStar evaluation framework for ambient digital scribing (ADS) tools. The paper introduces a four-modality triangulation framework (human review, automated computational metrics, simulation, LLM-as-evaluator). The acronym used in the paper diagrams is "SCRIBE" (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation). Cited across TP.ASR (transcription), TP.DI (diarisation), and TP.SN (summarisation) metrics. (v3.9 round-2 audit: handle renamed from `SCRIBE-Wang-2025`; replaces a phantom `Wang-Duke-MedStar-2025` entry that was the same paper; the DOI `s41746-025-01449-w` previously cited inline at three locations was wrong and has been corrected to `s41746-025-01622-1`.)
 
 ### PDSQI-9
 
 - **Title:** Physician Documentation Quality Instrument (PDQI / PDSQI-9 lineage)
-- **Publisher:** Stetson et al. (original PDQI, 2012); subsequent PDSQI-9 work
+- **Publisher:** Stetson et al. (original PDQI, *Journal of General Internal Medicine* 2012); Croxford et al. (PDSQI-9 instrument validation, *J Am Med Inform Assoc* 2025;32:1050-1060)
 - **Source-Type:** paper
 - **URL:** https://pubmed.ncbi.nlm.nih.gov/22577483/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The original Physician Documentation Quality Instrument paper (Stetson et al., 2012; PubMed 22577483) is the canonical reference. A more recent paper exploring PDSQI applied to LLM-generated clinical documentation is at https://pubmed.ncbi.nlm.nih.gov/40323321/. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric.
+The Physician Documentation Quality Instrument lineage. Two anchor papers: (a) Stetson et al. 2012 (PubMed 22577483) — original PDQI; (b) Croxford et al. 2025 — "Development and validation of the provider documentation summarization quality instrument for large language models" (*J Am Med Inform Assoc* 32:1050-1060), at https://pubmed.ncbi.nlm.nih.gov/40323321/, which is the concrete PDSQI-9 instrument validation for LLM-generated clinical documentation. Cited as the validated rubric underlying TP.SN-9a's LLM-as-a-Judge proxy metric. Distinct from [Croxford-2025] which references the broader 2025 conceptual review of LLM medical-summarisation evaluation (npj Health Systems).
 
 ### ROUGE-Lin-2004
 
@@ -517,94 +517,94 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 
 ### Croxford-2025
 
-- **Title:** Croxford et al. 2025 — clinical-summarisation evaluation findings
-- **Publisher:** Croxford et al., 2025 (specific DOI / venue TBC)
+- **Title:** Current and future state of evaluation of large language models for medical summarization tasks
+- **Publisher:** Croxford E et al. *npj Health Systems* 2025;2:6. DOI 10.1038/s44401-024-00011-2
 - **Source-Type:** paper
-- **URL:** https://www.nature.com/articles/s41746-025-01754-4
+- **URL:** https://www.nature.com/articles/s44401-024-00011-2
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing. Resolve at the Phase 2 follow-up review.
+Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing.
 
 ### Asgari-Tortus-GOSH-2025
 
-- **Title:** Asgari et al. 2025 — Tortus AI / GOSH hallucination-rate findings
-- **Publisher:** Asgari et al., 2025 (Tortus AI in collaboration with Great Ormond Street Hospital)
+- **Title:** A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation
+- **Publisher:** Asgari E, Montaña-Brown N, Dubois M, Khalil S, Balloch J, Au Yeung J, Pimenta D. *npj Digital Medicine* 2025;8:274. DOI 10.1038/s41746-025-01670-7
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **URL:** https://www.nature.com/articles/s41746-025-01670-7
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters.
 
 ### CREOLA-Hallucination-Taxonomy
 
-- **Title:** CREOLA hallucination taxonomy (specific reference TBC)
-- **Publisher:** _(unknown — possibly an academic benchmark or vendor framework; please clarify)_
-- **Source-Type:** _(unknown — paper or disclosure; please clarify)_
-- **URL:** _(pending v3.9 Phase 2 follow-up review — original reference to supply)_
+- **Title:** CREOLA hallucination subtype taxonomy (framework introduced in Asgari et al. 2025)
+- **Publisher:** Asgari et al., *npj Digital Medicine* 2025;8:274 — same paper as [Asgari-Tortus-GOSH-2025]
+- **Source-Type:** paper
+- **URL:** https://www.nature.com/articles/s41746-025-01670-7
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-6 (Hallucination Severity Classification sub-part) as the source of the hallucination-taxonomy categories. Source row prose names "CREOLA taxonomy" but does not specify whether this is an academic benchmark, a research-group-internal taxonomy, or a vendor framework. Resolve at the Phase 2 follow-up review.
+The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation). Introduced in Asgari et al. 2025 *npj Digital Medicine* — same paper as [Asgari-Tortus-GOSH-2025]; CREOLA is the framework name Tortus AI uses for the assessment approach described in that paper. The two handles are kept separate so Source rows can cite the *taxonomy* vs the *paper*; both resolve to the same underlying publication.
 
 ### Abridge-Whitepaper-2025
 
-- **Title:** Abridge whitepaper — clinical-AI training methodology (50,000+ examples)
-- **Publisher:** Abridge (vendor)
+- **Title:** The Science of Confabulation Elimination — Abridge product methodology
+- **Publisher:** Abridge AI (vendor)
 - **Source-Type:** disclosure
-- **URL:** https://www.abridge.com/research
+- **URL:** https://www.abridge.com/ai/science-confabulation-hallucination-elimination
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published.
 
 ### Chung-NEJM-AI-2025
 
-- **Title:** Chung et al. 2025 — Stanford AI clinical-evaluation findings (NEJM AI, January 2025)
-- **Publisher:** Chung et al., NEJM AI January 2025
+- **Title:** Ambient AI Scribes in Clinical Practice (UCLA RCT)
+- **Publisher:** Lukac S, Chung et al. *NEJM AI* 2025;2(12):e2501000. DOI 10.1056/AIoa2501000 (Chung is co-author; the original Chung-first-author handle has been retained for taxonomy continuity but the canonical first author is Lukac)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI to supply)_
+- **URL:** https://ai.nejm.org/doi/10.1056/AIoa2501000
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 paper from Chung et al. at Stanford. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 paper from Chung et al. at Stanford.
 
 ### Bedi-Stanford-CRFM-2025
 
-- **Title:** Bedi et al. 2025 — Stanford CRFM findings (May 2025)
-- **Publisher:** Bedi et al., Stanford Center for Research on Foundation Models, May 2025
+- **Title:** MedHELM: Holistic Evaluation of Large Language Models for Medical Tasks
+- **Publisher:** Bedi S, Cui A, Fuentes A, Unell M, Wornow M, et al. *arXiv preprint* 2505.23802 (May 2025) — same paper as the [MedHELM] leaderboard
 - **Source-Type:** paper
-- **URL:** https://crfm.stanford.edu/
+- **URL:** https://arxiv.org/abs/2505.23802
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-10 (Tier 3 advanced metric) as Bedi et al.'s Stanford CRFM May 2025 paper. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-10 (Tier 3 advanced metric) as Bedi et al.'s Stanford CRFM May 2025 paper.
 
 ### Kanithi-2025
 
-- **Title:** Kanithi et al. 2025 — clinical-summarisation paper (specific venue TBC)
-- **Publisher:** Kanithi et al., 2025
+- **Title:** MEDIC: Towards a Comprehensive Framework for Evaluating LLMs in Clinical Applications
+- **Publisher:** Kanithi PK et al. *arXiv preprint* 2024 (updated 2025), 2409.07314
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **URL:** https://arxiv.org/abs/2409.07314
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper. Resolve at the Phase 2 follow-up review.
+Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper.
 
 ### Abridge-Linked-Evidence
 
@@ -618,19 +618,6 @@ Cited in TP.SN-11 (sub-part) as the Kanithi et al. 2025 paper. Resolve at the Ph
 - **Cited-by:** _(auto-generated)_
 
 Cited in TP.SN-12 (Evidence Linking Coverage) and TP.ASR-11 (ASR Confidence Exposure) as a representative vendor implementation of the span-to-source-segment provenance pattern. `Source-Type: disclosure` because the URL is a user-facing support article describing the feature, not an architectural specification — the metric stands on its own conceptual merits and the Abridge citation is an existence-proof for the pattern. (v3.9 round-2 review reframed the Source-row prose accordingly: TP.SN-12 cites it as "architectural pattern; representative vendor implementation" rather than implying it is the spec.)
-
-### Wang-Duke-MedStar-2025
-
-- **Title:** Wang et al. 2025 — Duke / MedStar clinical-AI findings
-- **Publisher:** Wang et al., 2025 (Duke / MedStar collaboration)
-- **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-Cited in TP.SN-13 (Tier 3 advanced metric) as Wang et al.'s Duke/MedStar 2025 paper. **Note:** distinct from [SCRIBE-Wang-2025] — different Wang, different institution, different paper. Resolve at the Phase 2 follow-up review.
 
 ### i2b2-2012-Temporal-Challenge
 
@@ -650,13 +637,13 @@ Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.8
 - **Title:** n2c2 NLP shared tasks — multi-year benchmark series (i2b2 successor)
 - **Publisher:** Department of Biomedical Informatics, Harvard Medical School (n2c2 organisers)
 - **Source-Type:** paper
-- **URL:** https://n2c2.dbmi.hms.harvard.edu/
+- **URL:** https://portal.dbmi.hms.harvard.edu/projects/n2c2-nlp/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, and in TP.SN-21 (medication event classification) referencing the 2018 n2c2 shared task specifically. Multi-year benchmark series; the catalogue handle covers all year-shared-tasks generically with year-specific qualification given inline. Resolve at the Phase 2 follow-up review whether to keep one handle or split per shared-task year.
+Cited in TP.SN-19 (medication attribute extraction) referencing n2c2 generally, and in TP.SN-21 (medication event classification) referencing the 2018 n2c2 shared task specifically. Multi-year benchmark series; the catalogue handle covers all year-shared-tasks generically with year-specific qualification given inline.
 
 ### Himmelstein-Stigmatising-EHR-JAMA-2022
 
@@ -674,12 +661,12 @@ Cited in TP.SN-24 (Stigmatising Language Rate) as the canonical paper documentin
 
 ### NLP2FHIR-Pipeline
 
-- **Title:** NLP2FHIR pipeline — clinical NLP to FHIR resource conversion
-- **Publisher:** _(specific publication / project TBC)_
+- **Title:** NLP2FHIR — clinical NLP to FHIR resource conversion (BD2K On FHIR)
+- **Publisher:** BD2KOnFHIR project (open-source); associated paper Hong N et al. *JAMIA Open* 2019, DOI 10.1093/jamiaopen/ooz040
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / project URL to supply)_
+- **URL:** https://github.com/BD2KOnFHIR/NLP2FHIR
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -687,12 +674,12 @@ Cited in TP.CC-2 (SNOMED CT Concept Mapping Accuracy) as one of three references
 
 ### John-Snow-Labs-FHIR-Ready-AI
 
-- **Title:** John Snow Labs FHIR-Ready AI — clinical-NLP-to-FHIR commercial product disclosure
+- **Title:** FHIR-Ready AI: Transforming Unstructured Clinical Data into Interoperable Resources
 - **Publisher:** John Snow Labs (vendor)
 - **Source-Type:** disclosure
-- **URL:** https://www.johnsnowlabs.com/
+- **URL:** https://www.johnsnowlabs.com/fhir-ready-ai-transforming-unstructured-clinical-data-into-interoperable-resources/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -700,29 +687,29 @@ Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type
 
 ### MedCAT-Benchmarks
 
-- **Title:** MedCAT — Medical Concept Annotation Toolkit benchmarks
-- **Publisher:** Kraljevic et al. (MedCAT maintainers, KCL / SLaM)
+- **Title:** Multi-domain Clinical Natural Language Processing with MedCAT: The Medical Concept Annotation Toolkit
+- **Publisher:** Kraljevic Z, Searle T, Shek A, et al. *Artificial Intelligence in Medicine* 2021;117:102083. DOI 10.1016/j.artmed.2021.102083. PMID 34127232 (project repo: github.com/CogStack/MedCAT)
 - **Source-Type:** paper
-- **URL:** https://github.com/CogStack/MedCAT
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/34127232/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
 Cited in TP.CC-2 as benchmark reference for medical-concept annotation. MedCAT is a well-known King's-College-London / South London & Maudsley NHS-backed clinical-NLP toolkit; specific benchmark paper to confirm at the Phase 2 follow-up review.
 
-### Hybrid-Code-v2-2025
+### Hybrid-Code-v2-2026
 
-- **Title:** Hybrid-Code v2 — neuro-symbolic clinical-coding verification
-- **Publisher:** _(authors TBC)_; arxiv 2512.23743
+- **Title:** Hybrid-Code v2: Zero-Hallucination Clinical ICD-10 Coding via Neuro-Symbolic Verification and Automated Knowledge Base Expansion
+- **Publisher:** Yu Y (Zyter|TruCare). *arXiv preprint* 2512.23743 (v1 December 2025; v2 March 2026). v1 was titled "A Privacy-Preserving, Redundant Multi-Agent Framework for Reliable Local Clinical Coding"
 - **Source-Type:** paper
 - **URL:** https://arxiv.org/abs/2512.23743
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The Hybrid-Code v2 neuro-symbolic clinical-coding verification approach. Cited in TP.CC-3 (ICD coding accuracy) and TP.CC-6 (verification metric). arxiv ID supplied directly from the original Source row prose. Authors / specific title can be confirmed by reading the arxiv abstract.
+Yu (Zyter|TruCare) Hybrid-Code v2 — neuro-symbolic clinical-coding verification with automated knowledge-base expansion. Cited in TP.CC-3 (ICD coding accuracy) and TP.CC-6 (verification metric). (v3.9 round-2 review renamed handle from `Hybrid-Code-v2-2025` because v2 was published March 2026, not 2025.)
 
 ### WHO-ICD-11
 
@@ -742,9 +729,9 @@ WHO's authoritative ICD-11 portal. Cited in TP.CC-3 as the reference standard fo
 - **Title:** NHS Digital OPCS-4 — Office of Population Censuses and Surveys Classification of Surgical Operations and Procedures (4.x)
 - **Publisher:** NHS England (formerly NHS Digital)
 - **Source-Type:** framework
-- **URL:** https://digital.nhs.uk/services/terminology-and-classifications/opcs-4
+- **URL:** https://digital.nhs.uk/services/terminology-and-classifications/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -843,12 +830,12 @@ The NASA-TLX is the standard cognitive-workload measurement instrument from huma
 
 ### Hollnagel-FRAM
 
-- **Title:** Hollnagel — Functional Resonance Analysis Method (FRAM) and Safety-II
-- **Publisher:** Erik Hollnagel (academic — multiple publications)
+- **Title:** From Safety-I to Safety-II: A White Paper
+- **Publisher:** Hollnagel E, Wears RL, Braithwaite J. The Resilient Health Care Net, 2015. NHS-hosted PDF (the FRAM book — Hollnagel 2012, Routledge — is the broader reference; this Safety-II white paper is the open-access companion most commonly cited in clinical contexts)
 - **Source-Type:** paper
-- **URL:** https://www.taylorfrancis.com/books/mono/10.1201/9781315255071/fram-functional-resonance-analysis-method-erik-hollnagel
+- **URL:** https://www.england.nhs.uk/signuptosafety/wp-content/uploads/sites/16/2015/10/safety-1-safety-2-whte-papr.pdf
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -870,12 +857,12 @@ Park et al. 2026 *JMIR* — applies SEIPS-based Consensual Qualitative Research 
 
 ### GOSH-Phase-4-TimeCat
 
-- **Title:** GOSH AAI Phase 4 — TimeCat AVT-time-allocation data
-- **Publisher:** Great Ormond Street Hospital (GOSH) AVT-Adoption Initiative, Phase 4 report
+- **Title:** GOSH AAI Phase 4 Final Report — TimeCat AVT-time-allocation data
+- **Publisher:** Great Ormond Street Hospital (GOSH) AVT-Adoption Initiative, Phase 4 NHSE Final Report v1.2
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — GOSH Phase 4 report URL or DOI to supply)_
+- **URL:** https://media.gosh.nhs.uk/documents/AAI_Phase_4_NHSE_Final_Report_1.2.pdf
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -883,12 +870,12 @@ The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-alloca
 
 ### Lancet-Gastroenterology-Endoscopist-AI-Off-2025
 
-- **Title:** Lancet Gastroenterology 2025 — endoscopist AI-off study (ADR 28.4%→22.4%)
-- **Publisher:** The Lancet Gastroenterology & Hepatology, 2025
+- **Title:** Endoscopist deskilling risk after exposure to artificial intelligence in colonoscopy: a multicentre, observational study
+- **Publisher:** Budzyń K, Romańczyk M, Kitala D, et al. *Lancet Gastroenterol Hepatol* 2025;10:896-903. DOI 10.1016/S2468-1253(25)00133-5
 - **Source-Type:** paper
-- **URL:** https://www.thelancet.com/journals/langas/home
+- **URL:** https://www.thelancet.com/journals/langas/article/PIIS2468-1253(25)00133-5/abstract
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -896,12 +883,12 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 
 ### CQC-Mythbuster-109
 
-- **Title:** CQC Mythbuster 109 — record-keeping standards for digital documentation
-- **Publisher:** Care Quality Commission
+- **Title:** GP Mythbuster 109: Artificial intelligence (AI) in GP services
+- **Publisher:** Care Quality Commission (CQC)
 - **Source-Type:** regulator-guidance
-- **URL:** https://www.cqc.org.uk/guidance-providers/gps/gp-mythbusters/nigel-cousins/mythbuster-109-record-keeping
+- **URL:** https://www.cqc.org.uk/guidance-providers/gps/gp-mythbusters/gp-mythbuster-109-artificial-intelligence-gp-services
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -909,12 +896,12 @@ CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported docume
 
 ### Stults-2025
 
-- **Title:** Stults et al. 2025 — clinician-reported attentiveness with ambient AI documentation
-- **Publisher:** Stults et al., *JAMA Network Open* 2025 (specific DOI TBC)
+- **Title:** Clinician self-reported attentiveness with ambient AI documentation
+- **Publisher:** Stults et al. *JAMA Network Open* 2025 — see jamanetwork.com/.../2833433. Likert-scale finding (57.9%→93.0% "agree/strongly agree" on undivided attention) is self-reported, not time-motion measured; cited as see-also in IO.PX-7 per round-2 review
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — JAMA Network Open DOI to supply)_
+- **URL:** https://jamanetwork.com/journals/jamanetworkopen/fullarticle/2833433
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -922,12 +909,12 @@ Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-rep
 
 ### Coiera-Fraile-Navarro-JMIR-2026
 
-- **Title:** Coiera & Fraile-Navarro — JMIR Medical Informatics 2026 critique of clinical-AI evaluation
-- **Publisher:** Coiera & Fraile-Navarro, JMIR Medical Informatics, February 2026
+- **Title:** AI Scribes: Are We Measuring What Matters?
+- **Publisher:** Coiera E, Fraile-Navarro D. *JMIR Med Inform* 2026;14:e89337. DOI 10.2196/89337. PMID 41650281
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — JMIR Med Inform DOI / direct article URL to supply)_
+- **URL:** https://medinform.jmir.org/2026/1/e89337
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -949,12 +936,12 @@ Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation m
 
 ### FAIR-MED-Springer-2025
 
-- **Title:** FAIR-MED — Bias Detection and Fairness Evaluation in Healthcare Focused XAI (Springer 2025)
-- **Publisher:** Springer 2025 (specific volume / authors TBC)
+- **Title:** FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare-Focused XAI
+- **Publisher:** Springer (LNCS chapter), 2025. DOI 10.1007/978-3-032-08317-3_18
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — Springer DOI to supply)_
+- **URL:** https://link.springer.com/chapter/10.1007/978-3-032-08317-3_18
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -962,12 +949,12 @@ The FAIR-MED bias-detection and fairness-evaluation framework, published Springe
 
 ### CIO-CCIO-Guidance-2026
 
-- **Title:** NHS CIO/CCIO guidance v2 (January 2026)
-- **Publisher:** NHS England (CIO/CCIO joint guidance)
+- **Title:** Guidance on the use of AI-enabled ambient scribing products in health and care settings
+- **Publisher:** NHS England (CIO/CCIO joint guidance, January 2026 v2)
 - **Source-Type:** regulator-guidance
-- **URL:** https://transform.england.nhs.uk/key-tools-and-info/digital-playbooks/
+- **URL:** https://www.england.nhs.uk/long-read/guidance-on-the-use-of-ai-enabled-ambient-scribing-products-in-health-and-care-settings/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -975,12 +962,12 @@ The NHS CIO/CCIO joint guidance v2 (January 2026) covering ICB engagement and di
 
 ### PubMed-41172285-FOI-Study
 
-- **Title:** FOI study of NHS digital safety standard compliance (PubMed 41172285)
-- **Publisher:** _(authors / journal TBC)_; PubMed 41172285
+- **Title:** Digital Health Technology Compliance With Clinical Safety Standards In the National Health Service in England: National Cross-Sectional Study
+- **Publisher:** Roy-Highley E et al. (UCL). *Journal of Medical Internet Research* 2025;e80076. PMID 41172285. Key finding: 70.1% of NHS DHTs have no documented assurance against DCB0129/DCB0160
 - **Source-Type:** paper
-- **URL:** https://pubmed.ncbi.nlm.nih.gov/41172285/
+- **URL:** https://www.jmir.org/2025/1/e80076
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -1227,27 +1214,27 @@ AMLAS — the AAIP / York University assurance-case methodology for machine-lear
 
 NeMo Guardrails — NVIDIA's open-source toolkit implementing the output-safety-classifier pattern that GV.SC-5 (Output Safety Classifier Coverage) measures. Cited as a representative existence-proof for the pattern; the metric is not anchored to NVIDIA-specific implementation. (v3.9 round-2 review replaced an earlier `NVIDIA-Reference-Architecture` placeholder that did not correspond to a specific verifiable NVIDIA whitepaper.)
 
-### arXiv-2601-03791-Cue-Resistant-Memorisation
+### Luo-PII-CRM-2026
 
-- **Title:** Cue-Resistant Memorisation framework — arxiv 2601.03791
-- **Publisher:** _(authors TBC)_; arxiv 2601.03791
+- **Title:** Do LLMs Really Memorize Personally Identifiable Information? Revisiting PII Leakage with a Cue-Controlled Memorization Framework
+- **Publisher:** Luo, Chen, Li, Bjerva. *arXiv preprint* 2601.03791 (submitted 2026-01-07). CRM is the framework name within the paper.
 - **Source-Type:** paper
 - **URL:** https://arxiv.org/abs/2601.03791
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The Cue-Resistant Memorisation framework arxiv preprint (2601.03791). Cited in GV.SC-11 (Memorisation Risk). arxiv ID supplied directly from the original Source row prose.
+Luo et al. 2026 — revisits PII leakage in LLMs using a cue-controlled memorisation framework that improves on earlier MIA methodology by controlling for evaluation artefacts (showing prior MIA estimates were inflated by control-set selection). Cited in GV.SC-11 (Membership Inference Attack AUC) alongside [IEEE-S-and-P-2023-LLM-PII-Leakage]. (v3.9 round-2 review renamed handle from `arXiv-2601-03791-Cue-Resistant-Memorisation` for clarity.)
 
 ### NIHR-RSET
 
 - **Title:** NIHR RSET — Rapid Service Evaluation Team
-- **Publisher:** National Institute for Health and Care Research (NIHR)
+- **Publisher:** UCL / Nuffield Trust / University of Cambridge collaboration, NIHR-funded (Phase 1 2018-23 with UCL+Nuffield Trust; Phase 2 2023+ adding Cambridge)
 - **Source-Type:** framework
-- **URL:** https://www.bsms.ac.uk/research/centres-and-units/rapid-service-evaluation-team/index.aspx
+- **URL:** https://www.nuffieldtrust.org.uk/rset-the-rapid-service-evaluation-team
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -1255,12 +1242,12 @@ The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner t
 
 ### VeriFact
 
-- **Title:** VeriFact — clinical-AI factual-verification framework
-- **Publisher:** _(authors / venue TBC)_
+- **Title:** VeriFact — factual-verification framework for clinical text
+- **Publisher:** *arXiv preprint* 2501.16672 (2025)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — VeriFact paper / project URL to supply)_
+- **URL:** https://arxiv.org/abs/2501.16672
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
@@ -1286,19 +1273,6 @@ The MedHELM benchmark — Stanford CRFM's medical extension of the HELM (Holisti
 The 33 vague-literature `Source` rows ("standard ASR literature", "machine learning calibration literature", etc.) resolve through a small set of curated representative citations chosen at v3.9 Phase 1. Each entry below is **one canonical reference** that stands in for a discipline norm. Choosing one representative per discipline is the user-decided answer to vague-literature; see `archive/v3.9-grammar-pilot-notes.md` for the alternatives considered.
 
 These handles are typed `discipline-representative` so an audit or a downstream reader can distinguish them from primary citations.
-
-### discipline-asr
-
-- **Title:** Speech Recognition: An Overview of Modern Approaches — discipline-representative survey
-- **Publisher:** Watanabe et al., textbook chapter (selected as representative)
-- **Source-Type:** discipline-representative
-- **URL:** https://arxiv.org/abs/1701.02720
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-Discipline-representative for "standard ASR literature" / "standard speech recognition literature" / "standard ASR post-processing literature". Stands in for the body of established ASR work that the taxonomy's individual ASR Source rows would otherwise reach for vaguely.
 
 ### discipline-calibration
 
@@ -1326,19 +1300,6 @@ Discipline-representative for "machine learning calibration literature". The Guo
 
 Discipline-representative for "adversarial ML literature". The Carlini & Wagner robustness-evaluation paper is the canonical entry-point for adversarial-ML methodology.
 
-### discipline-voice-biometric
-
-- **Title:** Voice Biometrics and Anti-Spoofing — overview reference
-- **Publisher:** Wang et al., Computer Speech & Language overview (selected as representative)
-- **Source-Type:** discipline-representative
-- **URL:** https://arxiv.org/abs/1908.05537
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-Discipline-representative for "voice biometric and deepfake detection literature". Stands in for the spoofing / anti-spoofing literature cluster cited in the GV.SC family.
-
 ### discipline-data-poisoning
 
 - **Title:** Poisoning Attacks against Support Vector Machines — Biggio et al. (ICML 2012) — discipline-representative
@@ -1352,31 +1313,18 @@ Discipline-representative for "voice biometric and deepfake detection literature
 
 Discipline-representative for "data poisoning literature". The Biggio et al. paper is the foundational training-time-poisoning reference; stands in for the body of work informing GV.SC-4's 0.001 % threshold framing.
 
-### discipline-diarisation
+### Carlini-Web-Scale-Poisoning-2024
 
-- **Title:** Speaker Diarization: A Review of Recent Research — Anguera et al. (IEEE TASLP 2012) — discipline-representative
-- **Publisher:** Anguera et al., IEEE TASLP 2012
-- **Source-Type:** discipline-representative
-- **URL:** https://ieeexplore.ieee.org/document/6135543
+- **Title:** Poisoning Web-Scale Training Datasets is Practical
+- **Publisher:** Carlini N, Jagielski M, Choquette-Choo CA, Paleka D, Pearce W, Anderson H, Terzis A, Thomas K, Tramèr F. *2024 IEEE Symposium on Security and Privacy (SP)*
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2302.10149
 - **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
+- **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Discipline-representative for "standard diarisation literature" / "standard overlap-aware ASR literature". Stands in for the diarisation review references cited in the TP.DI metric Source rows.
-
-### discipline-clinical-nlp
-
-- **Title:** Natural language processing of clinical notes on chronic diseases: a systematic review — Sheikhalishahi et al. (JMIR Medical Informatics 2019) — discipline-representative
-- **Publisher:** Sheikhalishahi et al., JMIR Medical Informatics 2019
-- **Source-Type:** discipline-representative
-- **URL:** https://medinform.jmir.org/2019/2/e12239/
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-04-26
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-Discipline-representative for "clinical NLP literature" / "clinical NLP hedging/uncertainty literature". Stands in for the clinical NLP review references cited in the TP.SN and TP.CC metric Source rows.
+Carlini et al. 2024 IEEE S&P — practical demonstration that real web-scale training datasets can be poisoned at low cost (~0.001 % budget). The load-bearing modern reference for the data-poisoning threat model in GV.SC-4 (Data Poisoning Resilience). Distinct from [discipline-data-poisoning] which keeps the Biggio 2012 SVM-poisoning historical anchor; cite Carlini-2024 where the claim is about modern web-scale practical poisoning thresholds, Biggio where the claim is about the historical/conceptual basis.
 
 ### discipline-human-factors
 

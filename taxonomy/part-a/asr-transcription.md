@@ -15,7 +15,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | [SCRIBE-Wang-2025]; standard ASR literature |
+| **Source** | [Wang-ADS-Eval-2025]; standard ASR literature |
 
 **Why this tier?**
 

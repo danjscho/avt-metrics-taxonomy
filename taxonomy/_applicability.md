@@ -99,7 +99,7 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | TP.SN-9b | MedHELM LLM-Jury | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-11 | MEDIC Cross-Examination | 🔵 Tier 3 | AVT-Contextualised |
 | TP.SN-12 | Linked Evidence / Provenance Tracing | 🟡 Tier 2 | AVT-Contextualised |
-| TP.SN-13 | SCRIBE Framework Composite | 🔵 Tier 3 | AVT-Specific |
+| TP.SN-13 | ADS Evaluation Framework Composite | 🔵 Tier 3 | AVT-Specific |
 | TP.SN-14 | Template Modification Underspecification Score | 🟡 Tier 2 | AVT-Contextualised |
 | TP.SN-15 | Negation Handling Accuracy | 🟢 Tier 1 | AVT-Contextualised |
 | TP.SN-16 | Temporal Accuracy | 🟡 Tier 2 | AVT-Contextualised |

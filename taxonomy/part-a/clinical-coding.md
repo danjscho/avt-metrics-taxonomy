@@ -91,7 +91,7 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Contextualised                          |
-|**Source**             |[Hybrid-Code-v2-2025]; [WHO-ICD-11]|
+|**Source**             |[Hybrid-Code-v2-2026]; [WHO-ICD-11]|
 
 **Why this tier?**
 
@@ -204,7 +204,7 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
 |**Applicability**      |AVT-Contextualised                                   |
-|**Source**             |[Hybrid-Code-v2-2025] (neuro-symbolic verification approach)|
+|**Source**             |[Hybrid-Code-v2-2026] (neuro-symbolic verification approach)|
 
 **Why this tier?**
 

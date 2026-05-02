@@ -146,7 +146,7 @@ Resilience of the AVT system to training data poisoning. Research shows poisonin
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Data poisoning literature; 0.001% threshold from published research (2025) |
+| **Source** | [Carlini-Web-Scale-Poisoning-2024] (0.001 % web-scale poisoning threshold); historical/conceptual basis [discipline-data-poisoning] (Biggio et al. ICML 2012) |
 
 **Why this tier?**
 
@@ -424,7 +424,7 @@ Standardised privacy testing metric measuring the success rate of adversarial at
 |**Maturity**           |Established                                                   |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |[IEEE-S-and-P-2023-LLM-PII-Leakage]; [arXiv-2601-03791-Cue-Resistant-Memorisation]|
+|**Source**             |[IEEE-S-and-P-2023-LLM-PII-Leakage]; [Luo-PII-CRM-2026]|
 
 **Why this tier?**
 
