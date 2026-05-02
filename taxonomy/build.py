@@ -55,6 +55,7 @@ FILES = [
     "part-e/training-competency.md",
     "part-e/vendor-transparency-contractual.md",
     "part-f/meta-evaluation.md",
+    "_references.md",
 ]
 
 
@@ -76,7 +77,10 @@ def build_monolithic_md() -> None:
     sections = []
     for name in FILES:
         path = ROOT / name
-        sections.append(_substitute_template_tokens(path.read_text()).rstrip("\n"))
+        text = _substitute_template_tokens(path.read_text())
+        if name == "_references.md":
+            text = p.populate_cited_by(text)
+        sections.append(text.rstrip("\n"))
     output = "\n\n".join(sections) + "\n"
     OUTPUT_MD.write_text(output)
     print(f"Built {OUTPUT_MD.relative_to(ROOT.parent)} from {len(FILES)} files.")

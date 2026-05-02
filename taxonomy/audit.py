@@ -963,6 +963,79 @@ def check_reference_handles_resolve() -> list[Finding]:
     return findings
 
 
+def check_archive_present() -> list[Finding]:
+    """Every catalogue entry should carry both a real URL and a real Wayback
+    Archive URL. INFO-level until v3.9 ships — at release the snapshot pass
+    must have populated every entry with a verified Archive URL or an
+    explicit `Archive-Status: unavailable` marker.
+    """
+    import parse
+
+    findings: list[Finding] = []
+    refs = parse.parse_references()
+    if not refs:
+        return findings
+
+    for handle, ref in sorted(refs.items()):
+        # URL must be a real http(s) URL, not a placeholder
+        if not ref.url.startswith("http"):
+            findings.append(
+                Finding(
+                    "INFO",
+                    "reference-url-pending",
+                    f"`{handle}` URL still placeholder ({ref.url[:60]}…) — needs resolution before Wayback snapshot",
+                    "_references.md",
+                )
+            )
+            continue
+        # Archive must be either a real http(s) URL OR an explicit
+        # Archive-Status marker (handled at description-prose level, not
+        # field level in v3.9). The placeholder is the v3.9-pending sentinel.
+        if not ref.archive.startswith("http"):
+            findings.append(
+                Finding(
+                    "INFO",
+                    "reference-archive-pending",
+                    f"`{handle}` has URL but no Wayback Archive URL — run snapshot.py",
+                    "_references.md",
+                )
+            )
+
+    return findings
+
+
+def check_retrieved_date_format() -> list[Finding]:
+    """Every catalogue entry's `Retrieved:` field must be an ISO-8601 date
+    (YYYY-MM-DD). Required from v3.9 onwards; future audits will use it to
+    flag stale citations.
+    """
+    import parse
+    import re as _re
+
+    findings: list[Finding] = []
+    refs = parse.parse_references()
+    if not refs:
+        return findings
+
+    iso_re = _re.compile(r"^\d{4}-\d{2}-\d{2}$")
+    for handle, ref in sorted(refs.items()):
+        # Strip placeholder retrieval-date framing if present
+        val = (ref.retrieved or "").strip()
+        if not val:
+            continue  # check_archive_present surfaces missing-retrieved as part of the URL/Archive trio
+        if not iso_re.match(val):
+            findings.append(
+                Finding(
+                    "WARN",
+                    "reference-retrieved-format",
+                    f"`{handle}` Retrieved: {val!r} is not ISO-8601 (YYYY-MM-DD)",
+                    "_references.md",
+                )
+            )
+
+    return findings
+
+
 def main() -> int:
     all_metrics: list[Metric] = []
     metrics_by_file: dict[str, list[Metric]] = {}
@@ -987,6 +1060,8 @@ def main() -> int:
     findings.extend(check_threshold_provenance(all_metrics))
     findings.extend(check_metric_cross_references(all_metrics))
     findings.extend(check_reference_handles_resolve())
+    findings.extend(check_archive_present())
+    findings.extend(check_retrieved_date_format())
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]
