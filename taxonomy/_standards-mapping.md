@@ -8,6 +8,8 @@ Where a standard criterion has no corresponding taxonomy metric, this is flagged
 
 ### DTAC (Digital Technology Assessment Criteria) v2.0
 
+**Reference:** [DTAC]
+
 DTAC is the NHS assessment framework for digital health technologies. It has four assessed sections (C1–C4) and one comparative section (D1). DTAC v2.0 (February 2026) explicitly names Ambient Voice Technologies as potentially requiring additional assurance beyond DTAC.
 
 #### C1 - Clinical Safety
@@ -74,6 +76,8 @@ DTAC is the NHS assessment framework for digital health technologies. It has fou
 ---
 
 ### DSPT (Data Security and Protection Toolkit) - NDG Standards
+
+**Reference:** [DSPT]
 
 DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions and evidence items. This mapping covers the Category 2 (IT Supplier) variant, which is most relevant to AVT vendors. Only assertions with AI/AVT-relevant content are mapped.
 
@@ -169,6 +173,8 @@ DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions a
 
 ### DCB0129 / DCB0160 - Clinical Risk Management Standards
 
+**Reference:** [DCB0129] · [DCB0160]
+
 DCB0129 applies to manufacturers of health IT systems; DCB0160 applies to deploying organisations. Both follow the same clinical safety lifecycle. This mapping shows which taxonomy metrics provide evidence for each lifecycle stage.
 
 #### Stage 1: Clinical Risk Management System
@@ -249,6 +255,8 @@ DCB0129 applies to manufacturers of health IT systems; DCB0160 applies to deploy
 
 ### NHS England LLM Evaluation and Monitoring Framework (v0.2.2)
 
+**Reference:** [NHS-LLM-Framework]
+
 > **⚠️ Draft framework.** This mapping is against v0.2.2 (August 2025), which is experimental and subject to change. Dimensions marked with 🔄 appear provisional - their scope or measurement approach may evolve significantly before v1.0. This mapping should be reviewed when the framework reaches v1.0.
 
 The framework has 30 evaluation dimensions across three groups. All dimensions in Suitability in Context and Wider Impact use manual monitoring; Quantifiable Changes dimensions use automatic continuous monitoring with manual review.
@@ -301,6 +309,8 @@ The framework has 30 evaluation dimensions across three groups. All dimensions i
 ---
 
 ### NHS T.E.S.T. Framework (Technology Evaluation Safety Test)
+
+**Reference:** [NHS-TEST]
 
 **Publisher:** Developed by clinicians at Great Ormond Street Hospital, NHS London, Chelsea & Westminster, and UCL; published via the Health Innovation Network (June 2025, v11.17625SS).
 **Mandatory status:** Not statutorily mandatory, but positioned as an ICS-level assurance gate: "If your ICS has already approved an AVT vendor using T.E.S.T., individual Trusts, PCNs, or Surgeries may not need to conduct separate assurance processes." Liability for non-compliant choices rests locally.
@@ -433,7 +443,9 @@ Last researched 2026-04-26. The registry's AI/LLM-specific sub-criteria (req #13
 
 ### MHRA Software and AI as a Medical Device (SaMD / AIaMD)
 
-The MHRA's regulatory position on software and AI as medical devices is delivered through the **Change Programme** (workstreams WP1–WP11), the **joint FDA/Health Canada Guiding Principles**, and the **Post-Market Surveillance Regulations 2024** (SI 2024 No. 1368, in force 16 June 2025). This mapping covers the assessable criteria most relevant to AVT systems.
+**Reference:** [MHRA-SaMD] · [SI-2024-1368]
+
+The MHRA's regulatory position on software and AI as medical devices is delivered through the **Change Programme** (workstreams WP1–WP11), the **joint FDA/Health Canada Guiding Principles**, and the **Post-Market Surveillance Regulations 2024** ([SI-2024-1368], in force 16 June 2025). This mapping covers the assessable criteria most relevant to AVT systems.
 
 **Publisher:** Medicines and Healthcare products Regulatory Agency (MHRA)
 **Mandatory status:** Mandatory for systems classified as medical devices under UK MDR 2002; cascades to AVT deployments via vendor compliance obligations
@@ -546,6 +558,8 @@ Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contai
 
 ### NICE Evidence Standards Framework for Digital Health Technologies (ECD7)
 
+**Reference:** [NICE-ESF]
+
 **Publisher:** National Institute for Health and Care Excellence (NICE)
 **Version:** ECD7 published 10 December 2018; last substantive update 9 August 2022 (AI provisions)
 **Mandatory status:** Not formally mandatory but de facto required for any DHT claiming NHS clinical benefit; referenced in NICE appraisal, procurement, and ICS commissioning.
@@ -613,6 +627,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 ### FHIR UK Core / INTEROPen
 
+**Reference:** [FHIR-UK-Core]
+
 **Publisher:** NHS England Digital, with HL7 UK; INTEROPen community contribution
 **Scope:** UK-specific FHIR R4 profiles for health and care data exchange. Successor to CareConnect (STU3).
 **Mandatory status:** De facto mandatory for NHS system interoperability; referenced in NHS Standard Contract and procurement.
@@ -674,6 +690,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 ### CQC Assessment for AI
 
+**Reference:** [CQC] · [CQC-Mythbuster-109]
+
 **Publisher:** Care Quality Commission (CQC)
 **Scope:** Deployer-side regulatory inspection covering the Five Key Questions (Safe, Effective, Caring, Responsive, Well-led) under the Single Assessment Framework, with AI-specific guidance in GP Mythbuster 109 and emerging quality statements.
 **Mandatory status:** CQC inspection is mandatory for all registered providers; CQC ratings are public and directly affect commissioning.
@@ -719,6 +737,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### Patient Safety Incident Response Framework (PSIRF)
+
+**Reference:** [PSIRF]
 
 **Publisher:** NHS England
 **Scope:** Systems-based, proportionate response to patient safety incidents, replacing the 2015 Serious Incident Framework.
@@ -772,6 +792,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### PRSB Clinical Documentation Standards
+
+**Reference:** [PRSB]
 
 **Publisher:** Professional Record Standards Body (community interest company, endorsed by Royal Colleges)
 **Scope:** Semantic structure of clinical records - what information must be recorded and how it relates. Distinct from FHIR/openEHR which define technical transport.
@@ -827,6 +849,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### Caldicott Principles (2020 revision)
+
+**Reference:** [Caldicott]
 
 **Publisher:** National Data Guardian (originally Caldicott Report 1997; 2020 revision added Principle 8)
 **Scope:** Eight principles governing the use of confidential patient information. Foundational to NHS information governance and the legal basis for DSPT operationalisation.

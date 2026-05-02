@@ -72,6 +72,17 @@ Four cross-cutting documents frame the policy, ethics, and application surface:
 - [taxonomy/_calibration-and-context.md](taxonomy/_calibration-and-context.md) — parallel principle to the Outcomes Boundary: tier assignments and threshold numbers are calibration starting points, not universal gates. Six deployment-setting axes drive local calibration. Research-side relevance: studies citing the taxonomy should specify both the version and the calibration applied to the deployment under study.
 - [taxonomy/_gaps.md](taxonomy/_gaps.md) — 89 proposed metric candidates with classification (proposed / accepted / deferred / rejected). Single source of truth across five origins.
 
+## Citation grammar (v3.9 onwards)
+
+External citations in metric files use a two-layer grammar settled at v3.9:
+
+1. **Inline reference** in metric prose — a short stable handle in square brackets, e.g. `[DCB0129]`, `[NHSE-IG-Guidance-2026-03]`, `[UK-GDPR]`, `[Keyes-Stanford-Monitoring-2025]`.
+2. **Catalogue entry** in [taxonomy/_references.md](taxonomy/_references.md) — full bibliographic record per handle (Title / Publisher / Source-Type / URL / Archive / Retrieved date / `Local-Mirror` field reserved for a future v3.x option-(c) local-mirror release).
+
+Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance prose blocks, and the `_standards-mapping.md` framework sections all follow this convention. The grammar separates *what* is cited from *where* the bibliographic detail lives, so a citation update touches one catalogue entry rather than every metric that references it. The `Local-Mirror` field is present-but-empty in v3.9; when a future release brings authoritative documents into the repo as local mirrors, the catalogue grows the field, but no metric file needs to change.
+
+`audit.py` enforces handle resolution: every `[Handle]` in a metric file must exist in `_references.md`, or the audit fails.
+
 ## Status / version
 
 **Current draft:** v3.8.4, released 2026-04-26.

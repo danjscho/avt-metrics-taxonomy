@@ -34,7 +34,7 @@ Three reasons this is drawn explicitly rather than left implicit:
 
 1. **The field has not solved outcome measurement for clinical AI generally, and AVT specifically.** Coiera & Fraile-Navarro (2026) name this as a structural gap. Adding outcome metrics to a deployment taxonomy does not produce outcome evidence; it produces the appearance of coverage. That risks substituting framework completeness for empirical evidence.
 
-2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
+2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. [NIHR-RSET]), regulators with post-market surveillance powers ([MHRA-SaMD]), evidence-standards frameworks ([NICE-ESF] Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
 
 3. **Process compliance is not clinical benefit.** A deployment passing all 43 Tier 1 metrics in this taxonomy is *assured of deployment safety* — that the system is configured, monitored, governed, and overseen correctly. It is not assured of *clinical benefit*. The taxonomy makes that distinction visible so deployers, vendors, and procurement leads do not conflate the two.
 
@@ -51,7 +51,7 @@ For the questions this taxonomy does not answer, deployers should:
 
 The Outcomes Boundary and the [Calibration & Context principle](#calibration-context) are deliberately complementary commitments with very different grain:
 
-- **The Outcomes Boundary is a hard limit.** Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is *out of scope* for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, MHRA post-market surveillance, NICE Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.
+- **The Outcomes Boundary is a hard limit.** Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is *out of scope* for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, [MHRA-SaMD] post-market surveillance, [NICE-ESF] Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.
 - **The Calibration & Context principle is a soft instruction.** Tier assignments and threshold numbers are *in scope* but *deployer-calibrated*. The published defaults reflect a generic deployment context; six named axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume / scale) shift them in real settings. Local calibration is expected, documented, and reviewable — but it operates *within* the in-scope set of metrics, never to import work that the Boundary marks as out-of-scope.
 
 A reader finishing the Calibration principle alone might infer that thresholds are endlessly flexible; a reader finishing the Outcomes Boundary alone might infer that Tier 1 is a hard pass/fail. Read together, the right interpretation is: the structural commitments (what's measured, what's out of scope) are firm; the parameter values (which tier, what threshold) are local. Deployers using this taxonomy should read both — the Boundary to understand what it cannot rely on the taxonomy to deliver, and the Calibration principle to understand the scope it does have to adapt the published defaults to its own context.
@@ -63,7 +63,7 @@ A reader finishing the Calibration principle alone might infer that thresholds a
 - **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
 - **[Calibration & Context principle](#calibration-context)** — parallel principle for in-scope-but-context-dependent calibration
 - **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
-- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
+- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + [SI-2024-1368]) effectiveness-evidence requirements ([MHRA-SaMD])
 
 ### Future direction
 

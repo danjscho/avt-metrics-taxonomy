@@ -113,7 +113,7 @@ Use the classification when reading the taxonomy as a whole: the `AVT-Specific` 
 
 A subset of Tier 1 metrics carry three additional sub-blocks beyond the standard Formal Definition: **Reference Standard** (what counts as ground truth and how reliability is established), **Operational Specification** (concrete decisions about measurement window, population, mandatory breakdowns, and aggregation rule), and **Threshold Guidance** (pre-deployment gate, continuous-monitoring alert, pause / escalation trigger). Where a metric carries these sub-blocks, the Operational Specification is what your vendor must comply with at procurement, and the Threshold Guidance is what triggers escalation post-deployment.
 
-Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguishing thresholds **derived from a cited source** (e.g. NAS Day Zero SPI, UK GDPR storage limitation, NHSE IG guidance) from those **proposed in v3.3 as starting points**. The starting-point numbers are deliberate suggestions calibrated against the metric's clinical-safety logic, not externally validated values; they require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset, DPIA risk appetite) before contractual use. Treat the Operational Specification as the structural commitment a vendor must meet; treat the Threshold Guidance numbers as the conversation starter, not the answer.
+Each Threshold Guidance block opens with a ⚠️ **Provenance** line distinguishing thresholds **derived from a cited source** (e.g. [NAS-Day-Zero-SPI-internal], [UK-GDPR] storage limitation, [NHSE-IG-Guidance-2026-03]) from those **proposed in v3.3 as starting points**. The starting-point numbers are deliberate suggestions calibrated against the metric's clinical-safety logic, not externally validated values; they require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset, DPIA risk appetite) before contractual use. Treat the Operational Specification as the structural commitment a vendor must meet; treat the Threshold Guidance numbers as the conversation starter, not the answer.
 
 **Twenty-five Tier 1 metrics** carry this pattern as of v3.5 (up from 13 at v3.4): the v3.3 / v3.4 cohorts (safety, compliance, operational/proxy classes) plus v3.5's two waves — Wave 1 compliance/governance core (GV.CR-5 ICB Engagement, GV.CR-6 Clinical Safety Case, GV.CR-7 DPIA, GV.TC-1 Training Completion, GV.VT-1 Model Change Notification, GV.VT-5 Incident Disclosure, GV.VT-7 Sub-Processor Transparency, GV.SG-14 Near-Miss Reporting) and Wave 2 privacy-chain (GV.PD-2 Audio Time-to-Deletion, GV.PD-8 Consent Verification, GV.PD-10 SAR Fulfilment, GV.PD-11 Right to Erasure). The remaining 18 Tier 1 metrics fall into three groups per `archive/v3.3-tier1-classification.md`: 8 already classified TIGHT (no tightening planned — the pattern would be structural cleanup not substance), 6 candidates for v3.6+ pipeline narrow tightening (TP.ASR-12, TP.ASR-13, TP.WB-2, TP.WB-3, TP.WB-4, TP.SN-20), and 5 deferred-pattern-may-not-fit metrics (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3). The current tightening status is auto-emitted by `taxonomy/audit.py` — rely on the audit output rather than this prose for current state.
 
@@ -706,6 +706,8 @@ Where a standard criterion has no corresponding taxonomy metric, this is flagged
 
 ### DTAC (Digital Technology Assessment Criteria) v2.0
 
+**Reference:** [DTAC]
+
 DTAC is the NHS assessment framework for digital health technologies. It has four assessed sections (C1–C4) and one comparative section (D1). DTAC v2.0 (February 2026) explicitly names Ambient Voice Technologies as potentially requiring additional assurance beyond DTAC.
 
 #### C1 - Clinical Safety
@@ -772,6 +774,8 @@ DTAC is the NHS assessment framework for digital health technologies. It has fou
 ---
 
 ### DSPT (Data Security and Protection Toolkit) - NDG Standards
+
+**Reference:** [DSPT]
 
 DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions and evidence items. This mapping covers the Category 2 (IT Supplier) variant, which is most relevant to AVT vendors. Only assertions with AI/AVT-relevant content are mapped.
 
@@ -867,6 +871,8 @@ DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions a
 
 ### DCB0129 / DCB0160 - Clinical Risk Management Standards
 
+**Reference:** [DCB0129] · [DCB0160]
+
 DCB0129 applies to manufacturers of health IT systems; DCB0160 applies to deploying organisations. Both follow the same clinical safety lifecycle. This mapping shows which taxonomy metrics provide evidence for each lifecycle stage.
 
 #### Stage 1: Clinical Risk Management System
@@ -947,6 +953,8 @@ DCB0129 applies to manufacturers of health IT systems; DCB0160 applies to deploy
 
 ### NHS England LLM Evaluation and Monitoring Framework (v0.2.2)
 
+**Reference:** [NHS-LLM-Framework]
+
 > **⚠️ Draft framework.** This mapping is against v0.2.2 (August 2025), which is experimental and subject to change. Dimensions marked with 🔄 appear provisional - their scope or measurement approach may evolve significantly before v1.0. This mapping should be reviewed when the framework reaches v1.0.
 
 The framework has 30 evaluation dimensions across three groups. All dimensions in Suitability in Context and Wider Impact use manual monitoring; Quantifiable Changes dimensions use automatic continuous monitoring with manual review.
@@ -999,6 +1007,8 @@ The framework has 30 evaluation dimensions across three groups. All dimensions i
 ---
 
 ### NHS T.E.S.T. Framework (Technology Evaluation Safety Test)
+
+**Reference:** [NHS-TEST]
 
 **Publisher:** Developed by clinicians at Great Ormond Street Hospital, NHS London, Chelsea & Westminster, and UCL; published via the Health Innovation Network (June 2025, v11.17625SS).
 **Mandatory status:** Not statutorily mandatory, but positioned as an ICS-level assurance gate: "If your ICS has already approved an AVT vendor using T.E.S.T., individual Trusts, PCNs, or Surgeries may not need to conduct separate assurance processes." Liability for non-compliant choices rests locally.
@@ -1131,7 +1141,9 @@ Last researched 2026-04-26. The registry's AI/LLM-specific sub-criteria (req #13
 
 ### MHRA Software and AI as a Medical Device (SaMD / AIaMD)
 
-The MHRA's regulatory position on software and AI as medical devices is delivered through the **Change Programme** (workstreams WP1–WP11), the **joint FDA/Health Canada Guiding Principles**, and the **Post-Market Surveillance Regulations 2024** (SI 2024 No. 1368, in force 16 June 2025). This mapping covers the assessable criteria most relevant to AVT systems.
+**Reference:** [MHRA-SaMD] · [SI-2024-1368]
+
+The MHRA's regulatory position on software and AI as medical devices is delivered through the **Change Programme** (workstreams WP1–WP11), the **joint FDA/Health Canada Guiding Principles**, and the **Post-Market Surveillance Regulations 2024** ([SI-2024-1368], in force 16 June 2025). This mapping covers the assessable criteria most relevant to AVT systems.
 
 **Publisher:** Medicines and Healthcare products Regulatory Agency (MHRA)
 **Mandatory status:** Mandatory for systems classified as medical devices under UK MDR 2002; cascades to AVT deployments via vendor compliance obligations
@@ -1244,6 +1256,8 @@ Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contai
 
 ### NICE Evidence Standards Framework for Digital Health Technologies (ECD7)
 
+**Reference:** [NICE-ESF]
+
 **Publisher:** National Institute for Health and Care Excellence (NICE)
 **Version:** ECD7 published 10 December 2018; last substantive update 9 August 2022 (AI provisions)
 **Mandatory status:** Not formally mandatory but de facto required for any DHT claiming NHS clinical benefit; referenced in NICE appraisal, procurement, and ICS commissioning.
@@ -1311,6 +1325,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 ### FHIR UK Core / INTEROPen
 
+**Reference:** [FHIR-UK-Core]
+
 **Publisher:** NHS England Digital, with HL7 UK; INTEROPen community contribution
 **Scope:** UK-specific FHIR R4 profiles for health and care data exchange. Successor to CareConnect (STU3).
 **Mandatory status:** De facto mandatory for NHS system interoperability; referenced in NHS Standard Contract and procurement.
@@ -1372,6 +1388,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 ### CQC Assessment for AI
 
+**Reference:** [CQC] · [CQC-Mythbuster-109]
+
 **Publisher:** Care Quality Commission (CQC)
 **Scope:** Deployer-side regulatory inspection covering the Five Key Questions (Safe, Effective, Caring, Responsive, Well-led) under the Single Assessment Framework, with AI-specific guidance in GP Mythbuster 109 and emerging quality statements.
 **Mandatory status:** CQC inspection is mandatory for all registered providers; CQC ratings are public and directly affect commissioning.
@@ -1417,6 +1435,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### Patient Safety Incident Response Framework (PSIRF)
+
+**Reference:** [PSIRF]
 
 **Publisher:** NHS England
 **Scope:** Systems-based, proportionate response to patient safety incidents, replacing the 2015 Serious Incident Framework.
@@ -1470,6 +1490,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### PRSB Clinical Documentation Standards
+
+**Reference:** [PRSB]
 
 **Publisher:** Professional Record Standards Body (community interest company, endorsed by Royal Colleges)
 **Scope:** Semantic structure of clinical records - what information must be recorded and how it relates. Distinct from FHIR/openEHR which define technical transport.
@@ -1525,6 +1547,8 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 ---
 
 ### Caldicott Principles (2020 revision)
+
+**Reference:** [Caldicott]
 
 **Publisher:** National Data Guardian (originally Caldicott Report 1997; 2020 revision added Principle 8)
 **Scope:** Eight principles governing the use of confidential patient information. Foundational to NHS information governance and the legal basis for DSPT operationalisation.
@@ -2187,7 +2211,7 @@ Three reasons this is drawn explicitly rather than left implicit:
 
 1. **The field has not solved outcome measurement for clinical AI generally, and AVT specifically.** Coiera & Fraile-Navarro (2026) name this as a structural gap. Adding outcome metrics to a deployment taxonomy does not produce outcome evidence; it produces the appearance of coverage. That risks substituting framework completeness for empirical evidence.
 
-2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
+2. **Outcome validation belongs to bodies with the right authority and reach.** National research bodies (e.g. [NIHR-RSET]), regulators with post-market surveillance powers ([MHRA-SaMD]), evidence-standards frameworks ([NICE-ESF] Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.
 
 3. **Process compliance is not clinical benefit.** A deployment passing all 43 Tier 1 metrics in this taxonomy is *assured of deployment safety* — that the system is configured, monitored, governed, and overseen correctly. It is not assured of *clinical benefit*. The taxonomy makes that distinction visible so deployers, vendors, and procurement leads do not conflate the two.
 
@@ -2204,7 +2228,7 @@ For the questions this taxonomy does not answer, deployers should:
 
 The Outcomes Boundary and the [Calibration & Context principle](#calibration-context) are deliberately complementary commitments with very different grain:
 
-- **The Outcomes Boundary is a hard limit.** Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is *out of scope* for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, MHRA post-market surveillance, NICE Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.
+- **The Outcomes Boundary is a hard limit.** Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is *out of scope* for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, [MHRA-SaMD] post-market surveillance, [NICE-ESF] Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.
 - **The Calibration & Context principle is a soft instruction.** Tier assignments and threshold numbers are *in scope* but *deployer-calibrated*. The published defaults reflect a generic deployment context; six named axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume / scale) shift them in real settings. Local calibration is expected, documented, and reviewable — but it operates *within* the in-scope set of metrics, never to import work that the Boundary marks as out-of-scope.
 
 A reader finishing the Calibration principle alone might infer that thresholds are endlessly flexible; a reader finishing the Outcomes Boundary alone might infer that Tier 1 is a hard pass/fail. Read together, the right interpretation is: the structural commitments (what's measured, what's out of scope) are firm; the parameter values (which tier, what threshold) are local. Deployers using this taxonomy should read both — the Boundary to understand what it cannot rely on the taxonomy to deliver, and the Calibration principle to understand the scope it does have to adapt the published defaults to its own context.
@@ -2216,7 +2240,7 @@ A reader finishing the Calibration principle alone might infer that thresholds a
 - **ES.ME-9 Causal Model Operationalisation** — operationalises the proximal-to-distal causal chain as a metric
 - **[Calibration & Context principle](#calibration-context)** — parallel principle for in-scope-but-context-dependent calibration
 - **NHS T.E.S.T. Framework Section B** — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see [Standards Mapping § NHS T.E.S.T.](#nhs-test-framework-technology-evaluation-safety-test)
-- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements
+- **MHRA Software and AI as a Medical Device** — Post-Market Surveillance (WP4 + [SI-2024-1368]) effectiveness-evidence requirements ([MHRA-SaMD])
 
 ### Future direction
 
@@ -2295,7 +2319,7 @@ A solo GP and a Trust-scale ED workflow have different floors for "statistically
 
 1. **Read each metric's Reference Standard / Operational Specification / Threshold Guidance (where present) as the default calibration**, not the universal answer. The pattern is in place on 25 of 43 Tier 1 metrics as of v3.7; see [`taxonomy/audit.py`](#) output for current status.
 
-2. **Read the ⚠️ Provenance prelude carefully.** Cited thresholds (NAS Day Zero SPI, UK GDPR, NHSE IG guidance) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.
+2. **Read the ⚠️ Provenance prelude carefully.** Cited thresholds ([NAS-Day-Zero-SPI-internal], [UK-GDPR], [NHSE-IG-Guidance-2026-03]) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.
 
 3. **Document the local calibration in the deployer's governance file** alongside the DPIA and Clinical Safety Case. The local-calibration document should record, per metric:
    - The taxonomy default (tier and threshold values as published)
@@ -2314,7 +2338,7 @@ A solo GP and a Trust-scale ED workflow have different floors for "statistically
 
 - **Not an excuse to disregard Tier 1 metrics.** Calibration shifts which metrics are Tier 1 for *your* deployment; it does not let you stop measuring them altogether. Every metric in the Tier 1 set after local calibration must be measured.
 - **Not a way to argue threshold numbers are negotiable in vendor contracts.** The contractual gate is the deployer's local calibration, not the taxonomy's published starting point. Once the deployer has calibrated, the calibrated number is the contract; the taxonomy default is no longer in scope.
-- **Not a way to avoid the [Outcomes Boundary](#outcomes-boundary).** The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, MHRA post-market surveillance, and vendor-side regulatory claims.
+- **Not a way to avoid the [Outcomes Boundary](#outcomes-boundary).** The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, [MHRA-SaMD] post-market surveillance, and vendor-side regulatory claims.
 
 ### Cross-references
 
