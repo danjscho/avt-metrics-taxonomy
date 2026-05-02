@@ -155,6 +155,45 @@ The trade-off is **maintainer burden vs reader experience**. Bare handles are fi
 
 ---
 
+## 8. Threshold-numbers review — replace "proposed as starting points" with calibration guidance
+
+**Status:** queued — high priority for v3.10 or v3.9.x. Touches load-bearing prose across most Tier 1 metrics.
+
+**Context:** Most tightened Tier 1 metrics carry Threshold Guidance blocks with specific numerical thresholds — pre-deployment gates, continuous-monitoring alerts, pause/escalation triggers. Examples:
+
+- "Substantive ER between 30 % and 80 % during the first 4 weeks; ER below 30 % in week 1 is a flag" (HL.HF-1 Edit Rate)
+- "Monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention" (GV.PD-1 Audio Retention Compliance)
+- "≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates" (TP.ASR-12 ASR Hallucination — Non-Speech Audio)
+- "30/20/15-minute engagement floors, 12-month refresher cadence, 100 % gate" (GV.TC-1 Training Completion)
+- "P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert" (HL.HF-3b Time-to-Sign Distribution)
+
+These thresholds carry a `⚠️ Provenance` prelude that distinguishes **cited numbers** (e.g. UK GDPR storage-limitation, NHSE IG 30-day SAR window — externally validated) from **"proposed in v3.X as starting points"** (calibrated against the metric's clinical-safety logic during taxonomy authoring, but not externally validated). The Calibration & Context principle (`_calibration-and-context.md`) explicitly tells deployers these starting-point numbers require local calibration before contractual use — but the numbers are still in the document, and a deployer who reads quickly may treat them as authoritative defaults rather than as conversation starters.
+
+**The risk.** A "proposed in v3.5 as a starting point" threshold reads as more grounded than it is once it's been sitting in the taxonomy for a few releases. The longer a number sits, the more it accretes apparent legitimacy through citation by deployers, vendors, and procurement leads. The Calibration & Context principle's framing ("starting point", "indicative", "require local calibration") is doing real work, but it's competing with the cognitive ease of reading a specific number and treating it as a default. Multiply this across ~25 Tier 1 metrics carrying tightening patterns, each with several starting-point numbers, and the taxonomy is exposed: a procurement contract can quote a number from the taxonomy that was never externally validated and still derive defensible-looking weight from the citation.
+
+**The proposal.** Review every "proposed as starting points" threshold and decide, per metric:
+
+- **(a) Keep the number** if it has actual external grounding (cited regulation, published standard, peer-reviewed reference) that wasn't surfaced clearly in the prose. Promote the citation.
+- **(b) Replace the number with calibration guidance** if it's genuinely a taxonomy-author judgement call. Instead of "≥ 99.5 % monthly compliance", say something like *"compliance threshold should be set by the deployer's DPIA risk appetite and audit cycle; typical NHS digital compliance metrics target 99–99.9 % depending on consequence severity. Document the chosen number and the reasoning."* This shifts the prose from making a (weakly grounded) recommendation to teaching the deployer **how to set the number**.
+- **(c) Drop the number entirely** if the construct doesn't actually need a number (e.g. binary compliance gates, single-instance pause triggers).
+
+The shift is from prescription to enablement. The Calibration & Context principle already says deployers should set their own numbers; the threshold-guidance prose should *help them do that*, not pre-fill a number that they're then asked to override.
+
+**Why this matters more for the taxonomy than for, say, a vendor whitepaper.** A vendor can publish a benchmark threshold and own it; their reputation and product behaviour are tied to it. A taxonomy is a public assurance frame — its credibility depends on every claim being defensible, especially the ones that look quantitative. Numbers that aren't externally validated are exactly the kind of citation-loop risk the v3.9 references-validity sweep was created to address; this is the same problem one layer deeper.
+
+**Starting points:**
+
+- Run `grep -rn "proposed in v3" taxonomy/` to enumerate every Provenance line carrying the starting-point disclaimer. Expect ~25–30 hits across the Tier 1 tightened metrics.
+- For each, decide (a) / (b) / (c). Most will be (b): replace number with calibration guidance.
+- Where the number maps to an external standard the taxonomy author had in mind but didn't cite (NHS digital service availability targets; ICO breach-notification windows; CQC inspection rhythm), (a) is the right move — surface the citation.
+- Where (c) applies — e.g. "0 critical class events" — the binary framing is itself the gate, no number needed.
+- Cross-check against the v3.7 Calibration & Context principle prose to make sure the new threshold-guidance shape is mutually reinforcing, not duplicative.
+- Consider whether the existing "Threshold Guidance" block name should change to something like "Calibration Guidance" once the prescriptive numbers are out — the section's role is now to guide setting, not to recommend.
+
+**Decision needed before execution:** confirm the (a) / (b) / (c) framing is the right shape and that "calibration guidance" replacing prescriptive numbers is what we want. There's an alternative path (keep numbers but tighten Provenance prose so the starting-point status is unmissable); the trade-off is that prose-tightening is a lighter touch but doesn't address the "specific number reads as default" cognitive failure mode.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.
