@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3627,7 +3627,7 @@
 <p><strong>Read each metric's Reference Standard / Operational Specification / Threshold Guidance (where present) as the default calibration</strong>, not the universal answer. The pattern is in place on 25 of 43 Tier 1 metrics as of v3.7; see <a href="#"><code>taxonomy/audit.py</code></a> output for current status.</p>
 </li>
 <li>
-<p><strong>Read the ⚠️ Provenance prelude carefully.</strong> Cited thresholds (NAS Day Zero SPI, UK GDPR, NHSE IG guidance) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.</p>
+<p><strong>Read the ⚠️ Provenance prelude carefully.</strong> Cited thresholds (<a href="../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>, <a href="../references/#uk-gdpr">UK-GDPR</a>, <a href="../references/#nhse-ig-guidance-2026-03">NHSE-IG-Guidance-2026-03</a>) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.</p>
 </li>
 <li>
 <p><strong>Document the local calibration in the deployer's governance file</strong> alongside the DPIA and Clinical Safety Case. The local-calibration document should record, per metric:</p>
@@ -3653,7 +3653,7 @@
 <ul>
 <li><strong>Not an excuse to disregard Tier 1 metrics.</strong> Calibration shifts which metrics are Tier 1 for <em>your</em> deployment; it does not let you stop measuring them altogether. Every metric in the Tier 1 set after local calibration must be measured.</li>
 <li><strong>Not a way to argue threshold numbers are negotiable in vendor contracts.</strong> The contractual gate is the deployer's local calibration, not the taxonomy's published starting point. Once the deployer has calibrated, the calibrated number is the contract; the taxonomy default is no longer in scope.</li>
-<li><strong>Not a way to avoid the <a href="../outcomes-boundary/">Outcomes Boundary</a>.</strong> The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, MHRA post-market surveillance, and vendor-side regulatory claims.</li>
+<li><strong>Not a way to avoid the <a href="../outcomes-boundary/">Outcomes Boundary</a>.</strong> The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, <a href="../references/#mhra-samd">MHRA-SaMD</a> post-market surveillance, and vendor-side regulatory claims.</li>
 </ul>
 <h3 id="cross-references">Cross-references<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
 <ul>

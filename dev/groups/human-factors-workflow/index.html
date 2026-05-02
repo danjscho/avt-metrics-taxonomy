@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3816,7 +3816,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Abridge; NAS; Stanford framework</td>
+<td><a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a>; <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -3947,7 +3947,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Abridge; DeepScore</td>
+<td><a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a>; <a href="../../references/#deepscore">DeepScore</a></td>
 </tr>
 </tbody>
 </table>
@@ -4031,7 +4031,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>NAS Day Zero SPI; Stanford</td>
+<td><a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4109,7 +4109,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>NAS Day Zero SPI; Stanford</td>
+<td><a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4143,7 +4143,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the ≥ 95 % gate, &lt; 85 % pause trigger, and the T_min formula are cited from the NAS Day Zero SPI specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are <strong>proposed in v3.8 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against specialty mix and consultation-complexity profile before contractual use.</p>
+<p>⚠️ <strong>Provenance:</strong> the ≥ 95 % gate, &lt; 85 % pause trigger, and the T_min formula are cited from the <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a> specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are <strong>proposed in v3.8 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against specialty mix and consultation-complexity profile before contractual use.</p>
 <ul>
 <li><strong>Pre-deployment / Day Zero gate:</strong> RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.</li>
 <li><strong>Continuous monitoring alert:</strong> weekly RBS &lt; 95 % aggregate; OR any single clinician's RBS drops &gt; 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 &lt; 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).</li>
@@ -4219,7 +4219,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>EPR workflow data; Stanford principles</td>
+<td>EPR workflow data; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> principles</td>
 </tr>
 </tbody>
 </table>
@@ -4247,7 +4247,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the TTS_norm &lt; 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and Stanford principles cited in Source. Specific numbers (P5 &lt; 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.</p>
+<p>⚠️ <strong>Provenance:</strong> the TTS_norm &lt; 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> principles cited in Source. Specific numbers (P5 &lt; 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.</p>
 <ul>
 <li><strong>Pre-deployment / Day Zero baseline:</strong> establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.</li>
 <li><strong>Continuous monitoring alert:</strong> weekly P5 of TTS_norm &lt; 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm &lt; 0.5 s/word rises &gt; 10 percentage points from per-clinician baseline.</li>
@@ -4333,7 +4333,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Abridge whitepaper</td>
+<td><a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4415,7 +4415,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Proposed in NAS framework</td>
+<td>Proposed in <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a></td>
 </tr>
 </tbody>
 </table>
@@ -4580,7 +4580,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Human factors literature; NAS framework</td>
+<td>Human factors literature; <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a></td>
 </tr>
 </tbody>
 </table>
@@ -4744,7 +4744,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>NASA-TLX adapted for clinical documentation review</td>
+<td><a href="../../references/#nasa-tlx">NASA-TLX</a> adapted for clinical documentation review</td>
 </tr>
 </tbody>
 </table>
@@ -5233,7 +5233,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations</td>
+<td><a href="../../references/#hollnagel-fram">Hollnagel-FRAM</a>; <a href="../../references/#park-seips-transfusion-2026">Park-SEIPS-Transfusion-2026</a> (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)</td>
 </tr>
 </tbody>
 </table>
@@ -5310,7 +5310,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data</td>
+<td><a href="../../references/#gosh-phase-4-timecat">GOSH-Phase-4-TimeCat</a></td>
 </tr>
 </tbody>
 </table>
@@ -5388,7 +5388,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Hollnagel Safety-II; FRAM methodology; resilience engineering literature</td>
+<td><a href="../../references/#hollnagel-fram">Hollnagel-FRAM</a> (Safety-II framing); resilience engineering literature</td>
 </tr>
 </tbody>
 </table>
@@ -5470,7 +5470,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)</td>
+<td>Operationalisation of existing Clinical Documentation Skill Attenuation metric; <a href="../../references/#lancet-gastroenterology-endoscopist-ai-off-2025">Lancet-Gastroenterology-Endoscopist-AI-Off-2025</a> (ADR fell 28.4%→22.4% when AI removed)</td>
 </tr>
 </tbody>
 </table>

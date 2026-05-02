@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -1080,7 +1080,7 @@
   <a href="#tp-sn-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TP.SN-13 🔵 SCRIBE Framework Composite
+        TP.SN-13 🔵 ADS Evaluation Framework Composite
       
     </span>
   </a>
@@ -3753,7 +3753,7 @@
   <a href="#tp-sn-13" class="md-nav__link">
     <span class="md-ellipsis">
       
-        TP.SN-13 🔵 SCRIBE Framework Composite
+        TP.SN-13 🔵 ADS Evaluation Framework Composite
       
     </span>
   </a>
@@ -3970,7 +3970,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Lin 2004; inadequacy shown by Croxford et al. 2025</td>
+<td><a href="../../references/#rouge-lin-2004">ROUGE-Lin-2004</a>; inadequacy shown by <a href="../../references/#croxford-2025">Croxford-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4093,7 +4093,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Zhang et al. 2020; Croxford et al. 2025</td>
+<td><a href="../../references/#bertscore-zhang-2020">BERTScore-Zhang-2020</a>; <a href="../../references/#croxford-2025">Croxford-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4185,7 +4185,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Stetson et al.; Croxford et al. 2025</td>
+<td><a href="../../references/#pdsqi-9">PDSQI-9</a>; <a href="../../references/#croxford-2025">Croxford-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4267,7 +4267,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Asgari et al. 2025 (Tortus/GOSH). Now underpins automated guardrails.</td>
+<td><a href="../../references/#asgari-tortus-gosh-2025">Asgari-Tortus-GOSH-2025</a>. Now underpins automated guardrails.</td>
 </tr>
 </tbody>
 </table>
@@ -4371,7 +4371,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Various; Tortus 1.47% per sentence</td>
+<td>Various; <a href="../../references/#asgari-tortus-gosh-2025">Asgari-Tortus-GOSH-2025</a> reports 1.47% per sentence</td>
 </tr>
 </tbody>
 </table>
@@ -4385,7 +4385,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the CREOLA subtype taxonomy (Asgari et al. 2025). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.</p>
+<p>Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a> subtype taxonomy (<a href="../../references/#asgari-tortus-gosh-2025">Asgari-Tortus-GOSH-2025</a>). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4503,7 +4503,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Tortus 3.45%; CREOLA taxonomy</td>
+<td><a href="../../references/#asgari-tortus-gosh-2025">Asgari-Tortus-GOSH-2025</a> reports 3.45%; <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a></td>
 </tr>
 </tbody>
 </table>
@@ -4517,7 +4517,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the CREOLA mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.</p>
+<p>Source transcript + clinician review. The reference set P_reference is the clinically relevant propositions identified by structured clinician review of the source transcript, using the <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a> mandatory categories (key findings, medications, allergies, plan elements, safety-netting, red-flags) as the floor. A proposition counts as omitted when it appears in P_reference and does not appear in the generated note in any form (verbatim, paraphrase, or structurally implied). Inter-rater reliability target: ICC ≥ 0.75 on the reference-set construction, since omission rate is bounded above by what reviewers agree was relevant in the first place.</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4687,7 +4687,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Abridge whitepaper (50,000+ training examples)</td>
+<td><a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> (50,000+ training examples)</td>
 </tr>
 </tbody>
 </table>
@@ -4768,7 +4768,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Chung et al., Stanford, Jan 2025; NEJM AI</td>
+<td><a href="../../references/#chung-nejm-ai-2025">Chung-NEJM-AI-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4950,7 +4950,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Croxford et al. 2025</td>
+<td><a href="../../references/#croxford-2025">Croxford-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -5034,7 +5034,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Bedi et al., Stanford CRFM, May 2025</td>
+<td><a href="../../references/#bedi-stanford-crfm-2025">Bedi-Stanford-CRFM-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -5114,7 +5114,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Kanithi et al. 2025</td>
+<td><a href="../../references/#kanithi-2025">Kanithi-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -5195,7 +5195,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Abridge Linked Evidence</td>
+<td>architectural pattern; <a href="../../references/#abridge-linked-evidence">Abridge-Linked-Evidence</a> cited as a representative vendor implementation (not an authoritative architectural specification)</td>
 </tr>
 </tbody>
 </table>
@@ -5221,8 +5221,8 @@
 </blockquote>
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-3">GV.CR-3 AI-Generated Content Labelling Compliance</a> · <a href="../vendor-transparency-contractual/#gv-vt-1">GV.VT-1 Model Change Notification Compliance</a> · <a href="../vendor-transparency-contractual/#gv-vt-2">GV.VT-2 Telemetry Provision Completeness</a> · <a href="../vendor-transparency-contractual/#gv-vt-3">GV.VT-3 Benchmark &amp; Evaluation Data Accessibility</a> · <a href="../vendor-transparency-contractual/#gv-vt-4">GV.VT-4 Audit Trail Completeness</a></p>
 <hr />
-<h3 id="tp-sn-13">TP.SN-13 🔵 SCRIBE Framework Composite<a class="headerlink" href="#tp-sn-13" title="Permanent link">&para;</a></h3>
-<p>First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment.</p>
+<h3 id="tp-sn-13">TP.SN-13 🔵 ADS Evaluation Framework Composite<a class="headerlink" href="#tp-sn-13" title="Permanent link">&para;</a></h3>
+<p>First comprehensive multi-modal AVT evaluation: simulation + computational + human + LLM. Minimum standard for pre-deployment. Based on Wang et al. 2025's four-modality triangulation framework for ambient digital scribing (ADS) evaluation; the paper diagrams use the acronym SCRIBE for the four-modality combination.</p>
 <table>
 <thead>
 <tr>
@@ -5277,7 +5277,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Wang et al. 2025 (Duke/MedStar)</td>
+<td><a href="../../references/#wang-ads-eval-2025">Wang-ADS-Eval-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -5287,11 +5287,11 @@
 <p>Comprehensive research framework. Should be the aspiration for pre-deployment evaluation but requires simulation infrastructure no NHS deployer currently has.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Four modalities: (1) Simulated encounters with ground truth; (2) Computational metrics on outputs; (3) Structured clinician review; (4) LLM evaluation. Composite requires passing all four - no single modality compensates for another.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-16-1" name="__codelineno-16-1" href="#__codelineno-16-1"></a>Four-modality triangulation per Wang et al. 2025: (1) Simulated encounters with ground truth; (2) Computational metrics on outputs; (3) Structured clinician review; (4) LLM-as-evaluator. The paper proposes the four modalities as triangulation methodology — no single modality is sufficient on its own. The &quot;pass all four&quot; composite formulation below is a taxonomy-recommended pre-deployment shape; the paper itself does not impose a hard pass/fail gate across all four.
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Paper</strong>: <a href="https://doi.org/10.1038/s41746-025-01449-w">Wang et al. (2025) - SCRIBE, npj Digital Medicine</a></li>
+<li><strong>Paper</strong>: <a href="https://doi.org/10.1038/s41746-025-01622-1">Wang et al. (2025) — npj Digital Medicine</a> — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym <strong>SCRIBE</strong> (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5358,7 +5358,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>INSYTE analysis; DCB0129 gap</td>
+<td><a href="../../references/#insyte-2025">INSYTE-2025</a>; <a href="../../references/#dcb0129">DCB0129</a> gap</td>
 </tr>
 </tbody>
 </table>
@@ -5621,7 +5621,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>i2b2 2012 temporal challenge (F1 0.876 state of art); clinical temporal reasoning literature</td>
+<td><a href="../../references/#i2b2-2012-temporal-challenge">i2b2-2012-Temporal-Challenge</a> (F1 0.876 state of art); clinical temporal reasoning literature</td>
 </tr>
 </tbody>
 </table>
@@ -5785,7 +5785,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>n2c2 shared task benchmarks (attribute-level F1 &gt;0.92 for strong systems)</td>
+<td><a href="../../references/#n2c2-shared-tasks">n2c2-Shared-Tasks</a> benchmarks (attribute-level F1 &gt;0.92 for strong systems)</td>
 </tr>
 </tbody>
 </table>
@@ -5972,7 +5972,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>n2c2 2018 shared task on medication event classification</td>
+<td><a href="../../references/#n2c2-shared-tasks">n2c2-Shared-Tasks</a> (2018 shared task on medication event classification)</td>
 </tr>
 </tbody>
 </table>
@@ -6203,7 +6203,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Barcelona et al., JAMA Network Open 2025 (Black patients 2.54× odds of negative descriptors)</td>
+<td><a href="../../references/#himmelstein-stigmatising-ehr-jama-2022">Himmelstein-Stigmatising-EHR-JAMA-2022</a></td>
 </tr>
 </tbody>
 </table>

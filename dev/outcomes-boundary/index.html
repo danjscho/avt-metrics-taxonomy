@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3467,7 +3467,7 @@
 <p><strong>The field has not solved outcome measurement for clinical AI generally, and AVT specifically.</strong> Coiera &amp; Fraile-Navarro (2026) name this as a structural gap. Adding outcome metrics to a deployment taxonomy does not produce outcome evidence; it produces the appearance of coverage. That risks substituting framework completeness for empirical evidence.</p>
 </li>
 <li>
-<p><strong>Outcome validation belongs to bodies with the right authority and reach.</strong> National research bodies (e.g. NIHR RSET), regulators with post-market surveillance powers (MHRA), evidence-standards frameworks (NICE ESF Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.</p>
+<p><strong>Outcome validation belongs to bodies with the right authority and reach.</strong> National research bodies (e.g. <a href="../references/#nihr-rset">NIHR-RSET</a>), regulators with post-market surveillance powers (<a href="../references/#mhra-samd">MHRA-SaMD</a>), evidence-standards frameworks (<a href="../references/#nice-esf">NICE-ESF</a> Tier C clinical-management evidence), and vendors pursuing formal regulatory claims are the appropriate actors. This taxonomy can require deployers to ensure those processes are in train; it cannot substitute for them.</p>
 </li>
 <li>
 <p><strong>Process compliance is not clinical benefit.</strong> A deployment passing all 43 Tier 1 metrics in this taxonomy is <em>assured of deployment safety</em> — that the system is configured, monitored, governed, and overseen correctly. It is not assured of <em>clinical benefit</em>. The taxonomy makes that distinction visible so deployers, vendors, and procurement leads do not conflate the two.</p>
@@ -3484,7 +3484,7 @@
 <h3 id="relationship-to-the-calibration-context-principle">Relationship to the Calibration &amp; Context principle<a class="headerlink" href="#relationship-to-the-calibration-context-principle" title="Permanent link">&para;</a></h3>
 <p>The Outcomes Boundary and the <a href="../calibration-and-context/">Calibration &amp; Context principle</a> are deliberately complementary commitments with very different grain:</p>
 <ul>
-<li><strong>The Outcomes Boundary is a hard limit.</strong> Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is <em>out of scope</em> for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, MHRA post-market surveillance, NICE Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.</li>
+<li><strong>The Outcomes Boundary is a hard limit.</strong> Clinical-outcome validation (RCT-grade evidence that AVT changes diagnostic accuracy, patient safety incidents, or downstream care quality) is <em>out of scope</em> for this taxonomy regardless of deployment context. Calibration cannot bring distal-outcome validation into the deployer's scope; that boundary stays with national research bodies, <a href="../references/#mhra-samd">MHRA-SaMD</a> post-market surveillance, <a href="../references/#nice-esf">NICE-ESF</a> Tier C clinical-management evidence, and vendor regulatory claims. A deployer cannot localise their way around it.</li>
 <li><strong>The Calibration &amp; Context principle is a soft instruction.</strong> Tier assignments and threshold numbers are <em>in scope</em> but <em>deployer-calibrated</em>. The published defaults reflect a generic deployment context; six named axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume / scale) shift them in real settings. Local calibration is expected, documented, and reviewable — but it operates <em>within</em> the in-scope set of metrics, never to import work that the Boundary marks as out-of-scope.</li>
 </ul>
 <p>A reader finishing the Calibration principle alone might infer that thresholds are endlessly flexible; a reader finishing the Outcomes Boundary alone might infer that Tier 1 is a hard pass/fail. Read together, the right interpretation is: the structural commitments (what's measured, what's out of scope) are firm; the parameter values (which tier, what threshold) are local. Deployers using this taxonomy should read both — the Boundary to understand what it cannot rely on the taxonomy to deliver, and the Calibration principle to understand the scope it does have to adapt the published defaults to its own context.</p>
@@ -3495,7 +3495,7 @@
 <li><strong>ES.ME-9 Causal Model Operationalisation</strong> — operationalises the proximal-to-distal causal chain as a metric</li>
 <li><strong><a href="../calibration-and-context/">Calibration &amp; Context principle</a></strong> — parallel principle for in-scope-but-context-dependent calibration</li>
 <li><strong>NHS T.E.S.T. Framework Section B</strong> — Clinical Effectiveness benefit domain (90 pts of 420), with 50 pts gated on RCT evidence; see <a href="../standards-mapping/#nhs-test-framework-technology-evaluation-safety-test">Standards Mapping § NHS T.E.S.T.</a></li>
-<li><strong>MHRA Software and AI as a Medical Device</strong> — Post-Market Surveillance (WP4 + SI 2024 No. 1368) effectiveness-evidence requirements</li>
+<li><strong>MHRA Software and AI as a Medical Device</strong> — Post-Market Surveillance (WP4 + <a href="../references/#si-2024-1368">SI-2024-1368</a>) effectiveness-evidence requirements (<a href="../references/#mhra-samd">MHRA-SaMD</a>)</li>
 </ul>
 <h3 id="future-direction">Future direction<a class="headerlink" href="#future-direction" title="Permanent link">&para;</a></h3>
 <p>This boundary may need revisiting if (a) NHS England, NIHR, or an equivalent body publishes a national outcome-evaluation framework for AVT that this taxonomy can map to; (b) the field converges on a defensible set of distal outcome metrics with validated measurement protocols; or (c) the proximal metrics in this taxonomy are themselves shown by clinical evidence to be inadequate proxies for the outcomes that matter. Until then, the boundary stays explicit.</p>

@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3222,6 +3222,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v39-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.9 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v384-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4180,6 +4191,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v39-2026-05-02" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v3.9 (2026-05-02)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v384-2026-04-26" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5124,6 +5146,33 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v39-2026-05-02">v3.9 (2026-05-02)<a class="headerlink" href="#v39-2026-05-02" title="Permanent link">&para;</a></h2>
+<p>References validity sweep — every external citation in the taxonomy now resolves through a structured catalogue with handles, URLs, Wayback snapshots, retrieval dates, and a forward-compatible local-mirror field.</p>
+<p><strong>Why now.</strong> The taxonomy made 221 cited claims (Source rows) and ~37 Reference Standard / ~37 Threshold Guidance blocks naming authoritative documents (DCB0129, NHSE IG guidance, MHRA SaMD, OxonFair, etc.) — none of them previously linked out. NHS-domain URLs in particular reorganise frequently; without snapshots the citations would silently rot. v3.9 makes the taxonomy independently auditable and link-rot-resistant.</p>
+<p><strong>Highlights.</strong></p>
+<ul>
+<li><strong>New file <code>taxonomy/_references.md</code></strong> — citation catalogue with <strong>100 entries</strong> spanning every external authority cited by the taxonomy. Each entry carries <code>Title</code>, <code>Publisher</code>, <code>Source-Type</code>, <code>URL</code>, <code>Archive</code> (Wayback snapshot URL — populated by <code>snapshot.py</code>, see below), <code>Retrieved</code> (ISO date), <code>Local-Mirror</code> (reserved for a future option-(c) release of locally mirrored canonical PDFs), and an auto-generated <code>Cited-by</code> back-reference list emitted at build time.</li>
+<li><strong>Citation grammar.</strong> Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections now use <code>[Handle]</code> reference-style links (e.g. <code>[DCB0129]</code>, <code>[UK-GDPR]</code>, <code>[Keyes-Stanford-Monitoring-2025]</code>) resolving to entries in <code>_references.md</code>. The <code>audit.py check_reference_handles_resolve</code> check enforces every handle resolves.</li>
+<li><strong>Round-2 review of 16 flagged citations</strong> (file: <code>archive/v3.9-reviews/v3.9-phase2-urls-review-round2.md</code>). Notable corrections: Barcelona-JAMA-Network-Open-2025 → Himmelstein-Stigmatising-EHR-JAMA-2022 (paper at the cited DOI is by Himmelstein/Bates/Zhou); medRxiv-Model-Autophagy-2026 → Alemohammad-MAD-2023 (canonical model-autophagy paper); medRxiv-Nov-2025-AVT-Drift → Kalinich-LLM-SaMD-PRA-2025 (paper is suicide-risk safety classification, not AVT drift); Keyes-Stanford-2025 + Stanford-Monitoring-Framework merged into Keyes-Stanford-Monitoring-2025 with "three-layer surveillance model" paraphrase corrected to "three-principle monitoring framework"; DSCMS-SPI-Framework → AMLAS-AAIP; JMIR-2026-SEIPS-AVT → Park-SEIPS-Transfusion-2026 (paper is a transfusion-system SEIPS-CQR study, not AVT); DeepScribe inline "arXiv Sept 2024" reference replaced with the vendor methodology page; NVIDIA-Reference-Architecture → NeMo-Guardrails. Unverifiable numeric claims (Stults 57.9%→93.0%, Barcelona 2.54×, GV.SG-7 P₁ 2.0×10⁻⁸–2.6×10⁻⁴, GV.SC-11 AUC 0.96) dropped.</li>
+<li><strong>FILLED-review audit (file: <code>archive/v3.9-reviews/v3_9-phase2-urls-review-FILLED.md</code>).</strong> Folded a substantial second pass of user-supplied corrections into the catalogue:</li>
+<li><strong>All ~11 remaining placeholder URLs resolved</strong> to canonical landing pages: Asgari-Tortus-GOSH-2025 (npj DM 2025;8:274), CREOLA-Hallucination-Taxonomy (same paper as Asgari, kept as separate handle for taxonomy-vs-paper citing), Chung-NEJM-AI-2025 (Lukac et al. NEJM AI 2025;2(12):e2501000, Chung is co-author), Kanithi-2025 (MEDIC arXiv 2409.07314), NLP2FHIR-Pipeline (BD2KOnFHIR GitHub), GOSH-Phase-4-TimeCat (NHSE final report PDF), Stults-2025 (JAMA Network Open per round-2 see-also reframing), Coiera-Fraile-Navarro-JMIR-2026 (JMIR Med Inform 2026;14:e89337), FAIR-MED-Springer-2025 (Springer LNCS chapter), VeriFact (arXiv 2501.16672).</li>
+<li><strong>Wrong-URL corrections</strong> for ~10 catalogue entries where my initial batch URL pass had used journal-home pages or homepage URLs instead of the canonical document URL: Croxford-2025, Bedi-Stanford-CRFM-2025 (MedHELM arXiv), n2c2-Shared-Tasks (Harvard portal), Lancet-Gastroenterology-Endoscopist-AI-Off-2025 (specific paper), Hollnagel-FRAM (Safety-II open-access PDF), Abridge-Whitepaper-2025 (specific science page), CIO-CCIO-Guidance-2026 (NHSE long-read), CQC-Mythbuster-109 (AI-GP-services page), MedCAT-Benchmarks (Kraljevic JAMIA paper), John-Snow-Labs-FHIR-Ready-AI (specific product page), NIHR-RSET (Nuffield Trust, was incorrectly BSMS), PubMed-41172285-FOI-Study (JMIR canonical instead of PubMed wrapper).</li>
+<li><strong>A6 Wang/SCRIBE correctness audit applied.</strong> <code>SCRIBE-Wang-2025</code> renamed → <code>Wang-ADS-Eval-2025</code> (paper is "An evaluation framework for ambient digital scribing tools in clinical applications", Wang et al. <em>npj Digital Medicine</em> 2025;8:358; "SCRIBE" is the diagram-acronym in the paper, not its primary identity). Phantom <code>Wang-Duke-MedStar-2025</code> entry deleted (was the same paper). Wrong DOI <code>s41746-025-01449-w</code> corrected to <code>s41746-025-01622-1</code> at three inline-link locations (diarisation.md, summarisation-nlp.md). TP.SN-13 metric heading renamed "SCRIBE Framework Composite" → "ADS Evaluation Framework Composite" with the SCRIBE acronym moved into prose; Formal Definition softened to distinguish what the paper proposes (four-modality triangulation) from the taxonomy's interpretation (recommended pre-deployment composite).</li>
+<li><strong>Discipline-rep section triage.</strong> Four unused discipline-rep handles dropped (<code>discipline-asr</code>, <code>discipline-voice-biometric</code>, <code>discipline-diarisation</code>, <code>discipline-clinical-nlp</code> — none were <code>[Handle]</code>-cited from any metric file). New entry <code>Carlini-Web-Scale-Poisoning-2024</code> added (the actual modern web-scale-poisoning reference for GV.SC-4's 0.001 % threshold framing); <code>discipline-data-poisoning</code> (Biggio 2012) retained as the historical/conceptual basis. GV.SC-4 Source row updated to cite both with the modern-vs-historical distinction.</li>
+<li><strong>Optional handle renames.</strong> <code>Hybrid-Code-v2-2025</code> → <code>Hybrid-Code-v2-2026</code> (v2 was published March 2026, not 2025); <code>arXiv-2601-03791-Cue-Resistant-Memorisation</code> → <code>Luo-PII-CRM-2026</code> for clarity. Both updated everywhere they're cited; titles and publisher metadata enriched per FILLED.</li>
+<li><strong>Croxford-2025 / PDSQI-9 disambiguation.</strong> Two distinct 2025 Croxford-led papers: <code>Croxford-2025</code> now anchors the broader npj Health Systems review of LLM medical-summarisation evaluation; <code>PDSQI-9</code> separately anchors the PDSQI-9 instrument validation paper (J Am Med Inform Assoc 2025;32:1050-1060). Cross-referenced in catalogue prose so the Croxford lineage is navigable.</li>
+<li><strong>New audit checks.</strong> <code>check_reference_handles_resolve</code> (every <code>[Handle]</code> resolves), <code>check_archive_present</code> (every catalogue entry has a real URL and Wayback Archive URL), <code>check_retrieved_date_format</code> (Retrieved: field is ISO-8601). <code>check_archive_present</code> emits INFO until the snapshot pass completes.</li>
+<li><strong><code>taxonomy/tools/snapshot.py</code></strong> — Wayback Save Page Now driver. Reads <code>_references.md</code>, snapshots every entry whose <code>Archive:</code> field is empty, throttled and retried per Wayback rate limits. Idempotent. <strong>Note: as of v3.9 release, anonymous Save-Page-Now submissions are rejected with HTTP 401; the pass requires Internet Archive S3-style credentials (<code>IA_ACCESS_KEY</code> / <code>IA_SECRET_KEY</code> env vars). The 100 catalogue Archive: fields remain placeholder until those credentials are supplied and snapshot.py is re-run; <code>audit.py check_archive_present</code> flags this at INFO.</strong> Documented as v3.9.x snapshot pass; not blocking the v3.9 release because the catalogue, handles, citations, audit, and builds are all in place.</li>
+<li><strong><code>build.py</code> and <code>build_site.py</code></strong> assemble the catalogue with auto-populated cited-by lists; the source <code>_references.md</code> keeps the <code>_(auto-generated)_</code> placeholder so version-control diffs stay stable.</li>
+<li><strong>Standards-mapping</strong>: every framework section now carries a "<strong>Reference:</strong> [Handle]" line under its heading, linking the framework to its catalogue entry.</li>
+</ul>
+<p>No metric content changes. No tier shifts. No new metrics. Counts unchanged at 218 / 43-96-79.</p>
+<p><strong>Known not-yet-done items (deferred to v3.9.x or v3.10):</strong></p>
+<ul>
+<li><strong>Wayback snapshot pass.</strong> <code>snapshot.py</code> runs but anonymous Save-Page-Now is rejected with HTTP 401; needs Internet Archive S3-style credentials (<code>IA_ACCESS_KEY</code> / <code>IA_SECRET_KEY</code>). 100 catalogue Archive: fields stay placeholder until creds are supplied and <code>snapshot.py</code> is re-run; <code>audit.py check_archive_present</code> flags this at INFO.</li>
+<li><strong>Vague-literature Source rows under new grammar.</strong> Plan-v3.9's strict reading was "all 221 Source rows" use <code>[Handle]</code> grammar; in practice ~95 rows are vague-literature ("standard ASR literature", "machine learning calibration literature") or proposed/derived ("identified as critical gap in clinical ASR evaluation"). FILLED's D-section triage explicitly settled the vague-literature handling as <strong>prose, not handles</strong> — a citation should match the claim being made; existence-of-literature gestures get prose, specific quantitative claims get specific papers. The current 126-of-221 [Handle]-cited rows reflect this revised intent rather than the original plan; the catalogue keeps <code>discipline-data-poisoning</code>, <code>discipline-calibration</code>, <code>discipline-adversarial-ml</code>, <code>discipline-human-factors</code> as opt-in handles for the four cases where a discipline genuinely has a single dominant entry-point paper.</li>
+<li><strong><code>check_source_row_grammar</code>.</strong> The Phase 5 audit check the plan called for was not added. <code>check_reference_handles_resolve</code> enforces the operationally-meaningful invariant (every <code>[Handle]</code> used resolves to a catalogue entry); a strict <code>check_source_row_grammar</code> that mandates handle-shaped rows everywhere would conflict with the prose-where-appropriate decision above.</li>
+</ul>
 <h2 id="v384-2026-04-26">v3.8.4 (2026-04-26)<a class="headerlink" href="#v384-2026-04-26" title="Permanent link">&para;</a></h2>
 <p>Tooling-only patch — fixes site-wide version banner drift.</p>
 <ul>

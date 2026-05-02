@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>Draft v3.8.4</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
+  <strong>Draft v3.9</strong> - this taxonomy is under active review and has not yet been stakeholder-approved. Content, tier assignments, and gap analysis may change before public release. See the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
 
@@ -3618,7 +3618,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Mindgard/Heidi Health and Doctronic jailbreak disclosures (March 2026); adversarial ML literature</td>
+<td><a href="../../references/#mindgard-heidi-2026">Mindgard-Heidi-2026</a>; <a href="../../references/#mindgard-doctronic-2026">Mindgard-Doctronic-2026</a>; adversarial ML literature</td>
 </tr>
 </tbody>
 </table>
@@ -3701,7 +3701,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Mindgard disclosures on Heidi Health and Doctronic (March 2026)</td>
+<td><a href="../../references/#mindgard-heidi-2026">Mindgard-Heidi-2026</a>; <a href="../../references/#mindgard-doctronic-2026">Mindgard-Doctronic-2026</a></td>
 </tr>
 </tbody>
 </table>
@@ -3784,7 +3784,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Adversarial ML literature; identified in NHSE LLM framework 'intentional misuse' dimension</td>
+<td>Adversarial ML literature; identified in <a href="../../references/#nhs-llm-framework">NHS-LLM-Framework</a> 'intentional misuse' dimension</td>
 </tr>
 </tbody>
 </table>
@@ -3866,7 +3866,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Data poisoning literature; 0.001% threshold from published research (2025)</td>
+<td><a href="../../references/#carlini-web-scale-poisoning-2024">Carlini-Web-Scale-Poisoning-2024</a> (0.001 % web-scale poisoning threshold); historical/conceptual basis <a href="../../references/#discipline-data-poisoning">discipline-data-poisoning</a> (Biggio et al. ICML 2012)</td>
 </tr>
 </tbody>
 </table>
@@ -3944,7 +3944,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>NVIDIA reference architecture; absence noted in vendor safety architecture review</td>
+<td><a href="../../references/#nemo-guardrails">NeMo-Guardrails</a> (representative implementation of the output-classifier pattern); absence noted in vendor safety architecture review</td>
 </tr>
 </tbody>
 </table>
@@ -4027,7 +4027,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Identified in INSYTE underspecification analysis; extends template modification risk to adversarial context</td>
+<td>Identified in <a href="../../references/#insyte-2025">INSYTE-2025</a> underspecification analysis; extends template modification risk to adversarial context</td>
 </tr>
 </tbody>
 </table>
@@ -4261,7 +4261,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>MIT Jameel Clinic 2026 cross-patient leakage disclosure</td>
+<td><a href="../../references/#mit-jameel-2026">MIT-Jameel-2026</a> cross-patient leakage disclosure</td>
 </tr>
 </tbody>
 </table>
@@ -4338,7 +4338,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Standard authentication security; NHS CIS2 requirements</td>
+<td>Standard authentication security; <a href="../../references/#cis2">CIS2</a> requirements</td>
 </tr>
 </tbody>
 </table>
@@ -4417,7 +4417,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>IEEE S&amp;P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework</td>
+<td><a href="../../references/#ieee-s-and-p-2023-llm-pii-leakage">IEEE-S-and-P-2023-LLM-PII-Leakage</a>; <a href="../../references/#luo-pii-crm-2026">Luo-PII-CRM-2026</a></td>
 </tr>
 </tbody>
 </table>
@@ -4435,7 +4435,7 @@
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
-<p>💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.</p>
+<p>💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The IEEE S&amp;P 2023 PII-leakage findings on undefended LLMs are a sobering baseline for what "no privacy defences" looks like in practice.</p>
 </blockquote>
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../privacy-data-governance/#gv-pd-5">GV.PD-5 PII Extraction Attack Success Rate</a> · <a href="#gv-sc-1">GV.SC-1 Prompt Injection Resistance Rate</a> · <a href="#gv-sc-10">GV.SC-10 Clinician Identity Authentication</a> · <a href="#gv-sc-2">GV.SC-2 Jailbreak Resistance Score</a> · <a href="#gv-sc-3">GV.SC-3 Adversarial Audio Detection Rate</a> · <a href="#gv-sc-4">GV.SC-4 Data Poisoning Resilience</a></p>
 <hr />
@@ -4495,7 +4495,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> (req #5); <a href="../../references/#iasme-cyber-essentials-plus">IASME-Cyber-Essentials-Plus</a>; <a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a></td>
+<td><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> (req #5); <a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a> (Plus variant administered by IASME)</td>
 </tr>
 </tbody>
 </table>
@@ -4521,7 +4521,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>The <a href="../../references/#iasme-cyber-essentials-plus">IASME-Cyber-Essentials-Plus</a>-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to <a href="../vendor-transparency-contractual/#gv-vt-7">GV.VT-7 Sub-Processor Transparency</a> — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.</p>
+<p>The <a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a>-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to <a href="../vendor-transparency-contractual/#gv-vt-7">GV.VT-7 Sub-Processor Transparency</a> — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4535,7 +4535,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from <a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> and <a href="../../references/#iasme-cyber-essentials-plus">IASME-Cyber-Essentials-Plus</a>. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are <strong>proposed in v3.8</strong> as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration before contractual use.</p>
+<p>⚠️ <strong>Provenance:</strong> the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from <a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> and <a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a>. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are <strong>proposed in v3.8</strong> as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration before contractual use.</p>
 <ul>
 <li><strong>Pre-deployment gate (procurement):</strong> all three sub-metrics compliant (current Plus certificate, scope covers AVT product, &lt; 12 months from issue); evidence pack on the National Commercial &amp; Procurement Hub references the certificate.</li>
 <li><strong>Periodic audit:</strong> annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.</li>
@@ -4545,8 +4545,7 @@
 <p><strong>References</strong></p>
 <ul>
 <li><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> — registry req #5 (see also <a href="../../standards-mapping/#nhs-england-avt-self-certified-supplier-registry">Standards Mapping § NHS England AVT Self-Certified Supplier Registry</a>)</li>
-<li><a href="../../references/#iasme-cyber-essentials-plus">IASME-Cyber-Essentials-Plus</a> — Plus scheme administrator</li>
-<li><a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a> — underlying scheme overview and technical control set</li>
+<li><a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a> — scheme overview and technical control set; the audited "Plus" variant is administered by IASME, the NCSC-appointed delivery partner</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
