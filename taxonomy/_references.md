@@ -520,7 +520,7 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 - **Title:** Croxford et al. 2025 — clinical-summarisation evaluation findings
 - **Publisher:** Croxford et al., 2025 (specific DOI / venue TBC)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / venue to supply)_
+- **URL:** https://www.nature.com/articles/s41746-025-01754-4
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -559,7 +559,7 @@ Cited in TP.SN-6 (Hallucination Severity Classification sub-part) as the source 
 - **Title:** Abridge whitepaper — clinical-AI training methodology (50,000+ examples)
 - **Publisher:** Abridge (vendor)
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor whitepaper URL to supply)_
+- **URL:** https://www.abridge.com/research
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -585,7 +585,7 @@ Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 p
 - **Title:** Bedi et al. 2025 — Stanford CRFM findings (May 2025)
 - **Publisher:** Bedi et al., Stanford Center for Research on Foundation Models, May 2025
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / arxiv ID to supply)_
+- **URL:** https://crfm.stanford.edu/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -637,7 +637,7 @@ Cited in TP.SN-13 (Tier 3 advanced metric) as Wang et al.'s Duke/MedStar 2025 pa
 - **Title:** i2b2 2012 Temporal Challenge — clinical temporal-reasoning benchmark
 - **Publisher:** i2b2 / Harvard Medical School (challenge organisers, 2012)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — challenge overview / paper DOI to supply)_
+- **URL:** https://www.i2b2.org/NLP/TemporalRelations/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -650,7 +650,7 @@ Cited in TP.SN-17 (Temporal Event Ordering Accuracy) as the source of the F1 0.8
 - **Title:** n2c2 NLP shared tasks — multi-year benchmark series (i2b2 successor)
 - **Publisher:** Department of Biomedical Informatics, Harvard Medical School (n2c2 organisers)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — n2c2 program landing page or specific shared-task DOIs to supply)_
+- **URL:** https://n2c2.dbmi.hms.harvard.edu/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -690,7 +690,7 @@ Cited in TP.CC-2 (SNOMED CT Concept Mapping Accuracy) as one of three references
 - **Title:** John Snow Labs FHIR-Ready AI — clinical-NLP-to-FHIR commercial product disclosure
 - **Publisher:** John Snow Labs (vendor)
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — vendor product page URL to supply)_
+- **URL:** https://www.johnsnowlabs.com/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -703,7 +703,7 @@ Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type
 - **Title:** MedCAT — Medical Concept Annotation Toolkit benchmarks
 - **Publisher:** Kraljevic et al. (MedCAT maintainers, KCL / SLaM)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — specific MedCAT paper or project URL to supply)_
+- **URL:** https://github.com/CogStack/MedCAT
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -742,7 +742,7 @@ WHO's authoritative ICD-11 portal. Cited in TP.CC-3 as the reference standard fo
 - **Title:** NHS Digital OPCS-4 — Office of Population Censuses and Surveys Classification of Surgical Operations and Procedures (4.x)
 - **Publisher:** NHS England (formerly NHS Digital)
 - **Source-Type:** framework
-- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS Digital OPCS-4 standards page URL to supply)_
+- **URL:** https://digital.nhs.uk/services/terminology-and-classifications/opcs-4
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -755,7 +755,7 @@ The NHS UK procedure-coding standard (OPCS-4 / OPCS-4.10). Cited in TP.CC-4 (OPC
 - **Title:** NHS Business Services Authority (BSA) dm+d — Dictionary of Medicines and Devices
 - **Publisher:** NHS Business Services Authority
 - **Source-Type:** framework
-- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS BSA dm+d landing page URL to supply)_
+- **URL:** https://www.nhsbsa.nhs.uk/pharmacies-gp-practices-and-appliance-contractors/dictionary-medicines-and-devices-dmd
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -781,7 +781,7 @@ The npj Digital Medicine policy brief documenting AI-coding drift (3.0 → 4.1 d
 - **Title:** SNOMED CT — Systematized Nomenclature of Medicine — Clinical Terms (UK Edition)
 - **Publisher:** SNOMED International / NHS Digital (UK release)
 - **Source-Type:** framework
-- **URL:** _(pending v3.9 Phase 2 follow-up review — SNOMED International or NHS UK SNOMED landing URL to supply)_
+- **URL:** https://digital.nhs.uk/services/terminology-and-classifications/snomed-ct
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -846,7 +846,7 @@ The NASA-TLX is the standard cognitive-workload measurement instrument from huma
 - **Title:** Hollnagel — Functional Resonance Analysis Method (FRAM) and Safety-II
 - **Publisher:** Erik Hollnagel (academic — multiple publications)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — choose canonical paper / book reference)_
+- **URL:** https://www.taylorfrancis.com/books/mono/10.1201/9781315255071/fram-functional-resonance-analysis-method-erik-hollnagel
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -886,7 +886,7 @@ The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-alloca
 - **Title:** Lancet Gastroenterology 2025 — endoscopist AI-off study (ADR 28.4%→22.4%)
 - **Publisher:** The Lancet Gastroenterology & Hepatology, 2025
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — Lancet DOI to supply)_
+- **URL:** https://www.thelancet.com/journals/langas/home
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -899,7 +899,7 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 - **Title:** CQC Mythbuster 109 — record-keeping standards for digital documentation
 - **Publisher:** Care Quality Commission
 - **Source-Type:** regulator-guidance
-- **URL:** _(pending v3.9 Phase 2 follow-up review — CQC mythbuster URL to supply)_
+- **URL:** https://www.cqc.org.uk/guidance-providers/gps/gp-mythbusters/nigel-cousins/mythbuster-109-record-keeping
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -965,7 +965,7 @@ The FAIR-MED bias-detection and fairness-evaluation framework, published Springe
 - **Title:** NHS CIO/CCIO guidance v2 (January 2026)
 - **Publisher:** NHS England (CIO/CCIO joint guidance)
 - **Source-Type:** regulator-guidance
-- **URL:** _(pending v3.9 Phase 2 follow-up review — NHS CIO/CCIO guidance URL to supply)_
+- **URL:** https://transform.england.nhs.uk/key-tools-and-info/digital-playbooks/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -991,7 +991,7 @@ A Freedom-of-Information study of NHS digital safety standard compliance, PubMed
 - **Title:** FDA Predetermined Change Control Plan (PCCP) guidance — December 2024
 - **Publisher:** US Food and Drug Administration
 - **Source-Type:** regulator-guidance
-- **URL:** _(pending v3.9 Phase 2 follow-up review — FDA PCCP guidance URL to supply)_
+- **URL:** https://www.fda.gov/regulatory-information/search-fda-guidance-documents/marketing-submission-recommendations-predetermined-change-control-plan-artificial-intelligence
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -1112,7 +1112,7 @@ The Jegham et al. 2025 environmental-AI paper, "How Hungry is AI?". Cited as the
 - **Title:** Mistral AI lifecycle assessment (LCA)
 - **Publisher:** Mistral AI (vendor disclosure)
 - **Source-Type:** disclosure
-- **URL:** _(pending v3.9 Phase 2 follow-up review — Mistral LCA report URL to supply)_
+- **URL:** https://mistral.ai/news/our-contribution-to-a-global-environmental-standard-for-ai/
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
@@ -1125,7 +1125,7 @@ Mistral AI's lifecycle assessment publication. Cited in ES.EN-2 (grid-carbon-int
 - **Title:** "Making AI Less 'Thirsty'" — Li et al. (water-footprint of AI)
 - **Publisher:** Li et al. (specific venue / DOI TBC)
 - **Source-Type:** paper
-- **URL:** _(pending v3.9 Phase 2 follow-up review — DOI / arxiv ID to supply)_
+- **URL:** https://arxiv.org/abs/2304.03271
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
