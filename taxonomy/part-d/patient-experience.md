@@ -15,7 +15,7 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS SPI; CQC Mythbuster 109 |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [CQC-Mythbuster-109] |
 
 **Why this tier?**
 
@@ -46,7 +46,7 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the NAS SPI and CQC Mythbuster 109 cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
+> ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the [NAS-Day-Zero-SPI-internal] and [CQC-Mythbuster-109] cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
 > - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.
@@ -200,7 +200,7 @@ Whether AVT suppresses sensitive disclosures. Most under-researched risk - popul
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NHSE LLM framework gap analysis |
+| **Source** | [NHS-LLM-Framework] gap analysis |
 
 **Why this tier?**
 
@@ -286,7 +286,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
-|**Source**             |Stults et al. 2025 (57.9%→93.0% improvement with ambient AI)     |
+|**Source**             |See-also [Stults-2025] (clinician self-reported attentiveness gains; different construct from objective time-on-task)|
 
 **Why this tier?**
 
@@ -364,7 +364,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |Coiera & Fraile-Navarro, JMIR Med Inform February 2026            |
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026]                                 |
 
 **Why this tier?**
 
@@ -403,7 +403,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Maturity**           |Proposed / Novel                                                     |
 |**Outcome Type**       |Distal                                                               |
 |**Applicability**      |General Healthcare AI                                                |
-|**Source**             |Coiera critique; patient safety outcome literature; LFPSE medication categories|
+|**Source**             |[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories|
 
 **Why this tier?**
 

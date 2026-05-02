@@ -496,6 +496,8 @@ def main() -> None:
         dst = DOCS / dst_rel
         dst.parent.mkdir(parents=True, exist_ok=True)
         text = _substitute_template_tokens(src.read_text())
+        if src_rel == "_references.md":
+            text = parse_src.populate_cited_by(text)
         text = rewrite_anchors(text, dst_rel)
         text = rewrite_reference_handles(text, dst_rel)
         text = rewrite_external_links(text)

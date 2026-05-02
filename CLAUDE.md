@@ -84,6 +84,12 @@ Do not revisit these without explicit user instruction:
 - **Sub-clusters** are thematic groupings within an existing group (4 in scope). **Named metric families** are parent-construct groupings that may span sub-clusters (4 in scope). No other groupings should be invented.
 - The Pass 1 / Pass 2 overlap on ROUGE, BERTScore, M-WER, and CK-ER is resolved by keeping the family framing full and using trimmed warning versions - see `avt-cross-cutting-additions.md` "One small interaction to resolve during integration"
 
+## File location conventions
+
+- **`archive/` is for finished work only.** Plans, review files, and round-trip artefacts that are still being actively edited or reviewed live at the repo root (e.g. `plan-v4.0.md`, `v3.9-phase2-urls-review.md` while in use). Move them into `archive/plans/` (per-release plans) or `archive/` (other historical artefacts) only when the associated release ships or the review closes. Premature archiving forces context switches when you need to come back to active work; late archiving keeps history clean.
+- **Per-release plan files** (`plan-vX.Y.md`) start at the repo root during the release, then move to `archive/plans/` in the release-wrap commit.
+- **Round-trip review files** (`vX.Y-*-review.md`) start at the repo root during active review, then move to `archive/` once the review closes and changes have landed.
+
 ## When to stop and ask the user
 
 Pause and ask rather than making an autonomous call if:

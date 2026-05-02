@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perpective.
 
-**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.8.4, 2026-04-26** — under active review, not yet stakeholder-approved.
+**218 metrics across 20 groups**, covering the full AVT pipeline from audio capture to EPR write-back, plus governance, human factors, equity, and meta-evaluation. **Draft v3.9, 2026-05-02** — under active review, not yet stakeholder-approved.
 
 > ⚠️ This is a draft. Content, tier assignments, gap analysis, and cross-references may change before public release. It is shared openly so early feedback can shape the content. Do not yet cite as a settled standard.
 
@@ -72,11 +72,22 @@ Four cross-cutting documents frame the policy, ethics, and application surface:
 - [taxonomy/_calibration-and-context.md](taxonomy/_calibration-and-context.md) — parallel principle to the Outcomes Boundary: tier assignments and threshold numbers are calibration starting points, not universal gates. Six deployment-setting axes drive local calibration. Research-side relevance: studies citing the taxonomy should specify both the version and the calibration applied to the deployment under study.
 - [taxonomy/_gaps.md](taxonomy/_gaps.md) — 89 proposed metric candidates with classification (proposed / accepted / deferred / rejected). Single source of truth across five origins.
 
+## Citation grammar (v3.9 onwards)
+
+External citations in metric files use a two-layer grammar settled at v3.9:
+
+1. **Inline reference** in metric prose — a short stable handle in square brackets, e.g. `[DCB0129]`, `[NHSE-IG-Guidance-2026-03]`, `[UK-GDPR]`, `[Keyes-Stanford-Monitoring-2025]`.
+2. **Catalogue entry** in [taxonomy/_references.md](taxonomy/_references.md) — full bibliographic record per handle (Title / Publisher / Source-Type / URL / Archive / Retrieved date / `Local-Mirror` field reserved for a future v3.x option-(c) local-mirror release).
+
+Source rows in metric Dimensions tables, Reference Standard / Threshold Guidance prose blocks, and the `_standards-mapping.md` framework sections all follow this convention. The grammar separates *what* is cited from *where* the bibliographic detail lives, so a citation update touches one catalogue entry rather than every metric that references it. The `Local-Mirror` field is present-but-empty in v3.9; when a future release brings authoritative documents into the repo as local mirrors, the catalogue grows the field, but no metric file needs to change.
+
+`audit.py` enforces handle resolution: every `[Handle]` in a metric file must exist in `_references.md`, or the audit fails.
+
 ## Status / version
 
-**Current draft:** v3.8.4, released 2026-04-26.
+**Current draft:** v3.9, released 2026-05-02.
 
-Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → **v3.8** (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening).
+Tag history: `v1.0` → `v2.0` → `v3.1` → `v3.2` (modular restructure + MkDocs site + 12-framework standards mapping) → `v3.3` (Outcomes Boundary + ES.ME-8/9 + first 9 Tier 1 tightenings) → `v3.4` (audit-side enforcement + Phase 3 + classification artefact) → `v3.5` (Wave 1 compliance/governance + Wave 2 privacy-chain tightenings) → `v3.6` (applicability-on-metric alignment + duplication review + v3.5 follow-ups + this README) → `v3.7` (Calibration & Context principle + 6 pipeline narrow tightenings + 3 redundancy pairs as parent-with-sub-parts + US-flavour reframe of TP.CC family) → `v3.8` (NHSE AVT Self-Certified Supplier Registry as 13th mapped framework + 3 registry-driven metrics + Maturity-value and Source-presence audit checks + HL.HF-3a tightening) → **v3.9** (citation grammar + References catalogue: ~104 entries, every external authority resolves through `_references.md` with handles + URLs + Wayback snapshots + retrieval dates; audit-enforced handle resolution; cited-by back-references at build time).
 
 See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
@@ -84,9 +95,9 @@ See [CHANGELOG.md](CHANGELOG.md) for full release notes.
 
 Until the draft reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v3.8.4* [draft]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v3.9* [draft]. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
-Note: draft status means content / tier assignments / cross-references may change. Cite the specific version (e.g. v3.8) so subsequent users can reproduce what you read.
+Note: draft status means content / tier assignments / cross-references may change. Cite the specific version (e.g. v3.9) so subsequent users can reproduce what you read.
 
 ## Contributing
 
@@ -102,4 +113,4 @@ Licence TBD. Until a licence is declared in this repository, treat the taxonomy 
 
 ---
 
-*Last updated: v3.8.4 / 2026-04-26.*
+*Last updated: v3.9 / 2026-05-02.*

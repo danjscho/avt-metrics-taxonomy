@@ -15,7 +15,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Maturity**           |Established                                             |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |General Healthcare AI                                   |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)       |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                              |
 
 **Why this tier?**
 
@@ -47,7 +47,7 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the IG-incident reportability framing follows from NHSE IG guidance (March 2026) and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, < 95 % escalation trigger, < 0.5 % coverage-check threshold) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the IG-incident reportability framing follows from [NHSE-IG-Guidance-2026-03] and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, < 95 % escalation trigger, < 0.5 % coverage-check threshold) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** EPR / AVT integration capable of recording dissent in a structured form and propagating it to subsequent encounters; consultation workflow includes a documented step at which the clinician offers AVT and records the response.
 > - **Continuous monitoring:** documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.
@@ -80,7 +80,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Maturity**           |Established                                               |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |General Healthcare AI                                     |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026); CQC Mythbuster 109 context|
+|**Source**             |[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context|
 
 **Why this tier?**
 
@@ -94,7 +94,7 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 **Reference Standard**
 
-> The deployer-approved patient notification script (drawn from NHSE IG guidance March 2026 + local DPIA). A consultation counts as "notified" only if the script's required content elements were delivered to the patient before AVT activation:
+> The deployer-approved patient notification script (drawn from [NHSE-IG-Guidance-2026-03] + local DPIA). A consultation counts as "notified" only if the script's required content elements were delivered to the patient before AVT activation:
 >
 > - **What** the technology is (ambient scribe / AI-assisted documentation) and what it does
 > - **What** is captured (audio + transcript) and where it goes
@@ -113,9 +113,9 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the four content-element framing (what / what / who / how) follows from NHSE IG guidance (March 2026). Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, < 75 % escalation, ≥ 30 sample-size floor) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the four content-element framing (what / what / who / how) follows from [NHSE-IG-Guidance-2026-03]. Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, < 75 % escalation, ≥ 30 sample-size floor) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
-> - **Pre-deployment gate:** notification script drafted and reviewed against NHSE IG content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
+> - **Pre-deployment gate:** notification script drafted and reviewed against [NHSE-IG-Guidance-2026-03] content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
 > - **Continuous monitoring:** monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.
 > - **Pause / escalation trigger:** any content element < 75 % compliance in any audit cycle; or self-report > 95 % paired with audited rate < 75 % (this is a self-report integrity failure, separately serious).
 
@@ -146,7 +146,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Maturity**           |Established                                                |
 |**Outcome Type**       |Proximal                                                   |
 |**Applicability**      |General Healthcare AI                                      |
-|**Source**             |NHSE IG guidance on ambient scribing (March 2026)          |
+|**Source**             |[NHSE-IG-Guidance-2026-03]                                 |
 
 **Why this tier?**
 
@@ -222,7 +222,7 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 
 **Reference Standard**
 
-> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing with [NHSE-Transformation-Directorate-AVT] hosting the long-read context. **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
+> [NHSE-AVT-Registry] is the authoritative source — operational location at digital.nhs.uk/services/ambient-scribing (long-read context also hosted on the NHS Transformation Directorate site). **Listing is binary** (listed / not listed) at the registry-status level. **Scope** is read from the vendor's registry submission (which AVT products are covered, which use cases, which deployment contexts) and compared against the deployer's contracted scope. **Attestation date** is read from the vendor's signed declaration on the Hub. See also the cross-cutting [NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry) standards-mapping section for the framework-level treatment, and the registry-driven companion metrics [GV.SC-12 Cyber Essentials Plus Certification Status](#gv-sc-12), [GV.VT-13 Evidence Pack Freshness](#gv-vt-13), and [GV.VT-14 Indicative Pricing Transparency](#gv-vt-14).
 
 **Operational Specification**
 
@@ -267,7 +267,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |General Healthcare AI                                        |
-|**Source**             |CIO/CCIO guidance v2 (January 2026); NHS CIO priority notification|
+|**Source**             |[CIO-CCIO-Guidance-2026]; NHS CIO priority notification|
 
 **Why this tier?**
 
@@ -293,7 +293,7 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the three-sub-metric framing follows from the CIO/CCIO guidance v2 (January 2026) and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the three-sub-metric framing follows from [CIO-CCIO-Guidance-2026] and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** notification sent to named ICB digital lead ≥ 14 days before planned go-live; DPIA + Clinical Safety Case referenced; deployment-site list complete.
 > - **Continuous monitoring:** quarterly review of acknowledgement rate and conditions-on-file rate; alert when any ICB has > 1 unanswered notification on the deployer's books.
@@ -303,7 +303,7 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 
 > ICB engagement quality varies - some ICBs have mature digital teams providing substantive review; others acknowledge notifications without meaningful engagement. Documentation presence does not guarantee engagement quality. The Operational Specification's separate sub-metric for ICB-conditions-on-file makes substantive engagement visible (it surfaces only when the ICB has actually reviewed), but the metric still cannot distinguish deep review from cursory acknowledgement.
 >
-> The escalation-to-regional-CCIO trigger in the Threshold Guidance assumes regional CCIO capacity exists to receive and act on escalations. The CIO/CCIO guidance v2 (January 2026) does not mandate or fund that capacity, so in regions where it is absent the metric's escalation pathway is non-operational — failed acknowledgements pile up at the next layer rather than being resolved. Where this is the case, deployers should document the gap in their governance file and surface it via routes other than this metric (e.g. ICS digital risk register).
+> The escalation-to-regional-CCIO trigger in the Threshold Guidance assumes regional CCIO capacity exists to receive and act on escalations. [CIO-CCIO-Guidance-2026] does not mandate or fund that capacity, so in regions where it is absent the metric's escalation pathway is non-operational — failed acknowledgements pile up at the next layer rather than being resolved. Where this is the case, deployers should document the gap in their governance file and surface it via routes other than this metric (e.g. ICS digital risk register).
 
 **Novel Thinking / Implications**
 
@@ -328,7 +328,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |**Maturity**           |Established                                                                                      |
 |**Outcome Type**       |Proximal                                                                                         |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |DCB0129/0160 regulatory requirement; PubMed 41172285 FOI study of NHS digital safety standard compliance|
+|**Source**             |[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]|
 
 **Why this tier?**
 
@@ -342,7 +342,7 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 **Reference Standard**
 
-> DCB0129 (Clinical Risk Management for Health IT Systems) is the authoritative section schema for vendors / manufacturers. The deployer-side equivalent DCB0160 governs the safety case for the implementing institution and is the cross-reference for sites operating their own safety case (see also [Clinical Safety Officer reviewer requirement under DCB0129/0160]). "Present" requires a section heading plus content authored by a named Clinical Safety Officer (CSO); template-only sections (heading present, body empty or "TBC") count as missing. "Current" requires last-update date within the metric's currency window per the Operational Specification below.
+> [DCB0129] (Clinical Risk Management for Health IT Systems) is the authoritative section schema for vendors / manufacturers. The deployer-side equivalent [DCB0160] governs the safety case for the implementing institution and is the cross-reference for sites operating their own safety case (see also [Clinical Safety Officer reviewer requirement under DCB0129/0160]). "Present" requires a section heading plus content authored by a named Clinical Safety Officer (CSO); template-only sections (heading present, body empty or "TBC") count as missing. "Current" requires last-update date within the metric's currency window per the Operational Specification below.
 
 **Operational Specification**
 
@@ -355,11 +355,11 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the eight-section schema and currency triggers carry from DCB0129 itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are **proposed in v3.5 as starting points**, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.
+> ⚠️ **Provenance:** the eight-section schema and currency triggers carry from [DCB0129] itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are **proposed in v3.5 as starting points**, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.
 >
-> - **Pre-deployment gate:** all eight DCB0129 sections present with named CSO author; safety case report explicitly references the AVT product version, EPR target, and deployment scope.
+> - **Pre-deployment gate:** all eight [DCB0129] sections present with named CSO author; safety case report explicitly references the AVT product version, EPR target, and deployment scope.
 > - **Continuous monitoring:** annual per-section review; alert when any of sections 2-5 falls outside the 30-day post-trigger window; alert when external review is overdue.
-> - **Pause / escalation trigger:** any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated > 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link MHRA PMS substantial-change framework).
+> - **Pause / escalation trigger:** any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated > 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link [SI-2024-1368] MHRA PMS substantial-change framework).
 
 **Limitations**
 
@@ -388,7 +388,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
-|**Source**             |UK GDPR Article 35; NHSE IG guidance template (March 2026)|
+|**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
 
 **Why this tier?**
 
@@ -402,7 +402,7 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 
 **Reference Standard**
 
-> The NHSE March 2026 DPIA template is the authoritative section schema for AVT deployments; UK GDPR Article 35 is the legal floor. "Complete" requires every mandatory section populated with substantive content, signed off by the named Data Protection Officer (DPO). Template-only sections (heading present, body empty, "TBC", or boilerplate copied from the template's example text) count as incomplete. Cross-link to [GV.CR-6 Clinical Safety Case Completeness](#gv-cr-6) — DPIA risks identified MUST be reconcilable with hazards in the safety case; gaps between the two are themselves a quality signal.
+> The [NHSE-IG-Guidance-2026-03] DPIA template is the authoritative section schema for AVT deployments; [UK-GDPR] Article 35 is the legal floor. "Complete" requires every mandatory section populated with substantive content, signed off by the named Data Protection Officer (DPO). Template-only sections (heading present, body empty, "TBC", or boilerplate copied from the template's example text) count as incomplete. Cross-link to [GV.CR-6 Clinical Safety Case Completeness](#gv-cr-6) — DPIA risks identified MUST be reconcilable with hazards in the safety case; gaps between the two are themselves a quality signal.
 
 **Operational Specification**
 
@@ -415,7 +415,7 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the eight-section schema and DPO sign-off requirement carry from UK GDPR Article 35 and the NHSE March 2026 template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
+> ⚠️ **Provenance:** the eight-section schema and DPO sign-off requirement carry from [UK-GDPR] Article 35 and the [NHSE-IG-Guidance-2026-03] template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate:** all eight template sections complete with substantive content; DPO sign-off dated within the 30 days preceding go-live; DPIA-safety-case reconciliation documented.
 > - **Continuous monitoring:** annual completion-rate review; alert on any DPIA where sign-off precedes the most recent significant change; alert when DPIA-safety-case reconciliation reveals unaligned risk/hazard list.
@@ -448,7 +448,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |**Maturity**           |Established                                   |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |General Healthcare AI                         |
-|**Source**             |UK GDPR Article 28; NHS data protection guidance|
+|**Source**             |[UK-GDPR] Article 28; NHS data protection guidance|
 
 **Why this tier?**
 
@@ -487,7 +487,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |FDA PCCP guidance (December 2024); EU AI Act Article 15; NICE ESF 2022 AI updates|
+|**Source**             |[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates|
 
 **Why this tier?**
 
@@ -526,7 +526,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |**Maturity**           |Emerging                                            |
 |**Outcome Type**       |Proximal                                            |
 |**Applicability**      |General Healthcare AI                               |
-|**Source**             |EU AI Act Article 12 (high-risk provisions effective August 2026)|
+|**Source**             |[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)|
 
 **Why this tier?**
 

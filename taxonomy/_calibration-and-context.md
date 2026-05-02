@@ -69,7 +69,7 @@ A solo GP and a Trust-scale ED workflow have different floors for "statistically
 
 1. **Read each metric's Reference Standard / Operational Specification / Threshold Guidance (where present) as the default calibration**, not the universal answer. The pattern is in place on 25 of 43 Tier 1 metrics as of v3.7; see [`taxonomy/audit.py`](#) output for current status.
 
-2. **Read the ⚠️ Provenance prelude carefully.** Cited thresholds (NAS Day Zero SPI, UK GDPR, NHSE IG guidance) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.
+2. **Read the ⚠️ Provenance prelude carefully.** Cited thresholds ([NAS-Day-Zero-SPI-internal], [UK-GDPR], [NHSE-IG-Guidance-2026-03]) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.
 
 3. **Document the local calibration in the deployer's governance file** alongside the DPIA and Clinical Safety Case. The local-calibration document should record, per metric:
    - The taxonomy default (tier and threshold values as published)
@@ -88,7 +88,7 @@ A solo GP and a Trust-scale ED workflow have different floors for "statistically
 
 - **Not an excuse to disregard Tier 1 metrics.** Calibration shifts which metrics are Tier 1 for *your* deployment; it does not let you stop measuring them altogether. Every metric in the Tier 1 set after local calibration must be measured.
 - **Not a way to argue threshold numbers are negotiable in vendor contracts.** The contractual gate is the deployer's local calibration, not the taxonomy's published starting point. Once the deployer has calibrated, the calibrated number is the contract; the taxonomy default is no longer in scope.
-- **Not a way to avoid the [Outcomes Boundary](#outcomes-boundary).** The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, MHRA post-market surveillance, and vendor-side regulatory claims.
+- **Not a way to avoid the [Outcomes Boundary](#outcomes-boundary).** The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, [MHRA-SaMD] post-market surveillance, and vendor-side regulatory claims.
 
 ### Cross-references
 

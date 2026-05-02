@@ -15,7 +15,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Standard ASR literature; used in SCRIBE framework (Wang et al. 2025) |
+| **Source** | [Wang-ADS-Eval-2025]; standard ASR literature |
 
 **Why this tier?**
 
@@ -73,7 +73,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Proposed in OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (proposed AVT extension; future work) |
 
 **Why this tier?**
 
@@ -154,7 +154,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Derived from OxonFair healthcare voice fairness analysis |
+| **Source** | [OxonFair-2024] (healthcare voice fairness extension; future work) |
 
 **Why this tier?**
 
@@ -245,7 +245,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NAS framework Day Zero SPIs; NHSE IG guidance (March 2026) |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
 
@@ -316,7 +316,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | OxonFair extension analysis |
+| **Source** | [OxonFair-2024] (extension analysis; future work) |
 
 **Why this tier?**
 
@@ -612,7 +612,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Koenecke et al. 2024 'Careless Whisper'; specific to neural end-to-end ASR architectures |
+| **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
 
 **Why this tier?**
 
@@ -642,7 +642,7 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented (Koenecke et al. 2024, cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
+> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented ([Koenecke-Careless-Whisper-2024], cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
 >
 > - **Pre-deployment gate:** zero critical-class hallucinations across the entire test corpus; moderate-class rate < 1 % per category; benign-class rate < 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.
 > - **Periodic audit:** re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts > 50 % from prior baseline.

@@ -15,7 +15,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | UK GDPR Article 5(1)(e) storage limitation; NHSE IG guidance on ambient scribing (March 2026) |
+| **Source** | [UK-GDPR] Article 5(1)(e) storage limitation; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
 
@@ -41,7 +41,7 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the IG-incident reportability framing follows from UK GDPR storage-limitation requirements and the existing NHSE IG framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, < 95 % escalation trigger, annual independent verification cadence) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.
+> ⚠️ **Provenance:** the IG-incident reportability framing follows from [UK-GDPR] storage-limitation requirements and the existing [NHSE-IG-Guidance-2026-03] framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, < 95 % escalation trigger, annual independent verification cadence) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.
 >
 > - **Pre-deployment gate:** vendor produces a deletion-verification protocol covering every storage location in the architecture; deployer DPIA cross-references the protocol; one end-to-end deletion test passes prior to go-live.
 > - **Continuous monitoring:** monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.
@@ -74,7 +74,7 @@ Measured time from consultation end to verified deletion of the captured audio. 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) storage limitation |
+| **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage limitation |
 
 **Why this tier?**
 
@@ -88,7 +88,7 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 **Reference Standard**
 
-> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under the NHSE IG March 2026 guidance); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
+> Inherits the storage-location enumeration and deletion-method definition from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, backups and DR, vendor logs, downstream analytic systems, deployer-side caches, and named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7). "Deletion" means cryptographic erasure or physical deletion (not logical/flagged-deleted). `t_consultation_end` is the clinician signature event on the AVT-generated note (sign-off triggers deletion under [NHSE-IG-Guidance-2026-03]); `t_deletion_verified` is the timestamp at which deletion is confirmed across every named storage location, not the timestamp at which deletion was initiated. Where the deployer's DPIA carves out retention for a named purpose, that purpose extends `t_deletion_verified` only for the carved-out subset and only for the carved-out duration.
 
 **Operational Specification**
 
@@ -101,7 +101,7 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the post-sign-off deletion expectation derives from NHSE IG guidance March 2026; UK GDPR Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the post-sign-off deletion expectation derives from [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-storage-location deletion telemetry; one end-to-end deletion test passes prior to go-live; DPIA cross-references the policy threshold.
 > - **Continuous monitoring:** monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate < 1 %; per-storage-location compliance ≥ 99.5 %.
@@ -130,7 +130,7 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | NHSE IG guidance on ambient scribing (March 2026); UK GDPR Article 5(1)(e) |
+| **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) |
 
 **Why this tier?**
 
@@ -156,7 +156,7 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** UK GDPR purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, < 95 % escalation trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** [UK-GDPR] purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, < 95 % escalation trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** DPIA enumerates ≥ 3 distinct retention purposes with periods; vendor architecture diagram shows transcript flow through every named storage location with retention period at each.
 > - **Continuous monitoring:** monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).
@@ -189,7 +189,7 @@ Whether the AVT system processes only the minimum data necessary for its functio
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
+| **Source** | [UK-GDPR] Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
 
 **Why this tier?**
 
@@ -228,7 +228,7 @@ Adversarial privacy testing: the rate at which a determined attacker can extract
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | IEEE S&P 2023 LLM PII leakage study; OWASP LLM Top 10 (Sensitive Information Disclosure) |
+| **Source** | [IEEE-S-and-P-2023-LLM-PII-Leakage]; [OWASP-LLM-Top-10] (Sensitive Information Disclosure) |
 
 **Why this tier?**
 
@@ -267,7 +267,7 @@ Structured assessment of the risk that de-identified data retained for quality i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | ICO anonymisation code of practice; NIST privacy framework |
+| **Source** | [ICO] anonymisation code of practice; [NIST-Privacy-Framework] |
 
 **Why this tier?**
 
@@ -306,7 +306,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR transparency requirements; derived from emerging AVT procurement practice |
+| **Source** | [UK-GDPR] transparency requirements; derived from emerging AVT procurement practice |
 
 **Why this tier?**
 
@@ -345,7 +345,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | CQC Mythbuster 109; NHSE IG guidance; common law implied consent requirements |
+| **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
 
@@ -376,7 +376,7 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and CQC Mythbuster 109's "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
+> ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and [CQC-Mythbuster-109]'s "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** GV.CR-2 process-compliance gate met; survey instrument selected and reviewed by IG team; quarterly survey schedule established.
 > - **Continuous monitoring:** monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap > 25 percentage points OR any demographic axis shows understanding rate < practice mean by ≥ 20 percentage points.
@@ -405,7 +405,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 46; Schrems II implications |
+| **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
 
@@ -448,7 +448,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 15 right of access |
+| **Source** | [UK-GDPR] Article 15 right of access |
 
 **Why this tier?**
 
@@ -462,7 +462,7 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 **Reference Standard**
 
-> UK GDPR Article 15 is the legal floor; ICO 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11) — the same data-locating capability underpins both rights.
+> [UK-GDPR] Article 15 is the legal floor; [ICO] 30-day timeline is the statutory window (extendable by two months for complex requests with patient notification). "All AVT data for a patient" = every personal-data instance reachable via the storage-location enumeration in [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — including audio, transcripts, AI-generated notes, edit history, telemetry-derived metadata, and any sub-processor-held copies. "Usable format" requires structured machine-readable export of structured data plus searchable text export of free-text content; PDF-only export of audio metadata is not "usable" for the patient's own access purposes. Cross-link to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11) — the same data-locating capability underpins both rights.
 
 **Operational Specification**
 
@@ -475,7 +475,7 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from UK GDPR Article 15 and ICO guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from [UK-GDPR] Article 15 and [ICO] guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic SAR test passes — every storage location returns data; export format usable; full processing within 30 days. Gaps remediated before go-live.
 > - **Continuous monitoring:** quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).
@@ -491,7 +491,7 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 
 If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, and intermediate outputs actually be deleted? Backup systems, vendor caches, and downstream secondary uses complicate this.
 
-**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the UK GDPR exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right (NHSE IG guidance Mar-2026). The capability must still exist for cases where erasure does apply - secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations - which is why this remains a pre-deployment gate.
+**Applicability note.** Article 17 rights are narrowly applicable for AVT processing conducted for individual care: the [UK-GDPR] exemptions for public-task, public-health, preventative/occupational medicine, medical diagnosis, and health/social-care provision mean erasure of material held strictly for individual-care purposes is typically *not* exercisable as a statutory right ([NHSE-IG-Guidance-2026-03]). The capability must still exist for cases where erasure does apply - secondary use, research data derived from AVT, training-data inclusion under GV.PD-7, and case-by-case best-interest determinations - which is why this remains a pre-deployment gate.
 
 | Dimension | Value |
 |-----------|-------|
@@ -506,7 +506,7 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | UK GDPR Article 17 right to erasure; NHSE IG guidance on ambient scribing (Mar-2026) for individual-care exemption scope |
+| **Source** | [UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope |
 
 **Why this tier?**
 
@@ -520,13 +520,13 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 **Reference Standard**
 
-> UK GDPR Article 17 with the NHSE IG March 2026 individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus three Article-17-specific additions:
+> [UK-GDPR] Article 17 with the [NHSE-IG-Guidance-2026-03] individual-care exemption scope is the legal floor. The locations enumeration inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) plus three Article-17-specific additions:
 >
 > - **Model training pipelines** — any AVT data ingested for model fine-tuning, validation set construction, or A/B testing
 > - **Downstream secondary use** — research databases, quality-monitoring archives, business-intelligence pipelines
 > - **Sub-processor systems** — every entity in the [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) discovered set
 >
-> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the ICO standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gv-pd-7) — patients should know at consent time whether their data may end up in the irreversible class.
+> Three classes of erasure outcome MUST be distinguished: **deletable** (data can be cryptographically erased or physically deleted at all named locations); **anonymisable** (data can be irreversibly de-identified to the [ICO] anonymisation standard, suitable for research-database carve-outs); **technically irreversible** (data cannot be removed — typically applies to influence on already-trained models). The taxonomy and the privacy notice MUST disclose the irreversible class explicitly per the Novel Thinking section. Cross-link to [GV.PD-7 Training Data Inclusion Status](#gv-pd-7) — patients should know at consent time whether their data may end up in the irreversible class.
 
 **Operational Specification**
 
@@ -539,7 +539,7 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited (NHSE IG March 2026). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited ([NHSE-IG-Guidance-2026-03]). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic erasure test passes — every storage location classified into one of the three outcome classes; technically-irreversible class enumerated and matched to the privacy notice; sub-processor cooperation timelines documented.
 > - **Continuous monitoring:** in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).

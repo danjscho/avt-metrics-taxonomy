@@ -15,7 +15,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge; NAS; Stanford framework |
+| **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -108,7 +108,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge; DeepScore |
+| **Source** | [Abridge-Whitepaper-2025]; [DeepScore] |
 
 **Why this tier?**
 
@@ -154,7 +154,7 @@ Parent construct covering two complementary telemetry approaches to detecting in
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS Day Zero SPI; Stanford |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -192,7 +192,7 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NAS Day Zero SPI; Stanford |
+| **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
 
@@ -225,7 +225,7 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the NAS Day Zero SPI specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
+> ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the [NAS-Day-Zero-SPI-internal] specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.
 > - **Continuous monitoring alert:** weekly RBS < 95 % aggregate; OR any single clinician's RBS drops > 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 < 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).
@@ -262,7 +262,7 @@ Distribution of duration between generation and approval. Model as distribution 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | EPR workflow data; Stanford principles |
+| **Source** | EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles |
 
 **Why this tier?**
 
@@ -289,7 +289,7 @@ TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and Stanford principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
+> ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the [Keyes-Stanford-Monitoring-2025] principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
 > - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
@@ -338,7 +338,7 @@ Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signa
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Abridge whitepaper |
+| **Source** | [Abridge-Whitepaper-2025] |
 
 **Why this tier?**
 
@@ -383,7 +383,7 @@ Deliberately seeded errors to test clinician catch rate. The only metric directl
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Proposed in NAS framework |
+| **Source** | Proposed in [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -471,7 +471,7 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Human factors literature; NAS framework |
+| **Source** | Human factors literature; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 
@@ -557,7 +557,7 @@ Mental effort for review. Target: 'effortful but efficient' - enough to catch er
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | NASA-TLX adapted for clinical documentation review |
+| **Source** | [NASA-TLX] adapted for clinical documentation review |
 
 **Why this tier?**
 
@@ -819,7 +819,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
 |**Applicability**      |General Healthcare AI                                                  |
-|**Source**             |Hollnagel FRAM methodology; JMIR 2026 SEIPS-based AVT evaluations      |
+|**Source**             |[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)|
 
 **Why this tier?**
 
@@ -858,7 +858,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
 |**Applicability**      |AVT-Contextualised                                                  |
-|**Source**             |JMIR 2026 e86166 SEIPS-based evaluation; GOSH Phase 4 TimeCat data  |
+|**Source**             |[GOSH-Phase-4-TimeCat]                                              |
 
 **Why this tier?**
 
@@ -897,7 +897,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
-|**Source**             |Hollnagel Safety-II; FRAM methodology; resilience engineering literature|
+|**Source**             |[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature|
 
 **Why this tier?**
 
@@ -941,7 +941,7 @@ Scheduled exercises where clinicians document a clinical encounter without AVT a
 |**Maturity**           |Proposed / Novel                                                                                      |
 |**Outcome Type**       |Distal                                                                                                |
 |**Applicability**      |General Healthcare AI                                                                                 |
-|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; Lancet Gastroenterology 2025 endoscopist AI-off study (ADR fell 28.4%→22.4% when AI removed)|
+|**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)|
 
 **Why this tier?**
 

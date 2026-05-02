@@ -15,7 +15,7 @@ The most important structural critique: measuring easy things and assuming they 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Coiera & Fraile-Navarro 2026; NIHR RSET |
+| **Source** | [Coiera-Fraile-Navarro-JMIR-2026]; [NIHR-RSET] |
 
 **Why this tier?**
 
@@ -59,7 +59,7 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | VeriFact; MedHELM |
+| **Source** | [VeriFact]; [MedHELM] |
 
 **Why this tier?**
 
@@ -205,7 +205,7 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
-Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 - but a separate Rwanda clinical LLM evaluation study found LLM judges correlated more strongly with non-expert than expert annotators, indicating that apparent reliability may reflect alignment with a particular class of evaluator rather than with ground truth.
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
 
 | Dimension | Value |
 |-----------|-------|
@@ -220,7 +220,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Croxford et al. 2025 (npj Digital Medicine); Rwanda clinical LLM evaluation study |
+| **Source** | [Croxford-2025] (npj Digital Medicine) |
 
 **Why this tier?**
 
@@ -238,7 +238,7 @@ Bias tests: (1) Position bias - reverse pairwise ordering and measure agreement 
 
 **Novel Thinking / Implications**
 
-> 💡 The Rwanda finding is the uncomfortable one: LLM judges may correlate well with human evaluators while correlating poorly with ground truth. This is the worst failure mode for evaluation - apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
+> 💡 The uncomfortable failure mode: LLM judges may correlate well with human evaluators while correlating poorly with ground truth — apparent reliability that validates a biased assessment. Any deployment relying on LLM-as-a-Judge for safety decisions (not just for efficiency) needs to have run bias quantification and documented the residual uncertainty. Otherwise the high ICC number is theatrical rather than informative.
 
 ---
 
@@ -259,7 +259,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard meta-evaluation methodology; Croxford et al. 2025 (ROUGE Kendall-Tau 0.080) |
+| **Source** | Standard meta-evaluation methodology; [Croxford-2025] (ROUGE Kendall-Tau 0.080) |
 
 **Why this tier?**
 
@@ -298,7 +298,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
-| **Source** | This taxonomy v3.3; T.E.S.T. Section B Clinical Effectiveness (50 pts RCT validation); MHRA Post-Market Surveillance Regulations 2024 |
+| **Source** | This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368] |
 
 **Why this tier?**
 
@@ -349,7 +349,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
-| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); Coiera & Fraile-Navarro 2026 (structural critique) |
+| **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique) |
 
 **Why this tier?**
 

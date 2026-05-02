@@ -15,7 +15,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework; standard diarisation literature |
+| **Source** | [Wang-ADS-Eval-2025]; standard diarisation literature |
 
 **Why this tier?**
 
@@ -43,7 +43,7 @@ der = metric(reference_annotation, hypothesis_annotation)
 **References**
 
 - **Scoring tool**: [dscore - Python NIST md-eval](https://github.com/nryant/dscore)
-- **SCRIBE**: [Wang et al. (2025) - npj Digital Medicine](https://doi.org/10.1038/s41746-025-01449-w)
+- **SCRIBE**: [Wang et al. (2025) - npj Digital Medicine](https://doi.org/10.1038/s41746-025-01622-1)
 
 **Limitations**
 
@@ -72,7 +72,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | SCRIBE framework |
+| **Source** | [Wang-ADS-Eval-2025] |
 
 **Why this tier?**
 
@@ -86,7 +86,7 @@ SAA = |U_correct| / |U_total|. Unlike DER (time-based), SAA is utterance-based. 
 
 **References**
 
-- **SCRIBE**: [Wang et al. (2025)](https://doi.org/10.1038/s41746-025-01449-w)
+- **SCRIBE**: [Wang et al. (2025)](https://doi.org/10.1038/s41746-025-01622-1)
 
 **Limitations**
 
@@ -201,7 +201,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
 |**Applicability**      |AVT-Specific                                                         |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025; extends standard diarisation |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]; extends standard diarisation |
 
 **Why this tier?**
 
@@ -240,7 +240,7 @@ Accuracy of detecting within-utterance language switching - a speaker moving bet
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
-|**Source**             |IJCAI-22 multi-party conversation survey; multilingual ASR literature|
+|**Source**             |[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature|
 
 **Why this tier?**
 
@@ -279,7 +279,7 @@ Accuracy of attributing words spoken during overlapping speech - when two or mor
 |**Maturity**           |Established                                    |
 |**Outcome Type**       |Proximal                                       |
 |**Applicability**      |AVT-Specific                                   |
-|**Source**             |ACL SIGDIAL 2023; standard overlap-aware ASR literature|
+|**Source**             |[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature|
 
 **Why this tier?**
 
@@ -318,7 +318,7 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Specific                                |
-|**Source**             |mpathic.ai clinical ASR benchmark 2025      |
+|**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]                     |
 
 **Why this tier?**
 

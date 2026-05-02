@@ -32,7 +32,7 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 > Pre-defined gold-standard test corpus per target EPR (EMIS, SystmOne, Epic, others as applicable). Each test case specifies: source AVT output (transcript + summary), expected target EPR field, expected content semantically equivalent to a clinician-authored entry. "Content correct" decomposes into:
 >
 > - **Structural equivalence** - the value lands in the field of the correct datatype (string, coded value, numeric, date) with correct units where applicable
-> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. SNOMED CT identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tp-sn-6) reference standard
+> - **Semantic equivalence** - the value preserves clinical meaning. For coded categories (c-e) semantic equivalence requires preservation of the coded concept (e.g. [SNOMED-CT] identifier match, not just string match); for free text (a) it requires preservation of every clinically relevant proposition per the [TP.SN-6 Omission Rate](#tp-sn-6) reference standard
 > - **No content addition** - the value introduces no information absent from the AVT output. Hallucinated content reaching a structured field counts as a write-back failure even where the same content in free text would be a TP.SN-5 hallucination
 >
 > Inter-rater target on test-case construction: ICC ≥ 0.85 (write-back fidelity is a more constrained task than free-text fidelity; higher reliability expected).
@@ -320,7 +320,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Maturity**           |Established                              |
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
-|**Source**             |FHIR R4 validation tooling; SPIE 14009E 2025 interoperability study|
+|**Source**             |[FHIR-UK-Core] R4 validation tooling|
 
 **Why this tier?**
 
@@ -359,7 +359,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |**Maturity**           |Established                               |
 |**Outcome Type**       |Proximal                                  |
 |**Applicability**      |AVT-Contextualised                        |
-|**Source**             |openEHR Foundation standards; Clinical Knowledge Manager archetype library|
+|**Source**             |[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library|
 
 **Why this tier?**
 

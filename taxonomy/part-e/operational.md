@@ -15,7 +15,7 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Widely used; critiqued Coiera & Fraile-Navarro 2026 |
+| **Source** | Widely used; critiqued [Coiera-Fraile-Navarro-JMIR-2026] |
 
 **Why this tier?**
 
@@ -29,7 +29,7 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **Reference Standard**
 
-> EPR + AVT product telemetry. "Documentation start" = first keystroke or first AVT activation in the note's edit session, whichever is earlier. "Documentation end" = clinician signature event on the note. Time spent reviewing AVT-generated content **counts as documentation time**; the metric measures total clinician note-effort, not just typing time. The metric MUST be reported alongside a quality companion metric ([TP.SN-3 PDSQI-9](#tp-sn-3), [TP.SN-5 Hallucination Rate](#tp-sn-5), or equivalent) - DT in isolation is not interpretable per Coiera & Fraile-Navarro 2026.
+> EPR + AVT product telemetry. "Documentation start" = first keystroke or first AVT activation in the note's edit session, whichever is earlier. "Documentation end" = clinician signature event on the note. Time spent reviewing AVT-generated content **counts as documentation time**; the metric measures total clinician note-effort, not just typing time. The metric MUST be reported alongside a quality companion metric ([TP.SN-3 PDSQI-9](#tp-sn-3), [TP.SN-5 Hallucination Rate](#tp-sn-5), or equivalent) - DT in isolation is not interpretable per [Coiera-Fraile-Navarro-JMIR-2026].
 
 **Operational Specification**
 
@@ -41,7 +41,7 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from Coiera & Fraile-Navarro 2026 and the RSET 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
+> ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from [Coiera-Fraile-Navarro-JMIR-2026] and the [NIHR-RSET] 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician DT median across the first 4 weeks of live use, with separate medians for in-consultation and out-of-consultation segments. Quality companion metric measured concurrently.
 > - **Continuous monitoring:** weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS > 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).
@@ -79,7 +79,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al., Mayo Clinic Proceedings; American Medical Association EHR use studies |
+| **Source** | [Sinsky-Mayo-EHR-Studies] (concept: physician time-allocation); [Sinsky-Adler-Milstein-EHR-Logs-2020] (methodology: audit-log-derived activity metrics); American Medical Association EHR use studies |
 
 **Why this tier?**
 
@@ -159,7 +159,7 @@ Composite metric grouping Documentation Time per Consultation, Pyjama Time, and 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Sinsky et al. extended to AVT context; NHS workforce wellbeing frameworks |
+| **Source** | [Sinsky-Mayo-EHR-Studies] extended to AVT context; NHS workforce wellbeing frameworks |
 
 **Why this tier?**
 
@@ -198,7 +198,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard SLA; NAS SPI |
+| **Source** | Standard SLA; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
 

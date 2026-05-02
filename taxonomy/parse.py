@@ -22,8 +22,8 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v3.8.4"
-TAXONOMY_DATE = "2026-04-26"  # ISO date of TAXONOMY_VERSION release; bumped together
+TAXONOMY_VERSION = "v3.9"
+TAXONOMY_DATE = "2026-05-02"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
 # Human-readable part names. Single source of truth — both build.py (for the
@@ -964,6 +964,70 @@ def find_inline_handles(text: str) -> list[str]:
         for m in INLINE_HANDLE.finditer(scrubbed):
             out.append(m.group(1))
     return out
+
+
+def populate_cited_by(text: str) -> str:
+    """Substitute every `Cited-by: _(auto-generated)_` line in the
+    references-catalogue source with an actual list of citing files. Used
+    by both build.py (monolith) and build_site.py (MkDocs page) so the
+    rendered output everywhere shows the back-references.
+    """
+    cited = build_cited_by()
+    out: list[str] = []
+    current_handle: str | None = None
+    for line in text.splitlines():
+        m = re.match(r"^### (\S+)", line)
+        if m:
+            current_handle = m.group(1)
+        if line.startswith("- **Cited-by:** _(auto-generated)_"):
+            files = cited.get(current_handle or "", [])
+            if files:
+                names = ", ".join(f"`{f}`" for f in files)
+                line = f"- **Cited-by:** {names}"
+            else:
+                line = "- **Cited-by:** _(no citations found in source)_"
+        out.append(line)
+    return "\n".join(out)
+
+
+def build_cited_by() -> dict[str, list[str]]:
+    """Walk every source markdown file under `taxonomy/` and return a map
+    `{handle: [list of files citing it]}`. Used by build.py to substitute
+    the `Cited-by: _(auto-generated)_` placeholder with the actual list at
+    monolith-build time.
+
+    Files included:
+    - every entry in GROUP_FILES (the per-metric files)
+    - the underscore-prefixed cross-cutting files at the catalogue root
+      (`_standards-mapping.md`, `_outcomes-boundary.md`, etc.)
+
+    Files excluded:
+    - `_references.md` itself (intra-catalogue cross-references aren't
+      cited-by relationships in the bibliographic sense)
+    - the `_glossary.md` (no handle references expected)
+    """
+    cited: dict[str, set[str]] = {}
+    files_to_walk: list[str] = list(GROUP_FILES.keys()) + [
+        "_header.md",
+        "_how-to-use.md",
+        "_summary.md",
+        "_tier-1-quick-reference.md",
+        "_contents.md",
+        "_applicability.md",
+        "_standards-mapping.md",
+        "_responsible-ai-lens.md",
+        "_outcomes-boundary.md",
+        "_calibration-and-context.md",
+        "_gaps.md",
+    ]
+    for rel in files_to_walk:
+        path = ROOT / rel
+        if not path.exists():
+            continue
+        text = path.read_text()
+        for handle in find_inline_handles(text):
+            cited.setdefault(handle, set()).add(rel)
+    return {h: sorted(files) for h, files in cited.items()}
 
 
 # ---------------------------------------------------------------------------

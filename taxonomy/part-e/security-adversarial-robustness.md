@@ -15,7 +15,7 @@ Resistance to adversarial spoken commands designed to manipulate the summarisati
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard/Heidi Health and Doctronic jailbreak disclosures (March 2026); adversarial ML literature |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026]; adversarial ML literature |
 
 **Why this tier?**
 
@@ -59,7 +59,7 @@ Resistance to attempts to make the underlying LLM operate outside its intended c
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Mindgard disclosures on Heidi Health and Doctronic (March 2026) |
+| **Source** | [Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026] |
 
 **Why this tier?**
 
@@ -103,7 +103,7 @@ Detection of crafted audio inputs designed to cause specific misrecognitions: so
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
-| **Source** | Adversarial ML literature; identified in NHSE LLM framework 'intentional misuse' dimension |
+| **Source** | Adversarial ML literature; identified in [NHS-LLM-Framework] 'intentional misuse' dimension |
 
 **Why this tier?**
 
@@ -146,7 +146,7 @@ Resilience of the AVT system to training data poisoning. Research shows poisonin
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Data poisoning literature; 0.001% threshold from published research (2025) |
+| **Source** | [Carlini-Web-Scale-Poisoning-2024] (0.001 % web-scale poisoning threshold); historical/conceptual basis [discipline-data-poisoning] (Biggio et al. ICML 2012) |
 
 **Why this tier?**
 
@@ -185,7 +185,7 @@ Whether a safety classifier (analogous to Llama Guard or NeMo Guardrails) sits b
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | NVIDIA reference architecture; absence noted in vendor safety architecture review |
+| **Source** | [NeMo-Guardrails] (representative implementation of the output-classifier pattern); absence noted in vendor safety architecture review |
 
 **Why this tier?**
 
@@ -229,7 +229,7 @@ Testing whether user-configurable prompt templates can be crafted to bypass safe
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Identified in INSYTE underspecification analysis; extends template modification risk to adversarial context |
+| **Source** | Identified in [INSYTE-2025] underspecification analysis; extends template modification risk to adversarial context |
 
 **Why this tier?**
 
@@ -346,7 +346,7 @@ Rate at which content from one patient's encounter contaminates another patient'
 |**Maturity**           |Emerging                                                      |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |MIT Jameel Clinic 2026 cross-patient leakage disclosure       |
+|**Source**             |[MIT-Jameel-2026] cross-patient leakage disclosure            |
 
 **Why this tier?**
 
@@ -383,7 +383,7 @@ Is the system confident that the clinician using AVT is who they claim to be? Vo
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard authentication security; NHS CIS2 requirements |
+| **Source** | Standard authentication security; [CIS2] requirements |
 
 **Why this tier?**
 
@@ -424,7 +424,7 @@ Standardised privacy testing metric measuring the success rate of adversarial at
 |**Maturity**           |Established                                                   |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |General Healthcare AI                                         |
-|**Source**             |IEEE S&P 2023 LLM PII leakage study; arXiv 2601.03791 Cue-Resistant Memorisation framework|
+|**Source**             |[IEEE-S-and-P-2023-LLM-PII-Leakage]; [Luo-PII-CRM-2026]|
 
 **Why this tier?**
 
@@ -442,7 +442,7 @@ Standard membership inference attack: attacker trains a classifier to distinguis
 
 **Novel Thinking / Implications**
 
-> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The 2023 finding of AUC 0.96 for undefended LLMs is a sobering baseline for what "no privacy defences" looks like in practice.
+> 💡 MIA is the standardised way to compare privacy properties across models. A vendor claiming strong privacy should be willing to disclose MIA AUC under standard attack protocols - if they're not, that's itself informative. For NHS deployment, MIA matters because patient audio, transcripts, and notes entering training pipelines create membership signatures that, if exploitable, mean a sufficiently motivated attacker could determine whether a specific patient was present in training data. The IEEE S&P 2023 PII-leakage findings on undefended LLMs are a sobering baseline for what "no privacy defences" looks like in practice.
 
 ---
 
@@ -463,7 +463,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [NHSE-AVT-Registry] (req #5); [IASME-Cyber-Essentials-Plus]; [NCSC-Cyber-Essentials] |
+| **Source** | [NHSE-AVT-Registry] (req #5); [NCSC-Cyber-Essentials] (Plus variant administered by IASME) |
 
 **Why this tier?**
 
@@ -489,7 +489,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Reference Standard**
 
-> The [IASME-Cyber-Essentials-Plus]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
+> The [NCSC-Cyber-Essentials]-issued certificate document is the authoritative source. "Current" is defined by the issue-date plus the IASME scheme's 12-month validity window. "In-scope" is defined by the scope statement on the certificate, cross-checked against the vendor's NHS deployment architecture (cloud regions, sub-processors, support systems). Cross-link to [GV.VT-7 Sub-Processor Transparency](#gv-vt-7) — the discovered set of sub-processors there should align with the certificate's scope. Where they don't, the certificate's coverage gap is itself a finding.
 
 **Operational Specification**
 
@@ -501,7 +501,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 
 **Threshold Guidance**
 
-> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [IASME-Cyber-Essentials-Plus]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
+> ⚠️ **Provenance:** the registry requirement, the 12-month IASME validity window, and the Plus-not-basic distinction are all cited from [NHSE-AVT-Registry] and [NCSC-Cyber-Essentials]. Specific procurement thresholds (zero-tolerance on missing certification or out-of-scope coverage) are **proposed in v3.8** as starting points; the registry treats certification as binary and the deployer's local risk appetite may permit accepted-risk exceptions on time-limited basis. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all three sub-metrics compliant (current Plus certificate, scope covers AVT product, < 12 months from issue); evidence pack on the National Commercial & Procurement Hub references the certificate.
 > - **Periodic audit:** annual re-verification; alert on certificate within 60 days of expiry; alert on any sub-processor change without corresponding scope-coverage check.
@@ -510,8 +510,7 @@ Composite score: 3 of 3 = compliant; any sub-metric absent = non-compliant.
 **References**
 
 - [NHSE-AVT-Registry] — registry req #5 (see also [Standards Mapping § NHS England AVT Self-Certified Supplier Registry](#nhs-england-avt-self-certified-supplier-registry))
-- [IASME-Cyber-Essentials-Plus] — Plus scheme administrator
-- [NCSC-Cyber-Essentials] — underlying scheme overview and technical control set
+- [NCSC-Cyber-Essentials] — scheme overview and technical control set; the audited "Plus" variant is administered by IASME, the NCSC-appointed delivery partner
 
 **Limitations**
 
