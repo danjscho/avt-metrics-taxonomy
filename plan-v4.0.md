@@ -200,21 +200,65 @@ End-to-end at every gate and at release:
 - **External consumer break.** Anyone with v3.x scripts that read `dist/metrics.csv` and key on `part` (letter) will break. Mitigation: clear migration note in CHANGELOG + downloads page; bump major version. Stretch option: ship v3.x final release with both old-and-new fields (deprecation period) — flagged here but **not recommended** unless we discover a real consumer; otherwise it's complexity for a hypothetical user.
 - **v3.9 references-sweep ordering.** v3.9 (links + Wayback archives) and v4.0 (cluster rename) both touch cross-references heavily. Doing v4.0 *first* makes v3.9 simpler (cleaner naming surface to add citations to). Doing v3.9 first means v4.0 has more references to update. **Recommendation: v4.0 first**, then v3.9. Sequence captured at the bottom of this plan.
 
-## Sequencing recommendation against v3.9
+## Sequencing — superseded
 
-Two queued releases now compete for "next":
+This section originally recommended **v4.0 then v3.9**. v3.9 shipped first instead (released 2026-05-02; tag `v3.9` on `main`), so the sequencing question is closed.
 
-- **v3.9** — references validity sweep (link + Wayback). Plan ready. Doesn't change folder structure or naming.
-- **v4.0** — this plan. Changes folder structure and naming.
+**Implications for the v4.0 plan now that v3.9 is in place:**
 
-Recommended order: **v4.0 then v3.9**. Doing the rename first means:
-
-1. v3.9 adds citations into a cleaner surface (one naming scheme instead of two).
-2. The Wayback snapshots taken in v3.9 will have stable URLs that match the post-rename folder structure — no need to re-snapshot after a v4.x rename.
-3. Reduces total cross-reference churn: v4.0 changes ~270 prose refs once; if v3.9 went first, those references would touch many of the same lines and v4.0 would re-touch them.
-
-If the user prefers the opposite order (v3.9 then v4.0): the trade-off is v4.0 must carry an extra cross-reference sweep over the citations v3.9 adds. Manageable but more work overall.
+- v4.0 will carry a cross-reference sweep over the citations v3.9 added (~100 catalogue entries with `[Handle]` references in metric files, plus the cross-cutting prose linking now in `_standards-mapping.md`, `_outcomes-boundary.md`, `_calibration-and-context.md`, `_how-to-use.md`). These need the cluster-rename treatment too. Not a structural blocker; just adds to the surface area count.
+- The `_references.md` catalogue entries do **not** need re-issuing — handles are stable, URLs are stable, only the cluster names attached to metrics change. The `Cited-by:` auto-generated lists in the catalogue (populated at build time) will pick up the new cluster names automatically.
+- Wayback snapshots (deferred from v3.9 pending IA credentials) should be taken **after v4.0** rather than before, so the snapshot URLs land against the post-rename folder structure. Update the v3.9 deferred-items list accordingly when v4.0 ships.
+- The 23-file surface for the EPR → Downstream Write-back rename (next section) overlaps heavily with the v3.9 reference catalogue surface; both passes can be done in the same Phase 1 sweep.
 
 ## Counts after v4.0
 
 No metric count changes. No tier shifts. New cluster-code naming throughout. New audit check `check_no_part_letter_prose`. Reader-facing site URLs unchanged (group slugs preserved). Folder structure changed; ref-IDs unchanged.
+
+---
+
+## Companion rename: "EPR Write-back" → "Downstream Write-back"
+
+While we're touching cluster names, the **TP.WB group** ("EPR Write-back") should also be relaxed. The taxonomy currently overpromises specificity — write-back actually targets **EPRs, GP clinical systems (EMIS, SystmOne), e-prescribing systems, order-management, referral systems, FHIR endpoints, openEHR repositories, and patient portals**. Naming the group "EPR Write-back" is technically wrong for a substantial subset of the cited surface and may mislead readers into thinking the metrics only apply to full EPR deployments.
+
+**Decided rename (user-confirmed):** "EPR Write-back" → "**Downstream Write-back**". Captures the full surface area; doesn't overpromise clinical specificity (some downstream targets are admin/operational, not strictly clinical); reads as natural English alongside the other group names.
+
+### What changes
+
+Three flavours of usage to handle:
+
+1. **Group / section / page name** — "EPR Write-back" → "Downstream Write-back" everywhere it appears as a heading, nav label, table-of-contents entry, etc.
+2. **Pipeline Layer dimension value** — every metric in TP.WB currently carries `**Pipeline Layer**: EPR Write-back` in its Dimensions table. Rename to `Downstream Write-back`.
+3. **Prose softening** — Source rows / Reference Standard / Operational Specification / Threshold Guidance prose mentioning "EPR" specifically should be **kept as "EPR" where the prose is genuinely talking about EPRs** (the metric still applies most commonly to EPRs; relaxing universally would lose the specificity readers actually need); **relaxed to "downstream system"** only where the prose is making a *generic claim* about write-back behaviour. Surgical, not sweeping.
+
+**Ref-IDs stay `TP.WB-*`.** "WB" = "Write-back" already, so the prefix is correct. The rename is purely cosmetic; no ref-ID renumbering, no "deprecate-don't-renumber" pattern needed.
+
+### Decisions to make at the v4.0 Phase 0 gate
+
+1. **Filename — keep `epr-write-back.md` or rename to `downstream-write-back.md`?** The cluster rename already moves this file from `part-a/epr-write-back.md` to `tp/epr-write-back.md`. Renaming the basename in the same commit gives clean naming throughout but breaks any external bookmarks to `/groups/epr-write-back/`. Two options:
+   - **(a) Rename basename + add MkDocs redirect** (`mkdocs-redirects` plugin) so old URL `/groups/epr-write-back/` → new URL `/groups/downstream-write-back/`. Cleanest long-term naming. Plugin is one config addition; well-maintained.
+   - **(b) Keep basename `epr-write-back.md`** so URLs and content rendering align with the existing reader-facing slug. Group display name on the page heading (`# Downstream Write-back`) and nav label become "Downstream Write-back" but the URL slug stays. Lighter touch; preserves bookmarks. Cost: minor inconsistency between filename and display name.
+   - **Default if unanswered: (a)** — clean naming wins; redirect plugin sidesteps the URL-stability concern. Decide at Phase 0 gate.
+2. **Pipeline Layer dimension as a controlled vocabulary?** Right now Pipeline Layer is free-text per-metric. Worth confirming the v4.0 sweep treats this as a values-by-rename rather than a values-by-controlled-list — a stretch goal would be `parse.py` enforcing the layer enum. Out of scope for v4.0 by default; flag for a future release.
+
+### Surface area (measured 2026-05-02 against main @ v3.9)
+
+23 files reference "EPR write-back" / "EPR Write-back" / "epr-write-back": `taxonomy/part-a/epr-write-back.md` (the group file itself), `taxonomy/_contents.md`, `taxonomy/_applicability.md`, `taxonomy/_responsible-ai-lens.md`, `taxonomy/_glossary.md`, `taxonomy/_standards-mapping.md`, `taxonomy/_references.md`, `taxonomy/_how-to-use.md`, `taxonomy/build.py`, `taxonomy/build_site.py`, `taxonomy/parse.py`, `taxonomy/audit.py`, `mkdocs.yml`, `README.md`, `taxonomy/README.md`, `CHANGELOG.md`, `CLAUDE.md`, plus several metric files that cross-reference TP.WB-*. Most are mechanical rename; the group file's own prose needs the surgical "EPR" → "downstream system" softening per the prose-softening rule above.
+
+### Phasing
+
+Fold into the v4.0 phasing rather than landing as a separate release:
+
+- **Phase 0 (TP pilot)** — handle the group rename alongside the cluster rename. The TP cluster pilot already touches every TP file; doing the EPR-Write-back rename in the same pass is one walk through the files.
+- **Phase 1 (full sweep)** — propagate the rename through cross-cutting files alongside the cluster-folder rename for the remaining clusters.
+- **Phase 5 (release wrap)** — CHANGELOG entry covers both the cluster scheme retirement AND the EPR → Downstream rename as a single coherent v4.0 story.
+
+### Why not do this in a v3.9.x patch
+
+Considered. The rename is a heading + dimension-value change that's surgically clean — could ship as a v3.9.x patch. But:
+
+- v4.0 is already touching every group's heading, nav entry, and Pipeline Layer prose. Folding the EPR rename in saves one cross-cutting prose sweep that would otherwise happen twice.
+- A v3.9.x release for this single change would be small enough to feel like overhead. v4.0 is the natural home.
+- External consumers haven't flagged "EPR Write-back" as a problem; the rename is corrective rather than urgent.
+
+If v4.0 is delayed substantially (>3 months from now), revisit and ship as v3.9.x; otherwise hold for v4.0.
