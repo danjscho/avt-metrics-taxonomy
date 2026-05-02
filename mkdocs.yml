@@ -161,7 +161,7 @@ nav:
           - T6 - Societal Wellbeing: crosscuts/by-theme/t6.md
       - By standard:
           - DTAC v2.0: crosscuts/by-standard/dtac-digital-technology-assessment-criteria-v2-0.md
-          - DSPT (NDG): crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
+          - DSPT: crosscuts/by-standard/dspt-data-security-and-protection-toolkit.md
           - DCB0129 / DCB0160: crosscuts/by-standard/dcb0129-dcb0160.md
           - NHS LLM Framework: crosscuts/by-standard/nhs-england-llm-evaluation-and-monitoring-framework-v0-2-2.md
           - NHS T.E.S.T.: crosscuts/by-standard/nhs-t-e-s-t-framework-technology-evaluation-safety-test.md

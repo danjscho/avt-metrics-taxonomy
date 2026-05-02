@@ -773,11 +773,11 @@ DTAC is the NHS assessment framework for digital health technologies. It has fou
 
 ---
 
-### DSPT (Data Security and Protection Toolkit) - NDG Standards
+### DSPT (Data Security and Protection Toolkit)
 
 **Reference:** [DSPT]
 
-DSPT v8 uses 10 National Data Guardian Data Security Standards with assertions and evidence items. This mapping covers the Category 2 (IT Supplier) variant, which is most relevant to AVT vendors. Only assertions with AI/AVT-relevant content are mapped.
+The DSPT is the **NHS England**-published self-assessment toolkit for organisations handling NHS data. It operationalises the **National Data Guardian's 10 Data Security Standards** (from Dame Fiona Caldicott's 2016 NDG review) into assertions and evidence items, but the toolkit itself is an NHS England product — not an NDG publication. DSPT v8 covers the 10 NDG standards across the Category 2 (IT Supplier) variant, which is most relevant to AVT vendors. Only assertions with AI/AVT-relevant content are mapped here.
 
 #### Standard 1 - Personal Confidential Data
 

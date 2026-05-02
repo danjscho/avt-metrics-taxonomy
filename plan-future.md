@@ -211,6 +211,48 @@ These thresholds carry a `⚠️ Provenance` prelude that distinguishes **cited 
 
 ---
 
+## 9. ISO and BSI standards — where do they play a role?
+
+**Status:** queued — design exploration. The taxonomy currently engages with NHS / UK / EU regulatory frameworks (DTAC, DSPT, DCB0129/0160, MHRA SaMD, NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, Caldicott, NHS T.E.S.T., NHSE AVT Registry, NHS LLM Framework — 13 frameworks) plus a smattering of academic / vendor citations. **ISO and BSI standards are almost entirely absent**, even though they're the international layer that sits underneath several of the NHS frameworks and increasingly underpins NHS procurement on the AI side.
+
+**Current state.** ISO / BSI / IEC are mentioned in exactly two places in the taxonomy:
+
+- One row inside the NICE ESF mapping table (`_standards-mapping.md`) cites BS EN 62304, IEC 82304-1, ISO 13485, IEC 62366-1 as expected best-practice references for medical device software safety, quality, and usability — but the row is just listing what NICE expects, not making the standards mappable themselves.
+- The Retrieved-date format note in `_references.md` (ISO 8601 — incidental, not relevant).
+
+That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already showing up in NHS AI procurement asks) nor **BS 30440** (BSI's healthcare-AI validation framework, 2023 — explicitly designed for the assurance use case this taxonomy serves) is engaged with. Several of the NHS frameworks the taxonomy *does* map (DTAC, DCB0129/0160) have ISO/BSI underpinnings the taxonomy doesn't surface.
+
+**What's potentially relevant.** Without committing to mapping any of them yet, the candidates are:
+
+- **BS 30440 (2023)** — *Validation framework for the use of artificial intelligence within healthcare*. BSI-published. Explicitly the same problem space this taxonomy occupies; arguably the closest international peer. Worth understanding *first* and deciding whether to (a) map alongside the other 13 frameworks, (b) cite as a parent / peer framework that the taxonomy specialises for AVT, or (c) leave alone if scope-incompatible.
+- **ISO/IEC 42001 (2023)** — *AI management system*. The AI equivalent of ISO 27001 / 9001. Increasingly cited in NHS digital procurement. Organisation-level rather than product-level, so may map at the deployer-side governance dimensions (GV.SG, GV.VT) rather than at individual metrics.
+- **ISO/IEC 23894 (2023)** — *AI guidance on risk management*. Companion to ISO 31000. Relevant to GV.SG-7 (PRA framework) and the broader governance cluster.
+- **ISO/IEC 5259 series (2024–)** — *AI data quality*. Relevant to TP.SN training-data and clinical-coding dimensions.
+- **ISO 14971** — *Medical device risk management*. Already implicit in DCB0129; the taxonomy could surface the lineage.
+- **IEC 62304** *(BS EN 62304 in UK form)* — *Medical device software lifecycle*. Underpins the SaMD frame; partially surfaced via MHRA SaMD mapping but not directly engaged.
+- **IEC 82304-1** — *Health software product safety*. The newer general-software-not-classified-as-device standard; relevant for AVT vendors not pursuing SaMD classification.
+- **IEC 62366-1** — *Medical device usability engineering*. Already mentioned once in NICE-ESF row; could anchor HL.HF (human factors) cluster more directly.
+- **ISO/IEC 27001 / 27701** — *Information security / privacy management*. Already adjacent to DSPT; mapping could clarify which DSPT assertions are direct ISO 27001 controls vs. NHS-specific extensions.
+
+**The unresolved questions.**
+
+1. **Scope decision.** Does the taxonomy *map* ISO/BSI standards (treat them as 14th, 15th, … frameworks alongside DTAC/DSPT/etc.) or *cite* them (acknowledge them as parent / peer references that NHS frameworks build on, without taking on the maintenance cost of full mappings)? Mapping is heavy — each framework section in `_standards-mapping.md` is ~40–80 lines per framework, plus per-criterion taxonomy links. Citing is light — a single section in `_standards-mapping.md` titled "International standards lineage" listing the relevant ISOs/BSIs and which NHS frameworks operationalise them.
+2. **AI-specific vs medical-device standards.** ISO/IEC 42001 and BS 30440 are explicitly AI-specific; ISO 14971 / IEC 62304 are general medical-device standards that AI happens to sit inside. The two cohorts have different mapping shapes — AI-specific standards have direct per-metric relevance; general medical-device standards anchor the SaMD lineage but don't generate metric-level rows. Worth deciding the cohorts separately.
+3. **Paywall and access.** ISO and BSI standards are mostly paywalled (BSI subscription typical in NHS Trusts but not at GP level). The taxonomy's references catalogue convention assumes citations resolve to live URLs + Wayback snapshots; ISO/BSI references resolve to the BSI Knowledge / ISO Browse Platform pages, which require purchase to read. The catalogue can still cite them (handle + landing page), but we should be honest about the access cost in the prose.
+4. **NHS-only adopting variant.** Some standards have UK variants (BS EN 62304 for IEC 62304; BS ISO/IEC 42001) — usually identical text under a UK number. Convention question: cite the UK variant (consistent with other NHS-context citations) or the international original (more durable across jurisdictions)?
+5. **Maintenance cost vs reader value.** Adding 5–10 ISO/BSI mappings is a substantial maintenance commitment. Worth doing only if the reader value is clear — e.g. NHS procurement teams *are* asking about ISO/IEC 42001 conformance and the taxonomy could help them understand which AVT metrics constitute evidence.
+
+**Starting points.**
+
+- Sketch a "ISO / BSI standards lineage" section in `_standards-mapping.md` that *cites* (not maps) the 8–9 candidates above, with one paragraph each explaining how the standard relates to existing NHS frameworks the taxonomy already maps. Lighter touch than full mapping; tests whether readers find this useful before committing to the heavier work.
+- Specifically prototype **BS 30440** mapping (it's the closest peer to this taxonomy's purpose): how many of the taxonomy's metrics naturally serve as evidence for its requirements? If the answer is "most of them, with light annotation", BS 30440 deserves promotion to a full 14th-framework mapping. If the answer is "BS 30440 covers different ground", a citation-only treatment is the right shape.
+- Cross-check existing NHS framework prose. DCB0129 explicitly references ISO 14971; MHRA SaMD references BS EN 62304 / IEC 82304-1. The lineage exists but the taxonomy doesn't surface it. A first cheap win is making the *existing* implicit references explicit.
+- Decide whether ISO/IEC 42001 should be a 14th framework section or a sub-mapping under DTAC + MHRA + NHS T.E.S.T. (since it cuts across all three at the AI-management level rather than being a peer to any one of them).
+
+**Promote to a release plan when:** (i) the scope decision is settled (map vs cite), AND (ii) BS 30440 has been read in full and confirmed in/out of scope. ISO/IEC 42001 + BS 30440 + ISO 14971 lineage surfacing are the minimum-viable shape; the rest can be incremental.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.
