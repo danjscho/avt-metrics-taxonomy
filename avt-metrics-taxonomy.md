@@ -13618,7 +13618,7 @@ The NHS England framework for systems-based patient-safety-incident response, re
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-d/patient-experience.md`, `part-e/safety-governance.md`
+- **Cited-by:** `io/patient-experience.md`, `part-e/safety-governance.md`
 
 NHS England's national service for recording and learning from patient-safety events. Sibling to [PSIRF]: PSIRF is the response framework, LFPSE is the recording-and-learning mechanism. Cite both where Source rows currently say "PSIRF + LFPSE" or where a metric reasons about both reactive incident response (PSIRF) and prospective learning (LFPSE).
 
@@ -13644,7 +13644,7 @@ PRSB's information-standard set, including clinical-headings standards for consu
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-d/fairness-equity.md`, `part-d/patient-experience.md`, `part-e/safety-governance.md`, `part-e/security-adversarial-robustness.md`
+- **Cited-by:** `_standards-mapping.md`, `io/fairness-equity.md`, `io/patient-experience.md`, `part-e/safety-governance.md`, `part-e/security-adversarial-robustness.md`
 
 The NHS England framework for evaluating LLM-based clinical applications. **Status: DRAFT** at v0.2.2; cited as a working reference rather than a settled standard. Structured as three groups of dimensions: Suitability in Context (11), Wider Impact (11), Quantifiable Changes (8). Mapped to the taxonomy's metrics in `_standards-mapping.md`.
 
@@ -13709,7 +13709,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `part-c/human-factors-workflow.md`, `part-d/patient-experience.md`, `part-e/operational.md`, `part-e/safety-governance.md`, `part-e/training-competency.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `hl/human-factors-workflow.md`, `io/patient-experience.md`, `part-e/operational.md`, `part-e/safety-governance.md`, `part-e/training-competency.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
 
 > ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
 
@@ -13956,7 +13956,7 @@ The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`, `tp/summarisation-nlp.md`
+- **Cited-by:** `hl/human-factors-workflow.md`, `tp/summarisation-nlp.md`
 
 Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published.
 
@@ -14204,7 +14204,7 @@ The openEHR community-curated archetype library, used as the reference for arche
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodology, and in GV.SG-8 (DeepScore Defect-Free Rate) as the vendor methodology reference. `Source-Type: disclosure` because this is a vendor-published methodology page, not a peer-reviewed paper. (v3.9 round-2 review found that an earlier inline citation of "DeepScribe, arXiv Sept 2024" did not correspond to a verifiable arXiv submission; the inline reference has been corrected to point at this vendor page.)
 
@@ -14217,7 +14217,7 @@ Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodolog
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 The NASA-TLX is the standard cognitive-workload measurement instrument from human factors. Cited in HL.HF-9 (or similar) where the taxonomy adapts NASA-TLX for clinical-documentation-review workload. URL is the NASA TLX programme page.
 
@@ -14230,7 +14230,7 @@ The NASA-TLX is the standard cognitive-workload measurement instrument from huma
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 Hollnagel's FRAM methodology and Safety-II framing for resilience engineering. Cited in HL.HF-17 (Hollnagel FRAM for SEIPS-based AVT evaluation) and HL.HF-18 (Safety-II framing of resilience). Resolve to a specific Hollnagel publication (FRAM book is 2012, Safety-II White Paper is 2013, both candidates) at Phase 2 follow-up review.
 
@@ -14244,7 +14244,7 @@ Hollnagel's FRAM methodology and Safety-II framing for resilience engineering. C
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 Park et al. 2026 *JMIR* — applies SEIPS-based Consensual Qualitative Research (CQR) to assess healthcare-professional perceptions of a new clinical-workflow information system. **The system studied is a blood-transfusion decision-support system, not AVT**; the paper is methodology-relevant for AVT (the SEIPS-CQR approach generalises) but is not itself an AVT study. Cited in HL.HF-16 (Work-as-Imagined vs Work-as-Done Gap) as a SEIPS methodology demonstration. (v3.9 round-2 review renamed an earlier `JMIR-2026-SEIPS-AVT` placeholder, which incorrectly framed the paper as AVT-specific; HL.HF-17, where the citation was used for verification-burden quantification, has been re-anchored to [GOSH-Phase-4-TimeCat] alone.)
 
@@ -14257,7 +14257,7 @@ Park et al. 2026 *JMIR* — applies SEIPS-based Consensual Qualitative Research 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-allocation evidence. Cited in HL.HF-17 (Verification Burden) as the load-bearing time-on-task source, and in HL.HF-18 as empirical resilience evidence. `Source-Type: disclosure` because GOSH reports are typically institutional rather than peer-reviewed. The taxonomy's `.gitignore` references "GOSH-AAI-Phase4-NHSE-report.pdf" suggesting a local copy may exist.
 
@@ -14270,7 +14270,7 @@ The GOSH Phase 4 AAI report's TimeCat data, providing AVT-deployment time-alloca
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`
+- **Cited-by:** `hl/human-factors-workflow.md`
 
 Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 study showing endoscopist AI-off ADR fell from 28.4% to 22.4% — a load-bearing empirical reference for the skill-degradation framing. DOI to supply at Phase 2 follow-up review.
 
@@ -14283,7 +14283,7 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`, `part-d/patient-experience.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`
+- **Cited-by:** `_standards-mapping.md`, `io/patient-experience.md`, `part-e/nhs-compliance-regulatory.md`, `part-e/privacy-data-governance.md`
 
 CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported documentation. Cited in TP.AC-4 audio-capture context, IO.PX-1 patient experience, and several human-factors metrics. Distinct from the broader [CQC] handle which points at the assessment-framework hub.
 
@@ -14296,7 +14296,7 @@ CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported docume
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-d/patient-experience.md`
+- **Cited-by:** `io/patient-experience.md`
 
 Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-reported gains in undivided attention with ambient AI (Likert response: 57.9% → 93.0% "agree/strongly agree"). v3.9 round-2 review found this figure is a self-report Likert finding, not an objective time-motion measurement, and so does not directly anchor IO.PX-7's TimeCat-based metric — it is retained as a see-also for the related self-reported construct. Specific DOI to supply at the Phase 2 follow-up review.
 
@@ -14309,7 +14309,7 @@ Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-rep
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-d/patient-experience.md`, `part-e/operational.md`, `part-f/meta-evaluation.md`
+- **Cited-by:** `io/patient-experience.md`, `part-e/operational.md`, `part-f/meta-evaluation.md`
 
 Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited multiple times across the taxonomy — IO.PX-9, IO.PX-10, ES.ME family — as the structural critique of clinical-AI evaluation methodology. JMIR Med Inform is at medinform.jmir.org; direct article URL to supply.
 
@@ -14323,7 +14323,7 @@ Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited mu
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-d/fairness-equity.md`
+- **Cited-by:** `io/fairness-equity.md`
 
 Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation methodology — content analysis of how race-based, geography-based, and native/non-native categories function as flawed proxies for acoustic variation. Cited in IO.FE-2 (Accent Taxonomy Standardisation) as the sociolinguistics-informed evaluation reference. (v3.9 round-2 review verified authorship via Crossref; corrected from earlier "Markl & Lai" attribution.)
 
@@ -14336,7 +14336,7 @@ Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation m
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-d/fairness-equity.md`
+- **Cited-by:** `io/fairness-equity.md`
 
 The FAIR-MED bias-detection and fairness-evaluation framework, published Springer 2025. Cited in IO.FE-5 (or similar) as the methodology for AVT-focused fairness evaluation. Specific Springer DOI to supply.
 
@@ -14523,7 +14523,7 @@ Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `part-c/human-factors-workflow.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`
+- **Cited-by:** `hl/human-factors-workflow.md`, `part-e/safety-governance.md`, `part-e/vendor-transparency-contractual.md`
 
 Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-AI monitoring around three complementary principles: **system integrity, performance, and impact**. Cited as the canonical monitoring-framework reference across GV.SG-1 (Model Version Tracking), GV.SG-2 (Model Update Impact Score), GV.VT-1 (Model Change Notification Compliance), GV.VT-2 (Telemetry Provision Completeness), GV.VT-3, and several human-factors metrics. (v3.9 round-2 review merged the earlier separate `Keyes-Stanford-2025` and `Stanford-Monitoring-Framework` handles into this single anchor; the taxonomy's earlier "three-layer surveillance model" phrasing was a paraphrase — the paper's own framing is "three principles".)
 

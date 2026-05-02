@@ -27,17 +27,17 @@ GROUP_FILES = {
     "tp/summarisation-nlp.md": {"prefix": "TP.SN", "label": "Summarisation & NLP"},
     "tp/clinical-coding.md": {"prefix": "TP.CC", "label": "Clinical Coding"},
     "tp/downstream-write-back.md": {"prefix": "TP.WB", "label": "Downstream Write-back"},
-    "part-b/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
-    "part-b/end-to-end-pipeline.md": {
+    "pi/partial-pipeline.md": {"prefix": "PI.PP", "label": "Partial Pipeline"},
+    "pi/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",
         "label": "End-to-End Pipeline",
     },
-    "part-c/human-factors-workflow.md": {
+    "hl/human-factors-workflow.md": {
         "prefix": "HL.HF",
         "label": "Human Factors & Workflow",
     },
-    "part-d/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
-    "part-d/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
+    "io/patient-experience.md": {"prefix": "IO.PX", "label": "Patient Experience"},
+    "io/fairness-equity.md": {"prefix": "IO.FE", "label": "Fairness & Equity"},
     "part-e/safety-governance.md": {"prefix": "GV.SG", "label": "Safety & Governance"},
     "part-e/nhs-compliance-regulatory.md": {
         "prefix": "GV.CR",

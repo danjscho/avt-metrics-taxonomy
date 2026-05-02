@@ -53,12 +53,10 @@ CLUSTER_NAMES: dict[str, str] = {
     "IO": "Impact & Outcomes",
     "GV": "System Governance",
     "ES": "Evaluation Science",
-    # Legacy Part-letter keys retained during the v4.0 Phase 0 pilot so
+    # Legacy Part-letter keys retained during the v4.0 migration so
     # non-migrated clusters' Metric.part_name lookups still work. Removed
-    # cluster-by-cluster in Phase 1; all gone by Phase 5.
-    "B": "Pipeline Interactions",
-    "C": "The Human Layer",
-    "D": "Impact & Outcomes",
+    # cluster-by-cluster in Phase 1 as each cluster migrates; all gone
+    # by Phase 5. Phase 1a removed B/C/D (PI/HL/IO migrated).
     "E": "System Governance",
     "F": "Evaluation Science",
 }
@@ -96,29 +94,29 @@ GROUP_FILES: dict[str, dict[str, str]] = {
         "part": "TP",
         "group": "Downstream Write-back",
     },
-    "part-b/partial-pipeline.md": {
+    "pi/partial-pipeline.md": {
         "prefix": "PI.PP",
-        "part": "B",
+        "part": "PI",
         "group": "Partial-Pipeline",
     },
-    "part-b/end-to-end-pipeline.md": {
+    "pi/end-to-end-pipeline.md": {
         "prefix": "PI.E2E",
-        "part": "B",
+        "part": "PI",
         "group": "End-to-End Pipeline",
     },
-    "part-c/human-factors-workflow.md": {
+    "hl/human-factors-workflow.md": {
         "prefix": "HL.HF",
-        "part": "C",
+        "part": "HL",
         "group": "Human Factors & Workflow",
     },
-    "part-d/patient-experience.md": {
+    "io/patient-experience.md": {
         "prefix": "IO.PX",
-        "part": "D",
+        "part": "IO",
         "group": "Patient Experience",
     },
-    "part-d/fairness-equity.md": {
+    "io/fairness-equity.md": {
         "prefix": "IO.FE",
-        "part": "D",
+        "part": "IO",
         "group": "Fairness & Equity",
     },
     "part-e/safety-governance.md": {
