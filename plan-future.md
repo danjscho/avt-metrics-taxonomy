@@ -253,6 +253,52 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 
 ---
 
+## 10. Code test suite — unit tests for the build pipeline
+
+**Status:** queued. Most likely shape is a **v3.9.x patch** *before* v4.0 starts, so the test suite serves as a safety net for the v4.0 rename. Could also fold into v4.0 Phase 0 if v4.0 starts soon — author's choice based on capacity.
+
+**Context.** The repo is documentation-first but the code that assembles it has grown. v1 → v3.7 was thin mechanical assembly that didn't really need testing — the audit + build + strict mkdocs build were sufficient integration safety nets. v3.8 onwards added load-bearing logic:
+
+- `audit.py` — 13 audit checks now (was ~8 at v3.7), each enforcing structural invariants the documentation assumes
+- `parse.py` — Reference catalogue parser, handle-resolution helpers, cited-by back-reference walker, slug computation helper, applicability annotator
+- `build.py` — monolith assembly with template-token substitution and cited-by population
+- `build_site.py` — page-by-page site rendering with anchor rewriting, external-link rewriting, Tier-1 quick-reference link injection, metric anchor injection, crosscut page generation
+- `tools/snapshot.py` — Wayback Save Page Now driver
+
+The integration tests (audit + build + mkdocs strict build) catch *whether the whole pipeline produces a clean site*. They do not catch *whether each unit behaves correctly given specific inputs*. v3.9 surfaced this directly: the FILLED-review fold-in caught wrong DOIs, phantom catalogue entries, and unresolved handles that would have been caught immediately by per-function tests on `parse.parse_references`, `find_inline_handles`, and `build_cited_by`.
+
+**The risk.** v4.0 is a structural rename touching ~270+ source-file references plus the four `taxonomy/*.py` files. Without tests, the only safety net is the same integration check (does the build produce a clean site?). That tells you the rename completed; it doesn't tell you the rename completed *correctly* — e.g. a typo in `parse.GROUP_FILES` keys silently drops metrics from the parsed catalogue but the build still emits a clean site (with fewer metrics). The v3.9 references-sweep had analogous risks; the v4.0 cluster rename is bigger.
+
+**Proposed shape.** A small, focused pytest suite under `taxonomy/tests/` covering:
+
+- **`parse.py` unit tests** — small fixture catalogue (5–10 metrics, 3–5 reference entries) hand-written as a string fixture; assertions on `parse_all_metrics`, `parse_references`, `find_inline_handles`, `build_cited_by`, `populate_cited_by`, `ref_id_to_anchor`. Critical edge cases: backtick-wrapped handles, fenced code blocks, image links (`![alt](#anchor)` should not be matched as an anchor link), inline `[Handle]` in headings (should be excluded).
+- **`audit.py` unit tests** — each of the 13 check functions tested with both a *passing* fixture (audit returns no findings) and a *failing* fixture (audit returns the expected finding). Catches regressions where a check accidentally stops detecting its target invariant.
+- **`build.py` unit tests** — small assembly fixture; assertions on monolith ordering, template-token substitution, cited-by placeholder substitution. CSV / JSON download shape (column presence, row count match).
+- **`build_site.py` unit tests** — `rewrite_anchors` (cross-page anchor rewriting), `rewrite_reference_handles` (`[Handle]` → catalogue link), `rewrite_external_links` (README/CHANGELOG/archive rewrites), `link_tier1_quickref` (bold-name → ref-ID-prefixed link), `add_metric_anchors` (metric heading → MkDocs anchor injection). `_metric_name_index` and `_metric_slug_to_page` cache correctness.
+- **`tools/snapshot.py`** — at minimum, a smoke test that reads the catalogue, finds entries needing snapshots, and dry-runs the SPN call sequence (mocked). The real Wayback API isn't testable in CI; a mocked test is the right shape.
+
+**Test framework.** `pytest` is the obvious choice — pip-installable, integrates with `uv`, no fixtures-as-files complexity for a small suite. Would add `pytest` as a dev dependency in `pyproject.toml`; CI runs `uv run pytest` alongside `uv run python taxonomy/audit.py`.
+
+**Design questions to settle at promotion.**
+
+1. **Fixture style.** Three options: (a) inline string fixtures inside each test (smallest scope, easiest to understand, but verbose); (b) a tiny `taxonomy/tests/fixtures/` directory with hand-curated `.md` files (more realistic but more maintenance); (c) generative fixtures using something like `hypothesis` (most thorough but heavy for a documentation-first repo). Recommend (a) for the initial suite; (b) if/when fixtures grow to need reuse.
+2. **CI integration.** Run pytest on every push (catches regressions early) or only on merge to main (cheaper, less coverage)? Recommend every push since the repo is small and CI runs are fast.
+3. **Coverage target.** Should we aim for a coverage percentage? Recommend *no* — coverage as a metric drives the wrong behaviour in a small focused suite. Aim for "every audit check has both a passing and a failing test"; "every public function in parse / build / build_site that anyone calls more than once has a test". Audit yourself by reading the test file, not by running coverage.
+4. **Test against v3.9 shape or v4.0 shape?** If this lands as a v3.9.x patch, tests are written against v3.9 (current Part-letter scheme). The v4.0 rename then updates the tests as part of the rename sweep — fine, since the test changes are mostly mechanical (rename `part-a/audio-capture.md` → `tp/audio-capture.md` in fixture paths). If this lands as v4.0 Phase 0, tests are written against the post-rename shape and serve as the rename's correctness check from the start.
+
+**Why not just keep relying on integration tests.** Two reasons. First, integration tests give late, coarse signals: a whole-pipeline failure tells you *something* broke but not *what*. Unit tests fail fast and locally. Second, the audit checks themselves are now load-bearing — they're the structural invariants the taxonomy depends on. An audit check with a silent regression (wrong regex, off-by-one in a slug computation) doesn't fail the build; it just stops catching things. Unit tests on the audit checks are the only way to catch that.
+
+**Starting points.**
+
+- Add `pytest` to `pyproject.toml` `[project.optional-dependencies]` as a `dev` extra. `uv sync --extra dev` picks it up.
+- Create `taxonomy/tests/__init__.py` and `taxonomy/tests/test_parse.py` first — `parse.py` is the lowest-level dependency and benefits most from unit tests.
+- Pattern after the existing audit-test approach: each test takes a small string fixture, calls the function under test, asserts the expected output. No mocking framework needed for parse/build/build_site; only `tools/snapshot.py` needs HTTP mocking.
+- CI integration: extend `.github/workflows/site.yml` to run `uv run pytest` after `uv run python taxonomy/audit.py`. Failures fail the build same as audit failures.
+
+**Promote to a release plan when:** ready to execute (no design blockers — this is mostly a "find the time" item). If v4.0 hasn't started: ship as v3.9.x. If v4.0 is imminent: fold into Phase 0 so the test fixture paths align with the new cluster names from the start.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.
