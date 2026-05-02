@@ -26,6 +26,13 @@ TAXONOMY_VERSION = "v3.9"
 TAXONOMY_DATE = "2026-05-02"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
+def ref_id_to_anchor(ref_id: str) -> str:
+    """Canonical ref-ID-to-anchor slug: `TP.SN-5` → `tp-sn-5`. The MkDocs
+    default slugifier produces `tpsn-5`, dropping the period; we use this
+    form so reference IDs render as stable, human-readable anchors."""
+    return ref_id.lower().replace(".", "-")
+
+
 # Human-readable part names. Single source of truth — both build.py (for the
 # CSV / JSON downloads) and build_site.py (for the rendered Part eyebrow on
 # group pages) consume this.

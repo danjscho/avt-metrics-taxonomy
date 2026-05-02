@@ -158,13 +158,12 @@ def link_tier1_quickref(text: str) -> str:
             hit = idx.get(base)
         if hit is None or hit.tier != 1:
             return m.group(0)  # not a Tier-1 metric, leave as-is
-        slug = hit.ref_id.lower().replace(".", "-")
+        slug = parse_src.ref_id_to_anchor(hit.ref_id)
         page = SRC_GROUP_FILE_TO_PAGE.get(hit.group_file, "")
         if not page:
             return m.group(0)
         # Keep the warning suffix outside the link if present.
         suffix = " ⚠️" if raw.endswith("⚠️") else ""
-        # Prefix the ref-ID inside the link so readers see cluster context.
         return f"[`{hit.ref_id}` **{candidate}**]({page}#{slug}){suffix}"
 
     return _BOLD_METRIC_TOKEN.sub(sub, text)
@@ -173,7 +172,7 @@ def link_tier1_quickref(text: str) -> str:
 def add_metric_anchors(text: str) -> str:
     def sub(m: re.Match) -> str:
         prefix, ref_id, tail = m.group(1), m.group(2), m.group(3)
-        slug = ref_id.lower().replace(".", "-")
+        slug = parse_src.ref_id_to_anchor(ref_id)
         # Keep the reference-ID visible in the heading; attach a stable id.
         return f"{prefix}{ref_id}{tail} {{ #{slug} }}"
 
@@ -314,7 +313,7 @@ def _metric_slug_to_page() -> dict[str, str]:
         return _METRIC_SLUG_TO_PAGE_CACHE
     idx: dict[str, str] = {}
     for m in parse_src.parse_all_metrics():
-        slug = m.ref_id.lower().replace(".", "-")
+        slug = parse_src.ref_id_to_anchor(m.ref_id)
         page = SRC_GROUP_FILE_TO_PAGE.get(m.group_file)
         if page is not None:
             idx[slug] = page
@@ -661,7 +660,7 @@ SRC_GROUP_FILE_TO_PAGE = {
 
 def _metric_page_link(ref_id: str, name: str, group_file: str) -> str:
     """Return a Markdown link like [name](../groups/<group>.md#tp-ac-1)."""
-    slug = ref_id.lower().replace(".", "-")
+    slug = parse_src.ref_id_to_anchor(ref_id)
     page = SRC_GROUP_FILE_TO_PAGE.get(group_file, "")
     if not page:
         return name

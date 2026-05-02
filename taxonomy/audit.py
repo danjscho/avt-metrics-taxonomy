@@ -806,8 +806,7 @@ METRIC_LINK_RE = re.compile(r"\]\(#([a-z][a-z0-9-]*)\)")
 METRIC_ANCHOR_RE = re.compile(r"^[a-z]{2}-[a-z]{2,3}-\d+$")
 
 
-def _ref_id_to_anchor(ref_id: str) -> str:
-    return ref_id.lower().replace(".", "-")
+from parse import ref_id_to_anchor as _ref_id_to_anchor  # noqa: E402
 
 
 def check_metric_cross_references(all_metrics: list[Metric]) -> list[Finding]:
