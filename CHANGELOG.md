@@ -1,5 +1,28 @@
 # Changelog
 
+## v3.9.1 (2026-05-02)
+
+**Patch release: code test suite (pytest).**
+
+The repo had grown from ~v3.7 thin assembly to ~1,500 lines across `parse.py` / `build.py` / `build_site.py` / `audit.py` / `tools/snapshot.py` with 13 audit checks plus the v3.9 references catalogue parser, cited-by walker, handle resolver, and slug helper. Until v3.9.1, the only safety net was the integration check (does `audit.py` run cleanly + does the build produce a clean site?), which catches *whether something broke* but not *what*. The v3.9 round-2 / FILLED reviews reminded us why per-function tests pay off — wrong DOIs, phantom catalogue entries, and unresolved handles that per-function tests would have caught immediately.
+
+This patch adds an 88-test pytest suite that lands *before* v4.0 starts, so the test suite is the safety net for the v4.0 cluster rename rather than a follow-on cleanup.
+
+**Highlights.**
+
+- **`taxonomy/tests/`** — 5 test files, 88 tests, runs in ~0.3s:
+  - `test_parse.py` (26 tests): `ref_id_to_anchor` (4), `find_inline_handles` (11 — covers heading/code-block/inline-link/image/inline-code-span exclusions), `parse_references` (7 — field extraction, is_archived, missing file, empty file), `populate_cited_by` (2), `build_cited_by` (2 — walks group + cross-cutting files; excludes _references.md self-citations).
+  - `test_audit.py` (21 tests): one passing + one failing fixture per check function. Catches the silent-regression case where a check accidentally stops detecting its target invariant. Covers `check_prefixes`, `check_numbering`, `check_tier_totals`, `check_applicability_presence`, `check_maturity_values`, `check_source_presence`, `check_reference_handles_resolve`, `check_archive_present` (URL/archive pending paths), `check_retrieved_date_format` (ISO + non-ISO + empty-skipped).
+  - `test_build_site.py` (22 tests): `rewrite_external_links` (CHANGELOG / README / archive paths / fragments / image-link non-match), `add_metric_anchors` (Tier 1 + sub-part + h2 non-match + non-metric-h3 non-match), `_substitute_template_tokens`, `_inject_changelog_dates_frontmatter` (with stubbed `_git_dates_for`), `rewrite_anchors` (cross-page + same-page + unknown-anchor cases), `link_tier1_quickref` (links Tier-1 metrics, skips Tier-2, skips unknown bolds, preserves `⚠️` outside link).
+  - `test_build.py` (11 tests): `_substitute_template_tokens` (independently — different module-level constant table), `CSV_COLUMNS` schema sanity (no duplicates; required columns present), `FILES` ordering invariants (header first; prototype-status second; `_references.md` after `part-f`), `build_summary` payload shape (status field, version, counts).
+  - `test_snapshot.py` (8 tests): `_is_placeholder` (5 cases — empty, whitespace, Phase-1 marker, real archive URL, non-http value); `snapshot_one` mocked HTTP smoke tests (success path, HTTP 401 retries-then-error, robots-disallowed returns unavailable immediately).
+- **`pyproject.toml`** — pytest added as `[project.optional-dependencies] dev` extra; `[tool.pytest.ini_options]` points at `taxonomy/tests/` with `python_files = "test_*.py"`. `uv sync --extra dev` picks it up.
+- **`.github/workflows/site.yml`** — runs `uv run pytest` on every push to main and on every pull request, before the audit step. Failing tests fail the build.
+- **No production-code refactoring.** Tests use monkeypatch + tmp_path to swap module-level constants (`parse.ROOT`, `audit.GROUP_FILES`, `build_mod.DIST`) at test time. The fixtures are inline strings; `taxonomy/tests/fixtures/` is not yet needed.
+- **Coverage philosophy:** no percentage target. Coverage as a metric drives the wrong behaviour in a small focused suite. The bar is "every audit check has both a passing and a failing test; every public function in parse / build / build_site that anyone calls more than once has a test". Audit by reading the test file, not by running coverage.
+
+**No metric content changes. No tier shifts. No new metrics.** Counts unchanged at 218 / 43-96-79.
+
 ## v3.9 (2026-05-02)
 
 References validity sweep — every external citation in the taxonomy now resolves through a structured catalogue with handles, URLs, Wayback snapshots, retrieval dates, and a forward-compatible local-mirror field.
