@@ -155,12 +155,15 @@ def build_metric_outputs() -> int:
     json_path = DIST / "metrics.json"
     payload = {
         "version": p.TAXONOMY_VERSION,
-        "status": "prototype-for-discussion",
+        "status": "ai-coauthored-prototype-for-discussion",
         "status_note": (
-            "This taxonomy is a prototype-for-discussion, not a settled standard. "
-            "Tier assignments and threshold numbers will change in response to feedback. "
-            "Do not paste threshold numbers into contracts or treat any specific metric "
-            "as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/"
+            "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. "
+            "Substantial portions were drafted with AI assistance and human-reviewed; specific "
+            "claims, citations, and threshold numbers may still contain confabulations or "
+            "factual errors despite review. Verify before use. Tier assignments and threshold "
+            "numbers will change in response to feedback. Do not paste threshold numbers into "
+            "contracts or treat any specific metric as policy. See "
+            "https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/"
         ),
         "metric_count": len(metrics),
         "metrics": [
@@ -207,7 +210,7 @@ def build_gap_output() -> int:
 def build_summary() -> None:
     summary = p.summary()
     summary = {
-        "status": "prototype-for-discussion",
+        "status": "ai-coauthored-prototype-for-discussion",
         "version": p.TAXONOMY_VERSION,
         **summary,
     }

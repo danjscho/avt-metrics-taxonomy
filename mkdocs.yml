@@ -66,10 +66,17 @@ plugins:
       length: 20
 
 extra:
-  version:
-    provider: mike
-    default: latest
-    alias: true
+  # Version provider (mike) is not yet active — re-enable when we
+  # actually deploy multi-version via mike. Until then, mkdocs-material's
+  # dropdown fetches /versions.json from the URL prefix above site_url
+  # (i.e. github.io root, not the project path), which 404s on local
+  # serve and on a single-version production deploy. Keeping it disabled
+  # avoids the 404 noise without losing any feature we currently use.
+  #
+  # version:
+  #   provider: mike
+  #   default: latest
+  #   alias: true
   social:
     - icon: fontawesome/solid/rss
       link: /avt-metrics-taxonomy/feed_rss_updated.xml
@@ -104,7 +111,6 @@ markdown_extensions:
 
 nav:
   - Home: index.md
-  - Prototype status: prototype-status.md
   - How to use: how-to-use.md
   - Quick start (Tier 1): tier-1-quick-reference.md
   - Browse metrics:
@@ -177,6 +183,7 @@ nav:
           - FHIR UK Core: crosscuts/by-standard/fhir-uk-core-interopen.md
   - Roadmap (Gaps): gaps.md
   - About:
+      - Prototype status: prototype-status.md
       - References: references.md
       - Glossary: glossary.md
       - Downloads: downloads.md

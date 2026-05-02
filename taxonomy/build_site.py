@@ -529,12 +529,13 @@ def _refresh_announce_banner() -> None:
         '{% extends "base.html" %}\n'
         "\n"
         "{% block announce %}\n"
-        f"  <strong>AI-drafted prototype for discussion — {SITE_VERSION}.</strong> "
-        "Substantial portions of this taxonomy were drafted with AI assistance and then "
+        f"  <strong>AI-coauthored prototype for discussion — {SITE_VERSION}.</strong> "
+        "Substantial portions of this taxonomy were drafted with AI assistance and "
         "human-reviewed; <strong>specific claims, citations, and threshold numbers may "
-        "contain confabulations or factual errors</strong>. Please verify before use and "
-        "flag anything that looks wrong. This is shared to provoke conversation, not as a "
-        "settled standard or procurement gate. See the\n"
+        "still contain confabulations or factual errors</strong> despite review. Keep "
+        "this front of mind, verify before use, and please flag anything that looks "
+        "wrong — feedback on errors is genuinely welcome. This is shared to provoke "
+        "conversation, not as a settled standard or procurement gate. See the\n"
         "  <a href=\"{{ 'prototype-status/' | url }}\" style=\"color: inherit; text-decoration: underline;\">prototype status</a> page for what you're invited to do (and what you shouldn't), the\n"
         "  <a href=\"{{ 'changelog/' | url }}\" style=\"color: inherit; text-decoration: underline;\">changelog</a> for recent changes, and the\n"
         "  <a href=\"{{ 'gaps/' | url }}\" style=\"color: inherit; text-decoration: underline;\">roadmap</a> for what's pending.\n"
@@ -611,13 +612,6 @@ def main() -> None:
     (DOCS / "downloads.md").write_text(_downloads_page())
     _mirror_downloads()
     _copy_stylesheets()
-
-    # Placeholder versions.json so local `mkdocs serve` doesn't 404 on
-    # mkdocs-material's mike version-selector fetch. In production, `mike
-    # deploy` overwrites this with the real multi-version index.
-    (DOCS / "versions.json").write_text(
-        '[{"version": "latest", "title": "latest", "aliases": []}]\n'
-    )
 
     # Cross-cut auto-generated pages (applicability / principle / theme).
     crosscut_count = build_crosscuts()

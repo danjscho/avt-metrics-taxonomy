@@ -1,5 +1,26 @@
 ## Prototype status
 
+### AI-coauthored — keep this front of mind
+
+**Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed.** That includes metric prose, Reference Standard / Operational Specification / Threshold Guidance blocks, citation framing, and the standards-mapping cross-references. The author reviewed the AI-drafted output, made structural decisions about what to keep / reframe / discard, and corrected errors that surfaced during review and round-trip review files (e.g. the v3.9 round-2 / FILLED reviews caught wrong DOIs, phantom catalogue entries, mis-attributed papers, and unverifiable specific numeric claims).
+
+**Despite that review, specific claims may still contain:**
+
+- **Confabulations** — fabricated paper titles, author lists, DOIs, or numeric findings that look plausible but don't correspond to a real published source. The v3.9 round-2 review caught several of these (e.g. `Barcelona-JAMA-Network-Open-2025` was a confabulated handle for what turned out to be a different paper; `medRxiv-Model-Autophagy-2026` didn't exist as a real preprint). More may remain undetected.
+- **Mis-citations** — real papers attributed to the wrong authors, the wrong year, the wrong venue, or the wrong DOI. Round-2 caught the `SCRIBE-Wang-2025` / `Wang-Duke-MedStar-2025` phantom-duplicate case (one paper cited under two handles, with one of the two carrying a wrong DOI). Same pattern likely exists elsewhere.
+- **Mis-paraphrased findings** — a paper's actual finding rephrased in a way that subtly distorts what the paper claims. Round-2 caught the Stults-2025 case (clinician-self-reported attentiveness reframed as objective time-on-task) and the Rwanda-Clinical-LLM-Evaluation case (the cited paper found the *opposite* of what the taxonomy attributed to it). More may remain.
+- **Threshold numbers presented with more authority than they deserve.** "Proposed in v3.X as starting points" thresholds are calibrated against the metric's clinical-safety logic during AI-assisted drafting, not externally validated. The Calibration & Context principle says deployers must set their own; the numbers in the document are conversation starters, not defaults. Plan-future item #8 covers a structural rework of this.
+- **Code snippets that don't run / don't match the cited library API.** Plan-future item #5 covers verifying every code snippet and Formal Definition against its source.
+
+**What this means for you as a reader.**
+
+- **Verify before you use.** A specific claim, a citation, a threshold number, a code snippet — if it's load-bearing for what you're doing, check it against the cited source. Don't trust the taxonomy on individual specifics until you've checked.
+- **Flag errors when you spot them.** This is the most useful thing a reader can do. Feedback on factual errors is genuinely welcome — it makes the next version more accurate. Open an issue at <https://github.com/danjscho/avt-metrics-taxonomy/issues> with what's wrong and (if you have it) what the correct version is.
+- **Read the round-trip review files in `archive/v3.9-reviews/`.** They document the kinds of errors that have already been caught. The pattern of errors there is informative about what to look for elsewhere — if "wrong DOI" and "mis-paraphrased finding" came up multiple times in round-2, they almost certainly remain elsewhere undetected.
+- **Treat the structural shape as more reliable than the specifics.** The cluster structure, the responsible-actor split, the assurance-question taxonomy, the tier-tier-tier framing — these survived multiple structural reviews. The specific metric prose, citations, and numbers are where AI-introduced errors are most likely.
+
+The document is **not less useful** for being AI-coauthored — it covers ground that wouldn't have been covered at this scale without AI drafting. But the failure modes are distinct from a fully human-authored document, and reading it without that frame in mind is risky.
+
 ### What this is
 
 This taxonomy is a **prototype assurance frame for Ambient Voice Technology (AVT) in NHS clinical settings**, shared openly to provoke conversation about what such a frame should look like *before* it gets settled.
@@ -18,12 +39,13 @@ To be unambiguous about what the artefact's status implies for downstream use:
 
 ### What you are invited to do
 
+- **Flag factual errors.** Given the AI-coauthored caveat above, this is the single most useful thing a reader can do. Wrong citations, fabricated DOIs, mis-paraphrased findings, code snippets that don't run, threshold numbers that don't match the cited source — all genuinely welcome. Open an issue with what's wrong and the correct version if you have it.
 - **Disagree.** The most useful response to any specific metric, threshold, or tier assignment is a reasoned objection. Open an issue, write a comment, send the author an email, raise it in a meeting.
 - **Propose changes.** New metrics, sub-cluster reframings, tier promotions or demotions, thresholds that should be looser or tighter or replaced with calibration guidance, framings that miss the actual NHS context — all welcome. The roadmap (`_gaps.md`) explicitly tracks these.
 - **Point at gaps.** Where AVT clinical reality is not represented in the taxonomy, that's a more important signal than where the existing metrics are imprecise. Tell the author what's missing.
 - **Share with colleagues.** Send it to the IG officer, the CSO, the AVT vendor, the procurement lead. The artefact's value increases with the diversity of readers pushing back on it.
 - **Ask for re-framings.** If the cluster shape, the responsible-actor split, the assurance-question taxonomy, or the priority tiers don't reflect how your team actually thinks about AVT assurance, that's a re-framing question worth raising.
-- **Screenshot for slides.** With the caveat that slides should preserve the prototype-for-discussion framing (don't crop the banner; include the version number).
+- **Screenshot for slides.** With the caveat that slides should preserve the AI-coauthored prototype framing (don't crop the banner; include the version number).
 
 ### What you should not do
 
