@@ -650,7 +650,7 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 
 **References**
 
-- **Whisper hallucinations**: [Koenecke et al. (2024) - Careless Whisper: Speech-to-Text Hallucination Harms](https://arxiv.org/abs/2402.08021)
+- **Whisper hallucinations**: [Koenecke-Careless-Whisper-2024]
 
 **Limitations**
 

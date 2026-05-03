@@ -178,6 +178,8 @@ These thresholds carry a `⚠️ Provenance` prelude that distinguishes **cited 
 
 **Promote to a release plan when:** (i) a single option is chosen with reader-experience evidence backing it, AND (ii) the surface enumeration is complete (so we know what we're committing to). Until then this stays in plan-future as a problem statement, not a release item.
 
+**v4.2 update:** Pass A / Pass B verification (plan-v4.2.md) flagged that several Tier 2/3 metrics outside the Tier 1 tightened set ALSO state engineering-default thresholds authoritatively without Provenance preludes. The v4.2 TP.AC sweep added preludes to ~6 such metrics, and the mpathic / Hybrid-Code / n2c2 fixes added preludes to several more across TP.DI, TP.SN, TP.CC. The surface enumeration this item depends on is therefore now larger than the original ~25–30 Provenance lines — closer to ~40 across both the Tier 1 tightenings and the v4.2 additions. The reviewer of v4.2 explicitly raised whether the taxonomy should be publishing thresholds at all (vs. saying "these should be derived locally") — this option now sits above the existing Option 1–6 design space as a more radical alternative worth weighing. **Add Option 7: Drop all numerical thresholds; provide only calibration framework + reasoning prompts.** The v4.2-added preludes are deliberately non-load-bearing rewordings — they preserve the numbers as proposed-as-starting-points so they're easy to remove wholesale if Option 7 wins, or to keep with stronger framing if Option 3/6 wins.
+
 ---
 
 ## 9. ISO and BSI standards — where do they play a role?

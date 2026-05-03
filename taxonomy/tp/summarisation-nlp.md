@@ -48,7 +48,7 @@ scores = scorer.score(reference, hypothesis)
 
 **References**
 
-- **Original**: [Lin (2004) - ROUGE: A Package for Automatic Evaluation of Summaries](https://aclanthology.org/W04-1013/)
+- **Original**: [ROUGE-Lin-2004]
 - **Inadequacy**: Croxford et al. (2025) - LLM-as-Judge outperforms ROUGE/BERTScore
 
 **Limitations**
@@ -111,7 +111,7 @@ P, R, F1 = score(
 
 **References**
 
-- **Paper**: [Zhang et al. (2020) - BERTScore](https://arxiv.org/abs/1904.09675)
+- **Paper**: [BERTScore-Zhang-2020]
 
 **Limitations**
 
@@ -551,7 +551,7 @@ for prop in props:
 
 **References**
 
-- **NEJM AI**: [Chung et al. (2025) - VeriFact](https://ai.nejm.org/doi/full/10.1056/AIdbp2500418)
+- **NEJM AI**: [Chung-NEJM-AI-2025]
 - **Code**: [GitHub - philipchung/verifact](https://github.com/philipchung/verifact)
 
 **Limitations**
@@ -676,7 +676,7 @@ Holistic Evaluation of Language Models for Medicine. LLM-jury: panel of LLMs ind
 
 **References**
 
-- **Paper**: [Bedi et al. (2025) - MedHELM, Stanford CRFM](https://arxiv.org/abs/2505.23802)
+- **Paper**: [Bedi-Stanford-CRFM-2025]
 
 **Limitations**
 
@@ -805,7 +805,7 @@ Four-component evaluation framework per [Wang-ADS-Eval-2025] (the paper's "SCRIB
 
 **References**
 
-- **Paper**: [Wang et al. (2025) — npj Digital Medicine](https://doi.org/10.1038/s41746-025-01622-1) — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym **SCRIBE** (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).
+- **Paper**: [Wang-ADS-Eval-2025] — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym **SCRIBE** (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).
 
 **Limitations**
 
