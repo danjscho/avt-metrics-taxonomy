@@ -1,5 +1,21 @@
 # Changelog
 
+## v4.2.1 (2026-05-03)
+
+**Patch release: ref-IDs in cross-cutting prose now linkify to per-metric pages.**
+
+Plan-future #11 ships. Mechanical site-build fix: ref-IDs in cross-cutting pages (standards-mapping, applicability, responsible-AI-lens, etc.) used to render as plain text, so a reader scanning the standards-mapping table to see what a framework requirement maps to had to manually navigate to find the metric body. Now they are clickable.
+
+**What landed:**
+
+- New `taxonomy/build_site.py:link_bare_ref_ids()` runs on every non-group source file in `MAPPING` plus `CHANGELOG.md`. Bare ref-IDs (`TP.AC-1`, `HL.HF-3a`, etc.) are turned into markdown links to the metric's group page anchor. Skips: existing markdown links, inline code spans (`` `TP.AC-1` ``), fenced code blocks, same-page references, and ref-IDs that don't resolve in the parsed catalogue.
+- New audit check `check_crosscut_ref_ids_resolve` flags unresolved ref-IDs in cross-cutting prose at INFO severity. Surfaces typos and orphan citations without breaking the build on legitimate roadmap-candidate references (e.g. proposed metrics in `_gaps.md`, T.E.S.T. framework candidates table in `_standards-mapping.md`). Tolerates retired and reserved IDs from `_retired-ids.md`.
+- Counts of new clickable links in the rendered site: ~159 on standards-mapping, ~221 on applicability, ~208 on responsible-AI-lens, plus smaller numbers on calibration-and-context, outcomes-boundary, and the changelog.
+
+**Tests.** 11 new tests (8 for `link_bare_ref_ids`, 3 for `check_crosscut_ref_ids_resolve`); 88 → 99. Stub-fixture pattern matches existing `link_tier1_quickref` / `rewrite_anchors` tests.
+
+No content changes to any metric. No counts change. CSV / JSON downloads unchanged.
+
 ## v4.2.0 (2026-05-03)
 
 **Minor release: Formal Definition + code snippet verification (high-yield subset).**
