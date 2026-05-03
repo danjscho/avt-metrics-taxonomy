@@ -372,6 +372,97 @@ def rewrite_anchors(text: str, current_page: str) -> str:
     return _MD_LINK.sub(sub, text)
 
 
+# Bare ref-ID matcher used by link_bare_ref_ids. Catches both the standard
+# form (TP.AC-1) and the sub-part form (HL.HF-3a). Cluster prefix is 2-3
+# letters; group prefix is 2-3 alphanumeric chars; integer; optional
+# single-letter sub-part suffix.
+_BARE_REF_ID_RE = re.compile(
+    r"\b([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\b"
+)
+
+# Markdown link / inline-code / fenced-code matchers used to mask out
+# regions where bare ref-IDs must NOT be linkified.
+_FENCED_CODE_RE = re.compile(r"```.*?```", re.DOTALL)
+_INLINE_CODE_RE = re.compile(r"`[^`\n]+`")
+_EXISTING_LINK_RE = re.compile(r"\[[^\]]*\]\([^)]*\)")
+
+
+def link_bare_ref_ids(text: str, current_page: str) -> str:
+    """Turn bare ref-IDs in prose into links to the metric's page.
+
+    Standards-mapping, applicability, responsible-AI-lens and similar
+    cross-cutting pages refer to metrics by ref-ID in plain text (e.g.
+    "GV.CR-6 Clinical Safety Case Completeness"). Without this pass,
+    those ref-IDs render as ordinary text — the reader can't click
+    through to the metric definition. Group pages already inject anchors
+    via add_metric_anchors and link cross-page anchors via
+    rewrite_anchors, so the bare-ref-ID surface is concentrated on
+    cross-cutting pages.
+
+    Skips:
+    - Already-formed markdown links `[…](…)` (so we don't double-wrap).
+    - Inline code spans `` `TP.AC-1` `` (typed as code on purpose).
+    - Fenced code blocks (Formal Definition pseudocode etc.).
+    - Same-page ref-IDs (link target equals current page → leave bare).
+    - Ref-IDs that don't resolve to a real metric (retired/reserved
+      slots; let the audit flag those separately).
+
+    The current_page argument is the rendered docs path (e.g.
+    "standards-mapping.md") used to compute relative paths to group
+    pages and to suppress self-redirects.
+    """
+
+    metric_pages = _metric_slug_to_page()
+
+    def _link_ref_in_segment(segment: str) -> str:
+        """Substitute bare ref-IDs in a segment with no fenced/inline code
+        and no existing markdown links."""
+
+        def sub(m: re.Match) -> str:
+            ref_id = m.group(1)
+            slug = parse_src.ref_id_to_anchor(ref_id)
+            metric_page = metric_pages.get(slug)
+            if metric_page is None:
+                return m.group(0)  # retired/reserved or typo — leave bare
+            if metric_page == current_page:
+                return m.group(0)  # same-page — leave bare
+            # Compute relative path. Cross-cutting pages live at docs
+            # root; group pages live under groups/. Standards-mapping
+            # and friends are at the root, so the rel path is just the
+            # full metric_page (e.g. "groups/clinical-coding.md").
+            if "/" in current_page and metric_page.startswith("groups/"):
+                rel = metric_page.split("/", 1)[1]
+            else:
+                rel = metric_page
+            return f"[{ref_id}]({rel}#{slug})"
+
+        return _BARE_REF_ID_RE.sub(sub, segment)
+
+    # Mask out regions where bare ref-IDs must not be touched, run the
+    # substitution on the surviving prose, then restore the masked
+    # regions verbatim. Order matters: fenced code first (greediest),
+    # then existing links, then inline code.
+    placeholders: list[str] = []
+
+    def _mask(pattern: re.Pattern, raw: str) -> str:
+        def sub(m: re.Match) -> str:
+            placeholders.append(m.group(0))
+            return f"\x00MASK{len(placeholders) - 1}\x00"
+
+        return pattern.sub(sub, raw)
+
+    masked = _mask(_FENCED_CODE_RE, text)
+    masked = _mask(_EXISTING_LINK_RE, masked)
+    masked = _mask(_INLINE_CODE_RE, masked)
+    linked = _link_ref_in_segment(masked)
+
+    # Restore.
+    def _unmask_sub(m: re.Match) -> str:
+        return placeholders[int(m.group(1))]
+
+    return re.sub(r"\x00MASK(\d+)\x00", _unmask_sub, linked)
+
+
 # Hand-written cluster titles keyed by cluster code, used as the eyebrow
 # heading on each group page. v4.0 retired the v3.x "Part X - …" prefix
 # in favour of the cluster-code form "TP — Technical Pipeline".
@@ -564,6 +655,13 @@ def main() -> None:
         text = rewrite_reference_handles(text, dst_rel)
         text = rewrite_external_links(text)
         text = add_metric_anchors(text)
+        # Linkify bare ref-IDs in cross-cutting prose (standards-mapping,
+        # applicability, responsible-AI-lens etc.). Group pages already
+        # have anchors injected via add_metric_anchors and so don't need
+        # the same pass — bare ref-IDs there typically belong to the
+        # current page's metrics.
+        if not dst_rel.startswith("groups/"):
+            text = link_bare_ref_ids(text, dst_rel)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)
         if dst_rel == "gaps.md":
@@ -603,6 +701,7 @@ def main() -> None:
         cl_text = rewrite_anchors(cl_text, "changelog.md")
         cl_text = rewrite_reference_handles(cl_text, "changelog.md")
         cl_text = rewrite_external_links(cl_text)
+        cl_text = link_bare_ref_ids(cl_text, "changelog.md")
         cl_text = _inject_changelog_dates_frontmatter(cl_text)
         (DOCS / "changelog.md").write_text(cl_text)
 

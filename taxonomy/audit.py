@@ -1035,6 +1035,87 @@ def check_retrieved_date_format() -> list[Finding]:
     return findings
 
 
+def check_crosscut_ref_ids_resolve(all_metrics: list[Metric]) -> list[Finding]:
+    """Cross-cutting prose pages (`_standards-mapping.md`,
+    `_applicability.md`, `_responsible-ai-lens.md` etc.) cite metrics by
+    ref-ID — those ref-IDs are linkified at site-build time by
+    build_site.link_bare_ref_ids. Any ref-ID that doesn't resolve will
+    silently render as plain text (no link), masking either a typo or a
+    citation to a retired/reserved slot. This check flags unresolved
+    ref-IDs in cross-cutting prose so they fail audit before reaching
+    the rendered site.
+
+    Group files are excluded — they cite their own metrics by ref-ID in
+    headings and tables, and the headings carry anchors via
+    add_metric_anchors. Genuine cross-page citations from group files
+    use markdown link syntax and resolve via rewrite_anchors.
+
+    Tolerated unresolved IDs: anything in `_retired-ids.md` (retired
+    slots and reserved roadmap-allocated slots both legitimately appear
+    in prose discussions of the taxonomy's lineage).
+    """
+    findings: list[Finding] = []
+
+    # Cross-cutting source files within taxonomy/ that ship in MAPPING
+    # (build_site rewrites anchors / linkifies ref-IDs in these). Group
+    # files (subdirectories with cluster names) are excluded.
+    crosscut_files = [
+        ROOT / "_standards-mapping.md",
+        ROOT / "_applicability.md",
+        ROOT / "_responsible-ai-lens.md",
+        ROOT / "_calibration-and-context.md",
+        ROOT / "_outcomes-boundary.md",
+        ROOT / "_contents.md",
+        ROOT / "_summary.md",
+        ROOT / "_tier-1-quick-reference.md",
+        ROOT / "_gaps.md",
+        ROOT / "_glossary.md",
+        ROOT / "_how-to-use.md",
+        ROOT / "_header.md",
+        ROOT / "_prototype-status.md",
+    ]
+
+    valid_ref_ids = {m.ref_id for m in all_metrics}
+    # Retired and reserved IDs — both appear in prose legitimately when
+    # discussing the lineage / roadmap. Read directly from
+    # _retired-ids.md.
+    retired_path = ROOT / "_retired-ids.md"
+    tolerated_ids: set[str] = set()
+    if retired_path.exists():
+        retired_text = retired_path.read_text()
+        for match in re.finditer(r"\|\s*([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\s*\|", retired_text):
+            tolerated_ids.add(match.group(1))
+
+    bare_ref_re = re.compile(r"\b([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\b")
+
+    # Severity is INFO rather than WARN because cross-cutting prose
+    # legitimately discusses proposed / candidate / not-yet-promoted
+    # ref-IDs (e.g. roadmap tables in `_gaps.md`, the T.E.S.T.
+    # framework candidates table in `_standards-mapping.md`). The
+    # build_site linker leaves unresolved IDs as bare text safely;
+    # the check exists to make those bare IDs visible at audit time
+    # so typos and orphan references don't hide.
+    for path in crosscut_files:
+        if not path.exists():
+            continue
+        text = path.read_text()
+        rel = path.relative_to(ROOT.parent)
+        for match in bare_ref_re.finditer(text):
+            ref_id = match.group(1)
+            if ref_id in valid_ref_ids or ref_id in tolerated_ids:
+                continue
+            line_num = text[: match.start()].count("\n") + 1
+            findings.append(
+                Finding(
+                    "INFO",
+                    "crosscut-ref-id-unresolved",
+                    f"`{ref_id}` cited in cross-cutting prose but not in metric catalogue or _retired-ids.md (likely a roadmap candidate; review periodically)",
+                    f"{rel}:{line_num}",
+                )
+            )
+    return findings
+
+
 def check_no_part_letter_prose() -> list[Finding]:
     """v4.0 retired the Part-letter scheme (A-F) in favour of cluster
     codes (TP/PI/HL/IO/GV/ES). Any `Part [A-F]\\b` match in non-archive
@@ -1095,6 +1176,7 @@ def main() -> int:
     findings.extend(check_archive_present())
     findings.extend(check_retrieved_date_format())
     findings.extend(check_no_part_letter_prose())
+    findings.extend(check_crosscut_ref_ids_resolve(all_metrics))
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]

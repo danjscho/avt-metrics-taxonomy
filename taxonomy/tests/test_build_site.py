@@ -250,3 +250,84 @@ class TestLinkTier1Quickref:
         result = build_site.link_tier1_quickref(text)
         # The ⚠️ should appear after the closing `)` of the link, not inside
         assert "**](groups/summarisation-nlp.md#tp-sn-5) ⚠️" in result
+
+
+# ---------------------------------------------------------------------------
+# link_bare_ref_ids — needs catalogue; use stubbed metric slug→page index
+# ---------------------------------------------------------------------------
+
+
+class TestLinkBareRefIds:
+    @staticmethod
+    def _stub_index():
+        return {
+            "tp-sn-5": "groups/summarisation-nlp.md",
+            "gv-cr-7": "groups/nhs-compliance-regulatory.md",
+            "hl-hf-3a": "groups/human-factors-workflow.md",
+        }
+
+    def test_links_bare_ref_id_to_metric_page(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "See TP.SN-5 for hallucination handling."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        assert "[TP.SN-5](groups/summarisation-nlp.md#tp-sn-5)" in result
+
+    def test_handles_subpart_ref_id(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "HL.HF-3a is a sub-part."
+        result = build_site.link_bare_ref_ids(text, current_page="applicability.md")
+        assert "[HL.HF-3a](groups/human-factors-workflow.md#hl-hf-3a)" in result
+
+    def test_skips_already_linked_ref_id(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "[TP.SN-5](groups/summarisation-nlp.md#tp-sn-5) is already a link."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        # No double-wrapping
+        assert result.count("](groups/summarisation-nlp.md#tp-sn-5)") == 1
+        assert "[[" not in result
+
+    def test_skips_inline_code_ref_id(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "Use the `TP.SN-5` symbol carefully."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        # Backticked ref-IDs are typed as code on purpose; leave bare
+        assert "`TP.SN-5`" in result
+        assert "[TP.SN-5]" not in result
+
+    def test_skips_fenced_code_block(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "```\nTP.SN-5 in pseudocode\n```\n\nThen TP.SN-5 in prose."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        # Fenced TP.SN-5 untouched, prose TP.SN-5 linkified
+        assert "```\nTP.SN-5 in pseudocode\n```" in result
+        assert "Then [TP.SN-5](groups/summarisation-nlp.md#tp-sn-5)" in result
+
+    def test_unresolved_ref_id_left_bare(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        # TP.SN-99 isn't in the stub catalogue
+        text = "Future TP.SN-99 metric proposal."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        assert "TP.SN-99" in result
+        assert "[TP.SN-99]" not in result
+
+    def test_same_page_ref_id_left_bare(self, monkeypatch):
+        # If standards-mapping is the current page and we add it to the
+        # index, we'd skip — but ref-IDs typically resolve to group
+        # pages, not the current cross-cutting page. This tests the
+        # branch by making the resolved page match.
+        monkeypatch.setattr(
+            build_site,
+            "_metric_slug_to_page",
+            lambda: {"tp-sn-5": "standards-mapping.md"},
+        )
+        text = "TP.SN-5 reference."
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        assert "[TP.SN-5]" not in result
+        assert "TP.SN-5" in result
+
+    def test_multiple_ref_ids_in_one_table_cell(self, monkeypatch):
+        monkeypatch.setattr(build_site, "_metric_slug_to_page", self._stub_index)
+        text = "| Cell | TP.SN-5 Hallucination Rate, GV.CR-7 DPIA Template |"
+        result = build_site.link_bare_ref_ids(text, current_page="standards-mapping.md")
+        assert "[TP.SN-5](groups/summarisation-nlp.md#tp-sn-5)" in result
+        assert "[GV.CR-7](groups/nhs-compliance-regulatory.md#gv-cr-7)" in result

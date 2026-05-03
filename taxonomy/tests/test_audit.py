@@ -306,3 +306,72 @@ class TestCheckRetrievedDateFormat:
         monkeypatch.setattr(parse, "ROOT", tmp_path)
         findings = audit.check_retrieved_date_format()
         assert all(f.category != "reference-retrieved-format" for f in findings)
+
+
+class TestCheckCrosscutRefIdsResolve:
+    def _write_metric_file(self, tmp_path, metrics):
+        for ref_id, name in metrics:
+            cluster_dir = tmp_path / ref_id.split(".")[0].lower()
+            cluster_dir.mkdir(exist_ok=True)
+            (cluster_dir / "stub.md").write_text(
+                f"### {ref_id} 🟢 {name}\n\n"
+                "| Dimension | Value |\n|---|---|\n"
+                "| **Reference** | " + ref_id + " |\n"
+                "| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |\n"
+            )
+
+    def test_pass_when_all_ref_ids_resolve(self, tmp_path, monkeypatch):
+        # Set up tmp ROOT with one valid metric and one cross-cutting
+        # file that references it.
+        monkeypatch.setattr(audit, "ROOT", tmp_path)
+        (tmp_path / "_standards-mapping.md").write_text(
+            "| 1 | Some requirement | TP.AC-1 SNR Monitoring | 🟢 1 |\n"
+        )
+        (tmp_path / "_retired-ids.md").write_text(
+            "# Retired\n"
+        )
+        # Valid metric in the catalogue (passed in directly)
+        valid = parse.Metric(
+            ref_id="TP.AC-1",
+            name="SNR Monitoring",
+            tier=2,
+            cluster="TP",
+            group="Audio Capture",
+            group_file="tp/audio-capture.md",
+            heading_line=1,
+        )
+        findings = audit.check_crosscut_ref_ids_resolve([valid])
+        assert findings == []
+
+    def test_flags_unresolved_ref_id_as_info(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(audit, "ROOT", tmp_path)
+        (tmp_path / "_standards-mapping.md").write_text(
+            "| 1 | Future requirement | TP.SN-99 Future Metric | 🟢 1 |\n"
+        )
+        (tmp_path / "_retired-ids.md").write_text("# Retired\n")
+        valid = parse.Metric(
+            ref_id="TP.AC-1",
+            name="SNR Monitoring",
+            tier=2,
+            cluster="TP",
+            group="Audio Capture",
+            group_file="tp/audio-capture.md",
+            heading_line=1,
+        )
+        findings = audit.check_crosscut_ref_ids_resolve([valid])
+        assert len(findings) == 1
+        assert findings[0].severity == "INFO"
+        assert findings[0].category == "crosscut-ref-id-unresolved"
+        assert "TP.SN-99" in findings[0].message
+
+    def test_tolerates_retired_id(self, tmp_path, monkeypatch):
+        monkeypatch.setattr(audit, "ROOT", tmp_path)
+        (tmp_path / "_standards-mapping.md").write_text(
+            "| 1 | Lineage discussion | retired TP.SN-8 (folded) | — |\n"
+        )
+        # Retired ID listed in _retired-ids.md
+        (tmp_path / "_retired-ids.md").write_text(
+            "| Retired ID |\n|---|\n| TP.SN-8 |\n"
+        )
+        findings = audit.check_crosscut_ref_ids_resolve([])
+        assert findings == []
