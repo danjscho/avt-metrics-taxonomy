@@ -210,7 +210,9 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 **Formal Definition**
 
 ```
-Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Require minimum 0.90 F1 for clinician and patient roles; 0.80 for other identified roles.
+Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Taxonomy-proposed gates (require local calibration before contractual use): F1 ≥ 0.90 for clinician and patient roles; F1 ≥ 0.80 for other identified roles.
+
+⚠️ Provenance: these specific F1 floors are taxonomy-proposed in v4.2 as starting-point gates, not externally attested. The mpathic Clinical ASR Benchmark cited in the Source row defines per-role / per-attribution evaluation methodology but does not publish specific F1 thresholds. Per the Calibration & Context principle, require local calibration against the deployment's role mix and consultation style.
 ```
 
 **Limitations**
@@ -301,9 +303,9 @@ TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Repo
 
 ---
 
-### TP.DI-8 🔵 Clinical-Perspective HEWER (cpHEWER)
+### TP.DI-8 🔵 Clinician-Preferred HEWER (cpHEWER)
 
-Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
+Clinician-Preferred Human-Evaluated Word Error Rate. A speaker-attribution-aware variant of HEWER (Human-Evaluated Word Error Rate) that combines transcription accuracy and speaker-attribution correctness into a single metric, while ignoring non-semantic deviations (filler words, regional spellings) that don't impact comprehension. Introduced in the [mpathic-Clinical-ASR-Benchmark-2025] poster as a clinically-aware alternative to standard WER and cpWER. The taxonomy extends cpHEWER with an explicit role-weighted variant for cross-vendor comparability — see Formal Definition.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
@@ -327,12 +329,22 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 **Formal Definition**
 
 ```
-cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the clinical importance weight for the (speaker role, content type) combination. Weight matrix: clinician medication instruction = 10.0; clinician safety-netting = 10.0; patient red-flag symptom = 9.0; patient history = 5.0; family contextual information = 3.0; small talk = 0.1. Matrix requires clinical consensus.
+cpHEWER (per [mpathic-Clinical-ASR-Benchmark-2025]) counts how many semantically meaningful words are wrong OR attributed to the wrong speaker — speaker-attribution-aware HEWER. The mpathic poster does not publish category-level weights.
+
+Taxonomy-proposed extension (v4.2): role-weighted variant cpHEWER_w = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is a clinical-importance weight for the (speaker role, content type) combination. Proposed starting-point weight matrix:
+  clinician medication instruction = 10.0
+  clinician safety-netting        = 10.0
+  patient red-flag symptom        =  9.0
+  patient history                 =  5.0
+  family contextual information   =  3.0
+  small talk                      =  0.1
+
+⚠️ Provenance: cpHEWER itself is mpathic's published methodology. The role-weighted variant cpHEWER_w with the specific weight matrix above is taxonomy-proposed in v4.2 as a starting-point construction for cross-vendor comparability. Without a nationally agreed matrix, every vendor's cpHEWER_w would be incomparable; this is a candidate for national body specification work. Per the Calibration & Context principle, require local calibration before contractual use.
 ```
 
 **Limitations**
 
-> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite - compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+> The taxonomy-proposed weight matrix is inherently subjective; no standardised matrix exists. cpHEWER_w requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
 
 **Novel Thinking / Implications**
 

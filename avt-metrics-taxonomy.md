@@ -4159,7 +4159,9 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 **Formal Definition**
 
 ```
-Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Require minimum 0.90 F1 for clinician and patient roles; 0.80 for other identified roles.
+Per-role precision, recall, and F1. Role set R ⊇ {clinician, patient, family_member, nurse, interpreter, student, other}. F1_macro = mean F1 across roles. Report per-role breakdown because aggregate hides minority-role failures (interpreter role is often the lowest-performing and the most safety-critical for attribution). Taxonomy-proposed gates (require local calibration before contractual use): F1 ≥ 0.90 for clinician and patient roles; F1 ≥ 0.80 for other identified roles.
+
+⚠️ Provenance: these specific F1 floors are taxonomy-proposed in v4.2 as starting-point gates, not externally attested. The mpathic Clinical ASR Benchmark cited in the Source row defines per-role / per-attribution evaluation methodology but does not publish specific F1 thresholds. Per the Calibration & Context principle, require local calibration against the deployment's role mix and consultation style.
 ```
 
 **Limitations**
@@ -4250,9 +4252,9 @@ TTA-O = |words_correctly_attributed_in_overlap| / |total_words_in_overlap|. Repo
 
 ---
 
-### TP.DI-8 🔵 Clinical-Perspective HEWER (cpHEWER)
+### TP.DI-8 🔵 Clinician-Preferred HEWER (cpHEWER)
 
-Hypothesis-Error Word Error Rate weighted by clinical importance of the utterance speaker-and-content combination. An error on a clinician's medication instruction is weighted much higher than an equivalent error on a family member's small-talk contribution. Introduced in the mpathic.ai benchmark as a clinically-aware alternative to standard diarisation error rate.
+Clinician-Preferred Human-Evaluated Word Error Rate. A speaker-attribution-aware variant of HEWER (Human-Evaluated Word Error Rate) that combines transcription accuracy and speaker-attribution correctness into a single metric, while ignoring non-semantic deviations (filler words, regional spellings) that don't impact comprehension. Introduced in the [mpathic-Clinical-ASR-Benchmark-2025] poster as a clinically-aware alternative to standard WER and cpWER. The taxonomy extends cpHEWER with an explicit role-weighted variant for cross-vendor comparability — see Formal Definition.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
@@ -4276,12 +4278,22 @@ Hypothesis-Error Word Error Rate weighted by clinical importance of the utteranc
 **Formal Definition**
 
 ```
-cpHEWER = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is the clinical importance weight for the (speaker role, content type) combination. Weight matrix: clinician medication instruction = 10.0; clinician safety-netting = 10.0; patient red-flag symptom = 9.0; patient history = 5.0; family contextual information = 3.0; small talk = 0.1. Matrix requires clinical consensus.
+cpHEWER (per [mpathic-Clinical-ASR-Benchmark-2025]) counts how many semantically meaningful words are wrong OR attributed to the wrong speaker — speaker-attribution-aware HEWER. The mpathic poster does not publish category-level weights.
+
+Taxonomy-proposed extension (v4.2): role-weighted variant cpHEWER_w = Σ(w(role, content) × error(i)) / Σ w(role, content), where w is a clinical-importance weight for the (speaker role, content type) combination. Proposed starting-point weight matrix:
+  clinician medication instruction = 10.0
+  clinician safety-netting        = 10.0
+  patient red-flag symptom        =  9.0
+  patient history                 =  5.0
+  family contextual information   =  3.0
+  small talk                      =  0.1
+
+⚠️ Provenance: cpHEWER itself is mpathic's published methodology. The role-weighted variant cpHEWER_w with the specific weight matrix above is taxonomy-proposed in v4.2 as a starting-point construction for cross-vendor comparability. Without a nationally agreed matrix, every vendor's cpHEWER_w would be incomparable; this is a candidate for national body specification work. Per the Calibration & Context principle, require local calibration before contractual use.
 ```
 
 **Limitations**
 
-> Weight matrix is inherently subjective. No standardised matrix exists. Requires accurate role identification as prerequisite - compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
+> The taxonomy-proposed weight matrix is inherently subjective; no standardised matrix exists. cpHEWER_w requires accurate role identification as prerequisite — compounds with Speaker Role Identification F1 errors. Benchmark datasets with the required role-and-content annotation do not exist at scale.
 
 **Novel Thinking / Implications**
 
@@ -4793,16 +4805,26 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 **Formal Definition**
 
 ```
-Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Supported, Unsupported, Contradicted} × Severity(p) ∈ {Benign, Moderate, Critical}. Risk R(p) = Support_weight × Severity_weight. Safety-critical quadrant: {Unsupported ∨ Contradicted} × {Critical}.
+Per the [Abridge-Whitepaper-2025] schema, each proposition p classified on two axes:
+  - Support(p) ∈ {Directly Supported, Circumstantially Supported (Reasonable Inference),
+                  Circumstantially Supported (Questionable Inference), Unmentioned, Contradiction}
+  - Severity(p) ∈ {Major, Moderate, Minimal}
+Risk R(p) is a function of Support × Severity (vendor-proprietary; the whitepaper
+reports that the Abridge classifier catches 97% of confabulations vs GPT-4o's 82% on
+Abridge's internal benchmark). Safety-critical quadrant: low-support classes
+{Circumstantially Supported (Questionable Inference), Unmentioned, Contradiction}
+combined with Major-severity propositions.
+
+Earlier versions of this metric used a simpler 4-Support × 3-Severity schema
+(Fully/Partially/Unsupported/Contradicted × Benign/Moderate/Critical); v4.2
+verification of the Abridge whitepaper found the actual schema is the more
+granular 5-Support × 3-Severity given above and updated this Formal Definition
+to match what is published.
 ```
-
-**References**
-
-- **Abridge**: Oberst, Liang, Lipton (2024/2025) - 97% vs GPT-4o 82%
 
 **Limitations**
 
-> Proprietary. Not independently validated.
+> Proprietary. Not independently validated. Specific Risk R(p) weighting function not published.
 
 **Novel Thinking / Implications**
 
@@ -5299,16 +5321,16 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |AVT-Contextualised                                      |
-|**Source**             |[i2b2-2012-Temporal-Challenge] (F1 0.876 state of art); clinical temporal reasoning literature|
+|**Source**             |[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature|
 
 **Why this tier?**
 
-> Important clinical reasoning dimension. Established benchmark methodology exists (i2b2). Periodic audit feasible with annotated test cases.
+> Important clinical reasoning dimension. Established benchmark methodology exists ([i2b2-2012-Temporal-Challenge]); SOTA F1 varies substantially by sub-task (event extraction, temporal expression, link detection, end-to-end relations) — see published challenge papers for specific numbers rather than treating any single F1 as canonical. Periodic audit feasible with annotated test cases.
 
 **Formal Definition**
 
 ```
-Given a set of clinical events E extracted from source, and their true temporal ordering T_ref, compute the summary's inferred ordering T_hyp. Accuracy = Kendall's tau between T_ref and T_hyp. Report: pairwise ordering accuracy (what proportion of event pairs are correctly ordered), plus anchor events accuracy (events with absolute timestamps correctly placed).
+Given a set of clinical events E extracted from source, and their true temporal ordering T_ref, compute the summary's inferred ordering T_hyp. Accuracy = Kendall's tau between T_ref and T_hyp. Report: pairwise ordering accuracy (what proportion of event pairs are correctly ordered), plus anchor events accuracy (events with absolute timestamps correctly placed). Performance benchmarks: report relative to i2b2 2012 SOTA on the relevant sub-task — be specific about which (event-only, link detection, end-to-end) since these differ by tens of points.
 ```
 
 **Limitations**
@@ -5389,7 +5411,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
-|**Source**             |[n2c2-Shared-Tasks] benchmarks (attribute-level F1 >0.92 for strong systems)|
+|**Source**             |[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)|
 
 **Why this tier?**
 
@@ -5398,7 +5420,9 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 **Formal Definition**
 
 ```
-For each medication mention m with attributes A = {name, dose, route, frequency, duration, indication}: per-attribute precision and recall against reference. Composite: full-match rate = |medications_all_attributes_correct| / |total_medications|. Safety-critical: dose accuracy and frequency accuracy should be reported with CIs; any system below 0.95 on these should not deploy without enhanced review.
+For each medication mention m with attributes A = {name, dose, route, frequency, duration, indication}: per-attribute precision and recall against reference. Composite: full-match rate = |medications_all_attributes_correct| / |total_medications|. Reference benchmarks from [n2c2-Shared-Tasks] 2018: best systems achieved F1 ~0.94 (concept extraction), ~0.96 (relation classification), ~0.89 (end-to-end). Attribute-level performance varies by attribute, with dose and frequency typically weaker than drug name. Safety-critical: dose accuracy and frequency accuracy should be reported with confidence intervals.
+
+⚠️ Provenance: the taxonomy-proposed gate "any system below 0.95 on dose/frequency should not deploy without enhanced review" is a v4.2 starting-point recommendation; n2c2 benchmark numbers are reported as ranges across systems rather than a deployment gate. Per the Calibration & Context principle, require local calibration.
 ```
 
 **Limitations**
@@ -5497,16 +5521,18 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
-|**Source**             |[n2c2-Shared-Tasks] (2018 shared task on medication event classification)|
+|**Source**             |[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)|
 
 **Why this tier?**
 
-> Established methodology. Safety-critical because event misclassification directly causes prescribing errors. Should be standard vendor pre-deployment reporting.
+> Established methodology for medication-event extraction (n2c2 2018). Safety-critical because event misclassification directly causes prescribing errors. Should be standard vendor pre-deployment reporting. The specific action-class taxonomy used below is a v4.2 taxonomy-proposed extension over the n2c2 2018 attribute schema.
 
 **Formal Definition**
 
 ```
-For each medication event discussed: classification into {start, stop, increase, decrease, continue, hold, restart, contraindication, refuse}. Multiclass F1 per class. Safety-critical confusions: start↔stop and increase↔decrease are the most dangerous failure modes. Report confusion matrix, not just aggregate accuracy.
+Builds on the [n2c2-Shared-Tasks] 2018 medication-extraction framework (drug, strength, duration, route, form, frequency, reason, dosage, ADE attributes) with a taxonomy-proposed action classification: each medication event is classified into {start, stop, increase, decrease, continue, hold, restart, contraindication, refuse}. Multiclass F1 per class. Safety-critical confusions: start↔stop and increase↔decrease are the most dangerous failure modes. Report confusion matrix, not just aggregate accuracy.
+
+⚠️ Provenance: the 9-class action taxonomy above is taxonomy-proposed in v4.2 — n2c2 2018 itself defines an attribute taxonomy for medication-extraction (drug / strength / duration / route / form / frequency / reason / dosage / ADE), not an action-class taxonomy for events. The taxonomy retains the action framing because the safety question is what is being done with the medication, not just which medication is mentioned; the n2c2 2018 framework is cited for the underlying medication-extraction methodology rather than for this specific class set.
 ```
 
 **Limitations**
@@ -5749,7 +5775,7 @@ For each extracted clinical mention m: mapping function M(m) → SNOMED concept 
 
 ### TP.CC-3 🟡 ICD-10 / ICD-11 Full-Specificity Precision
 
-Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity - the difference representing systematic specificity errors that aggregate metrics hide.
+Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Empirical specificity degradation — reduction in accuracy when moving from category-level to full-specificity coding — is well-documented in clinical-coding NLP literature; vendors should report at multiple specificity levels rather than aggregate accuracy alone, because the difference between 3-character and full-specificity accuracy represents systematic specificity errors that aggregate metrics hide.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
@@ -5773,7 +5799,9 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 **Formal Definition**
 
 ```
-Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. Values > 10 percentage points indicate the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. The taxonomy-proposed alert threshold is Specificity Degradation > 10 percentage points indicating the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+
+⚠️ Provenance: the 10-percentage-point degradation threshold is taxonomy-proposed in v4.2 as a starting-point gate, not externally validated. Per the Calibration & Context principle, require local calibration before contractual use — what counts as acceptable specificity degradation depends on the deployment's downstream uses (epidemiological analytics tolerate more aggregation than tariff-relevant coding).
 ```
 
 **Limitations**
@@ -6446,7 +6474,7 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 
 ### TP.WB-6 🟡 FHIR R4 Resource Conformance Rate
 
-Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats - but retention is not the same as profile conformance.
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. FHIR-structured output generally retains more clinical detail than legacy free-text-only or HL7 v2 formats, but retention is not the same as profile conformance — a record can preserve content while violating the profile that downstream systems rely on.
 
 |Dimension              |Value                                    |
 |-----------------------|-----------------------------------------|
@@ -14155,8 +14183,8 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 
 ### Abridge-Whitepaper-2025
 
-- **Title:** The Science of Confabulation Elimination — Abridge product methodology
-- **Publisher:** Abridge AI (vendor)
+- **Title:** The Science of Confabulation Elimination: Toward Hallucination-Free AI-Generated Clinical Notes
+- **Publisher:** Liang D, Oberst M, Tan C, Lipton ZC. Abridge AI whitepaper, 19 August 2025
 - **Source-Type:** disclosure
 - **URL:** https://www.abridge.com/ai/science-confabulation-hallucination-elimination
 - **Archive:** _(Phase 1 — pending snapshot.py)_
@@ -14164,7 +14192,7 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** `hl/human-factors-workflow.md`, `tp/summarisation-nlp.md`
 
-Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published.
+Cited in TP.SN-7a (Confabulation Detection — Support × Severity) for the two-axis classifier schema (5-class Support × 3-class Severity) and the headline 97% Abridge / 82% GPT-4o detection comparison reported in the whitepaper. The whitepaper also reports a training-corpus scale of 50,000+ examples for the detection model and a 10,000-clinical-encounter internal benchmark (distinct datasets). `Source-Type: disclosure` because the whitepaper is vendor-published rather than peer-reviewed. v4.2: corrected author list (was "Oberst, Liang, Lipton" — missing Tan; ordering wrong).
 
 ### Chung-NEJM-AI-2025
 

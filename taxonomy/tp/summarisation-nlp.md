@@ -465,16 +465,26 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 **Formal Definition**
 
 ```
-Each proposition p classified on: Support(p) ∈ {Fully Supported, Partially Supported, Unsupported, Contradicted} × Severity(p) ∈ {Benign, Moderate, Critical}. Risk R(p) = Support_weight × Severity_weight. Safety-critical quadrant: {Unsupported ∨ Contradicted} × {Critical}.
+Per the [Abridge-Whitepaper-2025] schema, each proposition p classified on two axes:
+  - Support(p) ∈ {Directly Supported, Circumstantially Supported (Reasonable Inference),
+                  Circumstantially Supported (Questionable Inference), Unmentioned, Contradiction}
+  - Severity(p) ∈ {Major, Moderate, Minimal}
+Risk R(p) is a function of Support × Severity (vendor-proprietary; the whitepaper
+reports that the Abridge classifier catches 97% of confabulations vs GPT-4o's 82% on
+Abridge's internal benchmark). Safety-critical quadrant: low-support classes
+{Circumstantially Supported (Questionable Inference), Unmentioned, Contradiction}
+combined with Major-severity propositions.
+
+Earlier versions of this metric used a simpler 4-Support × 3-Severity schema
+(Fully/Partially/Unsupported/Contradicted × Benign/Moderate/Critical); v4.2
+verification of the Abridge whitepaper found the actual schema is the more
+granular 5-Support × 3-Severity given above and updated this Formal Definition
+to match what is published.
 ```
-
-**References**
-
-- **Abridge**: Oberst, Liang, Lipton (2024/2025) - 97% vs GPT-4o 82%
 
 **Limitations**
 
-> Proprietary. Not independently validated.
+> Proprietary. Not independently validated. Specific Risk R(p) weighting function not published.
 
 **Novel Thinking / Implications**
 
@@ -971,16 +981,16 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |AVT-Contextualised                                      |
-|**Source**             |[i2b2-2012-Temporal-Challenge] (F1 0.876 state of art); clinical temporal reasoning literature|
+|**Source**             |[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature|
 
 **Why this tier?**
 
-> Important clinical reasoning dimension. Established benchmark methodology exists (i2b2). Periodic audit feasible with annotated test cases.
+> Important clinical reasoning dimension. Established benchmark methodology exists ([i2b2-2012-Temporal-Challenge]); SOTA F1 varies substantially by sub-task (event extraction, temporal expression, link detection, end-to-end relations) — see published challenge papers for specific numbers rather than treating any single F1 as canonical. Periodic audit feasible with annotated test cases.
 
 **Formal Definition**
 
 ```
-Given a set of clinical events E extracted from source, and their true temporal ordering T_ref, compute the summary's inferred ordering T_hyp. Accuracy = Kendall's tau between T_ref and T_hyp. Report: pairwise ordering accuracy (what proportion of event pairs are correctly ordered), plus anchor events accuracy (events with absolute timestamps correctly placed).
+Given a set of clinical events E extracted from source, and their true temporal ordering T_ref, compute the summary's inferred ordering T_hyp. Accuracy = Kendall's tau between T_ref and T_hyp. Report: pairwise ordering accuracy (what proportion of event pairs are correctly ordered), plus anchor events accuracy (events with absolute timestamps correctly placed). Performance benchmarks: report relative to i2b2 2012 SOTA on the relevant sub-task — be specific about which (event-only, link detection, end-to-end) since these differ by tens of points.
 ```
 
 **Limitations**
@@ -1061,7 +1071,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
-|**Source**             |[n2c2-Shared-Tasks] benchmarks (attribute-level F1 >0.92 for strong systems)|
+|**Source**             |[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)|
 
 **Why this tier?**
 
@@ -1070,7 +1080,9 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 **Formal Definition**
 
 ```
-For each medication mention m with attributes A = {name, dose, route, frequency, duration, indication}: per-attribute precision and recall against reference. Composite: full-match rate = |medications_all_attributes_correct| / |total_medications|. Safety-critical: dose accuracy and frequency accuracy should be reported with CIs; any system below 0.95 on these should not deploy without enhanced review.
+For each medication mention m with attributes A = {name, dose, route, frequency, duration, indication}: per-attribute precision and recall against reference. Composite: full-match rate = |medications_all_attributes_correct| / |total_medications|. Reference benchmarks from [n2c2-Shared-Tasks] 2018: best systems achieved F1 ~0.94 (concept extraction), ~0.96 (relation classification), ~0.89 (end-to-end). Attribute-level performance varies by attribute, with dose and frequency typically weaker than drug name. Safety-critical: dose accuracy and frequency accuracy should be reported with confidence intervals.
+
+⚠️ Provenance: the taxonomy-proposed gate "any system below 0.95 on dose/frequency should not deploy without enhanced review" is a v4.2 starting-point recommendation; n2c2 benchmark numbers are reported as ranges across systems rather than a deployment gate. Per the Calibration & Context principle, require local calibration.
 ```
 
 **Limitations**
@@ -1169,16 +1181,18 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
-|**Source**             |[n2c2-Shared-Tasks] (2018 shared task on medication event classification)|
+|**Source**             |[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)|
 
 **Why this tier?**
 
-> Established methodology. Safety-critical because event misclassification directly causes prescribing errors. Should be standard vendor pre-deployment reporting.
+> Established methodology for medication-event extraction (n2c2 2018). Safety-critical because event misclassification directly causes prescribing errors. Should be standard vendor pre-deployment reporting. The specific action-class taxonomy used below is a v4.2 taxonomy-proposed extension over the n2c2 2018 attribute schema.
 
 **Formal Definition**
 
 ```
-For each medication event discussed: classification into {start, stop, increase, decrease, continue, hold, restart, contraindication, refuse}. Multiclass F1 per class. Safety-critical confusions: start↔stop and increase↔decrease are the most dangerous failure modes. Report confusion matrix, not just aggregate accuracy.
+Builds on the [n2c2-Shared-Tasks] 2018 medication-extraction framework (drug, strength, duration, route, form, frequency, reason, dosage, ADE attributes) with a taxonomy-proposed action classification: each medication event is classified into {start, stop, increase, decrease, continue, hold, restart, contraindication, refuse}. Multiclass F1 per class. Safety-critical confusions: start↔stop and increase↔decrease are the most dangerous failure modes. Report confusion matrix, not just aggregate accuracy.
+
+⚠️ Provenance: the 9-class action taxonomy above is taxonomy-proposed in v4.2 — n2c2 2018 itself defines an attribute taxonomy for medication-extraction (drug / strength / duration / route / form / frequency / reason / dosage / ADE), not an action-class taxonomy for events. The taxonomy retains the action framing because the safety question is what is being done with the medication, not just which medication is mentioned; the n2c2 2018 framework is cited for the underlying medication-extraction methodology rather than for this specific class set.
 ```
 
 **Limitations**

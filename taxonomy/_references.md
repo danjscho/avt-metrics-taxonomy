@@ -569,8 +569,8 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 
 ### Abridge-Whitepaper-2025
 
-- **Title:** The Science of Confabulation Elimination — Abridge product methodology
-- **Publisher:** Abridge AI (vendor)
+- **Title:** The Science of Confabulation Elimination: Toward Hallucination-Free AI-Generated Clinical Notes
+- **Publisher:** Liang D, Oberst M, Tan C, Lipton ZC. Abridge AI whitepaper, 19 August 2025
 - **Source-Type:** disclosure
 - **URL:** https://www.abridge.com/ai/science-confabulation-hallucination-elimination
 - **Archive:** _(Phase 1 — pending snapshot.py)_
@@ -578,7 +578,7 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-7 (LLM-as-a-Judge proxy or similar) as evidence of training-corpus scale (50,000+ examples). `Source-Type: disclosure` because the whitepaper is vendor-published.
+Cited in TP.SN-7a (Confabulation Detection — Support × Severity) for the two-axis classifier schema (5-class Support × 3-class Severity) and the headline 97% Abridge / 82% GPT-4o detection comparison reported in the whitepaper. The whitepaper also reports a training-corpus scale of 50,000+ examples for the detection model and a 10,000-clinical-encounter internal benchmark (distinct datasets). `Source-Type: disclosure` because the whitepaper is vendor-published rather than peer-reviewed. v4.2: corrected author list (was "Oberst, Liang, Lipton" — missing Tan; ordering wrong).
 
 ### Chung-NEJM-AI-2025
 
