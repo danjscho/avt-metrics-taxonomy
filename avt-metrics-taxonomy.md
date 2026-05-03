@@ -3277,8 +3277,11 @@ M-WER = Σ(wᵢ · eᵢ) / Σ(wᵢ), where wᵢ is the clinical significance wei
 **Code: M-WER weighted computation**
 
 ```python
-import numpy as np
-from jiwer import process_words
+# Illustrative pseudocode — uses position-based comparison rather than
+# WER's actual edit-distance alignment, to keep the focus on the
+# weight-matrix dimension that distinguishes M-WER from standard WER.
+# A production M-WER implementation would compose `jiwer.process_words`'s
+# alignment output with the weight lookup below.
 
 # Clinical significance weights by SNOMED concept class
 WEIGHTS = {
@@ -4876,22 +4879,26 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 **Code: VeriFact conceptual pipeline**
 
 ```python
-# https://github.com/philipchung/verifact
+# Conceptual pseudocode for the VeriFact pipeline shape.
+# The real philipchung/verifact repo does not expose these specific
+# class names; see https://github.com/philipchung/verifact for the
+# actual public API. This snippet illustrates the three-step
+# RAG + LLM-as-Judge pipeline (decompose → retrieve → classify) using
+# the model and tooling stack the paper reports: Llama 3.1 70B for
+# proposition decomposition and verification, BAAI/bge-m3 for
+# embeddings, Qdrant for vector retrieval.
 
 # Step 1: Decompose into atomic propositions
-from verifact.decompose import PropDecomposer
 decomposer = PropDecomposer(model="llama-3.1-70b")
 props = decomposer.decompose(clinical_text)
 
 # Step 2: Retrieve EHR evidence
-from verifact.retrieve import EHRRetriever
 retriever = EHRRetriever(
     embedding_model="BAAI/bge-m3",
     vector_db="qdrant",
     ehr_data=patient_records)
 
 # Step 3: Classify each proposition
-from verifact.verify import FactVerifier
 verifier = FactVerifier(model="llama-3.1-70b")
 for prop in props:
     evidence = retriever.retrieve(prop, top_k=5)
