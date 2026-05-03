@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -1563,6 +1563,17 @@
     <span class="md-ellipsis">
       
         GV.PD-11 🟢 Right to Erasure Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gv-pd-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GV.PD-16 🟢 Decommissioning Data Handling Compliance
       
     </span>
   </a>
@@ -3564,6 +3575,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gv-pd-16" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GV.PD-16 🟢 Decommissioning Data Handling Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4580,6 +4602,110 @@
 </blockquote>
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../nhs-compliance-regulatory/#gv-cr-1">GV.CR-1 Patient Dissent Recording Rate</a> · <a href="#gv-pd-10">GV.PD-10 Subject Access Request Fulfilment</a> · <a href="../patient-experience/#io-px-1">IO.PX-1 Patient Opt-Out Rate</a> · <a href="../nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-6">GV.CR-6 Clinical Safety Case Completeness</a> · <a href="../nhs-compliance-regulatory/#gv-cr-7">GV.CR-7 DPIA Template Completion Rate</a></p>
 <hr />
+<h3 id="gv-pd-16">GV.PD-16 🟢 Decommissioning Data Handling Compliance<a class="headerlink" href="#gv-pd-16" title="Permanent link">&para;</a></h3>
+<p>When an AVT deployment is wound down — whether by deployer choice, vendor retirement (<a href="../vendor-transparency-contractual/#gv-vt-15">GV.VT-15 Retirement Notification Compliance</a>), or contract termination (<a href="../vendor-transparency-contractual/#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a>) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the <em>data-handling</em> dimension of decommissioning: every storage location named in the deployment's <a href="#gv-pd-1">GV.PD-1 Audio Retention Compliance</a> enumeration must follow a defined wind-down procedure with deletion or migration documented per location.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reference</strong></td>
+<td>GV.PD-16</td>
+</tr>
+<tr>
+<td><strong>Priority Tier</strong></td>
+<td>🟢 Tier 1 - Minimum Viable</td>
+</tr>
+<tr>
+<td><strong>Measurement Cadence</strong></td>
+<td>One-off gate + per-event</td>
+</tr>
+<tr>
+<td><strong>Pipeline Layer</strong></td>
+<td>Cross-cutting</td>
+</tr>
+<tr>
+<td><strong>Assurance Question</strong></td>
+<td>Safety</td>
+</tr>
+<tr>
+<td><strong>Measurement Method</strong></td>
+<td>Human Review</td>
+</tr>
+<tr>
+<td><strong>Lifecycle Phases</strong></td>
+<td>Pre-deployment, Continuous</td>
+</tr>
+<tr>
+<td><strong>Responsible Actors</strong></td>
+<td>Vendor, Deployer</td>
+</tr>
+<tr>
+<td><strong>Maturity</strong></td>
+<td>Emerging</td>
+</tr>
+<tr>
+<td><strong>Outcome Type</strong></td>
+<td>Proximal</td>
+</tr>
+<tr>
+<td><strong>Applicability</strong></td>
+<td>AVT-Contextualised</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td>Operational extension of [GV.PD-1] retention enumeration; promoted from <code>_gaps.md</code> P5-Lifecycle "Decommissioning plan" entry; <a href="../../references/#dcb0160">DCB0160</a> Stage 7 (decommissioning)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Applicability:</strong> 🔀 <a href="../../crosscuts/by-applicability/avt-contextualised/">AVT-Contextualised</a></p>
+<p><strong>Why this tier?</strong></p>
+<blockquote>
+<p>Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.</p>
+</blockquote>
+<p><strong>Formal Definition</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>Compliance gate (pre-deployment) = the deployer&#39;s DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a>Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a>Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance&#39;s three-class outcome distinction).
+</code></pre></div>
+<p><strong>Reference Standard</strong></p>
+<blockquote>
+<p>Inherits the storage-location enumeration from <a href="#gv-pd-1">GV.PD-1 Audio Retention Compliance</a>: primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per <a href="../vendor-transparency-contractual/#gv-vt-7">GV.VT-7 Sub-Processor Transparency</a>, model training pipelines per <a href="#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a>, and any data ingested for fine-tuning per <a href="#gv-pd-7">GV.PD-7 Training Data Inclusion Status</a>. The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to <a href="../../references/#dcb0129">DCB0129</a> / <a href="../../references/#dcb0160">DCB0160</a> retirement provisions and to <a href="../../references/#si-2024-1368">SI-2024-1368</a> post-market surveillance closure for any MHRA-classified component.</p>
+</blockquote>
+<p><strong>Operational Specification</strong></p>
+<blockquote>
+<ul>
+<li><strong>Window:</strong> procurement contract review (one-off gate); per-event tracking when decommissioning occurs.</li>
+<li><strong>Three sub-metrics MANDATORY:</strong> (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).</li>
+<li><strong>Per-storage-location reporting MANDATORY:</strong> the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).</li>
+<li><strong>Sub-processor cooperation tracked:</strong> every sub-processor in the <a href="../vendor-transparency-contractual/#gv-vt-7">GV.VT-7</a> discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.</li>
+<li><strong>Verification method MANDATORY:</strong> parallel to <a href="#gv-pd-1">GV.PD-1</a>; vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.</li>
+<li><strong>Three-class outcome reporting MANDATORY:</strong> parallel to <a href="#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a>; every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).</li>
+</ul>
+</blockquote>
+<p><strong>Threshold Guidance</strong></p>
+<blockquote>
+<p>⚠️ <strong>Provenance:</strong> the per-storage-location framing inherits from <a href="#gv-pd-1">GV.PD-1 Audio Retention Compliance</a> and <a href="#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a>'s three-class outcome distinction. The procurement-time documentation gate carries from <a href="../nhs-compliance-regulatory/#gv-cr-7">GV.CR-7 DPIA Template Completion Rate</a> and <a href="../../references/#dcb0160">DCB0160</a> Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are <strong>proposed in v4.0.2 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.</p>
+<ul>
+<li><strong>Pre-deployment gate (procurement):</strong> wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.</li>
+<li><strong>Per-event monitoring:</strong> decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.</li>
+<li><strong>Pause / escalation trigger:</strong> any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under <a href="../../references/#uk-gdpr">UK-GDPR</a> storage limitation); OR completion timeline exceeded by &gt; 50 %; OR per-location disposition coverage &lt; 95 % at completion.</li>
+</ul>
+</blockquote>
+<p><strong>Limitations</strong></p>
+<blockquote>
+<p>Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.</p>
+</blockquote>
+<p><strong>Novel Thinking / Implications</strong></p>
+<blockquote>
+<p>💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.</p>
+</blockquote>
 
 
 

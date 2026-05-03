@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -1664,6 +1664,17 @@
     <span class="md-ellipsis">
       
         GV.VT-14 🟡 Indicative Pricing Transparency
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#gv-vt-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GV.VT-15 🟢 Retirement Notification Compliance
       
     </span>
   </a>
@@ -3542,6 +3553,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gv-vt-15" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        GV.VT-15 🟢 Retirement Notification Compliance
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4510,6 +4532,111 @@
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
 <p>💡 Pricing transparency is the most commercially-loaded of the registry's 13 categories — it forces vendors to publish what would otherwise be commercially-confidential information as a condition of NHS procurement access. Treating it as a measurable axis of vendor transparency, alongside sub-processor disclosure (GV.VT-7), incident disclosure (GV.VT-5), and audit-trail completeness (GV.VT-4), positions the registry's pricing requirement as part of a broader procurement-time transparency regime rather than an isolated commercial item.</p>
+</blockquote>
+<hr />
+<h3 id="gv-vt-15">GV.VT-15 🟢 Retirement Notification Compliance<a class="headerlink" href="#gv-vt-15" title="Permanent link">&para;</a></h3>
+<p>Whether the vendor provides advance notice of AVT product retirement, end-of-life, or feature withdrawal, with sufficient lead time for deployers to plan transition. Distinct from <a href="#gv-vt-1">GV.VT-1 Model Change Notification Compliance</a> (which covers updates to a continuing product) and from <a href="#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a> (which covers contractual exit clauses): this metric measures whether the vendor <em>actually notifies</em> deployers when retirement is imminent, separately from whether the contract says they should.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reference</strong></td>
+<td>GV.VT-15</td>
+</tr>
+<tr>
+<td><strong>Priority Tier</strong></td>
+<td>🟢 Tier 1 - Minimum Viable</td>
+</tr>
+<tr>
+<td><strong>Measurement Cadence</strong></td>
+<td>One-off gate + per-event</td>
+</tr>
+<tr>
+<td><strong>Pipeline Layer</strong></td>
+<td>Cross-cutting</td>
+</tr>
+<tr>
+<td><strong>Assurance Question</strong></td>
+<td>Safety</td>
+</tr>
+<tr>
+<td><strong>Measurement Method</strong></td>
+<td>Human Review</td>
+</tr>
+<tr>
+<td><strong>Lifecycle Phases</strong></td>
+<td>Pre-deployment, Continuous</td>
+</tr>
+<tr>
+<td><strong>Responsible Actors</strong></td>
+<td>Vendor</td>
+</tr>
+<tr>
+<td><strong>Maturity</strong></td>
+<td>Emerging</td>
+</tr>
+<tr>
+<td><strong>Outcome Type</strong></td>
+<td>Distal</td>
+</tr>
+<tr>
+<td><strong>Applicability</strong></td>
+<td>General Healthcare AI</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td>Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from <code>_gaps.md</code> P5-Lifecycle "Decommissioning plan" entry</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Applicability:</strong> 🌐 <a href="../../crosscuts/by-applicability/general/">General Healthcare AI</a></p>
+<p><strong>Why this tier?</strong></p>
+<blockquote>
+<p>Vendor retirement creates regulatory and clinical-safety exposure: a deployment that loses its underlying product without warning is a continuity-of-care event. The notification is the part of retirement that vendors most often elide; making it a Tier 1 procurement requirement gives deployers the lead time to plan transition, satisfy DCB0160 retirement provisions, and trigger the data-handling compliance (<a href="../privacy-data-governance/#gv-pd-16">GV.PD-16 Decommissioning Data Handling Compliance</a>) and historical-output continuity (<a href="../operational/#gv-op-14">GV.OP-14 Historical Output Continuity</a>) workflows.</p>
+</blockquote>
+<p><strong>Formal Definition</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Compliance gate = vendor&#39;s procurement contract specifies (a) minimum notice period before retirement / EOL / feature-withdrawal, (b) what triggers the notification, and (c) the named deployer contact.
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>Per-event compliance = (notification_received AND notification_lead_time ≥ contracted_lead_time AND notification_content_complete) for every retirement event affecting the deployment.
+<a id="__codelineno-10-4" name="__codelineno-10-4" href="#__codelineno-10-4"></a>
+<a id="__codelineno-10-5" name="__codelineno-10-5" href="#__codelineno-10-5"></a>Notification content (mandatory): (i) what is being retired (product, feature, integration); (ii) effective retirement date; (iii) reason (commercial, regulatory, technical); (iv) recommended migration path / successor product if any; (v) deployer-side actions required (data handling per GV.PD-16, historical-output continuity per GV.OP-14, contract notice per GV.VT-6).
+</code></pre></div>
+<p><strong>Reference Standard</strong></p>
+<blockquote>
+<p>Vendor's signed procurement contract paired with retirement-event log (where applicable). "Retirement" includes end-of-life of the entire AVT product, withdrawal of a feature critical to the deployment (e.g. a specific specialty configuration), withdrawal of an integration (e.g. EPR connector), or unscheduled service termination outside the standard upgrade cycle. Distinguish from major version changes covered by <a href="#gv-vt-1">GV.VT-1 Model Change Notification Compliance</a> — version changes leave the product in continuing use; retirement removes it.</p>
+</blockquote>
+<p><strong>Operational Specification</strong></p>
+<blockquote>
+<ul>
+<li><strong>Window:</strong> procurement contract review (one-off gate); per-event tracking when retirement events occur.</li>
+<li><strong>Three sub-metrics MANDATORY:</strong> (a) contractual coverage (gate — does the contract specify lead time, triggers, and notification content?); (b) lead-time compliance (per-event — was the actual notice ≥ contracted lead time?); (c) content completeness (per-event — were all five mandatory content elements present?).</li>
+<li><strong>Five mandatory content elements per notification:</strong> what / when / why / migration-path / deployer-actions. Notifications missing any element count as non-compliant regardless of timing.</li>
+<li><strong>Cross-link to deployer workflows MANDATORY:</strong> every retirement notification triggers (i) <a href="../privacy-data-governance/#gv-pd-16">GV.PD-16 Decommissioning Data Handling Compliance</a> procedure; (ii) <a href="../operational/#gv-op-14">GV.OP-14 Historical Output Continuity</a> procedure; (iii) <a href="#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a> data-portability execution. The notification is the fan-out trigger for these three downstream metrics.</li>
+<li><strong>Failure-mode logging:</strong> any retirement event where notification was absent, late, or incomplete logged with deployer-side accepted-risk decision and reportable to the deployer's IG file.</li>
+</ul>
+</blockquote>
+<p><strong>Threshold Guidance</strong></p>
+<blockquote>
+<p>⚠️ <strong>Provenance:</strong> the contractual-gate framing carries from <a href="#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a> and the v3.4 <code>_gaps.md</code> P5-Lifecycle "Decommissioning plan" entry. Specific lead-time thresholds (≥ 12 months notice for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal, 100 % content-element gate) are <strong>proposed in v4.0.2 as starting points</strong>, not externally validated. The lead-time numbers are calibrated to typical NHS procurement cycle and DCB0160 retirement-provisioning timelines but require local calibration before contractual use.</p>
+<ul>
+<li><strong>Pre-deployment gate (procurement):</strong> vendor contract specifies minimum lead times (≥ 12 months for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal); five-element notification content schema committed; named deployer contact recorded.</li>
+<li><strong>Continuous monitoring:</strong> every retirement event triggers logging of (a) notification received yes/no, (b) lead-time delivered, (c) content-completeness rate. Aggregate compliance reported per contract year.</li>
+<li><strong>Pause / escalation trigger:</strong> any retirement event with no prior notification (single instance — this is a contract-breach event); OR notification &lt; 50 % of contracted lead time; OR content-completeness &lt; 80 % on a single notification.</li>
+</ul>
+</blockquote>
+<p><strong>Limitations</strong></p>
+<blockquote>
+<p>Vendor retirement events are rare (most vendors do not retire AVT products on a routine cadence), which means per-event compliance data is sparse. The contractual-gate sub-metric is the load-bearing measurement; the per-event sub-metrics activate only when retirement events occur. Vendor failure modes around retirement (silent EOL via "we no longer support this configuration" rather than formal retirement) require the deployer's IG team to pattern-match on de-facto retirement signals, which is a qualitative judgement; the metric makes this visible but does not eliminate the judgement call.</p>
+<p>Distinct from but related to <a href="#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a> which measures <em>whether the contract has the right exit clauses</em>; this metric measures <em>whether the vendor uses them in good faith when retirement comes</em>. Both are needed; neither is sufficient.</p>
+</blockquote>
+<p><strong>Novel Thinking / Implications</strong></p>
+<blockquote>
+<p>💡 Vendor retirement is the failure mode the AVT procurement landscape has not yet faced at scale. The first few cases — a vendor exits the market, a vendor pivots away from primary care, a vendor deprecates a specialty configuration — will set the precedent for what "good notification practice" looks like. Treating retirement notification as Tier 1 from now means deployers writing procurement contracts today specify the lead times and content requirements explicitly, rather than discovering at retirement time that their contract is silent on what notice they're owed.</p>
 </blockquote>
 
 

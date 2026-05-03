@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3740,7 +3740,7 @@
 <p>💡 Concept mapping is where most structured data failures occur in ambient scribes. The surface text can look correct while the underlying code points to a subtly different concept. A clinician reviewing the free-text note won't notice that the coded entry resolves to "chest discomfort" rather than "chest pain" - but the downstream analytics, safety alerts, and QOF calculations will.</p>
 </blockquote>
 <h3 id="tp-cc-3">TP.CC-3 🟡 ICD-10 / ICD-11 Full-Specificity Precision<a class="headerlink" href="#tp-cc-3" title="Permanent link">&para;</a></h3>
-<p>Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity - the difference representing systematic specificity errors that aggregate metrics hide.</p>
+<p>Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Empirical specificity degradation — reduction in accuracy when moving from category-level to full-specificity coding — is well-documented in clinical-coding NLP literature; vendors should report at multiple specificity levels rather than aggregate accuracy alone, because the difference between 3-character and full-specificity accuracy represents systematic specificity errors that aggregate metrics hide.</p>
 <table>
 <thead>
 <tr>
@@ -3805,7 +3805,9 @@
 <p>Vendor pre-deployment. Should be reported at multiple specificity levels (3-char, 4-char, full). Important for secondary care deployment and research data quality.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. Values &gt; 10 percentage points indicate the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. The taxonomy-proposed alert threshold is Specificity Degradation &gt; 10 percentage points indicating the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>⚠️ Provenance: the 10-percentage-point degradation threshold is taxonomy-proposed in v4.2 as a starting-point gate, not externally validated. Per the Calibration &amp; Context principle, require local calibration before contractual use — what counts as acceptable specificity degradation depends on the deployment&#39;s downstream uses (epidemiological analytics tolerate more aggregation than tariff-relevant coding).
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4247,7 +4249,7 @@
 <blockquote>
 <p>💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.</p>
 </blockquote>
-<p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../fairness-equity/#io-fe-1">IO.FE-1 Deployment Equity Index</a> · <a href="../fairness-equity/#io-fe-2">IO.FE-2 Accent Taxonomy Standardisation</a> · <a href="../fairness-equity/#io-fe-3">IO.FE-3 Clinical Domain Performance Variance</a> · <a href="../fairness-equity/#io-fe-4">IO.FE-4 Intersectional Performance</a> · <a href="../fairness-equity/#io-fe-5">IO.FE-5 Intersectional Compound Fairness Score</a> · <a href="../fairness-equity/#io-fe-6">IO.FE-6 Rare Presentation Handling</a></p>
+<p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../fairness-equity/#io-fe-1">IO.FE-1 Deployment Equity Index</a> · <a href="../fairness-equity/#io-fe-2">IO.FE-2 Accent Taxonomy Standardisation</a> · <a href="../fairness-equity/#io-fe-3">IO.FE-3 Clinical Domain Performance Variance</a> · <a href="../fairness-equity/#io-fe-4">IO.FE-4 Intersectional Performance</a> · <a href="../fairness-equity/#io-fe-5">IO.FE-5 Intersectional Compound Disadvantage Score</a> · <a href="../fairness-equity/#io-fe-6">IO.FE-6 Rare Presentation Handling</a></p>
 <h3 id="tp-cc-10">TP.CC-10 🔵 HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)<a class="headerlink" href="#tp-cc-10" title="Permanent link">&para;</a></h3>
 <p>Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to <strong>HRG (Healthcare Resource Group) tariffs under Payment by Results (PbR)</strong>, QOF achievement, and secondary-care activity-based funding. The US analogue is <strong>wRVU</strong> (work Relative Value Units in CMS Medicare); the underlying causal-attribution methodology applies in both contexts but the framing focus and tariff structures differ. v3.7 reframes this metric as NHS-primary with the US wRVU analogue called out for cross-context comparison.</p>
 <table>

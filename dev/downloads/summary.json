@@ -1,10 +1,10 @@
 {
   "status": "ai-coauthored-prototype-for-discussion",
-  "version": "v4.0.0",
-  "metric_count": 218,
+  "version": "v4.2.0",
+  "metric_count": 221,
   "tier_counts": {
-    "1": 43,
-    "2": 96,
+    "1": 45,
+    "2": 97,
     "3": 79
   },
   "group_count": 20,

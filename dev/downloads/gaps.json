@@ -552,18 +552,18 @@
       "title": "Decommissioning plan",
       "origin": "rai-principle",
       "tier": null,
-      "severity": "Medium",
+      "severity": null,
       "source": "DSIT AI Playbook",
-      "notes": "-"
+      "notes": "Promoted in v4.1: GV.PD-16 (data handling), GV.OP-14 (output continuity), GV.VT-15 (retirement notification)"
     },
     {
       "gap_id": null,
       "title": "Model retirement criteria",
       "origin": "rai-principle",
       "tier": null,
-      "severity": "Low",
+      "severity": null,
       "source": "DSIT AI Playbook",
-      "notes": "-"
+      "notes": "Promoted in v4.1 alongside decommissioning plan (GV.VT-15 covers vendor-side retirement triggers/notification)"
     },
     {
       "gap_id": null,

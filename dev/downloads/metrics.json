@@ -1,8 +1,8 @@
 {
-  "version": "v4.0.0",
+  "version": "v4.2.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
-  "metric_count": 218,
+  "metric_count": 221,
   "metrics": [
     {
       "ref_id": "TP.AC-1",
@@ -56,7 +56,7 @@
         "Source": "Standard speech processing; critical for clinical AVT given variable environment"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 70
+      "heading_line": 72
     },
     {
       "ref_id": "TP.AC-3",
@@ -83,7 +83,7 @@
         "Source": "Proposed - extends validated use envelope concept to acoustic conditions"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 109
+      "heading_line": 111
     },
     {
       "ref_id": "TP.AC-4",
@@ -110,7 +110,7 @@
         "Source": "Identified in NHSE IG guidance on ambient scribing privacy implications; CQC Mythbuster 109 context"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 148
+      "heading_line": 152
     },
     {
       "ref_id": "TP.AC-5",
@@ -137,7 +137,7 @@
         "Source": "Standard audio hardware validation; vendor deployment requirements"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 187
+      "heading_line": 191
     },
     {
       "ref_id": "TP.AC-6",
@@ -164,7 +164,7 @@
         "Source": "Standard speech processing; particularly relevant for clinical consultations"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 222
+      "heading_line": 228
     },
     {
       "ref_id": "TP.AC-7",
@@ -191,7 +191,7 @@
         "Source": "Standard audio engineering"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 261
+      "heading_line": 267
     },
     {
       "ref_id": "TP.AC-8",
@@ -218,7 +218,7 @@
         "Source": "Standard audio engineering; vendor minimum specifications"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 316
+      "heading_line": 324
     },
     {
       "ref_id": "TP.AC-9",
@@ -245,7 +245,7 @@
         "Source": "Proposed - extends hardware validation to ongoing monitoring"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 355
+      "heading_line": 363
     },
     {
       "ref_id": "TP.ASR-1",
@@ -326,7 +326,7 @@
         "Source": "[OxonFair-2024] (healthcare voice fairness extension; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 140
+      "heading_line": 143
     },
     {
       "ref_id": "TP.ASR-4",
@@ -353,7 +353,7 @@
         "Source": "[NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 231
+      "heading_line": 234
     },
     {
       "ref_id": "TP.ASR-5",
@@ -380,7 +380,7 @@
         "Source": "[OxonFair-2024] (extension analysis; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 302
+      "heading_line": 305
     },
     {
       "ref_id": "TP.ASR-6",
@@ -407,7 +407,7 @@
         "Source": "Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 345
+      "heading_line": 348
     },
     {
       "ref_id": "TP.ASR-7",
@@ -434,7 +434,7 @@
         "Source": "Standard ASR performance metric"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 382
+      "heading_line": 385
     },
     {
       "ref_id": "TP.ASR-8",
@@ -461,7 +461,7 @@
         "Source": "Standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 417
+      "heading_line": 420
     },
     {
       "ref_id": "TP.ASR-9",
@@ -488,7 +488,7 @@
         "Source": "Standard speech recognition literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 473
+      "heading_line": 476
     },
     {
       "ref_id": "TP.ASR-10",
@@ -515,7 +515,7 @@
         "Source": "Machine learning calibration literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 512
+      "heading_line": 515
     },
     {
       "ref_id": "TP.ASR-11",
@@ -542,7 +542,7 @@
         "Source": "Derived from Abridge Linked Evidence architecture; confidence-based routing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 557
+      "heading_line": 560
     },
     {
       "ref_id": "TP.ASR-12",
@@ -569,7 +569,7 @@
         "Source": "[Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 598
+      "heading_line": 601
     },
     {
       "ref_id": "TP.ASR-13",
@@ -596,7 +596,7 @@
         "Source": "Identified as critical gap in clinical ASR evaluation"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 665
+      "heading_line": 668
     },
     {
       "ref_id": "TP.ASR-14",
@@ -623,7 +623,7 @@
         "Source": "Standard ASR post-processing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 732
+      "heading_line": 735
     },
     {
       "ref_id": "TP.DI-1",
@@ -785,7 +785,7 @@
         "Source": "[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 226
+      "heading_line": 228
     },
     {
       "ref_id": "TP.DI-7",
@@ -812,11 +812,11 @@
         "Source": "[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 265
+      "heading_line": 267
     },
     {
       "ref_id": "TP.DI-8",
-      "name": "Clinical-Perspective HEWER (cpHEWER)",
+      "name": "Clinician-Preferred HEWER (cpHEWER)",
       "tier": 3,
       "tier_label": "Advanced / Research",
       "tier_icon": "🔵",
@@ -839,7 +839,7 @@
         "Source": "[mpathic-Clinical-ASR-Benchmark-2025]"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 304
+      "heading_line": 306
     },
     {
       "ref_id": "TP.DI-9",
@@ -866,7 +866,7 @@
         "Source": "Multi-party dialogue research; pragmatics literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 343
+      "heading_line": 355
     },
     {
       "ref_id": "TP.SN-1",
@@ -971,10 +971,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "[Asgari-Tortus-GOSH-2025]. Now underpins automated guardrails."
+        "Source": "[Asgari-Tortus-2025]. Now underpins automated guardrails."
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 172
+      "heading_line": 167
     },
     {
       "ref_id": "TP.SN-5",
@@ -998,10 +998,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "Various; [Asgari-Tortus-GOSH-2025] reports 1.47% per sentence"
+        "Source": "Various; [Asgari-Tortus-2025] reports 1.47% per sentence"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 244
+      "heading_line": 245
     },
     {
       "ref_id": "TP.SN-6",
@@ -1025,10 +1025,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "[Asgari-Tortus-GOSH-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy]"
+        "Source": "[Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 338
+      "heading_line": 339
     },
     {
       "ref_id": "TP.SN-7a",
@@ -1055,7 +1055,7 @@
         "Source": "[Abridge-Whitepaper-2025] (50,000+ training examples)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 441
+      "heading_line": 442
     },
     {
       "ref_id": "TP.SN-7b",
@@ -1082,7 +1082,7 @@
         "Source": "[Chung-NEJM-AI-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 486
+      "heading_line": 497
     },
     {
       "ref_id": "TP.SN-9a",
@@ -1109,7 +1109,7 @@
         "Source": "[Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 594
+      "heading_line": 609
     },
     {
       "ref_id": "TP.SN-9b",
@@ -1136,7 +1136,7 @@
         "Source": "[Bedi-Stanford-CRFM-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 641
+      "heading_line": 652
     },
     {
       "ref_id": "TP.SN-11",
@@ -1163,7 +1163,7 @@
         "Source": "[Kanithi-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 684
+      "heading_line": 695
     },
     {
       "ref_id": "TP.SN-12",
@@ -1190,7 +1190,7 @@
         "Source": "architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 727
+      "heading_line": 738
     },
     {
       "ref_id": "TP.SN-13",
@@ -1217,7 +1217,7 @@
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 770
+      "heading_line": 781
     },
     {
       "ref_id": "TP.SN-14",
@@ -1244,7 +1244,7 @@
         "Source": "[INSYTE-2025]; [DCB0129] gap"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 813
+      "heading_line": 824
     },
     {
       "ref_id": "TP.SN-15",
@@ -1271,7 +1271,7 @@
         "Source": "Clinical NLP literature; identified as systematic LLM failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 856
+      "heading_line": 867
     },
     {
       "ref_id": "TP.SN-16",
@@ -1298,7 +1298,7 @@
         "Source": "Clinical NLP literature on temporal expression extraction"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 921
+      "heading_line": 932
     },
     {
       "ref_id": "TP.SN-17",
@@ -1322,10 +1322,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "[i2b2-2012-Temporal-Challenge] (F1 0.876 state of art); clinical temporal reasoning literature"
+        "Source": "[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 960
+      "heading_line": 971
     },
     {
       "ref_id": "TP.SN-18",
@@ -1352,7 +1352,7 @@
         "Source": "Identified as systematic LLM summarisation failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 997
+      "heading_line": 1008
     },
     {
       "ref_id": "TP.SN-19",
@@ -1376,10 +1376,10 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "[n2c2-Shared-Tasks] benchmarks (attribute-level F1 >0.92 for strong systems)"
+        "Source": "[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1050
+      "heading_line": 1061
     },
     {
       "ref_id": "TP.SN-20",
@@ -1406,7 +1406,7 @@
         "Source": "Clinical NLP hedging/uncertainty literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1087
+      "heading_line": 1100
     },
     {
       "ref_id": "TP.SN-21",
@@ -1430,10 +1430,10 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
-        "Source": "[n2c2-Shared-Tasks] (2018 shared task on medication event classification)"
+        "Source": "[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1158
+      "heading_line": 1171
     },
     {
       "ref_id": "TP.SN-22",
@@ -1460,7 +1460,7 @@
         "Source": "Human factors literature on documentation consistency"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1195
+      "heading_line": 1210
     },
     {
       "ref_id": "TP.SN-23",
@@ -1487,7 +1487,7 @@
         "Source": "Identified as quality dimension not captured by accuracy metrics"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1234
+      "heading_line": 1249
     },
     {
       "ref_id": "TP.SN-24",
@@ -1514,7 +1514,7 @@
         "Source": "[Himmelstein-Stigmatising-EHR-JAMA-2022]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1275
+      "heading_line": 1290
     },
     {
       "ref_id": "TP.CC-1",
@@ -1622,7 +1622,7 @@
         "Source": "[NHS-Digital-OPCS-4]; gap identified in published AVT literature"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 114
+      "heading_line": 116
     },
     {
       "ref_id": "TP.CC-5",
@@ -1649,7 +1649,7 @@
         "Source": "[NHS-BSA-dm-plus-d]; gap identified in published AVT literature"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 151
+      "heading_line": 153
     },
     {
       "ref_id": "TP.CC-6",
@@ -1676,7 +1676,7 @@
         "Source": "[Hybrid-Code-v2-2026] (neuro-symbolic verification approach)"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 190
+      "heading_line": 192
     },
     {
       "ref_id": "TP.CC-7",
@@ -1703,7 +1703,7 @@
         "Source": "NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 246
+      "heading_line": 248
     },
     {
       "ref_id": "TP.CC-9",
@@ -1730,7 +1730,7 @@
         "Source": "Extension of existing Deployment Equity Index to coding dimension"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 321
+      "heading_line": 323
     },
     {
       "ref_id": "TP.CC-10",
@@ -1757,7 +1757,7 @@
         "Source": "Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 358
+      "heading_line": 360
     },
     {
       "ref_id": "TP.CC-11",
@@ -1784,7 +1784,7 @@
         "Source": "[SNOMED-CT] hierarchy semantics; clinical audit methodology"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 395
+      "heading_line": 397
     },
     {
       "ref_id": "TP.CC-12",
@@ -1811,7 +1811,7 @@
         "Source": "Standard latency metric"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 434
+      "heading_line": 436
     },
     {
       "ref_id": "TP.WB-1",
@@ -3462,7 +3462,7 @@
     },
     {
       "ref_id": "IO.FE-5",
-      "name": "Intersectional Compound Fairness Score",
+      "name": "Intersectional Compound Disadvantage Score",
       "tier": 3,
       "tier_label": "Advanced / Research",
       "tier_icon": "🔵",
@@ -3482,7 +3482,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
-        "Source": "[FAIR-MED-Springer-2025] (Bias Detection and Fairness Evaluation in Healthcare Focused XAI)"
+        "Source": "Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)"
       },
       "group_file": "io/fairness-equity.md",
       "heading_line": 155
@@ -3512,7 +3512,7 @@
         "Source": "Long-tail performance analysis from machine learning literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 192
+      "heading_line": 194
     },
     {
       "ref_id": "IO.FE-7",
@@ -3539,7 +3539,7 @@
         "Source": "Health literacy and equity research"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 231
+      "heading_line": 233
     },
     {
       "ref_id": "IO.FE-8",
@@ -3566,7 +3566,7 @@
         "Source": "Extension of existing Cross-Practice Variance Coefficient into equity dimension"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 272
+      "heading_line": 274
     },
     {
       "ref_id": "GV.SG-1",
@@ -4919,6 +4919,33 @@
       "heading_line": 490
     },
     {
+      "ref_id": "GV.PD-16",
+      "name": "Decommissioning Data Handling Compliance",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "AVT-Contextualised",
+      "dimensions": {
+        "Reference": "GV.PD-16",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "One-off gate + per-event",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor, Deployer",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "AVT-Contextualised",
+        "Source": "Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; [DCB0160] Stage 7 (decommissioning)"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 555
+    },
+    {
       "ref_id": "GV.OP-1",
       "name": "Documentation Time per Consultation",
       "tier": 1,
@@ -5160,6 +5187,33 @@
       },
       "group_file": "gv/operational.md",
       "heading_line": 336
+    },
+    {
+      "ref_id": "GV.OP-14",
+      "name": "Historical Output Continuity",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Operational",
+      "applicability": "AVT-Contextualised",
+      "dimensions": {
+        "Reference": "GV.OP-14",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "One-off gate + per-event",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Operational",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor, Deployer",
+        "Maturity": "Emerging",
+        "Outcome Type": "Distal",
+        "Applicability": "AVT-Contextualised",
+        "Source": "Promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; complements [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) and [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16)"
+      },
+      "group_file": "gv/operational.md",
+      "heading_line": 372
     },
     {
       "ref_id": "GV.EN-1",
@@ -5648,6 +5702,33 @@
       "heading_line": 468
     },
     {
+      "ref_id": "GV.VT-15",
+      "name": "Retirement Notification Compliance",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.VT-15",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "One-off gate + per-event",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Distal",
+        "Applicability": "General Healthcare AI",
+        "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 546
+    },
+    {
       "ref_id": "ES.ME-1",
       "name": "Proximal vs Distal Outcome Distinction",
       "tier": 3,
@@ -5726,7 +5807,7 @@
         "Source": "Multi-metric evaluation literature"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 89
+      "heading_line": 88
     },
     {
       "ref_id": "ES.ME-4",
@@ -5753,7 +5834,7 @@
         "Source": "Goodhart's Law applied to clinical AI metrics"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 128
+      "heading_line": 127
     },
     {
       "ref_id": "ES.ME-5",
@@ -5780,7 +5861,7 @@
         "Source": "Standard safety engineering coverage analysis"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 167
+      "heading_line": 166
     },
     {
       "ref_id": "ES.ME-6",
@@ -5804,10 +5885,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
-        "Source": "[Croxford-2025] (npj Digital Medicine)"
+        "Source": "[Croxford-2025]; [Croxford-PDSQI9-JAMIA-2025]"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 206
+      "heading_line": 205
     },
     {
       "ref_id": "ES.ME-7",
@@ -5831,10 +5912,10 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
-        "Source": "Standard meta-evaluation methodology; [Croxford-2025] (ROUGE Kendall-Tau 0.080)"
+        "Source": "Standard meta-evaluation methodology; [Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 245
+      "heading_line": 244
     },
     {
       "ref_id": "ES.ME-8",
@@ -5861,7 +5942,7 @@
         "Source": "This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368]"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 284
+      "heading_line": 283
     },
     {
       "ref_id": "ES.ME-9",
@@ -5888,7 +5969,7 @@
         "Source": "This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique)"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 335
+      "heading_line": 334
     }
   ]
 }

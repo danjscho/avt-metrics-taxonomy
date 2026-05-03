@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3691,20 +3691,19 @@
 <p>Research calibration baseline. Essential for interpreting automated metrics but an academic activity, not a deployer responsibility.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Cohen&#39;s κ (k=2) or Fleiss&#39; κ (k&gt;2). ICC(2,1) for continuous ratings. VeriFact: 92.7% vs 88.5% inter-clinician. MedHELM: ICC 0.47 vs 0.43.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a>Cohen&#39;s κ (k=2) or Fleiss&#39; κ (k&gt;2). ICC(2,1) for continuous ratings. Reference points from published validation work (instrument-specific):
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a>  - VeriFact (LLM fact-verification): 92.7% agreement vs 88.5% clinician-clinician ([Chung-NEJM-AI-2025])
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a>  - MedHELM (LLM-jury): ICC 0.47 vs clinician-clinician ICC 0.43 ([Bedi-Stanford-CRFM-2025])
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a>  - PDSQI-9 (human raters on LLM-generated summaries): ICC 0.867 ([Croxford-PDSQI9-JAMIA-2025], 779 summaries, 7 raters)
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a>The ceiling against which to compare an automated metric depends on the instrument the comparison is made through.
 </code></pre></div>
-<p><strong>References</strong></p>
-<ul>
-<li><strong>VeriFact</strong>: <a href="https://ai.nejm.org/doi/full/10.1056/AIdbp2500418">Chung et al. (2025)</a></li>
-<li><strong>MedHELM</strong>: <a href="https://arxiv.org/abs/2505.23802">Bedi et al. (2025)</a></li>
-</ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
-<p>Clinicians don't agree with each other. Any metric inherits this ceiling.</p>
+<p>Clinicians don't agree with each other. Any metric inherits this ceiling. The ceiling itself is instrument-dependent — high (PDSQI-9 ICC 0.867) on rubric-style instruments, lower on free-form clinical-judgment tasks (MedHELM 0.43, AnnoMI 88.5%). When an automated metric reportedly <em>exceeds</em> the human-human ceiling, the question is which: better than humans, or correlated-blindspot bias against the same human-induced noise. See <a href="#es-me-6">ES.ME-6 LLM-Judge Bias Quantification</a> and <a href="#es-me-7">ES.ME-7 Automated-Human Metric Concordance</a> for the meta-evaluation pathway.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
-<p>💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way?</p>
+<p>💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way? The asymmetry matters because LLM-judge concordance with humans is the most cited validation evidence in clinical-NLG literature, and v4.2 source verification surfaced multiple cases where headline ICC numbers attributed to specific papers turned out not to be in those papers. Treat ICC against humans as a necessary but not sufficient validation signal.</p>
 </blockquote>
 <hr />
 <h3 id="es-me-3">ES.ME-3 🔵 Metric Interaction Analysis<a class="headerlink" href="#es-me-3" title="Permanent link">&para;</a></h3>
@@ -3940,7 +3939,7 @@
 </blockquote>
 <hr />
 <h3 id="es-me-6">ES.ME-6 🔵 LLM-Judge Bias Quantification<a class="headerlink" href="#es-me-6" title="Permanent link">&para;</a></h3>
-<p>Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.</p>
+<p>Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. Some LLM-judge studies report high ICC with human evaluators (e.g. clinical-summarisation work in npj Health Systems / JAMIA validation studies, where PDSQI-9-style rubric instruments have human-human ICC ceilings around 0.867 and LLM-judge configurations have been evaluated against that ceiling) — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.</p>
 <table>
 <thead>
 <tr>
@@ -3995,7 +3994,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#croxford-2025">Croxford-2025</a> (npj Digital Medicine)</td>
+<td><a href="../../references/#croxford-2025">Croxford-2025</a>; <a href="../../references/#croxford-pdsqi9-jamia-2025">Croxford-PDSQI9-JAMIA-2025</a></td>
 </tr>
 </tbody>
 </table>
@@ -4017,7 +4016,7 @@
 </blockquote>
 <hr />
 <h3 id="es-me-7">ES.ME-7 🔵 Automated-Human Metric Concordance<a class="headerlink" href="#es-me-7" title="Permanent link">&para;</a></h3>
-<p>Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure - but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.</p>
+<p>Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but published evidence shows ROUGE and other string-similarity metrics correlate near-zero with expert clinical judgment in clinical summarisation (<a href="../../references/#croxford-2025">Croxford-2025</a> review; <a href="../../references/#benabacha-evalmetrics-2023">BenAbacha-EvalMetrics-2023</a> on automated medical-note evaluation metrics). The assumption of metric-judgment alignment can be wildly wrong.</p>
 <table>
 <thead>
 <tr>
@@ -4072,7 +4071,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Standard meta-evaluation methodology; <a href="../../references/#croxford-2025">Croxford-2025</a> (ROUGE Kendall-Tau 0.080)</td>
+<td>Standard meta-evaluation methodology; <a href="../../references/#croxford-2025">Croxford-2025</a> review; <a href="../../references/#benabacha-evalmetrics-2023">BenAbacha-EvalMetrics-2023</a> on automated medical-note evaluation metrics</td>
 </tr>
 </tbody>
 </table>
@@ -4267,7 +4266,7 @@
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>
-<p>Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that <em>looks</em> coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with <a href="#es-me-7">ES.ME-7 Automated-Human Metric Concordance</a> for the proximal links and <a href="#es-me-8">ES.ME-8 Outcome Evidence Commitment Status</a> for the distal evidence.</p>
+<p>Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that <em>looks</em> coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use that has been shown to correlate near-zero with expert clinical judgment despite continued use as a vendor benchmark). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with <a href="#es-me-7">ES.ME-7 Automated-Human Metric Concordance</a> for the proximal links and <a href="#es-me-8">ES.ME-8 Outcome Evidence Commitment Status</a> for the distal evidence.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>

@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3608,7 +3608,9 @@
 <p>Valuable continuous quality signal but requires audio analysis tooling most deployers don't have. Vendor should provide.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SNR = 10 × log₁₀(P_signal / P_noise) in dB. Measured per consultation segment. Thresholds: &gt;20dB = good; 10–20dB = acceptable with quality warning; &lt;10dB = AVT should warn or pause. Report distribution across encounters, not just mean.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>SNR = 10 × log₁₀(P_signal / P_noise) in dB. Measured per consultation segment. Taxonomy-proposed threshold tiers: &gt;20dB = good; 10–20dB = acceptable with quality warning; &lt;10dB = AVT should warn or pause. Report distribution across encounters, not just mean.
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>⚠️ Provenance: the underlying SNR formula is standard audio engineering; the specific threshold tiers (&gt;20 / 10–20 / &lt;10 dB) are taxonomy-proposed engineering defaults, not externally validated for AVT-specific deployment. Per the Calibration &amp; Context principle, require local calibration against the deployment&#39;s microphone setup and clinical acoustic environment.
 </code></pre></div>
 <p><strong>Code: SNR estimation from audio</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -3789,7 +3791,9 @@
 <p>Deployer should characterise their acoustic environment at setup to confirm it falls within the vendor's validated conditions.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, speaker_distance_range, microphone_type]. Validated envelope V = vendor&#39;s tested conditions. Environment gap G = distance(actual_profile, V). G &gt; threshold → environment outside validated envelope.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, speaker_distance_range, microphone_type]. Validated envelope V = vendor&#39;s tested conditions. Environment gap G = component-wise tolerance check (does each measured component fall within the vendor&#39;s validated range?), not a single Euclidean distance over heterogeneous units. G failing on any component → environment outside validated envelope on that dimension.
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>⚠️ Provenance: the profile-vector composition and the component-wise tolerance approach are taxonomy-proposed; vendor-validated envelopes are deployment-specific and must come from vendor documentation. The &quot;envelope&quot; framing is the substantive idea; the specific operationalisation is calibration work the deployer + vendor jointly own.
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3945,6 +3949,8 @@
 </blockquote>
 <p><strong>Formal Definition</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>Hardware compliance checklist: (1) Frequency response 100Hz–8kHz minimum; (2) Sensitivity within vendor spec; (3) Placement within validated distance range; (4) Connectivity uptime &gt;99.9% during sessions. Binary pass/fail per criterion.
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a>⚠️ Provenance: the 100Hz–8kHz frequency range and 99.9% uptime targets are taxonomy-proposed engineering defaults — reasonable for clinical-speech capture against modern hardware norms, but not externally validated as procurement gates. Per the Calibration &amp; Context principle, require local calibration; specifically, vendor-spec frequency-response and uptime requirements should drive the contract, not these defaults. **TP.AC-5 is currently a Tier 1 metric without the full Reference Standard / Operational Specification / Threshold Guidance tightening pattern; promotion is queued for a future release** alongside the broader threshold-recommendation review (plan-future #8).
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4025,7 +4031,7 @@
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
-<p>💡 Real consultations have 5-15% overlap rates depending on style. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question - what conditions was the system validated under?</p>
+<p>💡 Real consultations contain meaningful overlap — back-channels, interruptions, simultaneous speech during family-present encounters — at rates that vary by consultation style and specialty. Specific overlap-rate ranges in dialogue research are reported at single digits to mid-teens of percent, but ranges vary widely by recording protocol and definition. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question — what conditions was the system validated under, and what overlap rate should the deployer expect in their consultation style?</p>
 </blockquote>
 <hr />
 <h3 id="tp-ac-7">TP.AC-7 🟡 Audio Clipping / Saturation Rate<a class="headerlink" href="#tp-ac-7" title="Permanent link">&para;</a></h3>
@@ -4094,7 +4100,9 @@
 <p>Vendor should monitor and alert. Deployer should be notified when clipping rates exceed threshold so hardware/positioning can be corrected.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Clipping Rate = N_clipped_samples / N_total_samples, where clipped samples are those at or beyond the maximum amplitude (typically +/-32767 for 16-bit). Threshold for alert: &gt;0.1% sustained over 1 second indicates significant content degradation.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>Clipping Rate = N_clipped_samples / N_total_samples, where clipped samples are those at or beyond the maximum amplitude (typically +/-32767 for 16-bit). Taxonomy-proposed alert threshold: &gt;0.1% sustained over 1 second indicates significant content degradation.
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>⚠️ Provenance: the underlying clipping definition is standard audio engineering; the &gt;0.1% / 1-second sustained threshold is a taxonomy-proposed engineering default, not externally validated. Per the Calibration &amp; Context principle, require local calibration against the deployment&#39;s automatic-gain-control behaviour and clinical content sensitivity.
 </code></pre></div>
 <p><strong>Code: Clipping detection</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -4261,7 +4269,9 @@
 <p>Conceptually valuable but requires telemetry infrastructure most vendors don't provide. Better suited for vendor-side implementation.</p>
 </blockquote>
 <p><strong>Formal Definition</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Track baseline audio quality metrics (SNR, frequency response, noise floor) over time. Drift = significant deviation from baseline established at hardware validation. Alert if SNR drops &gt;5dB from baseline or frequency response shifts &gt;10%.
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>Track baseline audio quality metrics (SNR, frequency response, noise floor) over time. Drift = significant deviation from baseline established at hardware validation. Taxonomy-proposed alert thresholds: SNR drops &gt;5dB from baseline OR frequency response shifts &gt;10%.
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>
+<a id="__codelineno-10-3" name="__codelineno-10-3" href="#__codelineno-10-3"></a>⚠️ Provenance: baseline-vs-current drift detection is a standard hardware-monitoring construct; the specific &gt;5dB SNR-drop and &gt;10% frequency-response-shift thresholds are taxonomy-proposed engineering defaults, not externally validated. Per the Calibration &amp; Context principle, require local calibration against the deployment&#39;s hardware lifecycle and clinical-acoustic environment. Source row already correctly says &quot;Proposed - extends hardware validation to ongoing monitoring&quot;.
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>

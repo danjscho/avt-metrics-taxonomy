@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.0.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4008,7 +4008,7 @@
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../human-factors-workflow/#hl-hf-1">HL.HF-1 Edit Rate (% Notes Edited)</a> · <a href="../human-factors-workflow/#hl-hf-17">HL.HF-17 Verification Burden</a> · <a href="../human-factors-workflow/#hl-hf-9">HL.HF-9 Re-record / Abandonment Rate</a> · <a href="../nhs-compliance-regulatory/#gv-cr-1">GV.CR-1 Patient Dissent Recording Rate</a> · <a href="../privacy-data-governance/#gv-pd-10">GV.PD-10 Subject Access Request Fulfilment</a> · <a href="../privacy-data-governance/#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a></p>
 <hr />
 <h3 id="tp-wb-6">TP.WB-6 🟡 FHIR R4 Resource Conformance Rate<a class="headerlink" href="#tp-wb-6" title="Permanent link">&para;</a></h3>
-<p>Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats - but retention is not the same as profile conformance.</p>
+<p>Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. FHIR-structured output generally retains more clinical detail than legacy free-text-only or HL7 v2 formats, but retention is not the same as profile conformance — a record can preserve content while violating the profile that downstream systems rely on.</p>
 <table>
 <thead>
 <tr>
