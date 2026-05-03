@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="./" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4028,7 +4028,7 @@
 <td>Gap-RSET-E</td>
 <td>AI-mediated editing modality integrity</td>
 <td>🟡 2</td>
-<td>Voice/chat-based editing introduces a second hallucination surface on top of the original summarisation. Distinct failure mode not covered by summary-edit metrics (HL.HF-1/2/7).</td>
+<td>Voice/chat-based editing introduces a second hallucination surface on top of the original summarisation. Distinct failure mode not covered by summary-edit metrics (<a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a>/2/7).</td>
 <td>RSET #16</td>
 </tr>
 <tr>
@@ -4070,7 +4070,7 @@
 <td>Gap-RSET-K</td>
 <td>Offline-mode integrity</td>
 <td>🟡 2</td>
-<td>Everyday safety concern when connectivity drops mid-consultation: does the product fail safely, buffer with integrity, or silently degrade? Current GV.OP-5 covers uptime but not offline-mode semantics.</td>
+<td>Everyday safety concern when connectivity drops mid-consultation: does the product fail safely, buffer with integrity, or silently degrade? Current <a href="../groups/operational/#gv-op-5">GV.OP-5</a> covers uptime but not offline-mode semantics.</td>
 <td>RSET #38</td>
 </tr>
 <tr>
@@ -4105,13 +4105,13 @@
 <td>Gap-RSET-A</td>
 <td>Transcript / code review-ergonomics</td>
 <td>(would have been 🟡 2)</td>
-<td>HL.HF-3a Review-Before-Signing Rate and HL.HF-3b Time-to-Sign Distribution (sub-parts of HL.HF-3 Inadequate-Review Detection post-v3.7) already capture whether review happens and how long it takes. "Ergonomics" as a distinct construct is hard to operationalise without subjective instruments; not a pure measurement gap. Revisit only if HL.HF-3 sub-parts prove insufficient in practice.</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-3a">HL.HF-3a</a> Review-Before-Signing Rate and <a href="../groups/human-factors-workflow/#hl-hf-3b">HL.HF-3b</a> Time-to-Sign Distribution (sub-parts of <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Inadequate-Review Detection post-v3.7) already capture whether review happens and how long it takes. "Ergonomics" as a distinct construct is hard to operationalise without subjective instruments; not a pure measurement gap. Revisit only if <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> sub-parts prove insufficient in practice.</td>
 </tr>
 <tr>
 <td>Gap-RSET-B</td>
 <td>Transcript relevance / signal-preservation</td>
 <td>(would have been 🔵 3)</td>
-<td>Most AVT products don't expose the raw transcript to the clinician; measurement would apply to a minority of deployments. Signal-preservation is also already bracketed by TP.SN-6 Omission Rate (summary level) and TP.SN-11 MEDIC Cross-Examination. Narrow additional value.</td>
+<td>Most AVT products don't expose the raw transcript to the clinician; measurement would apply to a minority of deployments. Signal-preservation is also already bracketed by <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission Rate (summary level) and <a href="../groups/summarisation-nlp/#tp-sn-11">TP.SN-11</a> MEDIC Cross-Examination. Narrow additional value.</td>
 </tr>
 <tr>
 <td>Gap-RSET-C</td>
@@ -4144,7 +4144,7 @@
 <td>Gap-IG-A</td>
 <td>Refusal impact-explanation quality</td>
 <td>🟡 2</td>
-<td>NHSE IG explicitly requires clinicians to explain <em>how</em> refusal affects care. We measure recording/respecting dissent (GV.CR-1) but not the quality of the explanation. Periodic audit.</td>
+<td>NHSE IG explicitly requires clinicians to explain <em>how</em> refusal affects care. We measure recording/respecting dissent (<a href="../groups/nhs-compliance-regulatory/#gv-cr-1">GV.CR-1</a>) but not the quality of the explanation. Periodic audit.</td>
 <td>NHSE IG Mar-2026</td>
 </tr>
 <tr>
@@ -4158,14 +4158,14 @@
 <td>Gap-IG-C</td>
 <td>SAR deletion-pause interaction</td>
 <td>🟡 2</td>
-<td>Guidance explicitly requires deletion paused during active SAR handling. GV.PD-2 Audio Time-to-Deletion doesn't test the SAR interaction - the two processes are measured separately today.</td>
+<td>Guidance explicitly requires deletion paused during active SAR handling. <a href="../groups/privacy-data-governance/#gv-pd-2">GV.PD-2</a> Audio Time-to-Deletion doesn't test the SAR interaction - the two processes are measured separately today.</td>
 <td>NHSE IG Mar-2026</td>
 </tr>
 <tr>
 <td>Gap-IG-D</td>
 <td>Right-to-restrict tooling support</td>
 <td>🟡 2</td>
-<td>Restriction is distinct from erasure - data held, marked, not processed. Current GV.PD-11 covers erasure only. IG guidance explicitly requires tool functionality for restriction.</td>
+<td>Restriction is distinct from erasure - data held, marked, not processed. Current <a href="../groups/privacy-data-governance/#gv-pd-11">GV.PD-11</a> covers erasure only. IG guidance explicitly requires tool functionality for restriction.</td>
 <td>NHSE IG Mar-2026</td>
 </tr>
 </tbody>
@@ -4228,13 +4228,13 @@
 </thead>
 <tbody>
 <tr>
-<td>ES.ME-8</td>
+<td><a href="../groups/meta-evaluation/#es-me-8">ES.ME-8</a></td>
 <td>NICE ESF Tier Classification Documentation</td>
 <td>🟢 1</td>
 <td>Whether the AVT deployment is classified as Tier A / B / C with justification. Required before evidence assembly.</td>
 </tr>
 <tr>
-<td>ES.ME-9</td>
+<td><a href="../groups/meta-evaluation/#es-me-9">ES.ME-9</a></td>
 <td>Silent Mode Evaluation Coverage</td>
 <td>🟡 2</td>
 <td>Evidence that AVT was run in silent mode on local data before go-live.</td>
@@ -4255,7 +4255,7 @@
 <td>GV.OP-11</td>
 <td>Budget Impact Analysis Completeness</td>
 <td>🟡 2</td>
-<td>Direct and indirect costs; NHS reference costs; sensitivity analysis. Extends GV.OP-7.</td>
+<td>Direct and indirect costs; NHS reference costs; sensitivity analysis. Extends <a href="../groups/operational/#gv-op-7">GV.OP-7</a>.</td>
 </tr>
 </tbody>
 </table>
@@ -4416,7 +4416,7 @@
 <td>GV.PD-13</td>
 <td>DPIA Justification Quality</td>
 <td>🟡 2</td>
-<td>Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends GV.CR-7 completion metric.</td>
+<td>Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> completion metric.</td>
 </tr>
 <tr>
 <td>GV.CR-14</td>
@@ -4510,14 +4510,14 @@
 <td>Training Data Anonymisation Provenance</td>
 <td>🟡 2</td>
 <td>Section A req 4</td>
-<td>Documented provenance of anonymisation technique applied to AI training data (ICO-aligned). Extends GV.PD-7 Training Data Inclusion Status, which covers inclusion declaration but not anonymisation quality.</td>
+<td>Documented provenance of anonymisation technique applied to AI training data (ICO-aligned). Extends <a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, which covers inclusion declaration but not anonymisation quality.</td>
 </tr>
 <tr>
 <td>GV.OP-13</td>
 <td>Total Cost of Ownership / Formal Economic Evaluation</td>
 <td>🟡 2</td>
 <td>Section B domain 2 (25 pts)</td>
-<td>Formal multi-dimensional economic evaluation including ROI, operational savings, and full TCO. Extends GV.OP-7 (per-consultation cost) and GV.OP-8 (governance burden) with a top-down economic view that T.E.S.T. weights at 25 of 420 points. Distinct from NICE-derived GV.OP-10 (CEA / QALY) and GV.OP-11 (budget impact) - this is an NHS-procurement-framed TCO view.</td>
+<td>Formal multi-dimensional economic evaluation including ROI, operational savings, and full TCO. Extends <a href="../groups/operational/#gv-op-7">GV.OP-7</a> (per-consultation cost) and <a href="../groups/operational/#gv-op-8">GV.OP-8</a> (governance burden) with a top-down economic view that T.E.S.T. weights at 25 of 420 points. Distinct from NICE-derived GV.OP-10 (CEA / QALY) and GV.OP-11 (budget impact) - this is an NHS-procurement-framed TCO view.</td>
 </tr>
 <tr>
 <td>GV.VT-11</td>
@@ -4531,14 +4531,14 @@
 <td>Virtual-Care Modality Stratified Performance</td>
 <td>🔵 3</td>
 <td>Section B domain 9</td>
-<td>Performance stratified by consultation modality (in-person, video, telephone, ambulance triage). Existing IO.FE-1 covers deployment equity by site/setting but not by modality. T.E.S.T. singles out ambulance telephone triage as a distinct high-weight case (10 pts).</td>
+<td>Performance stratified by consultation modality (in-person, video, telephone, ambulance triage). Existing <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> covers deployment equity by site/setting but not by modality. T.E.S.T. singles out ambulance telephone triage as a distinct high-weight case (10 pts).</td>
 </tr>
 <tr>
 <td>GV.VT-12</td>
 <td>Sovereign AI / UK Supply Chain Disclosure</td>
 <td>🔵 3</td>
 <td>Section B domain 12</td>
-<td>Disclosure of whether the vendor and underlying model stack are UK-based (contributing to UK PLC per T.E.S.T. domain 12). Procurement transparency surface. Complements GV.VT-7 Sub-Processor Transparency with sovereignty-specific attribute.</td>
+<td>Disclosure of whether the vendor and underlying model stack are UK-based (contributing to UK PLC per T.E.S.T. domain 12). Procurement transparency surface. Complements <a href="../groups/vendor-transparency-contractual/#gv-vt-7">GV.VT-7</a> Sub-Processor Transparency with sovereignty-specific attribute.</td>
 </tr>
 </tbody>
 </table>
@@ -4594,7 +4594,7 @@
 <td>P1 - Limitations</td>
 <td>Running tally of encountered failure modes over deployment time</td>
 <td>Medium</td>
-<td>Partial via GV.SG-11 / GV.SG-14</td>
+<td>Partial via <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> / <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a></td>
 </tr>
 <tr>
 <td>P2 - Lawful/ethical</td>
@@ -4606,7 +4606,7 @@
 <td>P2 - Lawful/ethical</td>
 <td>Proportionality review (is AVT the right intervention?)</td>
 <td>Medium</td>
-<td>See P6; partial via ES.ME-1</td>
+<td>See P6; partial via <a href="../groups/meta-evaluation/#es-me-1">ES.ME-1</a></td>
 </tr>
 <tr>
 <td>P3 - Security</td>
@@ -4630,19 +4630,19 @@
 <td>P4 - Human control</td>
 <td>Board-level visibility of aggregate override patterns</td>
 <td>Medium</td>
-<td>Partial via GV.SG-13</td>
+<td>Partial via <a href="../groups/safety-governance/#gv-sg-13">GV.SG-13</a></td>
 </tr>
 <tr>
 <td>P5 - Lifecycle</td>
 <td>Decommissioning plan</td>
 <td>—</td>
-<td>Promoted in v4.1: GV.PD-16 (data handling), GV.OP-14 (output continuity), GV.VT-15 (retirement notification)</td>
+<td>Promoted in v4.1: <a href="../groups/privacy-data-governance/#gv-pd-16">GV.PD-16</a> (data handling), <a href="../groups/operational/#gv-op-14">GV.OP-14</a> (output continuity), <a href="../groups/vendor-transparency-contractual/#gv-vt-15">GV.VT-15</a> (retirement notification)</td>
 </tr>
 <tr>
 <td>P5 - Lifecycle</td>
 <td>Model retirement criteria</td>
 <td>—</td>
-<td>Promoted in v4.1 alongside decommissioning plan (GV.VT-15 covers vendor-side retirement triggers/notification)</td>
+<td>Promoted in v4.1 alongside decommissioning plan (<a href="../groups/vendor-transparency-contractual/#gv-vt-15">GV.VT-15</a> covers vendor-side retirement triggers/notification)</td>
 </tr>
 <tr>
 <td>P6 - Right tool</td>
@@ -4678,7 +4678,7 @@
 <td>P8 - Commercial</td>
 <td>Exit-clause testing</td>
 <td>Medium</td>
-<td>GV.VT-6 is about provisions; gap is on testing</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-6">GV.VT-6</a> is about provisions; gap is on testing</td>
 </tr>
 <tr>
 <td>P9 - Skills</td>
@@ -4702,7 +4702,7 @@
 <td>P10 - Org assurance</td>
 <td>Enterprise risk register alignment for AI risks</td>
 <td>Medium</td>
-<td>Partial via GV.SG-13</td>
+<td>Partial via <a href="../groups/safety-governance/#gv-sg-13">GV.SG-13</a></td>
 </tr>
 </tbody>
 </table>
@@ -4739,7 +4739,7 @@
 <td>T2 - Transparency</td>
 <td>Model card / system card publication</td>
 <td>Medium</td>
-<td>Partial via GV.VT-2</td>
+<td>Partial via <a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a></td>
 </tr>
 <tr>
 <td>T2 - Transparency</td>
@@ -4751,13 +4751,13 @@
 <td>T3 - Fairness</td>
 <td>Fairness during deployment ramp</td>
 <td>Medium</td>
-<td>Partial via IO.FE-1</td>
+<td>Partial via <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a></td>
 </tr>
 <tr>
 <td>T3 - Fairness</td>
 <td>Intersectional fairness at small-group level</td>
 <td>High</td>
-<td>IO.FE-4/5 partial; small-group power unresolved</td>
+<td><a href="../groups/fairness-equity/#io-fe-4">IO.FE-4</a>/5 partial; small-group power unresolved</td>
 </tr>
 <tr>
 <td>T4 - Accountability</td>
@@ -4799,19 +4799,19 @@
 <td>T6 - Societal Wellbeing</td>
 <td>Workforce displacement / role change assessment</td>
 <td>High</td>
-<td>HL.HF-12 partial</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-12">HL.HF-12</a> partial</td>
 </tr>
 <tr>
 <td>T6 - Societal Wellbeing</td>
 <td>Equity of benefit distribution across practices</td>
 <td>High</td>
-<td>IO.FE-1 partial</td>
+<td><a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> partial</td>
 </tr>
 <tr>
 <td>T6 - Societal Wellbeing</td>
 <td>Patient trust at population level</td>
 <td>High</td>
-<td>IO.PX-5, IO.PX-6 partial</td>
+<td><a href="../groups/patient-experience/#io-px-5">IO.PX-5</a>, <a href="../groups/patient-experience/#io-px-6">IO.PX-6</a> partial</td>
 </tr>
 <tr>
 <td>T6 - Societal Wellbeing</td>

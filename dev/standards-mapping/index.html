@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -5161,7 +5161,7 @@
 </tbody>
 </table>
 <blockquote>
-<p><strong>Note on the National Data Opt-Out (assertion 1.2.4):</strong> NHS England's March 2026 IG guidance for ambient scribing is explicit that the NDOO does <em>not</em> apply when AVT is used for individual care. It applies only to secondary uses of confidential patient information (research, planning, commissioning). Deployers must not configure AVT to suppress use based on NDOO flags; patient-level AVT opt-out and per-encounter dissent are separate mechanisms, measured by IO.PX-1 Patient Opt-Out Rate and GV.CR-1 Patient Dissent Recording Rate respectively.</p>
+<p><strong>Note on the National Data Opt-Out (assertion 1.2.4):</strong> NHS England's March 2026 IG guidance for ambient scribing is explicit that the NDOO does <em>not</em> apply when AVT is used for individual care. It applies only to secondary uses of confidential patient information (research, planning, commissioning). Deployers must not configure AVT to suppress use based on NDOO flags; patient-level AVT opt-out and per-encounter dissent are separate mechanisms, measured by <a href="../groups/patient-experience/#io-px-1">IO.PX-1</a> Patient Opt-Out Rate and <a href="../groups/nhs-compliance-regulatory/#gv-cr-1">GV.CR-1</a> Patient Dissent Recording Rate respectively.</p>
 </blockquote>
 <h4 id="standard-2-staff-responsibilities">Standard 2 - Staff Responsibilities<a class="headerlink" href="#standard-2-staff-responsibilities" title="Permanent link">&para;</a></h4>
 <table>
@@ -5981,7 +5981,7 @@
 <td>2</td>
 <td>Safeguarding patient information (DSPT, E2E encryption, DPIA, TRE rules, controllership)</td>
 <td>Data Protection</td>
-<td>GV.CR-7 DPIA Template Completion Rate, GV.PD-9 Cross-Border Data Transfer Compliance</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate, <a href="../groups/privacy-data-governance/#gv-pd-9">GV.PD-9</a> Cross-Border Data Transfer Compliance</td>
 <td>🟢 1</td>
 <td>Strong coverage; E2E encryption itself is a control, not a metric</td>
 </tr>
@@ -5989,7 +5989,7 @@
 <td>3</td>
 <td>Deletion of patient data (audio + transcript auto-delete, minimisation, retention proportionality)</td>
 <td>Data Protection</td>
-<td>GV.PD-1 Audio Retention Compliance, GV.PD-2 Audio Time-to-Deletion, GV.PD-3 Transcript Retention Compliance, GV.PD-4 Data Minimisation Score</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-1">GV.PD-1</a> Audio Retention Compliance, <a href="../groups/privacy-data-governance/#gv-pd-2">GV.PD-2</a> Audio Time-to-Deletion, <a href="../groups/privacy-data-governance/#gv-pd-3">GV.PD-3</a> Transcript Retention Compliance, <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score</td>
 <td>🟢 1 / 🟡 2</td>
 <td>Direct mapping - taxonomy's Privacy group was built around this exact requirement</td>
 </tr>
@@ -5997,7 +5997,7 @@
 <td>4</td>
 <td>AI training data quality, minimisation, anonymisation (ICO-aligned)</td>
 <td>Data Protection</td>
-<td>GV.PD-7 Training Data Inclusion Status</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status</td>
 <td>🟡 2</td>
 <td><strong>Partial gap</strong> - no metric on training-data anonymisation provenance</td>
 </tr>
@@ -6005,7 +6005,7 @@
 <td>5</td>
 <td>Servers in UK/EU, adequacy decisions, SCCs/BCRs for transfers</td>
 <td>Data Protection</td>
-<td>GV.PD-9 Cross-Border Data Transfer Compliance</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-9">GV.PD-9</a> Cross-Border Data Transfer Compliance</td>
 <td>🟢 1</td>
 <td>Direct mapping</td>
 </tr>
@@ -6013,7 +6013,7 @@
 <td>6</td>
 <td>MHRA Class I minimum for summarisation; Class IIa+ for diagnoses/calculations</td>
 <td>Clinical Safety</td>
-<td>GV.CR-6 Clinical Safety Case Completeness</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness</td>
 <td>🟢 1</td>
 <td>Covered indirectly via MHRA mapping; T.E.S.T. makes the Class boundary explicit</td>
 </tr>
@@ -6021,7 +6021,7 @@
 <td>7</td>
 <td>Local ICS/Trust governance approval (DPIA, DCB 0129 Safety Case + Hazard Log, DCB 0160)</td>
 <td>Clinical Safety</td>
-<td>GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness, GV.CR-7 DPIA Template Completion Rate</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness, <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate</td>
 <td>🟢 1</td>
 <td>Strong coverage; see also DCB0129/0160 mapping</td>
 </tr>
@@ -6037,7 +6037,7 @@
 <td>9</td>
 <td>Defined product scope; re-review on scope change</td>
 <td>Clinical Safety</td>
-<td>GV.SG-2 Model Update Impact Score, GV.VT-1 Model Change Notification Compliance</td>
+<td><a href="../groups/safety-governance/#gv-sg-2">GV.SG-2</a> Model Update Impact Score, <a href="../groups/vendor-transparency-contractual/#gv-vt-1">GV.VT-1</a> Model Change Notification Compliance</td>
 <td>🟡 2 / 🟢 1</td>
 <td>Change-management metrics map well</td>
 </tr>
@@ -6045,7 +6045,7 @@
 <td>10</td>
 <td>Prompt-injection guardrails (end-users blocked from direct LLM interface)</td>
 <td>Clinical Safety</td>
-<td>GV.SC-1 Prompt Injection Resistance Rate, GV.SC-6 Template Injection Vulnerability Assessment</td>
+<td><a href="../groups/security-adversarial-robustness/#gv-sc-1">GV.SC-1</a> Prompt Injection Resistance Rate, <a href="../groups/security-adversarial-robustness/#gv-sc-6">GV.SC-6</a> Template Injection Vulnerability Assessment</td>
 <td>🟡 2</td>
 <td>Direct mapping</td>
 </tr>
@@ -6053,7 +6053,7 @@
 <td>11</td>
 <td>Clinician-in-the-loop validation, annotated output data, continuous validation</td>
 <td>Clinical Safety</td>
-<td>HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate, ES.ME-7 Automated-Human Metric Concordance</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate, <a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/meta-evaluation/#es-me-7">ES.ME-7</a> Automated-Human Metric Concordance</td>
 <td>🟢 1 / 🔵 3</td>
 <td>Strong coverage through Human Factors + Meta-evaluation</td>
 </tr>
@@ -6061,7 +6061,7 @@
 <td>12</td>
 <td>Adverse-event reporting/mitigation processes; inbuilt error reporting advised</td>
 <td>Clinical Safety</td>
-<td>GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate, GV.VT-5 Incident Disclosure Compliance</td>
+<td><a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a> Near-Miss Reporting Rate, <a href="../groups/vendor-transparency-contractual/#gv-vt-5">GV.VT-5</a> Incident Disclosure Compliance</td>
 <td>🟢 1</td>
 <td>Direct mapping</td>
 </tr>
@@ -6077,7 +6077,7 @@
 <td>14</td>
 <td>Disclosure of underlying AI models (even if proprietary)</td>
 <td>Bias &amp; Inclusivity</td>
-<td>GV.VT-7 Sub-Processor Transparency, GV.VT-3 Benchmark &amp; Evaluation Data Accessibility</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-7">GV.VT-7</a> Sub-Processor Transparency, <a href="../groups/vendor-transparency-contractual/#gv-vt-3">GV.VT-3</a> Benchmark &amp; Evaluation Data Accessibility</td>
 <td>🟢 1 / 🔵 3</td>
 <td>Partial coverage - sub-processor transparency captures model stack disclosure</td>
 </tr>
@@ -6085,7 +6085,7 @@
 <td>15</td>
 <td>Evidence of testing on diverse populations; bias-free operation</td>
 <td>Bias &amp; Inclusivity</td>
-<td>TP.ASR-4 Demographic-Disaggregated WER, IO.FE-4 Intersectional Performance, IO.FE-2 Accent Taxonomy Standardisation</td>
+<td><a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/fairness-equity/#io-fe-4">IO.FE-4</a> Intersectional Performance, <a href="../groups/fairness-equity/#io-fe-2">IO.FE-2</a> Accent Taxonomy Standardisation</td>
 <td>🟡 2 / 🔵 3</td>
 <td>Strong coverage through Demographic Equity Disaggregation family</td>
 </tr>
@@ -6093,7 +6093,7 @@
 <td>16</td>
 <td>Mandatory EHR integration (front-end or back-end) for write-back, provenance</td>
 <td>Technical</td>
-<td>TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-4 Update vs Append Behaviour</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity, <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy, <a href="../groups/downstream-write-back/#tp-wb-4">TP.WB-4</a> Update vs Append Behaviour</td>
 <td>🟢 1</td>
 <td>Direct mapping to Downstream Write-back group</td>
 </tr>
@@ -6109,7 +6109,7 @@
 <td>18</td>
 <td>Routine reporting of hallucination rate, omission rate, word-error-rate</td>
 <td>Technical</td>
-<td>TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.ASR-1 Word Error Rate (WER), TP.ASR-12 Hallucination-Under-Noise Rate</td>
+<td><a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination Rate, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission Rate, <a href="../groups/asr-transcription/#tp-asr-1">TP.ASR-1</a> Word Error Rate (WER), <a href="../groups/asr-transcription/#tp-asr-12">TP.ASR-12</a> Hallucination-Under-Noise Rate</td>
 <td>🟢 1 / 🟡 2</td>
 <td><strong>Direct mapping</strong> - T.E.S.T. names these three exact metrics</td>
 </tr>
@@ -6117,7 +6117,7 @@
 <td>19</td>
 <td>Handle multiple consultations; allow edit/correct pre-session-close</td>
 <td>Technical</td>
-<td>HL.HF-1 Edit Rate, HL.HF-7 Edit Location Distribution</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/human-factors-workflow/#hl-hf-7">HL.HF-7</a> Edit Location Distribution</td>
 <td>🟢 1 / 🟡 2</td>
 <td>Edit-pattern metrics cover in-session correction</td>
 </tr>
@@ -6125,7 +6125,7 @@
 <td>20</td>
 <td>Adaptability to clinician styles, formats, workflows</td>
 <td>Technical</td>
-<td>HL.HF-11 Inter-Clinician Edit Variance, TP.SN-22 Style &amp; Format Consistency</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-11">HL.HF-11</a> Inter-Clinician Edit Variance, <a href="../groups/summarisation-nlp/#tp-sn-22">TP.SN-22</a> Style &amp; Format Consistency</td>
 <td>🔵 3</td>
 <td>Good coverage</td>
 </tr>
@@ -6133,7 +6133,7 @@
 <td>21</td>
 <td>Offline capture + async processing; local encryption; 24h auto-delete; logout clears data</td>
 <td>Business Continuity</td>
-<td>GV.OP-5 System Availability / Uptime, GV.PD-2 Audio Time-to-Deletion, PI.E2E-11 Pipeline Failure Recovery</td>
+<td><a href="../groups/operational/#gv-op-5">GV.OP-5</a> System Availability / Uptime, <a href="../groups/privacy-data-governance/#gv-pd-2">GV.PD-2</a> Audio Time-to-Deletion, <a href="../groups/end-to-end-pipeline/#pi-e2e-11">PI.E2E-11</a> Pipeline Failure Recovery</td>
 <td>🟢 1 / 🟡 2</td>
 <td>Strong coverage</td>
 </tr>
@@ -6141,7 +6141,7 @@
 <td>22</td>
 <td>Continuous drift monitoring; formal periodic testing</td>
 <td>Evolving Technology Test</td>
-<td>GV.SG-3 Performance Degradation Detection Latency, GV.SG-6 Concept Drift in Clinical Notes, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS)</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/safety-governance/#gv-sg-6">GV.SG-6</a> Concept Drift in Clinical Notes, <a href="../groups/safety-governance/#gv-sg-4">GV.SG-4</a> Retraining Trigger Threshold Specification, <a href="../groups/safety-governance/#gv-sg-9">GV.SG-9</a> Safety Performance Indicators with Thresholds (DSCMS)</td>
 <td>🟡 2 / 🔵 3 / 🟢 1</td>
 <td><strong>Direct mapping</strong> - taxonomy's Longitudinal Drift sub-cluster is built for this</td>
 </tr>
@@ -6164,15 +6164,15 @@
 <td>1</td>
 <td><strong>Clinical Effectiveness</strong> (RCT validation 50; care standardisation, admin burden, comms, coding accuracy 10 each)</td>
 <td style="text-align: right;">90</td>
-<td>ES.ME-8 Outcome Evidence Commitment Status (RCT-validation checkbox proxy), ES.ME-9 Causal Model Operationalisation, PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, GV.OP-1 Documentation Time per Consultation, TP.CC-2 SNOMED CT Concept Mapping Accuracy, TP.CC-11 Code Specificity Index</td>
+<td><a href="../groups/meta-evaluation/#es-me-8">ES.ME-8</a> Outcome Evidence Commitment Status (RCT-validation checkbox proxy), <a href="../groups/meta-evaluation/#es-me-9">ES.ME-9</a> Causal Model Operationalisation, <a href="../groups/end-to-end-pipeline/#pi-e2e-9">PI.E2E-9</a> Clinical Decision Equivalence, <a href="../groups/patient-experience/#io-px-9">IO.PX-9</a> Downstream Diagnostic Accuracy, <a href="../groups/operational/#gv-op-1">GV.OP-1</a> Documentation Time per Consultation, <a href="../groups/clinical-coding/#tp-cc-2">TP.CC-2</a> SNOMED CT Concept Mapping Accuracy, <a href="../groups/clinical-coding/#tp-cc-11">TP.CC-11</a> Code Specificity Index</td>
 <td>🟡 2 / 🔵 3 / 🟢 1</td>
-<td>ES.ME-8 measures <strong>commitment to</strong> RCT evidence (the closest the taxonomy gets to the 50-point RCT item without overstepping the <a href="../outcomes-boundary/">Outcomes Boundary</a>); ES.ME-9 measures whether vendor causal claims are documented. <strong>Gap</strong> - no metric for "timeliness of correspondence across care teams"; the taxonomy does not itself constitute RCT evidence</td>
+<td><a href="../groups/meta-evaluation/#es-me-8">ES.ME-8</a> measures <strong>commitment to</strong> RCT evidence (the closest the taxonomy gets to the 50-point RCT item without overstepping the <a href="../outcomes-boundary/">Outcomes Boundary</a>); <a href="../groups/meta-evaluation/#es-me-9">ES.ME-9</a> measures whether vendor causal claims are documented. <strong>Gap</strong> - no metric for "timeliness of correspondence across care teams"; the taxonomy does not itself constitute RCT evidence</td>
 </tr>
 <tr>
 <td>2</td>
 <td><strong>Operational Cost-Effectiveness</strong> (economic evaluation 25; ROI 10; cost savings 15; operational savings 10)</td>
 <td style="text-align: right;">60</td>
-<td>GV.OP-7 Cost per Consultation, GV.OP-8 Governance &amp; Maintenance Burden</td>
+<td><a href="../groups/operational/#gv-op-7">GV.OP-7</a> Cost per Consultation, <a href="../groups/operational/#gv-op-8">GV.OP-8</a> Governance &amp; Maintenance Burden</td>
 <td>🟡 2 / 🔵 3</td>
 <td><strong>Partial gap</strong> - taxonomy lacks explicit ROI, total cost of ownership, formal economic-evaluation metric</td>
 </tr>
@@ -6180,7 +6180,7 @@
 <td>3</td>
 <td><strong>Workforce Impact Assessment</strong> (settings, specialties, foci, burnout, job satisfaction)</td>
 <td style="text-align: right;">60</td>
-<td>GV.OP-6 Adoption Rate &amp; Selective Use Patterns, IO.FE-1 Deployment Equity Index, GV.OP-2 Pyjama Time / After-Hours EHR Use, HL.HF-8 Trust Calibration Survey</td>
+<td><a href="../groups/operational/#gv-op-6">GV.OP-6</a> Adoption Rate &amp; Selective Use Patterns, <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/operational/#gv-op-2">GV.OP-2</a> Pyjama Time / After-Hours EHR Use, <a href="../groups/human-factors-workflow/#hl-hf-8">HL.HF-8</a> Trust Calibration Survey</td>
 <td>🟢 1 / 🟡 2</td>
 <td>Burnout and pyjama time well-covered. <strong>Gap</strong> - no direct "job satisfaction" metric; no "multi-specialty validation" metric</td>
 </tr>
@@ -6188,7 +6188,7 @@
 <td>4</td>
 <td><strong>Integration and Interoperability</strong> (EHR integration, interoperability synergy, narrative quality)</td>
 <td style="text-align: right;">35</td>
-<td>TP.WB-6 FHIR R4 Resource Conformance Rate, TP.WB-7 openEHR Archetype Conformance, PI.PP-9 Structured/Free-Text Consistency</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate, <a href="../groups/downstream-write-back/#tp-wb-7">TP.WB-7</a> openEHR Archetype Conformance, <a href="../groups/partial-pipeline/#pi-pp-9">PI.PP-9</a> Structured/Free-Text Consistency</td>
 <td>🟡 2 / 🔵 3</td>
 <td>Strong coverage through Downstream Write-back group</td>
 </tr>
@@ -6196,7 +6196,7 @@
 <td>5</td>
 <td><strong>Clinician Experience and Usability</strong> (friction, speed, workflow, cognitive load, human factors)</td>
 <td style="text-align: right;">30</td>
-<td>HL.HF-10 Cognitive Load Assessment, HL.HF-17 Verification Burden, GV.OP-3 Note Turnaround Time, HL.HF-16 Work-as-Imagined vs Work-as-Done Gap</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-10">HL.HF-10</a> Cognitive Load Assessment, <a href="../groups/human-factors-workflow/#hl-hf-17">HL.HF-17</a> Verification Burden, <a href="../groups/operational/#gv-op-3">GV.OP-3</a> Note Turnaround Time, <a href="../groups/human-factors-workflow/#hl-hf-16">HL.HF-16</a> Work-as-Imagined vs Work-as-Done Gap</td>
 <td>🔵 3 / 🟡 2</td>
 <td>Strong coverage through Human Factors group</td>
 </tr>
@@ -6204,7 +6204,7 @@
 <td>6</td>
 <td><strong>Training, Adoption, and Human Factors</strong> (ease of use, AI/human labelling, personalisation, learning, training)</td>
 <td style="text-align: right;">25</td>
-<td>GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.CR-3 AI-Generated Content Labelling Compliance, GV.TC-5 Training Material Currency</td>
+<td><a href="../groups/training-competency/#gv-tc-1">GV.TC-1</a> Clinician Training Completion Rate, <a href="../groups/training-competency/#gv-tc-2">GV.TC-2</a> Failure Mode Awareness Score, <a href="../groups/nhs-compliance-regulatory/#gv-cr-3">GV.CR-3</a> AI-Generated Content Labelling Compliance, <a href="../groups/training-competency/#gv-tc-5">GV.TC-5</a> Training Material Currency</td>
 <td>🟢 1 / 🟡 2</td>
 <td>Direct mapping to Training &amp; Competency group</td>
 </tr>
@@ -6212,7 +6212,7 @@
 <td>7</td>
 <td><strong>Patient Safety and Quality of Care</strong> (time for care 15; documentation accuracy 5)</td>
 <td style="text-align: right;">20</td>
-<td>IO.PX-7 Full Attentiveness Rate, GV.SG-11 Adverse Event / Incident Rate (LFPSE), PI.E2E-1 Source-to-Record Concordance</td>
+<td><a href="../groups/patient-experience/#io-px-7">IO.PX-7</a> Full Attentiveness Rate, <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/end-to-end-pipeline/#pi-e2e-1">PI.E2E-1</a> Source-to-Record Concordance</td>
 <td>🟡 2 / 🟢 1 / 🔵 3</td>
 <td>Strong coverage; Full Attentiveness Rate is a direct proxy for "time for care"</td>
 </tr>
@@ -6220,7 +6220,7 @@
 <td>8</td>
 <td><strong>Patient Experience and Understanding</strong> (communication, patient understanding)</td>
 <td style="text-align: right;">20</td>
-<td>IO.PX-2 Patient-Perceived Accuracy, IO.PX-6 Therapeutic Relationship Impact, IO.PX-8 Patient Comprehension of AI-Generated Summaries</td>
+<td><a href="../groups/patient-experience/#io-px-2">IO.PX-2</a> Patient-Perceived Accuracy, <a href="../groups/patient-experience/#io-px-6">IO.PX-6</a> Therapeutic Relationship Impact, <a href="../groups/patient-experience/#io-px-8">IO.PX-8</a> Patient Comprehension of AI-Generated Summaries</td>
 <td>🔵 3</td>
 <td>Direct mapping to Patient Experience group</td>
 </tr>
@@ -6228,7 +6228,7 @@
 <td>9</td>
 <td><strong>Virtual Care Integration</strong> (primary, secondary, ambulance/telephone)</td>
 <td style="text-align: right;">20</td>
-<td>IO.FE-1 Deployment Equity Index, IO.FE-8 Cross-Platform Fairness Consistency</td>
+<td><a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/fairness-equity/#io-fe-8">IO.FE-8</a> Cross-Platform Fairness Consistency</td>
 <td>🟡 2 / 🔵 3</td>
 <td><strong>Partial gap</strong> - no metric for virtual-care-specific performance; modality stratification absent</td>
 </tr>
@@ -6236,7 +6236,7 @@
 <td>10</td>
 <td><strong>Data &amp; Analytics Integration</strong> (real-time visualisation, data-driven decisions)</td>
 <td style="text-align: right;">20</td>
-<td>GV.VT-2 Telemetry Provision Completeness, GV.VT-4 Audit Trail Completeness</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a> Telemetry Provision Completeness, <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness</td>
 <td>🟡 2</td>
 <td>Telemetry metrics cover infrastructure; no metric on downstream analytics use</td>
 </tr>
@@ -6244,7 +6244,7 @@
 <td>11</td>
 <td><strong>Disbenefits / Potential Harm Analysis</strong> (harms characterisation, distribution, mitigation)</td>
 <td style="text-align: right;">20</td>
-<td>HL.HF-12 Clinical Documentation Skill Attenuation, HL.HF-13 Cognitive Offloading Rate, IO.PX-5 Chilling Effect Assessment, PI.E2E-3 Error Propagation / Cascade Analysis</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-12">HL.HF-12</a> Clinical Documentation Skill Attenuation, <a href="../groups/human-factors-workflow/#hl-hf-13">HL.HF-13</a> Cognitive Offloading Rate, <a href="../groups/patient-experience/#io-px-5">IO.PX-5</a> Chilling Effect Assessment, <a href="../groups/end-to-end-pipeline/#pi-e2e-3">PI.E2E-3</a> Error Propagation / Cascade Analysis</td>
 <td>🔵 3</td>
 <td>Strong coverage across human factors, patient experience, and pipeline harms</td>
 </tr>
@@ -6252,7 +6252,7 @@
 <td>12</td>
 <td><strong>Environmental and Societal Impact</strong> (carbon, energy, societal, UK economy / sovereign AI)</td>
 <td style="text-align: right;">20</td>
-<td>GV.EN-1 Energy Consumption per Clinical Note, GV.EN-2 Carbon Emissions per Inference, GV.EN-3 Water Consumption per Query</td>
+<td><a href="../groups/environmental-sustainability/#gv-en-1">GV.EN-1</a> Energy Consumption per Clinical Note, <a href="../groups/environmental-sustainability/#gv-en-2">GV.EN-2</a> Carbon Emissions per Inference, <a href="../groups/environmental-sustainability/#gv-en-3">GV.EN-3</a> Water Consumption per Query</td>
 <td>🔵 3</td>
 <td>Direct mapping to Environmental &amp; Sustainability group. <strong>Gap</strong> - no metric for "sovereign AI" / UK economic contribution</td>
 </tr>
@@ -6346,14 +6346,14 @@
 <td>1</td>
 <td><strong>MHRA Class I medical device registration</strong> (minimum) for summarising AVT; UKCA / transitional CE valid until 30 June 2028</td>
 <td>MHRA SaMD/AIaMD WP1-WP2 (classification)</td>
-<td>GV.CR-6 Clinical Safety Case Completeness</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>2</td>
 <td><strong>DCB0129 clinical safety case + hazard log</strong> (supplier-side)</td>
 <td>DCB0129/0160 Stages 1-7</td>
-<td>GV.CR-6 Clinical Safety Case Completeness; GV.SG-17 Hazard Log Completeness</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness; <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness</td>
 <td>🟢 1</td>
 </tr>
 <tr>
@@ -6374,56 +6374,56 @@
 <td>5</td>
 <td><strong>Cyber Essentials</strong> certification</td>
 <td><em>Not in current taxonomy framework set</em></td>
-<td><strong>GV.SC-12 Cyber Essentials Plus Certification Status</strong> (new in v3.8)</td>
+<td><strong><a href="../groups/security-adversarial-robustness/#gv-sc-12">GV.SC-12</a> Cyber Essentials Plus Certification Status</strong> (new in v3.8)</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>6</td>
 <td><strong>UK GDPR / ICO compliance</strong> (DPIA expected; ICO registration)</td>
 <td>DSPT + Caldicott</td>
-<td>GV.CR-7 DPIA Template Completion Rate; GV.PD-1/-3 Retention Compliance</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate; <a href="../groups/privacy-data-governance/#gv-pd-1">GV.PD-1</a>/-3 Retention Compliance</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>7</td>
 <td><strong>Post-market surveillance evidence</strong> (per MHRA Class I obligations)</td>
 <td>MHRA WP4 + SI 2024 No. 1368</td>
-<td>GV.SG-3 Performance Degradation Detection Latency; GV.VT-1 Model Change Notification Compliance</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency; <a href="../groups/vendor-transparency-contractual/#gv-vt-1">GV.VT-1</a> Model Change Notification Compliance</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>8</td>
 <td><strong>Real-world benefit evidence in NHS settings</strong> ("proven impact and experience")</td>
 <td>T.E.S.T. Section B Clinical Effectiveness (50 pts RCT)</td>
-<td>ES.ME-8 Outcome Evidence Commitment Status; ES.ME-9 Causal Model Operationalisation</td>
+<td><a href="../groups/meta-evaluation/#es-me-8">ES.ME-8</a> Outcome Evidence Commitment Status; <a href="../groups/meta-evaluation/#es-me-9">ES.ME-9</a> Causal Model Operationalisation</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>9</td>
 <td><strong>Integration capability with NHS digital infrastructure</strong> (EPR, etc.)</td>
 <td>FHIR UK Core</td>
-<td>TP.WB-1 Write-back Fidelity; TP.WB-6 FHIR R4 Resource Conformance</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity; <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>10</td>
 <td><strong>Scalability evidence</strong></td>
 <td>T.E.S.T. Section B.4 Integration &amp; Interoperability</td>
-<td>GV.OP-5 System Availability / Uptime; GV.OP-7 Cost per Consultation</td>
+<td><a href="../groups/operational/#gv-op-5">GV.OP-5</a> System Availability / Uptime; <a href="../groups/operational/#gv-op-7">GV.OP-7</a> Cost per Consultation</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>11</td>
 <td><strong>Solution performance and monitoring response document</strong></td>
 <td>NHS LLM Framework Quantifiable Changes; T.E.S.T. Section A req 22</td>
-<td>GV.SG-9 Safety Performance Indicators with Thresholds (DSCMS); GV.SG-3 Performance Degradation Detection</td>
+<td><a href="../groups/safety-governance/#gv-sg-9">GV.SG-9</a> Safety Performance Indicators with Thresholds (DSCMS); <a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>12</td>
 <td><strong>Indicative pricing matrix</strong> published via the National Commercial &amp; Procurement Hub</td>
 <td><em>Not in current taxonomy framework set</em></td>
-<td><strong>GV.VT-14 Indicative Pricing Transparency</strong> (new in v3.8)</td>
+<td><strong><a href="../groups/vendor-transparency-contractual/#gv-vt-14">GV.VT-14</a> Indicative Pricing Transparency</strong> (new in v3.8)</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -6438,21 +6438,21 @@
 <h4 id="self-certification-provenance">Self-certification provenance<a class="headerlink" href="#self-certification-provenance" title="Permanent link">&para;</a></h4>
 <p>Because the scheme is self-certified, the <em>integrity</em> of the published evidence pack (currency, signed declarations, change-tracking against the Hub) is itself a procurement-relevant signal. The taxonomy treats this as a separate concern:</p>
 <ul>
-<li><strong>GV.VT-13 Evidence Pack Freshness</strong> (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial &amp; Procurement Hub</li>
-<li><strong>GV.CR-4 AVT Supplier Registry Listing Verification</strong> (existing, tightened in v3.8) — verifies listing status, attestation date, and scope of attested compliance</li>
+<li><strong><a href="../groups/vendor-transparency-contractual/#gv-vt-13">GV.VT-13</a> Evidence Pack Freshness</strong> (new in v3.8) — measures the currency of the vendor's published evidence pack on the National Commercial &amp; Procurement Hub</li>
+<li><strong><a href="../groups/nhs-compliance-regulatory/#gv-cr-4">GV.CR-4</a> AVT Supplier Registry Listing Verification</strong> (existing, tightened in v3.8) — verifies listing status, attestation date, and scope of attested compliance</li>
 </ul>
 <h4 id="registry-operational-shape">Registry operational shape<a class="headerlink" href="#registry-operational-shape" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>Single-tier</strong> listing (binary). No provisional / full distinction documented in public sources.</li>
 <li><strong>Re-certification</strong> cadence implied via DTAC currency and continuing MHRA registration; explicit re-listing rules not yet published.</li>
 <li><strong>Failure modes / delisting policy</strong> not publicly documented.</li>
-<li><strong>Ongoing change-notification</strong> via DCB0129 hazard-log updates and MHRA post-market surveillance, both already covered by the GV.SG-3 / GV.VT-1 metric pair.</li>
+<li><strong>Ongoing change-notification</strong> via DCB0129 hazard-log updates and MHRA post-market surveillance, both already covered by the <a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> / <a href="../groups/vendor-transparency-contractual/#gv-vt-1">GV.VT-1</a> metric pair.</li>
 </ul>
 <h4 id="summary-of-taxonomy-alignment-with-the-registry">Summary of taxonomy alignment with the Registry<a class="headerlink" href="#summary-of-taxonomy-alignment-with-the-registry" title="Permanent link">&para;</a></h4>
 <ul>
 <li><strong>11 of 13 registry categories</strong> have direct or strong coverage from existing metrics and prior framework mappings (DTAC, DSPT, DCB0129/0160, MHRA, NHS T.E.S.T.).</li>
-<li><strong>2 categories</strong> previously lacked taxonomy metrics — <strong>Cyber Essentials</strong> (registry req #5) and <strong>Indicative Pricing Transparency</strong> (registry req #12). v3.8 introduces GV.SC-12 and GV.VT-14 to close these.</li>
-<li><strong>1 category</strong> is registry-internal and warrants its own metric — <strong>Evidence Pack Freshness</strong> for the self-certified Hub publication. v3.8 introduces GV.VT-13.</li>
+<li><strong>2 categories</strong> previously lacked taxonomy metrics — <strong>Cyber Essentials</strong> (registry req #5) and <strong>Indicative Pricing Transparency</strong> (registry req #12). v3.8 introduces <a href="../groups/security-adversarial-robustness/#gv-sc-12">GV.SC-12</a> and <a href="../groups/vendor-transparency-contractual/#gv-vt-14">GV.VT-14</a> to close these.</li>
+<li><strong>1 category</strong> is registry-internal and warrants its own metric — <strong>Evidence Pack Freshness</strong> for the self-certified Hub publication. v3.8 introduces <a href="../groups/vendor-transparency-contractual/#gv-vt-13">GV.VT-13</a>.</li>
 <li><strong>1 category</strong> (registry req #13, AI/LLM-specific monitoring) is referenced but not yet specified; v3.8 documents the gap without a metric, pending NHS England publication of detail.</li>
 </ul>
 <p>The Registry is best understood as an <strong>integration / aggregation layer</strong> over the framework set already mapped, plus three registry-specific procurement-signal gaps that the v3.8 metrics address.</p>
@@ -6497,7 +6497,7 @@
 <tr>
 <td>WP2-01</td>
 <td>Classification rules (UK MDR 2002, IMDRF-aligned)</td>
-<td>GV.CR-6 Clinical Safety Case Completeness (evidences classification)</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness (evidences classification)</td>
 <td>🟢 1</td>
 </tr>
 <tr>
@@ -6528,19 +6528,19 @@
 <tr>
 <td>WP3-02</td>
 <td>Best-practice SaMD development</td>
-<td>GV.VT-2 Telemetry Provision Completeness, GV.VT-3 Benchmark &amp; Evaluation Data Accessibility</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a> Telemetry Provision Completeness, <a href="../groups/vendor-transparency-contractual/#gv-vt-3">GV.VT-3</a> Benchmark &amp; Evaluation Data Accessibility</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td>WP3-04</td>
 <td>Data-driven SaMD (joint with HRA)</td>
-<td>GV.PD-7 Training Data Inclusion Status, TP.ASR-4 Demographic-Disaggregated WER</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>WP3-05</td>
 <td>Human-centred SaMD</td>
-<td>HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate, HL.HF-6 Automation Bias Detection</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate, <a href="../groups/human-factors-workflow/#hl-hf-6">HL.HF-6</a> Automation Bias Detection</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 </tbody>
@@ -6559,7 +6559,7 @@
 <tr>
 <td>PMS Plan</td>
 <td>Signal detection, complaints handling, literature review, field experience</td>
-<td>GV.SG-3 Performance Degradation Detection Latency, GV.SG-12 Cross-Practice Variance Coefficient</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/safety-governance/#gv-sg-12">GV.SG-12</a> Cross-Practice Variance Coefficient</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -6577,43 +6577,43 @@
 <tr>
 <td>WP4-02 Reportable incidents (including indirect harm)</td>
 <td>Documentation errors causing downstream clinical harm</td>
-<td>GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate</td>
+<td><a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a> Near-Miss Reporting Rate</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>Trend reporting</td>
 <td>Statistically significant increases in non-serious incidents</td>
-<td>GV.SG-12 Cross-Practice Variance Coefficient</td>
+<td><a href="../groups/safety-governance/#gv-sg-12">GV.SG-12</a> Cross-Practice Variance Coefficient</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>WP4-03 Change management</td>
 <td>Post-deployment changes and their re-evaluation</td>
-<td>GV.SG-2 Model Update Impact Score, GV.VT-1 Model Change Notification Compliance</td>
+<td><a href="../groups/safety-governance/#gv-sg-2">GV.SG-2</a> Model Update Impact Score, <a href="../groups/vendor-transparency-contractual/#gv-vt-1">GV.VT-1</a> Model Change Notification Compliance</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>WP4-04 Predetermined Change Control Plans</td>
 <td>PCCPs for AIaMD</td>
-<td>GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>Field Safety Corrective Action (FSCA)</td>
 <td>Corrective action execution</td>
-<td>GV.SG-15 Time-to-Correct, GV.VT-5 Incident Disclosure Compliance</td>
+<td><a href="../groups/safety-governance/#gv-sg-15">GV.SG-15</a> Time-to-Correct, <a href="../groups/vendor-transparency-contractual/#gv-vt-5">GV.VT-5</a> Incident Disclosure Compliance</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>Field Safety Notices (FSN)</td>
 <td>Targeted notifications</td>
-<td>GV.VT-5 Incident Disclosure Compliance</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-5">GV.VT-5</a> Incident Disclosure Compliance</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>Reporting timelines (2/10/15 working days)</td>
 <td>Serious threat / death / other serious incidents</td>
-<td>GV.SG-16 SPI Escalation Response Time</td>
+<td><a href="../groups/safety-governance/#gv-sg-16">GV.SG-16</a> SPI Escalation Response Time</td>
 <td>🟡 2</td>
 </tr>
 </tbody>
@@ -6632,19 +6632,19 @@
 <tr>
 <td>WP5-01 / 02</td>
 <td>Cybersecurity legislation and guidance</td>
-<td>GV.SC-1 Prompt Injection Resistance Rate, GV.SC-2 Jailbreak Resistance Score</td>
+<td><a href="../groups/security-adversarial-robustness/#gv-sc-1">GV.SC-1</a> Prompt Injection Resistance Rate, <a href="../groups/security-adversarial-robustness/#gv-sc-2">GV.SC-2</a> Jailbreak Resistance Score</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>WP5-03</td>
 <td>Unsupported software</td>
-<td>GV.SG-1 Model Version Tracking</td>
+<td><a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a> Model Version Tracking</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>WP5-04</td>
 <td>Vulnerability reporting</td>
-<td>GV.VT-5 Incident Disclosure Compliance</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-5">GV.VT-5</a> Incident Disclosure Compliance</td>
 <td>🟢 1</td>
 </tr>
 </tbody>
@@ -6669,19 +6669,19 @@
 <tr>
 <td>WP9-05</td>
 <td>"AIaMD for all" - bias across populations</td>
-<td>TP.ASR-4 Demographic-Disaggregated WER, IO.FE-4 Intersectional Performance, TP.CC-9 Coding Equity Index</td>
+<td><a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/fairness-equity/#io-fe-4">IO.FE-4</a> Intersectional Performance, <a href="../groups/clinical-coding/#tp-cc-9">TP.CC-9</a> Coding Equity Index</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td>WP9-06</td>
 <td>Bias identification standards</td>
-<td>IO.FE-3 Clinical Domain Performance Variance, IO.FE-5 Intersectional Compound Fairness Score</td>
+<td><a href="../groups/fairness-equity/#io-fe-3">IO.FE-3</a> Clinical Domain Performance Variance, <a href="../groups/fairness-equity/#io-fe-5">IO.FE-5</a> Intersectional Compound Fairness Score</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td>WP9-07</td>
 <td>Experimental bias detection / mitigation</td>
-<td>IO.FE-2 Accent Taxonomy Standardisation, TP.ASR-5 Speaker-Stratified WER</td>
+<td><a href="../groups/fairness-equity/#io-fe-2">IO.FE-2</a> Accent Taxonomy Standardisation, <a href="../groups/asr-transcription/#tp-asr-5">TP.ASR-5</a> Speaker-Stratified WER</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 </tbody>
@@ -6700,13 +6700,13 @@
 <tr>
 <td>WP10-01</td>
 <td>Human-centred AIaMD</td>
-<td>TP.ASR-11 ASR Confidence Exposure, TP.SN-20 Uncertainty Marker Preservation, TP.SN-12 Linked Evidence / Provenance Tracing</td>
+<td><a href="../groups/asr-transcription/#tp-asr-11">TP.ASR-11</a> ASR Confidence Exposure, <a href="../groups/summarisation-nlp/#tp-sn-20">TP.SN-20</a> Uncertainty Marker Preservation, <a href="../groups/summarisation-nlp/#tp-sn-12">TP.SN-12</a> Linked Evidence / Provenance Tracing</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>WP10-02</td>
 <td>Trustworthy AIaMD standards</td>
-<td>HL.HF-8 Trust Calibration Survey, HL.HF-6 Automation Bias Detection</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-8">HL.HF-8</a> Trust Calibration Survey, <a href="../groups/human-factors-workflow/#hl-hf-6">HL.HF-6</a> Automation Bias Detection</td>
 <td>🟡 2</td>
 </tr>
 </tbody>
@@ -6725,19 +6725,19 @@
 <tr>
 <td>WP11-01</td>
 <td>Adaptivity guiding principles (static/batch/individualised/continuous)</td>
-<td>GV.SG-1 Model Version Tracking, GV.SG-2 Model Update Impact Score</td>
+<td><a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a> Model Version Tracking, <a href="../groups/safety-governance/#gv-sg-2">GV.SG-2</a> Model Update Impact Score</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>WP11-02</td>
 <td>Concept drift and significant-change detection</td>
-<td>GV.SG-6 Concept Drift in Clinical Notes, GV.SG-3 Performance Degradation Detection Latency</td>
+<td><a href="../groups/safety-governance/#gv-sg-6">GV.SG-6</a> Concept Drift in Clinical Notes, <a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency</td>
 <td>🔵 3 / 🟡 2</td>
 </tr>
 <tr>
 <td>WP11-03</td>
 <td>PCCPs for AIaMD</td>
-<td>GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
 <td>🟡 2</td>
 </tr>
 </tbody>
@@ -6763,31 +6763,31 @@
 <tr>
 <td><strong>WHAT - Workflow integration</strong></td>
 <td>How device fits workflow, intended inputs/outputs</td>
-<td>HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td><strong>WHAT - Performance &amp; safety</strong></td>
 <td>Performance details, benefits/risks, bias-management, clinical study summaries</td>
-<td>TP.ASR-1 WER, TP.SN-5 Hallucination Rate, GV.SG-9 Safety Performance Indicators</td>
+<td><a href="../groups/asr-transcription/#tp-asr-1">TP.ASR-1</a> WER, <a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination Rate, <a href="../groups/safety-governance/#gv-sg-9">GV.SG-9</a> Safety Performance Indicators</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td><strong>WHAT - Model logic &amp; development</strong></td>
 <td>Output logic, ML approach, training/testing data characterisation</td>
-<td>GV.PD-7 Training Data Inclusion Status, GV.VT-3 Benchmark &amp; Evaluation Data Accessibility</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, <a href="../groups/vendor-transparency-contractual/#gv-vt-3">GV.VT-3</a> Benchmark &amp; Evaluation Data Accessibility</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td><strong>WHAT - Limitations</strong></td>
 <td>Known biases, failure modes, confidence intervals, data gaps, validation envelope</td>
-<td>TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.ASR-10 ASR Confidence Calibration, TP.AC-3 Acoustic Environment Profiling</td>
+<td><a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination Rate, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission Rate, <a href="../groups/asr-transcription/#tp-asr-10">TP.ASR-10</a> ASR Confidence Calibration, <a href="../groups/audio-capture/#tp-ac-3">TP.AC-3</a> Acoustic Environment Profiling</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td><strong>WHAT - Lifecycle</strong></td>
 <td>Local acceptance testing, ongoing monitoring, change-management, vulnerability mitigation</td>
-<td>GV.SG-3 Performance Degradation Detection Latency, GV.SG-1 Model Version Tracking</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a> Model Version Tracking</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 </tbody>
@@ -6812,13 +6812,13 @@
 <tr>
 <td>GMLP-2</td>
 <td>Good Software and Engineering Practices</td>
-<td>GV.SC-1/2 security metrics, GV.VT-4 Audit Trail Completeness</td>
+<td><a href="../groups/security-adversarial-robustness/#gv-sc-1">GV.SC-1</a>/2 security metrics, <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>GMLP-3</td>
 <td>Representative Datasets</td>
-<td>TP.ASR-4 Demographic-Disaggregated WER, GV.PD-7 Training Data Inclusion Status</td>
+<td><a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -6830,44 +6830,44 @@
 <tr>
 <td>GMLP-5</td>
 <td>Best Available Reference Datasets</td>
-<td>GV.VT-3 Benchmark &amp; Evaluation Data Accessibility</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-3">GV.VT-3</a> Benchmark &amp; Evaluation Data Accessibility</td>
 <td>🔵 3</td>
 </tr>
 <tr>
 <td>GMLP-6</td>
 <td>Model Design Tailored to Data and Intended Use</td>
-<td>ES.ME-1 Proximal vs Distal Outcome Distinction</td>
+<td><a href="../groups/meta-evaluation/#es-me-1">ES.ME-1</a> Proximal vs Distal Outcome Distinction</td>
 <td>🔵 3</td>
 </tr>
 <tr>
 <td>GMLP-7</td>
 <td>Focus on Human-AI Team Performance</td>
-<td>HL.HF-1 Edit Rate, HL.HF-6 Automation Bias Detection, HL.HF-8 Trust Calibration Survey</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/human-factors-workflow/#hl-hf-6">HL.HF-6</a> Automation Bias Detection, <a href="../groups/human-factors-workflow/#hl-hf-8">HL.HF-8</a> Trust Calibration Survey</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>GMLP-8</td>
 <td>Testing in Clinically Relevant Conditions</td>
-<td>TP.AC-3 Acoustic Environment Profiling, PI.E2E-9 Clinical Decision Equivalence</td>
+<td><a href="../groups/audio-capture/#tp-ac-3">TP.AC-3</a> Acoustic Environment Profiling, <a href="../groups/end-to-end-pipeline/#pi-e2e-9">PI.E2E-9</a> Clinical Decision Equivalence</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td>GMLP-9</td>
 <td>Users Provided Clear Essential Information</td>
-<td>TP.ASR-11 ASR Confidence Exposure, TP.SN-20 Uncertainty Marker Preservation</td>
+<td><a href="../groups/asr-transcription/#tp-asr-11">TP.ASR-11</a> ASR Confidence Exposure, <a href="../groups/summarisation-nlp/#tp-sn-20">TP.SN-20</a> Uncertainty Marker Preservation</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>GMLP-10</td>
 <td>Deployed Models Monitored, Retraining Risks Managed</td>
-<td>GV.SG-3 Performance Degradation Detection Latency, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-5 AI-Generated Data Contamination Rate</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/safety-governance/#gv-sg-4">GV.SG-4</a> Retraining Trigger Threshold Specification, <a href="../groups/safety-governance/#gv-sg-5">GV.SG-5</a> AI-Generated Data Contamination Rate</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Gaps:</strong>
 - Medical device classification documentation (no metric)
-- PCCP documentation for adaptive algorithms (partial - GV.CR-9 is about acceptance criteria, not the PCCP itself)
+- PCCP documentation for adaptive algorithms (partial - <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> is about acceptance criteria, not the PCCP itself)
 - PMSR / PSUR report completeness (reporting artefacts, no metric)
 - Transparency documentation for all WHAT content items as a composite
 - Device characterisation completeness</p>
@@ -6894,43 +6894,43 @@
 <tr>
 <td>1 - Safety &amp; Quality Compliance</td>
 <td>UKCA/CE, GDPR, CQC (min); ISO 13485, IEC 82304-1, BS EN 62304 (best)</td>
-<td>GV.CR-6 Clinical Safety Case Completeness, GV.CR-7 DPIA Template Completion Rate</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>2 - User Acceptability</td>
 <td>Users in design/testing (min); IEC 62366-1 usability engineering (best)</td>
-<td>HL.HF-8 Trust Calibration Survey, IO.PX-7 Full Attentiveness Rate</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-8">HL.HF-8</a> Trust Calibration Survey, <a href="../groups/patient-experience/#io-px-7">IO.PX-7</a> Full Attentiveness Rate</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>3 - Environmental Sustainability</td>
 <td>Narrative (min); NHS net-zero alignment, quantified GHG (best)</td>
-<td>GV.EN-1 Energy Consumption per Clinical Note, GV.EN-2 Carbon Emissions per Inference</td>
+<td><a href="../groups/environmental-sustainability/#gv-en-1">GV.EN-1</a> Energy Consumption per Clinical Note, <a href="../groups/environmental-sustainability/#gv-en-2">GV.EN-2</a> Carbon Emissions per Inference</td>
 <td>🔵 3</td>
 </tr>
 <tr>
 <td><strong>4 - Inequalities &amp; Bias Mitigation</strong> ⭐ AI-specific</td>
 <td>Describe considerations (min); <strong>document algorithmic bias mitigation</strong> (best)</td>
-<td>IO.FE-1 Deployment Equity Index, TP.ASR-4 Demographic-Disaggregated WER, TP.CC-9 Coding Equity Index, IO.FE-5 Intersectional Compound Fairness Score</td>
+<td><a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/clinical-coding/#tp-cc-9">TP.CC-9</a> Coding Equity Index, <a href="../groups/fairness-equity/#io-fe-5">IO.FE-5</a> Intersectional Compound Fairness Score</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
 <td><strong>5 - Data Practices</strong> ⭐ AI-specific</td>
 <td>Identify datasets (min); <strong>follow MHRA GMLP, dataset diversity</strong> (best)</td>
-<td>GV.PD-7 Training Data Inclusion Status, GV.PD-4 Data Minimisation Score</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td><strong>6 - Professional Oversight</strong> ⭐ AI-specific</td>
 <td>Articulate oversight level (min); proportionate oversight, override tracking (best)</td>
-<td>HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate, HL.HF-6 Automation Bias Detection</td>
+<td><a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate, <a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate, <a href="../groups/human-factors-workflow/#hl-hf-6">HL.HF-6</a> Automation Bias Detection</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>7 - Health Information Reliability</td>
 <td>Validity processes (min); expert review at intervals (best)</td>
-<td>TP.SN-3 PDSQI-9, TP.SN-4 CREOLA Error Taxonomy Scores</td>
+<td><a href="../groups/summarisation-nlp/#tp-sn-3">TP.SN-3</a> PDSQI-9, <a href="../groups/summarisation-nlp/#tp-sn-4">TP.SN-4</a> CREOLA Error Taxonomy Scores</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -6942,7 +6942,7 @@
 <tr>
 <td>9 - Safeguarding</td>
 <td>Access controls, moderation (min); documented agreements, qualified oversight (best)</td>
-<td>GV.PD-8 Consent Verification Accuracy, TP.AC-4 Bystander Voice Detection Rate</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-8">GV.PD-8</a> Consent Verification Accuracy, <a href="../groups/audio-capture/#tp-ac-4">TP.AC-4</a> Bystander Voice Detection Rate</td>
 <td>🟢 1 / 🔵 3</td>
 </tr>
 </tbody>
@@ -6961,7 +6961,7 @@
 <tr>
 <td>10 - Intended Purpose &amp; Target Population</td>
 <td>Inclusion/exclusion (min); subgroup variation (best)</td>
-<td>IO.FE-3 Clinical Domain Performance Variance, IO.FE-6 Rare Presentation Handling</td>
+<td><a href="../groups/fairness-equity/#io-fe-3">IO.FE-3</a> Clinical Domain Performance Variance, <a href="../groups/fairness-equity/#io-fe-6">IO.FE-6</a> Rare Presentation Handling</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 <tr>
@@ -6973,13 +6973,13 @@
 <tr>
 <td>12 - Proposed Pathway</td>
 <td>Differences from current care (min); workforce changes, boundaries crossed (best)</td>
-<td>GV.OP-1 Documentation Time per Consultation, GV.OP-6 Adoption Rate &amp; Selective Use Patterns</td>
+<td><a href="../groups/operational/#gv-op-1">GV.OP-1</a> Documentation Time per Consultation, <a href="../groups/operational/#gv-op-6">GV.OP-6</a> Adoption Rate &amp; Selective Use Patterns</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>13 - Expected Impacts</td>
 <td>Compare benefits/costs (min); confidence intervals, sensitivity analysis (best)</td>
-<td>IO.PX-9 Downstream Diagnostic Accuracy, PI.E2E-9 Clinical Decision Equivalence</td>
+<td><a href="../groups/patient-experience/#io-px-9">IO.PX-9</a> Downstream Diagnostic Accuracy, <a href="../groups/end-to-end-pipeline/#pi-e2e-9">PI.E2E-9</a> Clinical Decision Equivalence</td>
 <td>🔵 3</td>
 </tr>
 </tbody>
@@ -6998,19 +6998,19 @@
 <tr>
 <td>14 - Effectiveness Evidence <em>(Tier C only)</em></td>
 <td>Clinical-mgmt: real-world evaluations; Diagnostic: accuracy vs reference; Treatment: RCTs preferred</td>
-<td>PI.E2E-9 Clinical Decision Equivalence, IO.PX-9 Downstream Diagnostic Accuracy, IO.PX-10 Medication Error Rate Differential</td>
+<td><a href="../groups/end-to-end-pipeline/#pi-e2e-9">PI.E2E-9</a> Clinical Decision Equivalence, <a href="../groups/patient-experience/#io-px-9">IO.PX-9</a> Downstream Diagnostic Accuracy, <a href="../groups/patient-experience/#io-px-10">IO.PX-10</a> Medication Error Rate Differential</td>
 <td>🔵 3</td>
 </tr>
 <tr>
 <td><strong>15 - Real-World Evidence</strong> ⭐ AI-specific</td>
 <td>Pilot site statement (min); <strong>"silent mode" evaluation for AI on local data</strong> (best)</td>
-<td>GV.SG-12 Cross-Practice Variance Coefficient, GV.OP-6 Adoption Rate &amp; Selective Use Patterns</td>
+<td><a href="../groups/safety-governance/#gv-sg-12">GV.SG-12</a> Cross-Practice Variance Coefficient, <a href="../groups/operational/#gv-op-6">GV.OP-6</a> Adoption Rate &amp; Selective Use Patterns</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td><strong>16 - Performance Monitoring Plan</strong> ⭐ AI-specific</td>
 <td>Usage vs expected (min); <strong>AI/ML: post-deployment reporting, retraining schedules, subgroup drift</strong> (best)</td>
-<td>GV.SG-3 Performance Degradation Detection Latency, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-6 Concept Drift in Clinical Notes</td>
+<td><a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/safety-governance/#gv-sg-4">GV.SG-4</a> Retraining Trigger Threshold Specification, <a href="../groups/safety-governance/#gv-sg-6">GV.SG-6</a> Concept Drift in Clinical Notes</td>
 <td>🟡 2 / 🔵 3</td>
 </tr>
 </tbody>
@@ -7029,7 +7029,7 @@
 <tr>
 <td>17 - Budget Impact Analysis</td>
 <td>Direct costs vs comparator (min); indirect costs, NHS reference costs (best)</td>
-<td>GV.OP-7 Cost per Consultation</td>
+<td><a href="../groups/operational/#gv-op-7">GV.OP-7</a> Cost per Consultation</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -7054,29 +7054,29 @@
 <tr>
 <td>19 - Deployment Transparency</td>
 <td>Data dictionary, input description, infrastructure (min); tolerance for incomplete data, DICOM etc. (best)</td>
-<td>GV.VT-2 Telemetry Provision Completeness, TP.WB-6 FHIR R4 Resource Conformance Rate</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a> Telemetry Provision Completeness, <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>20 - Communication, Consent &amp; Training</td>
 <td>Describe outputs (min); model cards, training approaches (best)</td>
-<td>GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.CR-3 AI-Generated Content Labelling Compliance</td>
+<td><a href="../groups/training-competency/#gv-tc-1">GV.TC-1</a> Clinician Training Completion Rate, <a href="../groups/training-competency/#gv-tc-2">GV.TC-2</a> Failure Mode Awareness Score, <a href="../groups/nhs-compliance-regulatory/#gv-cr-3">GV.CR-3</a> AI-Generated Content Labelling Compliance</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>21 - Scalability</td>
 <td>Load testing (min); documented methodology vs projected users (best)</td>
-<td>GV.OP-5 System Availability / Uptime, PI.E2E-10 Full-Pipeline Latency Budget</td>
+<td><a href="../groups/operational/#gv-op-5">GV.OP-5</a> System Availability / Uptime, <a href="../groups/end-to-end-pipeline/#pi-e2e-10">PI.E2E-10</a> Full-Pipeline Latency Budget</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Gaps:</strong>
 - Tier A/B/C functional classification documentation for specific AVT deployments
-- "Silent mode" evaluation evidence (Standard 15 best practice) - partial coverage via GV.OP-6 but no dedicated metric
+- "Silent mode" evaluation evidence (Standard 15 best practice) - partial coverage via <a href="../groups/operational/#gv-op-6">GV.OP-6</a> but no dedicated metric
 - Subgroup drift monitoring as a composite (Standard 16 best practice) - metrics exist but not assembled
 - Cost-effectiveness analysis / QALY (Standard 18) - no metric
-- Budget impact analysis composite (Standard 17) - GV.OP-7 is partial
+- Budget impact analysis composite (Standard 17) - <a href="../groups/operational/#gv-op-7">GV.OP-7</a> is partial
 - Real-world performance data plan documentation (Standard 15)</p>
 <p><strong>Taxonomy extends:</strong> Standards 14–16 (Performance) are well covered. TP (Technical Pipeline) and PI (Pipeline Interactions) provide measurement depth that NICE ESF does not prescribe at the operational level.</p>
 <hr />
@@ -7133,70 +7133,70 @@
 <td>UKCore-Composition</td>
 <td>2+</td>
 <td>Clinical note container; assembles sections</td>
-<td>TP.WB-6 FHIR R4 Resource Conformance Rate <em>(refined: means UK Core, not generic FHIR R4)</em></td>
+<td><a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate <em>(refined: means UK Core, not generic FHIR R4)</em></td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>UKCore-Encounter</td>
 <td>2+</td>
 <td>Binds note to consultation event</td>
-<td>TP.WB-6 FHIR R4 Resource Conformance Rate</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>UKCore-Condition</td>
 <td>2+</td>
 <td>Extracted diagnoses / problems</td>
-<td>TP.WB-3 Field Mapping Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy, <a href="../groups/clinical-coding/#tp-cc-2">TP.CC-2</a> SNOMED CT Concept Mapping Accuracy</td>
 <td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>UKCore-AllergyIntolerance</td>
 <td>1+</td>
 <td>Extracted allergies (safety-critical)</td>
-<td>TP.WB-1 Write-back Fidelity, TP.WB-4 Update vs Append Behaviour</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity, <a href="../groups/downstream-write-back/#tp-wb-4">TP.WB-4</a> Update vs Append Behaviour</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>UKCore-MedicationStatement</td>
 <td>1+</td>
 <td>Current medications</td>
-<td>TP.CC-5 dm+d Medication Coding Accuracy, TP.WB-1 Write-back Fidelity</td>
+<td><a href="../groups/clinical-coding/#tp-cc-5">TP.CC-5</a> dm+d Medication Coding Accuracy, <a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity</td>
 <td>🟡 2 / 🟢 1</td>
 </tr>
 <tr>
 <td>UKCore-MedicationRequest</td>
 <td>1+</td>
 <td>New prescriptions</td>
-<td>TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification</td>
+<td><a href="../groups/summarisation-nlp/#tp-sn-19">TP.SN-19</a> Medication Attribute Extraction F1, <a href="../groups/summarisation-nlp/#tp-sn-21">TP.SN-21</a> Medication Event Classification</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>UKCore-Observation</td>
 <td>2+</td>
 <td>Structured vitals from consultation</td>
-<td>TP.WB-3 Field Mapping Accuracy</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>UKCore-Procedure</td>
 <td>2+</td>
 <td>Procedures performed/planned</td>
-<td>TP.CC-4 OPCS-4 Procedure Coding Accuracy</td>
+<td><a href="../groups/clinical-coding/#tp-cc-4">TP.CC-4</a> OPCS-4 Procedure Coding Accuracy</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>UKCore-ServiceRequest</td>
 <td>2+</td>
 <td>Referrals, tests ordered</td>
-<td>TP.WB-3 Field Mapping Accuracy</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</td>
 <td>🟢 1</td>
 </tr>
 <tr>
 <td>UKCore-Patient</td>
 <td>1+</td>
 <td>Patient demographics</td>
-<td>TP.WB-3 Field Mapping Accuracy</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</td>
 <td>🟢 1</td>
 </tr>
 </tbody>
@@ -7215,7 +7215,7 @@
 <tr>
 <td>NHS Number + NHSNumberVerificationStatus</td>
 <td>Primary patient identifier with verification state</td>
-<td>TP.WB-3 Field Mapping Accuracy</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</td>
 <td>🟢 1</td>
 </tr>
 <tr>
@@ -7245,13 +7245,13 @@
 <tr>
 <td>SNOMED CT primary terminology binding</td>
 <td>With CodingSCTDescDisplay extension</td>
-<td>TP.CC-1 SNOMED Code Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy</td>
+<td><a href="../groups/clinical-coding/#tp-cc-1">TP.CC-1</a> SNOMED Code Accuracy, <a href="../groups/clinical-coding/#tp-cc-2">TP.CC-2</a> SNOMED CT Concept Mapping Accuracy</td>
 <td>🟡 2</td>
 </tr>
 <tr>
 <td>dm+d for medicinal products</td>
 <td>Medication terminology</td>
-<td>TP.CC-5 dm+d Medication Coding Accuracy</td>
+<td><a href="../groups/clinical-coding/#tp-cc-5">TP.CC-5</a> dm+d Medication Coding Accuracy</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -7272,22 +7272,22 @@
 </thead>
 <tbody>
 <tr>
-<td>TP.WB-6 FHIR R4 Resource Conformance Rate</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate</td>
 <td>"FHIR conformance" for NHS deployment means <strong>UK Core profiles</strong>, not generic FHIR R4. Vendors claiming STU1 compliance cannot write back Composition / Condition / Observation - that is STU2+ capability. Stratify conformance reporting by STU version.</td>
 </tr>
 <tr>
-<td>TP.WB-7 openEHR Archetype Conformance</td>
+<td><a href="../groups/downstream-write-back/#tp-wb-7">TP.WB-7</a> openEHR Archetype Conformance</td>
 <td>openEHR is the alternative to FHIR in some NHS trusts (particularly mental health). Relevance depends on target EPR.</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Gaps:</strong>
-- Per-profile UK Core conformance stratification (aggregate TP.WB-6 doesn't distinguish Composition vs Condition vs Observation conformance)
+- Per-profile UK Core conformance stratification (aggregate <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> doesn't distinguish Composition vs Condition vs Observation conformance)
 - UK-specific extension conformance (NHS Number verification status, Ethnic Category, Death Notification, Residential Status)
 - STU version targeting documentation (vendors must declare which STU version they support)
 - INTEROPen-defined extension conformance (beyond UK Core base)
 - PDS integration depth</p>
-<p><strong>Taxonomy extends:</strong> Write-back Safety sub-cluster (TP.WB-1 through TP.WB-4) addresses safety semantics that UK Core profile conformance alone doesn't guarantee. A valid-but-wrong FHIR resource passes conformance but fails fidelity.</p>
+<p><strong>Taxonomy extends:</strong> Write-back Safety sub-cluster (<a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> through <a href="../groups/downstream-write-back/#tp-wb-4">TP.WB-4</a>) addresses safety semantics that UK Core profile conformance alone doesn't guarantee. A valid-but-wrong FHIR resource passes conformance but fails fidelity.</p>
 <hr />
 <h3 id="cqc-assessment-for-ai">CQC Assessment for AI<a class="headerlink" href="#cqc-assessment-for-ai" title="Permanent link">&para;</a></h3>
 <p><strong>Reference:</strong> <a href="../references/#cqc">CQC</a> · <a href="../references/#cqc-mythbuster-109">CQC-Mythbuster-109</a></p>
@@ -7300,32 +7300,32 @@
 <ul>
 <li><strong>GP Mythbuster 109 baseline assertions:</strong></li>
 <li>CQC regulates providers not tools - provider remains accountable for AI output</li>
-<li>Clinical responsibility non-delegable - clinician must review/sign off before the record is final → covered by HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate</li>
+<li>Clinical responsibility non-delegable - clinician must review/sign off before the record is final → covered by <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate, <a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate</li>
 <li>Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (no specific "record quality" composite metric)</li>
-<li>AVT consent - implied consent acceptable if patients informed and can dissent → covered by GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance, IO.PX-1 Patient Opt-Out Rate</li>
+<li>AVT consent - implied consent acceptable if patients informed and can dissent → covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-1">GV.CR-1</a> Patient Dissent Recording Rate, <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2</a> Verbal Notification Compliance, <a href="../groups/patient-experience/#io-px-1">IO.PX-1</a> Patient Opt-Out Rate</li>
 <li>Medical device classification considerations → cross-reference to MHRA SaMD section</li>
-<li>DCB0129/DCB0160 clinical safety case → covered by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness</li>
+<li>DCB0129/DCB0160 clinical safety case → covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness</li>
 <li>DTAC compliance pre-procurement → cross-reference to DTAC section</li>
 <li>
-<p>Staff training on AI limitations → covered by GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score</p>
+<p>Staff training on AI limitations → covered by <a href="../groups/training-competency/#gv-tc-1">GV.TC-1</a> Clinician Training Completion Rate, <a href="../groups/training-competency/#gv-tc-2">GV.TC-2</a> Failure Mode Awareness Score</p>
 </li>
 <li>
-<p><strong>Safe (Five Key Questions)</strong>: Covered extensively by Safety &amp; Governance group - GV.SG-17 Hazard Log Completeness, GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate, GV.SG-9 Safety Performance Indicators with Thresholds. Bias audits covered by IO.FE-3 Clinical Domain Performance Variance, TP.ASR-4 Demographic-Disaggregated WER. Rollback capability covered by TP.WB-5 Write-back Rollback Capability.</p>
+<p><strong>Safe (Five Key Questions)</strong>: Covered extensively by Safety &amp; Governance group - <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness, <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a> Near-Miss Reporting Rate, <a href="../groups/safety-governance/#gv-sg-9">GV.SG-9</a> Safety Performance Indicators with Thresholds. Bias audits covered by <a href="../groups/fairness-equity/#io-fe-3">IO.FE-3</a> Clinical Domain Performance Variance, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER. Rollback capability covered by <a href="../groups/downstream-write-back/#tp-wb-5">TP.WB-5</a> Write-back Rollback Capability.</p>
 </li>
 <li>
-<p><strong>Effective</strong>: Partial - clinical accuracy benchmarking covered by TP.ASR-1 WER, TP.SN-5 Hallucination Rate, TP.CC-1 SNOMED Code Accuracy. Outcome monitoring vs pre-AI baseline partially covered by GV.SG-3 Performance Degradation Detection Latency, IO.PX-9 Downstream Diagnostic Accuracy. Clinician review/sign-off covered by HL.HF-3 Review-Before-Signing Rate. NICE alignment cross-references NICE ESF section.</p>
+<p><strong>Effective</strong>: Partial - clinical accuracy benchmarking covered by <a href="../groups/asr-transcription/#tp-asr-1">TP.ASR-1</a> WER, <a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination Rate, <a href="../groups/clinical-coding/#tp-cc-1">TP.CC-1</a> SNOMED Code Accuracy. Outcome monitoring vs pre-AI baseline partially covered by <a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a> Performance Degradation Detection Latency, <a href="../groups/patient-experience/#io-px-9">IO.PX-9</a> Downstream Diagnostic Accuracy. Clinician review/sign-off covered by <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate. NICE alignment cross-references NICE ESF section.</p>
 </li>
 <li>
-<p><strong>Caring</strong>: Covered by IO.PX-1 Patient Opt-Out Rate, IO.PX-2 Patient-Perceived Accuracy, IO.PX-6 Therapeutic Relationship Impact, IO.PX-7 Full Attentiveness Rate, GV.CR-2 Verbal Notification Compliance. Dignity during recording - gap (no specific metric).</p>
+<p><strong>Caring</strong>: Covered by <a href="../groups/patient-experience/#io-px-1">IO.PX-1</a> Patient Opt-Out Rate, <a href="../groups/patient-experience/#io-px-2">IO.PX-2</a> Patient-Perceived Accuracy, <a href="../groups/patient-experience/#io-px-6">IO.PX-6</a> Therapeutic Relationship Impact, <a href="../groups/patient-experience/#io-px-7">IO.PX-7</a> Full Attentiveness Rate, <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2</a> Verbal Notification Compliance. Dignity during recording - gap (no specific metric).</p>
 </li>
 <li>
-<p><strong>Responsive</strong>: Partial - accessibility covered by IO.FE-2 Accent Taxonomy Standardisation, IO.FE-7 Health Literacy Performance Variation. Language coverage covered by TP.DI-6 Code-Switching Detection Rate. Equity audit covered by IO.FE-1 Deployment Equity Index, TP.CC-9 Coding Equity Index. Complaint routes specific to AI - gap.</p>
+<p><strong>Responsive</strong>: Partial - accessibility covered by <a href="../groups/fairness-equity/#io-fe-2">IO.FE-2</a> Accent Taxonomy Standardisation, <a href="../groups/fairness-equity/#io-fe-7">IO.FE-7</a> Health Literacy Performance Variation. Language coverage covered by <a href="../groups/diarisation/#tp-di-6">TP.DI-6</a> Code-Switching Detection Rate. Equity audit covered by <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/clinical-coding/#tp-cc-9">TP.CC-9</a> Coding Equity Index. Complaint routes specific to AI - gap.</p>
 </li>
 <li>
-<p><strong>Well-led</strong>: Partial - board-level AI governance - gap. Named accountable director - gap. CSO role covered by GV.CR-6 Clinical Safety Case Completeness. Audit trail covered by GV.VT-4 Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via GV.SG-13 Assurance Debt Accumulation Rate.</p>
+<p><strong>Well-led</strong>: Partial - board-level AI governance - gap. Named accountable director - gap. CSO role covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness. Audit trail covered by <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via <a href="../groups/safety-governance/#gv-sg-13">GV.SG-13</a> Assurance Debt Accumulation Rate.</p>
 </li>
 <li>
-<p><strong>CSO expectations</strong>: Registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live. Covered procedurally by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness. CSO capacity for AI oversight is a gap (no metric).</p>
+<p><strong>CSO expectations</strong>: Registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live. Covered procedurally by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness. CSO capacity for AI oversight is a gap (no metric).</p>
 </li>
 </ul>
 <p><strong>Overall position:</strong> CQC assessment is structurally broader than any single standard because it covers the whole provider operation. The taxonomy provides strong measurement coverage for the Safe and Caring dimensions, partial coverage for Effective and Responsive, and weakest coverage for Well-led (board-level governance, named accountability, AI-specific complaint handling). The gaps are concentrated in provider-organisation-level governance mechanisms rather than clinical-AI performance.</p>
@@ -7348,8 +7348,8 @@
 <ul>
 <li><strong>Four PSIRF principles:</strong></li>
 <li><strong>Compassionate engagement</strong> - Gap (no metric for engagement with those affected by AI-related harm)</li>
-<li><strong>Systems-based learning</strong> - Partial - PI.E2E-3 Error Propagation / Cascade Analysis, PI.E2E-8 Error Attribution Analysis provide pipeline-level analysis but not the organisation-level learning response</li>
-<li><strong>Proportionate response</strong> - Partial - GV.SG-16 SPI Escalation Response Time addresses timeliness but not proportionality</li>
+<li><strong>Systems-based learning</strong> - Partial - <a href="../groups/end-to-end-pipeline/#pi-e2e-3">PI.E2E-3</a> Error Propagation / Cascade Analysis, <a href="../groups/end-to-end-pipeline/#pi-e2e-8">PI.E2E-8</a> Error Attribution Analysis provide pipeline-level analysis but not the organisation-level learning response</li>
+<li><strong>Proportionate response</strong> - Partial - <a href="../groups/safety-governance/#gv-sg-16">GV.SG-16</a> SPI Escalation Response Time addresses timeliness but not proportionality</li>
 <li>
 <p><strong>Supportive oversight</strong> - Gap (no metric for board/ICB oversight of AI-related safety learning)</p>
 </li>
@@ -7360,14 +7360,14 @@
 <li>Patient Safety Incident Response Plan (PSIRP, 12–18 month forward plan) - Process artefact, no metric</li>
 <li>Patient Safety Incident Response Standards - Process artefact, no metric</li>
 <li>
-<p>Patient Safety Incident Investigation (PSII) - Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-15 Time-to-Correct</p>
+<p>Patient Safety Incident Investigation (PSII) - Partial via <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/safety-governance/#gv-sg-15">GV.SG-15</a> Time-to-Correct</p>
 </li>
 <li>
 <p><strong>Learning response types:</strong></p>
 </li>
 <li>After Action Review (AAR) - Gap</li>
 <li>MDT Review - Gap</li>
-<li>PSII (deepest response) - Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE), PI.E2E-8 Error Attribution Analysis</li>
+<li>PSII (deepest response) - Partial via <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE), <a href="../groups/end-to-end-pipeline/#pi-e2e-8">PI.E2E-8</a> Error Attribution Analysis</li>
 <li>SEIPS-informed analysis - Gap (no metric for whole-system analysis of AI incidents)</li>
 <li>
 <p>Swarm huddle / thematic review / horizon scanning - Gap</p>
@@ -7387,13 +7387,13 @@
 <li>Quarterly reports on safety themes and learning - Gap</li>
 <li>PSIRP board sign-off - Gap</li>
 <li>
-<p>LFPSE integration - Partial via GV.SG-11 Adverse Event / Incident Rate (LFPSE)</p>
+<p>LFPSE integration - Partial via <a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> Adverse Event / Incident Rate (LFPSE)</p>
 </li>
 <li>
-<p><strong>Differences from old SI Framework:</strong> PSIRF moves from blame-based RCA to systems thinking; from prescribed investigations to proportionate response; from transactional commissioner sign-off to supportive ICB/NHSE oversight. The taxonomy's existing incident metrics (GV.SG-11, GV.SG-14) capture that an incident occurred but not the organisation's systems-learning response.</p>
+<p><strong>Differences from old SI Framework:</strong> PSIRF moves from blame-based RCA to systems thinking; from prescribed investigations to proportionate response; from transactional commissioner sign-off to supportive ICB/NHSE oversight. The taxonomy's existing incident metrics (<a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a>, <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a>) capture that an incident occurred but not the organisation's systems-learning response.</p>
 </li>
 </ul>
-<p><strong>Overall position:</strong> PSIRF complements DCB0129 Stage 7 Incident Management (already mapped). DCB0129 is about documenting the technical safety lifecycle; PSIRF is about organisation-level systems learning from live incidents. The taxonomy captures incident occurrence (GV.SG-11 LFPSE, GV.SG-14 Near-Miss Reporting Rate) and technical attribution (PI.E2E-8 Error Attribution Analysis) but not the PSIRF-required engagement, learning, and oversight responses. This is the clearest governance gap in the existing taxonomy.</p>
+<p><strong>Overall position:</strong> PSIRF complements DCB0129 Stage 7 Incident Management (already mapped). DCB0129 is about documenting the technical safety lifecycle; PSIRF is about organisation-level systems learning from live incidents. The taxonomy captures incident occurrence (<a href="../groups/safety-governance/#gv-sg-11">GV.SG-11</a> LFPSE, <a href="../groups/safety-governance/#gv-sg-14">GV.SG-14</a> Near-Miss Reporting Rate) and technical attribution (<a href="../groups/end-to-end-pipeline/#pi-e2e-8">PI.E2E-8</a> Error Attribution Analysis) but not the PSIRF-required engagement, learning, and oversight responses. This is the clearest governance gap in the existing taxonomy.</p>
 <p><strong>Gaps:</strong>
 - Systems-based root cause analysis readiness (SEIPS-informed)
 - Compassionate engagement with affected patients/families
@@ -7417,7 +7417,7 @@
 <li>Discharge Summary Standard - gap</li>
 <li>Mental Health Inpatient Discharge Summary - gap</li>
 <li>Emergency Care Discharge Summary - gap</li>
-<li>Transfer of Care Around Medicines (ToCAM) - partial via TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification</li>
+<li>Transfer of Care Around Medicines (ToCAM) - partial via <a href="../groups/summarisation-nlp/#tp-sn-19">TP.SN-19</a> Medication Attribute Extraction F1, <a href="../groups/summarisation-nlp/#tp-sn-21">TP.SN-21</a> Medication Event Classification</li>
 <li>About Me - gap</li>
 <li>End of Life Care - gap</li>
 <li>Maternity Record Standard - gap</li>
@@ -7427,21 +7427,21 @@
 <li>
 <p><strong>Common header set (across standards):</strong></p>
 </li>
-<li>Patient demographics + NHS Number - covered by TP.WB-3 Field Mapping Accuracy</li>
-<li>Allergies and adverse reactions - covered by TP.WB-1 Write-back Fidelity (specifically flagged), TP.WB-4 Update vs Append Behaviour</li>
-<li>Medications (current, changes, reason) - covered by TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification, TP.CC-5 dm+d Medication Coding Accuracy</li>
-<li>Problems / diagnoses (SNOMED) - covered by TP.CC-1 SNOMED Code Accuracy, TP.CC-2 SNOMED CT Concept Mapping Accuracy</li>
-<li>Procedures (OPCS) - covered by TP.CC-4 OPCS-4 Procedure Coding Accuracy</li>
-<li>Observations / vital signs - partial via TP.WB-3 Field Mapping Accuracy</li>
+<li>Patient demographics + NHS Number - covered by <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</li>
+<li>Allergies and adverse reactions - covered by <a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity (specifically flagged), <a href="../groups/downstream-write-back/#tp-wb-4">TP.WB-4</a> Update vs Append Behaviour</li>
+<li>Medications (current, changes, reason) - covered by <a href="../groups/summarisation-nlp/#tp-sn-19">TP.SN-19</a> Medication Attribute Extraction F1, <a href="../groups/summarisation-nlp/#tp-sn-21">TP.SN-21</a> Medication Event Classification, <a href="../groups/clinical-coding/#tp-cc-5">TP.CC-5</a> dm+d Medication Coding Accuracy</li>
+<li>Problems / diagnoses (SNOMED) - covered by <a href="../groups/clinical-coding/#tp-cc-1">TP.CC-1</a> SNOMED Code Accuracy, <a href="../groups/clinical-coding/#tp-cc-2">TP.CC-2</a> SNOMED CT Concept Mapping Accuracy</li>
+<li>Procedures (OPCS) - covered by <a href="../groups/clinical-coding/#tp-cc-4">TP.CC-4</a> OPCS-4 Procedure Coding Accuracy</li>
+<li>Observations / vital signs - partial via <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy</li>
 <li>Communication needs (AIS flags, interpreter needs) - gap</li>
-<li>Consent and preferences - partial via GV.PD-8 Consent Verification Accuracy</li>
+<li>Consent and preferences - partial via <a href="../groups/privacy-data-governance/#gv-pd-8">GV.PD-8</a> Consent Verification Accuracy</li>
 <li>Legal status (MHA, DoLS, LPA, advance decisions) - gap</li>
-<li>Clinical narrative (history, examination, assessment, plan) - partial via TP.SN-5 Hallucination Rate, TP.SN-6 Omission Rate, TP.SN-20 Uncertainty Marker Preservation</li>
+<li>Clinical narrative (history, examination, assessment, plan) - partial via <a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination Rate, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission Rate, <a href="../groups/summarisation-nlp/#tp-sn-20">TP.SN-20</a> Uncertainty Marker Preservation</li>
 <li>
 <p>Safety netting - gap</p>
 </li>
 <li>
-<p><strong>Narrative vs structured trade-off:</strong> PRSB explicitly preserves narrative text as valuable and does not mandate full structurisation. The taxonomy captures aspects of this - TP.SN-22 Style &amp; Format Consistency, TP.SN-23 Length Appropriateness - but not the narrative-preservation-vs-structurisation trade-off directly. An AVT that over-structures at the expense of narrative fails the PRSB spirit; an AVT that preserves narrative but fails to populate required coded fields also fails.</p>
+<p><strong>Narrative vs structured trade-off:</strong> PRSB explicitly preserves narrative text as valuable and does not mandate full structurisation. The taxonomy captures aspects of this - <a href="../groups/summarisation-nlp/#tp-sn-22">TP.SN-22</a> Style &amp; Format Consistency, <a href="../groups/summarisation-nlp/#tp-sn-23">TP.SN-23</a> Length Appropriateness - but not the narrative-preservation-vs-structurisation trade-off directly. An AVT that over-structures at the expense of narrative fails the PRSB spirit; an AVT that preserves narrative but fails to populate required coded fields also fails.</p>
 </li>
 <li>
 <p><strong>Cardinality (Mandatory / Required-if-known / Optional):</strong> Every data item in a PRSB standard has cardinality. The taxonomy has no metric for "is mandatory information present in the AVT output?"</p>
@@ -7450,10 +7450,10 @@
 <p><strong>Royal College endorsement:</strong> AoMRC, RCGP, RCP, RCS, RCEM, RCPsych, RCPCH, RCOG, RCR, RCPath, RCA, RCN, RPS, AHP federation, patient groups. Process criterion, no metric.</p>
 </li>
 <li>
-<p><strong>Relationship to FHIR UK Core:</strong> PRSB data items are explicitly mapped to FHIR UK Core resources/elements in published mapping tables. TP.WB-6 FHIR R4 Resource Conformance Rate partially covers this, but conformance to the wire format doesn't guarantee PRSB semantic completeness.</p>
+<p><strong>Relationship to FHIR UK Core:</strong> PRSB data items are explicitly mapped to FHIR UK Core resources/elements in published mapping tables. <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance Rate partially covers this, but conformance to the wire format doesn't guarantee PRSB semantic completeness.</p>
 </li>
 </ul>
-<p><strong>Overall position:</strong> PRSB is the clearest gap across all seven new standards. The taxonomy has strong technical integration metrics (TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-6 FHIR R4 Resource Conformance) and strong content fidelity metrics (TP.SN-5 Hallucination, TP.SN-6 Omission) but no metric for "does the AVT output include all PRSB-mandatory information elements for the applicable standard?" A PRSB-aware AVT should be able to report per-standard compliance (CIS, Outpatient Letter, Discharge Summary, etc.) as a procurement signal.</p>
+<p><strong>Overall position:</strong> PRSB is the clearest gap across all seven new standards. The taxonomy has strong technical integration metrics (<a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity, <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy, <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance) and strong content fidelity metrics (<a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission) but no metric for "does the AVT output include all PRSB-mandatory information elements for the applicable standard?" A PRSB-aware AVT should be able to report per-standard compliance (CIS, Outpatient Letter, Discharge Summary, etc.) as a procurement signal.</p>
 <p><strong>Gaps:</strong>
 - PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)
 - Mandatory information element coverage
@@ -7471,28 +7471,28 @@
 <p><strong>Key dimensions and taxonomy coverage:</strong></p>
 <ul>
 <li>
-<p><strong>Principle 1 - Justify the purpose(s)</strong>: Partial - GV.CR-7 DPIA Template Completion Rate evidences purpose documentation, but "justify" is judgement-based. Gap: DPIA justification quality metric.</p>
+<p><strong>Principle 1 - Justify the purpose(s)</strong>: Partial - <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate evidences purpose documentation, but "justify" is judgement-based. Gap: DPIA justification quality metric.</p>
 </li>
 <li>
-<p><strong>Principle 2 - Use confidential information only when it is necessary</strong>: Partial - GV.PD-4 Data Minimisation Score partially addresses this. Gap: "necessity" judgement metric for AVT processing of specific consultation types (e.g. should AVT be used for safeguarding or mental health consultations?).</p>
+<p><strong>Principle 2 - Use confidential information only when it is necessary</strong>: Partial - <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score partially addresses this. Gap: "necessity" judgement metric for AVT processing of specific consultation types (e.g. should AVT be used for safeguarding or mental health consultations?).</p>
 </li>
 <li>
-<p><strong>Principle 3 - Use the minimum necessary confidential information</strong>: Partial - GV.PD-4 Data Minimisation Score addresses aggregate minimisation. Gap: per-data-item necessity documentation.</p>
+<p><strong>Principle 3 - Use the minimum necessary confidential information</strong>: Partial - <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score addresses aggregate minimisation. Gap: per-data-item necessity documentation.</p>
 </li>
 <li>
-<p><strong>Principle 4 - Access on a strict need-to-know basis</strong>: Covered by GV.VT-7 Sub-Processor Transparency, GV.SC-9 Cross-Patient Information Leakage Rate, GV.VT-4 Audit Trail Completeness.</p>
+<p><strong>Principle 4 - Access on a strict need-to-know basis</strong>: Covered by <a href="../groups/vendor-transparency-contractual/#gv-vt-7">GV.VT-7</a> Sub-Processor Transparency, <a href="../groups/security-adversarial-robustness/#gv-sc-9">GV.SC-9</a> Cross-Patient Information Leakage Rate, <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness.</p>
 </li>
 <li>
-<p><strong>Principle 5 - Everyone aware of their responsibilities</strong>: Covered by GV.TC-1 Clinician Training Completion Rate, GV.TC-2 Failure Mode Awareness Score, GV.TC-3 Refresher Training &amp; CPD Compliance.</p>
+<p><strong>Principle 5 - Everyone aware of their responsibilities</strong>: Covered by <a href="../groups/training-competency/#gv-tc-1">GV.TC-1</a> Clinician Training Completion Rate, <a href="../groups/training-competency/#gv-tc-2">GV.TC-2</a> Failure Mode Awareness Score, <a href="../groups/training-competency/#gv-tc-3">GV.TC-3</a> Refresher Training &amp; CPD Compliance.</p>
 </li>
 <li>
-<p><strong>Principle 6 - Comply with the law</strong>: Covered by GV.CR-6 Clinical Safety Case Completeness, GV.CR-7 DPIA Template Completion Rate, GV.PD-9 Cross-Border Data Transfer Compliance, GV.PD-10 Subject Access Request Fulfilment, GV.PD-11 Right to Erasure Compliance.</p>
+<p><strong>Principle 6 - Comply with the law</strong>: Covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate, <a href="../groups/privacy-data-governance/#gv-pd-9">GV.PD-9</a> Cross-Border Data Transfer Compliance, <a href="../groups/privacy-data-governance/#gv-pd-10">GV.PD-10</a> Subject Access Request Fulfilment, <a href="../groups/privacy-data-governance/#gv-pd-11">GV.PD-11</a> Right to Erasure Compliance.</p>
 </li>
 <li>
-<p><strong>Principle 7 - Duty to share for individual care</strong>: Covered by TP.WB-1 Write-back Fidelity (ensures generated records flow into EPR for continuity of care), TP.WB-2 Integration Error Rate. The principle is that "AI-generated" is not an excuse to withhold information - the taxonomy ensures the information flows correctly.</p>
+<p><strong>Principle 7 - Duty to share for individual care</strong>: Covered by <a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity (ensures generated records flow into EPR for continuity of care), <a href="../groups/downstream-write-back/#tp-wb-2">TP.WB-2</a> Integration Error Rate. The principle is that "AI-generated" is not an excuse to withhold information - the taxonomy ensures the information flows correctly.</p>
 </li>
 <li>
-<p><strong>Principle 8 - Inform patients and service users</strong> <em>(added 2020)</em>: Directly covered by GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance, GV.CR-3 AI-Generated Content Labelling Compliance, IO.PX-1 Patient Opt-Out Rate. This is the clearest direct mapping between a Caldicott principle and existing taxonomy metrics.</p>
+<p><strong>Principle 8 - Inform patients and service users</strong> <em>(added 2020)</em>: Directly covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-1">GV.CR-1</a> Patient Dissent Recording Rate, <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2</a> Verbal Notification Compliance, <a href="../groups/nhs-compliance-regulatory/#gv-cr-3">GV.CR-3</a> AI-Generated Content Labelling Compliance, <a href="../groups/patient-experience/#io-px-1">IO.PX-1</a> Patient Opt-Out Rate. This is the clearest direct mapping between a Caldicott principle and existing taxonomy metrics.</p>
 </li>
 <li>
 <p><strong>Caldicott Guardian role:</strong> Senior person in every NHS organisation, UKCGC-trained, advises on complex IG decisions, represents confidentiality at board level. Distinct from DPO (statutory UK GDPR role) and SIRO (risk ownership). Process role, no metric for Guardian's AI-specific engagement.</p>
@@ -7605,12 +7605,12 @@
 <tr>
 <td><strong>Budget impact analysis composite</strong></td>
 <td>NICE ESF Standard 17</td>
-<td>Medium - GV.OP-7 is partial</td>
+<td>Medium - <a href="../groups/operational/#gv-op-7">GV.OP-7</a> is partial</td>
 </tr>
 <tr>
 <td><strong>Per-profile UK Core conformance stratification</strong></td>
 <td>FHIR UK Core</td>
-<td>High - aggregate TP.WB-6 is too coarse</td>
+<td>High - aggregate <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> is too coarse</td>
 </tr>
 <tr>
 <td><strong>UK-specific FHIR extension conformance</strong></td>

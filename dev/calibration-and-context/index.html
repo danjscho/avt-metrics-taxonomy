@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3643,7 +3643,7 @@
 <ul>
 <li><strong>The metric constructs themselves</strong> — what hallucination rate measures, what edit rate measures, what write-back fidelity measures</li>
 <li><strong>The dimensional axes</strong> — Pipeline Layer, Assurance Question, Measurement Method, Lifecycle Phases, Responsible Actors, Maturity, Outcome Type, Applicability</li>
-<li><strong>The reference IDs</strong> — TP.SN-5, GV.PD-1, etc. These are the public API</li>
+<li><strong>The reference IDs</strong> — <a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a>, <a href="../groups/privacy-data-governance/#gv-pd-1">GV.PD-1</a>, etc. These are the public API</li>
 <li><strong>The Outcomes Boundary itself</strong> — what this taxonomy assures (deployment safety) versus what national research bodies must validate (clinical outcomes)</li>
 </ul>
 <p>Calibration changes parameters; it does not change structure.</p>
@@ -3660,7 +3660,7 @@
 <p><a href="../groups/fairness-equity/#io-fe-8">IO.FE-8 Cross-Platform Fairness Consistency</a> shifts up where platforms are mixed across services within an ICS. <a href="../groups/safety-governance/#gv-sg-1">GV.SG-1 Model Version Tracking</a> thresholds change at v1.0 (when component-version logging is being established) versus a mature deployment (where the question is drift detection on top of stable telemetry).</p>
 <h4 id="4-governance-capacity">4. Governance capacity<a class="headerlink" href="#4-governance-capacity" title="Permanent link">&para;</a></h4>
 <p>Embedded Clinical Safety Officer presence, regional CCIO support, IG team depth, audit-function maturity.</p>
-<p>Audit cadences and sample-size floors are not feasible at the same level for a 4-clinician practice and a 200-clinician Trust. <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a>'s "≥ 30 patients per clinician per quarter" floor is straightforward at scale and impossible at solo-practice level — local calibration may shift to "all eligible patients audited quarterly" instead. <a href="../groups/nhs-compliance-regulatory/#gv-cr-5">GV.CR-5 ICB Engagement Documentation</a>'s carve-out logic explicitly assumes regional CCIO capacity that is not universal (see GV.CR-5 Limitations).</p>
+<p>Audit cadences and sample-size floors are not feasible at the same level for a 4-clinician practice and a 200-clinician Trust. <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a>'s "≥ 30 patients per clinician per quarter" floor is straightforward at scale and impossible at solo-practice level — local calibration may shift to "all eligible patients audited quarterly" instead. <a href="../groups/nhs-compliance-regulatory/#gv-cr-5">GV.CR-5 ICB Engagement Documentation</a>'s carve-out logic explicitly assumes regional CCIO capacity that is not universal (see <a href="../groups/nhs-compliance-regulatory/#gv-cr-5">GV.CR-5</a> Limitations).</p>
 <h4 id="5-risk-appetite">5. Risk appetite<a class="headerlink" href="#5-risk-appetite" title="Permanent link">&para;</a></h4>
 <p>The DPIA-stated retention window, the contractual SLA tightness, the deployer's institutional appetite for IG-incident reportability.</p>
 <p>Threshold <em>gate</em> values are at the deployer's risk appetite; the taxonomy provides starting points, not regulator-issued numbers. <a href="../groups/privacy-data-governance/#gv-pd-2">GV.PD-2 Audio Time-to-Deletion</a>'s 24-hour median target is a starting point; a deployer's DPIA may set 4 hours (lower risk appetite) or 7 days (with explicit DPIA justification). The Threshold Guidance Provenance prelude on every tightened metric distinguishes cited thresholds from proposed-as-starting-points; calibration acts on the latter.</p>
