@@ -1,5 +1,42 @@
 # Changelog
 
+## v4.2.0 (2026-05-03)
+
+**Minor release: Formal Definition + code snippet verification (high-yield subset).**
+
+Plan-future #5 lands. The task: verify that Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME match what their cited sources actually say. The v3.9 references-validity sweep caught broken URLs and wrong DOIs at the catalogue layer; this release does the same job at the per-metric content layer.
+
+**Methodology.** Two-pass triage of 92 in-scope metrics (TP / IO.FE / ES.ME):
+
+- **Pass A — internal coherence.** Read every Formal Definition + Reference Standard + Threshold Guidance + Source row, looking for inconsistencies *within* the taxonomy. Result: 92 metrics triaged as 53 ✓ / 13 ~ / 26 ⚠ / 0 🔴 — no internal contradictions.
+- **Pass B — external source verification.** Fetched 16 cited papers/repos/standards and verified specific quantitative claims attributed to each. Result: **18 metrics escalated to 🔴** because specific numbers attributed to specific cited papers are not in those papers. Sources cached locally for re-reading at `reference-docs/v4.2-pass-b/` (gitignored, per the GOSH-PDF convention).
+
+**Headline finding.** The dominant confabulation pattern in the prior taxonomy was *specific numbers attributed to real papers that don't actually contain them*. The Croxford 2025 npj Health Systems review was the worst single case — six metrics depended on a constellation of Croxford-attributed numbers (Kendall-Tau 0.080, Pearson 0.62, ICC 0.43–0.68, ICC 0.818, 27× speed, Rwanda study) that are not in either Croxford paper (npj review or JAMIA PDSQI-9 validation). The actual Croxford-published PDSQI-9 inter-rater ICC is 0.867 — directly contradicting the "0.43" baseline the taxonomy previously cited from Croxford. By contrast, when a paper IS the source of a number, the verification cleared cleanly: Asgari/Tortus 1.47%/3.45%, Anderson/OHSU 19.5%, Bedi/MedHELM 0.47/0.43, Chung/VeriFact 92.7/88.5, Abridge 97/82, CHECK 31→0.3% AUC 0.95–0.96, Dai/Kvedar/Polsky 3.0→4.1.
+
+**Phase 3 fixes (18 🔴 metrics).** Each was either re-attributed to a correct source, replaced with a generic qualitative claim, or reframed as taxonomy-proposed (with ⚠ Provenance prelude) where the underlying construct is sound but the specific claim wasn't source-attested:
+
+- **Croxford bundle (6):** TP.SN-3, TP.SN-9, TP.SN-9a, ES.ME-2, ES.ME-6, ES.ME-7. Replaced fabricated specific numbers; added [Croxford-PDSQI9-JAMIA-2025] catalogue entry to surface the actual 0.867 ICC; Bedi/MedHELM half of the framing kept (verified clean).
+- **Asgari structural (TP.SN-4 + TP.SN-5 family framing):** reversed wrong "secondary care paediatrics" attribution to actual PriMock primary care; replaced taxonomy-coined L1/L2 hierarchy with paper's actual 4-hallucination-subtype + 3-omission-subtype structure (with the L1/L2 regrouping retained as documented v4.2 taxonomy extension); reframed the 5-subtype family-framing list as a taxonomy regrouping over Asgari's actual 4. Catalogue handle renamed `Asgari-Tortus-GOSH-2025` → `Asgari-Tortus-2025`.
+- **Wang (TP.DI-1, TP.SN-13):** removed AMI/CALLHOME DER baselines wrongly attributed to Wang; replaced "four-modality triangulation" terminology with "four-component evaluation framework" using paper's actual SCRIBE acronym expansion.
+- **Abridge (TP.SN-7a):** updated Support × Severity axis labels to match Abridge's actual 5-Support × 3-Severity schema (was 4 × 3 in the taxonomy); corrected catalogue author list (added Chenhao Tan, fixed ordering).
+- **Hybrid-Code v2 (TP.CC-3):** removed unsourced 93%/82% specificity-degradation numbers; reframed as well-documented general phenomenon.
+- **mpathic (TP.DI-5, TP.DI-8):** F1 floors and weight-matrix values reframed as taxonomy-proposed with ⚠ Provenance preludes; renamed cpHEWER to actual mpathic acronym expansion (Clinician-Preferred, not Clinical-Perspective).
+- **n2c2/i2b2 (TP.SN-17, TP.SN-19, TP.SN-21):** removed F1 0.876 i2b2 SOTA claim; tightened TP.SN-19 wording to actual n2c2 2018 numbers; reframed TP.SN-21 9-class action taxonomy as taxonomy-proposed extension over n2c2's attribute schema.
+- **FAIR-MED (IO.FE-5):** dropped FAIR-MED attribution (paper's actual CFS = DF + AMF data/model decomposition, not our intersectional multiplicative-vs-additive formulation); renamed metric to "Compound Disadvantage Score" to avoid name collision; reattributed to intersectional-fairness literature generally.
+- **TP.WB-6:** removed "ADS/Harvard SPIE 2025" attribution and 95%/70% data-field-retention numbers (no such study found in any verified source — likely confabulated).
+
+**Catalogue work.** Four new handles added — `Anderson-OHSU-2025`, `CHECK-GarciaFernandez-2025`, `BenAbacha-EvalMetrics-2023`, `Croxford-PDSQI9-JAMIA-2025`. One handle renamed (Asgari-Tortus-GOSH-2025 → Asgari-Tortus-2025). One handle removed (FAIR-MED-Springer-2025 — no longer cited). One author correction (Abridge: added Tan; reordered to Liang first per actual whitepaper).
+
+**TP.AC ⚠ Provenance prelude sweep (6 metrics).** TP.AC-1, TP.AC-3, TP.AC-5, TP.AC-6, TP.AC-7, TP.AC-9 received ⚠ Provenance preludes flagging engineering-default thresholds as taxonomy-proposed rather than externally validated, matching the v3.x Tier 1 tightening pattern. TP.AC-5 is a Tier 1 "Not tightened" metric; the minimal pass here adds the prelude but defers the full Reference Standard / Operational Specification / Threshold Guidance pattern to a future release alongside the broader threshold-recommendation review.
+
+**References-block grammar drift sweep.** Migrated 7 inline-link citations to existing catalogue handles (Wang, ROUGE Lin, BERTScore Zhang, Chung VeriFact, Bedi MedHELM, Koenecke 2024 Careless Whisper). 8 candidates flagged for future catalogue promotion (SCTK, MedCAT, Koenecke 2020 PNAS, Guo 2017, Li 2022 Semantic-WER, dscore, philipchung/verifact GitHub, Stetson 2012 PDSQI lineage anchor) — captured at `v4.2-catalogue-promotion-candidates.md`.
+
+**Phase 4 code snippet verification (15 in-scope TP snippets).** Most snippets verified clean — standard library APIs (jiwer, pyannote, rouge_score, bert_score, transformers, scipy, librosa, MedCAT, Levenshtein) used correctly. Two fixes: TP.SN-7b VeriFact pseudocode reframed with a clarifying comment that it's conceptual pipeline shape rather than literal repo API; TP.ASR-2 M-WER snippet had unused imports removed and got an illustrative-only-comment. PI / HL / GV cluster snippets are out of v4.2 scope; verification queued for v4.3.
+
+**No content changes to pre-existing metric tier assignments, sub-cluster groupings, or family framings beyond the corrections listed above.** No new metrics, no removals. Counts unchanged at 221 / 45-97-79. CSV / JSON downloads unchanged in shape and row count.
+
+**plan-future updates.** #5 (Verify code snippets and Formal Definitions) removed — shipped. #8 (Threshold-numbers review) updated with v4.2 surface-area increase (the new Provenance preludes added in this release expand the eventual review's scope) and a new Option 7 (drop all numerical thresholds; provide only calibration framework + reasoning prompts) per reviewer-raised design question. #11 (Standards-mapping tables — link metric ref-IDs back to per-metric pages) added.
+
 ## v4.1.0 (2026-05-02)
 
 **Minor release: deprecation/decommissioning metrics + AVT Registry tier column.**
