@@ -152,9 +152,9 @@ For each intersection of demographic categories (age x ethnicity x language x ge
 
 ---
 
-### IO.FE-5 🔵 Intersectional Compound Fairness Score
+### IO.FE-5 🔵 Intersectional Compound Disadvantage Score
 
-Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively - that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
+Extension of the existing Intersectional Performance metric proposing a single quantitative summary of whether observed intersectional disadvantage compounds multiplicatively or additively. Where Intersectional Performance measures accuracy at each demographic intersection, this metric calculates whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages — that is, whether disadvantage compounds super-additively. Builds on intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work by Kearns et al. and others); the specific compound-disadvantage formulation below is **taxonomy-proposed, not source-attested**.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
@@ -169,7 +169,7 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
-|**Source**             |[FAIR-MED-Springer-2025] (Bias Detection and Fairness Evaluation in Healthcare Focused XAI)|
+|**Source**             |Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)|
 
 **Why this tier?**
 
@@ -178,7 +178,9 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 **Formal Definition**
 
 ```
-For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expected intersection gap under additive model = Σ gap(Aᵢ); actual intersection gap = observed gap at intersection ∩Aᵢ. Compound Fairness Score CFS = actual_gap / expected_additive_gap. CFS > 1 indicates multiplicative compounding (intersection is worse than sum of parts); CFS ≈ 1 indicates additive; CFS < 1 indicates sub-additive. Multiplicative compounding is the warning signal for worst-case population failures.
+Taxonomy-proposed metric. For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ) measured against the majority/reference group: expected intersection gap under additive model = Σ gap(Aᵢ); actual intersection gap = observed gap at intersection ∩Aᵢ. Compound Disadvantage Score CDS = actual_gap / expected_additive_gap. CDS > 1 indicates super-additive compounding (intersection is worse than sum of parts); CDS ≈ 1 indicates additive; CDS < 1 indicates sub-additive. Super-additive compounding is the warning signal for worst-case population failures.
+
+⚠️ Provenance: this specific operational construction is taxonomy-proposed in v4.2; the underlying concept (intersectional disadvantage compounds rather than averages) is established in intersectional-fairness literature, but the actual_gap / expected_additive_gap ratio is a v4.2 framing rather than a published instrument. Treat as a starting-point construction; require local calibration before contractual use.
 ```
 
 **Limitations**

@@ -4000,7 +4000,7 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 **⚠️ Underspecification Warning (Tier C - standard methodology, absent clinical context)**
 
-> DER has a rigorous technical definition (NIST RT evaluation protocol) and established general benchmarks (AMI ~7.2%, CALLHOME ~12.4%), but **no clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality - a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
+> DER has a rigorous technical definition (NIST RT evaluation protocol). The dominant non-clinical diarisation benchmarks are AMI (multi-party meeting audio) and CALLHOME (telephone conversation); reported SOTA DER values vary widely by system, decoder, collar, and protocol — see published diarisation surveys for specific configurations rather than treating any single number as canonical. **No clinical-specific benchmarks exist** for the multi-party consultations routinely encountered in NHS practice. No validated link has been established between DER and downstream clinical documentation quality — a low DER does not guarantee accurate speaker attribution on clinically significant utterances, and a moderate DER may be acceptable if the errors concentrate on non-clinical content. Word-level DER (WDER) is more clinically relevant than time-based DER but is rarely reported by vendors. Require WDER from vendors and request reporting stratified by utterance type: clinician instruction, patient symptom report, family contextual information, medication discussion. The aggregate DER number in isolation is technically correct but clinically uninterpretable.
 
 ---
 
@@ -4385,7 +4385,7 @@ scores = scorer.score(reference, hypothesis)
 
 **⚠️ Underspecification Warning (Tier C - technically rigorous, clinically invalid)**
 
-> Published evidence demonstrates near-zero correlation between ROUGE and human clinical judgment in clinical summarisation evaluation. Croxford et al. (2025, npj Digital Medicine) reported ROUGE-L Kendall-Tau of just 0.080 with expert clinician scoring on clinical diagnosis generation - indistinguishable from random for practical purposes. A separate investigation of automated metrics for medical note generation (ar5iv 2305.17364) documented catastrophic failure modes with Spearman ρ between −0.66 and −0.77 in some medical contexts, meaning higher ROUGE scores actively correlated with worse human judgments. The root cause is that string matching penalises clinically valid paraphrase and rewards surface overlap regardless of clinical meaning. **ROUGE must not be used as a standalone clinical quality indicator.** Retain only for technical benchmarking, and always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).
+> Published review evidence demonstrates near-zero or negative correlation between ROUGE and expert clinical judgment in clinical summarisation evaluation ([Croxford-2025] review; [BenAbacha-EvalMetrics-2023] investigation of automated metrics for medical note generation). The root cause is that string matching penalises clinically valid paraphrase and rewards surface overlap regardless of clinical meaning. **ROUGE must not be used as a standalone clinical quality indicator.** Retain only for technical benchmarking, and always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).
 
 **Novel Thinking / Implications**
 
@@ -4447,7 +4447,7 @@ P, R, F1 = score(
 
 **⚠️ Underspecification Warning (Tier C - better than ROUGE but insufficient alone)**
 
-> BERTScore-R achieves approximately Pearson 0.62 correlation with omission rate in clinical summarisation (Croxford et al. 2025) - materially better than ROUGE but still inadequate as a standalone clinical quality indicator. The underlying limitation is the same as ROUGE: semantic similarity is not clinical correctness. A note can be semantically close to the reference while missing a clinically critical element, or semantically distant while conveying the same clinical meaning through appropriate medical abstraction. BERTScore is useful as one input to a multi-metric assessment but should never be reported as the primary quality finding. Pair with PDSQI-9 or an LLM-as-a-Judge protocol that has been subjected to bias quantification.
+> BERTScore is materially better than ROUGE as a text-similarity metric — it captures semantic similarity rather than only surface overlap — but published reviews of clinical-NLG evaluation ([Croxford-2025]) describe semantic-similarity metrics as still inadequate as standalone clinical quality indicators. The underlying limitation is the same as ROUGE: semantic similarity is not clinical correctness. A note can be semantically close to the reference while missing a clinically critical element, or semantically distant while conveying the same clinical meaning through appropriate medical abstraction. BERTScore is useful as one input to a multi-metric assessment but should never be reported as the primary quality finding. Pair with PDSQI-9 or an LLM-as-a-Judge protocol that has been subjected to bias quantification.
 
 *See also: ROUGE Scores - both members of the Reference-Based Text Similarity family. BERTScore is materially better than ROUGE as a text similarity metric but shares the fundamental limitation: semantic closeness to a reference is not clinical correctness. Always report alongside a validated clinical instrument.*
 
@@ -4479,21 +4479,16 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 **Formal Definition**
 
 ```
-Nine dimensions scored 1–5 Likert: Up-to-date, Accurate, Thorough, Useful, Organised, Comprehensible, Succinct, Synthesised, Internally consistent. Composite = mean across dimensions. Published IRR: ICC 0.43–0.68.
+Nine dimensions scored 1–5 Likert: Up-to-date, Accurate, Thorough, Useful, Organised, Comprehensible, Succinct, Synthesised, Internally consistent. Composite = mean across dimensions. Published human-human inter-rater reliability ICC 0.867 (Croxford et al., JAMIA 2025; 779 real-world summaries, seven physician raters).
 ```
-
-**References**
-
-- **Instrument**: [Stetson et al. (2012) - PDSQI-9, JAMIA](https://doi.org/10.1197/jamia.M2248)
-- **LLM automation**: Croxford et al. (2025) - GPT-o3-mini ICC 0.818
 
 **Limitations**
 
-> Resource-intensive without LLM automation. NHS-context validation of automated scoring needed.
+> Resource-intensive without LLM automation. LLM-as-a-Judge proxy (TP.SN-9a) is the practical scaling path; NHS-context validation of automated scoring is needed before treating LLM-judged PDSQI-9 scores as substitutes for expert review (see TP.SN-9a underspecification warning and ES.ME-6 LLM-Judge Bias Quantification).
 
 **Novel Thinking / Implications**
 
-> 💡 GPT-o3-mini ICC 0.818 opens automated PDSQI-9 at scale - needs independent NHS validation.
+> 💡 The PDSQI-9 instrument validation in Croxford 2025 (JAMIA) reports ICC 0.867 on human-human agreement — a high enough ceiling that meaningful LLM-judge automation has room to operate without immediately running into the inter-rater noise floor. The validation paper benchmarks against GPT-4o, Mixtral, and Llama 3 (not specifically against o3-mini despite that framing in earlier taxonomy versions); TP.SN-9a's automated-PDSQI-9-via-LLM-judge path therefore needs vendor-specific concordance evidence rather than a single citable speedup ratio.
 
 ---
 
@@ -4514,7 +4509,7 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Asgari-Tortus-GOSH-2025]. Now underpins automated guardrails. |
+| **Source** | [Asgari-Tortus-2025]. Now underpins automated guardrails. |
 
 **Why this tier?**
 
@@ -4523,16 +4518,22 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 **Formal Definition**
 
 ```
-Hierarchical taxonomy: L1 - Omission, Addition, Incorrect. L2 sub-types: Omission → {key finding, medication, allergy, plan}; Addition → {unsupported claim, confabulated detail, inferred}; Incorrect → {wrong value, wrong attribution, wrong timing}. Each sentence gets error vector. Aggregate: rate per category, severity-weighted composite.
+Asgari et al. 2025 (CREOLA) defines two top-level error families with subtypes:
+  - Hallucinations (4 subtypes): fabrication, negation, causality, contextual
+  - Omissions (3 subtypes): current issues, PMFS (past medical / family / social), information-and-plan
+Each sentence in the generated note is classified into zero, one, or more subtypes.
+Aggregate: rate per subtype, severity-weighted composite.
+
+Taxonomy-side extension used in TP.SN-5 / TP.SN-6 / TP.SN-15 / TP.SN-20
+cross-cutting: regroup the 4+3 CREOLA subtypes under three L1 families
+{Omission, Addition, Incorrect} for cross-metric alignment with the
+Clinical Content Fidelity family. The L1/L2 regrouping is a v4.2 taxonomy
+extension and not part of Asgari's published structure.
 ```
-
-**References**
-
-- **CREOLA**: Asgari et al. (2025) - Tortus / Great Ormond Street Hospital
 
 **Limitations**
 
-> Developed in secondary care paediatrics. Primary care transferability needs validation.
+> Developed and validated on the **PriMock primary-care consultation transcripts dataset**. Secondary-care transferability needs validation. (v4.2 corrected: prior taxonomy versions described CREOLA as "secondary care paediatrics" which reversed the paper's actual setting.)
 
 **Novel Thinking / Implications**
 
@@ -4546,13 +4547,13 @@ Hierarchical taxonomy: L1 - Omission, Addition, Incorrect. L2 sub-types: Omissio
 >
 > The next five metrics measure different facets of a single underlying construct. Treating them as unrelated obscures three important things: the existence of distinct error subtypes with different clinical implications, the difference between factuality and faithfulness, and the reason that aggregate rates can mask serious category-specific failures.
 >
-> **Subtypes are not substitutes.** The CREOLA framework (Asgari et al., npj Digital Medicine 2025) and the AutoscriberValidate analysis (medRxiv 2026) identify at least five distinct error subtypes within this family, each with different clinical implications and different mitigations:
+> **Subtypes are not substitutes.** The CREOLA framework ([Asgari-Tortus-2025]) defines four hallucination subtypes — *fabrication, negation, causality, contextual* — and three omission subtypes (*current issues, past medical / family / social, information-and-plan*). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. **The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure** — the source-attested taxonomy is the 4+3 above.
 >
-> - **Fabrication** - completely invented clinical content with no basis in the source. CREOLA data attribute 43% of observed hallucinations to this subtype. Fictional examination findings are the canonical example. Most dangerous.
-> - **Context conflation** - content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
-> - **Incorrect negation** - polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
-> - **Speculation or inference beyond source** - plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
-> - **Certainty inflation** - clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the Uncertainty Marker Preservation metric in this family.
+> - **Fabrication** (Asgari "fabrication") - completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.
+> - **Context conflation** (closest to Asgari "contextual") - content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
+> - **Incorrect negation** (Asgari "negation") - polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
+> - **Speculation or inference beyond source** (closest to Asgari "causality") - plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
+> - **Certainty inflation** (taxonomy-extension; not a dedicated CREOLA subtype) - clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the Uncertainty Marker Preservation metric in this family.
 >
 > Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
 >
@@ -4586,7 +4587,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | Various; [Asgari-Tortus-GOSH-2025] reports 1.47% per sentence |
+| **Source** | Various; [Asgari-Tortus-2025] reports 1.47% per sentence |
 
 **Why this tier?**
 
@@ -4600,7 +4601,7 @@ HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generat
 
 **Reference Standard**
 
-> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the [CREOLA-Hallucination-Taxonomy] subtype taxonomy ([Asgari-Tortus-GOSH-2025]). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
+> Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the [CREOLA-Hallucination-Taxonomy] subtype taxonomy ([Asgari-Tortus-2025]). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.
 
 **Operational Specification**
 
@@ -4680,7 +4681,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
-| **Source** | [Asgari-Tortus-GOSH-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
+| **Source** | [Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
 
@@ -4908,8 +4909,8 @@ Parent construct covering LLM-judge approaches to documentation evaluation. Two 
 
 > LLM-judge methodology can be implemented at two ensemble depths:
 >
-> - **TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)** — single reasoning-LLM scoring against the PDSQI-9 rubric; 27× speed improvement over human review enables 100 % note evaluation; Croxford et al. (2025) demonstrated ICC 0.818 with human evaluators
-> - **TP.SN-9b MedHELM LLM-Jury** — ensemble of LLMs independently scoring with majority/mean aggregation; 121 tasks, 22 subcategories; ICC 0.47 exceeds clinician-clinician baseline 0.43; pre-deployment capability gate
+> - **TP.SN-9a LLM-as-a-Judge (PDSQI-9 Proxy)** — single reasoning-LLM scoring against the PDSQI-9 rubric; substantially faster than human review, enabling much wider sampling than expert-only audit can support; LLM-judge approaches have been validated against human PDSQI-9 evaluators in published clinical-summarisation literature, with vendor-specific concordance evidence required before treating judge outputs as substitutes for expert review
+> - **TP.SN-9b MedHELM LLM-Jury** — ensemble of LLMs independently scoring with majority/mean aggregation; 121 tasks, 22 subcategories; ICC 0.47 exceeds clinician-clinician baseline 0.43 ([Bedi-Stanford-CRFM-2025]); pre-deployment capability gate
 >
 > The two share the same fundamental methodology (LLM as evaluator) but differ in ensemble depth, intended use (continuous evaluation vs pre-deployment gate), and the rubric they score against. Both inherit the LLM-judge measurement-science gaps documented in the underspecification warning on TP.SN-9a and addressed by [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6). See [Calibration & Context principle](#calibration-context) — choice of configuration is a deployment-context call (continuous monitoring favours the single-judge speed; pre-deployment gating favours the jury's robustness).
 
@@ -4921,7 +4922,7 @@ Parent construct covering LLM-judge approaches to documentation evaluation. Two 
 
 ### TP.SN-9a 🟡 LLM-as-a-Judge (PDSQI-9 Proxy)
 
-Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% note evaluation. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
+Reasoning LLMs scoring documentation against the PDSQI-9 rubric at substantially faster throughput than human review, enabling near-100% note evaluation rather than sampled human audit. Sub-part of [TP.SN-9 LLM-Judge Methodology](#tp-sn-9); construct framing lives at the parent.
 
 | Dimension | Value |
 |-----------|-------|
@@ -4940,29 +4941,25 @@ Reasoning LLMs scoring documentation at 27× speed (22s vs 600s). Enables 100% n
 
 **Why this tier?**
 
-> 27× speed improvement enables practical scale. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration. *Was TP.SN-9 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
+> Substantial throughput gain enables wider note coverage than expert-only audit can sustain. Recommended for deployers with API access. Needs NHS-context validation of scoring calibration. *Was TP.SN-9 in v3.6 and earlier; promoted to sub-part of TP.SN-9 LLM-Judge Methodology in v3.7 Phase 2.1.*
 
 **Formal Definition**
 
 ```
-Reasoning LLM prompted with PDSQI-9 rubric scores each note on 9 dimensions. ICC = 0.818 (o3-mini) vs 0.43 (human-human). Non-reasoning models achieve substantially lower agreement.
+Reasoning LLM prompted with the PDSQI-9 rubric scores each note on 9 dimensions (Up-to-date, Accurate, Thorough, Useful, Organised, Comprehensible, Succinct, Synthesised, Internally consistent). Output is the same 1–5 Likert per dimension a human expert would produce; agreement against expert raters is reported as ICC. Reasoning models tend to outperform non-reasoning models on the task. Vendor-specific concordance evidence is required before treating LLM-judge scores as substitutes for expert review (see [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) and [ES.ME-7 Automated-Human Metric Concordance](#es-me-7)).
 ```
-
-**References**
-
-- **Study**: Croxford et al. (2025) - npj Digital Medicine
 
 **Limitations**
 
-> One LLM evaluating another = correlated failure modes. Evaluation LLM should be different model family.
+> One LLM evaluating another = correlated failure modes. Evaluation LLM should be a different model family from the LLM under evaluation.
 
 **⚠️ Underspecification Warning (Tier C - high measured reliability, unknown validity)**
 
-> LLM-as-a-Judge has documented biases that are rarely quantified in published deployment: position bias (prefers the first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family as the judge), and fine-grained scoring unreliability (inconsistent discrimination at the high end of Likert scales). The headline Croxford et al. (2025) finding of GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 should be read alongside a separate Rwanda clinical LLM evaluation study that found LLM judges correlated more strongly with non-expert than expert annotators - apparent reliability that may reflect alignment with a particular class of evaluator rather than with clinical ground truth. This is the most uncomfortable possibility in automated evaluation: high ICC with humans that does not generalise to correctness. Any deployment relying on LLM-as-a-Judge for safety-relevant decisions should run the proposed **LLM-Judge Bias Quantification** metric (see Meta-evaluation section) and document residual uncertainty before treating judge outputs as substitutes for expert review.
+> LLM-as-a-Judge has documented biases that are rarely quantified in published deployment: position bias (prefers the first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family as the judge), and fine-grained scoring unreliability (inconsistent discrimination at the high end of Likert scales). High ICC against human evaluators is achievable on PDSQI-9-style rubrics — the underlying instrument's human-human ICC is itself high (0.867 reported in [Croxford-PDSQI9-JAMIA-2025] across 779 real-world summaries), so there is room for LLM judges to reach into that ceiling. The uncomfortable possibility: high ICC with humans that does not generalise to clinical correctness — apparent reliability that reflects alignment with a particular class of evaluator rather than with ground truth. Any deployment relying on LLM-as-a-Judge for safety-relevant decisions should run the proposed **LLM-Judge Bias Quantification** metric ([ES.ME-6](#es-me-6)) and document residual uncertainty before treating judge outputs as substitutes for expert review.
 
 **Novel Thinking / Implications**
 
-> 💡 27× speed enables 100% evaluation. But meta-problem: correlated blindspots between evaluator and evaluated.
+> 💡 LLM-judge throughput enables much wider note coverage than expert-only audit can sustain. The meta-problem is correlated blindspots between evaluator and evaluated — solved partly by ensemble configurations (TP.SN-9b) and partly by explicit bias quantification (ES.ME-6). Apparent high ICC with human evaluators is a necessary but not sufficient condition for trust.
 
 ---
 
@@ -5121,7 +5118,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 **Formal Definition**
 
 ```
-Four-modality triangulation per Wang et al. 2025: (1) Simulated encounters with ground truth; (2) Computational metrics on outputs; (3) Structured clinician review; (4) LLM-as-evaluator. The paper proposes the four modalities as triangulation methodology — no single modality is sufficient on its own. The "pass all four" composite formulation below is a taxonomy-recommended pre-deployment shape; the paper itself does not impose a hard pass/fail gate across all four.
+Four-component evaluation framework per [Wang-ADS-Eval-2025] (the paper's "SCRIBE" framework): (1) Simulation testing with ground truth; (2) Computational metrics on outputs; (3) Reviewer assessment via structured clinician review; (4) Intelligent Evaluations using LLM-as-evaluator. Wang et al. propose these as complementary components — no single component is sufficient on its own. The "pass all four" composite formulation below is a taxonomy-recommended pre-deployment shape; the paper itself does not impose a hard pass/fail gate across all four.
 ```
 
 **References**
@@ -9213,9 +9210,9 @@ For each intersection of demographic categories (age x ethnicity x language x ge
 
 ---
 
-### IO.FE-5 🔵 Intersectional Compound Fairness Score
+### IO.FE-5 🔵 Intersectional Compound Disadvantage Score
 
-Extension of the existing Intersectional Performance metric using the FAIR-MED Compound Fairness Score methodology. Where Intersectional Performance measures accuracy at each demographic intersection, Compound Fairness Score calculates whether disadvantage compounds multiplicatively or additively - that is, whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages.
+Extension of the existing Intersectional Performance metric proposing a single quantitative summary of whether observed intersectional disadvantage compounds multiplicatively or additively. Where Intersectional Performance measures accuracy at each demographic intersection, this metric calculates whether the intersection performs worse than would be predicted by adding the individual demographic disadvantages — that is, whether disadvantage compounds super-additively. Builds on intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work by Kearns et al. and others); the specific compound-disadvantage formulation below is **taxonomy-proposed, not source-attested**.
 
 |Dimension              |Value                                                                                |
 |-----------------------|-------------------------------------------------------------------------------------|
@@ -9230,7 +9227,7 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
-|**Source**             |[FAIR-MED-Springer-2025] (Bias Detection and Fairness Evaluation in Healthcare Focused XAI)|
+|**Source**             |Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)|
 
 **Why this tier?**
 
@@ -9239,7 +9236,9 @@ Extension of the existing Intersectional Performance metric using the FAIR-MED C
 **Formal Definition**
 
 ```
-For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ): expected intersection gap under additive model = Σ gap(Aᵢ); actual intersection gap = observed gap at intersection ∩Aᵢ. Compound Fairness Score CFS = actual_gap / expected_additive_gap. CFS > 1 indicates multiplicative compounding (intersection is worse than sum of parts); CFS ≈ 1 indicates additive; CFS < 1 indicates sub-additive. Multiplicative compounding is the warning signal for worst-case population failures.
+Taxonomy-proposed metric. For demographic axes A₁, A₂, ..., Aₙ with performance gaps gap(Aᵢ) measured against the majority/reference group: expected intersection gap under additive model = Σ gap(Aᵢ); actual intersection gap = observed gap at intersection ∩Aᵢ. Compound Disadvantage Score CDS = actual_gap / expected_additive_gap. CDS > 1 indicates super-additive compounding (intersection is worse than sum of parts); CDS ≈ 1 indicates additive; CDS < 1 indicates sub-additive. Super-additive compounding is the warning signal for worst-case population failures.
+
+⚠️ Provenance: this specific operational construction is taxonomy-proposed in v4.2; the underlying concept (intersectional disadvantage compounds rather than averages) is established in intersectional-fairness literature, but the actual_gap / expected_additive_gap ratio is a v4.2 framing rather than a published instrument. Treat as a starting-point construction; require local calibration before contractual use.
 ```
 
 **Limitations**
@@ -13268,21 +13267,20 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 **Formal Definition**
 
 ```
-Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. VeriFact: 92.7% vs 88.5% inter-clinician. MedHELM: ICC 0.47 vs 0.43.
+Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. Reference points from published validation work (instrument-specific):
+  - VeriFact (LLM fact-verification): 92.7% agreement vs 88.5% clinician-clinician ([Chung-NEJM-AI-2025])
+  - MedHELM (LLM-jury): ICC 0.47 vs clinician-clinician ICC 0.43 ([Bedi-Stanford-CRFM-2025])
+  - PDSQI-9 (human raters on LLM-generated summaries): ICC 0.867 ([Croxford-PDSQI9-JAMIA-2025], 779 summaries, 7 raters)
+The ceiling against which to compare an automated metric depends on the instrument the comparison is made through.
 ```
-
-**References**
-
-- **VeriFact**: [Chung et al. (2025)](https://ai.nejm.org/doi/full/10.1056/AIdbp2500418)
-- **MedHELM**: [Bedi et al. (2025)](https://arxiv.org/abs/2505.23802)
 
 **Limitations**
 
-> Clinicians don't agree with each other. Any metric inherits this ceiling.
+> Clinicians don't agree with each other. Any metric inherits this ceiling. The ceiling itself is instrument-dependent — high (PDSQI-9 ICC 0.867) on rubric-style instruments, lower on free-form clinical-judgment tasks (MedHELM 0.43, AnnoMI 88.5%). When an automated metric reportedly *exceeds* the human-human ceiling, the question is which: better than humans, or correlated-blindspot bias against the same human-induced noise. See [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) and [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the meta-evaluation pathway.
 
 **Novel Thinking / Implications**
 
-> 💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way?
+> 💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way? The asymmetry matters because LLM-judge concordance with humans is the most cited validation evidence in clinical-NLG literature, and v4.2 source verification surfaced multiple cases where headline ICC numbers attributed to specific papers turned out not to be in those papers. Treat ICC against humans as a necessary but not sufficient validation signal.
 
 ---
 
@@ -13405,7 +13403,7 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
-Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. Some LLM-judge studies report high ICC with human evaluators (e.g. clinical-summarisation work in npj Health Systems / JAMIA validation studies, where PDSQI-9-style rubric instruments have human-human ICC ceilings around 0.867 and LLM-judge configurations have been evaluated against that ceiling) — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
 
 | Dimension | Value |
 |-----------|-------|
@@ -13420,7 +13418,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Croxford-2025] (npj Digital Medicine) |
+| **Source** | [Croxford-2025]; [Croxford-PDSQI9-JAMIA-2025] |
 
 **Why this tier?**
 
@@ -13444,7 +13442,7 @@ Bias tests: (1) Position bias - reverse pairwise ordering and measure agreement 
 
 ### ES.ME-7 🔵 Automated-Human Metric Concordance
 
-Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure - but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.
+Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but published evidence shows ROUGE and other string-similarity metrics correlate near-zero with expert clinical judgment in clinical summarisation ([Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics). The assumption of metric-judgment alignment can be wildly wrong.
 
 | Dimension | Value |
 |-----------|-------|
@@ -13459,7 +13457,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard meta-evaluation methodology; [Croxford-2025] (ROUGE Kendall-Tau 0.080) |
+| **Source** | Standard meta-evaluation methodology; [Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics |
 
 **Why this tier?**
 
@@ -13578,7 +13576,7 @@ made at procurement.
 
 **Limitations**
 
-> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use that has been shown to correlate near-zero with expert clinical judgment despite continued use as a vendor benchmark). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
 
 **Novel Thinking / Implications**
 
@@ -14107,16 +14105,29 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 
 - **Title:** Current and future state of evaluation of large language models for medical summarization tasks
 - **Publisher:** Croxford E et al. *npj Health Systems* 2025;2:6. DOI 10.1038/s44401-024-00011-2
-- **Source-Type:** paper
+- **Source-Type:** paper (review article)
 - **URL:** https://www.nature.com/articles/s44401-024-00011-2
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
 
-Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing.
+A **review article** synthesising the landscape of evaluation metrics for clinical NLG; cited in TP.SN-1, TP.SN-2 underspecification warnings as motivating evidence that string-similarity metrics (ROUGE, BERTScore) correlate poorly with expert clinical judgment in medical summarisation. v4.2 verification surfaced that prior taxonomy versions attributed several specific quantitative findings (Kendall-Tau 0.080, Pearson 0.62, ICC 0.43–0.68, ICC 0.818, 27× speed) to this paper that are not in it; those have been removed or re-attributed. For the **PDSQI-9 instrument validation work** (specifically the 0.867 human-human ICC), see the separate [Croxford-PDSQI9-JAMIA-2025] handle.
 
-### Asgari-Tortus-GOSH-2025
+### Croxford-PDSQI9-JAMIA-2025
+
+- **Title:** Development and validation of the provider documentation summarization quality instrument for large language models
+- **Publisher:** Croxford E, Gao Y, Pellegrino N, Wong K, Wills G, First E, Liao F, Goswami C, Patterson B, Afshar M. *J Am Med Inform Assoc* 2025;32(6):1050-1060. DOI 10.1093/jamia/ocaf068
+- **Source-Type:** paper (primary validation study)
+- **URL:** https://academic.oup.com/jamia/article/32/6/1050/8132729
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
+
+Primary validation study for the **PDSQI-9 instrument applied to LLM-generated clinical summaries**; reports human-human inter-rater reliability of ICC 0.867 (95% CI 0.867-0.868) across 779 real-world summaries evaluated by seven physician raters. Internal consistency Cronbach's α 0.879. LLMs evaluated in the study: GPT-4o, Mixtral 8x7b, Llama 3-8b. This is the source of the 0.867 ICC ceiling cited in TP.SN-3 (PDSQI-9) and referenced by TP.SN-9a / ES.ME-2 / ES.ME-6 as the human-human reliability ceiling for LLM-judge approaches to PDSQI-9 scoring. **Distinct from [Croxford-2025]** which is a review article in npj Health Systems (different paper, different framing).
+
+### Asgari-Tortus-2025
 
 - **Title:** A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation
 - **Publisher:** Asgari E, Montaña-Brown N, Dubois M, Khalil S, Balloch J, Au Yeung J, Pimenta D. *npj Digital Medicine* 2025;8:274. DOI 10.1038/s41746-025-01670-7
@@ -14127,12 +14138,12 @@ Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** `tp/summarisation-nlp.md`
 
-Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters.
+Cited in TP.SN-4 (CREOLA Error Taxonomy), TP.SN-5 (Hallucination Rate, Tier 1) and TP.SN-6 (Omission Rate, Tier 1) — the headline summarisation safety metrics. Establishes the 1.47%-per-sentence hallucination and 3.45%-per-sentence omission reference figures that the taxonomy uses as starting-point thresholds. Study used the **PriMock primary-care consultation transcripts dataset** (12,999 sentences across 450 clinical notes); all authors were affiliated with Tortus AI at the time of writing. v4.2 renamed this handle from `Asgari-Tortus-GOSH-2025`: the paper does not use GOSH data, though Tortus AI separately runs a multi-site GOSH ambient-voice trial (different artefact).
 
 ### CREOLA-Hallucination-Taxonomy
 
 - **Title:** CREOLA hallucination subtype taxonomy (framework introduced in Asgari et al. 2025)
-- **Publisher:** Asgari et al., *npj Digital Medicine* 2025;8:274 — same paper as [Asgari-Tortus-GOSH-2025]
+- **Publisher:** Asgari et al., *npj Digital Medicine* 2025;8:274 — same paper as [Asgari-Tortus-2025]
 - **Source-Type:** paper
 - **URL:** https://www.nature.com/articles/s41746-025-01670-7
 - **Archive:** _(Phase 1 — pending snapshot.py)_
@@ -14140,7 +14151,7 @@ Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safe
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** `tp/summarisation-nlp.md`
 
-The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation). Introduced in Asgari et al. 2025 *npj Digital Medicine* — same paper as [Asgari-Tortus-GOSH-2025]; CREOLA is the framework name Tortus AI uses for the assessment approach described in that paper. The two handles are kept separate so Source rows can cite the *taxonomy* vs the *paper*; both resolve to the same underlying publication.
+The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucination subtypes (fabrication, negation, causality, contextual) and three omission subtypes (current issues, PMFS, information-and-plan). v4.2 corrected this entry: prior versions described the CREOLA taxonomy as covering five subtypes (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation) which is **a taxonomy-side extension**, not Asgari's structure. Where the taxonomy's TP.SN-5 family framing uses the 5-subtype regrouping, that is now explicitly marked as our extension built on top of the 4+3 CREOLA original. The two handles are kept separate so Source rows can cite either the *taxonomy* (this entry) or the *paper* ([Asgari-Tortus-2025]); both resolve to the same underlying publication.
 
 ### Abridge-Whitepaper-2025
 
@@ -14521,19 +14532,6 @@ Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited mu
 - **Cited-by:** `io/fairness-equity.md`
 
 Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation methodology — content analysis of how race-based, geography-based, and native/non-native categories function as flawed proxies for acoustic variation. Cited in IO.FE-2 (Accent Taxonomy Standardisation) as the sociolinguistics-informed evaluation reference. (v3.9 round-2 review verified authorship via Crossref; corrected from earlier "Markl & Lai" attribution.)
-
-### FAIR-MED-Springer-2025
-
-- **Title:** FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare-Focused XAI
-- **Publisher:** Springer (LNCS chapter), 2025. DOI 10.1007/978-3-032-08317-3_18
-- **Source-Type:** paper
-- **URL:** https://link.springer.com/chapter/10.1007/978-3-032-08317-3_18
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-05-02
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `io/fairness-equity.md`
-
-The FAIR-MED bias-detection and fairness-evaluation framework, published Springer 2025. Cited in IO.FE-5 (or similar) as the methodology for AVT-focused fairness evaluation. Specific Springer DOI to supply.
 
 ### CIO-CCIO-Guidance-2026
 
@@ -14926,3 +14924,42 @@ Carlini et al. 2024 IEEE S&P — practical demonstration that real web-scale tra
 - **Cited-by:** _(no citations found in source)_
 
 Discipline-representative for "human factors literature" / "cognitive offloading literature" / "aviation skill degradation literature" as applied to clinical-AI human factors. Stands in where the HL.HF metrics reach for human-factors background generally.
+
+### Anderson-OHSU-2025
+
+- **Title:** Evaluating the Quality and Safety of Ambient Digital Scribe Platforms Using Simulated Ambulatory Encounters
+- **Publisher:** Anderson TN, Mohan V, Dorr DA, et al. *Mayo Clinic Proceedings: Digital Health* 2025. DOI 10.1016/j.mcpdig.2025.100292
+- **Source-Type:** paper
+- **URL:** https://www.mcpdigitalhealth.org/article/S2949-7612(25)00099-9/fulltext
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(no citations found in source)_
+
+OHSU 5-platform ambient-digital-scribe evaluation using 14 simulated ambulatory encounters. Reports an average of 13.9 transcript errors per encounter and a 19.5% transmission rate (95% CI 6.6%–28.8%) of transcript errors into the final clinical note across the four ADS platforms evaluated (A–D). Cited in TP.ASR-6 (Error Transmission Rate) for the headline 19.5% figure that underwrites the metric's core motivation. Distinguishes itself from earlier ambient-scribe evaluations by simulating encounters under controlled audio conditions rather than relying on retrospective production data.
+
+### CHECK-GarciaFernandez-2025
+
+- **Title:** Trustworthy AI for Medicine: Continuous Hallucination Detection and Elimination with CHECK
+- **Publisher:** Garcia-Fernandez C, Felipe L, Shotande M, Zitu M, Tripathi A, Rasool G, El Naqa I, Rudrapatna V, Valdes G. arXiv:2506.11129, 2025
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2506.11129
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(no citations found in source)_
+
+Information-theoretic classifier for continuous hallucination detection and elimination in clinical LLM output. Reports reducing LLama3.3-70B-Instruct hallucination rates from 31% to 0.3% with classifier AUC 0.95–0.96 against a human-reviewed reference set. Cited in TP.SN-5 (Hallucination Rate) underspecification warning as a candidate operational definition for hallucination detection at scale; the 0.95–0.96 AUC bar appears in TP.SN-5's Reference Standard as the threshold above which automated NLI-based detection is acceptable as a primary screen.
+
+### BenAbacha-EvalMetrics-2023
+
+- **Title:** An Investigation of Evaluation Metrics for Automated Medical Note Generation
+- **Publisher:** Ben Abacha A, Yim W, Michalopoulos G, Lin T. arXiv:2305.17364, 2023 (Microsoft / Mayo NLP team)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2305.17364
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
+
+Investigation of how well automated NLG metrics (ROUGE, BERTScore, others) correlate with expert clinician judgments in automated medical-note generation. Cited in TP.SN-1 (ROUGE Scores) underspecification warning and ES.ME-7 (Automated-Human Metric Concordance) for the qualitative finding that string-similarity metrics correlate poorly — and in some configurations negatively — with expert judgment in medical note generation, motivating the bias-quantification and concordance-measurement metrics in ES.ME. v4.2 verification: paper exists and is on-topic; specific Spearman correlation ranges that prior taxonomy versions attributed informally to "ar5iv 2305.17364" were not visible in the abstract and have been softened to qualitative claims pending full-text verification.

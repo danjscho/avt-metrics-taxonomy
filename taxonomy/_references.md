@@ -519,16 +519,29 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 
 - **Title:** Current and future state of evaluation of large language models for medical summarization tasks
 - **Publisher:** Croxford E et al. *npj Health Systems* 2025;2:6. DOI 10.1038/s44401-024-00011-2
-- **Source-Type:** paper
+- **Source-Type:** paper (review article)
 - **URL:** https://www.nature.com/articles/s44401-024-00011-2
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-parts) where the taxonomy reasons about ROUGE/BERTScore inadequacy for clinical summarisation. The 4× citation density suggests the paper underwrites a substantial slice of the family's evaluation framing.
+A **review article** synthesising the landscape of evaluation metrics for clinical NLG; cited in TP.SN-1, TP.SN-2 underspecification warnings as motivating evidence that string-similarity metrics (ROUGE, BERTScore) correlate poorly with expert clinical judgment in medical summarisation. v4.2 verification surfaced that prior taxonomy versions attributed several specific quantitative findings (Kendall-Tau 0.080, Pearson 0.62, ICC 0.43–0.68, ICC 0.818, 27× speed) to this paper that are not in it; those have been removed or re-attributed. For the **PDSQI-9 instrument validation work** (specifically the 0.867 human-human ICC), see the separate [Croxford-PDSQI9-JAMIA-2025] handle.
 
-### Asgari-Tortus-GOSH-2025
+### Croxford-PDSQI9-JAMIA-2025
+
+- **Title:** Development and validation of the provider documentation summarization quality instrument for large language models
+- **Publisher:** Croxford E, Gao Y, Pellegrino N, Wong K, Wills G, First E, Liao F, Goswami C, Patterson B, Afshar M. *J Am Med Inform Assoc* 2025;32(6):1050-1060. DOI 10.1093/jamia/ocaf068
+- **Source-Type:** paper (primary validation study)
+- **URL:** https://academic.oup.com/jamia/article/32/6/1050/8132729
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Primary validation study for the **PDSQI-9 instrument applied to LLM-generated clinical summaries**; reports human-human inter-rater reliability of ICC 0.867 (95% CI 0.867-0.868) across 779 real-world summaries evaluated by seven physician raters. Internal consistency Cronbach's α 0.879. LLMs evaluated in the study: GPT-4o, Mixtral 8x7b, Llama 3-8b. This is the source of the 0.867 ICC ceiling cited in TP.SN-3 (PDSQI-9) and referenced by TP.SN-9a / ES.ME-2 / ES.ME-6 as the human-human reliability ceiling for LLM-judge approaches to PDSQI-9 scoring. **Distinct from [Croxford-2025]** which is a review article in npj Health Systems (different paper, different framing).
+
+### Asgari-Tortus-2025
 
 - **Title:** A framework to assess clinical safety and hallucination rates of LLMs for medical text summarisation
 - **Publisher:** Asgari E, Montaña-Brown N, Dubois M, Khalil S, Balloch J, Au Yeung J, Pimenta D. *npj Digital Medicine* 2025;8:274. DOI 10.1038/s41746-025-01670-7
@@ -539,12 +552,12 @@ Cited heavily in the TP.SN family (TP.SN-1, TP.SN-2, TP.SN-3, TP.SN-9 / its sub-
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safety metric) plus TP.SN-5 / TP.SN-6 sub-parts. Establishes the 1.47%-per-sentence and 3.45% reference figures that the taxonomy uses as starting-point thresholds. The taxonomy treats this paper as load-bearing on the core summarisation safety threshold, so DOI / venue resolution matters.
+Cited in TP.SN-4 (CREOLA Error Taxonomy), TP.SN-5 (Hallucination Rate, Tier 1) and TP.SN-6 (Omission Rate, Tier 1) — the headline summarisation safety metrics. Establishes the 1.47%-per-sentence hallucination and 3.45%-per-sentence omission reference figures that the taxonomy uses as starting-point thresholds. Study used the **PriMock primary-care consultation transcripts dataset** (12,999 sentences across 450 clinical notes); all authors were affiliated with Tortus AI at the time of writing. v4.2 renamed this handle from `Asgari-Tortus-GOSH-2025`: the paper does not use GOSH data, though Tortus AI separately runs a multi-site GOSH ambient-voice trial (different artefact).
 
 ### CREOLA-Hallucination-Taxonomy
 
 - **Title:** CREOLA hallucination subtype taxonomy (framework introduced in Asgari et al. 2025)
-- **Publisher:** Asgari et al., *npj Digital Medicine* 2025;8:274 — same paper as [Asgari-Tortus-GOSH-2025]
+- **Publisher:** Asgari et al., *npj Digital Medicine* 2025;8:274 — same paper as [Asgari-Tortus-2025]
 - **Source-Type:** paper
 - **URL:** https://www.nature.com/articles/s41746-025-01670-7
 - **Archive:** _(Phase 1 — pending snapshot.py)_
@@ -552,7 +565,7 @@ Cited in TP.SN-4 (Hallucination Rate, Tier 1 — the headline summarisation safe
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Cited-by:** _(auto-generated)_
 
-The CREOLA hallucination subtype taxonomy used in TP.SN-5 / TP.SN-6 (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation). Introduced in Asgari et al. 2025 *npj Digital Medicine* — same paper as [Asgari-Tortus-GOSH-2025]; CREOLA is the framework name Tortus AI uses for the assessment approach described in that paper. The two handles are kept separate so Source rows can cite the *taxonomy* vs the *paper*; both resolve to the same underlying publication.
+The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucination subtypes (fabrication, negation, causality, contextual) and three omission subtypes (current issues, PMFS, information-and-plan). v4.2 corrected this entry: prior versions described the CREOLA taxonomy as covering five subtypes (Fabrication / Context Conflation / Incorrect Negation / Speculation / Certainty Inflation) which is **a taxonomy-side extension**, not Asgari's structure. Where the taxonomy's TP.SN-5 family framing uses the 5-subtype regrouping, that is now explicitly marked as our extension built on top of the 4+3 CREOLA original. The two handles are kept separate so Source rows can cite either the *taxonomy* (this entry) or the *paper* ([Asgari-Tortus-2025]); both resolve to the same underlying publication.
 
 ### Abridge-Whitepaper-2025
 
@@ -933,19 +946,6 @@ Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited mu
 - **Cited-by:** _(auto-generated)_
 
 Prinos / Patwari / Power FAccT 2024 paper critiquing ASR accent-categorisation methodology — content analysis of how race-based, geography-based, and native/non-native categories function as flawed proxies for acoustic variation. Cited in IO.FE-2 (Accent Taxonomy Standardisation) as the sociolinguistics-informed evaluation reference. (v3.9 round-2 review verified authorship via Crossref; corrected from earlier "Markl & Lai" attribution.)
-
-### FAIR-MED-Springer-2025
-
-- **Title:** FAIR-MED: Bias Detection and Fairness Evaluation in Healthcare-Focused XAI
-- **Publisher:** Springer (LNCS chapter), 2025. DOI 10.1007/978-3-032-08317-3_18
-- **Source-Type:** paper
-- **URL:** https://link.springer.com/chapter/10.1007/978-3-032-08317-3_18
-- **Archive:** _(Phase 1 — pending snapshot.py)_
-- **Retrieved:** 2026-05-02
-- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** _(auto-generated)_
-
-The FAIR-MED bias-detection and fairness-evaluation framework, published Springer 2025. Cited in IO.FE-5 (or similar) as the methodology for AVT-focused fairness evaluation. Specific Springer DOI to supply.
 
 ### CIO-CCIO-Guidance-2026
 
@@ -1338,3 +1338,42 @@ Carlini et al. 2024 IEEE S&P — practical demonstration that real web-scale tra
 - **Cited-by:** _(auto-generated)_
 
 Discipline-representative for "human factors literature" / "cognitive offloading literature" / "aviation skill degradation literature" as applied to clinical-AI human factors. Stands in where the HL.HF metrics reach for human-factors background generally.
+
+### Anderson-OHSU-2025
+
+- **Title:** Evaluating the Quality and Safety of Ambient Digital Scribe Platforms Using Simulated Ambulatory Encounters
+- **Publisher:** Anderson TN, Mohan V, Dorr DA, et al. *Mayo Clinic Proceedings: Digital Health* 2025. DOI 10.1016/j.mcpdig.2025.100292
+- **Source-Type:** paper
+- **URL:** https://www.mcpdigitalhealth.org/article/S2949-7612(25)00099-9/fulltext
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+OHSU 5-platform ambient-digital-scribe evaluation using 14 simulated ambulatory encounters. Reports an average of 13.9 transcript errors per encounter and a 19.5% transmission rate (95% CI 6.6%–28.8%) of transcript errors into the final clinical note across the four ADS platforms evaluated (A–D). Cited in TP.ASR-6 (Error Transmission Rate) for the headline 19.5% figure that underwrites the metric's core motivation. Distinguishes itself from earlier ambient-scribe evaluations by simulating encounters under controlled audio conditions rather than relying on retrospective production data.
+
+### CHECK-GarciaFernandez-2025
+
+- **Title:** Trustworthy AI for Medicine: Continuous Hallucination Detection and Elimination with CHECK
+- **Publisher:** Garcia-Fernandez C, Felipe L, Shotande M, Zitu M, Tripathi A, Rasool G, El Naqa I, Rudrapatna V, Valdes G. arXiv:2506.11129, 2025
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2506.11129
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Information-theoretic classifier for continuous hallucination detection and elimination in clinical LLM output. Reports reducing LLama3.3-70B-Instruct hallucination rates from 31% to 0.3% with classifier AUC 0.95–0.96 against a human-reviewed reference set. Cited in TP.SN-5 (Hallucination Rate) underspecification warning as a candidate operational definition for hallucination detection at scale; the 0.95–0.96 AUC bar appears in TP.SN-5's Reference Standard as the threshold above which automated NLI-based detection is acceptable as a primary screen.
+
+### BenAbacha-EvalMetrics-2023
+
+- **Title:** An Investigation of Evaluation Metrics for Automated Medical Note Generation
+- **Publisher:** Ben Abacha A, Yim W, Michalopoulos G, Lin T. arXiv:2305.17364, 2023 (Microsoft / Mayo NLP team)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2305.17364
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-02
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Investigation of how well automated NLG metrics (ROUGE, BERTScore, others) correlate with expert clinician judgments in automated medical-note generation. Cited in TP.SN-1 (ROUGE Scores) underspecification warning and ES.ME-7 (Automated-Human Metric Concordance) for the qualitative finding that string-similarity metrics correlate poorly — and in some configurations negatively — with expert judgment in medical note generation, motivating the bias-quantification and concordance-measurement metrics in ES.ME. v4.2 verification: paper exists and is on-topic; specific Spearman correlation ranges that prior taxonomy versions attributed informally to "ar5iv 2305.17364" were not visible in the abstract and have been softened to qualitative claims pending full-text verification.
