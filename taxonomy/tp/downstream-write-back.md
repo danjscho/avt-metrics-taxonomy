@@ -305,7 +305,7 @@ Rollback capability assessed against: (1) Time window for clean rollback; (2) Au
 
 ### TP.WB-6 🟡 FHIR R4 Resource Conformance Rate
 
-Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. The ADS/Harvard SPIE 2025 study reported 95% data field retention via FHIR vs ~70% for legacy formats - but retention is not the same as profile conformance.
+Validated conformance of generated structured data against FHIR R4 profiles. FHIR is increasingly the interoperability standard for NHS EPRs; systems that produce technically parseable but profile-non-conformant resources create silent integration failures downstream. FHIR-structured output generally retains more clinical detail than legacy free-text-only or HL7 v2 formats, but retention is not the same as profile conformance — a record can preserve content while violating the profile that downstream systems rely on.
 
 |Dimension              |Value                                    |
 |-----------------------|-----------------------------------------|

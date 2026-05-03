@@ -126,7 +126,7 @@ class TestCheckNumbering:
 class TestCheckTierTotals:
     def test_pass(self):
         # check_tier_totals enforces specific tier counts; we feed exactly the
-        # shape it expects (45 / 97 / 79 as of v4.1.0).
+        # shape it expects (45 / 97 / 79 as of v4.2.0).
         ms = (
             [_make_metric(ref_id=f"TP.AC-{i}", tier=1) for i in range(1, 46)]
             + [_make_metric(ref_id=f"TP.AC-{i}", tier=2) for i in range(46, 143)]

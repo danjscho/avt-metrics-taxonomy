@@ -76,7 +76,7 @@ For each extracted clinical mention m: mapping function M(m) → SNOMED concept 
 
 ### TP.CC-3 🟡 ICD-10 / ICD-11 Full-Specificity Precision
 
-Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Performance typically degrades sharply at full specificity compared to 3-character category level. The Hybrid-Code v2 framework reported 93% accuracy at 3-character level but only 82% at full specificity - the difference representing systematic specificity errors that aggregate metrics hide.
+Precision of ICD coding at maximum digit specificity, reported separately from category-level accuracy. Empirical specificity degradation — reduction in accuracy when moving from category-level to full-specificity coding — is well-documented in clinical-coding NLP literature; vendors should report at multiple specificity levels rather than aggregate accuracy alone, because the difference between 3-character and full-specificity accuracy represents systematic specificity errors that aggregate metrics hide.
 
 |Dimension              |Value                                       |
 |-----------------------|--------------------------------------------|
@@ -100,7 +100,9 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 **Formal Definition**
 
 ```
-Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. Values > 10 percentage points indicate the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+Report precision at each specificity level independently: P_3char, P_4char, P_full. Specificity Degradation = P_3char - P_full. The taxonomy-proposed alert threshold is Specificity Degradation > 10 percentage points indicating the system systematically fails at high specificity. For ICD-11, which has more granular specificity than ICD-10, report per specificity depth.
+
+⚠️ Provenance: the 10-percentage-point degradation threshold is taxonomy-proposed in v4.2 as a starting-point gate, not externally validated. Per the Calibration & Context principle, require local calibration before contractual use — what counts as acceptable specificity degradation depends on the deployment's downstream uses (epidemiological analytics tolerate more aggregation than tariff-relevant coding).
 ```
 
 **Limitations**

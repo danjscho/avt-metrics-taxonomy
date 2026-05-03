@@ -68,21 +68,20 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 **Formal Definition**
 
 ```
-Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. VeriFact: 92.7% vs 88.5% inter-clinician. MedHELM: ICC 0.47 vs 0.43.
+Cohen's κ (k=2) or Fleiss' κ (k>2). ICC(2,1) for continuous ratings. Reference points from published validation work (instrument-specific):
+  - VeriFact (LLM fact-verification): 92.7% agreement vs 88.5% clinician-clinician ([Chung-NEJM-AI-2025])
+  - MedHELM (LLM-jury): ICC 0.47 vs clinician-clinician ICC 0.43 ([Bedi-Stanford-CRFM-2025])
+  - PDSQI-9 (human raters on LLM-generated summaries): ICC 0.867 ([Croxford-PDSQI9-JAMIA-2025], 779 summaries, 7 raters)
+The ceiling against which to compare an automated metric depends on the instrument the comparison is made through.
 ```
-
-**References**
-
-- **VeriFact**: [Chung et al. (2025)](https://ai.nejm.org/doi/full/10.1056/AIdbp2500418)
-- **MedHELM**: [Bedi et al. (2025)](https://arxiv.org/abs/2505.23802)
 
 **Limitations**
 
-> Clinicians don't agree with each other. Any metric inherits this ceiling.
+> Clinicians don't agree with each other. Any metric inherits this ceiling. The ceiling itself is instrument-dependent — high (PDSQI-9 ICC 0.867) on rubric-style instruments, lower on free-form clinical-judgment tasks (MedHELM 0.43, AnnoMI 88.5%). When an automated metric reportedly *exceeds* the human-human ceiling, the question is which: better than humans, or correlated-blindspot bias against the same human-induced noise. See [ES.ME-6 LLM-Judge Bias Quantification](#es-me-6) and [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the meta-evaluation pathway.
 
 **Novel Thinking / Implications**
 
-> 💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way?
+> 💡 When automated metric exceeds inter-clinician agreement: better than humans, or systematically biased in a correlated way? The asymmetry matters because LLM-judge concordance with humans is the most cited validation evidence in clinical-NLG literature, and v4.2 source verification surfaced multiple cases where headline ICC numbers attributed to specific papers turned out not to be in those papers. Treat ICC against humans as a necessary but not sufficient validation signal.
 
 ---
 
@@ -205,7 +204,7 @@ For each incident or near-miss: identify which metrics would have detected it. C
 
 ### ES.ME-6 🔵 LLM-Judge Bias Quantification
 
-Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. The Croxford et al. 2025 study found GPT-o3-mini achieving ICC 0.818 with human evaluators on PDSQI-9 — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
+Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bias (prefers first response in pairwise comparison), verbosity bias (prefers longer responses), self-enhancement bias (prefers outputs from the same model family), and fine-grained scoring unreliability (inconsistent discrimination at high score ranges). Required for interpreting LLM-Judge metrics responsibly. Some LLM-judge studies report high ICC with human evaluators (e.g. clinical-summarisation work in npj Health Systems / JAMIA validation studies, where PDSQI-9-style rubric instruments have human-human ICC ceilings around 0.867 and LLM-judge configurations have been evaluated against that ceiling) — a high apparent reliability that nevertheless does not, on its own, demonstrate alignment with ground truth as opposed to with a particular class of evaluator.
 
 | Dimension | Value |
 |-----------|-------|
@@ -220,7 +219,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
-| **Source** | [Croxford-2025] (npj Digital Medicine) |
+| **Source** | [Croxford-2025]; [Croxford-PDSQI9-JAMIA-2025] |
 
 **Why this tier?**
 
@@ -244,7 +243,7 @@ Bias tests: (1) Position bias - reverse pairwise ordering and measure agreement 
 
 ### ES.ME-7 🔵 Automated-Human Metric Concordance
 
-Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure - but the ROUGE Kendall-Tau finding of 0.080 with human clinical judgment (Croxford et al. 2025) shows that assumption can be wildly wrong.
+Systematic measurement of how well automated metrics correlate with expert human evaluation across deployments. Meta-metric that validates (or invalidates) the automated metrics themselves. Without concordance measurement, automated metrics are running on the assumption that they track what human experts would measure — but published evidence shows ROUGE and other string-similarity metrics correlate near-zero with expert clinical judgment in clinical summarisation ([Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics). The assumption of metric-judgment alignment can be wildly wrong.
 
 | Dimension | Value |
 |-----------|-------|
@@ -259,7 +258,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
-| **Source** | Standard meta-evaluation methodology; [Croxford-2025] (ROUGE Kendall-Tau 0.080) |
+| **Source** | Standard meta-evaluation methodology; [Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics |
 
 **Why this tier?**
 
@@ -378,7 +377,7 @@ made at procurement.
 
 **Limitations**
 
-> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use with Kendall-Tau 0.080 against clinical judgment). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
+> Documentary; does not verify that the cited mechanisms are plausible or supported. Vendors can produce a causal model that *looks* coherent but is empirically wrong (the ROUGE precedent: a metric in widespread use that has been shown to correlate near-zero with expert clinical judgment despite continued use as a vendor benchmark). The metric forces the model into the open; deployer review still required. Becomes meaningful only when paired with [ES.ME-7 Automated-Human Metric Concordance](#es-me-7) for the proximal links and [ES.ME-8 Outcome Evidence Commitment Status](#es-me-8) for the distal evidence.
 
 **Novel Thinking / Implications**
 

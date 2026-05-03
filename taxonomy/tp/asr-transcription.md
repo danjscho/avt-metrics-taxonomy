@@ -88,8 +88,11 @@ M-WER = Σ(wᵢ · eᵢ) / Σ(wᵢ), where wᵢ is the clinical significance wei
 **Code: M-WER weighted computation**
 
 ```python
-import numpy as np
-from jiwer import process_words
+# Illustrative pseudocode — uses position-based comparison rather than
+# WER's actual edit-distance alignment, to keep the focus on the
+# weight-matrix dimension that distinguishes M-WER from standard WER.
+# A production M-WER implementation would compose `jiwer.process_words`'s
+# alignment output with the weight lookup below.
 
 # Clinical significance weights by SNOMED concept class
 WEIGHTS = {
@@ -650,7 +653,7 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 
 **References**
 
-- **Whisper hallucinations**: [Koenecke et al. (2024) - Careless Whisper: Speech-to-Text Hallucination Harms](https://arxiv.org/abs/2402.08021)
+- **Whisper hallucinations**: [Koenecke-Careless-Whisper-2024]
 
 **Limitations**
 

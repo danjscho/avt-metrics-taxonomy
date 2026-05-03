@@ -178,6 +178,8 @@ These thresholds carry a `⚠️ Provenance` prelude that distinguishes **cited 
 
 **Promote to a release plan when:** (i) a single option is chosen with reader-experience evidence backing it, AND (ii) the surface enumeration is complete (so we know what we're committing to). Until then this stays in plan-future as a problem statement, not a release item.
 
+**v4.2 update:** Pass A / Pass B verification (plan-v4.2.md) flagged that several Tier 2/3 metrics outside the Tier 1 tightened set ALSO state engineering-default thresholds authoritatively without Provenance preludes. The v4.2 TP.AC sweep added preludes to ~6 such metrics, and the mpathic / Hybrid-Code / n2c2 fixes added preludes to several more across TP.DI, TP.SN, TP.CC. The surface enumeration this item depends on is therefore now larger than the original ~25–30 Provenance lines — closer to ~40 across both the Tier 1 tightenings and the v4.2 additions. The reviewer of v4.2 explicitly raised whether the taxonomy should be publishing thresholds at all (vs. saying "these should be derived locally") — this option now sits above the existing Option 1–6 design space as a more radical alternative worth weighing. **Add Option 7: Drop all numerical thresholds; provide only calibration framework + reasoning prompts.** The v4.2-added preludes are deliberately non-load-bearing rewordings — they preserve the numbers as proposed-as-starting-points so they're easy to remove wholesale if Option 7 wins, or to keep with stronger framing if Option 3/6 wins.
+
 ---
 
 ## 9. ISO and BSI standards — where do they play a role?
@@ -220,6 +222,25 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 - Decide whether ISO/IEC 42001 should be a 14th framework section or a sub-mapping under DTAC + MHRA + NHS T.E.S.T. (since it cuts across all three at the AI-management level rather than being a peer to any one of them).
 
 **Promote to a release plan when:** (i) the scope decision is settled (map vs cite), AND (ii) BS 30440 has been read in full and confirmed in/out of scope. ISO/IEC 42001 + BS 30440 + ISO 14971 lineage surfacing are the minimum-viable shape; the rest can be incremental.
+
+---
+
+## 11. Standards-mapping tables — link metric ref-IDs back to per-metric pages
+
+**Status:** queued.
+
+**Context:** [`taxonomy/_standards-mapping.md`](taxonomy/_standards-mapping.md) cross-references metrics by ref-ID and metric name in the per-framework requirement tables (e.g. "GV.CR-6 Clinical Safety Case Completeness", "GV.SC-12 Cyber Essentials Plus"), but the ref-IDs render as plain text rather than as links to the metric definitions on the site. Readers scanning the tables to see what a framework maps to have to manually navigate to find the metric body — a friction the rest of the v3.9 citation grammar already removed elsewhere via handle-resolution and cross-page anchor rewriting.
+
+This is a build-side mechanical fix in the same family as the v3.8.1 cross-page anchor rewriter and the v3.9 inline-handle resolution: take a known reference shape (`TP.AC-1` etc.) and emit an anchor link to the canonical metric page on the rendered site. The monolith and the per-page nav already use these anchors; the standards-mapping table just doesn't.
+
+**Starting points:**
+- The link target shape is already known: `parse.ref_id_to_anchor("TP.AC-1")` → `tp-ac-1`, with the per-metric page at `site/clusters/<cluster>/<group-file>.html#<anchor>`.
+- `taxonomy/build_site.py` already has anchor-rewriting helpers (`rewrite_anchors`, `add_metric_anchors`, `link_tier1_quickref`). The standards-mapping pass is a parallel transformation on the same shape.
+- Audit-side: an audit check verifying every ref-ID mentioned in `_standards-mapping.md` resolves to a real metric (analogous to the existing handle-resolution audit) would catch drift at build time.
+- Edge cases: ref-IDs in prose (not just tables) — e.g. "Multiple metrics, see [TP.SN family](...)" — should also be linked. Ref-IDs that are intentionally retired or reserved should not be linked (cross-check `_retired-ids.md`).
+- Reader experience: the AVT Registry table now carries a Tier column (per v4.1); the per-metric link addition would complete the table's usability — frame + tier + click-through-to-definition.
+
+**Promote to a release plan when:** ready to execute. Mechanical scope, no design dependencies. Could fold into a future site-fixes patch (alongside any v4.x.y site work) or run as its own minor release.
 
 ---
 

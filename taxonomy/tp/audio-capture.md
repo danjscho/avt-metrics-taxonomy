@@ -24,7 +24,9 @@ Continuous measurement of audio input quality. SNR below threshold degrades ASR 
 **Formal Definition**
 
 ```
-SNR = 10 × log₁₀(P_signal / P_noise) in dB. Measured per consultation segment. Thresholds: >20dB = good; 10–20dB = acceptable with quality warning; <10dB = AVT should warn or pause. Report distribution across encounters, not just mean.
+SNR = 10 × log₁₀(P_signal / P_noise) in dB. Measured per consultation segment. Taxonomy-proposed threshold tiers: >20dB = good; 10–20dB = acceptable with quality warning; <10dB = AVT should warn or pause. Report distribution across encounters, not just mean.
+
+⚠️ Provenance: the underlying SNR formula is standard audio engineering; the specific threshold tiers (>20 / 10–20 / <10 dB) are taxonomy-proposed engineering defaults, not externally validated for AVT-specific deployment. Per the Calibration & Context principle, require local calibration against the deployment's microphone setup and clinical acoustic environment.
 ```
 
 **Code: SNR estimation from audio**
@@ -132,7 +134,9 @@ Characterisation of the deployment acoustic environment against the vendor's val
 **Formal Definition**
 
 ```
-Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, speaker_distance_range, microphone_type]. Validated envelope V = vendor's tested conditions. Environment gap G = distance(actual_profile, V). G > threshold → environment outside validated envelope.
+Profile vector: [SNR_typical, reverberation_time_RT60, background_noise_type, speaker_distance_range, microphone_type]. Validated envelope V = vendor's tested conditions. Environment gap G = component-wise tolerance check (does each measured component fall within the vendor's validated range?), not a single Euclidean distance over heterogeneous units. G failing on any component → environment outside validated envelope on that dimension.
+
+⚠️ Provenance: the profile-vector composition and the component-wise tolerance approach are taxonomy-proposed; vendor-validated envelopes are deployment-specific and must come from vendor documentation. The "envelope" framing is the substantive idea; the specific operationalisation is calibration work the deployer + vendor jointly own.
 ```
 
 **Limitations**
@@ -211,6 +215,8 @@ Verification that the capture hardware meets minimum specifications for the AVT 
 
 ```
 Hardware compliance checklist: (1) Frequency response 100Hz–8kHz minimum; (2) Sensitivity within vendor spec; (3) Placement within validated distance range; (4) Connectivity uptime >99.9% during sessions. Binary pass/fail per criterion.
+
+⚠️ Provenance: the 100Hz–8kHz frequency range and 99.9% uptime targets are taxonomy-proposed engineering defaults — reasonable for clinical-speech capture against modern hardware norms, but not externally validated as procurement gates. Per the Calibration & Context principle, require local calibration; specifically, vendor-spec frequency-response and uptime requirements should drive the contract, not these defaults. **TP.AC-5 is currently a Tier 1 metric without the full Reference Standard / Operational Specification / Threshold Guidance tightening pattern; promotion is queued for a future release** alongside the broader threshold-recommendation review (plan-future #8).
 ```
 
 **Limitations**
@@ -254,7 +260,7 @@ Overlap Rate = T_overlap / T_total_speech, where T_overlap is the duration where
 
 **Novel Thinking / Implications**
 
-> 💡 Real consultations have 5-15% overlap rates depending on style. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question - what conditions was the system validated under?
+> 💡 Real consultations contain meaningful overlap — back-channels, interruptions, simultaneous speech during family-present encounters — at rates that vary by consultation style and specialty. Specific overlap-rate ranges in dialogue research are reported at single digits to mid-teens of percent, but ranges vary widely by recording protocol and definition. A vendor benchmarking on scripted dyadic dialogue may report excellent performance that doesn't translate to spontaneous clinical interaction. Overlap rate should be a procurement question — what conditions was the system validated under, and what overlap rate should the deployer expect in their consultation style?
 
 ---
 
@@ -284,7 +290,9 @@ Frequency of audio level exceeding the dynamic range of the capture system, caus
 **Formal Definition**
 
 ```
-Clipping Rate = N_clipped_samples / N_total_samples, where clipped samples are those at or beyond the maximum amplitude (typically +/-32767 for 16-bit). Threshold for alert: >0.1% sustained over 1 second indicates significant content degradation.
+Clipping Rate = N_clipped_samples / N_total_samples, where clipped samples are those at or beyond the maximum amplitude (typically +/-32767 for 16-bit). Taxonomy-proposed alert threshold: >0.1% sustained over 1 second indicates significant content degradation.
+
+⚠️ Provenance: the underlying clipping definition is standard audio engineering; the >0.1% / 1-second sustained threshold is a taxonomy-proposed engineering default, not externally validated. Per the Calibration & Context principle, require local calibration against the deployment's automatic-gain-control behaviour and clinical content sensitivity.
 ```
 
 **Code: Clipping detection**
@@ -378,7 +386,9 @@ Detection of gradual hardware degradation over time: declining battery performan
 **Formal Definition**
 
 ```
-Track baseline audio quality metrics (SNR, frequency response, noise floor) over time. Drift = significant deviation from baseline established at hardware validation. Alert if SNR drops >5dB from baseline or frequency response shifts >10%.
+Track baseline audio quality metrics (SNR, frequency response, noise floor) over time. Drift = significant deviation from baseline established at hardware validation. Taxonomy-proposed alert thresholds: SNR drops >5dB from baseline OR frequency response shifts >10%.
+
+⚠️ Provenance: baseline-vs-current drift detection is a standard hardware-monitoring construct; the specific >5dB SNR-drop and >10% frequency-response-shift thresholds are taxonomy-proposed engineering defaults, not externally validated. Per the Calibration & Context principle, require local calibration against the deployment's hardware lifecycle and clinical-acoustic environment. Source row already correctly says "Proposed - extends hardware validation to ongoing monitoring".
 ```
 
 **Limitations**
