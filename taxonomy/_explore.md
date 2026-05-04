@@ -24,11 +24,21 @@ Two views over all 221 metrics:
   .matrix-filter-strip .strip-hint { font-size: 0.75rem; color: var(--md-default-fg-color--light); font-style: italic; }
   .matrix-filter-strip a.scroll-link { font-size: 0.78rem; color: var(--md-default-fg-color--light); }
 
-  .matrix-wrap { margin: 1rem 0 2rem; overflow-x: auto; }
-  .matrix-grid { display: grid; grid-template-columns: 110px repeat(var(--matrix-cols, 6), minmax(180px, 1fr)); gap: 4px; min-width: 920px; }
-  .matrix-corner, .matrix-cluster-header, .matrix-tier-header { padding: 0.4rem 0.5rem; font-weight: 600; font-size: 0.8rem; text-align: center; background: var(--md-default-fg-color--lightest); border-radius: 3px; user-select: none; }
-  .matrix-cluster-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
-  .matrix-tier-header { writing-mode: horizontal-tb; display: flex; align-items: center; justify-content: center; }
+  .matrix-wrap { margin: 1rem 0 2rem; }
+  /* Layout: 1 row-label column + 3 tier columns (or 1 row-label + N when
+     a cluster is focused, where each row is a group inside the cluster).
+     The row axis is the cluster (or group when focused); the column axis
+     is always tier (1/2/3). Three tier columns + a label column fits any
+     reasonable viewport without horizontal scroll. */
+  .matrix-grid { display: grid; grid-template-columns: 140px repeat(3, minmax(220px, 1fr)); gap: 4px; }
+  .matrix-corner, .matrix-cluster-header, .matrix-tier-header, .matrix-row-header { padding: 0.4rem 0.5rem; font-weight: 600; font-size: 0.8rem; text-align: center; background: var(--md-default-fg-color--lightest); border-radius: 3px; user-select: none; }
+  .matrix-tier-header { font-size: 0.85rem; }
+  /* Row labels (cluster or group) on the left. Top-aligned so the label
+     stays visible at the top of the row even when the row is very tall
+     (GV/Tier-2 spans 2000+ px). align-self: start prevents the grid
+     from stretching the header vertically; the visible header is then
+     a compact box at the top of the row. */
+  .matrix-row-header { display: flex; align-items: flex-start; justify-content: flex-start; text-align: left; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.03em; line-height: 1.25; padding: 0.5rem 0.6rem; align-self: start; }
   .matrix-cell { background: var(--md-default-bg-color); border: 1px dashed var(--md-default-fg-color--lightest); border-radius: 3px; padding: 4px; min-height: 90px; display: flex; flex-direction: column; gap: 4px; align-content: flex-start; transition: background 80ms ease, border-color 80ms ease; }
   .matrix-cell.drag-over { background: var(--md-accent-fg-color--transparent); border-color: var(--md-accent-fg-color); border-style: solid; }
   .matrix-card { font-size: 0.7rem; padding: 4px 6px; border-radius: 3px; background: var(--md-default-fg-color--lightest); cursor: grab; user-select: none; line-height: 1.3; border-left: 3px solid transparent; display: flex; flex-direction: column; gap: 1px; }
@@ -364,11 +374,13 @@ Two views over all 221 metrics:
   }
 
   // ---------- Matrix render ----------
-  // Mode A (default): columns = clusters (TP / PI / HL / IO / GV / ES).
-  // Mode B (cluster filter set): columns = groups within the focused cluster.
-  // The mode change is driven by state.filters.cluster — when one cluster is
-  // selected the matrix narrows to that cluster's groups so deployers can see
-  // sub-cluster structure that's drowned out at the 6-cluster zoom.
+  // Layout: tiers are always columns (Tier 1 / Tier 2 / Tier 3, left to
+  // right). Rows depend on focus mode:
+  //   Mode A (default): rows = clusters (TP / PI / HL / IO / GV / ES).
+  //   Mode B (cluster focus set): rows = groups within the focused cluster.
+  // Three tier columns + a label column fits any viewport without horizontal
+  // scroll, and dragging left-to-right matches the "more important / less
+  // important" tier intuition.
   function focusedCluster() {
     const want = state.filters.cluster;
     if (!want) return null;
@@ -394,7 +406,7 @@ Two views over all 221 metrics:
     const text = document.getElementById('matrix-focus-text');
     if (focus) {
       banner.style.display = '';
-      text.textContent = `Focused on ${CLUSTER_LABELS[focus]} — columns are groups within this cluster.`;
+      text.textContent = `Focused on ${CLUSTER_LABELS[focus]} — rows are groups within this cluster.`;
     } else {
       banner.style.display = 'none';
       text.textContent = '';
@@ -436,45 +448,41 @@ Two views over all 221 metrics:
     const focus = focusedCluster();
     renderFocusBanner(focus);
 
-    // Decide column set
-    const columns = focus
-      ? groupsInCluster(focus).map(g => ({ key: g, label: g, cluster: focus, group: g }))
-      : CLUSTER_ORDER.map(c => ({ key: c, label: CLUSTER_LABELS[c], cluster: c, group: undefined }));
+    // Decide row set: clusters by default, groups when a cluster is focused.
+    // The column axis (tier) is always the same shape: three tiers.
+    const rows = focus
+      ? groupsInCluster(focus).map(g => ({ label: g, cluster: focus, group: g }))
+      : CLUSTER_ORDER.map(c => ({ label: CLUSTER_LABELS[c], cluster: c, group: undefined }));
 
-    grid.style.setProperty('--matrix-cols', String(columns.length));
-
-    // Corner cell
+    // Header row: corner + Tier 1 / Tier 2 / Tier 3
     const corner = document.createElement('div');
     corner.className = 'matrix-corner';
-    corner.innerHTML = focus ? 'group →<br>tier ↓' : 'cluster →<br>tier ↓';
+    corner.innerHTML = focus ? 'group ↓<br>tier →' : 'cluster ↓<br>tier →';
     grid.appendChild(corner);
-
-    // Column headers
-    for (const col of columns) {
+    for (const tier of [1, 2, 3]) {
       const h = document.createElement('div');
-      h.className = 'matrix-cluster-header';
-      h.textContent = col.label;
+      h.className = 'matrix-tier-header';
+      h.textContent = TIER_LABELS[tier];
       grid.appendChild(h);
     }
 
-    // Tier rows
-    for (const tier of [1, 2, 3]) {
-      const th = document.createElement('div');
-      th.className = 'matrix-tier-header';
-      th.textContent = TIER_LABELS[tier];
-      grid.appendChild(th);
+    // Body rows: row-label + 3 cells (one per tier)
+    for (const row of rows) {
+      const rh = document.createElement('div');
+      rh.className = 'matrix-row-header';
+      rh.textContent = row.label;
+      grid.appendChild(rh);
 
-      for (const col of columns) {
+      for (const tier of [1, 2, 3]) {
         const cell = document.createElement('div');
         cell.className = 'matrix-cell';
-        attachCellHandlers(cell, col.cluster, tier, col.group);
+        attachCellHandlers(cell, row.cluster, tier, row.group);
 
-        // Filter metrics for this cell
         const inCell = filtered
           .filter(m => {
-            if (m.cluster !== col.cluster) return false;
+            if (m.cluster !== row.cluster) return false;
             if (effectiveTier(m) !== tier) return false;
-            if (col.group !== undefined && m.group !== col.group) return false;
+            if (row.group !== undefined && m.group !== row.group) return false;
             return true;
           })
           .sort((a, b) => (a._idx ?? 0) - (b._idx ?? 0));
