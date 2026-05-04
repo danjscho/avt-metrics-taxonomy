@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.0.2 (2026-05-04)
+
+**Patch release: standalone summary of Registry-needed metrics.**
+
+No metric / catalogue content changes. One additional research-output file at repo root: `v5.1-registry-needed-metrics.md` — a small, scannable list pulled out of v5.0.1's longer Phase 1a audit, answering the direct question "what metrics does the AVT Registry transitively need?". 38 Tier 1 metrics confirmed Registry-relevant, organised by attestation type (clinical safety, IG, NHS-specific compliance, vendor transparency, AVT-specific accuracy, clinical accountability, operational/interop). Carries the same honest scoping note as v5.0.1: mapped against the *transitive surface* (CIO/CCIO + IG guidance), not the actual Registry attestation form (which is not publicly accessible).
+
+This file is intended as a quick reference while waiting for the actual Registry attestation form. When the form is available, re-running Phase 1a against this list produces a sharp diff (confirmed / surplus / net gap).
+
 ## v5.0.1 (2026-05-04)
 
 **Patch release: Phase 1a Registry coverage audit (research output for v5.1+ minimum-set work).**
