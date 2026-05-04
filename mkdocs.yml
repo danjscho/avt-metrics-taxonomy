@@ -119,6 +119,7 @@ nav:
   - Home: index.md
   - How to use: how-to-use.md
   - Quick start (Tier 1): tier-1-quick-reference.md
+  - Explore metrics: explore.md
   - Browse metrics:
       - Contents: contents.md
       - TP - Technical Pipeline:

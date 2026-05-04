@@ -41,6 +41,7 @@ MAPPING: dict[str, str] = {
     "_glossary.md": "glossary.md",
     "_versioning.md": "versioning.md",
     "_thresholds.md": "thresholds.md",
+    "_explore.md": "explore.md",
     "_references.md": "references.md",
     "tp/audio-capture.md": "groups/audio-capture.md",
     "tp/asr-transcription.md": "groups/asr-transcription.md",
@@ -787,6 +788,13 @@ def main() -> None:
         text = _substitute_template_tokens(src.read_text())
         if src_rel == "_references.md":
             text = parse_src.populate_cited_by(text)
+        # The explore page is a JS app — skip every rewriter that would
+        # mangle the embedded <script>/<style> or rewrite content the JS
+        # depends on (ref-IDs in HTML attrs, anchor links, etc.). Just
+        # template-substitute and ship.
+        if dst_rel == "explore.md":
+            dst.write_text(text)
+            continue
         text = rewrite_anchors(text, dst_rel)
         text = rewrite_reference_handles(text, dst_rel)
         text = rewrite_external_links(text)
