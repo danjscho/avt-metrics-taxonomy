@@ -15,6 +15,15 @@ Two views over all 221 metrics:
   .ex-toolbar button:hover { background: var(--md-default-fg-color--lightest); }
   .ex-toolbar .ex-summary-inline { font-size: 0.85rem; color: var(--md-default-fg-color--light); margin-left: auto; }
 
+  .matrix-filter-strip { display: flex; gap: 0.6rem; align-items: center; flex-wrap: wrap; padding: 0.5rem 0.75rem; background: var(--md-default-fg-color--lightest); border-radius: 4px; margin-bottom: 0.5rem; font-size: 0.85rem; }
+  .matrix-filter-strip label { font-weight: 600; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--md-default-fg-color--light); }
+  .matrix-filter-strip select, .matrix-filter-strip input[type="search"] { padding: 0.25rem 0.45rem; border-radius: 3px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-bg-color); color: var(--md-default-fg-color); font-size: 0.85rem; }
+  .matrix-filter-strip input[type="search"] { min-width: 180px; }
+  .matrix-filter-strip select { min-width: 160px; }
+  .matrix-filter-strip .strip-spacer { flex: 1; }
+  .matrix-filter-strip .strip-hint { font-size: 0.75rem; color: var(--md-default-fg-color--light); font-style: italic; }
+  .matrix-filter-strip a.scroll-link { font-size: 0.78rem; color: var(--md-default-fg-color--light); }
+
   .matrix-wrap { margin: 1rem 0 2rem; overflow-x: auto; }
   .matrix-grid { display: grid; grid-template-columns: 110px repeat(var(--matrix-cols, 6), minmax(180px, 1fr)); gap: 4px; min-width: 920px; }
   .matrix-corner, .matrix-cluster-header, .matrix-tier-header { padding: 0.4rem 0.5rem; font-weight: 600; font-size: 0.8rem; text-align: center; background: var(--md-default-fg-color--lightest); border-radius: 3px; user-select: none; }
@@ -70,6 +79,17 @@ Two views over all 221 metrics:
 </style>
 
 ## Matrix view
+
+<div class="matrix-filter-strip" aria-label="Matrix-specific quick filters">
+  <label for="mx-search">Search</label>
+  <input type="search" id="mx-search" placeholder="Name, ref-ID, group…" aria-label="Free-text search (matrix)" />
+  <label for="mx-cluster">Focus cluster</label>
+  <select id="mx-cluster" aria-label="Focus a single cluster">
+    <option value="">All clusters</option>
+  </select>
+  <span class="strip-spacer"></span>
+  <span class="strip-hint">Use the filter sidebar below for more dimensions.</span>
+</div>
 
 <div class="ex-toolbar">
   <button type="button" id="matrix-reset-moves">Reset all moves</button>
@@ -250,10 +270,43 @@ Two views over all 221 metrics:
     return arr;
   }
 
-  function populateSelect(key) {
-    const f = FIELDS[key];
-    const sel = document.getElementById(f.id);
+  // Apply a filter change from any control. Updates state, writes hash,
+  // re-renders, and syncs every <select> bound to the same key so the
+  // matrix-strip dropdown and the sidebar dropdown stay in lock-step.
+  function setFilter(key, value) {
+    if (value) state.filters[key] = value;
+    else delete state.filters[key];
+    writeHash();
+    syncControls();
+    renderAll();
+  }
+
+  function syncControls() {
+    // Sync each select bound to a filter key
+    for (const [key, f] of Object.entries(FIELDS)) {
+      const v = state.filters[key] || '';
+      for (const id of [f.id, ...(EXTRA_SELECT_IDS[key] || [])]) {
+        const sel = document.getElementById(id);
+        if (sel && sel.value !== v) sel.value = v;
+      }
+    }
+    // Sync search inputs
+    const q = state.filters.q || '';
+    for (const id of ['ex-search', 'mx-search']) {
+      const inp = document.getElementById(id);
+      if (inp && inp.value !== q) inp.value = q;
+    }
+  }
+
+  // Map filter keys to extra <select> ids beyond FIELDS[key].id (for the
+  // matrix-strip duplicates).
+  const EXTRA_SELECT_IDS = {
+    cluster: ['mx-cluster'],
+  };
+
+  function fillSelectOptions(key, sel) {
     if (!sel) return;
+    const f = FIELDS[key];
     let valueRanks = null;
     if (f.sortKey) {
       valueRanks = new Map();
@@ -273,12 +326,25 @@ Two views over all 221 metrics:
       opt.textContent = v;
       sel.appendChild(opt);
     }
+  }
+
+  function populateSelect(key) {
+    const f = FIELDS[key];
+    const sel = document.getElementById(f.id);
+    if (!sel) return;
+    fillSelectOptions(key, sel);
     if (state.filters[key]) sel.value = state.filters[key];
-    sel.addEventListener('change', () => {
-      state.filters[key] = sel.value;
-      writeHash();
-      renderAll();
-    });
+    sel.addEventListener('change', () => setFilter(key, sel.value));
+
+    // Also populate any matrix-strip duplicate of this filter
+    for (const extraId of EXTRA_SELECT_IDS[key] || []) {
+      const dup = document.getElementById(extraId);
+      if (dup) {
+        fillSelectOptions(key, dup);
+        if (state.filters[key]) dup.value = state.filters[key];
+        dup.addEventListener('change', () => setFilter(key, dup.value));
+      }
+    }
   }
 
   // ---------- Filter ----------
@@ -619,12 +685,8 @@ Two views over all 221 metrics:
   function resetFilters() {
     state.filters = {};
     state.sort = { col: 'ref_id', dir: 'asc' };
-    document.getElementById('ex-search').value = '';
-    for (const f of Object.values(FIELDS)) {
-      const sel = document.getElementById(f.id);
-      if (sel) sel.value = '';
-    }
     writeHash();
+    syncControls();
     renderAll();
   }
 
@@ -658,23 +720,23 @@ Two views over all 221 metrics:
       return;
     }
 
-    // Wire up
-    const search = document.getElementById('ex-search');
-    if (state.filters.q) search.value = state.filters.q;
-    search.addEventListener('input', () => {
-      state.filters.q = search.value;
-      writeHash();
-      renderAll();
-    });
+    // Wire up search inputs (sidebar + matrix-strip)
+    for (const id of ['ex-search', 'mx-search']) {
+      const search = document.getElementById(id);
+      if (!search) continue;
+      if (state.filters.q) search.value = state.filters.q;
+      search.addEventListener('input', () => {
+        state.filters.q = search.value;
+        writeHash();
+        syncControls();
+        renderAll();
+      });
+    }
     for (const key of Object.keys(FIELDS)) populateSelect(key);
     document.getElementById('ex-reset').addEventListener('click', resetFilters);
     document.getElementById('matrix-reset-moves').addEventListener('click', resetMoves);
     document.getElementById('matrix-focus-clear').addEventListener('click', () => {
-      delete state.filters.cluster;
-      const sel = document.getElementById('ex-cluster');
-      if (sel) sel.value = '';
-      writeHash();
-      renderAll();
+      setFilter('cluster', '');
     });
 
     window.addEventListener('hashchange', () => {
@@ -682,11 +744,7 @@ Two views over all 221 metrics:
       state.filters = {};
       if (h.q) state.filters.q = h.q;
       for (const k of Object.keys(FIELDS)) if (h[k]) state.filters[k] = h[k];
-      document.getElementById('ex-search').value = state.filters.q || '';
-      for (const [key, f] of Object.entries(FIELDS)) {
-        const sel = document.getElementById(f.id);
-        if (sel) sel.value = state.filters[key] || '';
-      }
+      syncControls();
       renderAll();
     });
 
