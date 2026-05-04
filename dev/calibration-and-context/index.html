@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3239,6 +3239,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3383,6 +3387,62 @@
     
   
     Downloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metric-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metric history
   
 
     
@@ -3673,7 +3733,7 @@
 <p><strong>Read each metric's Reference Standard / Operational Specification / Threshold Guidance (where present) as the default calibration</strong>, not the universal answer. The pattern is in place on 25 of 43 Tier 1 metrics as of v3.7; see <a href="#"><code>taxonomy/audit.py</code></a> output for current status.</p>
 </li>
 <li>
-<p><strong>Read the ⚠️ Provenance prelude carefully.</strong> Cited thresholds (<a href="../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>, <a href="../references/#uk-gdpr">UK-GDPR</a>, <a href="../references/#nhse-ig-guidance-2026-03">NHSE-IG-Guidance-2026-03</a>) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.</p>
+<p><strong>Read the ⚠️ Provenance prelude carefully.</strong> Cited thresholds (<a href="../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a>, <a href="../references/#uk-gdpr">UK GDPR</a>, <a href="../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a>) carry external authority and should not be relaxed without explicit justification. Proposed-as-starting-points thresholds are explicitly the calibration surface — they were chosen as defensible defaults during taxonomy authoring, not as regulator-issued numbers, and require local calibration before contractual use.</p>
 </li>
 <li>
 <p><strong>Document the local calibration in the deployer's governance file</strong> alongside the DPIA and Clinical Safety Case. The local-calibration document should record, per metric:</p>
@@ -3699,7 +3759,7 @@
 <ul>
 <li><strong>Not an excuse to disregard Tier 1 metrics.</strong> Calibration shifts which metrics are Tier 1 for <em>your</em> deployment; it does not let you stop measuring them altogether. Every metric in the Tier 1 set after local calibration must be measured.</li>
 <li><strong>Not a way to argue threshold numbers are negotiable in vendor contracts.</strong> The contractual gate is the deployer's local calibration, not the taxonomy's published starting point. Once the deployer has calibrated, the calibrated number is the contract; the taxonomy default is no longer in scope.</li>
-<li><strong>Not a way to avoid the <a href="../outcomes-boundary/">Outcomes Boundary</a>.</strong> The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, <a href="../references/#mhra-samd">MHRA-SaMD</a> post-market surveillance, and vendor-side regulatory claims.</li>
+<li><strong>Not a way to avoid the <a href="../outcomes-boundary/">Outcomes Boundary</a>.</strong> The Boundary names what's out of scope (clinical-outcome validation, RCT evidence). Calibration cannot bring distal-outcome work into the deployer's scope; that responsibility stays with national research bodies, <a href="../references/#mhra-samd">MHRA SaMD/AIaMD guidance</a> post-market surveillance, and vendor-side regulatory claims.</li>
 </ul>
 <h3 id="cross-references">Cross-references<a class="headerlink" href="#cross-references" title="Permanent link">&para;</a></h3>
 <ul>

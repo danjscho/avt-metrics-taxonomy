@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3414,6 +3414,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3558,6 +3562,62 @@
     
   
     Downloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metric-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metric history
   
 
     
@@ -4016,7 +4076,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#rouge-lin-2004">ROUGE-Lin-2004</a>; inadequacy shown by <a href="../../references/#croxford-2025">Croxford-2025</a></td>
+<td><a href="../../references/#rouge-lin-2004">ROUGE-Lin-2004</a>; inadequacy shown by <a href="../../references/#croxford-2025">Croxford et al. (2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -4067,7 +4127,7 @@
 <p><strong>References</strong></p>
 <ul>
 <li><strong>Original</strong>: <a href="../../references/#rouge-lin-2004">ROUGE-Lin-2004</a></li>
-<li><strong>Inadequacy</strong>: <a href="../../references/#croxford-2025">Croxford-2025</a> — LLM-as-Judge outperforms ROUGE/BERTScore</li>
+<li><strong>Inadequacy</strong>: <a href="../../references/#croxford-2025">Croxford et al. (2025)</a> — LLM-as-Judge outperforms ROUGE/BERTScore</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4075,7 +4135,7 @@
 </blockquote>
 <p><strong>⚠️ Underspecification Warning (Tier C - technically rigorous, clinically invalid)</strong></p>
 <blockquote>
-<p>Published review evidence demonstrates near-zero or negative correlation between ROUGE and expert clinical judgment in clinical summarisation evaluation (<a href="../../references/#croxford-2025">Croxford-2025</a> review; <a href="../../references/#benabacha-evalmetrics-2023">BenAbacha-EvalMetrics-2023</a> investigation of automated metrics for medical note generation). The root cause is that string matching penalises clinically valid paraphrase and rewards surface overlap regardless of clinical meaning. <strong>ROUGE must not be used as a standalone clinical quality indicator.</strong> Retain only for technical benchmarking, and always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).</p>
+<p>Published review evidence demonstrates near-zero or negative correlation between ROUGE and expert clinical judgment in clinical summarisation evaluation (<a href="../../references/#croxford-2025">Croxford et al. (2025)</a> review; <a href="../../references/#benabacha-evalmetrics-2023">BenAbacha-EvalMetrics-2023</a> investigation of automated metrics for medical note generation). The root cause is that string matching penalises clinically valid paraphrase and rewards surface overlap regardless of clinical meaning. <strong>ROUGE must not be used as a standalone clinical quality indicator.</strong> Retain only for technical benchmarking, and always report alongside a validated clinical instrument (PDSQI-9, CREOLA, or LLM-as-a-Judge with bias quantification).</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4139,7 +4199,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#bertscore-zhang-2020">BERTScore-Zhang-2020</a>; <a href="../../references/#croxford-2025">Croxford-2025</a></td>
+<td><a href="../../references/#bertscore-zhang-2020">BERTScore-Zhang-2020</a>; <a href="../../references/#croxford-2025">Croxford et al. (2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -4171,7 +4231,7 @@
 </blockquote>
 <p><strong>⚠️ Underspecification Warning (Tier C - better than ROUGE but insufficient alone)</strong></p>
 <blockquote>
-<p>BERTScore is materially better than ROUGE as a text-similarity metric — it captures semantic similarity rather than only surface overlap — but published reviews of clinical-NLG evaluation (<a href="../../references/#croxford-2025">Croxford-2025</a>) describe semantic-similarity metrics as still inadequate as standalone clinical quality indicators. The underlying limitation is the same as ROUGE: semantic similarity is not clinical correctness. A note can be semantically close to the reference while missing a clinically critical element, or semantically distant while conveying the same clinical meaning through appropriate medical abstraction. BERTScore is useful as one input to a multi-metric assessment but should never be reported as the primary quality finding. Pair with PDSQI-9 or an LLM-as-a-Judge protocol that has been subjected to bias quantification.</p>
+<p>BERTScore is materially better than ROUGE as a text-similarity metric — it captures semantic similarity rather than only surface overlap — but published reviews of clinical-NLG evaluation (<a href="../../references/#croxford-2025">Croxford et al. (2025)</a>) describe semantic-similarity metrics as still inadequate as standalone clinical quality indicators. The underlying limitation is the same as ROUGE: semantic similarity is not clinical correctness. A note can be semantically close to the reference while missing a clinically critical element, or semantically distant while conveying the same clinical meaning through appropriate medical abstraction. BERTScore is useful as one input to a multi-metric assessment but should never be reported as the primary quality finding. Pair with PDSQI-9 or an LLM-as-a-Judge protocol that has been subjected to bias quantification.</p>
 </blockquote>
 <p><em>See also: ROUGE Scores - both members of the Reference-Based Text Similarity family. BERTScore is materially better than ROUGE as a text similarity metric but shares the fundamental limitation: semantic closeness to a reference is not clinical correctness. Always report alongside a validated clinical instrument.</em></p>
 <hr />
@@ -4231,11 +4291,12 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#pdsqi-9">PDSQI-9</a>; <a href="../../references/#croxford-2025">Croxford-2025</a></td>
+<td><a href="../../references/#pdsqi-9">PDSQI-9</a>; <a href="../../references/#croxford-2025">Croxford et al. (2025)</a></td>
 </tr>
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🔀 <a href="../../crosscuts/by-applicability/avt-contextualised/">AVT-Contextualised</a></p>
+<p><strong>Change history:</strong> v4.2 (Croxford-bundle confabulation fix — previously cited a Kendall-Tau / Pearson / ICC constellation not actually present in either Croxford paper; replaced with the verified 0.867 inter-rater ICC and added <a href="../../references/#croxford-pdsqi9-jamia-2025">Croxford-PDSQI9-JAMIA-2025</a> catalogue entry).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Validated gold-standard rubric. Resource-intensive without LLM automation. Recommended for periodic audit (quarterly sample).</p>
@@ -4308,7 +4369,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>. Now underpins automated guardrails.</td>
+<td><a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a>. Now underpins automated guardrails.</td>
 </tr>
 </tbody>
 </table>
@@ -4343,7 +4404,7 @@
 <blockquote>
 <p><strong>Parent construct</strong> - whether the generated note faithfully represents the clinical content of the source consultation.</p>
 <p>The next five metrics measure different facets of a single underlying construct. Treating them as unrelated obscures three important things: the existence of distinct error subtypes with different clinical implications, the difference between factuality and faithfulness, and the reason that aggregate rates can mask serious category-specific failures.</p>
-<p><strong>Subtypes are not substitutes.</strong> The CREOLA framework (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>) defines four hallucination subtypes — <em>fabrication, negation, causality, contextual</em> — and three omission subtypes (<em>current issues, past medical / family / social, information-and-plan</em>). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. <strong>The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure</strong> — the source-attested taxonomy is the 4+3 above.</p>
+<p><strong>Subtypes are not substitutes.</strong> The CREOLA framework (<a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a>) defines four hallucination subtypes — <em>fabrication, negation, causality, contextual</em> — and three omission subtypes (<em>current issues, past medical / family / social, information-and-plan</em>). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. <strong>The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure</strong> — the source-attested taxonomy is the 4+3 above.</p>
 <ul>
 <li><strong>Fabrication</strong> (Asgari "fabrication") - completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.</li>
 <li><strong>Context conflation</strong> (closest to Asgari "contextual") - content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.</li>
@@ -4418,7 +4479,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Various; <a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a> reports 1.47% per sentence</td>
+<td>Various; <a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a> reports 1.47% per sentence</td>
 </tr>
 </tbody>
 </table>
@@ -4432,7 +4493,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a> subtype taxonomy (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.</p>
+<p>Source transcript is primary ground truth. Atomic propositions in the generated note are classified {Fully Supported, Partially Supported, Unsupported} via structured clinician review using the <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a> subtype taxonomy (<a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a>). Unsupported = hallucination. Inter-rater reliability target: ICC ≥ 0.75 on the subtype classification. NLI-based automated detection (e.g. the CHECK framework, arXiv 2506.11129) is acceptable as a primary screen if reported AUC ≥ 0.90 against a human-reviewed reference set; remains subject to the underspecification warning below until concordance with clinician review is established locally.</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4476,8 +4537,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Tortus data</strong>: 1.47% per sentence (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>)</li>
-<li><strong>Abridge</strong>: Support × severity matrix (<a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> — Liang, Oberst, Tan, Lipton 2025)</li>
+<li><strong>Tortus data</strong>: 1.47% per sentence (<a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a>)</li>
+<li><strong>Abridge</strong>: Support × severity matrix (<a href="../../references/#abridge-whitepaper-2025">Abridge whitepaper (2025)</a> — Liang, Oberst, Tan, Lipton 2025)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4550,7 +4611,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a> reports 3.45%; <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a></td>
+<td><a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a> reports 3.45%; <a href="../../references/#creola-hallucination-taxonomy">CREOLA-Hallucination-Taxonomy</a></td>
 </tr>
 </tbody>
 </table>
@@ -4587,7 +4648,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Tortus</strong>: 3.45% omission rate (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>)</li>
+<li><strong>Tortus</strong>: 3.45% omission rate (<a href="../../references/#asgari-tortus-2025">Asgari/Tortus (2025)</a>)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4734,10 +4795,11 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> (50,000+ training examples)</td>
+<td><a href="../../references/#abridge-whitepaper-2025">Abridge whitepaper (2025)</a> (50,000+ training examples)</td>
 </tr>
 </tbody>
 </table>
+<p><strong>Change history:</strong> v4.2 (Support × Severity axes corrected to match Abridge whitepaper's actual 5×3 schema — earlier 4×3 was a confabulation; catalogue author list also corrected).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Vendor-proprietary (Abridge). Methodologically superior two-axis approach but not independently implementable. Informs what a national standard should require. <em>Was TP.SN-7 in v3.6 and earlier; promoted to sub-part of TP.SN-7 Factual Verification in v3.7 Phase 2.1.</em></p>
@@ -5010,7 +5072,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#croxford-2025">Croxford-2025</a></td>
+<td><a href="../../references/#croxford-2025">Croxford et al. (2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -5333,7 +5395,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#wang-ads-eval-2025">Wang-ADS-Eval-2025</a></td>
+<td><a href="../../references/#wang-ads-eval-2025">Wang et al., SCRIBE (2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -5347,7 +5409,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Paper</strong>: <a href="../../references/#wang-ads-eval-2025">Wang-ADS-Eval-2025</a> — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym <strong>SCRIBE</strong> (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).</li>
+<li><strong>Paper</strong>: <a href="../../references/#wang-ads-eval-2025">Wang et al., SCRIBE (2025)</a> — "An evaluation framework for ambient digital scribing tools in clinical applications" (Duke / MedStar). Paper diagrams use the acronym <strong>SCRIBE</strong> (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation).</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>

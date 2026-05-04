@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3304,6 +3304,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3448,6 +3452,62 @@
     
   
     Downloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metric-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metric history
   
 
     
@@ -3796,7 +3856,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
+<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -3819,12 +3879,12 @@
 <li><strong>Per-component versioning MANDATORY:</strong> the six components above each have a recorded version on every inference. A single rolled-up "system version" is not Tier 1 sufficient - downstream incident attribution requires component-level provenance.</li>
 <li><strong>Change-event log MANDATORY:</strong> every change to any component generates a structured change-event record with component name, old version, new version, change type (weights / prompt / retrieval / classifier), timestamp, and notification status (notified / not-yet-notified).</li>
 <li><strong>Notification timeline MANDATORY:</strong> the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the <a href="#gv-sg-2">GV.SG-2 Model Update Impact Score</a> workflow and the monitoring window referenced in the Formal Definition.</li>
-<li><strong>Regulatory cross-link MANDATORY:</strong> any change classified as "substantial" under <a href="../../references/#si-2024-1368">SI-2024-1368</a> (MHRA Post-Market Surveillance regulations) must be flagged in the change-event record with the regulatory reference, and surfaced through <a href="../vendor-transparency-contractual/#gv-vt-1">GV.VT-1 Model Change Notification Compliance</a>.</li>
+<li><strong>Regulatory cross-link MANDATORY:</strong> any change classified as "substantial" under <a href="../../references/#si-2024-1368">SI 2024/1368</a> (MHRA Post-Market Surveillance regulations) must be flagged in the change-event record with the regulatory reference, and surfaced through <a href="../vendor-transparency-contractual/#gv-vt-1">GV.VT-1 Model Change Notification Compliance</a>.</li>
 </ul>
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the monitoring framing carries from the Novel Thinking section and <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from <a href="../../references/#si-2024-1368">SI-2024-1368</a> in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
+<p>⚠️ <strong>Provenance:</strong> the monitoring framing carries from the Novel Thinking section and <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from <a href="../../references/#si-2024-1368">SI 2024/1368</a> in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
 <ul>
 <li><strong>Pre-deployment gate:</strong> vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.</li>
 <li><strong>Continuous monitoring:</strong> per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified &gt; 7 days.</li>
@@ -3833,7 +3893,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3901,7 +3961,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a>; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
+<td><a href="../../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a>; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -3915,8 +3975,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>NAS</strong>: <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a> (taxonomy-author's prior framing, internal source)</li>
-<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> — three-principle monitoring framework (system integrity, performance, impact)</li>
+<li><strong>NAS</strong>: <a href="../../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a> (taxonomy-author's prior framing, internal source)</li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> — three-principle monitoring framework (system integrity, performance, impact)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3987,7 +4047,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#nice-esf">NICE-ESF</a> 2022 AI-specific updates; drift detection literature</td>
+<td><a href="../../references/#nice-esf">NICE ESF (ECD7)</a> 2022 AI-specific updates; drift detection literature</td>
 </tr>
 </tbody>
 </table>
@@ -4065,7 +4125,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#fda-pccp-guidance-2024">FDA-PCCP-Guidance-2024</a>; <a href="../../references/#nice-esf">NICE-ESF</a> 2022 AI-specific additions</td>
+<td><a href="../../references/#fda-pccp-guidance-2024">FDA-PCCP-Guidance-2024</a>; <a href="../../references/#nice-esf">NICE ESF (ECD7)</a> 2022 AI-specific additions</td>
 </tr>
 </tbody>
 </table>
@@ -4148,6 +4208,7 @@
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🌐 <a href="../../crosscuts/by-applicability/general/">General Healthcare AI</a></p>
+<p><strong>Change history:</strong> v4.4 (re-attributed the model-autophagy claims to the actual He et al. medRxiv 2026 paper via the new <a href="../../references/#he-ai-contamination-pathology-2026">He-AI-Contamination-Pathology-2026</a> catalogue handle; replaced an unverifiable specific "98.9% by generation 4" number with the qualitative findings the paper does support).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility - and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.</p>
@@ -4461,7 +4522,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#amlas-aaip">AMLAS-AAIP</a>; <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a></td>
+<td><a href="../../references/#amlas-aaip">AMLAS-AAIP</a>; <a href="../../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a></td>
 </tr>
 </tbody>
 </table>

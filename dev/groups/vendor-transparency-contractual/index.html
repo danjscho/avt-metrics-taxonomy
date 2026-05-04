@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3227,6 +3227,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3371,6 +3375,62 @@
     
   
     Downloads
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metric-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metric history
   
 
     
@@ -3642,7 +3702,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a>; three-principle monitoring framework (system integrity, performance, impact)</td>
+<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a>; three-principle monitoring framework (system integrity, performance, impact)</td>
 </tr>
 </tbody>
 </table>
@@ -3656,7 +3716,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Vendor change-event log paired with deployer notification record. The change-event taxonomy follows <a href="../safety-governance/#gv-sg-1">GV.SG-1 Model Version Tracking</a> — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to <a href="../../references/#si-2024-1368">SI-2024-1368</a> (MHRA Post-Market Surveillance Regulations 2024): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.</p>
+<p>Vendor change-event log paired with deployer notification record. The change-event taxonomy follows <a href="../safety-governance/#gv-sg-1">GV.SG-1 Model Version Tracking</a> — the six versioned components (ASR / LLM weights / prompt / retrieval / safety classifier / fine-tunes). A "notification" requires written communication to the named deployer contact (not generic vendor newsletter or status page) containing the four mandatory content elements (a-d below). Cross-link to <a href="../../references/#si-2024-1368">SI 2024/1368</a> (MHRA Post-Market Surveillance Regulations 2024): changes meeting the "substantial" threshold trigger separate regulatory notification obligations and MUST be flagged as such.</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -3665,13 +3725,13 @@
 <li><strong>Population:</strong> every change-event recorded by <a href="../safety-governance/#gv-sg-1">GV.SG-1</a> telemetry. Denominator is change-events, not calendar months.</li>
 <li><strong>Severity classification MANDATORY:</strong> every change classified as <strong>major</strong> (component-level rewrite, scope expansion, retraining with new data, regulatory-substantial), <strong>moderate</strong> (incremental retraining, prompt revision, retrieval index update), or <strong>minor</strong> (bug fix, performance optimisation without behavioural change). Lead-time requirements differ per severity (Threshold Guidance below).</li>
 <li><strong>Four mandatory content elements per notification:</strong> (a) what changed (component, version-from, version-to); (b) expected impact (clinical-benchmark deltas, edge cases, known failure modes affected); (c) validation results (named benchmarks, test corpora, sample sizes); (d) deployer action required (re-run <a href="../safety-governance/#gv-sg-2">GV.SG-2 Model Update Impact Score</a>, schedule <a href="../nhs-compliance-regulatory/#gv-cr-6">GV.CR-6 Safety Case</a> update, etc.). Notifications missing any element count as non-compliant regardless of timing.</li>
-<li><strong>Substantial-change flag MANDATORY:</strong> any change meeting <a href="../../references/#si-2024-1368">SI-2024-1368</a> substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).</li>
+<li><strong>Substantial-change flag MANDATORY:</strong> any change meeting <a href="../../references/#si-2024-1368">SI 2024/1368</a> substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).</li>
 <li><strong>Per-deployment notification:</strong> notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.</li>
 </ul>
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> requirements (cited Source) with <a href="../../references/#si-2024-1368">SI-2024-1368</a> notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
+<p>⚠️ <strong>Provenance:</strong> the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> requirements (cited Source) with <a href="../../references/#si-2024-1368">SI 2024/1368</a> notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
 <ul>
 <li><strong>Pre-deployment gate (procurement):</strong> vendor contractually commits to the four-element schema and the per-severity lead times below; vendor demonstrates a recent change-event with full notification on file.</li>
 <li><strong>Continuous monitoring:</strong> major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.</li>
@@ -3680,7 +3740,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> — Stanford monitoring framework</li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> — Stanford monitoring framework</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3748,11 +3808,12 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a>; identified as prerequisite for most continuous monitoring metrics</td>
+<td><a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a>; identified as prerequisite for most continuous monitoring metrics</td>
 </tr>
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🌐 <a href="../../crosscuts/by-applicability/general/">General Healthcare AI</a></p>
+<p><strong>Change history:</strong> v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>The meta-prerequisite: without adequate telemetry, most continuous monitoring metrics are unmeasurable. Should be a procurement gate.</p>
@@ -3762,7 +3823,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> notes that vendor telemetry access is often inadequate for deployer-side governance under the three-principle (system integrity / performance / impact) framework</li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> notes that vendor telemetry access is often inadequate for deployer-side governance under the three-principle (system integrity / performance / impact) framework</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4000,7 +4061,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Authoritative source: vendor incident log paired with deployer notification record. <code>t_incident_known_by_vendor</code> is the earliest of: (a) vendor's own detection telemetry; (b) report from another deployer; (c) external (e.g. researcher) disclosure. Vendor self-classification of "knowing time" is rebuttable — if independent evidence (security advisories, public disclosure, regulator notice) establishes earlier knowledge, that timestamp is authoritative. Cross-link to UK NIS regulations and <a href="../../references/#uk-gdpr">UK-GDPR</a> Article 33 timelines for data-breach incidents (72-hour deployer-side notification obligation cascades from vendor disclosure). Incident severity classified per a deployer-defined schema; default: critical (active patient safety risk or active data exposure), high (potential exposure pending mitigation), medium (vulnerability disclosed and patched), low (informational).</p>
+<p>Authoritative source: vendor incident log paired with deployer notification record. <code>t_incident_known_by_vendor</code> is the earliest of: (a) vendor's own detection telemetry; (b) report from another deployer; (c) external (e.g. researcher) disclosure. Vendor self-classification of "knowing time" is rebuttable — if independent evidence (security advisories, public disclosure, regulator notice) establishes earlier knowledge, that timestamp is authoritative. Cross-link to UK NIS regulations and <a href="../../references/#uk-gdpr">UK GDPR</a> Article 33 timelines for data-breach incidents (72-hour deployer-side notification obligation cascades from vendor disclosure). Incident severity classified per a deployer-defined schema; default: critical (active patient safety risk or active data exposure), high (potential exposure pending mitigation), medium (vulnerability disclosed and patched), low (informational).</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4015,7 +4076,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with <a href="../../references/#uk-gdpr">UK-GDPR</a> Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
+<p>⚠️ <strong>Provenance:</strong> the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with <a href="../../references/#uk-gdpr">UK GDPR</a> Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
 <ul>
 <li><strong>Pre-deployment gate (procurement):</strong> vendor contractually commits to severity-classified disclosure timelines and the five-element content schema; named deployer contact recorded; one tabletop test of the disclosure path.</li>
 <li><strong>Continuous monitoring:</strong> critical incidents disclosed ≤ 24 hours from <code>t_known</code>; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.</li>
@@ -4166,7 +4227,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#uk-gdpr">UK-GDPR</a> Article 28</td>
+<td><a href="../../references/#uk-gdpr">UK GDPR</a> Article 28</td>
 </tr>
 </tbody>
 </table>
@@ -4180,7 +4241,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. <a href="../../references/#uk-gdpr">UK-GDPR</a> Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place (<a href="../privacy-data-governance/#gv-pd-9">GV.PD-9 Cross-Border Data Transfer Compliance</a> cross-link for non-UK locations).</p>
+<p>Vendor's published sub-processor list (the disclosed set) audited against the actual data-access surface (the discovered set). The discovered set is constructed from: (a) data-flow diagrams; (b) cloud architecture (IaaS/PaaS providers, CDN, log aggregation, monitoring telemetry); (c) third-party model providers (e.g. foundation-model APIs); (d) annotation, labelling, or human-review services; (e) support, customer-success, and engineering contractors with production-data access; (f) backup and disaster-recovery providers; (g) sub-sub-processors named in any of the above's published lists. <a href="../../references/#uk-gdpr">UK GDPR</a> Article 28(2) is the legal floor; "sub-processor" here includes any entity that processes personal data on the vendor's instructions, regardless of how the vendor labels the relationship internally. Each sub-processor in scope must have its own DPA in place (<a href="../privacy-data-governance/#gv-pd-9">GV.PD-9 Cross-Border Data Transfer Compliance</a> cross-link for non-UK locations).</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -4195,7 +4256,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the seven-source discovered-set framing follows from <a href="../../references/#uk-gdpr">UK-GDPR</a> Article 28(2) and standard DPIA practice; the materiality distinction synthesises <a href="../../references/#ico">ICO</a> guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.</p>
+<p>⚠️ <strong>Provenance:</strong> the seven-source discovered-set framing follows from <a href="../../references/#uk-gdpr">UK GDPR</a> Article 28(2) and standard DPIA practice; the materiality distinction synthesises <a href="../../references/#ico">ICO</a> guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.</p>
 <ul>
 <li><strong>Pre-deployment gate (procurement):</strong> vendor publishes complete sub-processor list with the per-sub-processor information schema above; deployer-side verification step completed (not vendor self-cert alone); DPAs in place for every material sub-processor.</li>
 <li><strong>Continuous monitoring:</strong> quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.</li>
@@ -4204,7 +4265,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>UK GDPR</strong>: <a href="../../references/#uk-gdpr">UK-GDPR</a> Article 28 — processor obligations including sub-processor disclosure</li>
+<li><strong>UK GDPR</strong>: <a href="../../references/#uk-gdpr">UK GDPR</a> Article 28 — processor obligations including sub-processor disclosure</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4272,7 +4333,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td>Prerequisite for existing Error Attribution Analysis metric; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></td>
+<td>Prerequisite for existing Error Attribution Analysis metric; <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a></td>
 </tr>
 </tbody>
 </table>
@@ -4350,7 +4411,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a>; National Commercial &amp; Procurement Hub publication mechanism</td>
+<td><a href="../../references/#nhse-avt-registry">NHSE AVT Self-Certified Supplier Registry</a>; National Commercial &amp; Procurement Hub publication mechanism</td>
 </tr>
 </tbody>
 </table>
@@ -4395,7 +4456,7 @@
 </blockquote>
 <p><strong>Threshold Guidance</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the 12-month freshness window mirrors the <a href="../../references/#ncsc-cyber-essentials">NCSC-Cyber-Essentials</a> annual cadence and the typical <a href="../../references/#uk-gdpr">UK-GDPR</a> DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are <strong>proposed in v3.8 as starting points</strong>, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.</p>
+<p>⚠️ <strong>Provenance:</strong> the 12-month freshness window mirrors the <a href="../../references/#ncsc-cyber-essentials">NCSC Cyber Essentials</a> annual cadence and the typical <a href="../../references/#uk-gdpr">UK GDPR</a> DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are <strong>proposed in v3.8 as starting points</strong>, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.</p>
 <ul>
 <li><strong>Pre-deployment gate (procurement):</strong> all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.</li>
 <li><strong>Periodic audit:</strong> quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.</li>
@@ -4404,7 +4465,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> — see also <a href="../../standards-mapping/#nhs-england-avt-self-certified-supplier-registry">Standards Mapping § NHS England AVT Self-Certified Supplier Registry</a></li>
+<li><a href="../../references/#nhse-avt-registry">NHSE AVT Self-Certified Supplier Registry</a> — see also <a href="../../standards-mapping/#nhs-england-avt-self-certified-supplier-registry">Standards Mapping § NHS England AVT Self-Certified Supplier Registry</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4471,7 +4532,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> req #12</td>
+<td><a href="../../references/#nhse-avt-registry">NHSE AVT Self-Certified Supplier Registry</a> req #12</td>
 </tr>
 </tbody>
 </table>
@@ -4523,7 +4584,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><a href="../../references/#nhse-avt-registry">NHSE-AVT-Registry</a> — req #12 (see also <a href="../../standards-mapping/#nhs-england-avt-self-certified-supplier-registry">Standards Mapping § NHS England AVT Self-Certified Supplier Registry</a>)</li>
+<li><a href="../../references/#nhse-avt-registry">NHSE AVT Self-Certified Supplier Registry</a> — req #12 (see also <a href="../../standards-mapping/#nhs-england-avt-self-certified-supplier-registry">Standards Mapping § NHS England AVT Self-Certified Supplier Registry</a>)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>

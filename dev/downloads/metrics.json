@@ -1,5 +1,5 @@
 {
-  "version": "v4.4.0",
+  "version": "v4.5.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 221,
@@ -974,7 +974,7 @@
         "Source": "[Asgari-Tortus-2025]. Now underpins automated guardrails."
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 167
+      "heading_line": 169
     },
     {
       "ref_id": "TP.SN-5",
@@ -1001,7 +1001,7 @@
         "Source": "Various; [Asgari-Tortus-2025] reports 1.47% per sentence"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 245
+      "heading_line": 247
     },
     {
       "ref_id": "TP.SN-6",
@@ -1028,7 +1028,7 @@
         "Source": "[Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 339
+      "heading_line": 341
     },
     {
       "ref_id": "TP.SN-7a",
@@ -1055,7 +1055,7 @@
         "Source": "[Abridge-Whitepaper-2025] (50,000+ training examples)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 442
+      "heading_line": 444
     },
     {
       "ref_id": "TP.SN-7b",
@@ -1082,7 +1082,7 @@
         "Source": "[Chung-NEJM-AI-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 497
+      "heading_line": 501
     },
     {
       "ref_id": "TP.SN-9a",
@@ -1109,7 +1109,7 @@
         "Source": "[Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 608
+      "heading_line": 612
     },
     {
       "ref_id": "TP.SN-9b",
@@ -1136,7 +1136,7 @@
         "Source": "[Bedi-Stanford-CRFM-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 651
+      "heading_line": 655
     },
     {
       "ref_id": "TP.SN-11",
@@ -1163,7 +1163,7 @@
         "Source": "[Kanithi-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 694
+      "heading_line": 698
     },
     {
       "ref_id": "TP.SN-12",
@@ -1190,7 +1190,7 @@
         "Source": "architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 737
+      "heading_line": 741
     },
     {
       "ref_id": "TP.SN-13",
@@ -1217,7 +1217,7 @@
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 780
+      "heading_line": 784
     },
     {
       "ref_id": "TP.SN-14",
@@ -1244,7 +1244,7 @@
         "Source": "[INSYTE-2025]; [DCB0129] gap"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 823
+      "heading_line": 827
     },
     {
       "ref_id": "TP.SN-15",
@@ -1271,7 +1271,7 @@
         "Source": "Clinical NLP literature; identified as systematic LLM failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 866
+      "heading_line": 870
     },
     {
       "ref_id": "TP.SN-16",
@@ -1298,7 +1298,7 @@
         "Source": "Clinical NLP literature on temporal expression extraction"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 931
+      "heading_line": 935
     },
     {
       "ref_id": "TP.SN-17",
@@ -1325,7 +1325,7 @@
         "Source": "[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 970
+      "heading_line": 974
     },
     {
       "ref_id": "TP.SN-18",
@@ -1352,7 +1352,7 @@
         "Source": "Identified as systematic LLM summarisation failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1007
+      "heading_line": 1011
     },
     {
       "ref_id": "TP.SN-19",
@@ -1379,7 +1379,7 @@
         "Source": "[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1060
+      "heading_line": 1064
     },
     {
       "ref_id": "TP.SN-20",
@@ -1406,7 +1406,7 @@
         "Source": "Clinical NLP hedging/uncertainty literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1099
+      "heading_line": 1103
     },
     {
       "ref_id": "TP.SN-21",
@@ -1433,7 +1433,7 @@
         "Source": "[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1170
+      "heading_line": 1174
     },
     {
       "ref_id": "TP.SN-22",
@@ -1460,7 +1460,7 @@
         "Source": "Human factors literature on documentation consistency"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1209
+      "heading_line": 1213
     },
     {
       "ref_id": "TP.SN-23",
@@ -1487,7 +1487,7 @@
         "Source": "Identified as quality dimension not captured by accuracy metrics"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1248
+      "heading_line": 1252
     },
     {
       "ref_id": "TP.SN-24",
@@ -1514,7 +1514,7 @@
         "Source": "[Himmelstein-Stigmatising-EHR-JAMA-2022]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1289
+      "heading_line": 1293
     },
     {
       "ref_id": "TP.CC-1",
@@ -2810,7 +2810,7 @@
         "Source": "Identified as strong dissatisfaction signal"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 504
+      "heading_line": 506
     },
     {
       "ref_id": "HL.HF-10",
@@ -2837,7 +2837,7 @@
         "Source": "[NASA-TLX] adapted for clinical documentation review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 543
+      "heading_line": 545
     },
     {
       "ref_id": "HL.HF-11",
@@ -2864,7 +2864,7 @@
         "Source": "Extends inter-rater reliability concepts to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 590
+      "heading_line": 592
     },
     {
       "ref_id": "HL.HF-12",
@@ -2891,7 +2891,7 @@
         "Source": "Aviation skill degradation literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 629
+      "heading_line": 631
     },
     {
       "ref_id": "HL.HF-13",
@@ -2918,7 +2918,7 @@
         "Source": "Cognitive offloading literature; distinct from automation bias"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 672
+      "heading_line": 674
     },
     {
       "ref_id": "HL.HF-14",
@@ -2945,7 +2945,7 @@
         "Source": "Trust halo effect analysis"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 711
+      "heading_line": 713
     },
     {
       "ref_id": "HL.HF-15",
@@ -2972,7 +2972,7 @@
         "Source": "Clinical fatigue research applied to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 754
+      "heading_line": 756
     },
     {
       "ref_id": "HL.HF-16",
@@ -2999,7 +2999,7 @@
         "Source": "[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 805
+      "heading_line": 807
     },
     {
       "ref_id": "HL.HF-17",
@@ -3026,7 +3026,7 @@
         "Source": "[GOSH-Phase-4-TimeCat]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 844
+      "heading_line": 846
     },
     {
       "ref_id": "HL.HF-18",
@@ -3053,7 +3053,7 @@
         "Source": "[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 883
+      "heading_line": 885
     },
     {
       "ref_id": "HL.HF-19",
@@ -3080,7 +3080,7 @@
         "Source": "Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 927
+      "heading_line": 929
     },
     {
       "ref_id": "IO.PX-1",
@@ -3728,7 +3728,7 @@
         "Source": "Concept drift literature from ML monitoring applied to clinical NLG"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 231
+      "heading_line": 233
     },
     {
       "ref_id": "GV.SG-7",
@@ -3755,7 +3755,7 @@
         "Source": "[Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT)"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 268
+      "heading_line": 270
     },
     {
       "ref_id": "GV.SG-8",
@@ -3782,7 +3782,7 @@
         "Source": "[DeepScribe]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 311
+      "heading_line": 313
     },
     {
       "ref_id": "GV.SG-9",
@@ -3809,7 +3809,7 @@
         "Source": "[AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 354
+      "heading_line": 356
     },
     {
       "ref_id": "GV.SG-10",
@@ -3836,7 +3836,7 @@
         "Source": "Compound boundary risk model; [NHS-LLM-Framework]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 397
+      "heading_line": 399
     },
     {
       "ref_id": "GV.SG-11",
@@ -3863,7 +3863,7 @@
         "Source": "[LFPSE] national reporting"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 444
+      "heading_line": 446
     },
     {
       "ref_id": "GV.SG-12",
@@ -3890,7 +3890,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 487
+      "heading_line": 489
     },
     {
       "ref_id": "GV.SG-13",
@@ -3917,7 +3917,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 526
+      "heading_line": 528
     },
     {
       "ref_id": "GV.SG-14",
@@ -3944,7 +3944,7 @@
         "Source": "Patient safety leading vs lagging indicator literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 565
+      "heading_line": 567
     },
     {
       "ref_id": "GV.SG-15",
@@ -3971,7 +3971,7 @@
         "Source": "Standard incident response metric applied to AVT"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 630
+      "heading_line": 632
     },
     {
       "ref_id": "GV.SG-16",
@@ -3998,7 +3998,7 @@
         "Source": "Operational extension of [AMLAS-AAIP]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 671
+      "heading_line": 673
     },
     {
       "ref_id": "GV.SG-17",
@@ -4025,7 +4025,7 @@
         "Source": "[DCB0129] compliance requirement"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 712
+      "heading_line": 714
     },
     {
       "ref_id": "GV.CR-1",
@@ -5510,7 +5510,7 @@
         "Source": "Proposed - vendors currently self-evaluate with proprietary benchmarks"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 108
+      "heading_line": 110
     },
     {
       "ref_id": "GV.VT-4",
@@ -5537,7 +5537,7 @@
         "Source": "Clinical record governance requirements; applied to AI-generated documentation"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 147
+      "heading_line": 149
     },
     {
       "ref_id": "GV.VT-5",
@@ -5564,7 +5564,7 @@
         "Source": "Standard security incident disclosure practice"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 186
+      "heading_line": 188
     },
     {
       "ref_id": "GV.VT-6",
@@ -5591,7 +5591,7 @@
         "Source": "Standard procurement practice; lock-in risk analysis"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 246
+      "heading_line": 248
     },
     {
       "ref_id": "GV.VT-7",
@@ -5618,7 +5618,7 @@
         "Source": "[UK-GDPR] Article 28"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 285
+      "heading_line": 287
     },
     {
       "ref_id": "GV.VT-8",
@@ -5645,7 +5645,7 @@
         "Source": "Prerequisite for existing Error Attribution Analysis metric; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 349
+      "heading_line": 351
     },
     {
       "ref_id": "GV.VT-13",
@@ -5672,7 +5672,7 @@
         "Source": "[NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 388
+      "heading_line": 390
     },
     {
       "ref_id": "GV.VT-14",
@@ -5699,7 +5699,7 @@
         "Source": "[NHSE-AVT-Registry] req #12"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 468
+      "heading_line": 470
     },
     {
       "ref_id": "GV.VT-15",
@@ -5726,7 +5726,7 @@
         "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 546
+      "heading_line": 548
     },
     {
       "ref_id": "ES.ME-1",

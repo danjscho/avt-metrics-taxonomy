@@ -13,7 +13,7 @@
         <link rel="canonical" href="https://danjscho.github.io/avt-metrics-taxonomy/dev/changelog/">
       
       
-        <link rel="prev" href="../downloads/">
+        <link rel="prev" href="../metric-history/">
       
       
       
@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3038,6 +3038,10 @@
       
         
       
+        
+      
+        
+      
     
     
     
@@ -3202,6 +3206,62 @@
                 
   
   
+  
+  
+    <li class="md-nav__item">
+      <a href="../versioning/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metric-history/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Metric history
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
     
   
   
@@ -3263,6 +3323,17 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v450-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.5.0 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#v440-2026-05-04" class="md-nav__link">
@@ -4330,6 +4401,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v450-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.5.0 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v440-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5373,6 +5455,26 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v450-2026-05-04">v4.5.0 (2026-05-04)<a class="headerlink" href="#v450-2026-05-04" title="Permanent link">&para;</a></h2>
+<p><strong>Minor release: citation grammar polish + versioning conventions + per-metric provenance.</strong></p>
+<p>Three workstreams shipped together. Plan-future #7 (citation grammar review) and #3 (versioning strategy) close.</p>
+<p><strong>Workstream 1 — Citation grammar polish.</strong></p>
+<p>v3.9 settled on bare-handle inline links (<code>[NHSE-IG-Guidance-2026-03]</code>). Source clean and audit-enforceable, but slug aesthetics in rendered prose. v4.5 adds a build-time expansion: catalogue entries can declare an optional <code>**Short:** ...</code> field, and the build_site handle rewriter uses that as the link label when present, falling back to the bare handle otherwise.</p>
+<ul>
+<li>Source-side <code>[Handle]</code> unchanged; audit-enforced handle resolution still works</li>
+<li>Top 20 most-cited handles seeded with Short forms (UK-GDPR → "UK GDPR", NHSE-IG-Guidance-2026-03 → "NHSE IG guidance (March 2026)", Coiera-Fraile-Navarro-JMIR-2026 → "Coiera &amp; Fraile-Navarro (JMIR, 2026)", etc.)</li>
+<li>Handles without a Short field continue to render as the bare handle (no regression)</li>
+</ul>
+<p><strong>Workstream 2 — Versioning conventions documented + audit slice.</strong></p>
+<p>New <code>taxonomy/_versioning.md</code> (renders as <code>versioning.md</code> on the site, linked under About in the nav) writing down what each version digit means: MAJOR (breaking changes), MINOR (substantive content additions or verification waves), PATCH (site / tooling only). Closes the previously-undocumented convention.</p>
+<p>New audit check <code>check_version_bump_consistency</code> warns at INFO if the current bump kind disagrees with what <code>git diff</code> says actually changed since the previous tag — over-bumps and under-bumps both surface. Best-effort, never blocks the build.</p>
+<p><strong>Workstream 3 — Per-metric provenance.</strong></p>
+<p>Two mechanisms, mirroring the release-level split.</p>
+<p><em>Site-level metric history</em> — <code>docs/metric-history.md</code>, auto-generated at build time from git tag history. Per release × per group file: which metrics live in files that changed. Coarse but exhaustive — knows that the file changed, not what changed semantically. Linked under About in the nav.</p>
+<p><em>Metric-level Change history stanzas</em> — opt-in <code>**Change history:** vX.Y.Z (one-line summary); ...</code> block on the subset of metrics that had a substantive fix worth flagging to the reader. Five metrics seeded with stanzas as the v4.5 starting set: <a href="../groups/summarisation-nlp/#tp-sn-3">TP.SN-3</a> (v4.2 Croxford bundle), <a href="../groups/summarisation-nlp/#tp-sn-7a">TP.SN-7a</a> (v4.2 Abridge axes), <a href="../groups/human-factors-workflow/#hl-hf-8">HL.HF-8</a> (v4.3 HATAS removal), <a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a> (v4.3 Keyes paraphrase), <a href="../groups/safety-governance/#gv-sg-5">GV.SG-5</a> (v4.4 medRxiv re-attribution). Convention going forward: opt-in for substantive fixes, not a universal "Last updated:" stamp on every metric.</p>
+<p>New audit check <code>check_change_history_versions</code> warns at WARN level if a stanza cites a version that doesn't exist as a git tag (or match the current TAXONOMY_VERSION).</p>
+<p><strong>Tests.</strong> Existing 99-test suite still passes. Test additions covering the new audit checks deferred (the check logic guards itself against missing git history; CI environment has full tag history available).</p>
+<p><strong>Counts unchanged:</strong> 221 metrics / 45-97-79 tiers. Catalogue grows by 0 entries; 20 entries gain a Short field.</p>
 <h2 id="v440-2026-05-04">v4.4.0 (2026-05-04)<a class="headerlink" href="#v440-2026-05-04" title="Permanent link">&para;</a></h2>
 <p><strong>Minor release: Pass B verification sweep over the v4.2 / v4.3 ✓ set + catalogue-promotion-candidates formalisation.</strong></p>
 <p>The v4.2 / v4.3 verification methodology had Pass A clear 138 metrics as ✓ (internally coherent, claims correctly framed) but Pass B (external source fetching) only ran on the 38 source bundles flagged as ⚠ or 🔴. v4.4 closes that loop with a Pass B sweep over the entire ✓ set.</p>
@@ -5394,7 +5496,7 @@
 <p><strong>Incidental fixes surfaced during the sweep.</strong></p>
 <ul>
 <li><strong><code>Chung-NEJM-AI-2025</code> catalogue entry corrected.</strong> The entry described the wrong paper (Lukac/Chung UCLA RCT, DOI 10.1056/AIoa2501000), but <a href="../groups/summarisation-nlp/#tp-sn-7b">TP.SN-7b</a> cites this handle for the actual VeriFact paper (Chung et al., DOI 10.1056/AIdbp2500418). v4.4 rewrites the catalogue entry to describe VeriFact correctly, noting the UCLA RCT as a separate paper that the taxonomy does not cite.</li>
-<li><strong><a href="../groups/human-factors-workflow/#hl-hf-2">HL.HF-2</a> / <a href="../groups/human-factors-workflow/#hl-hf-5">HL.HF-5</a> Abridge scale phrasing.</strong> The pilot side-finding flagged that the Abridge whitepaper says "millions of patient encounters every month" — not "1M+ encounters per week" as currently rendered. v4.4 re-softens to match the disclosed phrasing: "millions of encounters per month across 150+ health systems per <a href="../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a>".</li>
+<li><strong><a href="../groups/human-factors-workflow/#hl-hf-2">HL.HF-2</a> / <a href="../groups/human-factors-workflow/#hl-hf-5">HL.HF-5</a> Abridge scale phrasing.</strong> The pilot side-finding flagged that the Abridge whitepaper says "millions of patient encounters every month" — not "1M+ encounters per week" as currently rendered. v4.4 re-softens to match the disclosed phrasing: "millions of encounters per month across 150+ health systems per <a href="../references/#abridge-whitepaper-2025">Abridge whitepaper (2025)</a>".</li>
 </ul>
 <p><strong>Net effect.</strong> Counts unchanged (221 metrics / 45-97-79 tiers). Catalogue grows by 3 handles (<code>He-AI-Contamination-Pathology-2026</code>, <code>NIST-SCTK</code>, <code>dscore-Ryant</code>); 1 catalogue entry corrected (<code>Chung-NEJM-AI-2025</code>); 1 handle gains a Code-Repository field.</p>
 <p><strong>Verification posture.</strong> The methodology now runs end-to-end across all 221 metrics: every metric has either passed Pass B externally or carries an honest Provenance / Maturity flag. v4.2 + v4.3 + v4.4 closes the FD / code-snippet / source-attribution verification arc started in v4.2.</p>
