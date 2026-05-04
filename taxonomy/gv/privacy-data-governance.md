@@ -39,13 +39,17 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 > - **Verification method MANDATORY:** vendor self-attestation alone is not Tier 1 sufficient. Independent verification is required at minimum annually via a third-party audit, deployer-witnessed deletion test, or cryptographic proof (e.g. key destruction for envelope-encrypted audio).
 > - **Exception handling:** any audio retained beyond policy MUST be logged with reason, DPIA reference, and re-deletion target date. Exception rate reported as a separate KPI.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IG-incident reportability framing follows from [UK-GDPR] storage-limitation requirements and the existing [NHSE-IG-Guidance-2026-03] framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, < 95 % escalation trigger, annual independent verification cadence) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.
 >
 > - **Pre-deployment gate:** vendor produces a deletion-verification protocol covering every storage location in the architecture; deployer DPIA cross-references the protocol; one end-to-end deletion test passes prior to go-live.
 > - **Continuous monitoring:** monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.
 > - **Pause / escalation trigger:** any storage-location compliance < 95 % in any month, OR any unlogged retention beyond policy detected. Both are reportable as IG incidents per the existing NHSE IG framework.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-1](../thresholds.md#gv-pd-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -99,13 +103,17 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 > - **Carve-out logging MANDATORY:** any audio retained beyond standard threshold under a DPIA carve-out logged with reason, duration, and re-deletion target date. Carved-out audio tracked in a separate distribution from standard audio; aggregating the two hides policy adherence.
 > - **Deletion-verification method MANDATORY:** parallel to GV.PD-1 — vendor self-attestation alone insufficient; periodic independent verification (third-party audit, deployer-witnessed deletion test, or cryptographic proof via key destruction).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the post-sign-off deletion expectation derives from [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-storage-location deletion telemetry; one end-to-end deletion test passes prior to go-live; DPIA cross-references the policy threshold.
 > - **Continuous monitoring:** monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate < 1 %; per-storage-location compliance ≥ 99.5 %.
 > - **Pause / escalation trigger:** any single non-exception retention beyond DPIA threshold; OR median TTD > DPIA threshold in any month; OR per-storage-location compliance < 95 % (cascades to GV.PD-1 compliance failure). All three are reportable as IG incidents.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-2](../thresholds.md#gv-pd-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -154,13 +162,17 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 > - **Cross-system retention chain MANDATORY:** transcript derivatives (extracted entities, redacted variants, embedding vectors) tracked under the same purpose, with retention period inherited from the source unless explicitly DPIA'd otherwise.
 > - **Verification:** parallel to GV.PD-1; independent verification annual minimum.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** [UK-GDPR] purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, < 95 % escalation trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** DPIA enumerates ≥ 3 distinct retention purposes with periods; vendor architecture diagram shows transcript flow through every named storage location with retention period at each.
 > - **Continuous monitoring:** monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).
 > - **Pause / escalation trigger:** any unenumerated retention purpose discovered in production, OR any per-purpose compliance < 95 %.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-3](../thresholds.md#gv-pd-3). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -374,13 +386,17 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 > - **Demographic disaggregation MANDATORY for understanding rate:** stratification by primary language, age band, ethnicity, and where available deprivation index. The aggregate understanding rate hides the failure pattern; disparities are the metric's value.
 > - **Survey instrument declaration MANDATORY:** the survey instrument used must be declared (validated published instrument vs deployer-defined). Deployer-defined instruments must be reviewed by the IG team and document at least four comprehension items mapping to GV.CR-2 content elements.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and [CQC-Mythbuster-109]'s "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** GV.CR-2 process-compliance gate met; survey instrument selected and reviewed by IG team; quarterly survey schedule established.
 > - **Continuous monitoring:** monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap > 25 percentage points OR any demographic axis shows understanding rate < practice mean by ≥ 20 percentage points.
 > - **Pause / escalation trigger:** gap > 40 percentage points sustained two quarters (consent model legitimacy in question); OR any demographic axis shows understanding rate < 50 % (the consent model is failing for that population, not just under-performing).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-8](../thresholds.md#gv-pd-8). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -473,13 +489,17 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 > - **Sub-processor cooperation tracked separately:** SAR fulfilment depends on sub-processors providing their data; cooperation latency per sub-processor recorded. Vendors should contractually commit sub-processors to deployer's SAR timeline.
 > - **Complex-request extension logged:** any SAR using the two-month extension provision logged with reason; pattern of extensions on AVT-related SARs is a signal that the locate-rate or export-rate is failing.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from [UK-GDPR] Article 15 and [ICO] guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic SAR test passes — every storage location returns data; export format usable; full processing within 30 days. Gaps remediated before go-live.
 > - **Continuous monitoring:** quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).
 > - **Pause / escalation trigger:** any SAR where AVT data could not be located within the deployer's known architecture (this is a regulatory failure under Article 15); OR timeliness-rate < 90 % in any quarter (suggests operational capacity failure); OR > 30 % of AVT-related SARs using the two-month extension (suggests systematic locate/export failure rather than legitimate complexity).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-10](../thresholds.md#gv-pd-10). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -537,13 +557,17 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 > - **Article-17-exempt vs in-scope:** every erasure request classified as exempt (individual-care purpose, public-task carve-out) or in-scope (secondary use, research, training data, best-interest case). The exempt class is logged with reason but not subject to the same fulfilment expectation as in-scope.
 > - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gv-pd-10) — sub-processor latency per erasure request recorded.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited ([NHSE-IG-Guidance-2026-03]). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic erasure test passes — every storage location classified into one of the three outcome classes; technically-irreversible class enumerated and matched to the privacy notice; sub-processor cooperation timelines documented.
 > - **Continuous monitoring:** in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).
 > - **Pause / escalation trigger:** any in-scope erasure request where a deletable location fails to delete (regulatory failure under Article 17); OR any newly added location not classified into the three-class taxonomy before processing personal data; OR drift between technically-irreversible class and privacy-notice disclosure (procurement-time disclosure failure).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-11](../thresholds.md#gv-pd-11). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -598,13 +622,17 @@ Disposition options per location: (i) deletable — cryptographically erased or 
 > - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
 > - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
 > - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
 > - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

@@ -126,7 +126,7 @@ The trade-off is **maintainer burden vs reader experience**. Bare handles are fi
 
 ## 8. Threshold-numbers review — remove or reword "proposed as starting points" thresholds
 
-**Status:** queued, **design exploration first**. The shape of the fix is not yet decided; this item is a problem statement plus a list of options, not a settled approach. High-priority for v3.10 because it touches the taxonomy's quantitative credibility, but the *how* needs deliberate work before any sweep.
+**Status:** complete (v5.0). The structural split landed: threshold numbers moved out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block was renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors). Four cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). The earlier text below is preserved for historical context.
 
 **Context — what's currently in the document.** Most tightened Tier 1 metrics carry Threshold Guidance blocks with specific numerical thresholds — pre-deployment gates, continuous-monitoring alerts, pause/escalation triggers. Examples:
 

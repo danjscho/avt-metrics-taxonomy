@@ -40,6 +40,7 @@ MAPPING: dict[str, str] = {
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
     "_versioning.md": "versioning.md",
+    "_thresholds.md": "thresholds.md",
     "_references.md": "references.md",
     "tp/audio-capture.md": "groups/audio-capture.md",
     "tp/asr-transcription.md": "groups/asr-transcription.md",
@@ -795,7 +796,13 @@ def main() -> None:
         # have anchors injected via add_metric_anchors and so don't need
         # the same pass — bare ref-IDs there typically belong to the
         # current page's metrics.
-        if not dst_rel.startswith("groups/"):
+        # Skip link_bare_ref_ids on thresholds.md: that page uses ref-IDs
+        # in headings as anchors (e.g. `#### GV.VT-15`) so the slugify-from-
+        # heading mechanism produces clean per-metric anchors that the metric
+        # bodies link back to. Linkifying the headings would slugify them as
+        # `gv-vt-15-retirement-notification-compliance` instead, breaking
+        # the round-trip.
+        if not dst_rel.startswith("groups/") and dst_rel != "thresholds.md":
             text = link_bare_ref_ids(text, dst_rel)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)

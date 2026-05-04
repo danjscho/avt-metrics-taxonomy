@@ -45,13 +45,17 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 > - **Per-clinician disaggregation MANDATORY:** dissent compliance hides at clinician level. A practice 95 % aggregate may hide one clinician at 50 %.
 > - **Dissent-detection coverage check:** if recorded dissent rate is < 0.5 % of AVT-eligible consultations, the deployer must run a sampling check (clinician self-report or patient survey) to verify the low rate reflects actual patient acceptance rather than under-detection.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IG-incident reportability framing follows from [NHSE-IG-Guidance-2026-03] and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, < 95 % escalation trigger, < 0.5 % coverage-check threshold) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** EPR / AVT integration capable of recording dissent in a structured form and propagating it to subsequent encounters; consultation workflow includes a documented step at which the clinician offers AVT and records the response.
 > - **Continuous monitoring:** documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.
 > - **Pause / escalation trigger:** any dissent-not-respected event confirmed (single instance), OR sub-metric < 95 % in any month. Both reportable as IG incidents.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-1](../thresholds.md#gv-cr-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -111,13 +115,17 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 > - **Sample size for survey or audit MANDATORY:** ≥ 30 patients per clinician per quarter for survey method; ≥ 30 audio recordings per clinician per quarter where audio audit is used. Sub-30 samples are uninformative and do not satisfy the metric.
 > - **Content-element breakdown MANDATORY:** report compliance per content element (what / what / who / how). A clinician who consistently omits "how to decline" is failing differently from one who omits "where it goes"; aggregate-only reporting hides the failure pattern.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four content-element framing (what / what / who / how) follows from [NHSE-IG-Guidance-2026-03]. Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, < 75 % escalation, ≥ 30 sample-size floor) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** notification script drafted and reviewed against [NHSE-IG-Guidance-2026-03] content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
 > - **Continuous monitoring:** monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.
 > - **Pause / escalation trigger:** any content element < 75 % compliance in any audit cycle; or self-report > 95 % paired with audited rate < 75 % (this is a self-report integrity failure, separately serious).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-2](../thresholds.md#gv-cr-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -232,13 +240,17 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 > - **Multi-product handling:** for vendors with multiple AVT products, the verification records the specific product covered. A vendor's overall registry listing does not transfer to a sibling product without explicit registry-submission scope coverage.
 > - **Delisting watch:** the deployer's IG file records the registry status at each verification; any change from listed to not-listed (or vice versa) triggers an explicit governance review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the binary registry status, the 12-month attestation currency window, and the quarterly re-verification cadence are cited from the NHS England registry mechanics. The "12-month signed declaration" threshold and the multi-product scope-alignment requirement are **proposed in v3.8 as starting points**, not externally validated by NHSE — registry's specific re-listing rules are still pending publication. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's procurement risk appetite before contractual use.
 >
 > - **Pre-deployment gate:** vendor listed on live Registry; vendor's registry-submission scope covers deployer's contracted use cases; vendor's signed declaration ≤ 12 months old; companion metrics ([GV.VT-13](#gv-vt-13), [GV.VT-14](#gv-vt-14), [GV.SC-12](#gv-sc-12)) all pass their pre-deployment gates.
 > - **Continuous monitoring:** quarterly verification of all three sub-metrics; alert on attestation > 9 months old (60-day grace); alert on any scope-coverage gap discovered post-procurement.
 > - **Pause / escalation trigger:** vendor delisted (single instance — registry status loss is governance-event-grade); OR contracted use case discovered outside vendor's registry-submission scope; OR attestation > 12 months and not renewed.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-4](../thresholds.md#gv-cr-4). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -291,13 +303,17 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 > - **Latency reporting MANDATORY:** time-to-notification (deployment-decision to ICB notification) and time-to-acknowledgement (notification to ICB response). Latency reveals process health independently of binary compliance.
 > - **Carve-out logging MANDATORY:** any deployment proceeding without ICB acknowledgement (under the capacity-constraint allowance) MUST be logged with reason and review date. Repeated unanswered notifications to the same ICB within 12 months trigger escalation to the regional CCIO, not silent acceptance.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the three-sub-metric framing follows from [CIO-CCIO-Guidance-2026] and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** notification sent to named ICB digital lead ≥ 14 days before planned go-live; DPIA + Clinical Safety Case referenced; deployment-site list complete.
 > - **Continuous monitoring:** quarterly review of acknowledgement rate and conditions-on-file rate; alert when any ICB has > 1 unanswered notification on the deployer's books.
 > - **Pause / escalation trigger:** any deployment going live without notification sent (process failure, not capacity issue); OR same ICB unanswered for ≥ 2 separate notifications within 12 months (escalate to regional CCIO).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-5](../thresholds.md#gv-cr-5). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -353,13 +369,17 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 > - **Trigger-event log MANDATORY:** every trigger event recorded with date, type, sections requiring update, and target completion date. Time-to-update reported per trigger.
 > - **External review:** independent CSO review of the safety case at intervals not exceeding 24 months OR on any major version change of the AVT product. Internal-only review is not Tier 1 sufficient.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the eight-section schema and currency triggers carry from [DCB0129] itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are **proposed in v3.5 as starting points**, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.
 >
 > - **Pre-deployment gate:** all eight [DCB0129] sections present with named CSO author; safety case report explicitly references the AVT product version, EPR target, and deployment scope.
 > - **Continuous monitoring:** annual per-section review; alert when any of sections 2-5 falls outside the 30-day post-trigger window; alert when external review is overdue.
 > - **Pause / escalation trigger:** any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated > 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link [SI-2024-1368] MHRA PMS substantial-change framework).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-6](../thresholds.md#gv-cr-6). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -413,13 +433,17 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 > - **DPO sign-off MANDATORY (binary):** unsigned DPIAs do not count as complete regardless of section content. Sign-off date recorded; sign-offs preceding the most recent significant change are stale.
 > - **Cross-reconciliation with safety case:** DPIA-identified risks MUST be cross-mapped to safety-case hazards; risks named in DPIA but absent from safety case (or vice versa) are flagged in the audit output.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the eight-section schema and DPO sign-off requirement carry from [UK-GDPR] Article 35 and the [NHSE-IG-Guidance-2026-03] template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate:** all eight template sections complete with substantive content; DPO sign-off dated within the 30 days preceding go-live; DPIA-safety-case reconciliation documented.
 > - **Continuous monitoring:** annual completion-rate review; alert on any DPIA where sign-off precedes the most recent significant change; alert when DPIA-safety-case reconciliation reveals unaligned risk/hazard list.
 > - **Pause / escalation trigger:** any deployment going live without a DPO-signed DPIA (legal failure, not process); OR any DPIA stale > 12 months past a significant change without re-review (regulatory exposure).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-7](../thresholds.md#gv-cr-7). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

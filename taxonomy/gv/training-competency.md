@@ -47,13 +47,17 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 > - **Engagement-time floor MANDATORY:** minimum 30 minutes recorded engagement on M3 specifically (the failure-mode-awareness module is the most subject to "click-through" completion); 15 minutes on M1; 20 minutes on M2.
 > - **Coverage check:** any clinician active on AVT in the previous 30 days appears in the denominator. Late-onboarders given a 14-day grace window from first AVT use to completion of M1 + M2.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the [NAS-Day-Zero-SPI-internal] requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** every clinician scheduled to use AVT has M1 + M2 + M3 complete within validity periods; M4 not yet applicable for new starters.
 > - **Continuous monitoring:** monthly per-module TCR ≥ 100 %; alert on any clinician active on AVT with any module out of date by > 14 days.
 > - **Pause / escalation trigger:** any clinician using AVT with M3 (failure-mode awareness) missing or stale (this is the safety-critical module — operational use without it is a governance failure regardless of M1/M2/M4 status); OR aggregate TCR < 95 % at the practice level for any module sustained two consecutive months.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.TC-1](../thresholds.md#gv-tc-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

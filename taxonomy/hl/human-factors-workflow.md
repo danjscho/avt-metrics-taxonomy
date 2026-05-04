@@ -44,13 +44,17 @@ ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained �
 > - **Severity stratification MANDATORY:** edits classified as **safety-critical** (allergy, medication, dose, red-flag, diagnosis, plan), **clinically meaningful** (history, exam findings, risk-factor wording), or **stylistic**. Headline ER is over substantive (safety-critical + clinically-meaningful) edits; safety-critical edit rate reported separately as a leading indicator.
 > - **Per-clinician disaggregation MANDATORY:** site-level ER hides individual complacency. Reporting must include per-clinician trajectories alongside aggregate.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the > 15-percentage-point drop sustained ≥ 4 weeks comes from the existing Formal Definition complacency signal (carried from prior versions of the metric); the 30–80 % baseline range, the < 50 %-of-baseline pause trigger, and the zero-safety-critical-edits-with-continued-stylistic-editing trigger are **proposed in v3.3 as starting points**, not externally validated. Edit Rate is **interpretable only as a trajectory** (per Limitations and Novel Thinking); absolute thresholds below are deployment-context-dependent and require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
 > - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).
 > - **Pause / review trigger:** substantive ER < 50 % of per-clinician baseline for 4 consecutive weeks, OR safety-critical edit rate drops to zero for ≥ 4 weeks while substantive edit rate remains > 10 % (suggests clinicians are stopping their safety review while continuing minor editing). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-1](../thresholds.md#hl-hf-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Code: Edit rate complacency detection**
 
@@ -223,13 +227,17 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 > - **T_min calibration:** T_min as published is a default; per the [Calibration & Context principle](#calibration-context), specialty mix shifts the threshold. A complex consultation summary in mental health may legitimately need longer dwell than a routine medication review; deployers should record local T_min calibration in their governance file.
 > - **Review-quality proxy gap:** RBS is a surrogate for review *quality*, not a measure of it (see Limitations). Telemetry-detected review behaviour does not guarantee review effectiveness. The construct-level pairing with HL.HF-3b narrows but does not close the proxy gap.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the [NAS-Day-Zero-SPI-internal] specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.
 > - **Continuous monitoring alert:** weekly RBS < 95 % aggregate; OR any single clinician's RBS drops > 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 < 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).
 > - **Pause / review trigger:** RBS < 85 % aggregate for two consecutive weeks (NAS pause trigger); OR per-clinician RBS < 75 % for one week (individual-level severe failure); OR confirmed rubber-stamping pattern (low RBS AND low TTS_norm AND low HL.HF-1 substantive edit rate). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-3a](../thresholds.md#hl-hf-3a). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -287,13 +295,17 @@ TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm
 > - **Pairing with Edit Rate MANDATORY:** TTS distribution reported alongside HL.HF-1 substantive edit rate for the same clinician-window. Low TTS + low substantive edit rate is the rubber-stamping signal; either alone is ambiguous.
 > - **Note-complexity stratification:** report TTS_norm distribution stratified by note word count quartile (short / medium / long / very-long); rubber-stamping risk is most visible on long/complex notes signed at short-note speed.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the [Keyes-Stanford-Monitoring-2025] principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
 > - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
 > - **Pause / review trigger:** weekly P10 of TTS_norm < 0.3 s/word AND HL.HF-1 substantive edit rate < 25 % for the same clinician-window (rubber-stamping confirmed in distribution and in editing behaviour). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-3b](../thresholds.md#hl-hf-3b). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Code: Time-to-sign analysis**
 

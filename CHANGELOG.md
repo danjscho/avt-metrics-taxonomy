@@ -1,5 +1,45 @@
 # Changelog
 
+## v5.0.0 (2026-05-04)
+
+**Major release: structural split — threshold numbers move out of metric bodies into a dedicated Threshold Reference page.**
+
+The user-direction concern that started this work: numbers leaked from metric bodies into procurement contracts and academic citations without their context. The "proposed in vX.Y as starting points" Provenance preludes did honest work locally but couldn't travel with the number once it was copy-pasted out. v5.0 addresses this structurally rather than rhetorically.
+
+**The split.**
+
+- New top-level page **[Threshold Reference](thresholds.md)** at `docs/thresholds.md` (source: `taxonomy/_thresholds.md`). Contains every taxonomy-proposed threshold across the tightened-pattern metrics, with a "why this number" provenance column per row, four named cross-metric conventions (severity-weighting, test-corpus floor, severity-band notification ladders, aggregate-rate gates vs zero-tolerance category boundaries), and a prominent compound-errors caveat repeated structurally throughout.
+- **Metric bodies**: the **Threshold Guidance** sub-block is renamed **Trigger Conditions**. Each Trigger Conditions block now carries a one-line pointer to the per-metric anchor on the Threshold Reference page. Cited numbers (NAS Day Zero SPI, UK GDPR statutory, NHSE guidance) stay in metric bodies — they are sourced, not proposed. Severity-weighting formulas stay in metric bodies (definitional to the metric) and are restated on the Threshold Reference page so the page is self-contained.
+
+**The "starting points" framing is structurally repeated** at the page top, at every per-metric section, and inside every Trigger Conditions pointer. The compound-errors caveat is named explicitly: each threshold was authored independently, has not been jointly calibrated against deployment data, and a deployment that adopts every threshold as written may sit on overlapping triggers that no single trigger predicted.
+
+**Phase 2a tightenings applied.**
+
+- **TP.ASR-12** drift threshold tightened: > 50 % drift → > 25 % drift sustained two audit cycles (was too loose; matches v3.4 GV.PD drift conventions).
+- **TP.WB-2** IER < 0.001 provenance reframed: was "standard SLA target" (vague); now flagged as "standard healthcare integration SLA convention" with the Three-nines-reliability lineage made explicit.
+- **GV.TC-1** module-minute floors loosened: the specific 30 / 15 / 20-minute floors added false precision and have been replaced with "engagement floor per module — deployer-set based on module length, audited via session-time telemetry".
+
+**Phase 2b cross-metric conventions named.** Four patterns that previously recurred across multiple metric bodies now have single named definitions on the Threshold Reference page:
+
+1. **Severity-weighting convention** — symmetric `(0.1·benign + 0.5·moderate + 1.0·critical) / N` referenced by TP.ASR-12, TP.SN-5, TP.SN-6, TP.SN-15. Asymmetric variant for TP.SN-20 explicitly distinguished.
+2. **Test-corpus floor convention** (≥ 200 cases + ICC ≥ 0.85) — referenced by 6+ metrics. Adds an explicit **rare-event-rate caveat** that the prior taxonomy did not make: 200 is a floor, not a target — for sub-1 % rates, push the floor above 1000 expected events.
+3. **Severity-band notification-ladder convention** — meta-pattern (3-4 bands, 3-7× ratios, immediate-most-severe) referenced by GV.SG-1, GV.VT-1, GV.VT-5, GV.VT-15. Per-metric ladders kept because the underlying decisions genuinely differ.
+4. **Aggregate-rate gates vs zero-tolerance category boundaries** — the most important reframe. Many "100 %" thresholds in the catalogue are zero-tolerance category boundaries, not stringent percentage gates. Same numbers, fundamentally different communication. Body prose now says "definitional category boundary" or "pre-deployment gate" depending on which.
+
+**Build / audit changes.**
+
+- `audit.py:TIGHTENING_SUB_BLOCKS` updated: `Threshold Guidance` → `Trigger Conditions`.
+- `check_threshold_provenance` repurposed: previously checked for the in-body Provenance prelude; now checks that every tightened metric's Trigger Conditions block contains a pointer to `thresholds.md` with the metric's own anchor.
+- `build_site.MAPPING` adds `_thresholds.md` → `thresholds.md`.
+- `link_bare_ref_ids` skips `thresholds.md` (the page uses ref-IDs in `####` headings as anchors via attr_list — linkifying them would break the round-trip).
+- `mkdocs.yml` nav adds Threshold Reference under About.
+
+**Why MAJOR not MINOR.** The Threshold Guidance heading rename is a breaking change for any tooling that grepped or parsed metric bodies for `**Threshold Guidance**`. The `_thresholds.md` source file is new. The audit-check rename (`missing-threshold-provenance` → `missing-thresholds-pointer`) is a breaking change for anyone consuming the audit JSON. v3.x → v4.0 was MAJOR for the same reason (Part-letter retirement); v4.x → v5.0 is MAJOR for the structural threshold split.
+
+**Plan-future #8 closes** with this release.
+
+**Counts unchanged**: 221 metrics / 45-97-79 tiers. Catalogue size unchanged. The shape change is structural, not content.
+
 ## v4.5.1 (2026-05-04)
 
 **Patch release: v5.0 preparatory research output — Tier 1 threshold review (Phases 1, 2a, 2b).**

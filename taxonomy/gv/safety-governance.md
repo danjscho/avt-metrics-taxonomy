@@ -39,13 +39,17 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 > - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gv-sg-2) workflow and the monitoring window referenced in the Formal Definition.
 > - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under [SI-2024-1368] (MHRA Post-Market Surveillance regulations) must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gv-vt-1).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the monitoring framing carries from the Novel Thinking section and [Keyes-Stanford-Monitoring-2025] (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from [SI-2024-1368] in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
 > - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
 > - **Pause / escalation trigger:** any inference produced without complete per-component version log; OR any change-event unnotified > 14 days; OR any "substantial" MHRA-PMS-relevant change deployed without prior deployer notification (this is a regulatory event, not just an operational one).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.SG-1](../thresholds.md#gv-sg-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -611,13 +615,17 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 > - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gv-sg-11). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
 > - **No-blame culture check:** if active reporting rate is < 25 % of inferred rate sustained two months, this is a safety-culture flag (clinicians editing-without-reporting), not a metric failure. Triggers a separate qualitative review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hl-hf-1)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline active near-miss rate and inferred near-miss rate during the first 4 weeks; record per-category breakdown; pair with concurrent LFPSE rate.
 > - **Continuous monitoring:** weekly two-source reporting; monthly cross-validation; alert when active-to-inferred ratio < 25 % sustained two months (under-reporting culture flag); alert when near-miss-to-LFPSE ratio falls (rising LFPSE without rising near-miss = review layer is failing, not improving).
 > - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hl-hf-1) trajectory).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.SG-14](../thresholds.md#gv-sg-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

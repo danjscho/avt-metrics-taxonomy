@@ -40,13 +40,17 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 > - **Substantial-change flag MANDATORY:** any change meeting [SI-2024-1368] substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
 > - **Per-deployment notification:** notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises [Keyes-Stanford-Monitoring-2025] requirements (cited Source) with [SI-2024-1368] notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to the four-element schema and the per-severity lead times below; vendor demonstrates a recent change-event with full notification on file.
 > - **Continuous monitoring:** major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.
 > - **Pause / escalation trigger:** any major change deployed without prior notification; OR any substantial-change-flag-applicable change deployed without the regulatory flag (this is a regulatory event); OR per-element completeness < 95 % over a rolling 90-day window.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-1](../thresholds.md#gv-vt-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -227,13 +231,17 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 > - **Update cadence MANDATORY:** initial disclosure plus material updates as new information emerges; final closure report on resolution. A single one-off notification without updates is non-compliant where the incident has not been resolved.
 > - **Escalation path MANDATORY:** named deployer contact for critical and high incidents; vendor must demonstrate the escalation path was used, not just the standard support inbox.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with [UK-GDPR] Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to severity-classified disclosure timelines and the five-element content schema; named deployer contact recorded; one tabletop test of the disclosure path.
 > - **Continuous monitoring:** critical incidents disclosed ≤ 24 hours from `t_known`; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.
 > - **Pause / escalation trigger:** any critical incident disclosed > 72 hours after `t_known` (regardless of severity-classification target); OR any incident where independent evidence shows vendor knew earlier than disclosed `t_known`; OR cross-deployer-scope element missing on incidents affecting multiple deployments. All three are contract-breach triggers.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-5](../thresholds.md#gv-vt-5). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -326,13 +334,17 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 > - **Change-notification mandate:** vendor contract MUST specify advance notice of sub-processor changes ([GV.VT-1 Model Change Notification Compliance](#gv-vt-1) cross-link); change-events tracked per sub-processor with notification timestamps.
 > - **Materiality flag:** sub-processors handling personal data classified material; sub-processors handling only metadata or aggregated telemetry classified non-material. Material sub-processors required to be in scope; non-material classification must be evidenced.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the seven-source discovered-set framing follows from [UK-GDPR] Article 28(2) and standard DPIA practice; the materiality distinction synthesises [ICO] guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate (procurement):** vendor publishes complete sub-processor list with the per-sub-processor information schema above; deployer-side verification step completed (not vendor self-cert alone); DPAs in place for every material sub-processor.
 > - **Continuous monitoring:** quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.
 > - **Pause / escalation trigger:** any material sub-processor undisclosed (regulatory failure under Article 28(2), not contractual); OR any material sub-processor without an in-place DPA; OR sub-processor change without prior notification (contractual breach where the contract specifies notification obligation).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-7](../thresholds.md#gv-vt-7). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -445,13 +457,17 @@ Composite freshness score per component:
 > - **Latest-version-match audit:** at procurement time, the deployer's IG file records the Hub-published version-strings observed and the vendor-attested current versions; subsequent quarterly audits compare against those baselines.
 > - **Signed-declaration provenance MANDATORY:** every component carries a dated signed declaration from a named accountable individual; absence is a Stale finding regardless of artefact age.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 12-month freshness window mirrors the [NCSC-Cyber-Essentials] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
 > - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component ([DCB0129] safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-13](../thresholds.md#gv-vt-13). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -523,13 +539,17 @@ Procurement-time scope-alignment check (deployer-side):
 > - **Scope-alignment audit:** deployer's IG file records the matched / mismatched use cases; mismatches recorded with reason and accepted-risk decision.
 > - **Currency re-verification:** annual cadence; matrix re-publication date logged; any change > ±20 % from the prior matrix on a contracted use case triggers a procurement-side review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the publication-and-currency requirement is cited from registry req #12. The 12-month annual cadence aligns with [GV.VT-13](#gv-vt-13)'s freshness window. The ±20 % materiality threshold for matrix changes is **proposed in v3.8 as a starting point**, not externally validated — deployers' procurement risk appetite will vary. Indicative; require local calibration against contracted SLA terms before procurement use.
 >
 > - **Pre-deployment gate (procurement):** matrix published; coverage of all contracted use cases; matrix < 12 months old; deployer's scope-alignment audit logged.
 > - **Periodic audit:** annual matrix re-verification; alert on any contracted use case dropping out of the matrix; alert on matrix change > ±20 % on contracted use cases.
 > - **Pause / escalation trigger:** matrix removed from Hub publication; OR contracted use case priced materially above indicative matrix without prior notification; OR matrix > 24 months stale on any contracted use case.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-14](../thresholds.md#gv-vt-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -590,13 +610,17 @@ Notification content (mandatory): (i) what is being retired (product, feature, i
 > - **Cross-link to deployer workflows MANDATORY:** every retirement notification triggers (i) [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) procedure; (ii) [GV.OP-14 Historical Output Continuity](#gv-op-14) procedure; (iii) [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) data-portability execution. The notification is the fan-out trigger for these three downstream metrics.
 > - **Failure-mode logging:** any retirement event where notification was absent, late, or incomplete logged with deployer-side accepted-risk decision and reportable to the deployer's IG file.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the contractual-gate framing carries from [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) and the v3.4 `_gaps.md` P5-Lifecycle "Decommissioning plan" entry. Specific lead-time thresholds (≥ 12 months notice for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal, 100 % content-element gate) are **proposed in v4.0.2 as starting points**, not externally validated. The lead-time numbers are calibrated to typical NHS procurement cycle and DCB0160 retirement-provisioning timelines but require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** vendor contract specifies minimum lead times (≥ 12 months for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal); five-element notification content schema committed; named deployer contact recorded.
 > - **Continuous monitoring:** every retirement event triggers logging of (a) notification received yes/no, (b) lead-time delivered, (c) content-completeness rate. Aggregate compliance reported per contract year.
 > - **Pause / escalation trigger:** any retirement event with no prior notification (single instance — this is a contract-breach event); OR notification < 50 % of contracted lead time; OR content-completeness < 80 % on a single notification.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-15](../thresholds.md#gv-vt-15). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
