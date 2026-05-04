@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.2.1, 2026-05-03.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v4.3.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -3310,8 +3310,8 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 **References**
 
-- **Concept origin**: Proposed in OxonFair healthcare voice fairness extension analysis
-- **Related**: [Semantic Word Error Rate for clinical ASR (Li et al. 2022)](https://arxiv.org/abs/2207.13135)
+- **Concept origin**: Proposed in [OxonFair-2024] healthcare voice fairness extension analysis
+- **Related**: [Li-Semantic-WER-2022] — Semantic Word Error Rate for clinical ASR
 
 **Limitations**
 
@@ -3385,7 +3385,7 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 **References**
 
-- **Clinical NER**: [MedCAT: Medical Concept Annotation Tool](https://github.com/CogStack/MedCAT)
+- **Clinical NER**: [MedCAT-Benchmarks] — Medical Concept Annotation Toolkit (CogStack)
 
 **Limitations**
 
@@ -3474,8 +3474,8 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 
 **References**
 
-- **ASR bias**: [Koenecke et al. (2020) - Racial disparities in automated speech recognition, PNAS](https://doi.org/10.1073/pnas.1915768117)
-- **NAS framework**: NAS Day Zero SPIs; NHSE IG guidance (March 2026)
+- **ASR bias**: [Koenecke-PNAS-Racial-ASR-2020]
+- **NAS framework**: [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03]
 
 **Limitations**
 
@@ -3522,7 +3522,7 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 
 **References**
 
-- **Concept origin**: Identified in OxonFair extension analysis
+- **Concept origin**: Identified in [OxonFair-2024] extension analysis
 
 **Limitations**
 
@@ -3732,7 +3732,7 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 **References**
 
-- **Calibration**: [Guo et al. (2017) - On Calibration of Modern Neural Networks](https://arxiv.org/abs/1706.04599)
+- **Calibration**: [Guo-Calibration-2017]
 
 **Limitations**
 
@@ -4402,7 +4402,7 @@ scores = scorer.score(reference, hypothesis)
 **References**
 
 - **Original**: [ROUGE-Lin-2004]
-- **Inadequacy**: Croxford et al. (2025) - LLM-as-Judge outperforms ROUGE/BERTScore
+- **Inadequacy**: [Croxford-2025] — LLM-as-Judge outperforms ROUGE/BERTScore
 
 **Limitations**
 
@@ -4670,8 +4670,8 @@ def check_hallucination(source, generated_sentences):
 
 **References**
 
-- **Tortus data**: 1.47% per sentence (Asgari et al. 2025)
-- **Abridge**: Support × severity matrix (Oberst et al. 2024/2025)
+- **Tortus data**: 1.47% per sentence ([Asgari-Tortus-2025])
+- **Abridge**: Support × severity matrix ([Abridge-Whitepaper-2025] — Liang, Oberst, Tan, Lipton 2025)
 
 **Limitations**
 
@@ -4740,7 +4740,7 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 **References**
 
-- **Tortus**: 3.45% omission rate (Asgari et al. 2025)
+- **Tortus**: 3.45% omission rate ([Asgari-Tortus-2025])
 
 **Limitations**
 
@@ -5076,7 +5076,7 @@ Examiner LLM probes claims in target output, evaluates consistency. Knowledge-ex
 
 **References**
 
-- **Paper**: Kanithi et al. (2025) - MEDIC
+- **Paper**: [Kanithi-2025] — MEDIC
 
 **Limitations**
 
@@ -5119,7 +5119,7 @@ For each span sᵢ, mapping M(sᵢ) → {(t_start, t_end)}. Requirements: Covera
 
 **References**
 
-- **Abridge**: Abridge Linked Evidence architecture
+- **Abridge**: [Abridge-Linked-Evidence] architecture
 
 **Limitations**
 
@@ -5205,7 +5205,7 @@ For default template T₀ with INSYTE underspecification U₀, modified template
 
 **References**
 
-- **INSYTE**: INSYTE autonomy classification - DCB0129 structural gap
+- **INSYTE**: [INSYTE-2025] autonomy classification — [DCB0129] structural gap
 
 **Limitations**
 
@@ -5248,7 +5248,7 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **Reference Standard**
 
-> Source transcript + ConText-style negation detection (Harkema et al.) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
+> Source transcript + ConText-style negation detection ([Harkema-ConText-2009]) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
 
 **Operational Specification**
 
@@ -5268,7 +5268,7 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **References**
 
-- **Negation in clinical NLP**: ConText algorithm (Harkema et al.); standard clinical NLP problem
+- **Negation in clinical NLP**: [Harkema-ConText-2009] ConText algorithm; standard clinical NLP problem
 
 **Limitations**
 
@@ -5745,7 +5745,7 @@ Precision = |C_correct ∩ C_generated| / |C_generated|. Recall = |C_correct ∩
 
 **References**
 
-- **SNOMED CT**: [SNOMED International](https://www.snomed.org/)
+- **SNOMED CT**: [SNOMED-CT]
 
 **Limitations**
 
@@ -6241,7 +6241,7 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 
 **References**
 
-- **IM1**: NHS IM1 interface assurance
+- **IM1**: [NHS-IM1-Interface-Assurance]
 
 **Limitations**
 
@@ -7203,6 +7203,9 @@ def trace_error_cascade(
     """
     Track injected errors through pipeline stages.
     Requires controlled error injection at specific stages.
+    Illustrative: error_persists / error_amplified are stand-ins
+    for project-specific comparison helpers (e.g. fuzzy string
+    match, semantic similarity, or domain-specific item match).
     """
     STAGES = ["asr", "diarisation", "summarisation", "coding", "writeback"]
     cascade_results = []
@@ -7273,6 +7276,9 @@ def chain_of_custody(item: str, stage_outputs: dict) -> dict:
     """
     Trace a safety-critical item through every pipeline stage.
     Returns the chain status and break point if applicable.
+    Illustrative: item_present is a stand-in for a domain-specific
+    matcher (substring, normalised concept ID match, or coded-entry
+    lookup depending on stage representation).
     """
     STAGES = ["transcript", "diarised_transcript", "summary",
               "coded_entries", "epr_record"]
@@ -7466,10 +7472,14 @@ Process same audio N times (N ≥ 10). Reproducibility R = mean pairwise similar
 
 ```python
 from itertools import combinations
+import numpy as np
 
 def test_reproducibility(audio_path: str, pipeline, n_runs: int = 10):
     """
     Process same audio N times, measure output variance.
+    Illustrative: text_similarity and extract_safety_items are
+    stand-ins — wire to a real similarity function (e.g. embedding
+    cosine) and a clinical NER/extractor for production use.
     """
     outputs = [pipeline.process(audio_path) for _ in range(n_runs)]
 
@@ -7791,8 +7801,8 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 **References**
 
-- **Abridge**: Abridge edit-pattern methodology
-- **NAS**: NAS Day Zero SPI
+- **Abridge**: [Abridge-Whitepaper-2025] — edit-pattern methodology
+- **NAS**: [NAS-Day-Zero-SPI-internal]
 
 **Limitations**
 
@@ -7837,8 +7847,8 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 **References**
 
-- **Abridge**: 1M+ encounters/week
-- **DeepScore**: 135,900 notes
+- **Abridge**: vendor-reported deployment scale (1M+ encounters/week order of magnitude per [Abridge-Whitepaper-2025])
+- **DeepScore**: vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page)
 
 **Limitations**
 
@@ -7948,7 +7958,7 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **References**
 
-- **NAS**: ≥95% threshold, <85% pause trigger
+- **NAS**: [NAS-Day-Zero-SPI-internal] (≥95% threshold, <85% pause trigger)
 
 **Limitations**
 
@@ -8038,7 +8048,7 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
-Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal - locked inside one vendor.
+Cross-system edit analysis at vendor-reported deployment scale (1M+ encounters/week order of magnitude across 150+ systems per vendor disclosures). Most scalable quality signal - locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
@@ -8067,7 +8077,7 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 **References**
 
-- **Abridge**: Oberst, Liang, Lipton (2024/2025)
+- **Abridge**: [Abridge-Whitepaper-2025] (Liang, Oberst, Tan, Lipton 2025)
 
 **Limitations**
 
@@ -8120,7 +8130,7 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 
 **⚠️ Underspecification Warning (Tier B - strong concept, ad hoc protocols)**
 
-> Automation bias is well-defined conceptually (Parasuraman & Manzey, *Human Factors* 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
+> Automation bias is well-defined conceptually ([Parasuraman-Manzey-Complacency-2010]) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
 
 **Novel Thinking / Implications**
 
@@ -8200,7 +8210,7 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 **References**
 
-- **Trust in automation**: Lee & See (2004)
+- **Trust in automation**: [Lee-See-Trust-Automation-2004]
 
 **Limitations**
 
@@ -8208,7 +8218,7 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 **⚠️ Underspecification Warning (Tier B - concept defined, no AVT-validated instrument)**
 
-> Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, HATAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. A 2024 Dokkyo Medical University review concluded that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS or HATAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
+> Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. Recent reviews of trust calibration in clinical AI conclude that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
 
 **Novel Thinking / Implications**
 
@@ -8286,7 +8296,7 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 
 **References**
 
-- **NASA-TLX**: [NASA Task Load Index](https://humansystems.arc.nasa.gov/groups/TLX/)
+- **NASA-TLX**: [NASA-TLX]
 
 **Limitations**
 
@@ -8372,7 +8382,7 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 **References**
 
-- **Aviation analogy**: Casner & Schooler (2014) - pilot skill degradation
+- **Aviation analogy**: [Casner-Schooler-Aviation-Skill-2014] — pilot skill degradation
 
 **Limitations**
 
@@ -8732,7 +8742,7 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 **References**
 
-- **CQC**: Mythbuster 109: implied consent sufficient but patients must be informed
+- **CQC**: [CQC-Mythbuster-109] — implied consent sufficient but patients must be informed
 
 **Limitations**
 
@@ -9462,7 +9472,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **References**
 
-- **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025]
 
 **Limitations**
 
@@ -9505,8 +9515,8 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 **References**
 
-- **NAS-Day-Zero-SPI-internal**: internal NAS Day-Zero SPI work (taxonomy-author's prior framing, internal source)
-- **Stanford / Keyes et al. (2025)**: [arXiv 2512.09048](https://arxiv.org/abs/2512.09048) — three-principle monitoring framework (system integrity, performance, impact)
+- **NAS**: [NAS-Day-Zero-SPI-internal] (taxonomy-author's prior framing, internal source)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] — three-principle monitoring framework (system integrity, performance, impact)
 
 **Limitations**
 
@@ -9723,7 +9733,7 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 ### GV.SG-8 🔵 DeepScore (Defect-Free Rate)
 
-Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sound approach but proprietary definitions.
+Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. Vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page). Sound approach but proprietary definitions.
 
 | Dimension | Value |
 |-----------|-------|
@@ -9752,7 +9762,7 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 **References**
 
-- **DeepScore**: [DeepScribe vendor-published methodology page](https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation) (vendor whitepaper; not a peer-reviewed academic preprint)
+- **DeepScore**: [DeepScore] (vendor whitepaper; not a peer-reviewed academic preprint)
 
 **Limitations**
 
@@ -9885,7 +9895,7 @@ IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxono
 
 **References**
 
-- **LFPSE**: NHS Learn From Patient Safety Events
+- **LFPSE**: [LFPSE] (NHS Learn From Patient Safety Events)
 
 **Limitations**
 
@@ -10153,7 +10163,7 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 **References**
 
-- **DCB0129**: DCB0129 hazard log requirement
+- **DCB0129**: [DCB0129] hazard log requirement
 
 **Limitations**
 
@@ -10744,7 +10754,7 @@ Resistance Rate = 1 - (|successful_injections| / |attempted_injections|). Test s
 
 **References**
 
-- **Mindgard**: Mindgard/Heidi Health jailbreak disclosure (March 2026)
+- **Mindgard**: [Mindgard-Heidi-2026] jailbreak disclosure (March 2026)
 - **Architecture**: Safety-critical properties must be enforced at architecture level, not prompt level
 
 **Limitations**
@@ -10788,8 +10798,8 @@ JRS = 1 - (|successful_jailbreaks| / |attempted_jailbreaks|). Categories: (a) ro
 
 **References**
 
-- **Mindgard/Heidi**: Heidi Health jailbreak: AVT system induced to operate as general medical advisor
-- **Mindgard/Doctronic**: Doctronic jailbreak: similar scope escape via prompt manipulation
+- **Mindgard/Heidi**: [Mindgard-Heidi-2026] — AVT system induced to operate as general medical advisor
+- **Mindgard/Doctronic**: [Mindgard-Doctronic-2026] — similar scope escape via prompt manipulation
 
 **Limitations**
 
@@ -10832,7 +10842,7 @@ Detection rate = |adversarial_samples_detected| / |total_adversarial_samples|. T
 
 **References**
 
-- **Adversarial audio**: [Carlini & Wagner (2018) - Audio Adversarial Examples](https://arxiv.org/abs/1801.01944)
+- **Adversarial audio**: [Carlini-Wagner-Audio-Adversarial-2018]
 
 **Limitations**
 
@@ -10914,7 +10924,7 @@ Coverage = |outputs_classified| / |total_outputs|. Must be 100% for safety-criti
 
 **References**
 
-- **NVIDIA ref arch**: NVIDIA healthcare reference architecture (arXiv, Sept 2024) - Llama Guard 3 + NeMo Guardrails
+- **NVIDIA ref arch**: [NVIDIA-Healthcare-Guardrails-2024] — Llama Guard 3 + NeMo Guardrails (cross-link [NeMo-Guardrails])
 - **Microsoft**: Microsoft Copilot Studio Healthcare Agent Service
 
 **Limitations**
@@ -11656,7 +11666,7 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 46 - appropriate safeguards for international transfers
+- **UK GDPR**: [UK-GDPR] Article 46 — appropriate safeguards for international transfers
 
 **Limitations**
 
@@ -11902,8 +11912,8 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **References**
 
-- **Critique**: Coiera & Fraile-Navarro (2026)
-- **RSET**: 'Time is not automatically convertible into money, productivity, or better care'
+- **Critique**: [Coiera-Fraile-Navarro-JMIR-2026]
+- **RSET**: [NIHR-RSET] — 'Time is not automatically convertible into money, productivity, or better care'
 
 **Limitations**
 
@@ -12686,7 +12696,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **References**
 
-- **Stanford**: [Keyes et al. (2025) - Stanford monitoring framework](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] — Stanford monitoring framework
 
 **Limitations**
 
@@ -12729,7 +12739,7 @@ Completeness = |telemetry_fields_provided| / |telemetry_fields_required|. Requir
 
 **References**
 
-- **Stanford**: ['Many vendors do not yet provide the access or telemetry necessary'](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] notes that vendor telemetry access is often inadequate for deployer-side governance under the three-principle (system integrity / performance / impact) framework
 
 **Limitations**
 
@@ -12970,7 +12980,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 28 - processor obligations including sub-processor disclosure
+- **UK GDPR**: [UK-GDPR] Article 28 — processor obligations including sub-processor disclosure
 
 **Limitations**
 
@@ -13273,8 +13283,8 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **References**
 
-- **Editorial**: Coiera & Fraile-Navarro (2026) - JMIR Med Inform
-- **RSET**: NIHR RSET Phase 1
+- **Editorial**: [Coiera-Fraile-Navarro-JMIR-2026]
+- **RSET**: [NIHR-RSET] Phase 1
 
 **Limitations**
 
@@ -14338,7 +14348,7 @@ Cited in TP.CC-2 as a vendor reference for FHIR-ready clinical NLP. `Source-Type
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `tp/clinical-coding.md`
+- **Cited-by:** `tp/asr-transcription.md`, `tp/clinical-coding.md`
 
 Cited in TP.CC-2 as benchmark reference for medical-concept annotation. MedCAT is a well-known King's-College-London / South London & Maudsley NHS-backed clinical-NLP toolkit; specific benchmark paper to confirm at the Phase 2 follow-up review.
 
@@ -14455,7 +14465,7 @@ The openEHR community-curated archetype library, used as the reference for arche
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `hl/human-factors-workflow.md`
+- **Cited-by:** `gv/safety-governance.md`, `hl/human-factors-workflow.md`
 
 Cited in HL.HF-2 alongside Abridge as a reference-point for edit-rate methodology, and in GV.SG-8 (DeepScore Defect-Free Rate) as the vendor methodology reference. `Source-Type: disclosure` because this is a vendor-published methodology page, not a peer-reviewed paper. (v3.9 round-2 review found that an earlier inline citation of "DeepScribe, arXiv Sept 2024" did not correspond to a verifiable arXiv submission; the inline reference has been corrected to point at this vendor page.)
 
@@ -15008,3 +15018,146 @@ Information-theoretic classifier for continuous hallucination detection and elim
 - **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
 
 Investigation of how well automated NLG metrics (ROUGE, BERTScore, others) correlate with expert clinician judgments in automated medical-note generation. Cited in TP.SN-1 (ROUGE Scores) underspecification warning and ES.ME-7 (Automated-Human Metric Concordance) for the qualitative finding that string-similarity metrics correlate poorly — and in some configurations negatively — with expert judgment in medical note generation, motivating the bias-quantification and concordance-measurement metrics in ES.ME. v4.2 verification: paper exists and is on-topic; specific Spearman correlation ranges that prior taxonomy versions attributed informally to "ar5iv 2305.17364" were not visible in the abstract and have been softened to qualitative claims pending full-text verification.
+
+### Casner-Schooler-Aviation-Skill-2014
+
+- **Title:** The Retention of Manual Flying Skills in the Automated Cockpit
+- **Publisher:** Casner SM, Geven RW, Recker MP, Schooler JW. *Human Factors* 2014;56(8):1506-1516
+- **Source-Type:** paper
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/25509828/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `hl/human-factors-workflow.md`
+
+Aviation skill-degradation foundational paper. 16 airline pilots in 747-400 simulator, varied automation levels. Found that manual control skills are largely retained but cognitive skills (instrument-system failure recognition, navigational decision-making, position tracking without map display) degrade significantly under sustained automation reliance. Cited in HL.HF-12 (Clinical Documentation Skill Attenuation) as the aviation analogue for the AVT-driven skill-attenuation hypothesis. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Lee-See-Trust-Automation-2004
+
+- **Title:** Trust in Automation: Designing for Appropriate Reliance
+- **Publisher:** Lee JD, See KA. *Human Factors* 2004;46(1):50-80
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1518/hfes.46.1.50_30392
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `hl/human-factors-workflow.md`
+
+Foundational trust-in-automation review (>5000 citations). Frames trust as a dynamic, calibrated relationship between operator and automated system rather than a static disposition. Distinguishes appropriate from inappropriate reliance and identifies the trust-calibration gap as a primary cause of automation-related accidents. Cited in HL.HF-8 (Trust Calibration Survey) as the conceptual anchor for trust-calibration measurement. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Parasuraman-Manzey-Complacency-2010
+
+- **Title:** Complacency and Bias in Human Use of Automation: An Attentional Integration
+- **Publisher:** Parasuraman R, Manzey DH. *Human Factors* 2010;52(3):381-410
+- **Source-Type:** paper
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/21077562/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `hl/human-factors-workflow.md`
+
+Foundational automation-bias paper integrating two related but distinct constructs: complacency (reduced monitoring of automated systems) and automation bias (over-reliance on automated decisions). The attentional-integration framing locates both phenomena in attentional allocation rather than separate cognitive mechanisms. Cited in HL.HF-6 (Automation Bias Detection — Error Injection) as the conceptual anchor for the automation-bias measurement programme. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Hudson-NASA-TLX-Abridge-2025
+
+- **Title:** Impact of Ambient Artificial Intelligence Documentation on Cognitive Load
+- **Publisher:** Hudson TJ, Albrecht M, Smith TR, et al. *Mayo Clin Proc Digit Health* 2025;3(1):100193
+- **Source-Type:** paper
+- **URL:** https://pmc.ncbi.nlm.nih.gov/articles/PMC11975833/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(no citations found in source)_
+
+Randomised study of 40 ambulatory providers (March-April 2024) using either Abridge or usual note-writing process. Reports a 60.7% reduction in NASA-TLX composite cognitive-load score (composite 221.20 → 118.20; effort 60.3% reduction; mental demand 64.6%; temporal demand 57.1%; all p < 0.001) using three of the six NASA-TLX subscales (effort / mental demand / temporal demand) selected for documentation-task relevance. Cited in HL.HF-10 (Cognitive Load Assessment) as the empirical anchor for AVT-cognitive-load reduction; doi: 10.1016/j.mcpdig.2024.100193. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean — quote "mean difference of 60.7%" verified verbatim).
+
+### Koenecke-PNAS-Racial-ASR-2020
+
+- **Title:** Racial disparities in automated speech recognition
+- **Publisher:** Koenecke A et al. *Proceedings of the National Academy of Sciences* 2020;117(14):7684-7689
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1073/pnas.1915768117
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/asr-transcription.md`
+
+Foundational paper on racial disparities in commercial ASR systems. Tested five major ASR systems (Amazon, Apple, Google, IBM, Microsoft) on speech from Black and White speakers; reported substantial accuracy gaps that systematically disadvantage Black speakers. Cited in TP.ASR-4 (Demographic-Disaggregated WER) as the empirical evidence underwriting the demographic-equity-disaggregation construct. **Distinct from `Koenecke-Careless-Whisper-2024`** — different paper, different year (2020 vs 2024), different topic (racial-disparity ASR vs Whisper hallucination); the v4.3 promotion specifically addresses conflation risk between the two Koenecke papers.
+
+### Harkema-ConText-2009
+
+- **Title:** ConText: An algorithm for determining negation, experiencer, and temporal status from clinical reports
+- **Publisher:** Harkema H, Dowling JN, Thornblade T, Chapman WW. *Journal of Biomedical Informatics* 2009;42(5):839-851
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1016/j.jbi.2009.05.002
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/summarisation-nlp.md`
+
+Foundational clinical-NLP algorithm for determining negation, experiencer, and temporal status of clinical concepts in free-text reports. Standard reference for negation-handling work in clinical text. Cited in TP.SN-15 (Negation Handling Accuracy) as the algorithmic floor for the negation-detection Reference Standard. v4.3 promotion from inline citation to catalogue handle.
+
+### NVIDIA-Healthcare-Guardrails-2024
+
+- **Title:** Enhancing Guardrails for Safe and Secure Healthcare AI
+- **Publisher:** NVIDIA et al. arXiv:2409.17190, September 2024
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2409.17190
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `gv/security-adversarial-robustness.md`
+
+NVIDIA healthcare reference architecture for AI safety guardrails. Demonstrates a multi-layered safety pattern combining Llama Guard 3 input-output classification with NeMo Guardrails programmable rule enforcement, applied to clinical RAG pipelines. Cited in GV.SC-5 (Output Safety Classifier Coverage) as the representative reference architecture for the safety-classifier pattern; pairs with `[NeMo-Guardrails]` handle for the NeMo-specific tooling reference. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Li-Semantic-WER-2022
+
+- **Title:** Semantic Word Error Rate for Sentence Similarity (clinical ASR application)
+- **Publisher:** Li et al. arXiv:2207.13135, 2022
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2207.13135
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/asr-transcription.md`
+
+Semantic Word Error Rate (S-WER) — variant of WER that weights errors by semantic distance rather than treating all errors equally. Conceptual ancestor of the clinical-significance-weighted approaches that motivate Medical WER. Cited in TP.ASR-2 (Medical WER, M-WER) as a related construct. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### Guo-Calibration-2017
+
+- **Title:** On Calibration of Modern Neural Networks
+- **Publisher:** Guo C, Pleiss G, Sun Y, Weinberger KQ. arXiv:1706.04599, 2017 (ICML 2017)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1706.04599
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/asr-transcription.md`
+
+Foundational ML calibration paper. Established Expected Calibration Error (ECE) as a standard metric and demonstrated that modern deep neural networks are typically miscalibrated despite high accuracy. Cited in TP.ASR-10 (ASR Confidence Calibration) as the conceptual anchor for the ECE-based calibration measurement. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### Carlini-Wagner-Audio-Adversarial-2018
+
+- **Title:** Audio Adversarial Examples: Targeted Attacks on Speech-to-Text
+- **Publisher:** Carlini N, Wagner D. arXiv:1801.01944, 2018 (DLS 2018)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1801.01944
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `gv/security-adversarial-robustness.md`
+
+Foundational audio-adversarial-examples paper. Demonstrated that targeted adversarial perturbations (inaudible to humans) can cause speech-to-text systems to transcribe arbitrary attacker-chosen text. Cited in GV.SC-3 (Adversarial Audio Detection Rate) as the canonical attack reference and entry point to the adversarial-audio research surface. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### NHS-IM1-Interface-Assurance
+
+- **Title:** NHS IM1 Interface Assurance Programme
+- **Publisher:** NHS England / NHS Digital (programme documentation)
+- **Source-Type:** standard
+- **URL:** https://digital.nhs.uk/services/gp-it-futures/im1-interface-assurance
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/downstream-write-back.md`
+
+NHS England's IM1 (Integration Manager 1) Interface Assurance Programme — the framework that governs assured interfaces between primary-care clinical systems (EMIS, SystmOne, Vision) and third-party software, including AVT products writing back to GP records. Cited in TP.WB-1 (Write-back Fidelity) as the NHS-specific assurance regime for primary-care EPR integration. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict). URL is the programme landing page; specific assurance requirement documents linked from there.

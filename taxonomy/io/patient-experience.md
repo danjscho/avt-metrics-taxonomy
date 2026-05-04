@@ -54,7 +54,7 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 
 **References**
 
-- **CQC**: Mythbuster 109: implied consent sufficient but patients must be informed
+- **CQC**: [CQC-Mythbuster-109] — implied consent sufficient but patients must be informed
 
 **Limitations**
 

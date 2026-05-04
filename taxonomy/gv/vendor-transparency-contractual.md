@@ -50,7 +50,7 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 **References**
 
-- **Stanford**: [Keyes et al. (2025) - Stanford monitoring framework](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] — Stanford monitoring framework
 
 **Limitations**
 
@@ -93,7 +93,7 @@ Completeness = |telemetry_fields_provided| / |telemetry_fields_required|. Requir
 
 **References**
 
-- **Stanford**: ['Many vendors do not yet provide the access or telemetry necessary'](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] notes that vendor telemetry access is often inadequate for deployer-side governance under the three-principle (system integrity / performance / impact) framework
 
 **Limitations**
 
@@ -334,7 +334,7 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 28 - processor obligations including sub-processor disclosure
+- **UK GDPR**: [UK-GDPR] Article 28 — processor obligations including sub-processor disclosure
 
 **Limitations**
 

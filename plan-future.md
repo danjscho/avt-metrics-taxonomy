@@ -83,7 +83,7 @@ This is a substantial body of work and should not start without an explicit user
 
 ## 5. Verify code snippets *and* Formal Definitions against sources
 
-**Status:** queued.
+**Status:** complete (v4.2 covered TP / IO.FE / ES.ME — 92 metrics; v4.3 covered GV / HL / PI / IO.PX — 131 metrics). Two-pass methodology (Pass A internal coherence + Pass B external source verification) plus per-snippet API check is now the established pattern; future releases that touch these surfaces should follow the same shape.
 
 **Context:** Two adjacent bodies of content carry the same provenance risk and should be reviewed together:
 

@@ -49,7 +49,7 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 
 **References**
 
-- **Stanford**: [Keyes et al. (2025)](https://arxiv.org/abs/2512.09048)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025]
 
 **Limitations**
 
@@ -92,8 +92,8 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 **References**
 
-- **NAS-Day-Zero-SPI-internal**: internal NAS Day-Zero SPI work (taxonomy-author's prior framing, internal source)
-- **Stanford / Keyes et al. (2025)**: [arXiv 2512.09048](https://arxiv.org/abs/2512.09048) — three-principle monitoring framework (system integrity, performance, impact)
+- **NAS**: [NAS-Day-Zero-SPI-internal] (taxonomy-author's prior framing, internal source)
+- **Stanford**: [Keyes-Stanford-Monitoring-2025] — three-principle monitoring framework (system integrity, performance, impact)
 
 **Limitations**
 
@@ -310,7 +310,7 @@ P₁ = P(hazardous output | normal use). P₂ = P(harm | hazardous output). Risk
 
 ### GV.SG-8 🔵 DeepScore (Defect-Free Rate)
 
-Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sound approach but proprietary definitions.
+Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. Vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page). Sound approach but proprietary definitions.
 
 | Dimension | Value |
 |-----------|-------|
@@ -339,7 +339,7 @@ MDFR = |N_no_major| / |N_total|. CDFR = |N_no_critical| / |N_total|. Vendor-spec
 
 **References**
 
-- **DeepScore**: [DeepScribe vendor-published methodology page](https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation) (vendor whitepaper; not a peer-reviewed academic preprint)
+- **DeepScore**: [DeepScore] (vendor whitepaper; not a peer-reviewed academic preprint)
 
 **Limitations**
 
@@ -472,7 +472,7 @@ IR = N_incidents / N_encounters. Stratify by severity. Currently no LFPSE taxono
 
 **References**
 
-- **LFPSE**: NHS Learn From Patient Safety Events
+- **LFPSE**: [LFPSE] (NHS Learn From Patient Safety Events)
 
 **Limitations**
 
@@ -740,7 +740,7 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 **References**
 
-- **DCB0129**: DCB0129 hazard log requirement
+- **DCB0129**: [DCB0129] hazard log requirement
 
 **Limitations**
 

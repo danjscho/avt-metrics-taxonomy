@@ -1377,3 +1377,146 @@ Information-theoretic classifier for continuous hallucination detection and elim
 - **Cited-by:** _(auto-generated)_
 
 Investigation of how well automated NLG metrics (ROUGE, BERTScore, others) correlate with expert clinician judgments in automated medical-note generation. Cited in TP.SN-1 (ROUGE Scores) underspecification warning and ES.ME-7 (Automated-Human Metric Concordance) for the qualitative finding that string-similarity metrics correlate poorly — and in some configurations negatively — with expert judgment in medical note generation, motivating the bias-quantification and concordance-measurement metrics in ES.ME. v4.2 verification: paper exists and is on-topic; specific Spearman correlation ranges that prior taxonomy versions attributed informally to "ar5iv 2305.17364" were not visible in the abstract and have been softened to qualitative claims pending full-text verification.
+
+### Casner-Schooler-Aviation-Skill-2014
+
+- **Title:** The Retention of Manual Flying Skills in the Automated Cockpit
+- **Publisher:** Casner SM, Geven RW, Recker MP, Schooler JW. *Human Factors* 2014;56(8):1506-1516
+- **Source-Type:** paper
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/25509828/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Aviation skill-degradation foundational paper. 16 airline pilots in 747-400 simulator, varied automation levels. Found that manual control skills are largely retained but cognitive skills (instrument-system failure recognition, navigational decision-making, position tracking without map display) degrade significantly under sustained automation reliance. Cited in HL.HF-12 (Clinical Documentation Skill Attenuation) as the aviation analogue for the AVT-driven skill-attenuation hypothesis. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Lee-See-Trust-Automation-2004
+
+- **Title:** Trust in Automation: Designing for Appropriate Reliance
+- **Publisher:** Lee JD, See KA. *Human Factors* 2004;46(1):50-80
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1518/hfes.46.1.50_30392
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational trust-in-automation review (>5000 citations). Frames trust as a dynamic, calibrated relationship between operator and automated system rather than a static disposition. Distinguishes appropriate from inappropriate reliance and identifies the trust-calibration gap as a primary cause of automation-related accidents. Cited in HL.HF-8 (Trust Calibration Survey) as the conceptual anchor for trust-calibration measurement. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Parasuraman-Manzey-Complacency-2010
+
+- **Title:** Complacency and Bias in Human Use of Automation: An Attentional Integration
+- **Publisher:** Parasuraman R, Manzey DH. *Human Factors* 2010;52(3):381-410
+- **Source-Type:** paper
+- **URL:** https://pubmed.ncbi.nlm.nih.gov/21077562/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational automation-bias paper integrating two related but distinct constructs: complacency (reduced monitoring of automated systems) and automation bias (over-reliance on automated decisions). The attentional-integration framing locates both phenomena in attentional allocation rather than separate cognitive mechanisms. Cited in HL.HF-6 (Automation Bias Detection — Error Injection) as the conceptual anchor for the automation-bias measurement programme. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Hudson-NASA-TLX-Abridge-2025
+
+- **Title:** Impact of Ambient Artificial Intelligence Documentation on Cognitive Load
+- **Publisher:** Hudson TJ, Albrecht M, Smith TR, et al. *Mayo Clin Proc Digit Health* 2025;3(1):100193
+- **Source-Type:** paper
+- **URL:** https://pmc.ncbi.nlm.nih.gov/articles/PMC11975833/
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Randomised study of 40 ambulatory providers (March-April 2024) using either Abridge or usual note-writing process. Reports a 60.7% reduction in NASA-TLX composite cognitive-load score (composite 221.20 → 118.20; effort 60.3% reduction; mental demand 64.6%; temporal demand 57.1%; all p < 0.001) using three of the six NASA-TLX subscales (effort / mental demand / temporal demand) selected for documentation-task relevance. Cited in HL.HF-10 (Cognitive Load Assessment) as the empirical anchor for AVT-cognitive-load reduction; doi: 10.1016/j.mcpdig.2024.100193. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean — quote "mean difference of 60.7%" verified verbatim).
+
+### Koenecke-PNAS-Racial-ASR-2020
+
+- **Title:** Racial disparities in automated speech recognition
+- **Publisher:** Koenecke A et al. *Proceedings of the National Academy of Sciences* 2020;117(14):7684-7689
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1073/pnas.1915768117
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational paper on racial disparities in commercial ASR systems. Tested five major ASR systems (Amazon, Apple, Google, IBM, Microsoft) on speech from Black and White speakers; reported substantial accuracy gaps that systematically disadvantage Black speakers. Cited in TP.ASR-4 (Demographic-Disaggregated WER) as the empirical evidence underwriting the demographic-equity-disaggregation construct. **Distinct from `Koenecke-Careless-Whisper-2024`** — different paper, different year (2020 vs 2024), different topic (racial-disparity ASR vs Whisper hallucination); the v4.3 promotion specifically addresses conflation risk between the two Koenecke papers.
+
+### Harkema-ConText-2009
+
+- **Title:** ConText: An algorithm for determining negation, experiencer, and temporal status from clinical reports
+- **Publisher:** Harkema H, Dowling JN, Thornblade T, Chapman WW. *Journal of Biomedical Informatics* 2009;42(5):839-851
+- **Source-Type:** paper
+- **URL:** https://doi.org/10.1016/j.jbi.2009.05.002
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational clinical-NLP algorithm for determining negation, experiencer, and temporal status of clinical concepts in free-text reports. Standard reference for negation-handling work in clinical text. Cited in TP.SN-15 (Negation Handling Accuracy) as the algorithmic floor for the negation-detection Reference Standard. v4.3 promotion from inline citation to catalogue handle.
+
+### NVIDIA-Healthcare-Guardrails-2024
+
+- **Title:** Enhancing Guardrails for Safe and Secure Healthcare AI
+- **Publisher:** NVIDIA et al. arXiv:2409.17190, September 2024
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2409.17190
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NVIDIA healthcare reference architecture for AI safety guardrails. Demonstrates a multi-layered safety pattern combining Llama Guard 3 input-output classification with NeMo Guardrails programmable rule enforcement, applied to clinical RAG pipelines. Cited in GV.SC-5 (Output Safety Classifier Coverage) as the representative reference architecture for the safety-classifier pattern; pairs with `[NeMo-Guardrails]` handle for the NeMo-specific tooling reference. v4.3 promotion from inline citation to catalogue handle (Pass B verified clean).
+
+### Li-Semantic-WER-2022
+
+- **Title:** Semantic Word Error Rate for Sentence Similarity (clinical ASR application)
+- **Publisher:** Li et al. arXiv:2207.13135, 2022
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/2207.13135
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Semantic Word Error Rate (S-WER) — variant of WER that weights errors by semantic distance rather than treating all errors equally. Conceptual ancestor of the clinical-significance-weighted approaches that motivate Medical WER. Cited in TP.ASR-2 (Medical WER, M-WER) as a related construct. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### Guo-Calibration-2017
+
+- **Title:** On Calibration of Modern Neural Networks
+- **Publisher:** Guo C, Pleiss G, Sun Y, Weinberger KQ. arXiv:1706.04599, 2017 (ICML 2017)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1706.04599
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational ML calibration paper. Established Expected Calibration Error (ECE) as a standard metric and demonstrated that modern deep neural networks are typically miscalibrated despite high accuracy. Cited in TP.ASR-10 (ASR Confidence Calibration) as the conceptual anchor for the ECE-based calibration measurement. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### Carlini-Wagner-Audio-Adversarial-2018
+
+- **Title:** Audio Adversarial Examples: Targeted Attacks on Speech-to-Text
+- **Publisher:** Carlini N, Wagner D. arXiv:1801.01944, 2018 (DLS 2018)
+- **Source-Type:** paper
+- **URL:** https://arxiv.org/abs/1801.01944
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+Foundational audio-adversarial-examples paper. Demonstrated that targeted adversarial perturbations (inaudible to humans) can cause speech-to-text systems to transcribe arbitrary attacker-chosen text. Cited in GV.SC-3 (Adversarial Audio Detection Rate) as the canonical attack reference and entry point to the adversarial-audio research surface. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict).
+
+### NHS-IM1-Interface-Assurance
+
+- **Title:** NHS IM1 Interface Assurance Programme
+- **Publisher:** NHS England / NHS Digital (programme documentation)
+- **Source-Type:** standard
+- **URL:** https://digital.nhs.uk/services/gp-it-futures/im1-interface-assurance
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-03
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** _(auto-generated)_
+
+NHS England's IM1 (Integration Manager 1) Interface Assurance Programme — the framework that governs assured interfaces between primary-care clinical systems (EMIS, SystmOne, Vision) and third-party software, including AVT products writing back to GP records. Cited in TP.WB-1 (Write-back Fidelity) as the NHS-specific assurance regime for primary-care EPR integration. v4.3 promotion from inline citation (per reviewer "promote all b now" verdict). URL is the programme landing page; specific assurance requirement documents linked from there.

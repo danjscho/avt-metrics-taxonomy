@@ -76,8 +76,8 @@ def detect_complacency(weekly_rates, baseline_weeks=4):
 
 **References**
 
-- **Abridge**: Abridge edit-pattern methodology
-- **NAS**: NAS Day Zero SPI
+- **Abridge**: [Abridge-Whitepaper-2025] — edit-pattern methodology
+- **NAS**: [NAS-Day-Zero-SPI-internal]
 
 **Limitations**
 
@@ -122,8 +122,8 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 **References**
 
-- **Abridge**: 1M+ encounters/week
-- **DeepScore**: 135,900 notes
+- **Abridge**: vendor-reported deployment scale (1M+ encounters/week order of magnitude per [Abridge-Whitepaper-2025])
+- **DeepScore**: vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page)
 
 **Limitations**
 
@@ -233,7 +233,7 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 
 **References**
 
-- **NAS**: ≥95% threshold, <85% pause trigger
+- **NAS**: [NAS-Day-Zero-SPI-internal] (≥95% threshold, <85% pause trigger)
 
 **Limitations**
 
@@ -323,7 +323,7 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
-Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal - locked inside one vendor.
+Cross-system edit analysis at vendor-reported deployment scale (1M+ encounters/week order of magnitude across 150+ systems per vendor disclosures). Most scalable quality signal - locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
@@ -352,7 +352,7 @@ Aggregate across N systems: system-level distribution, edit type by specialty/te
 
 **References**
 
-- **Abridge**: Oberst, Liang, Lipton (2024/2025)
+- **Abridge**: [Abridge-Whitepaper-2025] (Liang, Oberst, Tan, Lipton 2025)
 
 **Limitations**
 
@@ -405,7 +405,7 @@ Inject known errors at rate r (e.g. 1 in 50) with defined severity. Detection Ra
 
 **⚠️ Underspecification Warning (Tier B - strong concept, ad hoc protocols)**
 
-> Automation bias is well-defined conceptually (Parasuraman & Manzey, *Human Factors* 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
+> Automation bias is well-defined conceptually ([Parasuraman-Manzey-Complacency-2010]) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.
 
 **Novel Thinking / Implications**
 
@@ -485,7 +485,7 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 **References**
 
-- **Trust in automation**: Lee & See (2004)
+- **Trust in automation**: [Lee-See-Trust-Automation-2004]
 
 **Limitations**
 
@@ -493,7 +493,7 @@ Trust Calibration Gap TCG(c) = Stated_Trust(c) - Actual_Accuracy(c). TCG > 0 = o
 
 **⚠️ Underspecification Warning (Tier B - concept defined, no AVT-validated instrument)**
 
-> Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, HATAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. A 2024 Dokkyo Medical University review concluded that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS or HATAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
+> Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, AITI-H), but **none are validated specifically for ambient scribe contexts**. Recent reviews of trust calibration in clinical AI conclude that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.
 
 **Novel Thinking / Implications**
 
@@ -571,7 +571,7 @@ Adapted NASA-TLX: Mental Demand, Temporal Demand, Effort, Frustration, Trust Bur
 
 **References**
 
-- **NASA-TLX**: [NASA Task Load Index](https://humansystems.arc.nasa.gov/groups/TLX/)
+- **NASA-TLX**: [NASA-TLX]
 
 **Limitations**
 
@@ -657,7 +657,7 @@ Annual: clinicians document N simulated encounters without AI, scored via PDSQI-
 
 **References**
 
-- **Aviation analogy**: Casner & Schooler (2014) - pilot skill degradation
+- **Aviation analogy**: [Casner-Schooler-Aviation-Skill-2014] — pilot skill degradation
 
 **Limitations**
 

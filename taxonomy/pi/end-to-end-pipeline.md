@@ -158,6 +158,9 @@ def trace_error_cascade(
     """
     Track injected errors through pipeline stages.
     Requires controlled error injection at specific stages.
+    Illustrative: error_persists / error_amplified are stand-ins
+    for project-specific comparison helpers (e.g. fuzzy string
+    match, semantic similarity, or domain-specific item match).
     """
     STAGES = ["asr", "diarisation", "summarisation", "coding", "writeback"]
     cascade_results = []
@@ -228,6 +231,9 @@ def chain_of_custody(item: str, stage_outputs: dict) -> dict:
     """
     Trace a safety-critical item through every pipeline stage.
     Returns the chain status and break point if applicable.
+    Illustrative: item_present is a stand-in for a domain-specific
+    matcher (substring, normalised concept ID match, or coded-entry
+    lookup depending on stage representation).
     """
     STAGES = ["transcript", "diarised_transcript", "summary",
               "coded_entries", "epr_record"]
@@ -421,10 +427,14 @@ Process same audio N times (N ≥ 10). Reproducibility R = mean pairwise similar
 
 ```python
 from itertools import combinations
+import numpy as np
 
 def test_reproducibility(audio_path: str, pipeline, n_runs: int = 10):
     """
     Process same audio N times, measure output variance.
+    Illustrative: text_similarity and extract_safety_items are
+    stand-ins — wire to a real similarity function (e.g. embedding
+    cosine) and a clinical NER/extractor for production use.
     """
     outputs = [pipeline.process(audio_path) for _ in range(n_runs)]
 

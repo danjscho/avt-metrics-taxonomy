@@ -121,8 +121,8 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 **References**
 
-- **Concept origin**: Proposed in OxonFair healthcare voice fairness extension analysis
-- **Related**: [Semantic Word Error Rate for clinical ASR (Li et al. 2022)](https://arxiv.org/abs/2207.13135)
+- **Concept origin**: Proposed in [OxonFair-2024] healthcare voice fairness extension analysis
+- **Related**: [Li-Semantic-WER-2022] — Semantic Word Error Rate for clinical ASR
 
 **Limitations**
 
@@ -196,7 +196,7 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 **References**
 
-- **Clinical NER**: [MedCAT: Medical Concept Annotation Tool](https://github.com/CogStack/MedCAT)
+- **Clinical NER**: [MedCAT-Benchmarks] — Medical Concept Annotation Toolkit (CogStack)
 
 **Limitations**
 
@@ -285,8 +285,8 @@ def disaggregated_wer(df, ref_col, hyp_col, demo_col):
 
 **References**
 
-- **ASR bias**: [Koenecke et al. (2020) - Racial disparities in automated speech recognition, PNAS](https://doi.org/10.1073/pnas.1915768117)
-- **NAS framework**: NAS Day Zero SPIs; NHSE IG guidance (March 2026)
+- **ASR bias**: [Koenecke-PNAS-Racial-ASR-2020]
+- **NAS framework**: [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03]
 
 **Limitations**
 
@@ -333,7 +333,7 @@ Given diarised transcript with speaker labels, compute WER independently per rol
 
 **References**
 
-- **Concept origin**: Identified in OxonFair extension analysis
+- **Concept origin**: Identified in [OxonFair-2024] extension analysis
 
 **Limitations**
 
@@ -543,7 +543,7 @@ For each confidence bin b in [0.5, 0.6, ..., 1.0], compute actual_accuracy(b) = 
 
 **References**
 
-- **Calibration**: [Guo et al. (2017) - On Calibration of Modern Neural Networks](https://arxiv.org/abs/1706.04599)
+- **Calibration**: [Guo-Calibration-2017]
 
 **Limitations**
 

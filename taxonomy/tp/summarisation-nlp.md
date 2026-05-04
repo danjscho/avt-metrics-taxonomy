@@ -49,7 +49,7 @@ scores = scorer.score(reference, hypothesis)
 **References**
 
 - **Original**: [ROUGE-Lin-2004]
-- **Inadequacy**: Croxford et al. (2025) - LLM-as-Judge outperforms ROUGE/BERTScore
+- **Inadequacy**: [Croxford-2025] — LLM-as-Judge outperforms ROUGE/BERTScore
 
 **Limitations**
 
@@ -317,8 +317,8 @@ def check_hallucination(source, generated_sentences):
 
 **References**
 
-- **Tortus data**: 1.47% per sentence (Asgari et al. 2025)
-- **Abridge**: Support × severity matrix (Oberst et al. 2024/2025)
+- **Tortus data**: 1.47% per sentence ([Asgari-Tortus-2025])
+- **Abridge**: Support × severity matrix ([Abridge-Whitepaper-2025] — Liang, Oberst, Tan, Lipton 2025)
 
 **Limitations**
 
@@ -387,7 +387,7 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 
 **References**
 
-- **Tortus**: 3.45% omission rate (Asgari et al. 2025)
+- **Tortus**: 3.45% omission rate ([Asgari-Tortus-2025])
 
 **Limitations**
 
@@ -723,7 +723,7 @@ Examiner LLM probes claims in target output, evaluates consistency. Knowledge-ex
 
 **References**
 
-- **Paper**: Kanithi et al. (2025) - MEDIC
+- **Paper**: [Kanithi-2025] — MEDIC
 
 **Limitations**
 
@@ -766,7 +766,7 @@ For each span sᵢ, mapping M(sᵢ) → {(t_start, t_end)}. Requirements: Covera
 
 **References**
 
-- **Abridge**: Abridge Linked Evidence architecture
+- **Abridge**: [Abridge-Linked-Evidence] architecture
 
 **Limitations**
 
@@ -852,7 +852,7 @@ For default template T₀ with INSYTE underspecification U₀, modified template
 
 **References**
 
-- **INSYTE**: INSYTE autonomy classification - DCB0129 structural gap
+- **INSYTE**: [INSYTE-2025] autonomy classification — [DCB0129] structural gap
 
 **Limitations**
 
@@ -895,7 +895,7 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **Reference Standard**
 
-> Source transcript + ConText-style negation detection (Harkema et al.) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
+> Source transcript + ConText-style negation detection ([Harkema-ConText-2009]) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by **negation type** (explicit / implicit / hedged / conditional / historical) and **clinical category** (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).
 
 **Operational Specification**
 
@@ -915,7 +915,7 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 
 **References**
 
-- **Negation in clinical NLP**: ConText algorithm (Harkema et al.); standard clinical NLP problem
+- **Negation in clinical NLP**: [Harkema-ConText-2009] ConText algorithm; standard clinical NLP problem
 
 **Limitations**
 
