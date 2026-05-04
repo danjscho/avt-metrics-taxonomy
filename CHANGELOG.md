@@ -1,5 +1,26 @@
 # Changelog
 
+## v4.5.1 (2026-05-04)
+
+**Patch release: v5.0 preparatory research output — Tier 1 threshold review (Phases 1, 2a, 2b).**
+
+No metric / catalogue content changes. Three research-output files added at repo root, scoping the v5.0 structural split where threshold numbers move out of metric bodies into a dedicated **Threshold Reference** page. Plan-future #8 progresses (closes at v5.0).
+
+**Phase 1 — `v4.6-threshold-enumeration.md`** — exhaustive per-metric extraction of every numerical threshold across the 46 Tier 1 metric entries. ~150 distinct thresholds, classified as `cited` (~12, mostly NAS Day Zero / GDPR / NHSE), `proposed` (~130, with honest Provenance preludes), or `unflagged` (5 — 4 are 100%-structural / zero-tolerance defensible as definitional; 1 (TP.WB-2 IER < 0.001) needs proper attribution at v5.0).
+
+**Phase 2a — `v4.6-threshold-verdict-pass.md`** — per-number verdict pass with five categories (keep / tighten / loosen / remove / consolidate) plus a "why this number" provenance one-liner per kept threshold. Outcomes: ~120 keep, 2 tighten, 1 loosen, 0 remove, ~20 consolidate. Each kept threshold gains an honest provenance row that will become the Threshold Reference page row at v5.0.
+
+**Phase 2b — `v4.6-threshold-consolidation.md`** — cross-metric consolidation pass on the four patterns Phase 1 surfaced:
+
+1. **Standard symmetric severity weighting** (0.1 / 0.5 / 1.0) — single named convention, applied across 5 TP metrics. Asymmetric UMP_w variant documented as deliberately distinct.
+2. **Standard pre-deployment test-corpus floor (≥ 200 cases) + ICC ≥ 0.85 inter-rater convention** — applied across 6+ metrics. **Includes new explicit rare-event-rate caveat** that the current taxonomy doesn't make: 200 is a floor, not a target — for sub-1 % rates, push the floor above 1000 expected events.
+3. **Severity-band notification-ladder convention** — meta-pattern (3-4 bands, 3-7× ratios, immediate-most-severe), with per-metric ladders retained because the underlying decisions genuinely differ (incident disclosure vs change notification vs version tracking vs retirement notice).
+4. **Aggregate-rate gates vs zero-tolerance category boundaries** — the most important reframe. Many "100 %" thresholds in the catalogue are zero-tolerance category boundaries, not stringent percentages. Same numbers, fundamentally different communication. The reframing addresses the user-direction concern that specific numbers leak from metric bodies into procurement contracts without their context.
+
+**Sequencing locked.** v5.0 will land the structural split: Threshold Reference page at `docs/thresholds.md`, metric bodies rewritten to qualitative trigger conditions only, severity-weighting formulas in *both* metric body (definitional) and Threshold Reference (self-contained), prominent compound-errors caveat. Cited numbers (NAS, GDPR, NHSE) stay in metric bodies; only proposed numbers move.
+
+No counts change. No metric content edits. Plan-future #8 stays open until v5.0 ships the structural change.
+
 ## v4.5.0 (2026-05-04)
 
 **Minor release: citation grammar polish + versioning conventions + per-metric provenance.**
