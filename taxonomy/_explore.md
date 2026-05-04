@@ -1,12 +1,47 @@
 # Explore metrics
 
-A filterable view over all 221 metrics in the taxonomy. Pick filters on the left; the table on the right updates live. Click any ref-ID to jump to the metric's full body.
+Two views over all 221 metrics:
 
-!!! note "Starting point — same caveat as everywhere else"
+- **Matrix** — visual cluster × tier grid. Drag a metric card between tier rows to see what a re-tiering would look like. Local what-if only — refresh resets.
+- **Table** — filterable table beneath the matrix, identical filter set, identical filtered subset. Click any ref-ID to jump to the metric body.
 
-    The filters here are aids for finding metrics, not authoritative classifications. Tier assignments, applicability labels, and dimensional values are taxonomy-proposed starting points (see [How to use](how-to-use.md) and the [Calibration & Context principle](calibration-and-context.md)). A metric appearing or not appearing under a given filter is not a substitute for reading its body and calibrating to your deployment context.
+!!! warning "Drag-and-drop is a *local what-if* only"
+
+    Re-tiering a metric in the matrix is a thinking aid. It does **not** edit the catalogue, propose a change, or persist across page refreshes. The bottom-left "Modified assignments" panel lists every move so you can see your what-if state and revert. Tier assignments in the canonical taxonomy are author-judgement starting points (see [How to use](how-to-use.md) and [Calibration & Context](calibration-and-context.md)); local re-tiering against deployment context is exactly what the [Calibration & Context principle](calibration-and-context.md) names. Use this view to think out loud, screenshot, share — not to publish.
 
 <style>
+  .ex-toolbar { display: flex; gap: 0.5rem; align-items: center; flex-wrap: wrap; margin-bottom: 0.5rem; }
+  .ex-toolbar button { padding: 0.3rem 0.7rem; border-radius: 4px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-bg-color); color: var(--md-default-fg-color); cursor: pointer; font-size: 0.85rem; }
+  .ex-toolbar button:hover { background: var(--md-default-fg-color--lightest); }
+  .ex-toolbar .ex-summary-inline { font-size: 0.85rem; color: var(--md-default-fg-color--light); margin-left: auto; }
+
+  .matrix-wrap { margin: 1rem 0 2rem; overflow-x: auto; }
+  .matrix-grid { display: grid; grid-template-columns: 110px repeat(6, minmax(140px, 1fr)); gap: 4px; min-width: 920px; }
+  .matrix-corner, .matrix-cluster-header, .matrix-tier-header { padding: 0.4rem 0.5rem; font-weight: 600; font-size: 0.8rem; text-align: center; background: var(--md-default-fg-color--lightest); border-radius: 3px; user-select: none; }
+  .matrix-cluster-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
+  .matrix-tier-header { writing-mode: horizontal-tb; display: flex; align-items: center; justify-content: center; }
+  .matrix-cell { background: var(--md-default-bg-color); border: 1px dashed var(--md-default-fg-color--lightest); border-radius: 3px; padding: 4px; min-height: 80px; display: flex; flex-wrap: wrap; gap: 3px; align-content: flex-start; transition: background 80ms ease, border-color 80ms ease; }
+  .matrix-cell.drag-over { background: var(--md-accent-fg-color--transparent); border-color: var(--md-accent-fg-color); border-style: solid; }
+  .matrix-card { font-family: var(--md-code-font); font-size: 0.7rem; padding: 2px 5px; border-radius: 3px; background: var(--md-default-fg-color--lightest); cursor: grab; user-select: none; white-space: nowrap; line-height: 1.5; border-left: 3px solid transparent; }
+  .matrix-card:hover { background: var(--md-accent-fg-color--transparent); }
+  .matrix-card[draggable="true"]:active { cursor: grabbing; }
+  .matrix-card.tier-1 { border-left-color: #4caf50; }
+  .matrix-card.tier-2 { border-left-color: #ff9800; }
+  .matrix-card.tier-3 { border-left-color: #2196f3; }
+  .matrix-card.moved { box-shadow: 0 0 0 2px var(--md-accent-fg-color); }
+  .matrix-card.dragging { opacity: 0.4; }
+  .matrix-card a { color: inherit; text-decoration: none; }
+  .matrix-card a:hover { text-decoration: underline; }
+  .matrix-cell-empty { color: var(--md-default-fg-color--light); font-style: italic; font-size: 0.7rem; padding: 0.5rem; text-align: center; width: 100%; }
+
+  .moves-panel { margin-top: 0.75rem; padding: 0.6rem 0.8rem; border-radius: 4px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-fg-color--lightest); font-size: 0.85rem; }
+  .moves-panel.empty { display: none; }
+  .moves-panel h4 { margin: 0 0 0.4rem; font-size: 0.85rem; }
+  .moves-list { list-style: none; padding: 0; margin: 0; max-height: 180px; overflow-y: auto; }
+  .moves-list li { display: flex; align-items: center; gap: 0.5rem; padding: 0.15rem 0; font-family: var(--md-code-font); font-size: 0.75rem; }
+  .moves-list .move-revert { background: none; border: 1px solid var(--md-default-fg-color--lightest); border-radius: 2px; padding: 1px 6px; cursor: pointer; font-size: 0.7rem; color: var(--md-default-fg-color--light); }
+  .moves-list .move-revert:hover { color: var(--md-default-fg-color); border-color: var(--md-default-fg-color--light); }
+
   .explorer-wrapper { display: grid; grid-template-columns: 240px 1fr; gap: 1.5rem; margin-top: 1rem; }
   @media (max-width: 800px) { .explorer-wrapper { grid-template-columns: 1fr; } }
   .explorer-filters { font-size: 0.85rem; }
@@ -29,6 +64,27 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
   .explorer-empty { padding: 2rem; text-align: center; color: var(--md-default-fg-color--light); font-style: italic; }
   .explorer-loading { padding: 2rem; text-align: center; color: var(--md-default-fg-color--light); }
 </style>
+
+## Matrix view
+
+<div class="ex-toolbar">
+  <button type="button" id="matrix-reset-moves">Reset all moves</button>
+  <span class="ex-summary-inline" id="matrix-summary">Loading…</span>
+</div>
+
+<div class="matrix-wrap">
+  <div class="matrix-grid" id="matrix-grid" aria-label="Cluster × tier matrix">
+    <div class="matrix-corner">cluster →<br>tier ↓</div>
+    <!-- cluster headers + cells will be inserted by JS -->
+  </div>
+</div>
+
+<div class="moves-panel empty" id="moves-panel">
+  <h4>Modified tier assignments</h4>
+  <ul class="moves-list" id="moves-list"></ul>
+</div>
+
+## Table view
 
 <div class="explorer-wrapper">
   <aside class="explorer-filters" aria-label="Metric filters">
@@ -102,11 +158,22 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
 <script>
 (function() {
   const METRICS_URL = '../downloads/metrics.json';
-  // Cluster order matches the canonical TP → PI → HL → IO → GV → ES sequence
-  // used everywhere else in the taxonomy. Used for stable default sort
-  // and for the cluster filter dropdown.
+  // Cluster order matches the canonical TP → PI → HL → IO → GV → ES sequence.
   const CLUSTER_ORDER = ['TP', 'PI', 'HL', 'IO', 'GV', 'ES'];
   const CLUSTER_RANK = Object.fromEntries(CLUSTER_ORDER.map((c, i) => [c, i]));
+  // Cluster short labels for matrix headers (avoids wrapping at narrow widths).
+  const CLUSTER_LABELS = {
+    TP: 'TP — Technical Pipeline',
+    PI: 'PI — Pipeline Interactions',
+    HL: 'HL — Human Layer',
+    IO: 'IO — Impact & Outcomes',
+    GV: 'GV — System Governance',
+    ES: 'ES — Eval Science',
+  };
+  const TIER_LABELS = { 1: '🟢 Tier 1', 2: '🟡 Tier 2', 3: '🔵 Tier 3' };
+  // Map a tier number to the label used in the table column / filter
+  // dropdown (matches metric.tier_label produced by build_site).
+  const TIER_LABEL_FOR_TIER = { 1: 'Minimum Viable', 2: 'Recommended', 3: 'Advanced / Research' };
 
   const FIELDS = {
     tier: { id: 'ex-tier', dim: null, getter: m => m.tier_label, label: 'Tier',
@@ -122,9 +189,20 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     maturity: { id: 'ex-maturity', dim: 'Maturity', label: 'Maturity' },
   };
 
-  const state = { metrics: [], filters: {}, sort: { col: 'ref_id', dir: 'asc' } };
+  const state = {
+    metrics: [],
+    filters: {},
+    sort: { col: 'ref_id', dir: 'asc' },
+    // moves[ref_id] = { from: 1|2|3, to: 1|2|3 }. Original tier in `from`,
+    // current effective tier in `to`. Only present for moved metrics.
+    moves: {},
+  };
 
-  // Hash-based persistence: filters serialize to URL hash so views are shareable.
+  function effectiveTier(m) {
+    return state.moves[m.ref_id] ? state.moves[m.ref_id].to : m.tier;
+  }
+
+  // ---------- Hash persistence ----------
   function readHash() {
     const hash = location.hash.replace(/^#/, '');
     if (!hash) return {};
@@ -149,15 +227,15 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     }
   }
 
-  // Field value extraction: dimensions can be "A, B" (multi) or "A" (single).
+  // ---------- Field extraction ----------
   function getValues(metric, key) {
     const f = FIELDS[key];
+    if (key === 'tier') return [TIER_LABEL_FOR_TIER[effectiveTier(metric)] || metric.tier_label];
     if (f.getter) return [f.getter(metric)];
     const raw = metric.dimensions[f.dim] || '';
     if (f.multi) return raw.split(',').map(s => s.trim()).filter(Boolean);
     return [raw];
   }
-
   function uniqueSorted(values, customCmp) {
     const arr = [...new Set(values.filter(Boolean))];
     arr.sort(customCmp || ((a, b) => a.localeCompare(b)));
@@ -170,8 +248,6 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     if (!sel) return;
     let valueRanks = null;
     if (f.sortKey) {
-      // Build label → rank map from the metric corpus so the dropdown
-      // sorts in the same order the data is naturally arranged.
       valueRanks = new Map();
       for (const m of state.metrics) {
         for (const v of getValues(m, key)) {
@@ -193,12 +269,12 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     sel.addEventListener('change', () => {
       state.filters[key] = sel.value;
       writeHash();
-      render();
+      renderAll();
     });
   }
 
+  // ---------- Filter ----------
   function metricMatches(m) {
-    // Free-text search
     const q = (state.filters.q || '').toLowerCase().trim();
     if (q) {
       const hay = (m.ref_id + ' ' + m.name + ' ' + m.group + ' ' + m.cluster_name).toLowerCase();
@@ -213,6 +289,146 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     return true;
   }
 
+  // ---------- Matrix render ----------
+  function renderMatrix(filtered) {
+    const grid = document.getElementById('matrix-grid');
+    // Clear any previous content except the corner cell (first child).
+    while (grid.children.length > 1) grid.removeChild(grid.lastChild);
+
+    // Cluster headers
+    for (const cluster of CLUSTER_ORDER) {
+      const h = document.createElement('div');
+      h.className = 'matrix-cluster-header';
+      h.textContent = CLUSTER_LABELS[cluster];
+      grid.appendChild(h);
+    }
+
+    // Build cells: one row per tier, one cell per cluster
+    for (const tier of [1, 2, 3]) {
+      const th = document.createElement('div');
+      th.className = 'matrix-tier-header';
+      th.textContent = TIER_LABELS[tier];
+      grid.appendChild(th);
+
+      for (const cluster of CLUSTER_ORDER) {
+        const cell = document.createElement('div');
+        cell.className = 'matrix-cell';
+        cell.dataset.cluster = cluster;
+        cell.dataset.tier = String(tier);
+        // Cells accept drops
+        cell.addEventListener('dragover', e => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          cell.classList.add('drag-over');
+        });
+        cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+        cell.addEventListener('drop', e => {
+          e.preventDefault();
+          cell.classList.remove('drag-over');
+          const refId = e.dataTransfer.getData('text/plain');
+          if (refId) handleDrop(refId, cell);
+        });
+
+        // Populate cell with metrics that match cluster + (effective) tier + filter
+        const inCell = filtered
+          .filter(m => m.cluster === cluster && effectiveTier(m) === tier)
+          .sort((a, b) => (a._idx ?? 0) - (b._idx ?? 0));
+        if (inCell.length === 0) {
+          const empty = document.createElement('span');
+          empty.className = 'matrix-cell-empty';
+          empty.textContent = '—';
+          cell.appendChild(empty);
+        } else {
+          for (const m of inCell) cell.appendChild(buildCard(m));
+        }
+        grid.appendChild(cell);
+      }
+    }
+  }
+
+  function buildCard(m) {
+    const card = document.createElement('div');
+    card.className = 'matrix-card tier-' + effectiveTier(m);
+    if (state.moves[m.ref_id]) card.classList.add('moved');
+    card.draggable = true;
+    card.dataset.refid = m.ref_id;
+    card.title = m.name + ' — drag between tier rows to re-tier (local what-if only)';
+
+    const link = document.createElement('a');
+    link.href = metricLink(m);
+    link.textContent = m.ref_id;
+    link.draggable = false; // anchor's own drag would conflict with card drag
+    link.addEventListener('click', e => e.stopPropagation()); // don't capture-then-navigate
+    card.appendChild(link);
+
+    card.addEventListener('dragstart', e => {
+      card.classList.add('dragging');
+      e.dataTransfer.setData('text/plain', m.ref_id);
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    card.addEventListener('dragend', () => card.classList.remove('dragging'));
+    return card;
+  }
+
+  function handleDrop(refId, cell) {
+    const m = state.metrics.find(x => x.ref_id === refId);
+    if (!m) return;
+    const targetTier = parseInt(cell.dataset.tier, 10);
+    const targetCluster = cell.dataset.cluster;
+    if (targetCluster !== m.cluster) {
+      // Don't allow moving between clusters — clusters are structural.
+      // Visually shake or just no-op silently. No-op for now.
+      return;
+    }
+    if (targetTier === m.tier) {
+      delete state.moves[refId]; // returning to original
+    } else {
+      state.moves[refId] = { from: m.tier, to: targetTier };
+    }
+    renderAll();
+  }
+
+  function renderMoves() {
+    const panel = document.getElementById('moves-panel');
+    const list = document.getElementById('moves-list');
+    const moves = Object.entries(state.moves);
+    if (moves.length === 0) {
+      panel.classList.add('empty');
+      list.innerHTML = '';
+      return;
+    }
+    panel.classList.remove('empty');
+    list.innerHTML = '';
+    // Sort moves by ref_id for stable display
+    moves.sort((a, b) => a[0].localeCompare(b[0]));
+    for (const [refId, mv] of moves) {
+      const li = document.createElement('li');
+      li.innerHTML = `<span>${escapeHtml(refId)}: ${TIER_LABELS[mv.from]} → ${TIER_LABELS[mv.to]}</span>`;
+      const btn = document.createElement('button');
+      btn.className = 'move-revert';
+      btn.type = 'button';
+      btn.textContent = 'revert';
+      btn.title = 'Move ' + refId + ' back to ' + TIER_LABELS[mv.from];
+      btn.addEventListener('click', () => {
+        delete state.moves[refId];
+        renderAll();
+      });
+      li.appendChild(btn);
+      list.appendChild(li);
+    }
+  }
+
+  function renderMatrixSummary(filtered) {
+    const sum = document.getElementById('matrix-summary');
+    const moves = Object.keys(state.moves).length;
+    const t1 = filtered.filter(m => effectiveTier(m) === 1).length;
+    const t2 = filtered.filter(m => effectiveTier(m) === 2).length;
+    const t3 = filtered.filter(m => effectiveTier(m) === 3).length;
+    const movesText = moves ? ` · ${moves} re-tiered` : '';
+    sum.textContent = `${filtered.length} metrics shown — 🟢 ${t1} · 🟡 ${t2} · 🔵 ${t3}${movesText}`;
+  }
+
+  // ---------- Table render (existing v0.1 explorer) ----------
   const COLUMNS = [
     { key: 'ref_id', label: 'Ref' },
     { key: 'name', label: 'Name' },
@@ -228,36 +444,24 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     if (col.getter) return col.getter(m);
     return m[col.key] || '';
   }
-
   function refIdToAnchor(refId) { return refId.toLowerCase().replace(/\./g, '-'); }
   function metricLink(m) {
-    // /explore/ is a sibling of /groups/, so the relative path needs ../
-    // to escape the explore/ directory before descending into groups/.
     const slug = m.group_file.replace(/\.md$/, '').split('/').pop();
     return '../groups/' + slug + '/#' + refIdToAnchor(m.ref_id);
   }
 
-  function render() {
-    const filtered = state.metrics.filter(metricMatches);
-    // Sort
+  function renderTable(filtered) {
     const sortCol = COLUMNS.find(c => c.key === state.sort.col) || COLUMNS[0];
-    filtered.sort((a, b) => {
+    const sorted = filtered.slice().sort((a, b) => {
       let cmp;
       if (sortCol.key === 'tier_label') {
-        // Tier-numeric (1 / 2 / 3), not alphabetic on label.
-        cmp = a.tier - b.tier;
+        cmp = effectiveTier(a) - effectiveTier(b);
       } else if (sortCol.key === 'ref_id') {
-        // Default natural order: use the index in metrics.json directly.
-        // build_site emits metrics in the canonical TP→PI→HL→IO→GV→ES
-        // sequence with each group in its build.py order, so this is the
-        // "as-listed" view a reader of the catalogue would expect.
         cmp = (a._idx ?? 0) - (b._idx ?? 0);
       } else if (sortCol.key === 'cluster') {
         cmp = (CLUSTER_RANK[a.cluster] ?? 99) - (CLUSTER_RANK[b.cluster] ?? 99);
       } else {
-        const av = String(colValue(a, sortCol)).toLowerCase();
-        const bv = String(colValue(b, sortCol)).toLowerCase();
-        cmp = av.localeCompare(bv);
+        cmp = String(colValue(a, sortCol)).toLowerCase().localeCompare(String(colValue(b, sortCol)).toLowerCase());
       }
       return state.sort.dir === 'asc' ? cmp : -cmp;
     });
@@ -265,14 +469,13 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     // Summary
     const summary = document.getElementById('ex-summary');
     const total = state.metrics.length;
-    const t1 = filtered.filter(m => m.tier === 1).length;
-    const t2 = filtered.filter(m => m.tier === 2).length;
-    const t3 = filtered.filter(m => m.tier === 3).length;
-    summary.textContent = `Showing ${filtered.length} of ${total} metrics — 🟢 ${t1} · 🟡 ${t2} · 🔵 ${t3}`;
+    const t1 = sorted.filter(m => effectiveTier(m) === 1).length;
+    const t2 = sorted.filter(m => effectiveTier(m) === 2).length;
+    const t3 = sorted.filter(m => effectiveTier(m) === 3).length;
+    summary.textContent = `Showing ${sorted.length} of ${total} metrics — 🟢 ${t1} · 🟡 ${t2} · 🔵 ${t3}`;
 
-    // Table
     const wrap = document.getElementById('ex-table-wrap');
-    if (filtered.length === 0) {
+    if (sorted.length === 0) {
       wrap.innerHTML = '<div class="explorer-empty">No metrics match these filters. <a href="#" id="ex-reset-inline">Reset?</a></div>';
       const link = document.getElementById('ex-reset-inline');
       if (link) link.addEventListener('click', e => { e.preventDefault(); resetFilters(); });
@@ -285,12 +488,16 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
       html += `<th data-col="${col.key}" class="${cls}">${col.label}</th>`;
     }
     html += '</tr></thead><tbody>';
-    for (const m of filtered) {
+    for (const m of sorted) {
       const link = metricLink(m);
+      const tier = effectiveTier(m);
+      const tierIcon = { 1: '🟢', 2: '🟡', 3: '🔵' }[tier] || m.tier_icon;
+      const tierLabel = TIER_LABEL_FOR_TIER[tier] || m.tier_label;
+      const movedMark = state.moves[m.ref_id] ? ' *' : '';
       html += '<tr>';
-      html += `<td class="refid"><a href="${link}">${m.ref_id}</a></td>`;
+      html += `<td class="refid"><a href="${link}">${escapeHtml(m.ref_id)}</a>${movedMark}</td>`;
       html += `<td>${escapeHtml(m.name)}</td>`;
-      html += `<td><span class="tier-icon">${m.tier_icon}</span> ${escapeHtml(m.tier_label)}</td>`;
+      html += `<td><span class="tier-icon">${tierIcon}</span> ${escapeHtml(tierLabel)}</td>`;
       html += `<td>${escapeHtml(m.cluster_name || m.cluster)}</td>`;
       html += `<td>${escapeHtml(m.group)}</td>`;
       html += `<td>${escapeHtml(m.dimensions['Measurement Cadence'] || '')}</td>`;
@@ -301,24 +508,28 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     html += '</tbody></table>';
     wrap.innerHTML = html;
 
-    // Sort header click handlers
     for (const th of wrap.querySelectorAll('th[data-col]')) {
       th.addEventListener('click', () => {
         const col = th.dataset.col;
-        if (state.sort.col === col) {
-          state.sort.dir = state.sort.dir === 'asc' ? 'desc' : 'asc';
-        } else {
-          state.sort.col = col;
-          state.sort.dir = 'asc';
-        }
+        if (state.sort.col === col) state.sort.dir = state.sort.dir === 'asc' ? 'desc' : 'asc';
+        else { state.sort.col = col; state.sort.dir = 'asc'; }
         writeHash();
-        render();
+        renderAll();
       });
     }
   }
 
   function escapeHtml(s) {
     return String(s).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  }
+
+  // ---------- Top-level render ----------
+  function renderAll() {
+    const filtered = state.metrics.filter(metricMatches);
+    renderMatrix(filtered);
+    renderMatrixSummary(filtered);
+    renderMoves();
+    renderTable(filtered);
   }
 
   function resetFilters() {
@@ -330,7 +541,12 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
       if (sel) sel.value = '';
     }
     writeHash();
-    render();
+    renderAll();
+  }
+
+  function resetMoves() {
+    state.moves = {};
+    renderAll();
   }
 
   async function init() {
@@ -353,6 +569,7 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     } catch (err) {
       document.getElementById('ex-summary').textContent = 'Error loading metrics.json — see console for details.';
       document.getElementById('ex-table-wrap').innerHTML = '<div class="explorer-empty">Could not load metrics data.</div>';
+      document.getElementById('matrix-summary').textContent = 'Error loading.';
       console.error('Failed to load metrics:', err);
       return;
     }
@@ -363,12 +580,12 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
     search.addEventListener('input', () => {
       state.filters.q = search.value;
       writeHash();
-      render();
+      renderAll();
     });
     for (const key of Object.keys(FIELDS)) populateSelect(key);
     document.getElementById('ex-reset').addEventListener('click', resetFilters);
+    document.getElementById('matrix-reset-moves').addEventListener('click', resetMoves);
 
-    // Hash navigation (back/forward) keeps filters in sync
     window.addEventListener('hashchange', () => {
       const h = readHash();
       state.filters = {};
@@ -379,10 +596,10 @@ A filterable view over all 221 metrics in the taxonomy. Pick filters on the left
         const sel = document.getElementById(f.id);
         if (sel) sel.value = state.filters[key] || '';
       }
-      render();
+      renderAll();
     });
 
-    render();
+    renderAll();
   }
 
   if (document.readyState === 'loading') {
