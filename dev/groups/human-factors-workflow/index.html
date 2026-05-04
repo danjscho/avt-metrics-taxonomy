@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3341,6 +3341,8 @@
       
         
       
+        
+      
     
     
     
@@ -3513,6 +3515,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3953,7 +3983,7 @@
 <li><strong>Per-clinician disaggregation MANDATORY:</strong> site-level ER hides individual complacency. Reporting must include per-clinician trajectories alongside aggregate.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the &gt; 15-percentage-point drop sustained ≥ 4 weeks comes from the existing Formal Definition complacency signal (carried from prior versions of the metric); the 30–80 % baseline range, the &lt; 50 %-of-baseline pause trigger, and the zero-safety-critical-edits-with-continued-stylistic-editing trigger are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Edit Rate is <strong>interpretable only as a trajectory</strong> (per Limitations and Novel Thinking); absolute thresholds below are deployment-context-dependent and require local calibration before contractual use.</p>
 <ul>
@@ -3961,6 +3991,7 @@
 <li><strong>Continuous monitoring alert:</strong> substantive ER drops &gt; 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).</li>
 <li><strong>Pause / review trigger:</strong> substantive ER &lt; 50 % of per-clinician baseline for 4 consecutive weeks, OR safety-critical edit rate drops to zero for ≥ 4 weeks while substantive edit rate remains &gt; 10 % (suggests clinicians are stopping their safety review while continuing minor editing). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#hl-hf-1">Threshold Reference: HL.HF-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Code: Edit rate complacency detection</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
@@ -4247,7 +4278,7 @@
 <li><strong>Review-quality proxy gap:</strong> RBS is a surrogate for review <em>quality</em>, not a measure of it (see Limitations). Telemetry-detected review behaviour does not guarantee review effectiveness. The construct-level pairing with HL.HF-3b narrows but does not close the proxy gap.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the ≥ 95 % gate, &lt; 85 % pause trigger, and the T_min formula are cited from the <a href="../../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a> specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are <strong>proposed in v3.8 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against specialty mix and consultation-complexity profile before contractual use.</p>
 <ul>
@@ -4255,6 +4286,7 @@
 <li><strong>Continuous monitoring alert:</strong> weekly RBS &lt; 95 % aggregate; OR any single clinician's RBS drops &gt; 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 &lt; 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).</li>
 <li><strong>Pause / review trigger:</strong> RBS &lt; 85 % aggregate for two consecutive weeks (NAS pause trigger); OR per-clinician RBS &lt; 75 % for one week (individual-level severe failure); OR confirmed rubber-stamping pattern (low RBS AND low TTS_norm AND low HL.HF-1 substantive edit rate). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#hl-hf-3a">Threshold Reference: HL.HF-3a</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4351,7 +4383,7 @@
 <li><strong>Note-complexity stratification:</strong> report TTS_norm distribution stratified by note word count quartile (short / medium / long / very-long); rubber-stamping risk is most visible on long/complex notes signed at short-note speed.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the TTS_norm &lt; 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> principles cited in Source. Specific numbers (P5 &lt; 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.</p>
 <ul>
@@ -4359,6 +4391,7 @@
 <li><strong>Continuous monitoring alert:</strong> weekly P5 of TTS_norm &lt; 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm &lt; 0.5 s/word rises &gt; 10 percentage points from per-clinician baseline.</li>
 <li><strong>Pause / review trigger:</strong> weekly P10 of TTS_norm &lt; 0.3 s/word AND HL.HF-1 substantive edit rate &lt; 25 % for the same clinician-window (rubber-stamping confirmed in distribution and in editing behaviour). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#hl-hf-3b">Threshold Reference: HL.HF-3b</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Code: Time-to-sign analysis</strong></p>
 <div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>

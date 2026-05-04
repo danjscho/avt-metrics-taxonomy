@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3042,6 +3042,8 @@
       
         
       
+        
+      
     
     
     
@@ -3237,6 +3239,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../metric-history/" class="md-nav__link">
         
   
@@ -3323,6 +3353,39 @@
       Table of contents
     </label>
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#v502-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.2 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v501-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.1 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v500-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.0 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
       
         <li class="md-nav__item">
   <a href="#v451-2026-05-04" class="md-nav__link">
@@ -4412,6 +4475,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v502-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.2 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v501-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.1 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v500-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.0 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v451-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5477,6 +5573,59 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v502-2026-05-04">v5.0.2 (2026-05-04)<a class="headerlink" href="#v502-2026-05-04" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: standalone summary of Registry-needed metrics.</strong></p>
+<p>No metric / catalogue content changes. One additional research-output file at repo root: <code>v5.1-registry-needed-metrics.md</code> — a small, scannable list pulled out of v5.0.1's longer Phase 1a audit, answering the direct question "what metrics does the AVT Registry transitively need?". 38 Tier 1 metrics confirmed Registry-relevant, organised by attestation type (clinical safety, IG, NHS-specific compliance, vendor transparency, AVT-specific accuracy, clinical accountability, operational/interop). Carries the same honest scoping note as v5.0.1: mapped against the <em>transitive surface</em> (CIO/CCIO + IG guidance), not the actual Registry attestation form (which is not publicly accessible).</p>
+<p>This file is intended as a quick reference while waiting for the actual Registry attestation form. When the form is available, re-running Phase 1a against this list produces a sharp diff (confirmed / surplus / net gap).</p>
+<h2 id="v501-2026-05-04">v5.0.1 (2026-05-04)<a class="headerlink" href="#v501-2026-05-04" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: Phase 1a Registry coverage audit (research output for v5.1+ minimum-set work).</strong></p>
+<p>No metric / catalogue content changes. One research-output file added at repo root: <code>v5.1-registry-coverage-audit.md</code>.</p>
+<p><strong>What this is.</strong> Plan-future #4 (Tier 1 minimum-set construction) starts with a coverage audit against the NHS England AVT Self-Certified Supplier Registry. Per the user-direction framing, the minimum set extends Tier 1 (no demotions; promotions only; replacements discussed explicitly), and the Registry pulls in transitive coverage of every framework it references.</p>
+<p><strong>Honest scope note.</strong> The public Registry page at <code>digital.nhs.uk/services/ambient-scribing/...</code> does not publicly enumerate the attestation criteria themselves — they live behind the National Commercial and Procurement Hub. The audit therefore maps against the <em>transitive surface</em>: the CIO/CCIO guidance + IG guidance (March 2026) + Mills &amp; Reeve legal summary + HTN article on the registry launch. The actual attestation form would refine this if accessible.</p>
+<p><strong>Headline findings.</strong></p>
+<ul>
+<li><strong>14 frameworks</strong> transitively required by the Registry; <strong>all 14 already in catalogue</strong> (1 — Caldicott / NDG — already on the gap roadmap as <code>_gaps.md §2g</code>). No new framework handles needed.</li>
+<li><strong>~70 substantive requirements</strong> mapped across 7 areas (clinical safety, IG, vendor transparency, AVT-specific accuracy, clinical accountability, operational/interop, training/governance).</li>
+<li><strong>Most requirements already covered</strong> at Tier 1 today.</li>
+<li><strong>4 candidate promotions Tier 2 → Tier 1</strong>: <a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a> Telemetry Provision Completeness, <a href="../groups/vendor-transparency-contractual/#gv-vt-14">GV.VT-14</a> Indicative Pricing Transparency, <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER. Discussion required before Phase 5.</li>
+<li><strong>4 already-roadmapped gaps to pull through</strong>: GV.SG-19 (PSIRF), GV.CR-12 (CQC), GV.CR-14 (Caldicott), TP.WB-11 (PRSB).</li>
+<li><strong>~8 new gap candidates</strong> surfaced: lawful-basis-documentation, Right to Restrict Processing, information-asset-register, joint-controller-status, organisational opt-out mechanism, training-data-provenance disclosure, encryption-specific attestation, AVT-specific organisational policy.</li>
+</ul>
+<p><strong>Phase 1b plan.</strong> Per-framework coverage audit across 11 frameworks (DTAC, DSPT, DCB0129, DCB0160, MHRA SaMD, NHS LLM Framework, NHSE IG Guidance, NICE ESF, NHS T.E.S.T., CQC, UK GDPR, FHIR UK Core, ICO). Sequenced highest-yield-first (DTAC → IG → DCB → MHRA → LLM → DSPT → ESF → T.E.S.T. → GDPR → CQC → FHIR → ICO). Likely ships across 2-3 PATCH releases.</p>
+<p>Plan-future #4 progresses; closes when Phase 5 promotions and <code>minimum-set.md</code> page land.</p>
+<h2 id="v500-2026-05-04">v5.0.0 (2026-05-04)<a class="headerlink" href="#v500-2026-05-04" title="Permanent link">&para;</a></h2>
+<p><strong>Major release: structural split — threshold numbers move out of metric bodies into a dedicated Threshold Reference page.</strong></p>
+<p>The user-direction concern that started this work: numbers leaked from metric bodies into procurement contracts and academic citations without their context. The "proposed in vX.Y as starting points" Provenance preludes did honest work locally but couldn't travel with the number once it was copy-pasted out. v5.0 addresses this structurally rather than rhetorically.</p>
+<p><strong>The split.</strong></p>
+<ul>
+<li>New top-level page <strong><a href="../thresholds/">Threshold Reference</a></strong> at <code>docs/thresholds.md</code> (source: <code>taxonomy/_thresholds.md</code>). Contains every taxonomy-proposed threshold across the tightened-pattern metrics, with a "why this number" provenance column per row, four named cross-metric conventions (severity-weighting, test-corpus floor, severity-band notification ladders, aggregate-rate gates vs zero-tolerance category boundaries), and a prominent compound-errors caveat repeated structurally throughout.</li>
+<li><strong>Metric bodies</strong>: the <strong>Threshold Guidance</strong> sub-block is renamed <strong>Trigger Conditions</strong>. Each Trigger Conditions block now carries a one-line pointer to the per-metric anchor on the Threshold Reference page. Cited numbers (NAS Day Zero SPI, UK GDPR statutory, NHSE guidance) stay in metric bodies — they are sourced, not proposed. Severity-weighting formulas stay in metric bodies (definitional to the metric) and are restated on the Threshold Reference page so the page is self-contained.</li>
+</ul>
+<p><strong>The "starting points" framing is structurally repeated</strong> at the page top, at every per-metric section, and inside every Trigger Conditions pointer. The compound-errors caveat is named explicitly: each threshold was authored independently, has not been jointly calibrated against deployment data, and a deployment that adopts every threshold as written may sit on overlapping triggers that no single trigger predicted.</p>
+<p><strong>Phase 2a tightenings applied.</strong></p>
+<ul>
+<li><strong><a href="../groups/asr-transcription/#tp-asr-12">TP.ASR-12</a></strong> drift threshold tightened: &gt; 50 % drift → &gt; 25 % drift sustained two audit cycles (was too loose; matches v3.4 GV.PD drift conventions).</li>
+<li><strong><a href="../groups/downstream-write-back/#tp-wb-2">TP.WB-2</a></strong> IER &lt; 0.001 provenance reframed: was "standard SLA target" (vague); now flagged as "standard healthcare integration SLA convention" with the Three-nines-reliability lineage made explicit.</li>
+<li><strong><a href="../groups/training-competency/#gv-tc-1">GV.TC-1</a></strong> module-minute floors loosened: the specific 30 / 15 / 20-minute floors added false precision and have been replaced with "engagement floor per module — deployer-set based on module length, audited via session-time telemetry".</li>
+</ul>
+<p><strong>Phase 2b cross-metric conventions named.</strong> Four patterns that previously recurred across multiple metric bodies now have single named definitions on the Threshold Reference page:</p>
+<ol>
+<li><strong>Severity-weighting convention</strong> — symmetric <code>(0.1·benign + 0.5·moderate + 1.0·critical) / N</code> referenced by <a href="../groups/asr-transcription/#tp-asr-12">TP.ASR-12</a>, <a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a>, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a>, <a href="../groups/summarisation-nlp/#tp-sn-15">TP.SN-15</a>. Asymmetric variant for <a href="../groups/summarisation-nlp/#tp-sn-20">TP.SN-20</a> explicitly distinguished.</li>
+<li><strong>Test-corpus floor convention</strong> (≥ 200 cases + ICC ≥ 0.85) — referenced by 6+ metrics. Adds an explicit <strong>rare-event-rate caveat</strong> that the prior taxonomy did not make: 200 is a floor, not a target — for sub-1 % rates, push the floor above 1000 expected events.</li>
+<li><strong>Severity-band notification-ladder convention</strong> — meta-pattern (3-4 bands, 3-7× ratios, immediate-most-severe) referenced by <a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a>, <a href="../groups/vendor-transparency-contractual/#gv-vt-1">GV.VT-1</a>, <a href="../groups/vendor-transparency-contractual/#gv-vt-5">GV.VT-5</a>, <a href="../groups/vendor-transparency-contractual/#gv-vt-15">GV.VT-15</a>. Per-metric ladders kept because the underlying decisions genuinely differ.</li>
+<li><strong>Aggregate-rate gates vs zero-tolerance category boundaries</strong> — the most important reframe. Many "100 %" thresholds in the catalogue are zero-tolerance category boundaries, not stringent percentage gates. Same numbers, fundamentally different communication. Body prose now says "definitional category boundary" or "pre-deployment gate" depending on which.</li>
+</ol>
+<p><strong>Build / audit changes.</strong></p>
+<ul>
+<li><code>audit.py:TIGHTENING_SUB_BLOCKS</code> updated: <code>Threshold Guidance</code> → <code>Trigger Conditions</code>.</li>
+<li><code>check_threshold_provenance</code> repurposed: previously checked for the in-body Provenance prelude; now checks that every tightened metric's Trigger Conditions block contains a pointer to <code>thresholds.md</code> with the metric's own anchor.</li>
+<li><code>build_site.MAPPING</code> adds <code>_thresholds.md</code> → <code>thresholds.md</code>.</li>
+<li><code>link_bare_ref_ids</code> skips <code>thresholds.md</code> (the page uses ref-IDs in <code>####</code> headings as anchors via attr_list — linkifying them would break the round-trip).</li>
+<li><code>mkdocs.yml</code> nav adds Threshold Reference under About.</li>
+</ul>
+<p><strong>Why MAJOR not MINOR.</strong> The Threshold Guidance heading rename is a breaking change for any tooling that grepped or parsed metric bodies for <code>**Threshold Guidance**</code>. The <code>_thresholds.md</code> source file is new. The audit-check rename (<code>missing-threshold-provenance</code> → <code>missing-thresholds-pointer</code>) is a breaking change for anyone consuming the audit JSON. v3.x → v4.0 was MAJOR for the same reason (Part-letter retirement); v4.x → v5.0 is MAJOR for the structural threshold split.</p>
+<p><strong>Plan-future #8 closes</strong> with this release.</p>
+<p><strong>Counts unchanged</strong>: 221 metrics / 45-97-79 tiers. Catalogue size unchanged. The shape change is structural, not content.</p>
 <h2 id="v451-2026-05-04">v4.5.1 (2026-05-04)<a class="headerlink" href="#v451-2026-05-04" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: v5.0 preparatory research output — Tier 1 threshold review (Phases 1, 2a, 2b).</strong></p>
 <p>No metric / catalogue content changes. Three research-output files added at repo root, scoping the v5.0 structural split where threshold numbers move out of metric bodies into a dedicated <strong>Threshold Reference</strong> page. Plan-future #8 progresses (closes at v5.0).</p>
@@ -5762,11 +5911,11 @@ historical artefacts, deliberately frozen.</p>
 <h2 id="v381-2026-04-26">v3.8.1 (2026-04-26)<a class="headerlink" href="#v381-2026-04-26" title="Permanent link">&para;</a></h2>
 <p>Site-only patch release — no taxonomy content changes. Fixes broken cross-page links and download issues surfaced by reviewing the <code>mkdocs serve</code> output:</p>
 <ul>
-<li><strong>Cross-cutting principle pages now in nav</strong>: <code>_outcomes-boundary.md</code> and <code>_calibration-and-context.md</code> were authored as separate source files but never mapped into the rendered site. Every <code> MASK4 </code> and <code> MASK5 </code> link from a group page resolved to nowhere. Mapped both into <code>docs/</code> and added to the nav under "Cross-cutting".</li>
+<li><strong>Cross-cutting principle pages now in nav</strong>: <code>_outcomes-boundary.md</code> and <code>_calibration-and-context.md</code> were authored as separate source files but never mapped into the rendered site. Every <code> MASK5 </code> and <code> MASK6 </code> link from a group page resolved to nowhere. Mapped both into <code>docs/</code> and added to the nav under "Cross-cutting".</li>
 <li><strong>Two orphan crosscut pages added to nav</strong>: the auto-generated NHSE AVT Registry and NHS T.E.S.T. by-standard pages were rendered but missing from the nav block. Added to "Cross-cut views → By standard".</li>
 <li><strong>Cross-page metric anchor rewriting</strong>: bare <code>#tp-ac-1</code>-style references from one group page to a metric on a different group page are now rewritten to <code>&lt;other-group&gt;.md#tp-ac-1</code> at build time. The catalogue is parsed once and cached; sub-part suffixes (<code>-a</code>, <code>-b</code>) handled. Closes ~50 broken anchors that existed in the source taxonomy but only resolved in the monolith build.</li>
 <li><strong>Sub-part anchor regex</strong>: <code>add_metric_anchors</code> regex extended to capture trailing letter suffixes so <code>### HL.HF-3a</code> lands <code>id="hl-hf-3a"</code> on the rendered page (previously slugged as <code>hl-hf-3</code>).</li>
-<li><strong>External-link rewrites for strict mode</strong>: <code> MASK6 </code> → <code>changelog.md</code> (in-docs), <code> MASK7 </code> → GitHub blob URL, <code>[archive/&lt;file&gt;.md]</code> → GitHub blob URL. <code>mkdocs build --strict</code> was previously failing with three warnings; now passes.</li>
+<li><strong>External-link rewrites for strict mode</strong>: <code> MASK7 </code> → <code>changelog.md</code> (in-docs), <code> MASK8 </code> → GitHub blob URL, <code>[archive/&lt;file&gt;.md]</code> → GitHub blob URL. <code>mkdocs build --strict</code> was previously failing with three warnings; now passes.</li>
 <li><strong>Live-derived downloads page</strong>: replaced hardcoded <code>v3.1</code> citation example and "214 metrics" / "83 gaps" counts with values pulled from <code>parse.summary()</code> and a single <code>SITE_VERSION</code> constant. Same for the landing page version stamp.</li>
 <li><strong>Stale slug fixes in CHANGELOG</strong>: three legacy anchor refs (<code>#gvcr-6-...</code>, <code>#hlhf-1-...</code>, <code>#gvpd-1-...</code>) updated to current <code>#gv-cr-6</code> / <code>#hl-hf-1</code> / <code>#gv-pd-1</code> form so the cross-page rewrite resolves them to the right metric pages.</li>
 </ul>

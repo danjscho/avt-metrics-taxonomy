@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3220,6 +3220,8 @@
       
         
       
+        
+      
     
     
     
@@ -3392,6 +3394,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3712,7 +3742,7 @@
 <li><strong>Dissent-detection coverage check:</strong> if recorded dissent rate is &lt; 0.5 % of AVT-eligible consultations, the deployer must run a sampling check (clinician self-report or patient survey) to verify the low rate reflects actual patient acceptance rather than under-detection.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the IG-incident reportability framing follows from <a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a> and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, &lt; 95 % escalation trigger, &lt; 0.5 % coverage-check threshold) are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3720,6 +3750,7 @@
 <li><strong>Continuous monitoring:</strong> documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.</li>
 <li><strong>Pause / escalation trigger:</strong> any dissent-not-respected event confirmed (single instance), OR sub-metric &lt; 95 % in any month. Both reportable as IG incidents.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-1">Threshold Reference: GV.CR-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3820,7 +3851,7 @@
 <li><strong>Content-element breakdown MANDATORY:</strong> report compliance per content element (what / what / who / how). A clinician who consistently omits "how to decline" is failing differently from one who omits "where it goes"; aggregate-only reporting hides the failure pattern.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the four content-element framing (what / what / who / how) follows from <a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a>. Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, &lt; 75 % escalation, ≥ 30 sample-size floor) are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3828,6 +3859,7 @@
 <li><strong>Continuous monitoring:</strong> monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.</li>
 <li><strong>Pause / escalation trigger:</strong> any content element &lt; 75 % compliance in any audit cycle; or self-report &gt; 95 % paired with audited rate &lt; 75 % (this is a self-report integrity failure, separately serious).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-2">Threshold Reference: GV.CR-2</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4019,7 +4051,7 @@
 <li><strong>Delisting watch:</strong> the deployer's IG file records the registry status at each verification; any change from listed to not-listed (or vice versa) triggers an explicit governance review.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the binary registry status, the 12-month attestation currency window, and the quarterly re-verification cadence are cited from the NHS England registry mechanics. The "12-month signed declaration" threshold and the multi-product scope-alignment requirement are <strong>proposed in v3.8 as starting points</strong>, not externally validated by NHSE — registry's specific re-listing rules are still pending publication. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against the deployer's procurement risk appetite before contractual use.</p>
 <ul>
@@ -4027,6 +4059,7 @@
 <li><strong>Continuous monitoring:</strong> quarterly verification of all three sub-metrics; alert on attestation &gt; 9 months old (60-day grace); alert on any scope-coverage gap discovered post-procurement.</li>
 <li><strong>Pause / escalation trigger:</strong> vendor delisted (single instance — registry status loss is governance-event-grade); OR contracted use case discovered outside vendor's registry-submission scope; OR attestation &gt; 12 months and not renewed.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-4">Threshold Reference: GV.CR-4</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4120,7 +4153,7 @@
 <li><strong>Carve-out logging MANDATORY:</strong> any deployment proceeding without ICB acknowledgement (under the capacity-constraint allowance) MUST be logged with reason and review date. Repeated unanswered notifications to the same ICB within 12 months trigger escalation to the regional CCIO, not silent acceptance.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the three-sub-metric framing follows from <a href="../../references/#cio-ccio-guidance-2026">CIO-CCIO-Guidance-2026</a> and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -4128,6 +4161,7 @@
 <li><strong>Continuous monitoring:</strong> quarterly review of acknowledgement rate and conditions-on-file rate; alert when any ICB has &gt; 1 unanswered notification on the deployer's books.</li>
 <li><strong>Pause / escalation trigger:</strong> any deployment going live without notification sent (process failure, not capacity issue); OR same ICB unanswered for ≥ 2 separate notifications within 12 months (escalate to regional CCIO).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-5">Threshold Reference: GV.CR-5</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4223,7 +4257,7 @@
 <li><strong>External review:</strong> independent CSO review of the safety case at intervals not exceeding 24 months OR on any major version change of the AVT product. Internal-only review is not Tier 1 sufficient.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the eight-section schema and currency triggers carry from <a href="../../references/#dcb0129">DCB0129</a> itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.</p>
 <ul>
@@ -4231,6 +4265,7 @@
 <li><strong>Continuous monitoring:</strong> annual per-section review; alert when any of sections 2-5 falls outside the 30-day post-trigger window; alert when external review is overdue.</li>
 <li><strong>Pause / escalation trigger:</strong> any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated &gt; 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link <a href="../../references/#si-2024-1368">SI 2024/1368</a> MHRA PMS substantial-change framework).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-6">Threshold Reference: GV.CR-6</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4325,7 +4360,7 @@
 <li><strong>Cross-reconciliation with safety case:</strong> DPIA-identified risks MUST be cross-mapped to safety-case hazards; risks named in DPIA but absent from safety case (or vice versa) are flagged in the audit output.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the eight-section schema and DPO sign-off requirement carry from <a href="../../references/#uk-gdpr">UK GDPR</a> Article 35 and the <a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a> template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.</p>
 <ul>
@@ -4333,6 +4368,7 @@
 <li><strong>Continuous monitoring:</strong> annual completion-rate review; alert on any DPIA where sign-off precedes the most recent significant change; alert when DPIA-safety-case reconciliation reveals unaligned risk/hazard list.</li>
 <li><strong>Pause / escalation trigger:</strong> any deployment going live without a DPO-signed DPIA (legal failure, not process); OR any DPIA stale &gt; 12 months past a significant change without re-review (regulatory exposure).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-cr-7">Threshold Reference: GV.CR-7</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>

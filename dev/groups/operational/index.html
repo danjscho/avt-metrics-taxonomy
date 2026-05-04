@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3220,6 +3220,8 @@
       
         
       
+        
+      
     
     
     
@@ -3392,6 +3394,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3706,7 +3736,7 @@
 <li><strong>Aggregation:</strong> report median DT and the time-saved (TS) trajectory; do not collapse to a single number without quality companion metric.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from <a href="../../references/#coiera-fraile-navarro-jmir-2026">Coiera &amp; Fraile-Navarro (JMIR, 2026)</a> and the <a href="../../references/#nihr-rset">NIHR RSET</a> 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3714,6 +3744,7 @@
 <li><strong>Continuous monitoring:</strong> weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS &gt; 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).</li>
 <li><strong>Pause / review trigger:</strong> any TS reported without quality data; OR in-consultation TS &gt; 0 paired with out-of-consultation DT increase (suggests burden displacement to after-hours, not reduction); OR TS positive while quality companion metric (PDSQI-9, hallucination rate) deteriorates.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-op-1">Threshold Reference: GV.OP-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4429,7 +4460,7 @@
 <li><strong>Contractual access window MANDATORY:</strong> the procurement contract specifies the minimum period during which the vendor will support read-access to historical content post-retirement (typical floor: 7 years to align with NHS clinical-record retention).</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the EPR-as-system-of-record framing carries from <a href="../downstream-write-back/#tp-wb-1">TP.WB-1 Write-back Fidelity</a> and the broader v3.x write-back metrics. The 7-year contractual access window aligns with NHS clinical-record retention but is <strong>proposed in v4.0.2 as a starting point</strong> for AVT deployments; specialty-specific retention rules may apply (paediatric records up to 25 years, mental health to 20). Specific thresholds (24-hour synthetic-retirement test, 100 % three-sub-metric pre-deployment gate, 95 % provenance-dereference compliance per-event) are <strong>proposed in v4.0.2 as starting points</strong>, not externally validated.</p>
 <ul>
@@ -4437,6 +4468,7 @@
 <li><strong>Per-event monitoring:</strong> retirement events trigger logging of (a) commit-completeness verification rerun, (b) provenance-dereference rate at retirement-day +30, (c) patient-portal access verification. Aggregate compliance reported per retirement event.</li>
 <li><strong>Pause / escalation trigger:</strong> synthetic-retirement test reveals any committed-content category that cannot be read without the vendor running (pre-deployment gate failure); OR per-event provenance-dereference rate &lt; 90 % at retirement-day +30; OR patient-portal access pathway degrades.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-op-14">Threshold Reference: GV.OP-14</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>

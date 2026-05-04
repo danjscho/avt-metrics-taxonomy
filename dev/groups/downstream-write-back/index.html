@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3187,6 +3187,8 @@
       
         
       
+        
+      
     
     
     
@@ -3359,6 +3361,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3646,7 +3676,7 @@
 <li><strong>Failure-mode classification MANDATORY:</strong> every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the zero-tolerance posture on type-(iii) failures into safety-critical fields follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (a hallucinated allergy in an allergy field is a system-level safety failure). Specific numbers (100 % safety-critical gate, ≥ 95 % free-text gate, ≥ 99 % monthly audit floor, ≥ 200 cases per EPR) are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3654,6 +3684,7 @@
 <li><strong>Continuous monitoring:</strong> monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).</li>
 <li><strong>Pause trigger:</strong> any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity &lt; 95 % in any monthly audit cycle.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#tp-wb-1">Threshold Reference: TP.WB-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -3757,7 +3788,7 @@
 <li><strong>Soft-failure detection method MANDATORY:</strong> the deployer's method for detecting degraded write-backs (where the EPR accepts the record but quality has been silently downgraded) MUST be documented. Methods in order of rigour: (i) sampled human review of write-back outputs against AVT-generated content; (ii) automated comparison of written-to-EPR content against AVT-generated content via diff; (iii) vendor self-attestation. Method (iii) is not Tier 1 sufficient alone.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the IER &lt; 0.001 SLA target carries from the existing Formal Definition and standard integration-monitoring practice. Specific numerical thresholds per error type (failed &lt; 0.0005, partial &lt; 0.0003, degraded &lt; 0.0002 by default; critical-rate zero-tolerance for the partial / degraded classes on safety-critical content) are <strong>proposed in v3.7 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against contractual SLA before procurement use.</p>
 <ul>
@@ -3765,6 +3796,7 @@
 <li><strong>Continuous monitoring:</strong> daily IER per error type per EPR ≤ SLA target; alert on any critical-class event detected (single instance, regardless of overall rate); alert if any error-type rate drifts &gt; 50 % above per-EPR baseline sustained 7 days.</li>
 <li><strong>Pause / escalation trigger:</strong> any critical-class event on safety-critical content (allergy / medication / dose) confirmed in production; OR aggregate IER &gt; 5 × SLA target on any EPR for 24 hours; OR degraded-class soft-failure detection cadence falls below documented method (loss of monitoring capability is itself an escalation event).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#tp-wb-2">Threshold Reference: TP.WB-2</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3859,7 +3891,7 @@
 <li><strong>Failure-mode classification:</strong> each failure recorded as (i) wrong field same category (e.g. allergy to wrong allergy sub-field); (ii) wrong category (e.g. allergy to medication); (iii) free-text fallback when structured target available; (iv) multi-target rule violation. Type (iii) on safety-critical categories is a critical-class failure (silent safety-mechanism bypass per the Novel Thinking section).</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the safety-critical-content-in-non-safety-critical-fields zero-tolerance posture follows from the clinical-safety logic in TP.WB-3's Why-this-tier and Novel Thinking sections (and TP.WB-1's parallel framing). Specific numerical thresholds (100 % safety-critical-category gate, ≥ 95 % per-category gate, type-(iii) zero-tolerance) are <strong>proposed in v3.7 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, the per-EPR field-map content is highly deployment-dependent — local calibration is the substantive work here, not the threshold numbers.</p>
 <ul>
@@ -3867,6 +3899,7 @@
 <li><strong>Continuous monitoring:</strong> monthly audited mapping accuracy ≥ 99 % on safety-critical categories; alert on any type-(iii) safety-critical failure detected in production traffic (no rate threshold — single instance is alert-worthy); alert if any per-category rate falls below 90 % in any audit cycle.</li>
 <li><strong>Pause / escalation trigger:</strong> any type-(iii) failure on allergy or medication-dose categories confirmed in production; OR aggregate safety-critical-category mapping accuracy &lt; 95 % in any monthly audit cycle.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#tp-wb-3">Threshold Reference: TP.WB-3</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3970,7 +4003,7 @@
 <li><strong>Skip-with-flag pathway MANDATORY:</strong> the workflow for surfacing skip-with-flag events to the clinician MUST be documented and tested at pre-deployment. Skip-without-flag is a silent failure of the metric.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the four-behaviour taxonomy and the safety-critical critical-failure classification follow from the existing Formal Definition and Novel Thinking. Specific numerical thresholds (≥ 50 cases per cell, 100 % safety-critical critical-failure-mode gate, ≥ 95 % per-cell gate elsewhere) are <strong>proposed in v3.7 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, the rule-document content is the substantive calibration work; the threshold numbers are starting points for that work.</p>
 <ul>
@@ -3978,6 +4011,7 @@
 <li><strong>Periodic audit:</strong> quarterly review of production-traffic update behaviour against the rule document; alert on any safety-critical critical-failure-mode event detected (single instance); alert if any (category × context) cell falls below 90 % correctness in any audit cycle.</li>
 <li><strong>Pause / escalation trigger:</strong> any safety-critical critical-failure-mode event confirmed in production (overwrite-with-less-data on allergies / medications / problems; skipped legitimate addition; duplicate-without-merge on safety-critical category); OR aggregate safety-critical-category cell correctness &lt; 95 % in any audit cycle.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#tp-wb-4">Threshold Reference: TP.WB-4</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>

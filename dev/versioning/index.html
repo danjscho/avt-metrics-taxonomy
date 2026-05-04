@@ -16,7 +16,7 @@
         <link rel="prev" href="../downloads/">
       
       
-        <link rel="next" href="../metric-history/">
+        <link rel="next" href="../thresholds/">
       
       
         
@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3044,6 +3044,8 @@
       
         
       
+        
+      
     
     
     
@@ -3369,6 +3371,34 @@
   
   
     <li class="md-nav__item">
+      <a href="../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../metric-history/" class="md-nav__link">
         
   
@@ -3606,7 +3636,7 @@
 <ul>
 <li>All releases tag on <code>main</code> after a <code>--no-ff</code> merge from the release branch</li>
 <li>Tag format: <code>vX.Y.Z</code> (no leading zero, no <code>v0.x</code> prerelease numbering — the prototype is at v4.x already)</li>
-<li><code>parse.py:TAXONOMY_VERSION</code> and <code>pyproject.toml:version</code> bumped together in the release commit; the <code>v4.5.1</code> / <code>2026-05-04</code> template tokens propagate to every header, banner, and citation block at build time</li>
+<li><code>parse.py:TAXONOMY_VERSION</code> and <code>pyproject.toml:version</code> bumped together in the release commit; the <code>v5.0.2</code> / <code>2026-05-04</code> template tokens propagate to every header, banner, and citation block at build time</li>
 </ul>
 <h2 id="deprecation-policy">Deprecation policy<a class="headerlink" href="#deprecation-policy" title="Permanent link">&para;</a></h2>
 <p>Reference IDs (<a href="../groups/audio-capture/#tp-ac-1">TP.AC-1</a> etc.) are stable identifiers. When a metric is removed (e.g. v3.7 redundancy resolution promoting two related metrics into a parent + sub-parts), the original ID is <strong>retired, not reused</strong>:</p>

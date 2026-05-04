@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3275,6 +3275,8 @@
       
         
       
+        
+      
     
     
     
@@ -3447,6 +3449,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -4843,14 +4873,15 @@
 <li><strong>Pre-deployment vs periodic audit:</strong> pre-deployment is a hard gate before go-live; periodic audit re-runs the test corpus on every component change per <a href="../safety-governance/#gv-sg-1">GV.SG-1 Model Version Tracking</a> (any ASR weight or model update triggers re-test).</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
-<p>⚠️ <strong>Provenance:</strong> the silence-hallucination failure mode is well-documented (<a href="../../references/#koenecke-careless-whisper-2024">Koenecke-Careless-Whisper-2024</a>, cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are <strong>proposed in v3.7 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.</p>
+<p>The silence-hallucination failure mode is well-documented (<a href="../../references/#koenecke-careless-whisper-2024">Koenecke-Careless-Whisper-2024</a>, cited Source) and the clinical-safety logic supports zero-tolerance for critical-class hallucinations.</p>
 <ul>
-<li><strong>Pre-deployment gate:</strong> zero critical-class hallucinations across the entire test corpus; moderate-class rate &lt; 1 % per category; benign-class rate &lt; 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.</li>
-<li><strong>Periodic audit:</strong> re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts &gt; 50 % from prior baseline.</li>
-<li><strong>Pause / escalation trigger:</strong> any critical-class hallucination detected in production traffic (single instance), or per-category HUN_w exceeds the pre-deployment gate by 2× in any audit cycle.</li>
+<li><strong>Pre-deployment gate</strong> is a zero-tolerance category boundary on critical-class events combined with low (per-category) rates on moderate and benign classes. Any critical-class failure is a hard fail regardless of overall rate.</li>
+<li><strong>Periodic audit</strong> re-runs the corpus on every ASR component change (<a href="../safety-governance/#gv-sg-1">GV.SG-1 Model Version Tracking</a>). The signals are (a) any new critical-class hallucination and (b) sustained drift in per-category HUN_w against the prior baseline.</li>
+<li><strong>Pause / escalation</strong> triggers on any critical-class hallucination in production traffic, or per-category HUN_w exceeding the pre-deployment gate substantially in any audit cycle.</li>
 </ul>
+<p>Specific numerical starting points (test-corpus floors, moderate / benign rates, drift magnitudes) are deployment-context-dependent and live in <a href="../../thresholds/#tp-asr-12">Threshold Reference: TP.ASR-12</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4956,7 +4987,7 @@
 <li><strong>Severity classification MANDATORY:</strong> dosage errors are critical by default. Date errors affecting clinical timing (medication start/stop, last menstrual period, immunisation history) classified critical. Other errors classified moderate or benign per clinical-significance review.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the dosage-error critical-class framing follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (and the canonical "15 mg → 50 mg" example). Specific numerical thresholds (100 % dosage gate, 99 % unit gate, 95 % integer / decimal / date / range gate, ≥ 200-tokens-per-sub-type floor) are <strong>proposed in v3.7 as starting points</strong>, not externally validated. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration before contractual use — paediatric dosing has narrower error tolerance than adult dosing, for example.</p>
 <ul>
@@ -4964,6 +4995,7 @@
 <li><strong>Periodic audit:</strong> monthly review of production-traffic numeric accuracy by sub-type; alert on any single dosage error confirmed; alert if any sub-type drifts &gt; 2 % below baseline sustained two months.</li>
 <li><strong>Pause / escalation trigger:</strong> any single dosage error confirmed in production traffic (single instance — dosage errors are zero-tolerance for the metric); OR aggregate sub-type accuracy &lt; 90 % for any sub-type in any audit cycle.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#tp-asr-13">Threshold Reference: TP.ASR-13</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>

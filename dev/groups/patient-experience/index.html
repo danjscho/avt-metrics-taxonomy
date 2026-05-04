@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3231,6 +3231,8 @@
       
         
       
+        
+      
     
     
     
@@ -3403,6 +3405,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3733,7 +3763,7 @@
 <li><strong>Trajectory MANDATORY:</strong> monthly opt-out rate trajectory per practice; rising aggregate rate is a separate signal from disparate rate, and both matter.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the demographic-disaggregation requirement and the equity-not-preference framing follow from the <a href="../../references/#nas-day-zero-spi-internal">NAS Day-Zero SPI</a> and <a href="../../references/#cqc-mythbuster-109">CQC GP Mythbuster 109</a> cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p &lt; 0.05 with Holm correction) are <strong>proposed in v3.4 as starting points</strong>, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.</p>
 <ul>
@@ -3741,6 +3771,7 @@
 <li><strong>Continuous monitoring alert:</strong> monthly aggregate opt-out rate rises &gt; 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p &lt; 0.05.</li>
 <li><strong>Pause / review trigger:</strong> demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises &gt; 5 percentage points (signals trust deterioration). Pair with <a href="../nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a> to test whether the consent model is the cause.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#io-px-1">Threshold Reference: IO.PX-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>

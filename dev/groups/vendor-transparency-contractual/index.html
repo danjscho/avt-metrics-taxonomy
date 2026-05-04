@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3231,6 +3231,8 @@
       
         
       
+        
+      
     
     
     
@@ -3403,6 +3405,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3729,7 +3759,7 @@
 <li><strong>Per-deployment notification:</strong> notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises <a href="../../references/#keyes-stanford-monitoring-2025">Keyes et al. (Stanford, 2025)</a> requirements (cited Source) with <a href="../../references/#si-2024-1368">SI 2024/1368</a> notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
 <ul>
@@ -3737,6 +3767,7 @@
 <li><strong>Continuous monitoring:</strong> major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.</li>
 <li><strong>Pause / escalation trigger:</strong> any major change deployed without prior notification; OR any substantial-change-flag-applicable change deployed without the regulatory flag (this is a regulatory event); OR per-element completeness &lt; 95 % over a rolling 90-day window.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-1">Threshold Reference: GV.VT-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4074,7 +4105,7 @@
 <li><strong>Escalation path MANDATORY:</strong> named deployer contact for critical and high incidents; vendor must demonstrate the escalation path was used, not just the standard support inbox.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with <a href="../../references/#uk-gdpr">UK GDPR</a> Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.</p>
 <ul>
@@ -4082,6 +4113,7 @@
 <li><strong>Continuous monitoring:</strong> critical incidents disclosed ≤ 24 hours from <code>t_known</code>; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.</li>
 <li><strong>Pause / escalation trigger:</strong> any critical incident disclosed &gt; 72 hours after <code>t_known</code> (regardless of severity-classification target); OR any incident where independent evidence shows vendor knew earlier than disclosed <code>t_known</code>; OR cross-deployer-scope element missing on incidents affecting multiple deployments. All three are contract-breach triggers.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-5">Threshold Reference: GV.VT-5</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4254,7 +4286,7 @@
 <li><strong>Materiality flag:</strong> sub-processors handling personal data classified material; sub-processors handling only metadata or aggregated telemetry classified non-material. Material sub-processors required to be in scope; non-material classification must be evidenced.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the seven-source discovered-set framing follows from <a href="../../references/#uk-gdpr">UK GDPR</a> Article 28(2) and standard DPIA practice; the materiality distinction synthesises <a href="../../references/#ico">ICO</a> guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.</p>
 <ul>
@@ -4262,6 +4294,7 @@
 <li><strong>Continuous monitoring:</strong> quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.</li>
 <li><strong>Pause / escalation trigger:</strong> any material sub-processor undisclosed (regulatory failure under Article 28(2), not contractual); OR any material sub-processor without an in-place DPA; OR sub-processor change without prior notification (contractual breach where the contract specifies notification obligation).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-7">Threshold Reference: GV.VT-7</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4454,7 +4487,7 @@
 <li><strong>Signed-declaration provenance MANDATORY:</strong> every component carries a dated signed declaration from a named accountable individual; absence is a Stale finding regardless of artefact age.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the 12-month freshness window mirrors the <a href="../../references/#ncsc-cyber-essentials">NCSC Cyber Essentials</a> annual cadence and the typical <a href="../../references/#uk-gdpr">UK GDPR</a> DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are <strong>proposed in v3.8 as starting points</strong>, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the <a href="../../calibration-and-context/">Calibration &amp; Context principle</a>, require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -4462,6 +4495,7 @@
 <li><strong>Periodic audit:</strong> quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.</li>
 <li><strong>Pause / escalation trigger:</strong> any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component (<a href="../../references/#dcb0129">DCB0129</a> safety case; MHRA registration; DPIA) by &gt; 30 days without explicit notification per GV.VT-1.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-13">Threshold Reference: GV.VT-13</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4573,7 +4607,7 @@
 <li><strong>Currency re-verification:</strong> annual cadence; matrix re-publication date logged; any change &gt; ±20 % from the prior matrix on a contracted use case triggers a procurement-side review.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the publication-and-currency requirement is cited from registry req #12. The 12-month annual cadence aligns with <a href="#gv-vt-13">GV.VT-13</a>'s freshness window. The ±20 % materiality threshold for matrix changes is <strong>proposed in v3.8 as a starting point</strong>, not externally validated — deployers' procurement risk appetite will vary. Indicative; require local calibration against contracted SLA terms before procurement use.</p>
 <ul>
@@ -4581,6 +4615,7 @@
 <li><strong>Periodic audit:</strong> annual matrix re-verification; alert on any contracted use case dropping out of the matrix; alert on matrix change &gt; ±20 % on contracted use cases.</li>
 <li><strong>Pause / escalation trigger:</strong> matrix removed from Hub publication; OR contracted use case priced materially above indicative matrix without prior notification; OR matrix &gt; 24 months stale on any contracted use case.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-14">Threshold Reference: GV.VT-14</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
@@ -4681,7 +4716,7 @@
 <li><strong>Failure-mode logging:</strong> any retirement event where notification was absent, late, or incomplete logged with deployer-side accepted-risk decision and reportable to the deployer's IG file.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the contractual-gate framing carries from <a href="#gv-vt-6">GV.VT-6 Exit &amp; Data Portability Provisions</a> and the v3.4 <code>_gaps.md</code> P5-Lifecycle "Decommissioning plan" entry. Specific lead-time thresholds (≥ 12 months notice for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal, 100 % content-element gate) are <strong>proposed in v4.0.2 as starting points</strong>, not externally validated. The lead-time numbers are calibrated to typical NHS procurement cycle and DCB0160 retirement-provisioning timelines but require local calibration before contractual use.</p>
 <ul>
@@ -4689,6 +4724,7 @@
 <li><strong>Continuous monitoring:</strong> every retirement event triggers logging of (a) notification received yes/no, (b) lead-time delivered, (c) content-completeness rate. Aggregate compliance reported per contract year.</li>
 <li><strong>Pause / escalation trigger:</strong> any retirement event with no prior notification (single instance — this is a contract-breach event); OR notification &lt; 50 % of contracted lead time; OR content-completeness &lt; 80 % on a single notification.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-vt-15">Threshold Reference: GV.VT-15</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>

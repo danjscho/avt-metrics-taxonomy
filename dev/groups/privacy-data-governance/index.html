@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3242,6 +3242,8 @@
       
         
       
+        
+      
     
     
     
@@ -3414,6 +3416,34 @@
     
   
     Versioning
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../thresholds/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Threshold Reference
   
 
     
@@ -3750,7 +3780,7 @@
 <li><strong>Exception handling:</strong> any audio retained beyond policy MUST be logged with reason, DPIA reference, and re-deletion target date. Exception rate reported as a separate KPI.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the IG-incident reportability framing follows from <a href="../../references/#uk-gdpr">UK GDPR</a> storage-limitation requirements and the existing <a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a> framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, &lt; 95 % escalation trigger, annual independent verification cadence) are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.</p>
 <ul>
@@ -3758,6 +3788,7 @@
 <li><strong>Continuous monitoring:</strong> monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.</li>
 <li><strong>Pause / escalation trigger:</strong> any storage-location compliance &lt; 95 % in any month, OR any unlogged retention beyond policy detected. Both are reportable as IG incidents per the existing NHSE IG framework.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-1">Threshold Reference: GV.PD-1</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3851,7 +3882,7 @@
 <li><strong>Deletion-verification method MANDATORY:</strong> parallel to GV.PD-1 — vendor self-attestation alone insufficient; periodic independent verification (third-party audit, deployer-witnessed deletion test, or cryptographic proof via key destruction).</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the post-sign-off deletion expectation derives from <a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a>; <a href="../../references/#uk-gdpr">UK GDPR</a> Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3859,6 +3890,7 @@
 <li><strong>Continuous monitoring:</strong> monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate &lt; 1 %; per-storage-location compliance ≥ 99.5 %.</li>
 <li><strong>Pause / escalation trigger:</strong> any single non-exception retention beyond DPIA threshold; OR median TTD &gt; DPIA threshold in any month; OR per-storage-location compliance &lt; 95 % (cascades to GV.PD-1 compliance failure). All three are reportable as IG incidents.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-2">Threshold Reference: GV.PD-2</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -3947,7 +3979,7 @@
 <li><strong>Verification:</strong> parallel to GV.PD-1; independent verification annual minimum.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> <a href="../../references/#uk-gdpr">UK GDPR</a> purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, &lt; 95 % escalation trigger) are <strong>proposed in v3.3 as starting points</strong>, not externally validated. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -3955,6 +3987,7 @@
 <li><strong>Continuous monitoring:</strong> monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).</li>
 <li><strong>Pause / escalation trigger:</strong> any unenumerated retention purpose discovered in production, OR any per-purpose compliance &lt; 95 %.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-3">Threshold Reference: GV.PD-3</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4362,7 +4395,7 @@
 <li><strong>Survey instrument declaration MANDATORY:</strong> the survey instrument used must be declared (validated published instrument vs deployer-defined). Deployer-defined instruments must be reviewed by the IG team and document at least four comprehension items mapping to GV.CR-2 content elements.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the gap-as-headline framing carries from the existing Novel Thinking section and <a href="../../references/#cqc-mythbuster-109">CQC GP Mythbuster 109</a>'s "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are <strong>proposed in v3.5 as starting points</strong>, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.</p>
 <ul>
@@ -4370,6 +4403,7 @@
 <li><strong>Continuous monitoring:</strong> monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap &gt; 25 percentage points OR any demographic axis shows understanding rate &lt; practice mean by ≥ 20 percentage points.</li>
 <li><strong>Pause / escalation trigger:</strong> gap &gt; 40 percentage points sustained two quarters (consent model legitimacy in question); OR any demographic axis shows understanding rate &lt; 50 % (the consent model is failing for that population, not just under-performing).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-8">Threshold Reference: GV.PD-8</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4542,7 +4576,7 @@
 <li><strong>Complex-request extension logged:</strong> any SAR using the two-month extension provision logged with reason; pattern of extensions on AVT-related SARs is a signal that the locate-rate or export-rate is failing.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the 30-day target and 100 % locate/export expectation derive from <a href="../../references/#uk-gdpr">UK GDPR</a> Article 15 and <a href="../../references/#ico">ICO</a> guidance. The synthetic-SAR pre-deployment test is <strong>proposed in v3.5 as a starting point</strong> to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -4550,6 +4584,7 @@
 <li><strong>Continuous monitoring:</strong> quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).</li>
 <li><strong>Pause / escalation trigger:</strong> any SAR where AVT data could not be located within the deployer's known architecture (this is a regulatory failure under Article 15); OR timeliness-rate &lt; 90 % in any quarter (suggests operational capacity failure); OR &gt; 30 % of AVT-related SARs using the two-month extension (suggests systematic locate/export failure rather than legitimate complexity).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-10">Threshold Reference: GV.PD-10</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4647,7 +4682,7 @@
 <li><strong>Sub-processor cooperation tracked:</strong> parallel to <a href="#gv-pd-10">GV.PD-10 Subject Access Request Fulfilment</a> — sub-processor latency per erasure request recorded.</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is <strong>proposed in v3.5</strong> as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited (<a href="../../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a>). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.</p>
 <ul>
@@ -4655,6 +4690,7 @@
 <li><strong>Continuous monitoring:</strong> in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).</li>
 <li><strong>Pause / escalation trigger:</strong> any in-scope erasure request where a deletable location fails to delete (regulatory failure under Article 17); OR any newly added location not classified into the three-class taxonomy before processing personal data; OR drift between technically-irreversible class and privacy-notice disclosure (procurement-time disclosure failure).</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-11">Threshold Reference: GV.PD-11</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4749,7 +4785,7 @@
 <li><strong>Three-class outcome reporting MANDATORY:</strong> parallel to <a href="#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a>; every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).</li>
 </ul>
 </blockquote>
-<p><strong>Threshold Guidance</strong></p>
+<p><strong>Trigger Conditions</strong></p>
 <blockquote>
 <p>⚠️ <strong>Provenance:</strong> the per-storage-location framing inherits from <a href="#gv-pd-1">GV.PD-1 Audio Retention Compliance</a> and <a href="#gv-pd-11">GV.PD-11 Right to Erasure Compliance</a>'s three-class outcome distinction. The procurement-time documentation gate carries from <a href="../nhs-compliance-regulatory/#gv-cr-7">GV.CR-7 DPIA Template Completion Rate</a> and <a href="../../references/#dcb0160">DCB0160</a> Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are <strong>proposed in v4.0.2 as starting points</strong>, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.</p>
 <ul>
@@ -4757,6 +4793,7 @@
 <li><strong>Per-event monitoring:</strong> decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.</li>
 <li><strong>Pause / escalation trigger:</strong> any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under <a href="../../references/#uk-gdpr">UK GDPR</a> storage limitation); OR completion timeline exceeded by &gt; 50 %; OR per-location disposition coverage &lt; 95 % at completion.</li>
 </ul>
+<p>Specific numerical starting points are deployment-context-dependent and live in <a href="../../thresholds/#gv-pd-16">Threshold Reference: GV.PD-16</a>. Treat them as starting points to calibrate locally — not as contractual gates.</p>
 </blockquote>
 <p><strong>Limitations</strong></p>
 <blockquote>
