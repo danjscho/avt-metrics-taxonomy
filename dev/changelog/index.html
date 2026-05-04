@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.5.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3325,6 +3325,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v451-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.5.1 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v450-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4401,6 +4412,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v451-2026-05-04" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v4.5.1 (2026-05-04)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v450-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5455,6 +5477,20 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v451-2026-05-04">v4.5.1 (2026-05-04)<a class="headerlink" href="#v451-2026-05-04" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: v5.0 preparatory research output — Tier 1 threshold review (Phases 1, 2a, 2b).</strong></p>
+<p>No metric / catalogue content changes. Three research-output files added at repo root, scoping the v5.0 structural split where threshold numbers move out of metric bodies into a dedicated <strong>Threshold Reference</strong> page. Plan-future #8 progresses (closes at v5.0).</p>
+<p><strong>Phase 1 — <code>v4.6-threshold-enumeration.md</code></strong> — exhaustive per-metric extraction of every numerical threshold across the 46 Tier 1 metric entries. ~150 distinct thresholds, classified as <code>cited</code> (~12, mostly NAS Day Zero / GDPR / NHSE), <code>proposed</code> (~130, with honest Provenance preludes), or <code>unflagged</code> (5 — 4 are 100%-structural / zero-tolerance defensible as definitional; 1 (<a href="../groups/downstream-write-back/#tp-wb-2">TP.WB-2</a> IER &lt; 0.001) needs proper attribution at v5.0).</p>
+<p><strong>Phase 2a — <code>v4.6-threshold-verdict-pass.md</code></strong> — per-number verdict pass with five categories (keep / tighten / loosen / remove / consolidate) plus a "why this number" provenance one-liner per kept threshold. Outcomes: ~120 keep, 2 tighten, 1 loosen, 0 remove, ~20 consolidate. Each kept threshold gains an honest provenance row that will become the Threshold Reference page row at v5.0.</p>
+<p><strong>Phase 2b — <code>v4.6-threshold-consolidation.md</code></strong> — cross-metric consolidation pass on the four patterns Phase 1 surfaced:</p>
+<ol>
+<li><strong>Standard symmetric severity weighting</strong> (0.1 / 0.5 / 1.0) — single named convention, applied across 5 TP metrics. Asymmetric UMP_w variant documented as deliberately distinct.</li>
+<li><strong>Standard pre-deployment test-corpus floor (≥ 200 cases) + ICC ≥ 0.85 inter-rater convention</strong> — applied across 6+ metrics. <strong>Includes new explicit rare-event-rate caveat</strong> that the current taxonomy doesn't make: 200 is a floor, not a target — for sub-1 % rates, push the floor above 1000 expected events.</li>
+<li><strong>Severity-band notification-ladder convention</strong> — meta-pattern (3-4 bands, 3-7× ratios, immediate-most-severe), with per-metric ladders retained because the underlying decisions genuinely differ (incident disclosure vs change notification vs version tracking vs retirement notice).</li>
+<li><strong>Aggregate-rate gates vs zero-tolerance category boundaries</strong> — the most important reframe. Many "100 %" thresholds in the catalogue are zero-tolerance category boundaries, not stringent percentages. Same numbers, fundamentally different communication. The reframing addresses the user-direction concern that specific numbers leak from metric bodies into procurement contracts without their context.</li>
+</ol>
+<p><strong>Sequencing locked.</strong> v5.0 will land the structural split: Threshold Reference page at <code>docs/thresholds.md</code>, metric bodies rewritten to qualitative trigger conditions only, severity-weighting formulas in <em>both</em> metric body (definitional) and Threshold Reference (self-contained), prominent compound-errors caveat. Cited numbers (NAS, GDPR, NHSE) stay in metric bodies; only proposed numbers move.</p>
+<p>No counts change. No metric content edits. Plan-future #8 stays open until v5.0 ships the structural change.</p>
 <h2 id="v450-2026-05-04">v4.5.0 (2026-05-04)<a class="headerlink" href="#v450-2026-05-04" title="Permanent link">&para;</a></h2>
 <p><strong>Minor release: citation grammar polish + versioning conventions + per-metric provenance.</strong></p>
 <p>Three workstreams shipped together. Plan-future #7 (citation grammar review) and #3 (versioning strategy) close.</p>
