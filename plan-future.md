@@ -36,7 +36,7 @@ The thing to avoid: building the demo, getting positive stakeholder reaction, an
 
 ## 3. Versioning strategy across the project (metrics, tier selections, site, repo)
 
-**Status:** scoping — needs a design decision before implementation.
+**Status:** complete (v4.5). Conventions written down at `taxonomy/_versioning.md` (renders as `versioning.md` on the site under About). Audit slice `check_version_bump_consistency` flags release over/under-bumps at INFO. Per-metric provenance handled by auto-built `metric-history.md` (git-derived, file-level) plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (audit-checked via `check_change_history_versions`).
 
 **Context:** The repo currently has a single version line (`TAXONOMY_VERSION` in `parse.py`, surfaced into `_header.md`, the site banner, and CSV/JSON downloads since v3.8.4). That single version covers everything: catalogue content, tier selections, website, build tooling, gap lists. As the project matures this is starting to crack at the seams — they all change at different cadences and have different downstream-user contracts:
 
@@ -103,7 +103,7 @@ The two need to be verified **as a pair, per metric**, not as two separate sweep
 
 ## 7. Citation grammar review — should inline links carry a human-readable name?
 
-**Status:** queued — revisit after the v3.9 release lands and the catalogue + Phase 3 inline-linking has had a release cycle to sit.
+**Status:** complete (v4.5). Build-time expansion: catalogue entries declare an optional `**Short:**` field; `build_site.rewrite_reference_handles()` uses that as the link label, falling back to the bare handle. Source-side `[Handle]` unchanged so audit and grep continue to work. Top 20 most-cited handles seeded with Short forms in v4.5; further entries can opt in incrementally.
 
 **Context:** v3.9 settled on bare-handle inline links for the new citation grammar — `[NHSE-IG-Guidance-2026-03]`, `[UK-GDPR]`, `[DCB0129]`, etc. — with the catalogue entry in `_references.md` carrying the full bibliographic record. This is clean for audit (every handle resolves) and clean for the catalogue (single source of truth), but it has one cost: the inline reference reads as a slug, not as prose. A clinician scanning a Threshold Guidance block sees `[NHSE-IG-Guidance-2026-03]` rather than "NHSE IG guidance March 2026", and has to either know the slug-to-name mapping or click through to find out what the citation actually points at.
 

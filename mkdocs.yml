@@ -193,4 +193,6 @@ nav:
       - References: references.md
       - Glossary: glossary.md
       - Downloads: downloads.md
+      - Versioning: versioning.md
+      - Metric history: metric-history.md
       - Changelog: changelog.md

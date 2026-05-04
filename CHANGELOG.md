@@ -1,5 +1,39 @@
 # Changelog
 
+## v4.5.0 (2026-05-04)
+
+**Minor release: citation grammar polish + versioning conventions + per-metric provenance.**
+
+Three workstreams shipped together. Plan-future #7 (citation grammar review) and #3 (versioning strategy) close.
+
+**Workstream 1 — Citation grammar polish.**
+
+v3.9 settled on bare-handle inline links (`[NHSE-IG-Guidance-2026-03]`). Source clean and audit-enforceable, but slug aesthetics in rendered prose. v4.5 adds a build-time expansion: catalogue entries can declare an optional `**Short:** ...` field, and the build_site handle rewriter uses that as the link label when present, falling back to the bare handle otherwise.
+
+- Source-side `[Handle]` unchanged; audit-enforced handle resolution still works
+- Top 20 most-cited handles seeded with Short forms (UK-GDPR → "UK GDPR", NHSE-IG-Guidance-2026-03 → "NHSE IG guidance (March 2026)", Coiera-Fraile-Navarro-JMIR-2026 → "Coiera & Fraile-Navarro (JMIR, 2026)", etc.)
+- Handles without a Short field continue to render as the bare handle (no regression)
+
+**Workstream 2 — Versioning conventions documented + audit slice.**
+
+New `taxonomy/_versioning.md` (renders as `versioning.md` on the site, linked under About in the nav) writing down what each version digit means: MAJOR (breaking changes), MINOR (substantive content additions or verification waves), PATCH (site / tooling only). Closes the previously-undocumented convention.
+
+New audit check `check_version_bump_consistency` warns at INFO if the current bump kind disagrees with what `git diff` says actually changed since the previous tag — over-bumps and under-bumps both surface. Best-effort, never blocks the build.
+
+**Workstream 3 — Per-metric provenance.**
+
+Two mechanisms, mirroring the release-level split.
+
+*Site-level metric history* — `docs/metric-history.md`, auto-generated at build time from git tag history. Per release × per group file: which metrics live in files that changed. Coarse but exhaustive — knows that the file changed, not what changed semantically. Linked under About in the nav.
+
+*Metric-level Change history stanzas* — opt-in `**Change history:** vX.Y.Z (one-line summary); ...` block on the subset of metrics that had a substantive fix worth flagging to the reader. Five metrics seeded with stanzas as the v4.5 starting set: TP.SN-3 (v4.2 Croxford bundle), TP.SN-7a (v4.2 Abridge axes), HL.HF-8 (v4.3 HATAS removal), GV.VT-2 (v4.3 Keyes paraphrase), GV.SG-5 (v4.4 medRxiv re-attribution). Convention going forward: opt-in for substantive fixes, not a universal "Last updated:" stamp on every metric.
+
+New audit check `check_change_history_versions` warns at WARN level if a stanza cites a version that doesn't exist as a git tag (or match the current TAXONOMY_VERSION).
+
+**Tests.** Existing 99-test suite still passes. Test additions covering the new audit checks deferred (the check logic guards itself against missing git history; CI environment has full tag history available).
+
+**Counts unchanged:** 221 metrics / 45-97-79 tiers. Catalogue grows by 0 entries; 20 entries gain a Short field.
+
 ## v4.4.0 (2026-05-04)
 
 **Minor release: Pass B verification sweep over the v4.2 / v4.3 ✓ set + catalogue-promotion-candidates formalisation.**

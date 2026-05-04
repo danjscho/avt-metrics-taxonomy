@@ -473,6 +473,8 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Applicability** | AVT-Contextualised |
 | **Source** | Human factors literature; [NAS-Day-Zero-SPI-internal] |
 
+**Change history:** v4.3 (HATAS instrument removed from candidate list — Pass B confirmed it is not a real published instrument; Dokkyo Medical University-specific attribution softened to "recent reviews").
+
 **Why this tier?**
 
 > Survey-based. Useful triangulation with behavioural metrics. Annual measurement tracks trust-behaviour gap evolution.

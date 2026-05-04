@@ -144,6 +144,8 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Applicability** | AVT-Contextualised |
 | **Source** | [PDSQI-9]; [Croxford-2025] |
 
+**Change history:** v4.2 (Croxford-bundle confabulation fix — previously cited a Kendall-Tau / Pearson / ICC constellation not actually present in either Croxford paper; replaced with the verified 0.867 inter-rater ICC and added [Croxford-PDSQI9-JAMIA-2025] catalogue entry).
+
 **Why this tier?**
 
 > Validated gold-standard rubric. Resource-intensive without LLM automation. Recommended for periodic audit (quarterly sample).
@@ -457,6 +459,8 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | [Abridge-Whitepaper-2025] (50,000+ training examples) |
+
+**Change history:** v4.2 (Support × Severity axes corrected to match Abridge whitepaper's actual 5×3 schema — earlier 4×3 was a confabulation; catalogue author list also corrected).
 
 **Why this tier?**
 
