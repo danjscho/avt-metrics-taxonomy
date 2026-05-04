@@ -191,7 +191,7 @@ Assessment against specification criteria: (1) Performance thresholds pre-specif
 
 ### GV.SG-5 🔵 AI-Generated Data Contamination Rate
 
-The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
+The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". [He-AI-Contamination-Pathology-2026] (medRxiv preprint, February 2026) demonstrates progressive vocabulary collapse and disappearance of rare clinical findings (e.g. pneumothorax, effusion) across recursive training generations on AI-generated clinical content, with false-reassurance rates tripling and AI documentation rendered clinically unreliable within a small number of generations.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
@@ -206,7 +206,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]                                  |
+|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]|
 
 **Why this tier?**
 
