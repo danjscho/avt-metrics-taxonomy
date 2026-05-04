@@ -1,5 +1,28 @@
 # Changelog
 
+## v5.0.1 (2026-05-04)
+
+**Patch release: Phase 1a Registry coverage audit (research output for v5.1+ minimum-set work).**
+
+No metric / catalogue content changes. One research-output file added at repo root: `v5.1-registry-coverage-audit.md`.
+
+**What this is.** Plan-future #4 (Tier 1 minimum-set construction) starts with a coverage audit against the NHS England AVT Self-Certified Supplier Registry. Per the user-direction framing, the minimum set extends Tier 1 (no demotions; promotions only; replacements discussed explicitly), and the Registry pulls in transitive coverage of every framework it references.
+
+**Honest scope note.** The public Registry page at `digital.nhs.uk/services/ambient-scribing/...` does not publicly enumerate the attestation criteria themselves — they live behind the National Commercial and Procurement Hub. The audit therefore maps against the *transitive surface*: the CIO/CCIO guidance + IG guidance (March 2026) + Mills & Reeve legal summary + HTN article on the registry launch. The actual attestation form would refine this if accessible.
+
+**Headline findings.**
+
+- **14 frameworks** transitively required by the Registry; **all 14 already in catalogue** (1 — Caldicott / NDG — already on the gap roadmap as `_gaps.md §2g`). No new framework handles needed.
+- **~70 substantive requirements** mapped across 7 areas (clinical safety, IG, vendor transparency, AVT-specific accuracy, clinical accountability, operational/interop, training/governance).
+- **Most requirements already covered** at Tier 1 today.
+- **4 candidate promotions Tier 2 → Tier 1**: GV.VT-2 Telemetry Provision Completeness, GV.VT-14 Indicative Pricing Transparency, IO.FE-1 Deployment Equity Index, TP.ASR-4 Demographic-Disaggregated WER. Discussion required before Phase 5.
+- **4 already-roadmapped gaps to pull through**: GV.SG-19 (PSIRF), GV.CR-12 (CQC), GV.CR-14 (Caldicott), TP.WB-11 (PRSB).
+- **~8 new gap candidates** surfaced: lawful-basis-documentation, Right to Restrict Processing, information-asset-register, joint-controller-status, organisational opt-out mechanism, training-data-provenance disclosure, encryption-specific attestation, AVT-specific organisational policy.
+
+**Phase 1b plan.** Per-framework coverage audit across 11 frameworks (DTAC, DSPT, DCB0129, DCB0160, MHRA SaMD, NHS LLM Framework, NHSE IG Guidance, NICE ESF, NHS T.E.S.T., CQC, UK GDPR, FHIR UK Core, ICO). Sequenced highest-yield-first (DTAC → IG → DCB → MHRA → LLM → DSPT → ESF → T.E.S.T. → GDPR → CQC → FHIR → ICO). Likely ships across 2-3 PATCH releases.
+
+Plan-future #4 progresses; closes when Phase 5 promotions and `minimum-set.md` page land.
+
 ## v5.0.0 (2026-05-04)
 
 **Major release: structural split — threshold numbers move out of metric bodies into a dedicated Threshold Reference page.**
