@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3833,7 +3833,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Stanford</strong>: <a href="https://arxiv.org/abs/2512.09048">Keyes et al. (2025)</a></li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -3915,8 +3915,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>NAS-Day-Zero-SPI-internal</strong>: internal NAS Day-Zero SPI work (taxonomy-author's prior framing, internal source)</li>
-<li><strong>Stanford / Keyes et al. (2025)</strong>: <a href="https://arxiv.org/abs/2512.09048">arXiv 2512.09048</a> — three-principle monitoring framework (system integrity, performance, impact)</li>
+<li><strong>NAS</strong>: <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a> (taxonomy-author's prior framing, internal source)</li>
+<li><strong>Stanford</strong>: <a href="../../references/#keyes-stanford-monitoring-2025">Keyes-Stanford-Monitoring-2025</a> — three-principle monitoring framework (system integrity, performance, impact)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4088,7 +4088,7 @@
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../nhs-compliance-regulatory/#gv-cr-10">GV.CR-10 EU AI Act Event Logging Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-9">GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</a> · <a href="#gv-sg-1">GV.SG-1 Model Version Tracking</a> · <a href="#gv-sg-2">GV.SG-2 Model Update Impact Score</a> · <a href="#gv-sg-3">GV.SG-3 Performance Degradation Detection Latency</a> · <a href="#gv-sg-5">GV.SG-5 AI-Generated Data Contamination Rate</a></p>
 <hr />
 <h3 id="gv-sg-5">GV.SG-5 🔵 AI-Generated Data Contamination Rate<a class="headerlink" href="#gv-sg-5" title="Permanent link">&para;</a></h3>
-<p>The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.</p>
+<p>The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". <a href="../../references/#he-ai-contamination-pathology-2026">He-AI-Contamination-Pathology-2026</a> (medRxiv preprint, February 2026) demonstrates progressive vocabulary collapse and disappearance of rare clinical findings (e.g. pneumothorax, effusion) across recursive training generations on AI-generated clinical content, with false-reassurance rates tripling and AI documentation rendered clinically unreliable within a small number of generations.</p>
 <table>
 <thead>
 <tr>
@@ -4143,7 +4143,7 @@
 </tr>
 <tr>
 <td><strong>Source</strong></td>
-<td><a href="../../references/#alemohammad-mad-2023">Alemohammad-MAD-2023</a>; <a href="../../references/#shumailov-curse-of-recursion">Shumailov-Curse-of-Recursion</a></td>
+<td><a href="../../references/#alemohammad-mad-2023">Alemohammad-MAD-2023</a>; <a href="../../references/#shumailov-curse-of-recursion">Shumailov-Curse-of-Recursion</a>; <a href="../../references/#he-ai-contamination-pathology-2026">He-AI-Contamination-Pathology-2026</a></td>
 </tr>
 </tbody>
 </table>
@@ -4325,7 +4325,7 @@
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../nhs-compliance-regulatory/#gv-cr-10">GV.CR-10 EU AI Act Event Logging Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-9">GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</a> · <a href="#gv-sg-1">GV.SG-1 Model Version Tracking</a> · <a href="#gv-sg-2">GV.SG-2 Model Update Impact Score</a> · <a href="#gv-sg-3">GV.SG-3 Performance Degradation Detection Latency</a> · <a href="#gv-sg-4">GV.SG-4 Retraining Trigger Threshold Specification</a></p>
 <hr />
 <h3 id="gv-sg-8">GV.SG-8 🔵 DeepScore (Defect-Free Rate)<a class="headerlink" href="#gv-sg-8" title="Permanent link">&para;</a></h3>
-<p>Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. 135,900 notes. Sound approach but proprietary definitions.</p>
+<p>Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. Vendor-disclosed evaluation scale (~135,900 notes per <a href="../../references/#deepscore">DeepScore</a> methodology page). Sound approach but proprietary definitions.</p>
 <table>
 <thead>
 <tr>
@@ -4394,7 +4394,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>DeepScore</strong>: <a href="https://www.deepscribe.ai/resources/deepscore-measuring-the-performance-of-ambient-ai-clinical-documentation">DeepScribe vendor-published methodology page</a> (vendor whitepaper; not a peer-reviewed academic preprint)</li>
+<li><strong>DeepScore</strong>: <a href="../../references/#deepscore">DeepScore</a> (vendor whitepaper; not a peer-reviewed academic preprint)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4642,7 +4642,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>LFPSE</strong>: NHS Learn From Patient Safety Events</li>
+<li><strong>LFPSE</strong>: <a href="../../references/#lfpse">LFPSE</a> (NHS Learn From Patient Safety Events)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5144,7 +5144,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>DCB0129</strong>: DCB0129 hazard log requirement</li>
+<li><strong>DCB0129</strong>: <a href="../../references/#dcb0129">DCB0129</a> hazard log requirement</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>

@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4067,7 +4067,7 @@
 <p><strong>References</strong></p>
 <ul>
 <li><strong>Original</strong>: <a href="../../references/#rouge-lin-2004">ROUGE-Lin-2004</a></li>
-<li><strong>Inadequacy</strong>: Croxford et al. (2025) - LLM-as-Judge outperforms ROUGE/BERTScore</li>
+<li><strong>Inadequacy</strong>: <a href="../../references/#croxford-2025">Croxford-2025</a> — LLM-as-Judge outperforms ROUGE/BERTScore</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4476,8 +4476,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Tortus data</strong>: 1.47% per sentence (Asgari et al. 2025)</li>
-<li><strong>Abridge</strong>: Support × severity matrix (Oberst et al. 2024/2025)</li>
+<li><strong>Tortus data</strong>: 1.47% per sentence (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>)</li>
+<li><strong>Abridge</strong>: Support × severity matrix (<a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> — Liang, Oberst, Tan, Lipton 2025)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4587,7 +4587,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Tortus</strong>: 3.45% omission rate (Asgari et al. 2025)</li>
+<li><strong>Tortus</strong>: 3.45% omission rate (<a href="../../references/#asgari-tortus-2025">Asgari-Tortus-2025</a>)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4865,8 +4865,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>NEJM AI</strong>: <a href="../../references/#chung-nejm-ai-2025">Chung-NEJM-AI-2025</a></li>
-<li><strong>Code</strong>: <a href="https://github.com/philipchung/verifact">GitHub - philipchung/verifact</a></li>
+<li><strong>NEJM AI</strong>: <a href="../../references/#chung-nejm-ai-2025">Chung-NEJM-AI-2025</a> (catalogue entry includes <code>Code-Repository:</code> link to philipchung/verifact)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5185,7 +5184,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Paper</strong>: Kanithi et al. (2025) - MEDIC</li>
+<li><strong>Paper</strong>: <a href="../../references/#kanithi-2025">Kanithi-2025</a> — MEDIC</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5266,7 +5265,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Abridge</strong>: Abridge Linked Evidence architecture</li>
+<li><strong>Abridge</strong>: <a href="../../references/#abridge-linked-evidence">Abridge-Linked-Evidence</a> architecture</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5429,7 +5428,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>INSYTE</strong>: INSYTE autonomy classification - DCB0129 structural gap</li>
+<li><strong>INSYTE</strong>: <a href="../../references/#insyte-2025">INSYTE-2025</a> autonomy classification — <a href="../../references/#dcb0129">DCB0129</a> structural gap</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -5510,7 +5509,7 @@
 </code></pre></div>
 <p><strong>Reference Standard</strong></p>
 <blockquote>
-<p>Source transcript + ConText-style negation detection (Harkema et al.) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by <strong>negation type</strong> (explicit / implicit / hedged / conditional / historical) and <strong>clinical category</strong> (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).</p>
+<p>Source transcript + ConText-style negation detection (<a href="../../references/#harkema-context-2009">Harkema-ConText-2009</a>) as the primary algorithmic floor, with clinician adjudication where automated detection is ambiguous. Each negated concept in the source is classified by <strong>negation type</strong> (explicit / implicit / hedged / conditional / historical) and <strong>clinical category</strong> (allergy / symptom / sign / diagnosis / medication / red-flag). Inter-rater reliability target: ICC ≥ 0.80 on negation type classification (higher than the TP.SN-5/-6 floor because negation typing is a more constrained task).</p>
 </blockquote>
 <p><strong>Operational Specification</strong></p>
 <blockquote>
@@ -5533,7 +5532,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Negation in clinical NLP</strong>: ConText algorithm (Harkema et al.); standard clinical NLP problem</li>
+<li><strong>Negation in clinical NLP</strong>: <a href="../../references/#harkema-context-2009">Harkema-ConText-2009</a> ConText algorithm; standard clinical NLP problem</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>

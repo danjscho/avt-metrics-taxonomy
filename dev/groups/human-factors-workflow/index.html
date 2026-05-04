@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v4.2.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v4.4.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3923,8 +3923,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Abridge</strong>: Abridge edit-pattern methodology</li>
-<li><strong>NAS</strong>: NAS Day Zero SPI</li>
+<li><strong>Abridge</strong>: <a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> — edit-pattern methodology</li>
+<li><strong>NAS</strong>: <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4007,8 +4007,8 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Abridge</strong>: 1M+ encounters/week</li>
-<li><strong>DeepScore</strong>: 135,900 notes</li>
+<li><strong>Abridge</strong>: vendor-reported deployment scale (millions of encounters per month across 150+ health systems per <a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a>)</li>
+<li><strong>DeepScore</strong>: vendor-disclosed evaluation scale (~135,900 notes per <a href="../../references/#deepscore">DeepScore</a> methodology page)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4198,7 +4198,7 @@
 </blockquote>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>NAS</strong>: ≥95% threshold, &lt;85% pause trigger</li>
+<li><strong>NAS</strong>: <a href="../../references/#nas-day-zero-spi-internal">NAS-Day-Zero-SPI-internal</a> (≥95% threshold, &lt;85% pause trigger)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4324,7 +4324,7 @@
 <p><strong>Related metrics</strong> <em>(shared Playbook principles / ethical themes):</em> <a href="../nhs-compliance-regulatory/#gv-cr-1">GV.CR-1 Patient Dissent Recording Rate</a> · <a href="../nhs-compliance-regulatory/#gv-cr-2">GV.CR-2 Verbal Notification Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-3">GV.CR-3 AI-Generated Content Labelling Compliance</a> · <a href="../nhs-compliance-regulatory/#gv-cr-6">GV.CR-6 Clinical Safety Case Completeness</a> · <a href="../nhs-compliance-regulatory/#gv-cr-7">GV.CR-7 DPIA Template Completion Rate</a> · <a href="../environmental-sustainability/#gv-en-1">GV.EN-1 Energy Consumption per Clinical Note</a></p>
 <hr />
 <h3 id="hl-hf-5">HL.HF-5 🔵 Edit-Pattern Monitoring at Scale<a class="headerlink" href="#hl-hf-5" title="Permanent link">&para;</a></h3>
-<p>Cross-system edit analysis (1M+/week, 150+ systems). Most scalable quality signal - locked inside one vendor.</p>
+<p>Cross-system edit analysis at vendor-reported deployment scale (millions of encounters per month across 150+ health systems per <a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a>). Most scalable quality signal - locked inside one vendor.</p>
 <table>
 <thead>
 <tr>
@@ -4393,7 +4393,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Abridge</strong>: Oberst, Liang, Lipton (2024/2025)</li>
+<li><strong>Abridge</strong>: <a href="../../references/#abridge-whitepaper-2025">Abridge-Whitepaper-2025</a> (Liang, Oberst, Tan, Lipton 2025)</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4483,7 +4483,7 @@
 </blockquote>
 <p><strong>⚠️ Underspecification Warning (Tier B - strong concept, ad hoc protocols)</strong></p>
 <blockquote>
-<p>Automation bias is well-defined conceptually (Parasuraman &amp; Manzey, <em>Human Factors</em> 2010) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.</p>
+<p>Automation bias is well-defined conceptually (<a href="../../references/#parasuraman-manzey-complacency-2010">Parasuraman-Manzey-Complacency-2010</a>) but measurement protocols in clinical AI remain ad hoc. Most published studies use vignette-based designs comparing diagnostic accuracy with and without AI assistance; there is no standardised measurement protocol for production AVT systems operating under real clinical time pressure. No consensus exists on acceptable automation bias rate thresholds - one computational pathology study reported a 7% rate without specifying whether that was concerning or within expected bounds for the task. An active RCT (NCT07328815) is testing nudge interventions but results are not yet available. Until standardised production protocols emerge, document explicitly: (a) the injection methodology (how errors are generated), (b) the injection rate, (c) the severity distribution of injected errors, (d) the detection criteria (what counts as "caught"), (e) the timing of assessment. Changes to any of these make values incomparable across audits.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4640,7 +4640,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Trust in automation</strong>: Lee &amp; See (2004)</li>
+<li><strong>Trust in automation</strong>: <a href="../../references/#lee-see-trust-automation-2004">Lee-See-Trust-Automation-2004</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4648,7 +4648,7 @@
 </blockquote>
 <p><strong>⚠️ Underspecification Warning (Tier B - concept defined, no AVT-validated instrument)</strong></p>
 <blockquote>
-<p>Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, HATAS, AITI-H), but <strong>none are validated specifically for ambient scribe contexts</strong>. A 2024 Dokkyo Medical University review concluded that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS or HATAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.</p>
+<p>Multiple candidate instruments exist for trust calibration in clinical AI (TIAS, AITI-H), but <strong>none are validated specifically for ambient scribe contexts</strong>. Recent reviews of trust calibration in clinical AI conclude that there are currently no accurate and objective measures available for evaluating trust calibration in clinical AI deployments. No thresholds exist for defining "appropriately calibrated" trust, and no empirical integration has been established between subjective trust measures and behavioural proxies (edit rate, review time, error detection) that would allow triangulation. Adapt TIAS for AVT context as an interim measure, document the adaptation explicitly, and flag the absence of formal validation when reporting results. Pair with the existing behavioural complacency indicators (Edit Rate, Time-to-Sign, Review-Before-Signing) rather than relying on the survey instrument alone.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
@@ -4804,7 +4804,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>NASA-TLX</strong>: <a href="https://humansystems.arc.nasa.gov/groups/TLX/">NASA Task Load Index</a></li>
+<li><strong>NASA-TLX</strong>: <a href="../../references/#nasa-tlx">NASA-TLX</a></li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>
@@ -4967,7 +4967,7 @@
 </code></pre></div>
 <p><strong>References</strong></p>
 <ul>
-<li><strong>Aviation analogy</strong>: Casner &amp; Schooler (2014) - pilot skill degradation</li>
+<li><strong>Aviation analogy</strong>: <a href="../../references/#casner-schooler-aviation-skill-2014">Casner-Schooler-Aviation-Skill-2014</a> — pilot skill degradation</li>
 </ul>
 <p><strong>Limitations</strong></p>
 <blockquote>

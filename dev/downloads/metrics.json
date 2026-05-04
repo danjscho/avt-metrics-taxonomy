@@ -1,5 +1,5 @@
 {
-  "version": "v4.2.1",
+  "version": "v4.4.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 221,
@@ -1109,7 +1109,7 @@
         "Source": "[Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 609
+      "heading_line": 608
     },
     {
       "ref_id": "TP.SN-9b",
@@ -1136,7 +1136,7 @@
         "Source": "[Bedi-Stanford-CRFM-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 652
+      "heading_line": 651
     },
     {
       "ref_id": "TP.SN-11",
@@ -1163,7 +1163,7 @@
         "Source": "[Kanithi-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 695
+      "heading_line": 694
     },
     {
       "ref_id": "TP.SN-12",
@@ -1190,7 +1190,7 @@
         "Source": "architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 738
+      "heading_line": 737
     },
     {
       "ref_id": "TP.SN-13",
@@ -1217,7 +1217,7 @@
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 781
+      "heading_line": 780
     },
     {
       "ref_id": "TP.SN-14",
@@ -1244,7 +1244,7 @@
         "Source": "[INSYTE-2025]; [DCB0129] gap"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 824
+      "heading_line": 823
     },
     {
       "ref_id": "TP.SN-15",
@@ -1271,7 +1271,7 @@
         "Source": "Clinical NLP literature; identified as systematic LLM failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 867
+      "heading_line": 866
     },
     {
       "ref_id": "TP.SN-16",
@@ -1298,7 +1298,7 @@
         "Source": "Clinical NLP literature on temporal expression extraction"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 932
+      "heading_line": 931
     },
     {
       "ref_id": "TP.SN-17",
@@ -1325,7 +1325,7 @@
         "Source": "[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 971
+      "heading_line": 970
     },
     {
       "ref_id": "TP.SN-18",
@@ -1352,7 +1352,7 @@
         "Source": "Identified as systematic LLM summarisation failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1008
+      "heading_line": 1007
     },
     {
       "ref_id": "TP.SN-19",
@@ -1379,7 +1379,7 @@
         "Source": "[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1061
+      "heading_line": 1060
     },
     {
       "ref_id": "TP.SN-20",
@@ -1406,7 +1406,7 @@
         "Source": "Clinical NLP hedging/uncertainty literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1100
+      "heading_line": 1099
     },
     {
       "ref_id": "TP.SN-21",
@@ -1433,7 +1433,7 @@
         "Source": "[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1171
+      "heading_line": 1170
     },
     {
       "ref_id": "TP.SN-22",
@@ -1460,7 +1460,7 @@
         "Source": "Human factors literature on documentation consistency"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1210
+      "heading_line": 1209
     },
     {
       "ref_id": "TP.SN-23",
@@ -1487,7 +1487,7 @@
         "Source": "Identified as quality dimension not captured by accuracy metrics"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1249
+      "heading_line": 1248
     },
     {
       "ref_id": "TP.SN-24",
@@ -1514,7 +1514,7 @@
         "Source": "[Himmelstein-Stigmatising-EHR-JAMA-2022]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1290
+      "heading_line": 1289
     },
     {
       "ref_id": "TP.CC-1",
@@ -2351,7 +2351,7 @@
         "Source": "Proposed - analogous to chain-of-custody in evidence management and traceability in safety-critical systems"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 195
+      "heading_line": 198
     },
     {
       "ref_id": "PI.E2E-5",
@@ -2378,7 +2378,7 @@
         "Source": "Proposed - extends demographic-disaggregated WER to end-to-end measurement"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 276
+      "heading_line": 282
     },
     {
       "ref_id": "PI.E2E-6",
@@ -2405,7 +2405,7 @@
         "Source": "Proposed - inspired by signal processing concept of cumulative distortion"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 315
+      "heading_line": 321
     },
     {
       "ref_id": "PI.E2E-7",
@@ -2432,7 +2432,7 @@
         "Source": "Proposed - standard practice in safety-critical software testing but not yet applied to AVT pipelines"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 391
+      "heading_line": 397
     },
     {
       "ref_id": "PI.E2E-8",
@@ -2459,7 +2459,7 @@
         "Source": "Proposed - analogous to root cause analysis in incident investigation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 472
+      "heading_line": 482
     },
     {
       "ref_id": "PI.E2E-9",
@@ -2486,7 +2486,7 @@
         "Source": "Proposed - the ultimate validity test for clinical documentation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 511
+      "heading_line": 521
     },
     {
       "ref_id": "PI.E2E-10",
@@ -2513,7 +2513,7 @@
         "Source": "Proposed as operational metric - RTF alone doesn't capture full workflow impact"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 554
+      "heading_line": 564
     },
     {
       "ref_id": "PI.E2E-11",
@@ -2540,7 +2540,7 @@
         "Source": "Standard fault tolerance testing applied to AVT pipelines"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 593
+      "heading_line": 603
     },
     {
       "ref_id": "PI.E2E-12",
@@ -2567,7 +2567,7 @@
         "Source": "Information theory applied to clinical documentation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 632
+      "heading_line": 642
     },
     {
       "ref_id": "HL.HF-1",
@@ -3698,7 +3698,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
-        "Source": "[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]"
+        "Source": "[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]"
       },
       "group_file": "gv/safety-governance.md",
       "heading_line": 192
