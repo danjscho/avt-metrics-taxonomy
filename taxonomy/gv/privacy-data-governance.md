@@ -419,7 +419,7 @@ Audit data flow: (1) Where is audio processed? (2) Where are model inferences pe
 
 **References**
 
-- **UK GDPR**: UK GDPR Article 46 - appropriate safeguards for international transfers
+- **UK GDPR**: [UK-GDPR] Article 46 — appropriate safeguards for international transfers
 
 **Limitations**
 

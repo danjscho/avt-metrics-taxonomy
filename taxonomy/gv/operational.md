@@ -49,8 +49,8 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 
 **References**
 
-- **Critique**: Coiera & Fraile-Navarro (2026)
-- **RSET**: 'Time is not automatically convertible into money, productivity, or better care'
+- **Critique**: [Coiera-Fraile-Navarro-JMIR-2026]
+- **RSET**: [NIHR-RSET] — 'Time is not automatically convertible into money, productivity, or better care'
 
 **Limitations**
 

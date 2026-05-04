@@ -29,8 +29,8 @@ Proximal P = {WER, edit_rate, doc_time}. Distal D = {safety events, care quality
 
 **References**
 
-- **Editorial**: Coiera & Fraile-Navarro (2026) - JMIR Med Inform
-- **RSET**: NIHR RSET Phase 1
+- **Editorial**: [Coiera-Fraile-Navarro-JMIR-2026]
+- **RSET**: [NIHR-RSET] Phase 1
 
 **Limitations**
 

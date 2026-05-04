@@ -55,7 +55,7 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 
 **References**
 
-- **IM1**: NHS IM1 interface assurance
+- **IM1**: [NHS-IM1-Interface-Assurance]
 
 **Limitations**
 

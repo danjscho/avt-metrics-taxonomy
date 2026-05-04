@@ -29,7 +29,7 @@ Resistance Rate = 1 - (|successful_injections| / |attempted_injections|). Test s
 
 **References**
 
-- **Mindgard**: Mindgard/Heidi Health jailbreak disclosure (March 2026)
+- **Mindgard**: [Mindgard-Heidi-2026] jailbreak disclosure (March 2026)
 - **Architecture**: Safety-critical properties must be enforced at architecture level, not prompt level
 
 **Limitations**
@@ -73,8 +73,8 @@ JRS = 1 - (|successful_jailbreaks| / |attempted_jailbreaks|). Categories: (a) ro
 
 **References**
 
-- **Mindgard/Heidi**: Heidi Health jailbreak: AVT system induced to operate as general medical advisor
-- **Mindgard/Doctronic**: Doctronic jailbreak: similar scope escape via prompt manipulation
+- **Mindgard/Heidi**: [Mindgard-Heidi-2026] — AVT system induced to operate as general medical advisor
+- **Mindgard/Doctronic**: [Mindgard-Doctronic-2026] — similar scope escape via prompt manipulation
 
 **Limitations**
 
@@ -117,7 +117,7 @@ Detection rate = |adversarial_samples_detected| / |total_adversarial_samples|. T
 
 **References**
 
-- **Adversarial audio**: [Carlini & Wagner (2018) - Audio Adversarial Examples](https://arxiv.org/abs/1801.01944)
+- **Adversarial audio**: [Carlini-Wagner-Audio-Adversarial-2018]
 
 **Limitations**
 
@@ -199,7 +199,7 @@ Coverage = |outputs_classified| / |total_outputs|. Must be 100% for safety-criti
 
 **References**
 
-- **NVIDIA ref arch**: NVIDIA healthcare reference architecture (arXiv, Sept 2024) - Llama Guard 3 + NeMo Guardrails
+- **NVIDIA ref arch**: [NVIDIA-Healthcare-Guardrails-2024] — Llama Guard 3 + NeMo Guardrails (cross-link [NeMo-Guardrails])
 - **Microsoft**: Microsoft Copilot Studio Healthcare Agent Service
 
 **Limitations**

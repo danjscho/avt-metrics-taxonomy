@@ -29,7 +29,7 @@ Precision = |C_correct ∩ C_generated| / |C_generated|. Recall = |C_correct ∩
 
 **References**
 
-- **SNOMED CT**: [SNOMED International](https://www.snomed.org/)
+- **SNOMED CT**: [SNOMED-CT]
 
 **Limitations**
 
