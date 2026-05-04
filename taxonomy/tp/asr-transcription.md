@@ -45,8 +45,8 @@ corpus_wer = out.wer  # macro-averaged across utterances
 
 **References**
 
-- **NIST scoring toolkit**: [SCTK - NIST Speech Recognition Scoring Toolkit](https://github.com/usnistgov/SCTK)
-- **Original**: Woodard & Nelson (1982), NBS Report
+- **NIST scoring toolkit**: [NIST-SCTK]
+- **Original**: Woodard & Nelson (1982), NBS Report — historical credit; no verifiable URL retained from earlier inline citation
 
 **Limitations**
 

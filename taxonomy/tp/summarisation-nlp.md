@@ -555,8 +555,7 @@ for prop in props:
 
 **References**
 
-- **NEJM AI**: [Chung-NEJM-AI-2025]
-- **Code**: [GitHub - philipchung/verifact](https://github.com/philipchung/verifact)
+- **NEJM AI**: [Chung-NEJM-AI-2025] (catalogue entry includes `Code-Repository:` link to philipchung/verifact)
 
 **Limitations**
 

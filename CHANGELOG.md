@@ -1,5 +1,37 @@
 # Changelog
 
+## v4.4.0 (2026-05-04)
+
+**Minor release: Pass B verification sweep over the v4.2 / v4.3 ✓ set + catalogue-promotion-candidates formalisation.**
+
+The v4.2 / v4.3 verification methodology had Pass A clear 138 metrics as ✓ (internally coherent, claims correctly framed) but Pass B (external source fetching) only ran on the 38 source bundles flagged as ⚠ or 🔴. v4.4 closes that loop with a Pass B sweep over the entire ✓ set.
+
+**Methodology.** Same shape as v4.2 / v4.3:
+
+- **Pilot** (HL + IO.PX, 18 metrics): 18 / 18 ✓ verified clean.
+- **Full sweep** (TP / GV / PI / IO.FE / ES.ME, 120 metrics): 119 / 120 ✓ verified clean. 1 fix: GV.SG-5.
+
+**Headline result: 137 / 138 ✓ metrics verified clean.** Pass A's ✓-vs-⚠ discrimination is reliable — the v4.2 confabulation pattern ("specific number attributed to specific paper that doesn't contain it") was caught at Pass A in metrics that earned ⚠, while ✓ metrics genuinely had either Provenance-prefaced taxonomy-proposed numbers, loosely-framed claims, or Maturity-flagged Proposed/Novel framing.
+
+**The one fix — GV.SG-5 AI-Generated Data Contamination Rate.** The metric body cited "A medRxiv 2026 study … 98.9 % vocabulary collapse by generation 4" with no catalogue handle. Pass B located the actual paper (He H, Xiang S, Zhang Y et al., *AI-generated data contamination erodes pathological variability and diagnostic reliability*, medRxiv 2 February 2026, doi 10.64898/2026.01.19.26344383). The qualitative claims (vocabulary collapse, rare-finding disappearance, false-reassurance rate tripling, recursive degradation rendering AI documentation clinically unreliable after a small number of generations) are confirmed in the indexed paper content. The specific "98.9 % by generation 4" figure could not be verified from public excerpts, so v4.4 reframes the body to cite the paper properly via a new catalogue handle (`He-AI-Contamination-Pathology-2026`) and replaces the specific number with the qualitative findings the paper verifiably supports.
+
+**Phase 3 — catalogue-promotion-candidates formalisation.** The 5 v4.3 future-promote items resolved as:
+
+- `NIST-SCTK` — promoted (TP.ASR-1)
+- `dscore-Ryant` — promoted (TP.DI-1)
+- `philipchung/verifact` — folded into existing `[Chung-NEJM-AI-2025]` handle as a `Code-Repository:` metadata field rather than minting a new handle
+- Woodard & Nelson 1982 NBS Report — kept inline; no verifiable URL located, retained as historical credit
+- NEQAS analogy (HL.HF-6) — kept inline; analogy only, not a primary source
+
+**Incidental fixes surfaced during the sweep.**
+
+- **`Chung-NEJM-AI-2025` catalogue entry corrected.** The entry described the wrong paper (Lukac/Chung UCLA RCT, DOI 10.1056/AIoa2501000), but TP.SN-7b cites this handle for the actual VeriFact paper (Chung et al., DOI 10.1056/AIdbp2500418). v4.4 rewrites the catalogue entry to describe VeriFact correctly, noting the UCLA RCT as a separate paper that the taxonomy does not cite.
+- **HL.HF-2 / HL.HF-5 Abridge scale phrasing.** The pilot side-finding flagged that the Abridge whitepaper says "millions of patient encounters every month" — not "1M+ encounters per week" as currently rendered. v4.4 re-softens to match the disclosed phrasing: "millions of encounters per month across 150+ health systems per [Abridge-Whitepaper-2025]".
+
+**Net effect.** Counts unchanged (221 metrics / 45-97-79 tiers). Catalogue grows by 3 handles (`He-AI-Contamination-Pathology-2026`, `NIST-SCTK`, `dscore-Ryant`); 1 catalogue entry corrected (`Chung-NEJM-AI-2025`); 1 handle gains a Code-Repository field.
+
+**Verification posture.** The methodology now runs end-to-end across all 221 metrics: every metric has either passed Pass B externally or carries an honest Provenance / Maturity flag. v4.2 + v4.3 + v4.4 closes the FD / code-snippet / source-attribution verification arc started in v4.2.
+
 ## v4.3.0 (2026-05-04)
 
 **Minor release: Formal Definition + code snippet verification extended to remaining clusters.**

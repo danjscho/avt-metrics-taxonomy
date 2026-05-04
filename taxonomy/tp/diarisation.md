@@ -42,7 +42,7 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 **References**
 
-- **Scoring tool**: [dscore - Python NIST md-eval](https://github.com/nryant/dscore)
+- **Scoring tool**: [dscore-Ryant]
 - **SCRIBE**: [Wang-ADS-Eval-2025]
 
 **Limitations**

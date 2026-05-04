@@ -122,7 +122,7 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 **References**
 
-- **Abridge**: vendor-reported deployment scale (1M+ encounters/week order of magnitude per [Abridge-Whitepaper-2025])
+- **Abridge**: vendor-reported deployment scale (millions of encounters per month across 150+ health systems per [Abridge-Whitepaper-2025])
 - **DeepScore**: vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page)
 
 **Limitations**
@@ -323,7 +323,7 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
-Cross-system edit analysis at vendor-reported deployment scale (1M+ encounters/week order of magnitude across 150+ systems per vendor disclosures). Most scalable quality signal - locked inside one vendor.
+Cross-system edit analysis at vendor-reported deployment scale (millions of encounters per month across 150+ health systems per [Abridge-Whitepaper-2025]). Most scalable quality signal - locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|

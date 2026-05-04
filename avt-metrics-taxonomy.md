@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.3.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v4.4.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -3234,8 +3234,8 @@ corpus_wer = out.wer  # macro-averaged across utterances
 
 **References**
 
-- **NIST scoring toolkit**: [SCTK - NIST Speech Recognition Scoring Toolkit](https://github.com/usnistgov/SCTK)
-- **Original**: Woodard & Nelson (1982), NBS Report
+- **NIST scoring toolkit**: [NIST-SCTK]
+- **Original**: Woodard & Nelson (1982), NBS Report — historical credit; no verifiable URL retained from earlier inline citation
 
 **Limitations**
 
@@ -4004,7 +4004,7 @@ der = metric(reference_annotation, hypothesis_annotation)
 
 **References**
 
-- **Scoring tool**: [dscore - Python NIST md-eval](https://github.com/nryant/dscore)
+- **Scoring tool**: [dscore-Ryant]
 - **SCRIBE**: [Wang-ADS-Eval-2025]
 
 **Limitations**
@@ -4908,8 +4908,7 @@ for prop in props:
 
 **References**
 
-- **NEJM AI**: [Chung-NEJM-AI-2025]
-- **Code**: [GitHub - philipchung/verifact](https://github.com/philipchung/verifact)
+- **NEJM AI**: [Chung-NEJM-AI-2025] (catalogue entry includes `Code-Repository:` link to philipchung/verifact)
 
 **Limitations**
 
@@ -7847,7 +7846,7 @@ Type(e) ∈ {Addition, Deletion, Modification, Structural}. P_add >> P_del → o
 
 **References**
 
-- **Abridge**: vendor-reported deployment scale (1M+ encounters/week order of magnitude per [Abridge-Whitepaper-2025])
+- **Abridge**: vendor-reported deployment scale (millions of encounters per month across 150+ health systems per [Abridge-Whitepaper-2025])
 - **DeepScore**: vendor-disclosed evaluation scale (~135,900 notes per [DeepScore] methodology page)
 
 **Limitations**
@@ -8048,7 +8047,7 @@ def analyse_tts(data):  # list of {seconds, word_count}
 
 ### HL.HF-5 🔵 Edit-Pattern Monitoring at Scale
 
-Cross-system edit analysis at vendor-reported deployment scale (1M+ encounters/week order of magnitude across 150+ systems per vendor disclosures). Most scalable quality signal - locked inside one vendor.
+Cross-system edit analysis at vendor-reported deployment scale (millions of encounters per month across 150+ health systems per [Abridge-Whitepaper-2025]). Most scalable quality signal - locked inside one vendor.
 
 | Dimension | Value |
 |-----------|-------|
@@ -9614,7 +9613,7 @@ Assessment against specification criteria: (1) Performance thresholds pre-specif
 
 ### GV.SG-5 🔵 AI-Generated Data Contamination Rate
 
-The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". A medRxiv 2026 study of iterative training on AI-generated clinical content reported vocabulary collapse of 98.9% by generation 4 and effective disappearance of rare clinical findings.
+The proportion of training or fine-tuning data that is itself AI-generated clinical content - either directly (notes written by earlier versions of the same AVT system used to train successors) or indirectly (clinical records that have been shaped by AI suggestions even where the final text was human-edited). Known in the machine learning literature as "model autophagy disorder" or "MAD". [He-AI-Contamination-Pathology-2026] (medRxiv preprint, February 2026) demonstrates progressive vocabulary collapse and disappearance of rare clinical findings (e.g. pneumothorax, effusion) across recursive training generations on AI-generated clinical content, with false-reassurance rates tripling and AI documentation rendered clinically unreliable within a small number of generations.
 
 |Dimension              |Value                                                                                            |
 |-----------------------|-------------------------------------------------------------------------------------------------|
@@ -9629,7 +9628,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
-|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]                                  |
+|**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]|
 
 **Why this tier?**
 
@@ -14223,16 +14222,17 @@ Cited in TP.SN-7a (Confabulation Detection — Support × Severity) for the two-
 
 ### Chung-NEJM-AI-2025
 
-- **Title:** Ambient AI Scribes in Clinical Practice (UCLA RCT)
-- **Publisher:** Lukac S, Chung et al. *NEJM AI* 2025;2(12):e2501000. DOI 10.1056/AIoa2501000 (Chung is co-author; the original Chung-first-author handle has been retained for taxonomy continuity but the canonical first author is Lukac)
+- **Title:** Verifying Facts in Patient Care Documents Generated by Large Language Models Using Electronic Health Records (VeriFact)
+- **Publisher:** Chung P et al. *NEJM AI* 2025. DOI 10.1056/AIdbp2500418; arXiv preprint 2501.16672
 - **Source-Type:** paper
-- **URL:** https://ai.nejm.org/doi/10.1056/AIoa2501000
+- **URL:** https://ai.nejm.org/doi/full/10.1056/AIdbp2500418
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Code-Repository:** https://github.com/philipchung/verifact
 - **Cited-by:** `tp/summarisation-nlp.md`
 
-Cited in TP.SN-8 (Clinical Equivalence or similar) as the NEJM AI January 2025 paper from Chung et al. at Stanford.
+Stanford / NEJM AI paper introducing VeriFact: a Retrieval-Augmented Generation + LLM-as-Judge pipeline that verifies whether LLM-generated clinical text is factually supported by a patient's EHR. The pipeline decomposes input text (e.g. brief hospital course narratives) into propositions, retrieves relevant EHR facts per proposition, and classifies each as supported / not supported / not addressed. Reports 92.7% / 88.5% agreement figures (verified clean in v4.2 Pass B). Cited in TP.SN-7b (VeriFact Factual Verification sub-part of the parent TP.SN-7 construct). v4.4 Pass B follow-up: corrected the catalogue entry — earlier description incorrectly labelled this handle as the UCLA Lukac/Chung RCT (a separate NEJM AI paper, DOI 10.1056/AIoa2501000), which the taxonomy never actually cited. The `philipchung/verifact` GitHub repo is the implementation companion (v4.3 catalogue-promotion-candidates flagged it as a future-promote; v4.4 folds it into this entry's metadata as `Code-Repository:` rather than minting a separate handle).
 
 ### Bedi-Stanford-CRFM-2025
 
@@ -15083,6 +15083,45 @@ Randomised study of 40 ambulatory providers (March-April 2024) using either Abri
 - **Cited-by:** `tp/asr-transcription.md`
 
 Foundational paper on racial disparities in commercial ASR systems. Tested five major ASR systems (Amazon, Apple, Google, IBM, Microsoft) on speech from Black and White speakers; reported substantial accuracy gaps that systematically disadvantage Black speakers. Cited in TP.ASR-4 (Demographic-Disaggregated WER) as the empirical evidence underwriting the demographic-equity-disaggregation construct. **Distinct from `Koenecke-Careless-Whisper-2024`** — different paper, different year (2020 vs 2024), different topic (racial-disparity ASR vs Whisper hallucination); the v4.3 promotion specifically addresses conflation risk between the two Koenecke papers.
+
+### He-AI-Contamination-Pathology-2026
+
+- **Title:** AI-generated data contamination erodes pathological variability and diagnostic reliability
+- **Publisher:** He H, Xiang S, Zhang Y, et al. *medRxiv* preprint, 2 February 2026; doi: 10.64898/2026.01.19.26344383; arXiv: 2601.12946
+- **Source-Type:** preprint
+- **URL:** https://www.medrxiv.org/content/10.64898/2026.01.19.26344383v3
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-04
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `gv/safety-governance.md`
+
+Empirical demonstration of model autophagy / "Curse of Recursion" effects in clinical AI contexts. Across >800,000 synthetic data points spanning clinical text generation, vision-language reporting, and medical image synthesis, the paper reports that recursive training on AI-generated content drives models to converge on generic phenotypes regardless of architecture, with rare-but-critical findings (e.g. pneumothorax, effusion) progressively vanishing from outputs. False-reassurance rates triple to ~40%, and blinded physician evaluation finds AI-generated documentation clinically unreliable after two recursive generations. Mixing real data with quality-aware filtering preserves diversity. Cited in GV.SG-5 (AI-Generated Data Contamination Rate) as the AVT-relevant empirical anchor for the model-autophagy / vocabulary-collapse phenomenon. v4.4 promotion: previously cited inline as "A medRxiv 2026 study" without a handle; promoted to catalogue and renamed during the v4.4 ✓-set Pass B sweep.
+
+### NIST-SCTK
+
+- **Title:** NIST Speech Recognition Scoring Toolkit (SCTK)
+- **Publisher:** US National Institute of Standards and Technology (NIST)
+- **Source-Type:** tool
+- **URL:** https://github.com/usnistgov/SCTK
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-04
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/asr-transcription.md`
+
+NIST's reference implementation of the WER scoring stack (sclite, asclite, hubscr) used as the canonical alignment / scoring tool in ASR evaluation. Cited in TP.ASR-1 (Word Error Rate) as the de-facto NIST scoring toolkit reference. v4.4 promotion from inline link to catalogue handle.
+
+### dscore-Ryant
+
+- **Title:** dscore — Python implementation of NIST md-eval diarisation scoring
+- **Publisher:** Neville Ryant et al.
+- **Source-Type:** tool
+- **URL:** https://github.com/nryant/dscore
+- **Archive:** _(Phase 1 — pending snapshot.py)_
+- **Retrieved:** 2026-05-04
+- **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Cited-by:** `tp/diarisation.md`
+
+Python re-implementation of NIST md-eval — the canonical tool for computing diarisation metrics (DER, JER) using the standard NIST collar / forgiveness conventions. Cited in TP.DI-1 (Diarisation Error Rate) as the practical scoring toolkit. v4.4 promotion from inline link to catalogue handle.
 
 ### Harkema-ConText-2009
 
