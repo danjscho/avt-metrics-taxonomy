@@ -1,5 +1,34 @@
 # Changelog
 
+## v4.3.0 (2026-05-04)
+
+**Minor release: Formal Definition + code snippet verification extended to remaining clusters.**
+
+The v4.2.0 verification methodology — Pass A internal coherence + Pass B external source verification — extended from TP / IO.FE / ES.ME (92 metrics) to GV / HL / PI / IO.PX (the remaining 131 in-scope metrics, with TP/ES partial revisits where bundles surfaced new questions).
+
+**Methodology.** Same two-pass shape as v4.2:
+
+- **Pass A — internal coherence.** 131 metrics triaged as 98 ✓ / 1 ~ / 32 ⚠ / 0 🔴.
+- **Pass B — external source verification.** 22 source bundles fetched and verified. Final verdict: **1 🔴 + 2 🟠** after reviewer corrections (initial 2 🔴 + 3 🟠 reduced — IO.PX-7 was confirmed correct against the actual JAMA Network Open paper by Stults et al. 2025 once the right paper was located, and GV.SC-11 0.96 MIA AUC was confirmed in IEEE-S&P-2023 paper text). Sources cached at `reference-docs/v4.3-pass-b/` (gitignored).
+
+**Phase 3a — metric content fixes (3 metrics).**
+
+- **HL.HF-8 Trust Calibration Survey** — dropped HATAS from instrument list (Pass B couldn't locate any HATAS instrument in published trust-in-automation literature); softened Dokkyo Medical University attribution to "recent reviews".
+- **GV.VT-2 Telemetry Provision Completeness** — paraphrased the Keyes-Stanford verbatim quote into the verified three-principle framework framing; kept the citation.
+- **HL.HF-2 / HL.HF-5 / GV.SG-8 vendor scale numbers** — softened "1M+ encounters/week", "150+ systems", "135,900 notes" to "vendor-reported deployment scale" / "vendor-disclosed evaluation scale" wording, anchored to the relevant catalogue handles.
+
+**Phase 3b — References-block grammar drift sweep.**
+
+64 References-block bullets across all clusters classified as (a) catalogue-equivalent → migrate to `[Handle]`, (b) promote-then-migrate, (c) bare prose (tools / framework names / analogies — no handle needed), (d) already correct. Reviewer verdict on the (b) set: "promote all now". Outcome:
+
+- **11 new catalogue handles** added to `_references.md`: `Casner-Schooler-Aviation-Skill-2014`, `Lee-See-Trust-Automation-2004`, `Parasuraman-Manzey-Complacency-2010`, `Hudson-NASA-TLX-Abridge-2025`, `Koenecke-PNAS-Racial-ASR-2020` (distinct from existing `Koenecke-Careless-Whisper-2024`), `Harkema-ConText-2009`, `NVIDIA-Healthcare-Guardrails-2024`, `Li-Semantic-WER-2022`, `Guo-Calibration-2017`, `Carlini-Wagner-Audio-Adversarial-2018`, `NHS-IM1-Interface-Assurance`.
+- **~33 inline-link bullets** migrated to `[Handle]` form across 11 cluster files. Discovered during execution that `[MedCAT-Benchmarks]` already covered what the plan had proposed as a new `MedCAT-CogStack` handle; migrated TP.ASR-2/-3 to the existing handle rather than creating a duplicate.
+- **5 inline references** captured as future-promote (single-use tool/repo/historical mentions; not load-bearing). See `v4.3-catalogue-promotion-candidates.md` archived alongside the release plan.
+
+**Phase 4 — code snippet verification (12 snippets across PI / HL / GV).** 9 ✓ verified clean (real library APIs, self-contained); 3 ⚠ snippets (PI.E2E-3, PI.E2E-4, PI.E2E-7) gained clarifying-comment notes flagging that helper functions like `error_persists` / `item_present` / `text_similarity` / `extract_safety_items` are illustrative stand-ins for project-specific implementations, mirroring the v4.2 TP.SN-7b VeriFact pattern. PI.E2E-7 also gained a missing `import numpy as np`.
+
+**No metric content additions / removals.** Counts unchanged: 221 / 45-97-79. Catalogue grew from ~80 to ~91 entries.
+
 ## v4.2.1 (2026-05-03)
 
 **Patch release: ref-IDs in cross-cutting prose now linkify to per-metric pages.**

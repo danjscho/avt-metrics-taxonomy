@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.2.1, 2026-05-03.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v4.3.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -7203,6 +7203,9 @@ def trace_error_cascade(
     """
     Track injected errors through pipeline stages.
     Requires controlled error injection at specific stages.
+    Illustrative: error_persists / error_amplified are stand-ins
+    for project-specific comparison helpers (e.g. fuzzy string
+    match, semantic similarity, or domain-specific item match).
     """
     STAGES = ["asr", "diarisation", "summarisation", "coding", "writeback"]
     cascade_results = []
@@ -7273,6 +7276,9 @@ def chain_of_custody(item: str, stage_outputs: dict) -> dict:
     """
     Trace a safety-critical item through every pipeline stage.
     Returns the chain status and break point if applicable.
+    Illustrative: item_present is a stand-in for a domain-specific
+    matcher (substring, normalised concept ID match, or coded-entry
+    lookup depending on stage representation).
     """
     STAGES = ["transcript", "diarised_transcript", "summary",
               "coded_entries", "epr_record"]
@@ -7466,10 +7472,14 @@ Process same audio N times (N ≥ 10). Reproducibility R = mean pairwise similar
 
 ```python
 from itertools import combinations
+import numpy as np
 
 def test_reproducibility(audio_path: str, pipeline, n_runs: int = 10):
     """
     Process same audio N times, measure output variance.
+    Illustrative: text_similarity and extract_safety_items are
+    stand-ins — wire to a real similarity function (e.g. embedding
+    cosine) and a clinical NER/extractor for production use.
     """
     outputs = [pipeline.process(audio_path) for _ in range(n_runs)]
 
