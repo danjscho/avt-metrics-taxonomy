@@ -643,13 +643,15 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 > - **Aggregation:** weighted aggregate HUN_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_total per category, plus the overall headline rate. Unweighted rate may be reported alongside but not in place of HUN_w.
 > - **Pre-deployment vs periodic audit:** pre-deployment is a hard gate before go-live; periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking](#gv-sg-1) (any ASR weight or model update triggers re-test).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
-> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented ([Koenecke-Careless-Whisper-2024], cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
+> The silence-hallucination failure mode is well-documented ([Koenecke-Careless-Whisper-2024], cited Source) and the clinical-safety logic supports zero-tolerance for critical-class hallucinations.
 >
-> - **Pre-deployment gate:** zero critical-class hallucinations across the entire test corpus; moderate-class rate < 1 % per category; benign-class rate < 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.
-> - **Periodic audit:** re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts > 50 % from prior baseline.
-> - **Pause / escalation trigger:** any critical-class hallucination detected in production traffic (single instance), or per-category HUN_w exceeds the pre-deployment gate by 2× in any audit cycle.
+> - **Pre-deployment gate** is a zero-tolerance category boundary on critical-class events combined with low (per-category) rates on moderate and benign classes. Any critical-class failure is a hard fail regardless of overall rate.
+> - **Periodic audit** re-runs the corpus on every ASR component change ([GV.SG-1 Model Version Tracking](#gv-sg-1)). The signals are (a) any new critical-class hallucination and (b) sustained drift in per-category HUN_w against the prior baseline.
+> - **Pause / escalation** triggers on any critical-class hallucination in production traffic, or per-category HUN_w exceeding the pre-deployment gate substantially in any audit cycle.
+>
+> Specific numerical starting points (test-corpus floors, moderate / benign rates, drift magnitudes) are deployment-context-dependent and live in [Threshold Reference: TP.ASR-12](../thresholds.md#tp-asr-12). Treat them as starting points to calibrate locally — not as contractual gates.
 
 **References**
 
@@ -714,13 +716,17 @@ Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Com
 > - **Population:** all numeric tokens in scope; no exclusions. A reference transcript missing dosage events under-represents the safety surface.
 > - **Severity classification MANDATORY:** dosage errors are critical by default. Date errors affecting clinical timing (medication start/stop, last menstrual period, immunisation history) classified critical. Other errors classified moderate or benign per clinical-significance review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the dosage-error critical-class framing follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (and the canonical "15 mg → 50 mg" example). Specific numerical thresholds (100 % dosage gate, 99 % unit gate, 95 % integer / decimal / date / range gate, ≥ 200-tokens-per-sub-type floor) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use — paediatric dosing has narrower error tolerance than adult dosing, for example.
 >
 > - **Pre-deployment gate:** dosage accuracy = 100 % on test corpus; unit accuracy ≥ 99 %; integer / decimal / date / range accuracy ≥ 95 % each. Any sub-metric below floor is a hard fail regardless of aggregate.
 > - **Periodic audit:** monthly review of production-traffic numeric accuracy by sub-type; alert on any single dosage error confirmed; alert if any sub-type drifts > 2 % below baseline sustained two months.
 > - **Pause / escalation trigger:** any single dosage error confirmed in production traffic (single instance — dosage errors are zero-tolerance for the metric); OR aggregate sub-type accuracy < 90 % for any sub-type in any audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.ASR-13](../thresholds.md#tp-asr-13). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

@@ -45,13 +45,17 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 > - **Per-category reporting MANDATORY:** report fidelity by category (a)-(e) with safety-critical categories reported separately. Aggregate-only reporting hides the failure modes that matter most.
 > - **Failure-mode classification MANDATORY:** every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the zero-tolerance posture on type-(iii) failures into safety-critical fields follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (a hallucinated allergy in an allergy field is a system-level safety failure). Specific numbers (100 % safety-critical gate, ≥ 95 % free-text gate, ≥ 99 % monthly audit floor, ≥ 200 cases per EPR) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
 > - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
 > - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-1](../thresholds.md#tp-wb-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -114,13 +118,17 @@ IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 > - **Severity classification MANDATORY:** every error event classified by clinical impact: **critical** (safety-critical content lost or degraded — allergies, medications, dosages, problem-list entries); **moderate** (clinically meaningful content lost — exam findings, history, plan items); **benign** (presentation-only content lost — formatting, ordering, free-text style). Critical-rate reported separately as the leading safety indicator.
 > - **Soft-failure detection method MANDATORY:** the deployer's method for detecting degraded write-backs (where the EPR accepts the record but quality has been silently downgraded) MUST be documented. Methods in order of rigour: (i) sampled human review of write-back outputs against AVT-generated content; (ii) automated comparison of written-to-EPR content against AVT-generated content via diff; (iii) vendor self-attestation. Method (iii) is not Tier 1 sufficient alone.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IER < 0.001 SLA target carries from the existing Formal Definition and standard integration-monitoring practice. Specific numerical thresholds per error type (failed < 0.0005, partial < 0.0003, degraded < 0.0002 by default; critical-rate zero-tolerance for the partial / degraded classes on safety-critical content) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (per EPR):** vendor demonstrates the three-error-type telemetry; soft-failure detection method documented; one end-to-end integration test passes per error type prior to go-live; zero critical-class events on the test corpus.
 > - **Continuous monitoring:** daily IER per error type per EPR ≤ SLA target; alert on any critical-class event detected (single instance, regardless of overall rate); alert if any error-type rate drifts > 50 % above per-EPR baseline sustained 7 days.
 > - **Pause / escalation trigger:** any critical-class event on safety-critical content (allergy / medication / dose) confirmed in production; OR aggregate IER > 5 × SLA target on any EPR for 24 hours; OR degraded-class soft-failure detection cadence falls below documented method (loss of monitoring capability is itself an escalation event).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-2](../thresholds.md#tp-wb-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -175,13 +183,17 @@ For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapp
 > - **Test corpus inheritance:** uses the same ≥ 200-cases-per-EPR test corpus as TP.WB-1, with per-test-case expected-target-field annotation. Pre-deployment gate runs both metrics on the same corpus.
 > - **Failure-mode classification:** each failure recorded as (i) wrong field same category (e.g. allergy to wrong allergy sub-field); (ii) wrong category (e.g. allergy to medication); (iii) free-text fallback when structured target available; (iv) multi-target rule violation. Type (iii) on safety-critical categories is a critical-class failure (silent safety-mechanism bypass per the Novel Thinking section).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the safety-critical-content-in-non-safety-critical-fields zero-tolerance posture follows from the clinical-safety logic in TP.WB-3's Why-this-tier and Novel Thinking sections (and TP.WB-1's parallel framing). Specific numerical thresholds (100 % safety-critical-category gate, ≥ 95 % per-category gate, type-(iii) zero-tolerance) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the per-EPR field-map content is highly deployment-dependent — local calibration is the substantive work here, not the threshold numbers.
 >
 > - **Pre-deployment gate (per EPR):** field-map document complete and signed off; safety-critical-category mapping accuracy = 100 % on test corpus; per-category accuracy ≥ 95 % each; zero type-(iii) safety-critical failures.
 > - **Continuous monitoring:** monthly audited mapping accuracy ≥ 99 % on safety-critical categories; alert on any type-(iii) safety-critical failure detected in production traffic (no rate threshold — single instance is alert-worthy); alert if any per-category rate falls below 90 % in any audit cycle.
 > - **Pause / escalation trigger:** any type-(iii) failure on allergy or medication-dose categories confirmed in production; OR aggregate safety-critical-category mapping accuracy < 95 % in any monthly audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-3](../thresholds.md#tp-wb-3). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -246,13 +258,17 @@ For each structured data update: behaviour in {overwrite, append, merge, skip}. 
 > - **Duplicate-detection windowing MANDATORY:** the deployer's duplicate-detection logic (does an entry written 2 minutes ago count as duplicate? 2 hours? 2 days?) MUST be documented with the windowing rule. Without explicit windowing, duplicate / merge cells are operationally meaningless.
 > - **Skip-with-flag pathway MANDATORY:** the workflow for surfacing skip-with-flag events to the clinician MUST be documented and tested at pre-deployment. Skip-without-flag is a silent failure of the metric.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-behaviour taxonomy and the safety-critical critical-failure classification follow from the existing Formal Definition and Novel Thinking. Specific numerical thresholds (≥ 50 cases per cell, 100 % safety-critical critical-failure-mode gate, ≥ 95 % per-cell gate elsewhere) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the rule-document content is the substantive calibration work; the threshold numbers are starting points for that work.
 >
 > - **Pre-deployment gate (per EPR):** rule document complete and signed off; test corpus passes with zero safety-critical critical-failure-mode events; per-cell behaviour correctness ≥ 95 % across all cells; skip-with-flag pathway tested end-to-end.
 > - **Periodic audit:** quarterly review of production-traffic update behaviour against the rule document; alert on any safety-critical critical-failure-mode event detected (single instance); alert if any (category × context) cell falls below 90 % correctness in any audit cycle.
 > - **Pause / escalation trigger:** any safety-critical critical-failure-mode event confirmed in production (overwrite-with-less-data on allergies / medications / problems; skipped legitimate addition; duplicate-without-merge on safety-critical category); OR aggregate safety-critical-category cell correctness < 95 % in any audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-4](../thresholds.md#tp-wb-4). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

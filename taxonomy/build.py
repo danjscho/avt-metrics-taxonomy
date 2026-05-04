@@ -37,6 +37,7 @@ FILES = [
     "_gaps.md",
     "_glossary.md",
     "_versioning.md",
+    "_thresholds.md",
     "tp/audio-capture.md",
     "tp/asr-transcription.md",
     "tp/diarisation.md",

@@ -194,5 +194,6 @@ nav:
       - Glossary: glossary.md
       - Downloads: downloads.md
       - Versioning: versioning.md
+      - Threshold Reference: thresholds.md
       - Metric history: metric-history.md
       - Changelog: changelog.md

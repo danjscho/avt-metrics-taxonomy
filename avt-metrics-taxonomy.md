@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.5.1, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.0.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.5.1** is a v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -2836,7 +2836,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v4.5.1` / `2026-05-04` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.0.0` / `2026-05-04` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -2847,6 +2847,614 @@ Reference IDs (TP.AC-1 etc.) are stable identifiers. When a metric is removed (e
 - Documentation may continue to reference retired IDs in historical narration; the cross-cut linkifier tolerates them
 
 This applies symmetrically to catalogue handles: a handle that resolves today should resolve in every future version, even if the entry's content changes (e.g. v4.4 corrected the `Chung-NEJM-AI-2025` entry to describe the right paper without renaming the handle).
+
+# Threshold Reference
+
+!!! warning "These are starting points, not standards"
+
+    Numbers on this page are **proposed starting points**. They are not validated, not industry consensus, not regulatory thresholds, and not contractual gates. They exist because deployers ask "what's a reasonable starting figure?" and refusing to answer is its own dishonesty — but answering is not the same as knowing.
+
+    **Compound-errors caveat (read this).** Each number on this page was authored independently. The thresholds have not been jointly calibrated against deployment data. A deployment that adopts every threshold as written may sit on a combination of triggers that no single trigger would have produced — for example, simultaneously satisfying the Edit Rate alert, the Time-to-Sign pause trigger, and the Review-Before-Signing pause may indicate one underlying issue counted three times, or three independent issues converging, and this page cannot tell you which. Treat each threshold as one input to a clinical-safety judgement, not as a pass/fail gate.
+
+    **What you should do with these numbers.**
+
+    - Use them to start a conversation with your vendor and your clinical-safety officer.
+    - Calibrate them locally before any operational use; document where you diverged and why.
+    - Re-calibrate after any deployment change (model update, scope change, population change).
+    - Do **not** paste them into procurement contracts as binding gates.
+    - Do **not** cite them as authoritative in academic work without explicit prototype-status framing.
+
+    **Why the split.** Earlier versions of this taxonomy embedded these numbers in metric definitions themselves. That made each number look more authoritative than it should have, and it let numbers travel separately from their caveats. Pulling them out into one place — and being structurally loud about what they are — is an attempt to fix that.
+
+## How to read this page
+
+The page has three layers.
+
+**Cited thresholds** (first section below) are numbers attributed to specific external authorities — NAS Day Zero SPI, UK GDPR statutory deadlines, NHS England guidance. These are sourced; the taxonomy is just citing them.
+
+**Per-metric proposed thresholds** (the bulk of the page) are taxonomy-proposed starting points. Each row has a "why this number" provenance column that names the actual reasoning — author judgement, carried-from-prior-version, convention-mirroring, engineering rule-of-thumb. The provenance is honest about the limits.
+
+**Cross-metric conventions** (final sections) are named patterns — severity weights, test-corpus floors, severity-band ladders, gate-vs-boundary distinctions — that recur across multiple metrics. They are gathered here so deployers can see related thresholds together, and so the taxonomy doesn't restate the same convention in five different metric bodies.
+
+The metrics themselves now carry only **Trigger Conditions** (qualitative descriptions of what kinds of patterns matter). Specific numerical starting points live here.
+
+---
+
+## Cited thresholds
+
+These thresholds are attributed to external authorities. They are *not* taxonomy-proposed.
+
+| Metric | Threshold | Source | Use |
+|---|---|---|---|
+| HL.HF-3a Review-Before-Signing Rate | RBS ≥ 95 % aggregate | NAS Day Zero SPI | Pre-deployment gate |
+| HL.HF-3a | Per-clinician RBS ≥ 90 % | NAS Day Zero SPI | Minimum individual performance |
+| HL.HF-3a | Aggregate < 85 % for 2 consecutive weeks | NAS Day Zero SPI | Pause trigger |
+| HL.HF-3a | T_min = max(15 s, 3 s × word_count / 100) | NAS Day Zero SPI | Dwell-threshold formula for review classification |
+| HL.HF-3b Time-to-Sign Distribution | TTS_norm < 0.5 s/word flag | Keyes-Stanford-Monitoring-2025 (rubber-stamping principle); specific value taxonomy-proposed | Rubber-stamping flag (the *concept* is cited; the specific 0.5 s/word value is author-proposed) |
+| GV.OP-5 System Availability | ≥ 99.5 % during consultation hours | NAS Day Zero SPI | Operational availability gate |
+| GV.PD-10 SAR Fulfilment | ≤ 30 days | UK GDPR Article 15 | Statutory deadline |
+| TP.SN-5 Hallucination Rate | ≥ 5 % critical OR > 5 % HR_w / 3 days | NAS Day Zero SPI pause logic | Pause trigger |
+
+These eight thresholds are the only numbers in the catalogue with formal external attribution. Everything else is taxonomy-proposed.
+
+---
+
+## Per-metric proposed starting points
+
+Per-metric tables. Each row has the threshold value, its operational context, and a "why this number" provenance column. The provenance is the most honest part of the row — it names whether the number is author judgement, carried from a prior version, mirrors an external convention, or sits on something firmer.
+
+### TP cluster
+
+#### TP.AC-5 — Microphone & Hardware Validation { #tp-ac-5 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 Hz – 8 kHz frequency response | Minimum acceptable hardware spec | Standard speech-frequency range; matches consumer microphone specs and the band carrying clinical-conversation intelligibility |
+    | > 99.9 % uptime | Connectivity reliability gate | Three-nines is a common SLA convention; the *meaningful* gate is "no consultations lost to mic failure" |
+
+#### TP.ASR-12 — Hallucination-Under-Noise Rate { #tp-asr-12 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 50 samples per category | Test-corpus floor | Statistical floor for stable per-category rate estimation. See [Test-corpus floor convention](#test-corpus-floor-convention) for the rare-event-rate caveat |
+    | 0 critical-class hallucinations | Pre-deployment gate | Definitional category boundary, not a percentage threshold. See [Aggregate-rate gates vs zero-tolerance boundaries](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries) |
+    | < 1 % moderate-class | Per-category alert | Author judgement; in line with TP.SN-5 critical-subtype rate (< 0.5 %) but loosened by class severity |
+    | < 5 % benign-class | Per-category alert | Author judgement; an order of magnitude looser than moderate |
+    | HUN_w severity-weighted formula | Aggregation method | See [Severity-weighting convention](#severity-weighting-convention) |
+    | > 25 % drift sustained two audit cycles | Pause / escalation trigger | **v4.5.1-tightened from > 50 % drift** (was too loose — by then the system has visibly degraded); now matches the v3.4 drift conventions in the GV.PD metrics |
+
+#### TP.ASR-13 — Numeric Accuracy { #tp-asr-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % dosage accuracy | Pre-deployment gate | Zero-tolerance category boundary. Any wrong dose is a safety event |
+    | ≥ 99 % unit accuracy | Pre-deployment gate | Author judgement; one nine below dosage |
+    | ≥ 95 % integer / decimal / date / range | Per-subtype pre-deployment floor | Author judgement; conventional pre-deployment floor (cluster with [Aggregate-rate gates](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries)) |
+    | ≥ 200 numeric tokens per sub-type | Test-corpus floor | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | ≥ 1000 total tokens | Aggregate test-corpus floor | Five sub-types × 200 = 1000; derived consistency, not independent claim |
+    | > 2 % sustained drift below baseline / two months | Continuous-monitoring alert | Two-month sustainment window is generous; defensible as a real signal rather than noise |
+    | < 90 % for any sub-type | Pause / escalation trigger | Five-percentage-point gap from the 95 % gate |
+
+#### TP.CC-6 — Code Hallucination Rate { #tp-cc-6 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 0.0 hallucination rate | Pre-deployment gate | Definitional category boundary. Any non-existent code is an architectural failure of the coding pipeline |
+
+#### TP.SN-5 — Hallucination Rate { #tp-sn-5 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 2 % HR_w on ≥ 500-note test set | Pre-deployment gate | Author judgement; two orders of magnitude tighter than benign-class TP.ASR-12 because hallucination affects clinical signal directly |
+    | < 0.5 % critical-subtype | Pre-deployment ceiling | Five times tighter than aggregate; critical-subtype carries the safety load |
+    | > 3 % sustained two weeks | Continuous-monitoring alert | Above pre-deployment but not yet at pause; useful gradient. Carries the v3.3 "1.5× pre-deployment gate" pattern |
+    | HR_w severity-weighted formula | Aggregation method | See [Severity-weighting convention](#severity-weighting-convention) |
+
+(Pause trigger ≥ 5 % critical OR > 5 % HR_w / 3 days is **cited** above — see [Cited thresholds](#cited-thresholds))
+
+#### TP.SN-6 — Omission Rate { #tp-sn-6 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 3 % OR_w on ≥ 500-note test set | Pre-deployment gate | One percentage point looser than hallucination — omissions are easier to make and harder to verify in unstructured prose |
+    | < 1 % critical-category per category | Per-category pre-deployment floor | Twice the SN-5 critical-subtype rate (0.5 %); category is broader than subtype |
+    | > 5 % critical / mandatory category | Continuous alert | Five-times-floor pattern |
+    | > 1.5× deployment-baseline drift | Aggregate-drift alert | Multiplicative-drift convention |
+    | ≥ 10 % critical OR > 8 % aggregate | Pause trigger | Pause-trigger ladder |
+    | OR_w severity-weighted formula | Aggregation method | See [Severity-weighting convention](#severity-weighting-convention) |
+
+#### TP.SN-15 — Negation Handling Accuracy { #tp-sn-15 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 98 % real-consultation NA_w | Pre-deployment gate | Negation handling is high-stakes (allergy "no penicillin" → "penicillin" is a safety event); two percentage points above the more general 95 % cluster |
+    | ≥ 90 % adversarial-test | Adversarial pre-deployment gate | Eight-point loosening for adversarial test — adversarial sets are constructed to fail |
+    | ≥ 200-sentence adversarial floor | Test-corpus floor | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | 0 allergy-category negation failures | Zero-tolerance | Definitional category boundary |
+    | < 95 % NA_w / two cycles | Pause trigger | Three-point drop from 98 % gate |
+    | NA_w severity-weighted formula | Aggregation method | See [Severity-weighting convention](#severity-weighting-convention) |
+
+#### TP.SN-20 — Uncertainty Marker Preservation { #tp-sn-20 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 95 % UMP_w real-consultation | Pre-deployment gate | Loosens from SN-15's 98 % because uncertainty preservation is harder (more subjective) than negation |
+    | ≥ 90 % adversarial UMP_w | Adversarial pre-deployment gate | Five-point adversarial loosening (vs SN-15's eight) — asymmetry in adversarial test difficulty |
+    | ≥ 200 markers / cycle | Test-corpus floor | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | ≥ 30 markers per epistemic level | Per-level floor | Statistical floor per level (~5 levels × 30 + tails) |
+    | ≥ 100 adversarial markers | Adversarial test-set size | Half the real-test floor; standard 2:1 ratio |
+    | 0 safety-critical inflation events | Zero-tolerance | Definitional category boundary |
+    | ≥ 85 % conditional-uncertainty preservation | Pre-deployment gate (conditionals) | Loosened ten points from real-consultation gate — conditional structures are harder to preserve |
+    | < 85 % UMP_w / two cycles | Pause / escalation trigger | Same gap pattern as SN-15 |
+    | Asymmetric severity weights | Aggregation method | The asymmetry is *the* point of UMP — over-confidence (inflation) is more dangerous than under-confidence (deflation). See [Severity-weighting convention](#severity-weighting-convention) for the asymmetric variant |
+
+#### TP.WB-1 — Write-back Fidelity { #tp-wb-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 200 cases per EPR | Test-corpus floor | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | ≥ 40 safety-critical cases | Over-representation floor | 20 % of the corpus floor explicitly safety-critical |
+    | ICC ≥ 0.85 inter-rater | Test-case construction consistency | See [Test-corpus floor convention](#test-corpus-floor-convention) for the paired ICC ≥ 0.85 convention |
+    | 100 % safety-critical fidelity | Pre-deployment gate | Definitional category boundary. See [Aggregate-rate gates vs zero-tolerance boundaries](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries) |
+    | ≥ 95 % free-text fidelity | Pre-deployment gate | Cluster with [Aggregate-rate gates](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries) |
+    | 0 type-(iii) failures (hallucinated safety-critical) | Zero-tolerance | Definitional |
+    | ≥ 99 % monthly safety-critical | Continuous monitoring | Continuous-monitoring loosening from 100 % pre-deployment — acknowledges real-world drift |
+
+#### TP.WB-2 — Integration Error Rate { #tp-wb-2 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | IER < 0.001 | SLA target baseline | **v4.5.1-tightened (provenance only)**: previously "standard SLA target" (vague); now flagged as "standard healthcare integration SLA convention". Three-nines reliability is the standard for healthcare integration SLAs |
+    | < 0.0005 / 0.0003 / 0.0002 | Per-error-type sub-thresholds | Sums to 0.001; allocation reflects severity of error type |
+    | 0 critical-class events | Pre-deployment | Definitional |
+    | > 50 % above per-EPR baseline / 7 days | Drift alert | Multiplicative drift convention |
+    | > 5 × SLA / 24 hours | Pause / escalation | Order-of-magnitude alert ladder |
+
+#### TP.WB-3 — Field Mapping Accuracy { #tp-wb-3 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 200 cases per EPR | Test-corpus floor | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | ICC ≥ 0.85 | Field-map authoring consistency | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | 100 % safety-critical mapping | Pre-deployment | Definitional. See [Aggregate-rate gates vs zero-tolerance boundaries](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries) |
+    | ≥ 95 % per-category | Pre-deployment | Cluster |
+    | 0 type-(iii) safety-critical failures | Zero-tolerance | Definitional |
+    | ≥ 99 % monthly | Continuous monitoring | |
+    | < 90 % per-category in audit | Alert | Five-point gap from 95 % gate |
+    | < 95 % aggregate safety-critical / monthly audit | Pause / escalation | |
+
+#### TP.WB-4 — Update vs Append Behaviour { #tp-wb-4 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 50 cases per cell | Test-corpus floor | Statistical floor for cell-level rates |
+    | ≥ 1250 total per EPR | Aggregate test-corpus | 5 × 5 × 50; derived |
+    | ICC ≥ 0.85 | Rule-document authoring consistency | See [Test-corpus floor convention](#test-corpus-floor-convention) |
+    | 0 safety-critical critical-failure events | Zero-tolerance | Definitional |
+    | ≥ 95 % per-cell behaviour correctness | Pre-deployment | Cluster |
+    | ≥ 90 % per-cell in audit | Alert | Five-point gap |
+    | < 95 % aggregate quarterly | Pause / escalation | |
+
+### HL cluster
+
+#### HL.HF-1 — Edit Rate (% Notes Edited) { #hl-hf-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | Substantive ER 30 – 80 % during first 4 weeks | Day-Zero baseline expectation | Range is wide because deployment context dominates — specialty mix, patient population, platform maturity all move it. The *range* is the right shape; the *anchors* are author-judgement |
+    | > 15 pp drop sustained ≥ 4 weeks | Continuous monitoring (complacency) | Carried from prior taxonomy versions; defensible as a real-world meaningful drop magnitude |
+    | < 50 % of per-clinician baseline / 4 weeks | Pause / review trigger | Half-of-baseline pause logic; pattern matches NAS-style ladders |
+    | Zero safety-critical / 4 weeks while stylistic > 10 % | Trust-calibration review | Zero-tolerance category combined with continued non-zero behaviour as a discrimination test |
+
+#### HL.HF-3a — Review-Before-Signing Rate { #hl-hf-3a }
+
+!!! note "Starting points (cited values are above in Cited thresholds)"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | Per-clinician > 10 pp drop from baseline | Individual complacency signal | Author judgement; standard "drop from baseline" magnitude |
+    | Per-clinician < 75 % / 1 week | Individual severe-failure trigger | Twenty-point gap from the 95 % aggregate gate |
+
+#### HL.HF-3b — Time-to-Sign Distribution { #hl-hf-3b }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | P5 of TTS_norm < 0.3 s/word | Continuous-monitoring lower-tail floor | 60 % tighter than the 0.5 s/word flag; author judgement |
+    | > 10 pp rise above baseline (rate of below-flag-threshold notes) | Alert | Standard drop-from-baseline magnitude |
+    | Weekly P10 < 0.3 s/word AND HL.HF-1 substantive < 25 % | Pause / review trigger | Joint-trigger; conservative because it requires two signals |
+
+### IO cluster
+
+#### IO.PX-1 — Patient Opt-Out Rate { #io-px-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | > 2 pp rise from baseline | Monthly aggregate alert | Author judgement; standard "noticeable drift" magnitude |
+    | ≥ 2 × practice-mean disparity ratio with χ² Holm-corrected | Demographic-disparity alert | Two-fold disparity is the conventional alert magnitude in health-equity work; χ²-Holm controls multiple comparisons |
+    | ≥ 3 × practice-mean sustained 2 months | Pause / review (systematic equity failure) | Three-fold + sustainment; conservative |
+    | > 5 pp rise | Pause / review (trust deterioration) | 2.5 × the alert magnitude |
+
+### GV cluster
+
+#### GV.CR-1 — Patient Dissent Recording Rate { #gv-cr-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % all dissent events recorded and respected | Target gate | Definitional (consent-respect is binary at the event level). See [Aggregate-rate gates vs zero-tolerance boundaries](#aggregate-rate-gates-vs-zero-tolerance-category-boundaries) |
+    | ≥ 99 % monthly per sub-metric | Continuous monitoring | Continuous-monitoring loosening from 100 % |
+    | < 95 % sub-metric / month | Pause / escalation | Four-point gap |
+    | < 0.5 % of AVT-eligible consultations (recorded rate) | Sampling-verification trigger | If recorded rate is implausibly low, sample to verify |
+
+#### GV.CR-2 — Verbal Notification Compliance { #gv-cr-2 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % delivery target | Target gate | Definitional |
+    | ≥ 95 % self-report compliance | Pre-deployment | |
+    | ≥ 90 % overall quarterly survey/audio audit | Continuous monitoring | Self-report tends to over-state; five-point gap between self-report and audit measure is empirically common |
+    | ≥ 85 % every content element | Per-element floor | Internal consistency constraint |
+    | < 75 % any content element | Escalation trigger | Twenty-point gap |
+    | ≥ 30 patients / clinician / quarter | Sample-size floor | Statistical floor for per-clinician estimates |
+
+#### GV.CR-3 — AI-Generated Content Labelling Compliance { #gv-cr-3 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % labelling | Zero-tolerance target | Definitional. Every AI-generated entry must be labelled |
+
+#### GV.CR-4 — AVT Supplier Registry Listing Verification { #gv-cr-4 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 12 months attestation currency | Currency target | Annual review cadence — standard for procurement-side compliance evidence |
+    | > 9 months alert (60-day grace) | Currency alert | Three-month early-warning |
+
+#### GV.CR-5 — ICB Engagement Documentation { #gv-cr-5 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 14 days notification before go-live | Pre-deployment | Two weeks is conventional NHS-side notification window |
+    | 2 unanswered notifications same ICB / 12 months | Pattern-of-non-response trigger | |
+
+#### GV.CR-6 — Clinical Safety Case Completeness { #gv-cr-6 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % all eight DCB0129 sections | Structural compliance | Definitional (DCB0129 mandates the section structure) |
+    | ≤ 30 days post-trigger update | Currency window | One-month convention; matches DCB0160 update cadence |
+    | > 90 days unupdated | Escalation | Three-month |
+    | ≤ 24 months external CSO review | External review cadence | Two-year cycle matches CSO review conventions |
+
+#### GV.CR-7 — DPIA Template Completion Rate { #gv-cr-7 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % deployments with complete DPIA | Target gate | Definitional |
+    | ≤ 30 days post-significant-change re-review | Review window | One-month convention |
+    | > 12 months stale | Escalation | Annual review cadence |
+
+#### GV.OP-1 — Documentation Time per Consultation { #gv-op-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 4 weeks per-clinician baseline | Baseline-establishment window | Same baseline window as HL.HF-1; consistency |
+    | > 25 % deviation from baseline | Flag-for-review | Quarter-of-baseline change is the conventional "noticeable" magnitude |
+    | Out-of-consultation > 0 + in-consultation increase | Burden-displacement rule-out | Operational shape, not numeric |
+
+#### GV.OP-14 — Historical Output Continuity { #gv-op-14 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 24-hour synthetic-retirement test before go-live | Pre-deployment gate | Day-long disconnection is a meaningful operational test; longer would impede go-live, shorter wouldn't surface issues |
+    | 100 % three-sub-metric pre-deployment gate | Pre-deployment gate | Definitional category boundary across commit-completeness / provenance-dereference / patient-portal access |
+    | ≥ 95 % per-event provenance-dereference rate at retirement-day +30 | Per-event monitoring | Five-percentage-point gap from the 100 % pre-deployment gate; one-month sustainment window |
+    | ≥ 7 years contractual access window | Procurement gate | Aligns with NHS clinical-record retention; specialty-specific rules may apply (paediatric to 25 years, mental health to 20) |
+
+#### GV.PD-1 — Audio Retention Compliance { #gv-pd-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 99.5 % monthly per location | Continuous monitoring | Continuous loosening from 100 % gate |
+    | < 95 % per-location / month | Escalation | |
+
+#### GV.PD-2 — Audio Time-to-Deletion { #gv-pd-2 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 24 hours median TTD | Continuous monitoring | DPIA-conventional retention horizon |
+    | ≤ 7 days P99 ceiling | Tail-distribution gate | One week as upper limit on edge cases |
+    | < 1 % encounters exceeding | Edge-case ceiling | One-percent ceiling |
+    | ≥ 99.5 % per-storage-location | Continuous monitoring | |
+
+#### GV.PD-3 — Transcript Retention Compliance { #gv-pd-3 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 99.5 % monthly per-purpose × location | Continuous monitoring | |
+    | ≥ 90 % "quality monitoring" sub-categorisation coverage | Granularity floor | |
+    | < 95 % per-purpose | Escalation | |
+
+#### GV.PD-8 — Consent Verification Accuracy { #gv-pd-8 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 30 patients / quarter / practice | Survey floor | Statistical floor with demographic stratification |
+    | > 25 pp gap (compliance − understanding) | Gap-trigger alert | Quarter-scale gap; operationally meaningful |
+    | < practice mean − 20 pp on demographic axis | Demographic-disparity alert | Twenty-point demographic gap |
+    | > 40 pp gap / 2 quarters | Escalation | Sustained large gap |
+    | < 50 % understanding on any axis | Escalation | Half-of-patients-don't-understand is a meaningful absolute floor |
+
+#### GV.PD-10 — Subject Access Request Fulfilment { #gv-pd-10 }
+
+(See [Cited thresholds](#cited-thresholds) for the statutory ≤ 30-day deadline.)
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % locate-rate | Target | Definitional |
+    | 100 % export-rate | Target | Definitional |
+    | ≥ 95 % timeliness within 30 days | Continuous monitoring | Continuous loosening from statutory deadline |
+    | > 30 % using two-month extension | Systematic-failure alert | A third of SARs needing extension suggests process failure |
+
+#### GV.PD-11 — Right to Erasure Compliance { #gv-pd-11 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 30 days fulfilment | Erasure window | Mirrors GDPR Article 15 / 17 statutory cadence |
+
+#### GV.PD-16 — Decommissioning Data Handling Compliance { #gv-pd-16 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 90 days deletion completion | Deletion-target window | Three-month operational target |
+    | ≤ 180 days with sub-processor cascade | Cascade-target window | Six-month; doubles primary target for sub-processor coordination |
+    | > 50 % timeline overrun | Escalation | Half-of-target overrun |
+    | < 95 % per-location coverage | Escalation | |
+
+#### GV.SG-1 — Model Version Tracking { #gv-sg-1 }
+
+!!! note "Starting points (severity ladder cross-references the convention below)"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 24 hours median deployer-notification latency | Continuous monitoring | See [Severity-band notification ladder convention](#severity-band-notification-ladder-convention) |
+    | > 7 days unnotified | Alert | (same convention) |
+    | > 14 days unnotified | Escalation | (same convention) |
+    | 100 % per-inference component-version coverage | Structural gate | Definitional. Any inference missing a versioned component is a defect |
+
+#### GV.SG-14 — Near-Miss Reporting Rate { #gv-sg-14 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 25 % active-to-inferred ratio | Safety-culture floor | Author judgement; the qualitative "active reporting at least matches passive inference at material rate" is defensible — the specific quarter is a starting figure |
+
+#### GV.SG-17 — Hazard Log Completeness { #gv-sg-17 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 30 days update window after new failure mode discovery | Currency target | One-month convention matches GV.CR-6 / GV.CR-7 cadence |
+
+#### GV.TC-1 — Clinician Training Completion Rate { #gv-tc-1 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | 100 % completion governance gate | Structural | Definitional |
+    | Engagement floor per module — deployer-set based on module length, audited via session-time telemetry | Engagement floor | **v4.5.1-loosened from 30 / 15 / 20-minute floors** — the specific minute counts added false precision; deployer should set local floors based on actual module length |
+    | 12-month M3 / annual M4 refresh | Refresh cadence | Annual cadence is standard for clinical compliance training |
+    | 14-day grace for late onboarders | Onboarding window | Two-week onboarding is operationally typical |
+    | < 95 % aggregate / 2 months | Escalation | |
+
+#### GV.VT-1 — Model Change Notification Compliance { #gv-vt-1 }
+
+!!! note "Starting points (severity ladder cross-references the convention below)"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 14 / 7 / 0 days advance notice (Major / Moderate / Minor) | Pre-deployment | See [Severity-band notification ladder convention](#severity-band-notification-ladder-convention) |
+    | 100 % per-element completeness | Structural | Definitional |
+    | < 95 % completeness 90-day rolling | Escalation | |
+
+#### GV.VT-5 — Incident Disclosure Compliance { #gv-vt-5 }
+
+!!! note "Starting points (severity ladder cross-references the convention below)"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 24 / 72 / 168 / 720 hours (Critical / High / Medium / Low) | Disclosure ladder | See [Severity-band notification ladder convention](#severity-band-notification-ladder-convention) — 24 h / 72 h / 7 d / 30 d. Lineage: HSE incident-classification timeframes (where known) |
+    | 100 % five-element completeness per incident | Structural | Definitional |
+    | Critical disclosed > 72 hours | Escalation | |
+
+#### GV.VT-7 — Sub-Processor Transparency { #gv-vt-7 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 30 days advance notice for material entries | Change-notification window | One-month change-notification window is the GDPR-conventional period |
+    | 100 % material sub-processor disclosure | Disclosure gate | Definitional |
+    | Quarterly discovered-vs-disclosed audit | Audit cadence | |
+    | Annual per-material-sub-processor DPA review | Review cadence | |
+
+#### GV.VT-13 — Evidence Pack Freshness { #gv-vt-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 12 months "Fresh" threshold | Currency target | Annual review cadence; matches procurement-side compliance evidence conventions |
+    | > 24 months "Stale" on any axis | Pause / escalation | Two-year window; doubles the Fresh threshold for a clear staleness step |
+    | ≥ 3 components Aging | Pause / escalation | Pattern-of-staleness trigger across the three component axes |
+
+#### GV.VT-14 — Indicative Pricing Transparency { #gv-vt-14 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 12 months matrix currency | Currency target | Annual review cadence |
+    | ±20 % materiality threshold | Procurement-review trigger | Author judgement; conventional "material" threshold for procurement-side change review |
+    | > 24 months stale on any contracted use case | Pause / escalation | Two-year window matches GV.VT-13 staleness convention |
+
+#### GV.VT-15 — Retirement Notification Compliance { #gv-vt-15 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 12 months product-retirement notice | Notice period (full retirement) | Annual notice; allows deployer to find replacement |
+    | ≥ 6 months major-feature-withdrawal notice | Notice period (feature withdrawal) | Half the retirement window for partial withdrawal |
+    | ≥ 90 days integration-withdrawal notice | Notice period (technical withdrawal) | Quarter-year for narrow technical changes |
+    | < 50 % of contracted lead time | Escalation | Multiplicative drift trigger |
+    | < 80 % completeness | Escalation | Twenty-point completeness gap |
+
+---
+
+## Cross-metric conventions
+
+Patterns that recur across multiple metrics. Defining them once here means metric bodies don't restate the same convention five times — and means cross-metric inconsistencies become visible.
+
+### Severity-weighting convention
+
+Used by **TP.ASR-12, TP.SN-5, TP.SN-6, TP.SN-15** for symmetric severity weighting; **TP.SN-20** uses an intentionally asymmetric variant.
+
+!!! note "Starting points — symmetric variant"
+
+    `weighted_rate = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_total`
+
+    The weights express a judgement that critical errors are an order of magnitude worse than benign, and roughly twice as bad as moderate. Five metrics independently arrived at these weights — but the choice is *one author judgement copied across five metrics*, not five independent decisions.
+
+    A clinician-feedback round could plausibly argue for steeper benign-to-moderate gaps (0.05 / 0.5 / 1.0) or shallower critical gaps (0.1 / 0.3 / 1.0). The convention exists because *some* multi-class aggregation is needed to produce a scalar; the specific weights are starting points.
+
+!!! note "Starting points — asymmetric variant (UMP_w only)"
+
+    For Uncertainty Marker Preservation (TP.SN-20), the weights are *intentionally asymmetric*: certainty-inflation (over-confidence) gets full critical weight; certainty-deflation (under-confidence) gets benign weight. Same shape; different semantics — over-confidence is more dangerous than under-confidence in clinical contexts.
+
+    This asymmetry is the *point* of UMP. It is not a copy of the symmetric convention.
+
+### Test-corpus floor convention
+
+Used by **TP.ASR-13, TP.SN-15, TP.SN-20, TP.WB-1, TP.WB-3, TP.WB-4** (cases-per-EPR variant).
+
+!!! note "Starting points"
+
+    **Floor:** ≥ 200 cases per per-category rate measurement.
+
+    **Inter-rater consistency (paired):** ICC ≥ 0.85 for test-case construction.
+
+    **Rare-event-rate caveat (important).** 200 is a *floor*, not a target. For rates below 5 %, push the floor above ~10 expected events per category — for sub-1 % rates this means corpora above 1000. The current taxonomy uses 200 universally; this caveat is the most honest acknowledgement of a measurement-science gap the consolidation can produce.
+
+    The 200 figure is rule-of-thumb-territory: for a 5 % event rate, 200 trials gives roughly ±3 % at 95 % confidence; for a 1 % event rate it is barely informative. The number is defensible as a starting point but is *not* the right floor for tight thresholds.
+
+    The ICC ≥ 0.85 figure is a standard psychometric convention for "substantial" agreement and matches the CHECK paper's reported floor.
+
+### Severity-band notification-ladder convention
+
+Used by **GV.SG-1, GV.VT-1, GV.VT-5, GV.VT-15**.
+
+!!! note "Starting points — meta-pattern, not a fixed ladder"
+
+    **Shape:** 3 or 4 severity bands. Most-severe band is "immediate" (≤ 24 h or "before the change"). Ratios between bands cluster around 3-7×.
+
+    The four metrics that use this pattern have *different* ladder values because they encode different decisions:
+
+    - GV.VT-5 — incident disclosure (retroactive, severity-of-incident): 24 h / 72 h / 7 d / 30 d
+    - GV.SG-1 — model-version notification latency (latency-since-event): 24 h / 7 d / 14 d
+    - GV.VT-1 — model-change advance notification (severity-of-change): 14 d / 7 d / 0 d
+    - GV.VT-15 — retirement notice (severity-of-withdrawal): 12 mo / 6 mo / 90 d
+
+    Picking different ladders is correct — the underlying decisions differ in time direction (retroactive vs advance) and severity meaning (of-incident vs of-change vs latency vs of-withdrawal). The *shape* (3-4 bands, immediate-most-severe, 3-7× ratios) is the convention; the specific values are per-metric author choices, often sourced from different lineages (HSE incident-classification timeframes; vendor change-control conventions).
+
+### Aggregate-rate gates vs zero-tolerance category boundaries
+
+Used widely. **The most important reframe in this page.**
+
+!!! warning "Two distinct semantic flavours that look identical numerically"
+
+    Many "100 %" thresholds in this catalogue are **zero-tolerance category boundaries**, not stringent percentage gates. The numbers look the same; the asks are fundamentally different.
+
+    **Aggregate-rate gate (95 % / 99 % / 100 %):** the metric measures a rate; the gate says "rate must be at least this". Continuous-monitoring loosening (e.g. 99 % monthly after 100 % pre-deployment) is meaningful because rates can drift in operation. Used for free-text fidelity, mapping accuracy aggregate, training completion rate.
+
+    **Zero-tolerance category boundary (100 %):** the metric counts events in a class; the gate says "no events in this class". 100 % shorthand for "every safety-critical field wrote correctly" is just "zero failures on safety-critical". Continuous-monitoring loosening is *not* a 1 % loosening — it acknowledges that real-world drift will produce some events, and the rate at which it does is its own metric. Used for safety-critical fidelity, dosage accuracy, code hallucinations, allergy-negation failures, AI-generated content labelling.
+
+    **Why this matters.** A deployer reading "must reach 100 %" assumes an absurdly stringent percentage; they should be reading "no events in this class". A vendor pasting "100 % safety-critical fidelity" into a contract treats it as percentage-based; the actual operational ask is event-based.
+
+    On this page, definitional 100 % gates carry the marker *"Definitional category boundary"* in their context column. Aggregate-rate gates do not. Read the column.
+
+---
+
+## Cross-references
+
+- Each metric's **Trigger Conditions** block in its source file links here.
+- See [Versioning](versioning.md) for what each release-version digit means and how thresholds versioned to specific releases.
+- See [Metric history](metric-history.md) for which metrics changed in each release.
+- The CSV / JSON downloads include per-threshold rows (see [Downloads](downloads.md)).
 
 ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
@@ -3896,13 +4504,15 @@ Test corpus: known non-speech audio (silence, music, environmental noise, foreig
 > - **Aggregation:** weighted aggregate HUN_w = (0.1 · benign + 0.5 · moderate + 1.0 · critical) / N_total per category, plus the overall headline rate. Unweighted rate may be reported alongside but not in place of HUN_w.
 > - **Pre-deployment vs periodic audit:** pre-deployment is a hard gate before go-live; periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking](#gv-sg-1) (any ASR weight or model update triggers re-test).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
-> ⚠️ **Provenance:** the silence-hallucination failure mode is well-documented ([Koenecke-Careless-Whisper-2024], cited Source) and the principle that critical-rate failures should be zero-tolerance follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections. Specific numerical thresholds (≥ 50 samples per category, 0 critical / 1 % moderate / 5 % benign aggregate gates) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against deployment-context (specialty, ASR-architecture choice, test-corpus availability) before contractual use.
+> The silence-hallucination failure mode is well-documented ([Koenecke-Careless-Whisper-2024], cited Source) and the clinical-safety logic supports zero-tolerance for critical-class hallucinations.
 >
-> - **Pre-deployment gate:** zero critical-class hallucinations across the entire test corpus; moderate-class rate < 1 % per category; benign-class rate < 5 % per category. Any critical-class failure is a hard fail regardless of overall rate.
-> - **Periodic audit:** re-run on every ASR component change; alert on any new critical-class hallucination; alert if per-category aggregate HUN_w drifts > 50 % from prior baseline.
-> - **Pause / escalation trigger:** any critical-class hallucination detected in production traffic (single instance), or per-category HUN_w exceeds the pre-deployment gate by 2× in any audit cycle.
+> - **Pre-deployment gate** is a zero-tolerance category boundary on critical-class events combined with low (per-category) rates on moderate and benign classes. Any critical-class failure is a hard fail regardless of overall rate.
+> - **Periodic audit** re-runs the corpus on every ASR component change ([GV.SG-1 Model Version Tracking](#gv-sg-1)). The signals are (a) any new critical-class hallucination and (b) sustained drift in per-category HUN_w against the prior baseline.
+> - **Pause / escalation** triggers on any critical-class hallucination in production traffic, or per-category HUN_w exceeding the pre-deployment gate substantially in any audit cycle.
+>
+> Specific numerical starting points (test-corpus floors, moderate / benign rates, drift magnitudes) are deployment-context-dependent and live in [Threshold Reference: TP.ASR-12](../thresholds.md#tp-asr-12). Treat them as starting points to calibrate locally — not as contractual gates.
 
 **References**
 
@@ -3967,13 +4577,17 @@ Numeric Accuracy = |numbers_correctly_transcribed| / |numbers_in_reference|. Com
 > - **Population:** all numeric tokens in scope; no exclusions. A reference transcript missing dosage events under-represents the safety surface.
 > - **Severity classification MANDATORY:** dosage errors are critical by default. Date errors affecting clinical timing (medication start/stop, last menstrual period, immunisation history) classified critical. Other errors classified moderate or benign per clinical-significance review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the dosage-error critical-class framing follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (and the canonical "15 mg → 50 mg" example). Specific numerical thresholds (100 % dosage gate, 99 % unit gate, 95 % integer / decimal / date / range gate, ≥ 200-tokens-per-sub-type floor) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration before contractual use — paediatric dosing has narrower error tolerance than adult dosing, for example.
 >
 > - **Pre-deployment gate:** dosage accuracy = 100 % on test corpus; unit accuracy ≥ 99 %; integer / decimal / date / range accuracy ≥ 95 % each. Any sub-metric below floor is a hard fail regardless of aggregate.
 > - **Periodic audit:** monthly review of production-traffic numeric accuracy by sub-type; alert on any single dosage error confirmed; alert if any sub-type drifts > 2 % below baseline sustained two months.
 > - **Pause / escalation trigger:** any single dosage error confirmed in production traffic (single instance — dosage errors are zero-tolerance for the metric); OR aggregate sub-type accuracy < 90 % for any sub-type in any audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.ASR-13](../thresholds.md#tp-asr-13). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -4702,13 +5316,17 @@ HR = |S_unsupported| / |S_total|, where S_total = atomic propositions in generat
 > - **Severity classification MANDATORY:** every flagged proposition labelled benign / moderate / critical, with critical rate reported separately.
 > - **Aggregation:** weighted aggregate HR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / N_total. Unweighted rate may be reported alongside but not in place of HR_w.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the < 2 % gate and ≥ 5 % pause trigger derive from the NAS Day Zero SPI cited in the Why-this-tier rationale; the > 3 % monitoring alert and the 500-note test-set floor are **proposed in v3.3 as starting points**, not externally validated. All numbers below are indicative and require local calibration against deployment context (specialty mix, consultation length, vendor reference dataset) before contractual use.
 >
 > - **Pre-deployment gate:** HR_w ≤ 2 % on a representative ≥500-note test set; critical-subtype rate < 0.5 %.
 > - **Continuous monitoring:** weekly HR_w; alert if > 3 % sustained two weeks or any new critical subtype emerges.
 > - **Pause trigger:** critical-subtype rate ≥ 5 % or HR_w > 5 % for three consecutive days. Mirrors the NAS Day Zero SPI threshold cited in the Why-this-tier rationale.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.SN-5](../thresholds.md#tp-sn-5). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Code: Hallucination detection via NLI**
 
@@ -4796,13 +5414,17 @@ OR = |P_missing| / |P_reference|. P_reference = clinically relevant propositions
 > - **Severity classification MANDATORY:** flagged omissions labelled benign / moderate / critical. Allergies, red-flag symptoms, medication doses, and safety-netting omissions are critical by default; downgrading requires documented justification.
 > - **Aggregation:** weighted aggregate OR_w = (0.1·benign + 0.5·moderate + 1.0·critical) / |P_reference|.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the Tortus 3.45 % omission baseline cited above informs the pre-deployment gate framing, but the specific numbers (≤ 3 % gate, 5 % critical-category alert, 10 % critical-category pause, 1.5× drift trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** OR_w ≤ 3 % on a representative ≥500-note test set; critical-category omission rate < 1 % for any single mandatory category.
 > - **Continuous monitoring:** monthly OR_w by category; alert if any mandatory category exceeds 5 % critical omission rate or if aggregate OR_w drifts > 1.5× the deployment-baseline established in the first 30 days.
 > - **Pause trigger:** any mandatory-category critical-omission rate ≥ 10 % or OR_w > 8 % aggregate.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.SN-6](../thresholds.md#tp-sn-6). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -5325,13 +5947,17 @@ For each negated concept in reference: Negation Preserved = (concept appears in 
 > - **Severity classification MANDATORY:** failures by clinical category, with allergy / red-flag / medication-dose negation errors classified critical by default.
 > - **Aggregation:** report per-type accuracy and per-category accuracy. A weighted aggregate NA_w using the same 0.1 / 0.5 / 1.0 severity weights as TP.SN-5/-6 is the headline figure.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** all numbers below (≥ 98 % real-consultation NA_w, ≥ 90 % adversarial NA_w, ≥ 200-sentence adversarial floor, < 95 % pause trigger) are **proposed in v3.3 as starting points**, not externally validated. The zero-allergy-failure gate reflects the clinical-safety logic in the Novel Thinking section but is not externally cited. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** real-consultation NA_w ≥ 98 %; adversarial-test NA_w ≥ 90 %; zero allergy-category negation failures on the adversarial test set.
 > - **Continuous monitoring:** monthly real-consultation NA_w by category; alert on any allergy / red-flag / medication-dose category failure within the audit window.
 > - **Pause trigger:** any allergy-category critical failure in production traffic, or NA_w < 95 % for two consecutive audit cycles.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.SN-15](../thresholds.md#tp-sn-15). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -5568,13 +6194,17 @@ For each uncertainty marker in reference: Marker Preservation = (uncertainty mar
 > - **Test corpus MANDATORY:** ≥ 200 uncertainty markers across the five levels per audit cycle, balanced so that each level has ≥ 30 markers. For pre-deployment gating, supplement with an **adversarial test set** of ≥ 100 markers specifically constructed to test inflation patterns (probable → definite, possible → probable, "consider X if Y" collapsed to "X").
 > - **Cross-link to negation:** TP.SN-15 covers level-5 (negated) preservation; TP.SN-20 covers levels 1-4. Both metrics jointly cover the full epistemic surface; they are paired in audit cycles.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the asymmetric-severity-weighting framing follows from the existing Novel Thinking observation that certainty inflation is the more dangerous direction. The five-level epistemic ladder is **proposed in v3.7** as a structural cut from the clinical NLP hedging literature; it is not externally standardised, and adjacent-level boundaries are genuinely contested. Specific numerical thresholds (≥ 95 % UMP_w real-consultation, ≥ 90 % adversarial, zero safety-critical inflation) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration; specialty mix matters here (a psychiatric service uses uncertainty markers very differently from a routine outpatient clinic).
 >
 > - **Pre-deployment gate:** real-consultation UMP_w ≥ 95 %; adversarial-test UMP_w ≥ 90 %; zero safety-critical inflation events on the adversarial test set; conditional-uncertainty preservation ≥ 85 %.
 > - **Periodic audit:** monthly real-consultation UMP_w by direction (inflation / deflation); alert on any safety-critical inflation event in the audit window; alert if inflation rate exceeds deflation rate sustained two months (asymmetric pattern is itself a flag).
 > - **Pause / escalation trigger:** any safety-critical inflation event in production (single instance — paired with [TP.SN-15 Negation Handling Accuracy](#tp-sn-15)'s allergy-zero-failure principle); OR UMP_w < 85 % for two consecutive audit cycles.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.SN-20](../thresholds.md#tp-sn-20). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -6298,13 +6928,17 @@ Fidelity(d,f) = 1 if content correct AND target field correct. Report per catego
 > - **Per-category reporting MANDATORY:** report fidelity by category (a)-(e) with safety-critical categories reported separately. Aggregate-only reporting hides the failure modes that matter most.
 > - **Failure-mode classification MANDATORY:** every failure classified as (i) wrong field, (ii) correct field, wrong content (omission), (iii) correct field, wrong content (addition / hallucination), (iv) structural mismatch (e.g. coded concept missing, unit error). Type (iii) on safety-critical fields is a critical incident regardless of frequency.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the zero-tolerance posture on type-(iii) failures into safety-critical fields follows from the clinical-safety logic in the Why-this-tier and Novel Thinking sections (a hallucinated allergy in an allergy field is a system-level safety failure). Specific numbers (100 % safety-critical gate, ≥ 95 % free-text gate, ≥ 99 % monthly audit floor, ≥ 200 cases per EPR) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (per EPR):** safety-critical category fidelity = 100 % on the test corpus; free-text fidelity ≥ 95 %; zero type-(iii) failures on any safety-critical field.
 > - **Continuous monitoring:** monthly audited fidelity ≥ 99 % on safety-critical categories; alert on any type-(iii) failure detected in production traffic (no rate threshold - single instance is alert-worthy).
 > - **Pause trigger:** any type-(iii) failure on allergy or medication-dose fields confirmed in production; or aggregate safety-critical fidelity < 95 % in any monthly audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-1](../thresholds.md#tp-wb-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -6367,13 +7001,17 @@ IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 > - **Severity classification MANDATORY:** every error event classified by clinical impact: **critical** (safety-critical content lost or degraded — allergies, medications, dosages, problem-list entries); **moderate** (clinically meaningful content lost — exam findings, history, plan items); **benign** (presentation-only content lost — formatting, ordering, free-text style). Critical-rate reported separately as the leading safety indicator.
 > - **Soft-failure detection method MANDATORY:** the deployer's method for detecting degraded write-backs (where the EPR accepts the record but quality has been silently downgraded) MUST be documented. Methods in order of rigour: (i) sampled human review of write-back outputs against AVT-generated content; (ii) automated comparison of written-to-EPR content against AVT-generated content via diff; (iii) vendor self-attestation. Method (iii) is not Tier 1 sufficient alone.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IER < 0.001 SLA target carries from the existing Formal Definition and standard integration-monitoring practice. Specific numerical thresholds per error type (failed < 0.0005, partial < 0.0003, degraded < 0.0002 by default; critical-rate zero-tolerance for the partial / degraded classes on safety-critical content) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (per EPR):** vendor demonstrates the three-error-type telemetry; soft-failure detection method documented; one end-to-end integration test passes per error type prior to go-live; zero critical-class events on the test corpus.
 > - **Continuous monitoring:** daily IER per error type per EPR ≤ SLA target; alert on any critical-class event detected (single instance, regardless of overall rate); alert if any error-type rate drifts > 50 % above per-EPR baseline sustained 7 days.
 > - **Pause / escalation trigger:** any critical-class event on safety-critical content (allergy / medication / dose) confirmed in production; OR aggregate IER > 5 × SLA target on any EPR for 24 hours; OR degraded-class soft-failure detection cadence falls below documented method (loss of monitoring capability is itself an escalation event).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-2](../thresholds.md#tp-wb-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -6428,13 +7066,17 @@ For each clinical item: Mapping Accuracy = (item correctly identified) AND (mapp
 > - **Test corpus inheritance:** uses the same ≥ 200-cases-per-EPR test corpus as TP.WB-1, with per-test-case expected-target-field annotation. Pre-deployment gate runs both metrics on the same corpus.
 > - **Failure-mode classification:** each failure recorded as (i) wrong field same category (e.g. allergy to wrong allergy sub-field); (ii) wrong category (e.g. allergy to medication); (iii) free-text fallback when structured target available; (iv) multi-target rule violation. Type (iii) on safety-critical categories is a critical-class failure (silent safety-mechanism bypass per the Novel Thinking section).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the safety-critical-content-in-non-safety-critical-fields zero-tolerance posture follows from the clinical-safety logic in TP.WB-3's Why-this-tier and Novel Thinking sections (and TP.WB-1's parallel framing). Specific numerical thresholds (100 % safety-critical-category gate, ≥ 95 % per-category gate, type-(iii) zero-tolerance) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the per-EPR field-map content is highly deployment-dependent — local calibration is the substantive work here, not the threshold numbers.
 >
 > - **Pre-deployment gate (per EPR):** field-map document complete and signed off; safety-critical-category mapping accuracy = 100 % on test corpus; per-category accuracy ≥ 95 % each; zero type-(iii) safety-critical failures.
 > - **Continuous monitoring:** monthly audited mapping accuracy ≥ 99 % on safety-critical categories; alert on any type-(iii) safety-critical failure detected in production traffic (no rate threshold — single instance is alert-worthy); alert if any per-category rate falls below 90 % in any audit cycle.
 > - **Pause / escalation trigger:** any type-(iii) failure on allergy or medication-dose categories confirmed in production; OR aggregate safety-critical-category mapping accuracy < 95 % in any monthly audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-3](../thresholds.md#tp-wb-3). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -6499,13 +7141,17 @@ For each structured data update: behaviour in {overwrite, append, merge, skip}. 
 > - **Duplicate-detection windowing MANDATORY:** the deployer's duplicate-detection logic (does an entry written 2 minutes ago count as duplicate? 2 hours? 2 days?) MUST be documented with the windowing rule. Without explicit windowing, duplicate / merge cells are operationally meaningless.
 > - **Skip-with-flag pathway MANDATORY:** the workflow for surfacing skip-with-flag events to the clinician MUST be documented and tested at pre-deployment. Skip-without-flag is a silent failure of the metric.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-behaviour taxonomy and the safety-critical critical-failure classification follow from the existing Formal Definition and Novel Thinking. Specific numerical thresholds (≥ 50 cases per cell, 100 % safety-critical critical-failure-mode gate, ≥ 95 % per-cell gate elsewhere) are **proposed in v3.7 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), the rule-document content is the substantive calibration work; the threshold numbers are starting points for that work.
 >
 > - **Pre-deployment gate (per EPR):** rule document complete and signed off; test corpus passes with zero safety-critical critical-failure-mode events; per-cell behaviour correctness ≥ 95 % across all cells; skip-with-flag pathway tested end-to-end.
 > - **Periodic audit:** quarterly review of production-traffic update behaviour against the rule document; alert on any safety-critical critical-failure-mode event detected (single instance); alert if any (category × context) cell falls below 90 % correctness in any audit cycle.
 > - **Pause / escalation trigger:** any safety-critical critical-failure-mode event confirmed in production (overwrite-with-less-data on allergies / medications / problems; skipped legitimate addition; duplicate-without-merge on safety-critical category); OR aggregate safety-critical-category cell correctness < 95 % in any audit cycle.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: TP.WB-4](../thresholds.md#tp-wb-4). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -7836,13 +8482,17 @@ ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained �
 > - **Severity stratification MANDATORY:** edits classified as **safety-critical** (allergy, medication, dose, red-flag, diagnosis, plan), **clinically meaningful** (history, exam findings, risk-factor wording), or **stylistic**. Headline ER is over substantive (safety-critical + clinically-meaningful) edits; safety-critical edit rate reported separately as a leading indicator.
 > - **Per-clinician disaggregation MANDATORY:** site-level ER hides individual complacency. Reporting must include per-clinician trajectories alongside aggregate.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the > 15-percentage-point drop sustained ≥ 4 weeks comes from the existing Formal Definition complacency signal (carried from prior versions of the metric); the 30–80 % baseline range, the < 50 %-of-baseline pause trigger, and the zero-safety-critical-edits-with-continued-stylistic-editing trigger are **proposed in v3.3 as starting points**, not externally validated. Edit Rate is **interpretable only as a trajectory** (per Limitations and Novel Thinking); absolute thresholds below are deployment-context-dependent and require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline expectation:** substantive ER between 30 % and 80 % during the first 4 weeks. ER below 30 % in week 1 is a flag for inadequate review, not for excellent AI.
 > - **Continuous monitoring alert:** substantive ER drops > 15 percentage points from the per-clinician baseline within any 12-week rolling window, sustained ≥ 4 weeks (the existing complacency signal in the Code block).
 > - **Pause / review trigger:** substantive ER < 50 % of per-clinician baseline for 4 consecutive weeks, OR safety-critical edit rate drops to zero for ≥ 4 weeks while substantive edit rate remains > 10 % (suggests clinicians are stopping their safety review while continuing minor editing). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-1](../thresholds.md#hl-hf-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Code: Edit rate complacency detection**
 
@@ -8015,13 +8665,17 @@ RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll even
 > - **T_min calibration:** T_min as published is a default; per the [Calibration & Context principle](#calibration-context), specialty mix shifts the threshold. A complex consultation summary in mental health may legitimately need longer dwell than a routine medication review; deployers should record local T_min calibration in their governance file.
 > - **Review-quality proxy gap:** RBS is a surrogate for review *quality*, not a measure of it (see Limitations). Telemetry-detected review behaviour does not guarantee review effectiveness. The construct-level pairing with HL.HF-3b narrows but does not close the proxy gap.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the ≥ 95 % gate, < 85 % pause trigger, and the T_min formula are cited from the [NAS-Day-Zero-SPI-internal] specification. The 4-week per-clinician baseline window, the 60-day-grace re-calibration cadence, and the joint-with-HL.HF-3b rubber-stamping pause trigger are **proposed in v3.8 as starting points**, not externally validated. Per the [Calibration & Context principle](#calibration-context), require local calibration against specialty mix and consultation-complexity profile before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** RBS ≥ 95 % aggregate during first-4-weeks baseline; per-clinician RBS ≥ 90 % each.
 > - **Continuous monitoring alert:** weekly RBS < 95 % aggregate; OR any single clinician's RBS drops > 10 percentage points from per-clinician baseline; OR RBS passes but joint-with-HL.HF-3b shows TTS_norm P5 < 0.5 s/word for the same clinician-window (rubber-stamping detected via the conjunction).
 > - **Pause / review trigger:** RBS < 85 % aggregate for two consecutive weeks (NAS pause trigger); OR per-clinician RBS < 75 % for one week (individual-level severe failure); OR confirmed rubber-stamping pattern (low RBS AND low TTS_norm AND low HL.HF-1 substantive edit rate). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-3a](../thresholds.md#hl-hf-3a). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -8079,13 +8733,17 @@ TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm
 > - **Pairing with Edit Rate MANDATORY:** TTS distribution reported alongside HL.HF-1 substantive edit rate for the same clinician-window. Low TTS + low substantive edit rate is the rubber-stamping signal; either alone is ambiguous.
 > - **Note-complexity stratification:** report TTS_norm distribution stratified by note word count quartile (short / medium / long / very-long); rubber-stamping risk is most visible on long/complex notes signed at short-note speed.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the TTS_norm < 0.5 s/word rubber-stamping flag and the lower-tail focus carry over from the existing Formal Definition and the [Keyes-Stanford-Monitoring-2025] principles cited in Source. Specific numbers (P5 < 0.3 s/word pause trigger, 4-week baseline window, 10 % below-baseline rate alert) are **proposed in v3.4 as starting points**, not externally validated. TTS is interpretable only as a distribution paired with edit rate; absolute thresholds below are deployment-context-dependent.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician TTS_norm distribution across the first 4 weeks of live use; record P5, P10, median, P90.
 > - **Continuous monitoring alert:** weekly P5 of TTS_norm < 0.3 s/word for any clinician (the rubber-stamping floor); OR the proportion of notes with TTS_norm < 0.5 s/word rises > 10 percentage points from per-clinician baseline.
 > - **Pause / review trigger:** weekly P10 of TTS_norm < 0.3 s/word AND HL.HF-1 substantive edit rate < 25 % for the same clinician-window (rubber-stamping confirmed in distribution and in editing behaviour). Triggers trust-calibration review and pairing with HL.HF-6 Automation Bias Detection.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: HL.HF-3b](../thresholds.md#hl-hf-3b). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Code: Time-to-sign analysis**
 
@@ -8801,13 +9459,17 @@ OOR = |P_optout| / |P_offered|. χ² test for independence between opt-out and d
 > - **Statistical test MANDATORY:** χ² (or Fisher's exact for small cells) test for independence between opt-out and each demographic axis, with multiple-comparison correction (Holm-Bonferroni or FDR) across axes. Report both raw rates and significance.
 > - **Trajectory MANDATORY:** monthly opt-out rate trajectory per practice; rising aggregate rate is a separate signal from disparate rate, and both matter.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the demographic-disaggregation requirement and the equity-not-preference framing follow from the [NAS-Day-Zero-SPI-internal] and [CQC-Mythbuster-109] cited above, plus the existing Novel Thinking section. Specific numerical thresholds (5 % aggregate alert, 2× demographic-disparity ratio trigger, χ² p < 0.05 with Holm correction) are **proposed in v3.4 as starting points**, not externally validated. The metric's value is in the disparities it reveals, not in any absolute opt-out target; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline opt-out rate disaggregated by the demographic axes above; document any historical signal in the practice population that should be expected to carry over.
 > - **Continuous monitoring alert:** monthly aggregate opt-out rate rises > 2 percentage points from per-practice baseline; OR any demographic axis shows opt-out ratio ≥ 2× the practice mean with χ² (Holm-corrected) p < 0.05.
 > - **Pause / review trigger:** demographic disparity ≥ 3× the practice mean sustained two consecutive months on any axis (signals systematic equity failure in the consent model, not noise); OR aggregate opt-out rate rises > 5 percentage points (signals trust deterioration). Pair with [GV.CR-2 Verbal Notification Compliance](#gv-cr-2) to test whether the consent model is the cause.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: IO.PX-1](../thresholds.md#io-px-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -9531,13 +10193,17 @@ Per inference: log model_id, model_version, timestamp, config_hash. On change (v
 > - **Notification timeline MANDATORY:** the time between change-event and deployer notification is recorded per change-event; aggregate notification latency reported monthly. Deployer-side, the notification triggers the [GV.SG-2 Model Update Impact Score](#gv-sg-2) workflow and the monitoring window referenced in the Formal Definition.
 > - **Regulatory cross-link MANDATORY:** any change classified as "substantial" under [SI-2024-1368] (MHRA Post-Market Surveillance regulations) must be flagged in the change-event record with the regulatory reference, and surfaced through [GV.VT-1 Model Change Notification Compliance](#gv-vt-1).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the monitoring framing carries from the Novel Thinking section and [Keyes-Stanford-Monitoring-2025] (three-principle monitoring framework: system integrity, performance, impact); the MHRA PMS regulatory tie-in derives from [SI-2024-1368] in force from 16 June 2025. Specific numerical thresholds (24-hour notification target, 14-day notification escalation, 100 % per-component versioning gate) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-component versioning on a representative sample of inferences; change-event log schema documented; notification process documented and contractually committed.
 > - **Continuous monitoring:** per-inference component-version coverage = 100 % (any inference missing a versioned component is a defect, not a rate); median deployer-notification latency ≤ 24 hours from change-event; alert if any change-event remains unnotified > 7 days.
 > - **Pause / escalation trigger:** any inference produced without complete per-component version log; OR any change-event unnotified > 14 days; OR any "substantial" MHRA-PMS-relevant change deployed without prior deployer notification (this is a regulatory event, not just an operational one).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.SG-1](../thresholds.md#gv-sg-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -10103,13 +10769,17 @@ Near-Miss Rate = |errors_caught_in_review| / |total_AI_outputs|. Track separatel
 > - **Pairing with LFPSE rate MANDATORY:** the metric's value is in the conjunction with [GV.SG-11 Adverse Event / Incident Rate (LFPSE)](#gv-sg-11). Headline reporting MUST include both rates and the ratio. A near-miss rate reported without the LFPSE rate is not Tier 1 sufficient — neither alone interprets safety culture.
 > - **No-blame culture check:** if active reporting rate is < 25 % of inferred rate sustained two months, this is a safety-culture flag (clinicians editing-without-reporting), not a metric failure. Triggers a separate qualitative review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the leading-vs-lagging indicator framing carries from the patient safety literature cited in Source. The two-source construction (active + inferred via [HL.HF-1](#hl-hf-1)) is **proposed in v3.5** as a way to address the well-documented under-reporting problem in clinical near-miss capture. Specific numerical thresholds (25 % active-to-inferred floor, ratio thresholds vs LFPSE) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against safety-culture baseline before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish baseline active near-miss rate and inferred near-miss rate during the first 4 weeks; record per-category breakdown; pair with concurrent LFPSE rate.
 > - **Continuous monitoring:** weekly two-source reporting; monthly cross-validation; alert when active-to-inferred ratio < 25 % sustained two months (under-reporting culture flag); alert when near-miss-to-LFPSE ratio falls (rising LFPSE without rising near-miss = review layer is failing, not improving).
 > - **Pause / escalation trigger:** LFPSE rate rises while near-miss rate stays flat or falls (the leading indicator should rise BEFORE the lagging indicator if review is functioning); OR safety-critical-category near-miss rate falls > 50 % from baseline without corresponding documented system improvement (suggests complacency, cross-link [HL.HF-1 Edit Rate](#hl-hf-1) trajectory).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.SG-14](../thresholds.md#gv-sg-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10293,13 +10963,17 @@ Recording Rate = |dissent_events_with_recorded_and_respected_objection| / |total
 > - **Per-clinician disaggregation MANDATORY:** dissent compliance hides at clinician level. A practice 95 % aggregate may hide one clinician at 50 %.
 > - **Dissent-detection coverage check:** if recorded dissent rate is < 0.5 % of AVT-eligible consultations, the deployer must run a sampling check (clinician self-report or patient survey) to verify the low rate reflects actual patient acceptance rather than under-detection.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IG-incident reportability framing follows from [NHSE-IG-Guidance-2026-03] and the single-instance dissent-not-respected escalation reflects the binary-compliance logic in the Why-this-tier section. Specific numbers (≥ 99 % monthly sub-metric compliance, < 95 % escalation trigger, < 0.5 % coverage-check threshold) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** EPR / AVT integration capable of recording dissent in a structured form and propagating it to subsequent encounters; consultation workflow includes a documented step at which the clinician offers AVT and records the response.
 > - **Continuous monitoring:** documentation, respect, and persistence sub-metrics each ≥ 99 % monthly; alert on any single dissent-not-respected event.
 > - **Pause / escalation trigger:** any dissent-not-respected event confirmed (single instance), OR sub-metric < 95 % in any month. Both reportable as IG incidents.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-1](../thresholds.md#gv-cr-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10359,13 +11033,17 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 > - **Sample size for survey or audit MANDATORY:** ≥ 30 patients per clinician per quarter for survey method; ≥ 30 audio recordings per clinician per quarter where audio audit is used. Sub-30 samples are uninformative and do not satisfy the metric.
 > - **Content-element breakdown MANDATORY:** report compliance per content element (what / what / who / how). A clinician who consistently omits "how to decline" is failing differently from one who omits "where it goes"; aggregate-only reporting hides the failure pattern.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four content-element framing (what / what / who / how) follows from [NHSE-IG-Guidance-2026-03]. Specific numerical thresholds (≥ 95 % self-report, ≥ 90 % audited, ≥ 85 % per-element, < 75 % escalation, ≥ 30 sample-size floor) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** notification script drafted and reviewed against [NHSE-IG-Guidance-2026-03] content elements; clinician training complete; one mock-consultation audit per clinician confirms script delivery.
 > - **Continuous monitoring:** monthly self-report compliance ≥ 95 %; quarterly survey-based or audio-based compliance ≥ 90 % overall and ≥ 85 % on every content element.
 > - **Pause / escalation trigger:** any content element < 75 % compliance in any audit cycle; or self-report > 95 % paired with audited rate < 75 % (this is a self-report integrity failure, separately serious).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-2](../thresholds.md#gv-cr-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10480,13 +11158,17 @@ Listing Verification: at procurement, confirm vendor is on the live Registry. Qu
 > - **Multi-product handling:** for vendors with multiple AVT products, the verification records the specific product covered. A vendor's overall registry listing does not transfer to a sibling product without explicit registry-submission scope coverage.
 > - **Delisting watch:** the deployer's IG file records the registry status at each verification; any change from listed to not-listed (or vice versa) triggers an explicit governance review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the binary registry status, the 12-month attestation currency window, and the quarterly re-verification cadence are cited from the NHS England registry mechanics. The "12-month signed declaration" threshold and the multi-product scope-alignment requirement are **proposed in v3.8 as starting points**, not externally validated by NHSE — registry's specific re-listing rules are still pending publication. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's procurement risk appetite before contractual use.
 >
 > - **Pre-deployment gate:** vendor listed on live Registry; vendor's registry-submission scope covers deployer's contracted use cases; vendor's signed declaration ≤ 12 months old; companion metrics ([GV.VT-13](#gv-vt-13), [GV.VT-14](#gv-vt-14), [GV.SC-12](#gv-sc-12)) all pass their pre-deployment gates.
 > - **Continuous monitoring:** quarterly verification of all three sub-metrics; alert on attestation > 9 months old (60-day grace); alert on any scope-coverage gap discovered post-procurement.
 > - **Pause / escalation trigger:** vendor delisted (single instance — registry status loss is governance-event-grade); OR contracted use case discovered outside vendor's registry-submission scope; OR attestation > 12 months and not renewed.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-4](../thresholds.md#gv-cr-4). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10539,13 +11221,17 @@ Engagement documentation includes: (1) formal notification to ICB digital team d
 > - **Latency reporting MANDATORY:** time-to-notification (deployment-decision to ICB notification) and time-to-acknowledgement (notification to ICB response). Latency reveals process health independently of binary compliance.
 > - **Carve-out logging MANDATORY:** any deployment proceeding without ICB acknowledgement (under the capacity-constraint allowance) MUST be logged with reason and review date. Repeated unanswered notifications to the same ICB within 12 months trigger escalation to the regional CCIO, not silent acceptance.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the three-sub-metric framing follows from [CIO-CCIO-Guidance-2026] and the carve-out logic in the existing Formal Definition. Specific numerical thresholds (≥ 14-day notification lead time, escalation after two unanswered notifications in 12 months, quarterly re-verification cadence) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** notification sent to named ICB digital lead ≥ 14 days before planned go-live; DPIA + Clinical Safety Case referenced; deployment-site list complete.
 > - **Continuous monitoring:** quarterly review of acknowledgement rate and conditions-on-file rate; alert when any ICB has > 1 unanswered notification on the deployer's books.
 > - **Pause / escalation trigger:** any deployment going live without notification sent (process failure, not capacity issue); OR same ICB unanswered for ≥ 2 separate notifications within 12 months (escalate to regional CCIO).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-5](../thresholds.md#gv-cr-5). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10601,13 +11287,17 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 > - **Trigger-event log MANDATORY:** every trigger event recorded with date, type, sections requiring update, and target completion date. Time-to-update reported per trigger.
 > - **External review:** independent CSO review of the safety case at intervals not exceeding 24 months OR on any major version change of the AVT product. Internal-only review is not Tier 1 sufficient.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the eight-section schema and currency triggers carry from [DCB0129] itself. Specific numerical thresholds (30-day post-trigger window, 24-month external review cadence, 100 % per-section currency gate) are **proposed in v3.5 as starting points**, not externally validated. The 2025 PubMed FOI study (cited in Source) found widespread non-compliance; these thresholds reflect a procurement-grade interpretation of "current" rather than a regulator-published standard. Indicative; require local calibration against the deployer's clinical risk management framework before contractual use.
 >
 > - **Pre-deployment gate:** all eight [DCB0129] sections present with named CSO author; safety case report explicitly references the AVT product version, EPR target, and deployment scope.
 > - **Continuous monitoring:** annual per-section review; alert when any of sections 2-5 falls outside the 30-day post-trigger window; alert when external review is overdue.
 > - **Pause / escalation trigger:** any section in "missing" state (heading present, content empty or stub); OR sections 2-5 unupdated > 90 days after a trigger event; OR any model-version change deployed without corresponding safety-case update (cross-link [SI-2024-1368] MHRA PMS substantial-change framework).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-6](../thresholds.md#gv-cr-6). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -10661,13 +11351,17 @@ Completion Rate = |deployments_with_complete_DPIA_using_template| / |total_AVT_d
 > - **DPO sign-off MANDATORY (binary):** unsigned DPIAs do not count as complete regardless of section content. Sign-off date recorded; sign-offs preceding the most recent significant change are stale.
 > - **Cross-reconciliation with safety case:** DPIA-identified risks MUST be cross-mapped to safety-case hazards; risks named in DPIA but absent from safety case (or vice versa) are flagged in the audit output.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the eight-section schema and DPO sign-off requirement carry from [UK-GDPR] Article 35 and the [NHSE-IG-Guidance-2026-03] template. Specific numerical thresholds (annual audit cadence, 30-day post-significant-change re-review window, 100 % per-section gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate:** all eight template sections complete with substantive content; DPO sign-off dated within the 30 days preceding go-live; DPIA-safety-case reconciliation documented.
 > - **Continuous monitoring:** annual completion-rate review; alert on any DPIA where sign-off precedes the most recent significant change; alert when DPIA-safety-case reconciliation reveals unaligned risk/hazard list.
 > - **Pause / escalation trigger:** any deployment going live without a DPO-signed DPIA (legal failure, not process); OR any DPIA stale > 12 months past a significant change without re-review (regulatory exposure).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.CR-7](../thresholds.md#gv-cr-7). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -11357,13 +12051,17 @@ Compliance rate = |encounters_within_retention_policy| / |total_encounters|. Tra
 > - **Verification method MANDATORY:** vendor self-attestation alone is not Tier 1 sufficient. Independent verification is required at minimum annually via a third-party audit, deployer-witnessed deletion test, or cryptographic proof (e.g. key destruction for envelope-encrypted audio).
 > - **Exception handling:** any audio retained beyond policy MUST be logged with reason, DPIA reference, and re-deletion target date. Exception rate reported as a separate KPI.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the IG-incident reportability framing follows from [UK-GDPR] storage-limitation requirements and the existing [NHSE-IG-Guidance-2026-03] framework. Specific numerical thresholds (≥ 99.5 % monthly compliance, < 95 % escalation trigger, annual independent verification cadence) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration against DPIA risk appetite before contractual use.
 >
 > - **Pre-deployment gate:** vendor produces a deletion-verification protocol covering every storage location in the architecture; deployer DPIA cross-references the protocol; one end-to-end deletion test passes prior to go-live.
 > - **Continuous monitoring:** monthly compliance ≥ 99.5 % per storage location; alert on any single non-exception retention beyond policy; quarterly audit of exception log.
 > - **Pause / escalation trigger:** any storage-location compliance < 95 % in any month, OR any unlogged retention beyond policy detected. Both are reportable as IG incidents per the existing NHSE IG framework.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-1](../thresholds.md#gv-pd-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -11417,13 +12115,17 @@ Time-to-Deletion = t_deletion_verified - t_consultation_end. Report distribution
 > - **Carve-out logging MANDATORY:** any audio retained beyond standard threshold under a DPIA carve-out logged with reason, duration, and re-deletion target date. Carved-out audio tracked in a separate distribution from standard audio; aggregating the two hides policy adherence.
 > - **Deletion-verification method MANDATORY:** parallel to GV.PD-1 — vendor self-attestation alone insufficient; periodic independent verification (third-party audit, deployer-witnessed deletion test, or cryptographic proof via key destruction).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the post-sign-off deletion expectation derives from [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage-limitation provides the legal floor. Specific numerical thresholds (24-hour median target, 7-day P99 ceiling, 1 % exceedance rate trigger) are **proposed in v3.5 as starting points**, not externally validated. The DPIA's policy threshold takes precedence where it differs (the DPIA-stated period is the contractual gate; these numbers are starting points for that DPIA conversation). Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** vendor demonstrates per-storage-location deletion telemetry; one end-to-end deletion test passes prior to go-live; DPIA cross-references the policy threshold.
 > - **Continuous monitoring:** monthly median TTD ≤ DPIA-stated threshold (typically 24 hours); P99 ≤ 7 days; encounters-exceeding-threshold rate < 1 %; per-storage-location compliance ≥ 99.5 %.
 > - **Pause / escalation trigger:** any single non-exception retention beyond DPIA threshold; OR median TTD > DPIA threshold in any month; OR per-storage-location compliance < 95 % (cascades to GV.PD-1 compliance failure). All three are reportable as IG incidents.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-2](../thresholds.md#gv-pd-2). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -11472,13 +12174,17 @@ For each transcript: retention duration = t_current - t_consultation_end. Retent
 > - **Cross-system retention chain MANDATORY:** transcript derivatives (extracted entities, redacted variants, embedding vectors) tracked under the same purpose, with retention period inherited from the source unless explicitly DPIA'd otherwise.
 > - **Verification:** parallel to GV.PD-1; independent verification annual minimum.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** [UK-GDPR] purpose-limitation underpins the requirement to enumerate retention purposes; specific numbers (≥ 3 distinct purposes, ≥ 99.5 % monthly compliance, ≥ 90 %-of-volume quality-monitoring sub-categorisation, < 95 % escalation trigger) are **proposed in v3.3 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** DPIA enumerates ≥ 3 distinct retention purposes with periods; vendor architecture diagram shows transcript flow through every named storage location with retention period at each.
 > - **Continuous monitoring:** monthly per-purpose, per-storage-location compliance ≥ 99.5 %; "quality monitoring" sub-categorisation alone covers ≥ 90 % of transcript volume (a vendor whose only purpose is "quality monitoring" is failing this gate).
 > - **Pause / escalation trigger:** any unenumerated retention purpose discovered in production, OR any per-purpose compliance < 95 %.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-3](../thresholds.md#gv-pd-3). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -11692,13 +12398,17 @@ Process compliance = |consultations_where_patient_informed| / |total_AVT_consult
 > - **Demographic disaggregation MANDATORY for understanding rate:** stratification by primary language, age band, ethnicity, and where available deprivation index. The aggregate understanding rate hides the failure pattern; disparities are the metric's value.
 > - **Survey instrument declaration MANDATORY:** the survey instrument used must be declared (validated published instrument vs deployer-defined). Deployer-defined instruments must be reviewed by the IG team and document at least four comprehension items mapping to GV.CR-2 content elements.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the gap-as-headline framing carries from the existing Novel Thinking section and [CQC-Mythbuster-109]'s "informed" requirement. Specific numerical thresholds (25-percentage-point gap trigger, ≥ 30 patients/quarter survey floor, demographic-disparity-2× alert) are **proposed in v3.5 as starting points**, not externally validated. The understanding rate is the harder measurement and the survey instrument choice will materially affect the result; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** GV.CR-2 process-compliance gate met; survey instrument selected and reviewed by IG team; quarterly survey schedule established.
 > - **Continuous monitoring:** monthly process compliance from GV.CR-2; quarterly understanding rate; gap reported every quarter with demographic breakdown. Alert when aggregate gap > 25 percentage points OR any demographic axis shows understanding rate < practice mean by ≥ 20 percentage points.
 > - **Pause / escalation trigger:** gap > 40 percentage points sustained two quarters (consent model legitimacy in question); OR any demographic axis shows understanding rate < 50 % (the consent model is failing for that population, not just under-performing).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-8](../thresholds.md#gv-pd-8). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -11791,13 +12501,17 @@ SAR Fulfilment Rate = |SARs_completed_within_30_days| / |total_SARs|. Sub-criter
 > - **Sub-processor cooperation tracked separately:** SAR fulfilment depends on sub-processors providing their data; cooperation latency per sub-processor recorded. Vendors should contractually commit sub-processors to deployer's SAR timeline.
 > - **Complex-request extension logged:** any SAR using the two-month extension provision logged with reason; pattern of extensions on AVT-related SARs is a signal that the locate-rate or export-rate is failing.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 30-day target and 100 % locate/export expectation derive from [UK-GDPR] Article 15 and [ICO] guidance. The synthetic-SAR pre-deployment test is **proposed in v3.5 as a starting point** to bring SAR readiness into the procurement gate (rather than discovering at first live SAR). Specific numerical thresholds are largely cited; the pre-deployment test cadence and the extension-pattern alert are the proposed elements. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic SAR test passes — every storage location returns data; export format usable; full processing within 30 days. Gaps remediated before go-live.
 > - **Continuous monitoring:** quarterly per-sub-metric reporting; locate-rate ≥ 100 % (any SAR where AVT data could not be located is a failure regardless of timeliness); export-rate ≥ 100 %; timeliness-rate ≥ 95 % (allowing for legitimate complex-request extensions).
 > - **Pause / escalation trigger:** any SAR where AVT data could not be located within the deployer's known architecture (this is a regulatory failure under Article 15); OR timeliness-rate < 90 % in any quarter (suggests operational capacity failure); OR > 30 % of AVT-related SARs using the two-month extension (suggests systematic locate/export failure rather than legitimate complexity).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-10](../thresholds.md#gv-pd-10). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -11855,13 +12569,17 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 > - **Article-17-exempt vs in-scope:** every erasure request classified as exempt (individual-care purpose, public-task carve-out) or in-scope (secondary use, research, training data, best-interest case). The exempt class is logged with reason but not subject to the same fulfilment expectation as in-scope.
 > - **Sub-processor cooperation tracked:** parallel to [GV.PD-10 Subject Access Request Fulfilment](#gv-pd-10) — sub-processor latency per erasure request recorded.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the three-class outcome distinction (deletable / anonymisable / technically-irreversible) is **proposed in v3.5** as a way to operationalise the Novel Thinking section's observation that some erasure requests cannot be fulfilled even in principle. The Article 17 exemption framing is cited ([NHSE-IG-Guidance-2026-03]). Specific numerical thresholds are largely binary (privacy-notice match, synthetic-test coverage); the proposed elements are the three-class taxonomy and the privacy-notice cross-check. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate:** synthetic erasure test passes — every storage location classified into one of the three outcome classes; technically-irreversible class enumerated and matched to the privacy notice; sub-processor cooperation timelines documented.
 > - **Continuous monitoring:** in-scope erasure requests fulfilled within 30 days at deletable locations and 30 days at anonymisable locations; technically-irreversible-class size stable (any growth means a new location was added without classification — a flag).
 > - **Pause / escalation trigger:** any in-scope erasure request where a deletable location fails to delete (regulatory failure under Article 17); OR any newly added location not classified into the three-class taxonomy before processing personal data; OR drift between technically-irreversible class and privacy-notice disclosure (procurement-time disclosure failure).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-11](../thresholds.md#gv-pd-11). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Novel Thinking / Implications**
 
@@ -11916,13 +12634,17 @@ Disposition options per location: (i) deletable — cryptographically erased or 
 > - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
 > - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
 > - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
 > - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -11973,13 +12695,17 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 > - **Per-clinician baseline MANDATORY:** the deployment baseline is the median weekly DT across the first 4 weeks of clinician live use. Time-saved (TS) calculations reference this per-clinician baseline, not a pooled cohort baseline (parallel to [HL.HF-1 Edit Rate](#hl-hf-1)).
 > - **Aggregation:** report median DT and the time-saved (TS) trajectory; do not collapse to a single number without quality companion metric.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from [Coiera-Fraile-Navarro-JMIR-2026] and the [NIHR-RSET] 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician DT median across the first 4 weeks of live use, with separate medians for in-consultation and out-of-consultation segments. Quality companion metric measured concurrently.
 > - **Continuous monitoring:** weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS > 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).
 > - **Pause / review trigger:** any TS reported without quality data; OR in-consultation TS > 0 paired with out-of-consultation DT increase (suggests burden displacement to after-hours, not reduction); OR TS positive while quality companion metric (PDSQI-9, hallucination rate) deteriorates.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.OP-1](../thresholds.md#gv-op-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -12348,13 +13074,17 @@ Three sub-metrics: (i) EPR-commit independence (does the AI-generated content li
 > - **Cross-link to retirement notification:** every retirement event triggered by [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) activates this metric's per-event verification. The vendor-side migration plan (per GV.VT-15's mandatory content element (iv)) MUST address the three sub-metrics above.
 > - **Contractual access window MANDATORY:** the procurement contract specifies the minimum period during which the vendor will support read-access to historical content post-retirement (typical floor: 7 years to align with NHS clinical-record retention).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the EPR-as-system-of-record framing carries from [TP.WB-1 Write-back Fidelity](#tp-wb-1) and the broader v3.x write-back metrics. The 7-year contractual access window aligns with NHS clinical-record retention but is **proposed in v4.0.2 as a starting point** for AVT deployments; specialty-specific retention rules may apply (paediatric records up to 25 years, mental health to 20). Specific thresholds (24-hour synthetic-retirement test, 100 % three-sub-metric pre-deployment gate, 95 % provenance-dereference compliance per-event) are **proposed in v4.0.2 as starting points**, not externally validated.
 >
 > - **Pre-deployment gate:** synthetic-retirement test passes — committed records readable; provenance links resolve; patient-portal access preserved. Contract specifies post-retirement access window ≥ 7 years (or specialty-appropriate floor).
 > - **Per-event monitoring:** retirement events trigger logging of (a) commit-completeness verification rerun, (b) provenance-dereference rate at retirement-day +30, (c) patient-portal access verification. Aggregate compliance reported per retirement event.
 > - **Pause / escalation trigger:** synthetic-retirement test reveals any committed-content category that cannot be read without the vendor running (pre-deployment gate failure); OR per-event provenance-dereference rate < 90 % at retirement-day +30; OR patient-portal access pathway degrades.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.OP-14](../thresholds.md#gv-op-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -12532,13 +13262,17 @@ TCR = |clinicians_fully_trained| / |clinicians_using_AVT|. Fully trained = compl
 > - **Engagement-time floor MANDATORY:** minimum 30 minutes recorded engagement on M3 specifically (the failure-mode-awareness module is the most subject to "click-through" completion); 15 minutes on M1; 20 minutes on M2.
 > - **Coverage check:** any clinician active on AVT in the previous 30 days appears in the denominator. Late-onboarders given a 14-day grace window from first AVT use to completion of M1 + M2.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-module structure follows from the existing Formal Definition and the [NAS-Day-Zero-SPI-internal] requirements cited in Source. The AVT-specific failure-mode list in M3 carries from the Novel Thinking section. Specific numerical thresholds (30/20/15-minute engagement floors, 12-month refresher cadence, 14-day onboarding grace, 100 % gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's clinical governance framework before contractual use.
 >
 > - **Pre-deployment / Day Zero gate:** every clinician scheduled to use AVT has M1 + M2 + M3 complete within validity periods; M4 not yet applicable for new starters.
 > - **Continuous monitoring:** monthly per-module TCR ≥ 100 %; alert on any clinician active on AVT with any module out of date by > 14 days.
 > - **Pause / escalation trigger:** any clinician using AVT with M3 (failure-mode awareness) missing or stale (this is the safety-critical module — operational use without it is a governance failure regardless of M1/M2/M4 status); OR aggregate TCR < 95 % at the practice level for any module sustained two consecutive months.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.TC-1](../thresholds.md#gv-tc-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -12757,13 +13491,17 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 > - **Substantial-change flag MANDATORY:** any change meeting [SI-2024-1368] substantial-change criteria flagged in the notification with regulatory reference; absence of flag where one applies is a separate compliance failure (regulatory, not contractual).
 > - **Per-deployment notification:** notifications addressed to the named contract contact, not posted to a status page. Deployer-side acknowledgement timestamp recorded.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 14-day lead time for major updates carries from the existing Formal Definition. The four-element notification content schema synthesises [Keyes-Stanford-Monitoring-2025] requirements (cited Source) with [SI-2024-1368] notification practice. Specific numerical thresholds per severity (14 / 7 / 0 days, 100 % content-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to the four-element schema and the per-severity lead times below; vendor demonstrates a recent change-event with full notification on file.
 > - **Continuous monitoring:** major changes notified ≥ 14 days before deployment; moderate changes ≥ 7 days; minor changes ≥ 0 days (post-hoc notification acceptable). Per-element completeness = 100 % across all severities. Substantial-change flag present on every applicable change.
 > - **Pause / escalation trigger:** any major change deployed without prior notification; OR any substantial-change-flag-applicable change deployed without the regulatory flag (this is a regulatory event); OR per-element completeness < 95 % over a rolling 90-day window.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-1](../thresholds.md#gv-vt-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -12944,13 +13682,17 @@ Disclosure Timeliness = t_disclosed - t_incident_known_by_vendor. Disclosure Com
 > - **Update cadence MANDATORY:** initial disclosure plus material updates as new information emerges; final closure report on resolution. A single one-off notification without updates is non-compliant where the incident has not been resolved.
 > - **Escalation path MANDATORY:** named deployer contact for critical and high incidents; vendor must demonstrate the escalation path was used, not just the standard support inbox.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the four-element framing carries from the existing Formal Definition; the fifth element (cross-deployer scope) and the severity-driven timelines synthesise standard security incident disclosure practice (cited Source) with [UK-GDPR] Article 33 cascade logic. Specific numerical thresholds (24-hour critical, 72-hour high, 7-day medium, 30-day low; 100 % five-element gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against contractual SLA before procurement use.
 >
 > - **Pre-deployment gate (procurement):** vendor contractually commits to severity-classified disclosure timelines and the five-element content schema; named deployer contact recorded; one tabletop test of the disclosure path.
 > - **Continuous monitoring:** critical incidents disclosed ≤ 24 hours from `t_known`; high ≤ 72 hours; medium ≤ 7 days; low ≤ 30 days. Five-element completeness = 100 %. Escalation path used for every critical and high incident.
 > - **Pause / escalation trigger:** any critical incident disclosed > 72 hours after `t_known` (regardless of severity-classification target); OR any incident where independent evidence shows vendor knew earlier than disclosed `t_known`; OR cross-deployer-scope element missing on incidents affecting multiple deployments. All three are contract-breach triggers.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-5](../thresholds.md#gv-vt-5). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 
@@ -13043,13 +13785,17 @@ Audit vendor's sub-processor list against actual data access. Completeness = |di
 > - **Change-notification mandate:** vendor contract MUST specify advance notice of sub-processor changes ([GV.VT-1 Model Change Notification Compliance](#gv-vt-1) cross-link); change-events tracked per sub-processor with notification timestamps.
 > - **Materiality flag:** sub-processors handling personal data classified material; sub-processors handling only metadata or aggregated telemetry classified non-material. Material sub-processors required to be in scope; non-material classification must be evidenced.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the seven-source discovered-set framing follows from [UK-GDPR] Article 28(2) and standard DPIA practice; the materiality distinction synthesises [ICO] guidance on processor obligations. Specific numerical thresholds (quarterly audit cadence, 30-day pre-change notification, 100 % material-sub-processor disclosure gate) are **proposed in v3.5 as starting points**, not externally validated. Indicative; require local calibration against the deployer's IG framework before contractual use.
 >
 > - **Pre-deployment gate (procurement):** vendor publishes complete sub-processor list with the per-sub-processor information schema above; deployer-side verification step completed (not vendor self-cert alone); DPAs in place for every material sub-processor.
 > - **Continuous monitoring:** quarterly discovered-set vs disclosed-set audit; per-material-sub-processor DPA status reviewed annually; change-event notifications received ≥ 30 days before sub-processor change for material entries.
 > - **Pause / escalation trigger:** any material sub-processor undisclosed (regulatory failure under Article 28(2), not contractual); OR any material sub-processor without an in-place DPA; OR sub-processor change without prior notification (contractual breach where the contract specifies notification obligation).
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-7](../thresholds.md#gv-vt-7). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -13162,13 +13908,17 @@ Composite freshness score per component:
 > - **Latest-version-match audit:** at procurement time, the deployer's IG file records the Hub-published version-strings observed and the vendor-attested current versions; subsequent quarterly audits compare against those baselines.
 > - **Signed-declaration provenance MANDATORY:** every component carries a dated signed declaration from a named accountable individual; absence is a Stale finding regardless of artefact age.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the 12-month freshness window mirrors the [NCSC-Cyber-Essentials] annual cadence and the typical [UK-GDPR] DPIA review cycle. The 24-month Stale threshold and the signed-declaration requirement are **proposed in v3.8 as starting points**, not externally validated — NHSE has not yet published evidence-pack re-audit rules. Per the [Calibration & Context principle](#calibration-context), require local calibration against the deployer's risk appetite. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** all 13 evidence-pack components Fresh; Hub-published versions match vendor-attested current versions; signed declarations present and ≤ 12 months old.
 > - **Periodic audit:** quarterly Hub-publication review; alert on any component slipping from Fresh to Aging; alert on any version-mismatch.
 > - **Pause / escalation trigger:** any component Stale; OR ≥ 3 components Aging; OR vendor-attested current version diverges from Hub-published version on a safety-critical component ([DCB0129] safety case; MHRA registration; DPIA) by > 30 days without explicit notification per GV.VT-1.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-13](../thresholds.md#gv-vt-13). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -13240,13 +13990,17 @@ Procurement-time scope-alignment check (deployer-side):
 > - **Scope-alignment audit:** deployer's IG file records the matched / mismatched use cases; mismatches recorded with reason and accepted-risk decision.
 > - **Currency re-verification:** annual cadence; matrix re-publication date logged; any change > ±20 % from the prior matrix on a contracted use case triggers a procurement-side review.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the publication-and-currency requirement is cited from registry req #12. The 12-month annual cadence aligns with [GV.VT-13](#gv-vt-13)'s freshness window. The ±20 % materiality threshold for matrix changes is **proposed in v3.8 as a starting point**, not externally validated — deployers' procurement risk appetite will vary. Indicative; require local calibration against contracted SLA terms before procurement use.
 >
 > - **Pre-deployment gate (procurement):** matrix published; coverage of all contracted use cases; matrix < 12 months old; deployer's scope-alignment audit logged.
 > - **Periodic audit:** annual matrix re-verification; alert on any contracted use case dropping out of the matrix; alert on matrix change > ±20 % on contracted use cases.
 > - **Pause / escalation trigger:** matrix removed from Hub publication; OR contracted use case priced materially above indicative matrix without prior notification; OR matrix > 24 months stale on any contracted use case.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-14](../thresholds.md#gv-vt-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -13307,13 +14061,17 @@ Notification content (mandatory): (i) what is being retired (product, feature, i
 > - **Cross-link to deployer workflows MANDATORY:** every retirement notification triggers (i) [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) procedure; (ii) [GV.OP-14 Historical Output Continuity](#gv-op-14) procedure; (iii) [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) data-portability execution. The notification is the fan-out trigger for these three downstream metrics.
 > - **Failure-mode logging:** any retirement event where notification was absent, late, or incomplete logged with deployer-side accepted-risk decision and reportable to the deployer's IG file.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the contractual-gate framing carries from [GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6) and the v3.4 `_gaps.md` P5-Lifecycle "Decommissioning plan" entry. Specific lead-time thresholds (≥ 12 months notice for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal, 100 % content-element gate) are **proposed in v4.0.2 as starting points**, not externally validated. The lead-time numbers are calibrated to typical NHS procurement cycle and DCB0160 retirement-provisioning timelines but require local calibration before contractual use.
 >
 > - **Pre-deployment gate (procurement):** vendor contract specifies minimum lead times (≥ 12 months for product retirement, ≥ 6 months for major-feature withdrawal, ≥ 90 days for integration withdrawal); five-element notification content schema committed; named deployer contact recorded.
 > - **Continuous monitoring:** every retirement event triggers logging of (a) notification received yes/no, (b) lead-time delivered, (c) content-completeness rate. Aggregate compliance reported per contract year.
 > - **Pause / escalation trigger:** any retirement event with no prior notification (single instance — this is a contract-breach event); OR notification < 50 % of contracted lead time; OR content-completeness < 80 % on a single notification.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.VT-15](../thresholds.md#gv-vt-15). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

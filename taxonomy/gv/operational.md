@@ -39,13 +39,17 @@ DT = t_doc_end - t_doc_start. Quality-adjusted: report alongside PDSQI-9 or hall
 > - **Per-clinician baseline MANDATORY:** the deployment baseline is the median weekly DT across the first 4 weeks of clinician live use. Time-saved (TS) calculations reference this per-clinician baseline, not a pooled cohort baseline (parallel to [HL.HF-1 Edit Rate](#hl-hf-1)).
 > - **Aggregation:** report median DT and the time-saved (TS) trajectory; do not collapse to a single number without quality companion metric.
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the requirement to pair DT with a quality companion metric and the in/out-of-consultation breakdown framing follow from [Coiera-Fraile-Navarro-JMIR-2026] and the [NIHR-RSET] 'time is not automatically convertible' caution cited above. Specific thresholds (4-week baseline window, 25 % TS trigger for review, 0 % out-of-consultation TS rule-out) are **proposed in v3.4 as starting points**, not externally validated. Indicative; require local calibration before contractual use.
 >
 > - **Pre-deployment / Day Zero baseline:** establish per-clinician DT median across the first 4 weeks of live use, with separate medians for in-consultation and out-of-consultation segments. Quality companion metric measured concurrently.
 > - **Continuous monitoring:** weekly DT trajectory per clinician; report TS only when paired with quality companion metric. Flag for review: TS > 25 % from baseline (the magnitude triggers a quality cross-check, not a celebration).
 > - **Pause / review trigger:** any TS reported without quality data; OR in-consultation TS > 0 paired with out-of-consultation DT increase (suggests burden displacement to after-hours, not reduction); OR TS positive while quality companion metric (PDSQI-9, hallucination rate) deteriorates.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.OP-1](../thresholds.md#gv-op-1). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **References**
 
@@ -414,13 +418,17 @@ Three sub-metrics: (i) EPR-commit independence (does the AI-generated content li
 > - **Cross-link to retirement notification:** every retirement event triggered by [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) activates this metric's per-event verification. The vendor-side migration plan (per GV.VT-15's mandatory content element (iv)) MUST address the three sub-metrics above.
 > - **Contractual access window MANDATORY:** the procurement contract specifies the minimum period during which the vendor will support read-access to historical content post-retirement (typical floor: 7 years to align with NHS clinical-record retention).
 
-**Threshold Guidance**
+**Trigger Conditions**
 
 > ⚠️ **Provenance:** the EPR-as-system-of-record framing carries from [TP.WB-1 Write-back Fidelity](#tp-wb-1) and the broader v3.x write-back metrics. The 7-year contractual access window aligns with NHS clinical-record retention but is **proposed in v4.0.2 as a starting point** for AVT deployments; specialty-specific retention rules may apply (paediatric records up to 25 years, mental health to 20). Specific thresholds (24-hour synthetic-retirement test, 100 % three-sub-metric pre-deployment gate, 95 % provenance-dereference compliance per-event) are **proposed in v4.0.2 as starting points**, not externally validated.
 >
 > - **Pre-deployment gate:** synthetic-retirement test passes — committed records readable; provenance links resolve; patient-portal access preserved. Contract specifies post-retirement access window ≥ 7 years (or specialty-appropriate floor).
 > - **Per-event monitoring:** retirement events trigger logging of (a) commit-completeness verification rerun, (b) provenance-dereference rate at retirement-day +30, (c) patient-portal access verification. Aggregate compliance reported per retirement event.
 > - **Pause / escalation trigger:** synthetic-retirement test reveals any committed-content category that cannot be read without the vendor running (pre-deployment gate failure); OR per-event provenance-dereference rate < 90 % at retirement-day +30; OR patient-portal access pathway degrades.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.OP-14](../thresholds.md#gv-op-14). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
 
 **Limitations**
 

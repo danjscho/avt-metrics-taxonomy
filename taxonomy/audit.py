@@ -674,7 +674,9 @@ def check_tier1_quickref(all_metrics: list[Metric]) -> list[Finding]:
 TIGHTENING_SUB_BLOCKS = (
     "**Reference Standard**",
     "**Operational Specification**",
-    "**Threshold Guidance**",
+    "**Trigger Conditions**",  # v5.0 rename: previously "Threshold Guidance".
+    # Trigger Conditions is qualitative-only; specific numerical starting
+    # points moved to docs/thresholds.md per the v5.0 structural split.
 )
 
 
@@ -758,33 +760,52 @@ PROVENANCE_RE = re.compile(r"⚠️\s*\*\*Provenance[:\*]", re.UNICODE)
 
 
 def check_threshold_provenance(all_metrics: list[Metric]) -> list[Finding]:
-    """Every tightened metric's Threshold Guidance block must open with a
-    ⚠️ **Provenance** line within the first 400 characters of the block body
-    (after the heading itself)."""
+    """v5.0 rename: was check_threshold_provenance for the in-body Provenance
+    prelude. Now checks that every tightened metric's Trigger Conditions block
+    contains a pointer to the Threshold Reference page (thresholds.md), which
+    is where specific numerical starting points now live.
+
+    The pointer must contain both `thresholds.md` and the metric's own anchor
+    so deployers can navigate from the metric body straight to the right
+    per-metric table."""
     findings: list[Finding] = []
     for m in all_metrics:
         if classify_tightening(m) != "tightened":
             continue
-        # Locate the Threshold Guidance block.
-        idx = m.body.find("**Threshold Guidance**")
+        idx = m.body.find("**Trigger Conditions**")
         if idx == -1:
-            # Defensive: classify_tightening said it's tightened, so this
-            # should not happen, but guard anyway.
             continue
-        # Skip past the heading itself.
-        block_start = idx + len("**Threshold Guidance**")
-        snippet = m.body[block_start : block_start + 400]
-        if not PROVENANCE_RE.search(snippet):
+        block_start = idx + len("**Trigger Conditions**")
+        snippet = m.body[block_start:]
+        # Stop at the next bold-block heading or end-of-body
+        next_block = re.search(r"\n\*\*[A-Z]", snippet)
+        if next_block:
+            snippet = snippet[: next_block.start()]
+        anchor = _ref_id_to_anchor(m.ref_id)
+        if "thresholds.md" not in snippet:
             findings.append(
                 Finding(
-                    "ERROR",
-                    "missing-threshold-provenance",
-                    (
-                        f"tightened metric {m.ref_id} has no ⚠️ **Provenance** "
-                        f"prelude in its Threshold Guidance block (must appear "
-                        f"in the first 400 chars after the heading)"
+                    severity="ERROR",
+                    category="missing-thresholds-pointer",
+                    message=(
+                        f"tightened metric {m.ref_id} has no `thresholds.md` "
+                        f"pointer in its Trigger Conditions block (deployers "
+                        f"must be able to navigate to per-metric starting points)"
                     ),
-                    f"{m.file}:{m.line}",
+                    location=f"{m.file}:{m.line}",
+                )
+            )
+        elif anchor not in snippet:
+            findings.append(
+                Finding(
+                    severity="WARN",
+                    category="thresholds-pointer-anchor",
+                    message=(
+                        f"tightened metric {m.ref_id} has a thresholds.md "
+                        f"pointer but it does not name this metric's anchor "
+                        f"(`#{anchor}`); deployers may land on the page top"
+                    ),
+                    location=f"{m.file}:{m.line}",
                 )
             )
     return findings
