@@ -16,15 +16,17 @@ Two views over all 221 metrics:
   .ex-toolbar .ex-summary-inline { font-size: 0.85rem; color: var(--md-default-fg-color--light); margin-left: auto; }
 
   .matrix-wrap { margin: 1rem 0 2rem; overflow-x: auto; }
-  .matrix-grid { display: grid; grid-template-columns: 110px repeat(6, minmax(140px, 1fr)); gap: 4px; min-width: 920px; }
+  .matrix-grid { display: grid; grid-template-columns: 110px repeat(var(--matrix-cols, 6), minmax(180px, 1fr)); gap: 4px; min-width: 920px; }
   .matrix-corner, .matrix-cluster-header, .matrix-tier-header { padding: 0.4rem 0.5rem; font-weight: 600; font-size: 0.8rem; text-align: center; background: var(--md-default-fg-color--lightest); border-radius: 3px; user-select: none; }
   .matrix-cluster-header { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.04em; }
   .matrix-tier-header { writing-mode: horizontal-tb; display: flex; align-items: center; justify-content: center; }
-  .matrix-cell { background: var(--md-default-bg-color); border: 1px dashed var(--md-default-fg-color--lightest); border-radius: 3px; padding: 4px; min-height: 80px; display: flex; flex-wrap: wrap; gap: 3px; align-content: flex-start; transition: background 80ms ease, border-color 80ms ease; }
+  .matrix-cell { background: var(--md-default-bg-color); border: 1px dashed var(--md-default-fg-color--lightest); border-radius: 3px; padding: 4px; min-height: 90px; display: flex; flex-direction: column; gap: 4px; align-content: flex-start; transition: background 80ms ease, border-color 80ms ease; }
   .matrix-cell.drag-over { background: var(--md-accent-fg-color--transparent); border-color: var(--md-accent-fg-color); border-style: solid; }
-  .matrix-card { font-family: var(--md-code-font); font-size: 0.7rem; padding: 2px 5px; border-radius: 3px; background: var(--md-default-fg-color--lightest); cursor: grab; user-select: none; white-space: nowrap; line-height: 1.5; border-left: 3px solid transparent; }
+  .matrix-card { font-size: 0.7rem; padding: 4px 6px; border-radius: 3px; background: var(--md-default-fg-color--lightest); cursor: grab; user-select: none; line-height: 1.3; border-left: 3px solid transparent; display: flex; flex-direction: column; gap: 1px; }
   .matrix-card:hover { background: var(--md-accent-fg-color--transparent); }
   .matrix-card[draggable="true"]:active { cursor: grabbing; }
+  .matrix-card .card-ref { font-family: var(--md-code-font); font-weight: 600; white-space: nowrap; }
+  .matrix-card .card-name { font-size: 0.68rem; color: var(--md-default-fg-color--light); overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
   .matrix-card.tier-1 { border-left-color: #4caf50; }
   .matrix-card.tier-2 { border-left-color: #ff9800; }
   .matrix-card.tier-3 { border-left-color: #2196f3; }
@@ -33,6 +35,8 @@ Two views over all 221 metrics:
   .matrix-card a { color: inherit; text-decoration: none; }
   .matrix-card a:hover { text-decoration: underline; }
   .matrix-cell-empty { color: var(--md-default-fg-color--light); font-style: italic; font-size: 0.7rem; padding: 0.5rem; text-align: center; width: 100%; }
+  .matrix-focus-banner { padding: 0.4rem 0.7rem; background: var(--md-accent-fg-color--transparent); border-radius: 4px; font-size: 0.8rem; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem; }
+  .matrix-focus-banner button { font-size: 0.75rem; padding: 0.2rem 0.5rem; background: var(--md-default-bg-color); border: 1px solid var(--md-default-fg-color--lightest); border-radius: 3px; cursor: pointer; }
 
   .moves-panel { margin-top: 0.75rem; padding: 0.6rem 0.8rem; border-radius: 4px; border: 1px solid var(--md-default-fg-color--lightest); background: var(--md-default-fg-color--lightest); font-size: 0.85rem; }
   .moves-panel.empty { display: none; }
@@ -72,10 +76,14 @@ Two views over all 221 metrics:
   <span class="ex-summary-inline" id="matrix-summary">Loading…</span>
 </div>
 
+<div class="matrix-focus-banner" id="matrix-focus-banner" style="display:none">
+  <span id="matrix-focus-text"></span>
+  <button type="button" id="matrix-focus-clear">Show all clusters</button>
+</div>
+
 <div class="matrix-wrap">
   <div class="matrix-grid" id="matrix-grid" aria-label="Cluster × tier matrix">
-    <div class="matrix-corner">cluster →<br>tier ↓</div>
-    <!-- cluster headers + cells will be inserted by JS -->
+    <!-- corner + headers + cells inserted by JS -->
   </div>
 </div>
 
@@ -290,57 +298,121 @@ Two views over all 221 metrics:
   }
 
   // ---------- Matrix render ----------
+  // Mode A (default): columns = clusters (TP / PI / HL / IO / GV / ES).
+  // Mode B (cluster filter set): columns = groups within the focused cluster.
+  // The mode change is driven by state.filters.cluster — when one cluster is
+  // selected the matrix narrows to that cluster's groups so deployers can see
+  // sub-cluster structure that's drowned out at the 6-cluster zoom.
+  function focusedCluster() {
+    const want = state.filters.cluster;
+    if (!want) return null;
+    // Map cluster_name back to the 2-letter code so the filter and matrix agree.
+    for (const m of state.metrics) {
+      if (m.cluster_name === want) return m.cluster;
+    }
+    return null;
+  }
+
+  function groupsInCluster(cluster) {
+    // Preserve catalogue order via _idx — first appearance of each (cluster, group) wins.
+    const seen = new Map();
+    for (const m of state.metrics) {
+      if (m.cluster !== cluster) continue;
+      if (!seen.has(m.group)) seen.set(m.group, m._idx);
+    }
+    return [...seen.entries()].sort((a, b) => a[1] - b[1]).map(e => e[0]);
+  }
+
+  function renderFocusBanner(focus) {
+    const banner = document.getElementById('matrix-focus-banner');
+    const text = document.getElementById('matrix-focus-text');
+    if (focus) {
+      banner.style.display = '';
+      text.textContent = `Focused on ${CLUSTER_LABELS[focus]} — columns are groups within this cluster.`;
+    } else {
+      banner.style.display = 'none';
+      text.textContent = '';
+    }
+  }
+
+  function attachCellHandlers(cell, cluster, tier, group) {
+    cell.dataset.cluster = cluster;
+    cell.dataset.tier = String(tier);
+    if (group !== undefined) cell.dataset.group = group;
+    cell.addEventListener('dragover', e => {
+      e.preventDefault();
+      e.dataTransfer.dropEffect = 'move';
+      cell.classList.add('drag-over');
+    });
+    cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
+    cell.addEventListener('drop', e => {
+      e.preventDefault();
+      cell.classList.remove('drag-over');
+      const refId = e.dataTransfer.getData('text/plain');
+      if (refId) handleDrop(refId, cell);
+    });
+  }
+
+  function fillCell(cell, metrics) {
+    if (metrics.length === 0) {
+      const empty = document.createElement('span');
+      empty.className = 'matrix-cell-empty';
+      empty.textContent = '—';
+      cell.appendChild(empty);
+    } else {
+      for (const m of metrics) cell.appendChild(buildCard(m));
+    }
+  }
+
   function renderMatrix(filtered) {
     const grid = document.getElementById('matrix-grid');
-    // Clear any previous content except the corner cell (first child).
-    while (grid.children.length > 1) grid.removeChild(grid.lastChild);
+    grid.innerHTML = '';
+    const focus = focusedCluster();
+    renderFocusBanner(focus);
 
-    // Cluster headers
-    for (const cluster of CLUSTER_ORDER) {
+    // Decide column set
+    const columns = focus
+      ? groupsInCluster(focus).map(g => ({ key: g, label: g, cluster: focus, group: g }))
+      : CLUSTER_ORDER.map(c => ({ key: c, label: CLUSTER_LABELS[c], cluster: c, group: undefined }));
+
+    grid.style.setProperty('--matrix-cols', String(columns.length));
+
+    // Corner cell
+    const corner = document.createElement('div');
+    corner.className = 'matrix-corner';
+    corner.innerHTML = focus ? 'group →<br>tier ↓' : 'cluster →<br>tier ↓';
+    grid.appendChild(corner);
+
+    // Column headers
+    for (const col of columns) {
       const h = document.createElement('div');
       h.className = 'matrix-cluster-header';
-      h.textContent = CLUSTER_LABELS[cluster];
+      h.textContent = col.label;
       grid.appendChild(h);
     }
 
-    // Build cells: one row per tier, one cell per cluster
+    // Tier rows
     for (const tier of [1, 2, 3]) {
       const th = document.createElement('div');
       th.className = 'matrix-tier-header';
       th.textContent = TIER_LABELS[tier];
       grid.appendChild(th);
 
-      for (const cluster of CLUSTER_ORDER) {
+      for (const col of columns) {
         const cell = document.createElement('div');
         cell.className = 'matrix-cell';
-        cell.dataset.cluster = cluster;
-        cell.dataset.tier = String(tier);
-        // Cells accept drops
-        cell.addEventListener('dragover', e => {
-          e.preventDefault();
-          e.dataTransfer.dropEffect = 'move';
-          cell.classList.add('drag-over');
-        });
-        cell.addEventListener('dragleave', () => cell.classList.remove('drag-over'));
-        cell.addEventListener('drop', e => {
-          e.preventDefault();
-          cell.classList.remove('drag-over');
-          const refId = e.dataTransfer.getData('text/plain');
-          if (refId) handleDrop(refId, cell);
-        });
+        attachCellHandlers(cell, col.cluster, tier, col.group);
 
-        // Populate cell with metrics that match cluster + (effective) tier + filter
+        // Filter metrics for this cell
         const inCell = filtered
-          .filter(m => m.cluster === cluster && effectiveTier(m) === tier)
+          .filter(m => {
+            if (m.cluster !== col.cluster) return false;
+            if (effectiveTier(m) !== tier) return false;
+            if (col.group !== undefined && m.group !== col.group) return false;
+            return true;
+          })
           .sort((a, b) => (a._idx ?? 0) - (b._idx ?? 0));
-        if (inCell.length === 0) {
-          const empty = document.createElement('span');
-          empty.className = 'matrix-cell-empty';
-          empty.textContent = '—';
-          cell.appendChild(empty);
-        } else {
-          for (const m of inCell) cell.appendChild(buildCard(m));
-        }
+        fillCell(cell, inCell);
         grid.appendChild(cell);
       }
     }
@@ -352,14 +424,26 @@ Two views over all 221 metrics:
     if (state.moves[m.ref_id]) card.classList.add('moved');
     card.draggable = true;
     card.dataset.refid = m.ref_id;
-    card.title = m.name + ' — drag between tier rows to re-tier (local what-if only)';
+    const dims = m.dimensions || {};
+    card.title = `${m.ref_id} — ${m.name}\n${m.cluster_name} / ${m.group}\n` +
+                 `Cadence: ${dims['Measurement Cadence'] || ''}\n` +
+                 `Actor: ${dims['Responsible Actors'] || ''}\n` +
+                 `Drag between tier rows to re-tier (local what-if only)`;
 
+    const refSpan = document.createElement('span');
+    refSpan.className = 'card-ref';
     const link = document.createElement('a');
     link.href = metricLink(m);
     link.textContent = m.ref_id;
-    link.draggable = false; // anchor's own drag would conflict with card drag
-    link.addEventListener('click', e => e.stopPropagation()); // don't capture-then-navigate
-    card.appendChild(link);
+    link.draggable = false;
+    link.addEventListener('click', e => e.stopPropagation());
+    refSpan.appendChild(link);
+    card.appendChild(refSpan);
+
+    const nameSpan = document.createElement('span');
+    nameSpan.className = 'card-name';
+    nameSpan.textContent = m.name;
+    card.appendChild(nameSpan);
 
     card.addEventListener('dragstart', e => {
       card.classList.add('dragging');
@@ -585,6 +669,13 @@ Two views over all 221 metrics:
     for (const key of Object.keys(FIELDS)) populateSelect(key);
     document.getElementById('ex-reset').addEventListener('click', resetFilters);
     document.getElementById('matrix-reset-moves').addEventListener('click', resetMoves);
+    document.getElementById('matrix-focus-clear').addEventListener('click', () => {
+      delete state.filters.cluster;
+      const sel = document.getElementById('ex-cluster');
+      if (sel) sel.value = '';
+      writeHash();
+      renderAll();
+    });
 
     window.addEventListener('hashchange', () => {
       const h = readHash();
