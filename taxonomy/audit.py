@@ -1116,6 +1116,160 @@ def check_crosscut_ref_ids_resolve(all_metrics: list[Metric]) -> list[Finding]:
     return findings
 
 
+CHANGE_HISTORY_RE = re.compile(r"\*\*Change history:\*\*\s+(.+)$", re.MULTILINE)
+CHANGE_HISTORY_VERSION_RE = re.compile(r"\bv(\d+\.\d+(?:\.\d+)?)\b")
+
+
+def check_change_history_versions() -> list[Finding]:
+    """Verify that any **Change history:** stanza in a metric file cites only
+    versions that exist as a tag in git history (or match the current
+    TAXONOMY_VERSION). Stanzas are opt-in — most metrics have no stanza."""
+    findings: list[Finding] = []
+    try:
+        import subprocess
+
+        sys.path.insert(0, str(ROOT))
+        import parse as _parse
+
+        result = subprocess.run(
+            ["git", "tag", "--list", "v*"],
+            cwd=ROOT.parent,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        known = set()
+        if result.returncode == 0:
+            known = {t.strip().lstrip("v") for t in result.stdout.splitlines() if t.strip()}
+        # Allow the current in-progress release version
+        known.add(_parse.TAXONOMY_VERSION.lstrip("v"))
+    except Exception:
+        return findings
+
+    for rel_path in GROUP_FILES:
+        full = ROOT / rel_path
+        if not full.exists():
+            continue
+        text = full.read_text()
+        for m in CHANGE_HISTORY_RE.finditer(text):
+            stanza = m.group(1)
+            for vmatch in CHANGE_HISTORY_VERSION_RE.finditer(stanza):
+                ver = vmatch.group(1)
+                # Allow truncated forms like "v3.3" matching "v3.3.0"
+                if ver in known:
+                    continue
+                if any(k.startswith(ver + ".") or k == ver for k in known):
+                    continue
+                findings.append(
+                    Finding(
+                        "change-history-unknown-version",
+                        "WARN",
+                        f"`v{ver}` cited in **Change history:** stanza but no matching git tag exists",
+                        rel_path,
+                    )
+                )
+    return findings
+
+
+def check_version_bump_consistency() -> list[Finding]:
+    """Heuristic check: warn at INFO if the current TAXONOMY_VERSION's bump
+    kind disagrees with whether metric / catalogue files have changed since
+    the previous tag.
+
+    - PATCH bump but content files changed → suggests under-bump
+    - MINOR/MAJOR bump but no content files changed → suggests over-bump
+
+    Both are informational only — there are legitimate exceptions (e.g.
+    bundling a metric content fix into a wider tooling PATCH). Skips silently
+    if git is unavailable or no previous tag exists.
+    """
+    findings: list[Finding] = []
+    try:
+        import subprocess
+
+        sys.path.insert(0, str(ROOT))
+        import parse as _parse
+
+        current = _parse.TAXONOMY_VERSION.lstrip("v")
+        major, minor, patch = (int(p) for p in current.split("."))
+
+        # Find the previous tag in semver order (strip leading "v")
+        result = subprocess.run(
+            ["git", "tag", "--list", "v*", "--sort=-v:refname"],
+            cwd=ROOT.parent,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        if result.returncode != 0:
+            return findings
+        tags = [t.strip() for t in result.stdout.splitlines() if t.strip()]
+        # The current version may or may not yet be tagged. Find the most
+        # recent tag that's strictly earlier than the current version.
+        prev_tag = None
+        for tag in tags:
+            ver = tag.lstrip("v")
+            try:
+                parts = tuple(int(p) for p in ver.split("."))
+            except ValueError:
+                continue
+            if parts < (major, minor, patch):
+                prev_tag = tag
+                break
+        if prev_tag is None:
+            return findings  # first release, nothing to compare against
+
+        prev_parts = tuple(int(p) for p in prev_tag.lstrip("v").split("."))
+        if prev_parts[0] != major:
+            bump = "MAJOR"
+        elif prev_parts[1] != minor:
+            bump = "MINOR"
+        else:
+            bump = "PATCH"
+
+        # Did metric / catalogue / cross-cutting content files change?
+        diff = subprocess.run(
+            ["git", "diff", "--name-only", f"{prev_tag}..HEAD", "--", "taxonomy/"],
+            cwd=ROOT.parent,
+            capture_output=True,
+            text=True,
+            timeout=5,
+        )
+        if diff.returncode != 0:
+            return findings
+        changed_files = [f for f in diff.stdout.splitlines() if f.strip()]
+        # Content = metric group files, catalogue, cross-cutting principle files
+        content_changed = any(
+            f.endswith(".md") and not f.endswith("/_versioning.md")
+            for f in changed_files
+        )
+
+        if bump == "PATCH" and content_changed:
+            findings.append(
+                Finding(
+                    "version-bump-mismatch",
+                    "INFO",
+                    f"PATCH bump from {prev_tag} → v{current} but metric/catalogue files changed; "
+                    "consider whether MINOR is more appropriate (or document the exception in CHANGELOG)",
+                    "parse.py",
+                )
+            )
+        elif bump in ("MINOR", "MAJOR") and not content_changed:
+            findings.append(
+                Finding(
+                    "version-bump-mismatch",
+                    "INFO",
+                    f"{bump} bump from {prev_tag} → v{current} but no metric/catalogue file changed; "
+                    "consider whether PATCH is more appropriate",
+                    "parse.py",
+                )
+            )
+    except Exception:
+        # Best-effort — never let this check break the build
+        pass
+    return findings
+
+
 def check_no_part_letter_prose() -> list[Finding]:
     """v4.0 retired the Part-letter scheme (A-F) in favour of cluster
     codes (TP/PI/HL/IO/GV/ES). Any `Part [A-F]\\b` match in non-archive
@@ -1177,6 +1331,8 @@ def main() -> int:
     findings.extend(check_retrieved_date_format())
     findings.extend(check_no_part_letter_prose())
     findings.extend(check_crosscut_ref_ids_resolve(all_metrics))
+    findings.extend(check_change_history_versions())
+    findings.extend(check_version_bump_consistency())
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]

@@ -43,6 +43,7 @@ The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** DCB0129
 - **Cited-by:** _(auto-generated)_
 
 The information standard governing clinical risk management for health IT manufacturers. Vendor-side; the deployer-side equivalent is [DCB0160].
@@ -56,6 +57,7 @@ The information standard governing clinical risk management for health IT manufa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** DCB0160
 - **Cited-by:** _(auto-generated)_
 
 Deployer-side companion to [DCB0129]. Together the pair form the operating model for clinical-safety case authoring (vendor) and clinical-safety case integration into local deployment governance (deployer).
@@ -95,6 +97,7 @@ National baseline for new digital health technologies seeking NHS deployment, co
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** MHRA SaMD/AIaMD guidance
 - **Cited-by:** _(auto-generated)_
 
 MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD / AIaMD), including classification (WP1-WP2), qualification, post-market surveillance (WP4), and post-EU-exit recognition routes.
@@ -108,6 +111,7 @@ MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NCSC Cyber Essentials
 - **Cited-by:** _(auto-generated)_
 
 NCSC scheme overview and the technical control set. Two variants exist: basic Cyber Essentials (self-assessment) and Cyber Essentials Plus (audited; 12-month validity window). The Plus variant is administered by IASME (https://iasme.co.uk/cyber-essentials/), the NCSC-appointed delivery partner — citation handle remains [NCSC-Cyber-Essentials] for both variants since NCSC is the scheme owner.
@@ -121,6 +125,7 @@ NCSC scheme overview and the technical control set. Two variants exist: basic Cy
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NHSE AVT Self-Certified Supplier Registry
 - **Cited-by:** _(auto-generated)_
 
 The NHS England self-certification list for AVT vendors, live since January 2026. Listing is binary; vendors publish 13 evidence categories on the National Commercial & Procurement Hub. NHSE undertakes only preliminary completion checks. The same scheme is cross-listed on the NHS Transformation Directorate at https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/, which hosts the long-read context — the operational page (digital.nhs.uk) is the authoritative current location.
@@ -147,6 +152,7 @@ The most up-to-date Find a Tender notice for the [NHSE-AVT-Registry] scheme. Ear
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** SI 2024/1368
 - **Cited-by:** _(auto-generated)_
 
 The post-market surveillance regulations supplementing UK MDR 2002 for medical devices, in force from 16 June 2025. Cited from registry req #7.
@@ -160,6 +166,7 @@ The post-market surveillance regulations supplementing UK MDR 2002 for medical d
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** UK GDPR
 - **Cited-by:** _(auto-generated)_
 
 ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU-law form of the General Data Protection Regulation as amended by the Data Protection Act 2018.
@@ -173,6 +180,7 @@ ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** ICO
 - **Cited-by:** _(auto-generated)_
 
 ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO compliance generically; specific UK-GDPR-derived guidance uses [UK-GDPR].
@@ -277,6 +285,7 @@ ICS-level vendor-assessment framework: 22 binary platform-assurance requirements
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NICE ESF (ECD7)
 - **Cited-by:** _(auto-generated)_
 
 NICE's evidence-tiering framework for digital health technologies. Tier 3 (active monitoring tools and treatment-modifying tools) is the relevant tier for AVT systems that influence documentation-quality and therefore indirectly clinical decisions.
@@ -303,6 +312,7 @@ The NHS Digital organisation page on Simplifier, the canonical hosting location 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NHSE IG guidance (March 2026)
 - **Cited-by:** _(auto-generated)_
 
 NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
@@ -316,6 +326,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NAS Day-Zero SPI
 - **Cited-by:** _(auto-generated)_
 
 > ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
@@ -394,6 +405,7 @@ The 2026 MIT Jameel Clinic finding on cross-patient information memorisation / l
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** OxonFair (2024)
 - **Cited-by:** _(auto-generated)_
 
 The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clinical-voice extension** of OxonFair that is not yet published — treat citing this handle as a pointer to **emerging research / future work** rather than a settled methodology. Used to flag where the taxonomy proposes a demographic-disaggregation metric whose validated form depends on work yet to land.
@@ -420,6 +432,7 @@ The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cite
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Wang et al., SCRIBE (2025)
 - **Cited-by:** _(auto-generated)_
 
 Wang et al. 2025 — Duke / MedStar evaluation framework for ambient digital scribing (ADS) tools. The paper introduces a four-modality triangulation framework (human review, automated computational metrics, simulation, LLM-as-evaluator). The acronym used in the paper diagrams is "SCRIBE" (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation). Cited across TP.ASR (transcription), TP.DI (diarisation), and TP.SN (summarisation) metrics. (v3.9 round-2 audit: handle renamed from `SCRIBE-Wang-2025`; replaces a phantom `Wang-Duke-MedStar-2025` entry that was the same paper; the DOI `s41746-025-01449-w` previously cited inline at three locations was wrong and has been corrected to `s41746-025-01622-1`.)
@@ -524,6 +537,7 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Croxford et al. (2025)
 - **Cited-by:** _(auto-generated)_
 
 A **review article** synthesising the landscape of evaluation metrics for clinical NLG; cited in TP.SN-1, TP.SN-2 underspecification warnings as motivating evidence that string-similarity metrics (ROUGE, BERTScore) correlate poorly with expert clinical judgment in medical summarisation. v4.2 verification surfaced that prior taxonomy versions attributed several specific quantitative findings (Kendall-Tau 0.080, Pearson 0.62, ICC 0.43–0.68, ICC 0.818, 27× speed) to this paper that are not in it; those have been removed or re-attributed. For the **PDSQI-9 instrument validation work** (specifically the 0.867 human-human ICC), see the separate [Croxford-PDSQI9-JAMIA-2025] handle.
@@ -550,6 +564,7 @@ Primary validation study for the **PDSQI-9 instrument applied to LLM-generated c
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Asgari/Tortus (2025)
 - **Cited-by:** _(auto-generated)_
 
 Cited in TP.SN-4 (CREOLA Error Taxonomy), TP.SN-5 (Hallucination Rate, Tier 1) and TP.SN-6 (Omission Rate, Tier 1) — the headline summarisation safety metrics. Establishes the 1.47%-per-sentence hallucination and 3.45%-per-sentence omission reference figures that the taxonomy uses as starting-point thresholds. Study used the **PriMock primary-care consultation transcripts dataset** (12,999 sentences across 450 clinical notes); all authors were affiliated with Tortus AI at the time of writing. v4.2 renamed this handle from `Asgari-Tortus-GOSH-2025`: the paper does not use GOSH data, though Tortus AI separately runs a multi-site GOSH ambient-voice trial (different artefact).
@@ -576,6 +591,7 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Abridge whitepaper (2025)
 - **Cited-by:** _(auto-generated)_
 
 Cited in TP.SN-7a (Confabulation Detection — Support × Severity) for the two-axis classifier schema (5-class Support × 3-class Severity) and the headline 97% Abridge / 82% GPT-4o detection comparison reported in the whitepaper. The whitepaper also reports a training-corpus scale of 50,000+ examples for the detection model and a 10,000-clinical-encounter internal benchmark (distinct datasets). `Source-Type: disclosure` because the whitepaper is vendor-published rather than peer-reviewed. v4.2: corrected author list (was "Oberst, Liang, Lipton" — missing Tan; ordering wrong).
@@ -904,6 +920,7 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** CQC GP Mythbuster 109
 - **Cited-by:** _(auto-generated)_
 
 CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported documentation. Cited in TP.AC-4 audio-capture context, IO.PX-1 patient experience, and several human-factors metrics. Distinct from the broader [CQC] handle which points at the assessment-framework hub.
@@ -930,6 +947,7 @@ Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-rep
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Coiera & Fraile-Navarro (JMIR, 2026)
 - **Cited-by:** _(auto-generated)_
 
 Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited multiple times across the taxonomy — IO.PX-9, IO.PX-10, ES.ME family — as the structural critique of clinical-AI evaluation methodology. JMIR Med Inform is at medinform.jmir.org; direct article URL to supply.
@@ -1131,6 +1149,7 @@ Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Keyes et al. (Stanford, 2025)
 - **Cited-by:** _(auto-generated)_
 
 Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-AI monitoring around three complementary principles: **system integrity, performance, and impact**. Cited as the canonical monitoring-framework reference across GV.SG-1 (Model Version Tracking), GV.SG-2 (Model Update Impact Score), GV.VT-1 (Model Change Notification Compliance), GV.VT-2 (Telemetry Provision Completeness), GV.VT-3, and several human-factors metrics. (v3.9 round-2 review merged the earlier separate `Keyes-Stanford-2025` and `Stanford-Monitoring-Framework` handles into this single anchor; the taxonomy's earlier "three-layer surveillance model" phrasing was a paraphrase — the paper's own framing is "three principles".)
@@ -1237,6 +1256,7 @@ Luo et al. 2026 — revisits PII leakage in LLMs using a cue-controlled memorisa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NIHR RSET
 - **Cited-by:** _(auto-generated)_
 
 The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner that informed this taxonomy's framing of evaluation methodology. Cited in ES.ME-1. URL is the BSMS-hosted RSET landing; resolve at follow-up if a NIHR-direct URL exists.

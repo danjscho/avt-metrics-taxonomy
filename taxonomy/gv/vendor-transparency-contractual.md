@@ -81,6 +81,8 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
+**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact).
+
 **Why this tier?**
 
 > The meta-prerequisite: without adequate telemetry, most continuous monitoring metrics are unmeasurable. Should be a procurement gate.

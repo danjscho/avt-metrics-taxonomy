@@ -208,6 +208,8 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Applicability**      |General Healthcare AI                                                                            |
 |**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]|
 
+**Change history:** v4.4 (re-attributed the model-autophagy claims to the actual He et al. medRxiv 2026 paper via the new [He-AI-Contamination-Pathology-2026] catalogue handle; replaced an unverifiable specific "98.9% by generation 4" number with the qualitative findings the paper does support).
+
 **Why this tier?**
 
 > Systemic risk affecting the entire AVT ecosystem. Cannot be measured by any individual deployer. National body responsibility - and specifically a question that the NHS should pose to any vendor who fine-tunes on deployed clinical data.

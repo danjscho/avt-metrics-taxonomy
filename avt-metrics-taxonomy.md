@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v4.4.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v4.5.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -2784,6 +2784,70 @@ Quick reference for terms, abbreviations, and standards referenced throughout th
 
 *This glossary is a convenience only; the authoritative source for any term is the standards document or the metric entry itself.*
 
+# Versioning conventions
+
+How releases of this taxonomy are numbered, what each digit means, and how per-metric provenance is surfaced. Written down so contributors and downstream consumers can predict what changes between versions without reverse-engineering the git log.
+
+## Release-level versioning — semantic but content-aware
+
+Versions are `vMAJOR.MINOR.PATCH` (e.g. `v4.4.0`). Mapping to change kind:
+
+| Bump | Trigger |
+|---|---|
+| **MAJOR** | Breaking changes to the metric set or downstream consumer contract — metrics renamed / renumbered / removed; CSV / JSON column rename; reference-ID scheme reshape; cluster-code overhaul. v4.0 (Part-letter retirement → cluster codes) is the canonical example. |
+| **MINOR** | Substantive content addition or a verification wave that touches metric content — new metrics promoted from `_gaps.md`, new tightening pattern applied across a Tier 1 cohort, Pass A/B verification waves correcting confabulated source attributions, new catalogue handles promoted, new mapped framework. v4.1 (3 new metrics + Tier column) and v4.2 / v4.3 / v4.4 (verification waves) are MINOR. |
+| **PATCH** | Site, tooling, build, or audit changes that don't touch metric content — site-build patches (e.g. v4.2.1 ref-ID linkification), test-suite additions, dependency or CI changes, README / glossary copy-edits, audit-rule additions that don't change the metrics themselves. v3.8.1 / v3.8.2 / v3.8.3 / v3.8.4 / v3.9.1 / v4.2.1 are all PATCH. |
+
+The split that matters: **MINOR = the rendered content actually changed**, PATCH = the rendering pipeline or surrounding tooling changed. A reader who only cares about content can skip PATCH releases without missing anything substantive.
+
+## Content vs site separation
+
+Site and content releases share the same version stream (one `vX.Y.Z` per release) but are conceptually separable:
+
+- **Content release** = at least one metric body / catalogue entry / cross-cutting principle changed → MINOR or MAJOR
+- **Site / tooling release** = no metric content changed → PATCH
+
+The shared-stream choice keeps the version simple — readers don't have to track two numbers — but the convention above lets them filter to "content-meaningful" releases by ignoring PATCH.
+
+A small audit check (added in v4.5) warns when:
+
+- a release bumps MINOR/MAJOR but `git diff` against the previous tag shows no metric or catalogue file changed (suggests an over-bump)
+- a release bumps PATCH but metric files did change (suggests an under-bump)
+
+The check is informational, not blocking — there are legitimate exceptions (e.g. shipping a metric content fix as part of a wider tooling PATCH).
+
+## Per-metric provenance
+
+Two mechanisms, mirroring the release-level split:
+
+### Site-level metric history
+
+Auto-generated from git history at build time. Lists, per release, which metrics had a substantive content change. Lives at [Metric History](metric-history.md) on the site. Mechanical, exhaustive, but coarse — it knows that the file changed, not what changed semantically.
+
+### Metric-level Change history stanzas
+
+A small `**Change history:**` stanza appears on the subset of metrics that had a *substantive* fix or framing change worth flagging to the reader. Examples: v3.3 Tier-1 tightenings, v4.2 confabulation corrections, v4.3 metric content fixes (HL.HF-8 trust instruments etc.), v4.4 GV.SG-5 medRxiv re-attribution.
+
+Stanzas list `vX.Y.Z` (one-line summary of what changed). Manual to maintain at release time; audit checks the cited versions exist.
+
+Most metrics have only whitespace / cross-reference / grammar churn since their introduction and carry no stanza — adding "Last updated: vX.Y" universally would be noise without signal. The stanza is opt-in for changes the reader should know about.
+
+## Tagging and merge mechanics
+
+- All releases tag on `main` after a `--no-ff` merge from the release branch
+- Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v4.5.0` / `2026-05-04` template tokens propagate to every header, banner, and citation block at build time
+
+## Deprecation policy
+
+Reference IDs (TP.AC-1 etc.) are stable identifiers. When a metric is removed (e.g. v3.7 redundancy resolution promoting two related metrics into a parent + sub-parts), the original ID is **retired, not reused**:
+
+- `_retired-ids.md` records the retired ID and the reason
+- `audit.py:check_retired_ids_not_reused` enforces non-reuse
+- Documentation may continue to reference retired IDs in historical narration; the cross-cut linkifier tolerates them
+
+This applies symmetrically to catalogue handles: a handle that resolves today should resolve in every future version, even if the entry's content changes (e.g. v4.4 corrected the `Chung-NEJM-AI-2025` entry to describe the right paper without renaming the handle).
+
 ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 
 Continuous measurement of audio input quality. SNR below threshold degrades ASR accuracy unpredictably - the system may continue producing confident-looking but degraded output without alerting the clinician.
@@ -4497,6 +4561,8 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Applicability** | AVT-Contextualised |
 | **Source** | [PDSQI-9]; [Croxford-2025] |
 
+**Change history:** v4.2 (Croxford-bundle confabulation fix — previously cited a Kendall-Tau / Pearson / ICC constellation not actually present in either Croxford paper; replaced with the verified 0.867 inter-rater ICC and added [Croxford-PDSQI9-JAMIA-2025] catalogue entry).
+
 **Why this tier?**
 
 > Validated gold-standard rubric. Resource-intensive without LLM automation. Recommended for periodic audit (quarterly sample).
@@ -4810,6 +4876,8 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | [Abridge-Whitepaper-2025] (50,000+ training examples) |
+
+**Change history:** v4.2 (Support × Severity axes corrected to match Abridge whitepaper's actual 5×3 schema — earlier 4×3 was a confabulation; catalogue author list also corrected).
 
 **Why this tier?**
 
@@ -8197,6 +8265,8 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Applicability** | AVT-Contextualised |
 | **Source** | Human factors literature; [NAS-Day-Zero-SPI-internal] |
 
+**Change history:** v4.3 (HATAS instrument removed from candidate list — Pass B confirmed it is not a real published instrument; Dokkyo Medical University-specific attribution softened to "recent reviews").
+
 **Why this tier?**
 
 > Survey-based. Useful triangulation with behavioural metrics. Annual measurement tracks trust-behaviour gap evolution.
@@ -9629,6 +9699,8 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
 |**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]|
+
+**Change history:** v4.4 (re-attributed the model-autophagy claims to the actual He et al. medRxiv 2026 paper via the new [He-AI-Contamination-Pathology-2026] catalogue handle; replaced an unverifiable specific "98.9% by generation 4" number with the qualitative findings the paper does support).
 
 **Why this tier?**
 
@@ -12726,6 +12798,8 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
+**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact).
+
 **Why this tier?**
 
 > The meta-prerequisite: without adequate telemetry, most continuous monitoring metrics are unmeasurable. Should be a procurement gate.
@@ -13683,6 +13757,7 @@ The NHS-hosted regulatory landscape hub, covering MHRA, NICE, ICO, CQC, and HRA 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** DCB0129
 - **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `tp/summarisation-nlp.md`
 
 The information standard governing clinical risk management for health IT manufacturers. Vendor-side; the deployer-side equivalent is [DCB0160].
@@ -13696,6 +13771,7 @@ The information standard governing clinical risk management for health IT manufa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** DCB0160
 - **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`
 
 Deployer-side companion to [DCB0129]. Together the pair form the operating model for clinical-safety case authoring (vendor) and clinical-safety case integration into local deployment governance (deployer).
@@ -13735,6 +13811,7 @@ National baseline for new digital health technologies seeking NHS deployment, co
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** MHRA SaMD/AIaMD guidance
 - **Cited-by:** `_calibration-and-context.md`, `_outcomes-boundary.md`, `_standards-mapping.md`
 
 MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD / AIaMD), including classification (WP1-WP2), qualification, post-market surveillance (WP4), and post-EU-exit recognition routes.
@@ -13748,6 +13825,7 @@ MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NCSC Cyber Essentials
 - **Cited-by:** `gv/security-adversarial-robustness.md`, `gv/vendor-transparency-contractual.md`
 
 NCSC scheme overview and the technical control set. Two variants exist: basic Cyber Essentials (self-assessment) and Cyber Essentials Plus (audited; 12-month validity window). The Plus variant is administered by IASME (https://iasme.co.uk/cyber-essentials/), the NCSC-appointed delivery partner — citation handle remains [NCSC-Cyber-Essentials] for both variants since NCSC is the scheme owner.
@@ -13761,6 +13839,7 @@ NCSC scheme overview and the technical control set. Two variants exist: basic Cy
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NHSE AVT Self-Certified Supplier Registry
 - **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/security-adversarial-robustness.md`, `gv/vendor-transparency-contractual.md`
 
 The NHS England self-certification list for AVT vendors, live since January 2026. Listing is binary; vendors publish 13 evidence categories on the National Commercial & Procurement Hub. NHSE undertakes only preliminary completion checks. The same scheme is cross-listed on the NHS Transformation Directorate at https://transform.england.nhs.uk/digitise-connect-transform/digitising-the-frontline/ambient-voice-technology-self-certified-supplier-registry/, which hosts the long-read context — the operational page (digital.nhs.uk) is the authoritative current location.
@@ -13787,6 +13866,7 @@ The most up-to-date Find a Tender notice for the [NHSE-AVT-Registry] scheme. Ear
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** SI 2024/1368
 - **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `es/meta-evaluation.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`
 
 The post-market surveillance regulations supplementing UK MDR 2002 for medical devices, in force from 16 June 2025. Cited from registry req #7.
@@ -13800,6 +13880,7 @@ The post-market surveillance regulations supplementing UK MDR 2002 for medical d
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** UK GDPR
 - **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/vendor-transparency-contractual.md`
 
 ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU-law form of the General Data Protection Regulation as amended by the Data Protection Act 2018.
@@ -13813,6 +13894,7 @@ ICO's authoritative organisational guide to UK GDPR, the post-Brexit retained-EU
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** ICO
 - **Cited-by:** `gv/privacy-data-governance.md`, `gv/vendor-transparency-contractual.md`
 
 ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO compliance generically; specific UK-GDPR-derived guidance uses [UK-GDPR].
@@ -13917,6 +13999,7 @@ ICS-level vendor-assessment framework: 22 binary platform-assurance requirements
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NICE ESF (ECD7)
 - **Cited-by:** `_outcomes-boundary.md`, `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/safety-governance.md`
 
 NICE's evidence-tiering framework for digital health technologies. Tier 3 (active monitoring tools and treatment-modifying tools) is the relevant tier for AVT systems that influence documentation-quality and therefore indirectly clinical decisions.
@@ -13943,6 +14026,7 @@ The NHS Digital organisation page on Simplifier, the canonical hosting location 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NHSE IG guidance (March 2026)
 - **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `tp/asr-transcription.md`
 
 NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
@@ -13956,6 +14040,7 @@ NHS England's operational landing page for ambient-scribing, under which the IG-
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NAS Day-Zero SPI
 - **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/operational.md`, `gv/safety-governance.md`, `gv/training-competency.md`, `hl/human-factors-workflow.md`, `io/patient-experience.md`, `tp/asr-transcription.md`, `tp/clinical-coding.md`
 
 > ⚠️ **Status: future publication pending.** The NAS framework Day Zero SPI set is referenced by several Threshold Guidance blocks (especially HL.HF-3a's review-quality detection ≥ 95 % gate) as if it were a published artefact, but a public NAS framework page at the cited form has not been verified. Treat citations of this handle as **internal / pre-publication** until NHS England publishes the framework formally. URL points at the parent NHS Patient Safety site as the closest stable reference. Handle name carries the `-internal` suffix to make this status visible at every citation site.
@@ -14034,6 +14119,7 @@ The 2026 MIT Jameel Clinic finding on cross-patient information memorisation / l
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** OxonFair (2024)
 - **Cited-by:** `tp/asr-transcription.md`
 
 The OxonFair fairness-testing toolkit. The taxonomy cites a **proposed AVT/clinical-voice extension** of OxonFair that is not yet published — treat citing this handle as a pointer to **emerging research / future work** rather than a settled methodology. Used to flag where the taxonomy proposes a demographic-disaggregation metric whose validated form depends on work yet to land.
@@ -14060,6 +14146,7 @@ The published INSYTE under-specification analysis (ACM, 2024). The taxonomy cite
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Wang et al., SCRIBE (2025)
 - **Cited-by:** `tp/asr-transcription.md`, `tp/diarisation.md`, `tp/summarisation-nlp.md`
 
 Wang et al. 2025 — Duke / MedStar evaluation framework for ambient digital scribing (ADS) tools. The paper introduces a four-modality triangulation framework (human review, automated computational metrics, simulation, LLM-as-evaluator). The acronym used in the paper diagrams is "SCRIBE" (Simulation, Computational metrics, Reviewer assessment, and Intelligent Evaluations for Best practice to provide a comprehensive evaluation). Cited across TP.ASR (transcription), TP.DI (diarisation), and TP.SN (summarisation) metrics. (v3.9 round-2 audit: handle renamed from `SCRIBE-Wang-2025`; replaces a phantom `Wang-Duke-MedStar-2025` entry that was the same paper; the DOI `s41746-025-01449-w` previously cited inline at three locations was wrong and has been corrected to `s41746-025-01622-1`.)
@@ -14164,6 +14251,7 @@ The mpathic.ai clinical-ASR benchmark (Sept 2025 poster), used in TP.DI-5 (Speak
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Croxford et al. (2025)
 - **Cited-by:** `es/meta-evaluation.md`, `tp/summarisation-nlp.md`
 
 A **review article** synthesising the landscape of evaluation metrics for clinical NLG; cited in TP.SN-1, TP.SN-2 underspecification warnings as motivating evidence that string-similarity metrics (ROUGE, BERTScore) correlate poorly with expert clinical judgment in medical summarisation. v4.2 verification surfaced that prior taxonomy versions attributed several specific quantitative findings (Kendall-Tau 0.080, Pearson 0.62, ICC 0.43–0.68, ICC 0.818, 27× speed) to this paper that are not in it; those have been removed or re-attributed. For the **PDSQI-9 instrument validation work** (specifically the 0.867 human-human ICC), see the separate [Croxford-PDSQI9-JAMIA-2025] handle.
@@ -14190,6 +14278,7 @@ Primary validation study for the **PDSQI-9 instrument applied to LLM-generated c
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Asgari/Tortus (2025)
 - **Cited-by:** `tp/summarisation-nlp.md`
 
 Cited in TP.SN-4 (CREOLA Error Taxonomy), TP.SN-5 (Hallucination Rate, Tier 1) and TP.SN-6 (Omission Rate, Tier 1) — the headline summarisation safety metrics. Establishes the 1.47%-per-sentence hallucination and 3.45%-per-sentence omission reference figures that the taxonomy uses as starting-point thresholds. Study used the **PriMock primary-care consultation transcripts dataset** (12,999 sentences across 450 clinical notes); all authors were affiliated with Tortus AI at the time of writing. v4.2 renamed this handle from `Asgari-Tortus-GOSH-2025`: the paper does not use GOSH data, though Tortus AI separately runs a multi-site GOSH ambient-voice trial (different artefact).
@@ -14216,6 +14305,7 @@ The CREOLA framework introduced in [Asgari-Tortus-2025] defines four hallucinati
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Abridge whitepaper (2025)
 - **Cited-by:** `hl/human-factors-workflow.md`, `tp/summarisation-nlp.md`
 
 Cited in TP.SN-7a (Confabulation Detection — Support × Severity) for the two-axis classifier schema (5-class Support × 3-class Severity) and the headline 97% Abridge / 82% GPT-4o detection comparison reported in the whitepaper. The whitepaper also reports a training-corpus scale of 50,000+ examples for the detection model and a 10,000-clinical-encounter internal benchmark (distinct datasets). `Source-Type: disclosure` because the whitepaper is vendor-published rather than peer-reviewed. v4.2: corrected author list (was "Oberst, Liang, Lipton" — missing Tan; ordering wrong).
@@ -14544,6 +14634,7 @@ Cited in HL.HF-19 (AI-Off Performance Test) as the Lancet Gastroenterology 2025 
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** CQC GP Mythbuster 109
 - **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `io/patient-experience.md`
 
 CQC's "Mythbuster 109" guidance on record-keeping for digitally-supported documentation. Cited in TP.AC-4 audio-capture context, IO.PX-1 patient experience, and several human-factors metrics. Distinct from the broader [CQC] handle which points at the assessment-framework hub.
@@ -14570,6 +14661,7 @@ Stults et al. 2025 — cited as a **see-also** in IO.PX-7 for clinician-self-rep
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Coiera & Fraile-Navarro (JMIR, 2026)
 - **Cited-by:** `es/meta-evaluation.md`, `gv/operational.md`, `io/patient-experience.md`
 
 Coiera & Fraile-Navarro's JMIR Medical Informatics February 2026 paper. Cited multiple times across the taxonomy — IO.PX-9, IO.PX-10, ES.ME family — as the structural critique of clinical-AI evaluation methodology. JMIR Med Inform is at medinform.jmir.org; direct article URL to supply.
@@ -14771,6 +14863,7 @@ Li et al.'s "Making AI Less Thirsty" paper on the water footprint of AI training
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-01
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** Keyes et al. (Stanford, 2025)
 - **Cited-by:** `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`, `hl/human-factors-workflow.md`
 
 Keyes et al. December 2025 paper from Stanford Health Care, organising deployed-AI monitoring around three complementary principles: **system integrity, performance, and impact**. Cited as the canonical monitoring-framework reference across GV.SG-1 (Model Version Tracking), GV.SG-2 (Model Update Impact Score), GV.VT-1 (Model Change Notification Compliance), GV.VT-2 (Telemetry Provision Completeness), GV.VT-3, and several human-factors metrics. (v3.9 round-2 review merged the earlier separate `Keyes-Stanford-2025` and `Stanford-Monitoring-Framework` handles into this single anchor; the taxonomy's earlier "three-layer surveillance model" phrasing was a paraphrase — the paper's own framing is "three principles".)
@@ -14877,6 +14970,7 @@ Luo et al. 2026 — revisits PII leakage in LLMs using a cue-controlled memorisa
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-05-02
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
+- **Short:** NIHR RSET
 - **Cited-by:** `_outcomes-boundary.md`, `es/meta-evaluation.md`, `gv/operational.md`
 
 The NIHR Rapid Service Evaluation Team (RSET), the structural-critique partner that informed this taxonomy's framing of evaluation methodology. Cited in ES.ME-1. URL is the BSMS-hosted RSET landing; resolve at follow-up if a NIHR-direct URL exists.

@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v4.4.0"
+TAXONOMY_VERSION = "v4.5.0"
 TAXONOMY_DATE = "2026-05-04"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -872,6 +872,7 @@ class Reference:
     archive: str = ""
     retrieved: str = ""
     local_mirror: str = ""
+    short: str = ""  # human-readable short form for inline-link rendering (v4.5)
     description: str = ""
 
     @property
@@ -925,6 +926,8 @@ def parse_references() -> dict[str, Reference]:
                 current.retrieved = value
             elif field_name == "local_mirror":
                 current.local_mirror = value
+            elif field_name == "short":
+                current.short = value
             # `cited_by` is auto-generated; ignore any hand-written value.
         else:
             stripped = line.strip()

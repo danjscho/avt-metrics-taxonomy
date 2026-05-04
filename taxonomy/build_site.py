@@ -12,6 +12,7 @@ import pathlib
 import re
 import shutil
 import subprocess
+from collections import defaultdict
 
 import parse as parse_src
 
@@ -38,6 +39,7 @@ MAPPING: dict[str, str] = {
     "_responsible-ai-lens.md": "responsible-ai-lens.md",
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
+    "_versioning.md": "versioning.md",
     "_references.md": "references.md",
     "tp/audio-capture.md": "groups/audio-capture.md",
     "tp/asr-transcription.md": "groups/asr-transcription.md",
@@ -236,6 +238,26 @@ def _reference_handles() -> set[str]:
     return _REFERENCE_HANDLES_CACHE
 
 
+_REFERENCE_SHORTS_CACHE: dict[str, str] | None = None
+
+
+def _reference_shorts() -> dict[str, str]:
+    """{handle: short-form text} — only for catalogue entries that declared
+    a `**Short:**` field. Empty for entries that didn't, in which case the
+    handle itself is used at render time (preserves prior behaviour).
+
+    Introduced in v4.5 (citation grammar polish): rendering `[Handle]` as
+    a slug reads poorly in prose; entries opt in by declaring a Short form
+    and the build-time rewriter uses it as the link label.
+    """
+    global _REFERENCE_SHORTS_CACHE
+    if _REFERENCE_SHORTS_CACHE is None:
+        _REFERENCE_SHORTS_CACHE = {
+            h: r.short for h, r in parse_src.parse_references().items() if r.short
+        }
+    return _REFERENCE_SHORTS_CACHE
+
+
 _HANDLE_PATTERN = re.compile(r"(?<!!)\[([A-Za-z][A-Za-z0-9_-]*)\](?!\(|:|\[)")
 
 
@@ -261,6 +283,7 @@ def rewrite_reference_handles(text: str, current_page: str) -> str:
     handles = _reference_handles()
     if not handles:
         return text
+    shorts = _reference_shorts()
 
     # Path from current_page to references.md (which lives at docs/ root).
     if "/" in current_page:
@@ -299,7 +322,8 @@ def rewrite_reference_handles(text: str, current_page: str) -> str:
                 if handle not in handles:
                     return m.group(0)
                 slug = handle.lower()
-                return f"[{handle}]({target_prefix}#{slug})"
+                label = shorts.get(handle, handle)
+                return f"[{label}]({target_prefix}#{slug})"
 
             parts[i] = _HANDLE_PATTERN.sub(sub, part)
         out_lines.append("".join(parts))
@@ -560,6 +584,117 @@ def _substitute_template_tokens(text: str) -> str:
     return text
 
 
+def _build_metric_history_page() -> str:
+    """Generate docs/metric-history.md from git tag history.
+
+    For each tag (newest first), list the metric group files that changed
+    between the previous tag and this one, with the metrics living in those
+    files. Coarse but mechanical — knows that a file changed, not what
+    changed semantically. Pairs with the optional **Change history:** stanza
+    on individual metrics that flag substantive fixes worth reader attention.
+    """
+    try:
+        tags_out = subprocess.check_output(
+            ["git", "tag", "--list", "v*", "--sort=-v:refname"],
+            cwd=REPO,
+            text=True,
+            stderr=subprocess.DEVNULL,
+        )
+    except (subprocess.CalledProcessError, FileNotFoundError):
+        return _metric_history_stub("git unavailable")
+    tags = [t.strip() for t in tags_out.splitlines() if t.strip()]
+    if not tags:
+        return _metric_history_stub("no tags found")
+
+    # Walk tag pairs from newest → oldest
+    lines: list[str] = [
+        "# Metric history",
+        "",
+        "Auto-generated from git tag history at build time. Each release lists "
+        "the metric group files that changed between the previous tag and the "
+        "release tag. Coarse — file-level only — but mechanical and exhaustive. "
+        "Pair with each metric's optional **Change history:** stanza for "
+        "reader-flagged substantive changes.",
+        "",
+        "See [Versioning](versioning.md) for what each release-version digit means.",
+        "",
+    ]
+    metric_index = parse_src.parse_all_metrics()
+    metrics_by_file: dict[str, list] = defaultdict(list)
+    for m in metric_index:
+        metrics_by_file[m.group_file].append(m)
+
+    pairs = list(zip(tags, tags[1:] + [None]))
+    for newer, older in pairs:
+        if older is None:
+            range_spec = newer  # initial release; show all metric files
+            range_label = f"`{newer}` (initial release at this tag)"
+        else:
+            range_spec = f"{older}..{newer}"
+            range_label = f"`{older}` → `{newer}`"
+        try:
+            diff_out = subprocess.check_output(
+                ["git", "diff", "--name-only", range_spec, "--", "taxonomy/"],
+                cwd=REPO,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            )
+        except (subprocess.CalledProcessError, FileNotFoundError):
+            continue
+        changed = sorted(
+            f for f in diff_out.splitlines()
+            if f.startswith("taxonomy/") and f.endswith(".md")
+        )
+        # Filter to group files (those that contain metrics) — exclude
+        # _-prefixed cross-cutting files and the catalogue
+        group_changes = [
+            f for f in changed
+            if not pathlib.Path(f).name.startswith("_")
+        ]
+        catalogue_changed = "taxonomy/_references.md" in changed
+        crosscut_changes = [
+            f for f in changed
+            if pathlib.Path(f).name.startswith("_")
+            and pathlib.Path(f).name != "_references.md"
+        ]
+
+        lines.append(f"## {range_label}")
+        if not (group_changes or catalogue_changed or crosscut_changes):
+            lines.append("")
+            lines.append("_No taxonomy content changed (site / tooling release)._")
+            lines.append("")
+            continue
+        if group_changes:
+            lines.append("")
+            lines.append("**Metric files changed:**")
+            lines.append("")
+            for f in group_changes:
+                rel = f[len("taxonomy/"):]
+                metrics = metrics_by_file.get(rel, [])
+                names = ", ".join(m.ref_id for m in metrics) if metrics else "—"
+                lines.append(f"- `{rel}` — {len(metrics)} metric(s): {names}")
+            lines.append("")
+        if catalogue_changed:
+            lines.append("**Catalogue (`_references.md`) changed.**")
+            lines.append("")
+        if crosscut_changes:
+            lines.append("**Cross-cutting / framework files changed:**")
+            lines.append("")
+            for f in crosscut_changes:
+                lines.append(f"- `{f[len('taxonomy/'):]}`")
+            lines.append("")
+    return "\n".join(lines)
+
+
+def _metric_history_stub(reason: str) -> str:
+    return (
+        "# Metric history\n\n"
+        f"_Metric history page could not be generated: {reason}._\n\n"
+        "Auto-generated from git tag history at site-build time. See "
+        "[Versioning](versioning.md) for the release-version conventions.\n"
+    )
+
+
 def _git_dates_for(rel_path: str) -> tuple[str, str] | None:
     """Return (created, updated) ISO dates from git history for a repo file.
     Returns None if git is unavailable or the file has no git history.
@@ -710,6 +845,7 @@ def main() -> None:
     # For local preview, also mirror dist/* into docs/downloads/ here so
     # `mkdocs serve` shows the downloads as working links.
     (DOCS / "downloads.md").write_text(_downloads_page())
+    (DOCS / "metric-history.md").write_text(_build_metric_history_page())
     _mirror_downloads()
     _copy_stylesheets()
 

@@ -36,6 +36,7 @@ FILES = [
     "_calibration-and-context.md",
     "_gaps.md",
     "_glossary.md",
+    "_versioning.md",
     "tp/audio-capture.md",
     "tp/asr-transcription.md",
     "tp/diarisation.md",
