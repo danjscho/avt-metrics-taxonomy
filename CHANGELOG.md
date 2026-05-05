@@ -1,5 +1,28 @@
 # Changelog
 
+## v5.1.1 (2026-05-05)
+
+**Patch release: Phase 1b framework coverage audits — batch 1 (DTAC, NHSE IG, DCB, MHRA).**
+
+No metric / catalogue content changes. One research-output file at repo root: `v5.1.1-phase-1b-framework-audits.md`.
+
+Continues from v5.0.1 Phase 1a (Registry transitive coverage map). v5.1.1 is the first batch of per-framework deep coverage audits across the 4 highest-yield Registry-mandatory frameworks: DTAC v2.0, NHSE IG Guidance (March 2026), DCB0129/DCB0160, MHRA SaMD/AIaMD.
+
+**Headline result**: 128 substantive sub-criteria audited across 4 frameworks. The taxonomy achieves very strong coverage — most sub-criteria map cleanly to existing metrics. **Only 2 NEW gaps** (verified absent from `_gaps.md`):
+
+1. Information asset register / storage-location documentation (NHSE IG)
+2. Joint-controller status assessment (NHSE IG / UK GDPR Art 26)
+
+15 already-roadmapped gaps cross-confirmed (including GV.CR-11 SaMD classification, GV.SG-18 PCCP, GV.PD-12 training data representativeness, GV.VT-9/-10 MHRA PMSR/Transparency, GV.SG-19 PSIRF systems-based incident analysis, GV.CR-14 Caldicott consultation-type, TP.WB-11 PRSB semantic completeness, IG-A through IG-D from §1c).
+
+Promotion-to-Tier-1 candidates surfaced by the audits: GV.SG-3, GV.SC-1, GV.SC-2, GV.SC-6 (cybersecurity + performance monitoring) — added to the 4 from v5.0.1 (GV.VT-2, GV.VT-14, IO.FE-1, TP.ASR-4). 8 total candidates awaiting user discussion before Phase 5.
+
+**Phase 5 surface estimate**: ~25 metric content changes (15 pull-throughs + 2 mints + 8 promotions). Post-Phase-5 counts would land ~235-240 metrics, ~55-60 Tier 1.
+
+**Phase 1b batches 2 + 3** (NHS LLM Framework + DSPT + NICE ESF + T.E.S.T.; UK GDPR + CQC + FHIR UK Core + ICO) planned for v5.1.2 and v5.1.3.
+
+**Honest scope note**: audits worked from the transitively-named frameworks, not the Registry's specific attestation form (still not publicly accessible). Phase 5 prioritisation needs the actual Registry form to land.
+
 ## v5.1.0 (2026-05-05)
 
 **Minor release: cadence-dimension cleanup — multi-valued Cadence; new `Event-triggered` enum value; ~32 metric edits.**
