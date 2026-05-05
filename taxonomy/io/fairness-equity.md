@@ -49,7 +49,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Pipeline Layer**     |ASR / Transcription                                           |
 |**Assurance Question** |Fairness & Equity                                             |
 |**Measurement Method** |Human Review                                                  |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Lifecycle Phases**   |Pre-deployment                                |
 |**Responsible Actors** |Vendor, National Body                                         |
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |

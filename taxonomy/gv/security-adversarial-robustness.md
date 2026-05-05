@@ -454,7 +454,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 |-----------|-------|
 | **Reference** | GV.SC-12 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; annual re-verification |
+| **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Security |
 | **Measurement Method** | Documentary |

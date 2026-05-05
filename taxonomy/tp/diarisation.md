@@ -10,7 +10,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -67,7 +67,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -196,7 +196,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Pipeline Layer**     |Diarisation                                                          |
 |**Assurance Question** |Safety                                                               |
 |**Measurement Method** |Computational                                                        |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                       |
+|**Lifecycle Phases**   |Pre-deployment                                       |
 |**Responsible Actors** |Vendor                                                               |
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
@@ -315,7 +315,7 @@ Clinician-Preferred Human-Evaluated Word Error Rate. A speaker-attribution-aware
 |**Pipeline Layer**     |ASR + Diarisation                           |
 |**Assurance Question** |Safety                                      |
 |**Measurement Method** |Computational                               |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit              |
+|**Lifecycle Phases**   |Pre-deployment              |
 |**Responsible Actors** |Vendor, Academic                            |
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |

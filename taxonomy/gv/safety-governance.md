@@ -6,7 +6,7 @@ Logging which model version produces each output. Foundation for all continuous 
 |-----------|-------|
 | **Reference** | GV.SG-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -16,6 +16,8 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025] |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `Continuous; Event-triggered` — every model component change is itself the trigger for re-tracking, and the per-inference logging is the continuous component).
 
 **Why this tier?**
 
@@ -73,7 +75,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 |-----------|-------|
 | **Reference** | GV.SG-2 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -166,7 +168,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Pipeline Layer**     |Cross-cutting                                                     |
 |**Assurance Question** |Safety                                                            |
 |**Measurement Method** |Human Review                                                      |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                    |
+|**Lifecycle Phases**   |Pre-deployment                                    |
 |**Responsible Actors** |Vendor                                                            |
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
@@ -727,7 +729,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 |-----------|-------|
 | **Reference** | GV.SG-17 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |

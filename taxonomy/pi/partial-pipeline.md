@@ -10,7 +10,7 @@ Combined ASR + diarisation: was the right text assigned to the right person? Nei
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |

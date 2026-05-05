@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.0.3, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.1.0, 2026-05-04.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.1.0** ships a cadence-dimension cleanup: `Measurement Cadence` is now multi-valued (semicolon-separated), and a new `Event-triggered` enum value names the pattern where a metric is re-measured on a material change event (model update, contract renewal, sub-processor disclosure, new failure mode discovered, retirement event, etc.). 32 metric edits — 18 Cadence updates that move metrics to multi-value or to `Event-triggered`, plus 14 Lifecycle Phases trims for the v5.0.3 multi-cadence-deferred set. New audit check `check_cadence_values` enforces the four-element enum across the catalogue. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -114,15 +114,19 @@ Metrics that are important for advancing the field but are not actionable at ind
 
 ### Measurement Cadence
 
-Each metric carries a cadence label indicating how often it should be measured:
+Each metric carries a cadence label indicating how often it should be measured. The cadence is **multi-valued** (semicolon-separated) — a metric may be both a pre-deployment gate AND have an ongoing rhythm, e.g. `One-off gate; Continuous` or `Periodic audit; Event-triggered`. The four enum values are:
 
-**🚪 One-off gate (pre-deployment)** - measured once before go-live as an acceptance criterion. Includes hardware validation, write-back fidelity testing, acoustic environment profiling, and pre-deployment benchmarks. Gate metrics must pass before the system enters clinical use. Some should be re-tested when significant changes occur (new EPR version, hardware change, model update), but they are not continuous monitoring requirements.
+**🚪 One-off gate (pre-deployment)** - measured once before go-live as an acceptance criterion. Includes hardware validation, write-back fidelity testing, acoustic environment profiling, and pre-deployment benchmarks. Gate metrics must pass before the system enters clinical use.
 
-**📡 Continuous** - measured on an ongoing basis during operational use, ideally automated. Includes edit rate, time-to-sign, system availability, integration error rate, model version tracking, and the automated self-consistency checks. Continuous metrics should feed into dashboards visible to the clinical lead and CSO. Many can be derived from EPR workflow telemetry without additional clinical effort.
+**📡 Continuous** - measured on an ongoing basis during operational use, ideally automated. Includes edit rate, time-to-sign, system availability, integration error rate, and the automated self-consistency checks. Continuous metrics should feed into dashboards visible to the clinical lead and CSO. Many can be derived from EPR workflow telemetry without additional clinical effort.
 
-**🔄 Periodic audit** - measured at defined intervals through deliberate assessment activity. Includes hallucination/omission rate audits, error injection testing (quarterly), trust calibration surveys (annually), demographic WER re-testing, and the safety-critical chain of custody trace. Periodic audits require protected time and clinical resource - they are the most expensive cadence and should be scheduled in advance.
+**🔄 Periodic audit** - measured at defined intervals through deliberate assessment activity. Includes hallucination/omission rate audits, error injection testing (quarterly), trust calibration surveys (annually), demographic WER re-testing, and the safety-critical chain of custody trace. Periodic audits require protected time and clinical resource — they are the most expensive cadence and should be scheduled in advance.
 
-The cadence and tier interact: a Tier 1 continuous metric (edit rate) is low-burden and high-value - it should be running from Day Zero. A Tier 2 periodic metric (error injection audit) is higher-burden but provides uniquely valuable data - it should be scheduled quarterly once the system is stable. A Tier 3 periodic metric (clinical decision equivalence) is too resource-intensive for routine deployment but should be performed by national evaluation programmes.
+**⚡ Event-triggered** *(added v5.1)* - re-measured / re-attested when a material change event occurs: model version update, contract renewal, new sub-processor disclosed, new failure mode discovered, retirement event, scope expansion, etc. Distinct from `Periodic audit` (calendar-driven) and `Continuous` (always-on). Includes DPIA re-review on significant processing change, clinical safety case re-issue on hazard discovery, and per-component re-test on model update. Event-triggered metrics need a documented definition of what counts as a triggering event.
+
+A metric carrying multiple cadence values (e.g. `One-off gate; Event-triggered`) is genuinely operational at each named cadence — the pre-deployment gate AND the event-triggered re-measurement both apply. Reading just one cadence value as the rhythm understates what the metric needs.
+
+The cadence and tier interact: a Tier 1 continuous metric (edit rate) is low-burden and high-value — it should be running from Day Zero. A Tier 2 periodic metric (error injection audit) is higher-burden but provides uniquely valuable data — it should be scheduled quarterly once the system is stable. A Tier 3 periodic metric (clinical decision equivalence) is too resource-intensive for routine deployment but should be performed by national evaluation programmes. Event-triggered metrics often pair with another cadence (a backstop annual review on top of an event-triggered re-attestation, for example) so the trigger doesn't get lost when no event happens for a long stretch.
 
 ### Responsible Actors
 
@@ -2836,7 +2840,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.0.3` / `2026-05-04` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.1.0` / `2026-05-04` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -3578,7 +3582,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -3695,7 +3699,7 @@ Proportion of audio time with simultaneous speech from multiple speakers. Common
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -3871,7 +3875,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -3929,7 +3933,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -4286,7 +4290,7 @@ Character-level edit distance between reference and hypothesis. More sensitive t
 |-----------|-------|
 | **Reference** | TP.ASR-8 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
@@ -4654,7 +4658,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -4711,7 +4715,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Pipeline Layer** | Diarisation |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -4840,7 +4844,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Pipeline Layer**     |Diarisation                                                          |
 |**Assurance Question** |Safety                                                               |
 |**Measurement Method** |Computational                                                        |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                       |
+|**Lifecycle Phases**   |Pre-deployment                                       |
 |**Responsible Actors** |Vendor                                                               |
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
@@ -4959,7 +4963,7 @@ Clinician-Preferred Human-Evaluated Word Error Rate. A speaker-attribution-aware
 |**Pipeline Layer**     |ASR + Diarisation                           |
 |**Assurance Question** |Safety                                      |
 |**Measurement Method** |Computational                               |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit              |
+|**Lifecycle Phases**   |Pre-deployment              |
 |**Responsible Actors** |Vendor, Academic                            |
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
@@ -5836,7 +5840,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Hybrid |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Academic, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
@@ -6893,7 +6897,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 |-----------|-------|
 | **Reference** | TP.WB-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Continuous |
 | **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -6903,6 +6907,8 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect that body describes both the highest-priority pre-deployment gate AND continuous monthly auditing of safety-critical fidelity in production traffic; v5.1 also introduces `Event-triggered` as a fourth Cadence enum value and makes the dimension semicolon-separated).
 
 **Why this tier?**
 
@@ -7031,7 +7037,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 |-----------|-------|
 | **Reference** | TP.WB-3 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Continuous |
 | **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -7041,6 +7047,8 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | Identified as distinct failure mode within write-back |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect both the safety-critical pre-deployment test AND ongoing continuous-monitoring of mapping accuracy in production traffic).
 
 **Why this tier?**
 
@@ -7294,7 +7302,7 @@ Combined ASR + diarisation: was the right text assigned to the right person? Nei
 | **Pipeline Layer** | ASR + Diarisation |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -7893,7 +7901,7 @@ End-to-end: tracking how a single upstream error amplifies or gets corrected thr
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Hybrid |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -9897,7 +9905,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Pipeline Layer**     |ASR / Transcription                                           |
 |**Assurance Question** |Fairness & Equity                                             |
 |**Measurement Method** |Human Review                                                  |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                |
+|**Lifecycle Phases**   |Pre-deployment                                |
 |**Responsible Actors** |Vendor, National Body                                         |
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |
@@ -10164,7 +10172,7 @@ Logging which model version produces each output. Foundation for all continuous 
 |-----------|-------|
 | **Reference** | GV.SG-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -10174,6 +10182,8 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025] |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `Continuous; Event-triggered` — every model component change is itself the trigger for re-tracking, and the per-inference logging is the continuous component).
 
 **Why this tier?**
 
@@ -10231,7 +10241,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 |-----------|-------|
 | **Reference** | GV.SG-2 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -10324,7 +10334,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Pipeline Layer**     |Cross-cutting                                                     |
 |**Assurance Question** |Safety                                                            |
 |**Measurement Method** |Human Review                                                      |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                                    |
+|**Lifecycle Phases**   |Pre-deployment                                    |
 |**Responsible Actors** |Vendor                                                            |
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
@@ -10885,7 +10895,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 |-----------|-------|
 | **Reference** | GV.SG-17 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
@@ -11257,7 +11267,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |-----------------------|-------------------------------------------------------------------------------------------------|
 | **Reference** | GV.CR-6 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                                                        |
-|**Measurement Cadence**|Periodic audit                                                                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
 |**Assurance Question** |Safety                                                                                           |
 |**Measurement Method** |Human Review                                                                                     |
@@ -11321,7 +11331,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |-----------------------|------------------------------------------------------|
 | **Reference** | GV.CR-7 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                             |
-|**Measurement Cadence**|Periodic audit                                        |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                        |
 |**Pipeline Layer**     |Cross-cutting                                         |
 |**Assurance Question** |Safety                                                |
 |**Measurement Method** |Human Review                                          |
@@ -11331,6 +11341,8 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
 |**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `Periodic audit; Event-triggered` — the body has always required mandatory re-review on significant processing change in addition to the annual audit cadence; the calendar audit acts as the backstop, the change event is the substantive trigger).
 
 **Why this tier?**
 
@@ -11385,7 +11397,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |-----------------------|----------------------------------------------|
 | **Reference** | GV.CR-8 |
 |**Priority Tier**      |🟡 Tier 2 - Recommended                        |
-|**Measurement Cadence**|Periodic audit                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                |
 |**Pipeline Layer**     |Cross-cutting                                 |
 |**Assurance Question** |Safety                                        |
 |**Measurement Method** |Human Review                                  |
@@ -11428,7 +11440,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Pipeline Layer**     |Cross-cutting                                            |
 |**Assurance Question** |Safety                                                   |
 |**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                           |
+|**Lifecycle Phases**   |Pre-deployment                           |
 |**Responsible Actors** |Vendor                                                   |
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
@@ -11948,7 +11960,7 @@ Whether the AVT vendor holds current **Cyber Essentials Plus** certification (th
 |-----------|-------|
 | **Reference** | GV.SC-12 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; annual re-verification |
+| **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Security |
 | **Measurement Method** | Documentary |
@@ -12325,7 +12337,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 |-----------|-------|
 | **Reference** | GV.PD-7 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Periodic audit; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
@@ -12600,7 +12612,7 @@ When an AVT deployment is wound down — whether by deployer choice, vendor reti
 |-----------|-------|
 | **Reference** | GV.PD-16 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
@@ -13041,7 +13053,7 @@ After an AVT product is retired, replaced, or decommissioned, can clinicians and
 |-----------|-------|
 | **Reference** | GV.OP-14 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
 | **Measurement Method** | Human Review |
@@ -13335,7 +13347,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 |-----------|-------|
 | **Reference** | GV.TC-3 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Periodic audit; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
 | **Measurement Method** | Human Review |
@@ -13422,7 +13434,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 |-----------|-------|
 | **Reference** | GV.TC-5 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
 | **Measurement Method** | Human Review |
@@ -14028,7 +14040,7 @@ Whether the vendor provides advance notice of AVT product retirement, end-of-lif
 |-----------|-------|
 | **Reference** | GV.VT-15 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
@@ -14377,7 +14389,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 |-----------|-------|
 | **Reference** | ES.ME-8 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; reviewed annually |
+| **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
 | **Measurement Method** | Documentary |
@@ -14428,7 +14440,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 |-----------|-------|
 | **Reference** | ES.ME-9 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; updated when outcome claims change |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
 | **Measurement Method** | Documentary |

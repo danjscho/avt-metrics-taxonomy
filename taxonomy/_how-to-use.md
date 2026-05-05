@@ -20,15 +20,19 @@ Metrics that are important for advancing the field but are not actionable at ind
 
 ### Measurement Cadence
 
-Each metric carries a cadence label indicating how often it should be measured:
+Each metric carries a cadence label indicating how often it should be measured. The cadence is **multi-valued** (semicolon-separated) — a metric may be both a pre-deployment gate AND have an ongoing rhythm, e.g. `One-off gate; Continuous` or `Periodic audit; Event-triggered`. The four enum values are:
 
-**🚪 One-off gate (pre-deployment)** - measured once before go-live as an acceptance criterion. Includes hardware validation, write-back fidelity testing, acoustic environment profiling, and pre-deployment benchmarks. Gate metrics must pass before the system enters clinical use. Some should be re-tested when significant changes occur (new EPR version, hardware change, model update), but they are not continuous monitoring requirements.
+**🚪 One-off gate (pre-deployment)** - measured once before go-live as an acceptance criterion. Includes hardware validation, write-back fidelity testing, acoustic environment profiling, and pre-deployment benchmarks. Gate metrics must pass before the system enters clinical use.
 
-**📡 Continuous** - measured on an ongoing basis during operational use, ideally automated. Includes edit rate, time-to-sign, system availability, integration error rate, model version tracking, and the automated self-consistency checks. Continuous metrics should feed into dashboards visible to the clinical lead and CSO. Many can be derived from EPR workflow telemetry without additional clinical effort.
+**📡 Continuous** - measured on an ongoing basis during operational use, ideally automated. Includes edit rate, time-to-sign, system availability, integration error rate, and the automated self-consistency checks. Continuous metrics should feed into dashboards visible to the clinical lead and CSO. Many can be derived from EPR workflow telemetry without additional clinical effort.
 
-**🔄 Periodic audit** - measured at defined intervals through deliberate assessment activity. Includes hallucination/omission rate audits, error injection testing (quarterly), trust calibration surveys (annually), demographic WER re-testing, and the safety-critical chain of custody trace. Periodic audits require protected time and clinical resource - they are the most expensive cadence and should be scheduled in advance.
+**🔄 Periodic audit** - measured at defined intervals through deliberate assessment activity. Includes hallucination/omission rate audits, error injection testing (quarterly), trust calibration surveys (annually), demographic WER re-testing, and the safety-critical chain of custody trace. Periodic audits require protected time and clinical resource — they are the most expensive cadence and should be scheduled in advance.
 
-The cadence and tier interact: a Tier 1 continuous metric (edit rate) is low-burden and high-value - it should be running from Day Zero. A Tier 2 periodic metric (error injection audit) is higher-burden but provides uniquely valuable data - it should be scheduled quarterly once the system is stable. A Tier 3 periodic metric (clinical decision equivalence) is too resource-intensive for routine deployment but should be performed by national evaluation programmes.
+**⚡ Event-triggered** *(added v5.1)* - re-measured / re-attested when a material change event occurs: model version update, contract renewal, new sub-processor disclosed, new failure mode discovered, retirement event, scope expansion, etc. Distinct from `Periodic audit` (calendar-driven) and `Continuous` (always-on). Includes DPIA re-review on significant processing change, clinical safety case re-issue on hazard discovery, and per-component re-test on model update. Event-triggered metrics need a documented definition of what counts as a triggering event.
+
+A metric carrying multiple cadence values (e.g. `One-off gate; Event-triggered`) is genuinely operational at each named cadence — the pre-deployment gate AND the event-triggered re-measurement both apply. Reading just one cadence value as the rhythm understates what the metric needs.
+
+The cadence and tier interact: a Tier 1 continuous metric (edit rate) is low-burden and high-value — it should be running from Day Zero. A Tier 2 periodic metric (error injection audit) is higher-burden but provides uniquely valuable data — it should be scheduled quarterly once the system is stable. A Tier 3 periodic metric (clinical decision equivalence) is too resource-intensive for routine deployment but should be performed by national evaluation programmes. Event-triggered metrics often pair with another cadence (a backstop annual review on top of an event-triggered re-attestation, for example) so the trigger doesn't get lost when no event happens for a long stretch.
 
 ### Responsible Actors
 

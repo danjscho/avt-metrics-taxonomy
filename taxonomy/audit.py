@@ -87,6 +87,20 @@ EXPECTED_MATURITY_VALUES = {
     "Proposed / Novel",
 }
 
+# v5.1: Measurement Cadence is a multi-valued dimension. The value is a
+# semicolon-separated list of one or more enum values (e.g. "One-off gate;
+# Event-triggered" or "Periodic audit; Event-triggered"). The audit
+# validates each individual element against this enum; any unknown element
+# is flagged. This catches free-text deviations that crept in pre-v5.1
+# (e.g. "One-off gate + per-event", "One-off gate; reviewed annually") and
+# prevents future drift.
+EXPECTED_CADENCE_VALUES = {
+    "One-off gate",
+    "Periodic audit",
+    "Continuous",
+    "Event-triggered",
+}
+
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
 METRIC_HEADING = re.compile(
@@ -572,6 +586,39 @@ def check_maturity_values(all_metrics: list[Metric]) -> list[Finding]:
                     (
                         f"metric {m.ref_id} has Maturity='{maturity}', "
                         f"expected one of {sorted(EXPECTED_MATURITY_VALUES)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def check_cadence_values(all_metrics: list[Metric]) -> list[Finding]:
+    """Every countable metric's Measurement Cadence is a semicolon-separated
+    list of values from EXPECTED_CADENCE_VALUES. Multi-value cadences like
+    "One-off gate; Event-triggered" are normal — the four-element enum
+    composes via semicolons. Pre-v5.1 the catalogue had free-text
+    deviations ("One-off gate + per-event", "One-off gate; reviewed
+    annually") that this check now catches."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        cadence = m.dimensions.get("Measurement Cadence")
+        if cadence is None:
+            continue
+        elements = [e.strip() for e in cadence.split(";") if e.strip()]
+        if not elements:
+            continue
+        unknown = [e for e in elements if e not in EXPECTED_CADENCE_VALUES]
+        if unknown:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-cadence",
+                    (
+                        f"metric {m.ref_id} has Measurement Cadence='{cadence}'; "
+                        f"unknown element(s) {unknown}; "
+                        f"each semicolon-separated element must be one of "
+                        f"{sorted(EXPECTED_CADENCE_VALUES)}"
                     ),
                     f"{m.file}:{m.line}",
                 )
@@ -1341,6 +1388,7 @@ def main() -> int:
     findings.extend(check_applicability_presence(all_metrics))
     findings.extend(check_applicability_totals(all_metrics))
     findings.extend(check_maturity_values(all_metrics))
+    findings.extend(check_cadence_values(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))

@@ -335,7 +335,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |-----------------------|-------------------------------------------------------------------------------------------------|
 | **Reference** | GV.CR-6 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                                                        |
-|**Measurement Cadence**|Periodic audit                                                                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                                                                   |
 |**Pipeline Layer**     |Cross-cutting                                                                                    |
 |**Assurance Question** |Safety                                                                                           |
 |**Measurement Method** |Human Review                                                                                     |
@@ -399,7 +399,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |-----------------------|------------------------------------------------------|
 | **Reference** | GV.CR-7 |
 |**Priority Tier**      |🟢 Tier 1 - Minimum Viable                             |
-|**Measurement Cadence**|Periodic audit                                        |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                        |
 |**Pipeline Layer**     |Cross-cutting                                         |
 |**Assurance Question** |Safety                                                |
 |**Measurement Method** |Human Review                                          |
@@ -409,6 +409,8 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
 |**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `Periodic audit; Event-triggered` — the body has always required mandatory re-review on significant processing change in addition to the annual audit cadence; the calendar audit acts as the backstop, the change event is the substantive trigger).
 
 **Why this tier?**
 
@@ -463,7 +465,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |-----------------------|----------------------------------------------|
 | **Reference** | GV.CR-8 |
 |**Priority Tier**      |🟡 Tier 2 - Recommended                        |
-|**Measurement Cadence**|Periodic audit                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                |
 |**Pipeline Layer**     |Cross-cutting                                 |
 |**Assurance Question** |Safety                                        |
 |**Measurement Method** |Human Review                                  |
@@ -506,7 +508,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Pipeline Layer**     |Cross-cutting                                            |
 |**Assurance Question** |Safety                                                   |
 |**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Periodic Audit                           |
+|**Lifecycle Phases**   |Pre-deployment                           |
 |**Responsible Actors** |Vendor                                                   |
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
