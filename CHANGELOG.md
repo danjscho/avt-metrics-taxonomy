@@ -1,5 +1,16 @@
 # Changelog
 
+## v5.1.3 (2026-05-05)
+
+**Patch release: archive housekeeping.**
+
+No metric / catalogue content changes. Two files moved from repo root to `archive/v5.0.3/`:
+
+- `v5.0.3-cadence-plan.md`
+- `v5.0.3-cadence-audit.md`
+
+Both shipped as part of the v5.0.3 cadence audit + v5.1.0 cadence-dimension cleanup. The audit scope is now closed (TP.ASR-13 + TP.ASR-12 directly fixed, multi-cadence-deferred set addressed in v5.1.0). Per the CLAUDE.md "archive/ is for finished work only" convention, these belong in `archive/` now.
+
 ## v5.1.2 (2026-05-05)
 
 **Patch release: Phase 1b framework coverage audits — batches 2 + 3 (NHS LLM, DSPT, NICE ESF, T.E.S.T., UK GDPR, CQC, FHIR UK Core, ICO).**
