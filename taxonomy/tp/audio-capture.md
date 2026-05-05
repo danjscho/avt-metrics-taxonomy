@@ -120,7 +120,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Deployer |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -237,7 +237,7 @@ Proportion of audio time with simultaneous speech from multiple speakers. Common
 | **Pipeline Layer** | Audio Capture |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |

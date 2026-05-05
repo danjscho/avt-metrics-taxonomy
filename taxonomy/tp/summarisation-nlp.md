@@ -801,7 +801,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Hybrid |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Academic, Deployer |
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |

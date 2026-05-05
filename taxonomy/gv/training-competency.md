@@ -116,7 +116,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 |-----------|-------|
 | **Reference** | GV.TC-3 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Periodic audit; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
 | **Measurement Method** | Human Review |
@@ -203,7 +203,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 |-----------|-------|
 | **Reference** | GV.TC-5 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | Continuous |
+| **Measurement Cadence** | Continuous; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Human Factors |
 | **Measurement Method** | Human Review |

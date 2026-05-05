@@ -381,7 +381,7 @@ After an AVT product is retired, replaced, or decommissioned, can clinicians and
 |-----------|-------|
 | **Reference** | GV.OP-14 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Operational |
 | **Measurement Method** | Human Review |

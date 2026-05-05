@@ -288,7 +288,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 |-----------|-------|
 | **Reference** | ES.ME-8 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; reviewed annually |
+| **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
 | **Measurement Method** | Documentary |
@@ -339,7 +339,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 |-----------|-------|
 | **Reference** | ES.ME-9 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate; updated when outcome claims change |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
 | **Measurement Method** | Documentary |

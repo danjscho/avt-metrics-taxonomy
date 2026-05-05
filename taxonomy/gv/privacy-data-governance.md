@@ -309,7 +309,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 |-----------|-------|
 | **Reference** | GV.PD-7 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Periodic audit; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |
@@ -584,7 +584,7 @@ When an AVT deployment is wound down — whether by deployer choice, vendor reti
 |-----------|-------|
 | **Reference** | GV.PD-16 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |

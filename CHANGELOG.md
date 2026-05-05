@@ -1,5 +1,30 @@
 # Changelog
 
+## v5.1.0 (2026-05-05)
+
+**Minor release: cadence-dimension cleanup — multi-valued Cadence; new `Event-triggered` enum value; ~32 metric edits.**
+
+User noticed (during the v5.0.3 cadence audit) that DPIAs and similar regulatory artefacts are "updated to reflect material changes to their coverage" — a cadence pattern distinct from `One-off gate`, `Periodic audit`, and `Continuous`. The single-value Cadence dimension also can't express that some metrics are genuinely *both* a pre-deployment gate AND continuously / periodically / event-triggered re-measured. v5.1 addresses both.
+
+**What changed.**
+
+- **`Measurement Cadence` dimension is now multi-valued.** Semicolon-separated, e.g. `One-off gate; Continuous` or `Periodic audit; Event-triggered`. A metric carrying multiple cadences is operational at each — both apply.
+- **New `Event-triggered` enum value.** Distinct from `Periodic audit` (calendar-driven) and `Continuous` (always-on). Re-measurement is triggered by a material change event: model version update, contract renewal, new sub-processor disclosed, new failure mode discovered, retirement event, scope expansion, etc.
+- **The four-element enum is now formally enforced.** Previously the catalogue had crept in 6 distinct cadence strings (e.g. `One-off gate; reviewed annually`, `One-off gate + per-event`); these are normalised to the enum form.
+
+**Metric edits.** 32 metric content changes:
+
+- **18 Cadence updates** to multi-value or new value, including TP.WB-1 / TP.WB-3 (`One-off gate; Continuous`), GV.SG-1 / GV.SG-17 / GV.TC-5 (`Continuous; Event-triggered`), GV.SG-2 (`Event-triggered` — pure event-triggered), GV.CR-6 / GV.CR-7 / GV.CR-8 (`Periodic audit; Event-triggered` — DPIA-style), GV.PD-7 (`One-off gate; Periodic audit; Event-triggered`), and TP.ASR-8 (`One-off gate; Event-triggered`).
+- **14 Lifecycle Phases trims** on metrics where Lifecycle Phases listed Periodic Audit / Continuous but body content is genuinely pre-deployment-only — covers the v5.0.3 multi-cadence-deferred set (TP.AC-3, TP.AC-6, TP.ASR-1, TP.ASR-2, TP.DI-1, TP.DI-2, TP.DI-5, TP.DI-8, TP.SN-13, PI.PP-1, PI.E2E-3, IO.FE-2, GV.SG-4, GV.CR-9). Cadence stays `One-off gate`; Lifecycle Phases tightens to `Pre-deployment`.
+
+**`Change history:` stanzas added** on TP.WB-1, TP.WB-3, GV.SG-1, GV.CR-7 — the four metrics where the cadence rewrite is most semantically meaningful.
+
+**Audit-side enforcement.** New `check_cadence_values` in `audit.py` validates every Cadence string as a semicolon-separated list of known enum values. Catches free-text deviations and prevents future drift. Existing pre-v5.1 deviations were normalised to the enum form as part of the metric edits above.
+
+**Documentation.** `_how-to-use.md:Measurement Cadence` rewritten to describe the multi-value semantics, name `Event-triggered` as the fourth value, and explain when a metric pairs multiple cadences.
+
+**Counts unchanged**: 221 / 45-97-79.
+
 ## v5.0.3 (2026-05-05)
 
 **Patch release: cadence audit + 2 metric label fixes.**

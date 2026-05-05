@@ -131,7 +131,7 @@ End-to-end: tracking how a single upstream error amplifies or gets corrected thr
 | **Pipeline Layer** | End-to-End |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Hybrid |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor, Academic |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |

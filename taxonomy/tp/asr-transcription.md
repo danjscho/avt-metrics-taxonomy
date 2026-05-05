@@ -10,7 +10,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor |
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
@@ -68,7 +68,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
-| **Lifecycle Phases** | Pre-deployment, Periodic Audit |
+| **Lifecycle Phases** | Pre-deployment |
 | **Responsible Actors** | Vendor, National Body |
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
@@ -425,7 +425,7 @@ Character-level edit distance between reference and hypothesis. More sensitive t
 |-----------|-------|
 | **Reference** | TP.ASR-8 |
 | **Priority Tier** | 🟡 Tier 2 - Recommended |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fidelity & Accuracy |
 | **Measurement Method** | Computational |

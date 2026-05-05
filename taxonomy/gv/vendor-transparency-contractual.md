@@ -573,7 +573,7 @@ Whether the vendor provides advance notice of AVT product retirement, end-of-lif
 |-----------|-------|
 | **Reference** | GV.VT-15 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate + per-event |
+| **Measurement Cadence** | One-off gate; Event-triggered |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Human Review |

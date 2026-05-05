@@ -6,7 +6,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 |-----------|-------|
 | **Reference** | TP.WB-1 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Continuous |
 | **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -16,6 +16,8 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect that body describes both the highest-priority pre-deployment gate AND continuous monthly auditing of safety-critical fidelity in production traffic; v5.1 also introduces `Event-triggered` as a fourth Cadence enum value and makes the dimension semicolon-separated).
 
 **Why this tier?**
 
@@ -144,7 +146,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 |-----------|-------|
 | **Reference** | TP.WB-3 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | One-off gate; Continuous |
 | **Pipeline Layer** | Downstream Write-back |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -154,6 +156,8 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Source** | Identified as distinct failure mode within write-back |
+
+**Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect both the safety-critical pre-deployment test AND ongoing continuous-monitoring of mapping accuracy in production traffic).
 
 **Why this tier?**
 
