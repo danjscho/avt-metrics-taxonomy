@@ -1,5 +1,27 @@
 # Changelog
 
+## v5.1.2 (2026-05-05)
+
+**Patch release: Phase 1b framework coverage audits — batches 2 + 3 (NHS LLM, DSPT, NICE ESF, T.E.S.T., UK GDPR, CQC, FHIR UK Core, ICO).**
+
+No metric / catalogue content changes. One research-output file at repo root: `v5.1.2-phase-1b-batches-2-3.md`.
+
+Continues from v5.1.1 batch 1 (DTAC + NHSE IG + DCB + MHRA). v5.1.2 ships the remaining 8 frameworks the Registry transitively requires, completing Phase 1b.
+
+**Headline result for batches 2 + 3**: ~140 sub-criteria audited, **0 NEW gaps** beyond what batch 1 surfaced. Combined with batch 1 (128 sub-criteria, 2 NEW gaps), Phase 1b totals **268 sub-criteria across 12 frameworks, only 2 NEW gaps** (information asset register; joint-controller status assessment).
+
+**Per-batch summary:**
+- Batch 2 (NHS LLM + DSPT + NICE ESF + T.E.S.T.): 0 NEW gaps; ~14 already-roadmapped candidates surfaced (GV.OP-13 TCO, ES.ME-9/10, GV.OP-10/11 economic eval, TP.WB-8/9/10 FHIR, GV.VT-11/12, IO.FE-9, etc.)
+- Batch 3 (UK GDPR + CQC + FHIR + ICO): 0 NEW gaps; ~10 already-roadmapped candidates surfaced (GV.CR-12 board governance, GV.SG-19 PSIRF, IO.PX-11/12 complaint handling + engagement, TP.WB-11 PRSB, GV.PD-15 anonymisation provenance, etc.)
+
+**Cross-framework synergies confirmed**: many gap candidates appear across 3-4 frameworks (e.g. `GV.CR-12 Board-Level AI Governance` covers CQC + RAI Principle 10 + Theme 4 + DTAC C3.1). These multi-framework candidates are the highest-confidence Phase 5 priorities.
+
+**Promotion-to-Tier-1 candidates**: stable at 8 (4 from v5.0.1 + 4 from v5.1.1 batch 1). Batches 2 + 3 surfaced no additional promotion candidates.
+
+**Phase 5 surface estimate (post all of Phase 1b)**: ~25-35 metric content changes. Post-Phase-5 counts would land **221 → 245-255 metrics**, **45 → 65-75 Tier 1**.
+
+**Phase 1b is now complete.** All 12 Registry-transitively-named frameworks audited. Phase 5 is ready to commence pending user review and the Registry attestation form.
+
 ## v5.1.1 (2026-05-05)
 
 **Patch release: Phase 1b framework coverage audits — batch 1 (DTAC, NHSE IG, DCB, MHRA).**
