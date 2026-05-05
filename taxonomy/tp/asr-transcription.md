@@ -606,7 +606,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 |-----------|-------|
 | **Reference** | TP.ASR-12 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -616,6 +616,8 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
+
+**Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking] (any ASR weight or model update triggers re-test)" and the Trigger Conditions describe alert-on-new-critical-class-hallucination signals against a prior baseline — neither of which is one-off).
 
 **Why this tier?**
 
@@ -675,7 +677,7 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 |-----------|-------|
 | **Reference** | TP.ASR-13 |
 | **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate |
+| **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Safety |
 | **Measurement Method** | Computational |
@@ -685,6 +687,8 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | Identified as critical gap in clinical ASR evaluation |
+
+**Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The body has always described monthly review of production-traffic numeric accuracy, a sustained-drift alert over two months, and a pause-on-confirmed-dosage-error trigger in production traffic — none of which is one-off. Pre-deployment is preserved via Lifecycle Phases).
 
 **Why this tier?**
 
