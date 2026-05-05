@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.1.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3850,7 +3850,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>Continuous</td>
+<td>Continuous; Event-triggered</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>
@@ -3891,6 +3891,7 @@
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🌐 <a href="../../crosscuts/by-applicability/general/">General Healthcare AI</a></p>
+<p><strong>Change history:</strong> v5.1.0 (Cadence updated to multi-value <code>Continuous; Event-triggered</code> — every model component change is itself the trigger for re-tracking, and the per-inference logging is the continuous component).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Foundation for all continuous assurance. Without knowing which model version produced which output, no performance change is interpretable. Must be contractually required.</p>
@@ -3956,7 +3957,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>Continuous</td>
+<td>Event-triggered</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>
@@ -4136,7 +4137,7 @@
 </tr>
 <tr>
 <td><strong>Lifecycle Phases</strong></td>
-<td>Pre-deployment, Periodic Audit</td>
+<td>Pre-deployment</td>
 </tr>
 <tr>
 <td><strong>Responsible Actors</strong></td>
@@ -5187,7 +5188,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>Continuous</td>
+<td>Continuous; Event-triggered</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>

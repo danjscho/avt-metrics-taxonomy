@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.1.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3800,7 +3800,7 @@
 </tr>
 <tr>
 <td><strong>Lifecycle Phases</strong></td>
-<td>Pre-deployment, Periodic Audit</td>
+<td>Pre-deployment</td>
 </tr>
 <tr>
 <td><strong>Responsible Actors</strong></td>
@@ -3913,7 +3913,7 @@
 </tr>
 <tr>
 <td><strong>Lifecycle Phases</strong></td>
-<td>Pre-deployment, Periodic Audit</td>
+<td>Pre-deployment</td>
 </tr>
 <tr>
 <td><strong>Responsible Actors</strong></td>
@@ -4476,7 +4476,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>One-off gate</td>
+<td>One-off gate; Event-triggered</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>
@@ -4806,7 +4806,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>One-off gate</td>
+<td>Periodic audit</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>
@@ -4847,6 +4847,7 @@
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🎯 <a href="../../crosscuts/by-applicability/avt-specific/">AVT-Specific</a></p>
+<p><strong>Change history:</strong> v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking] (any ASR weight or model update triggers re-test)" and the Trigger Conditions describe alert-on-new-critical-class-hallucination signals against a prior baseline — neither of which is one-off).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Critical pre-deployment test. Whisper-based systems are documented to hallucinate from silence - this must be tested before clinical use. Tier 1 because the failure mode is well-documented and the test is straightforward.</p>
@@ -4917,7 +4918,7 @@
 </tr>
 <tr>
 <td><strong>Measurement Cadence</strong></td>
-<td>One-off gate</td>
+<td>Periodic audit</td>
 </tr>
 <tr>
 <td><strong>Pipeline Layer</strong></td>
@@ -4958,6 +4959,7 @@
 </tbody>
 </table>
 <p><strong>Applicability:</strong> 🎯 <a href="../../crosscuts/by-applicability/avt-specific/">AVT-Specific</a></p>
+<p><strong>Change history:</strong> v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The body has always described monthly review of production-traffic numeric accuracy, a sustained-drift alert over two months, and a pause-on-confirmed-dosage-error trigger in production traffic — none of which is one-off. Pre-deployment is preserved via Lifecycle Phases).</p>
 <p><strong>Why this tier?</strong></p>
 <blockquote>
 <p>Safety-critical and underspecified by current vendor reporting. Should be a Day Zero acceptance criterion. Numeric errors are disproportionately dangerous and should be reported separately from general WER.</p>

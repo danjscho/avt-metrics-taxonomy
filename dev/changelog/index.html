@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.0.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.1.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3355,6 +3355,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v510-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.0 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v503-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.3 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v502-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4475,6 +4497,28 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v510-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.0 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v503-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.0.3 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v502-2026-05-04" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5573,6 +5617,39 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v510-2026-05-05">v5.1.0 (2026-05-05)<a class="headerlink" href="#v510-2026-05-05" title="Permanent link">&para;</a></h2>
+<p><strong>Minor release: cadence-dimension cleanup — multi-valued Cadence; new <code>Event-triggered</code> enum value; ~32 metric edits.</strong></p>
+<p>User noticed (during the v5.0.3 cadence audit) that DPIAs and similar regulatory artefacts are "updated to reflect material changes to their coverage" — a cadence pattern distinct from <code>One-off gate</code>, <code>Periodic audit</code>, and <code>Continuous</code>. The single-value Cadence dimension also can't express that some metrics are genuinely <em>both</em> a pre-deployment gate AND continuously / periodically / event-triggered re-measured. v5.1 addresses both.</p>
+<p><strong>What changed.</strong></p>
+<ul>
+<li><strong><code>Measurement Cadence</code> dimension is now multi-valued.</strong> Semicolon-separated, e.g. <code>One-off gate; Continuous</code> or <code>Periodic audit; Event-triggered</code>. A metric carrying multiple cadences is operational at each — both apply.</li>
+<li><strong>New <code>Event-triggered</code> enum value.</strong> Distinct from <code>Periodic audit</code> (calendar-driven) and <code>Continuous</code> (always-on). Re-measurement is triggered by a material change event: model version update, contract renewal, new sub-processor disclosed, new failure mode discovered, retirement event, scope expansion, etc.</li>
+<li><strong>The four-element enum is now formally enforced.</strong> Previously the catalogue had crept in 6 distinct cadence strings (e.g. <code>One-off gate; reviewed annually</code>, <code>One-off gate + per-event</code>); these are normalised to the enum form.</li>
+</ul>
+<p><strong>Metric edits.</strong> 32 metric content changes:</p>
+<ul>
+<li><strong>18 Cadence updates</strong> to multi-value or new value, including <a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> / <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> (<code>One-off gate; Continuous</code>), <a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a> / <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> / <a href="../groups/training-competency/#gv-tc-5">GV.TC-5</a> (<code>Continuous; Event-triggered</code>), <a href="../groups/safety-governance/#gv-sg-2">GV.SG-2</a> (<code>Event-triggered</code> — pure event-triggered), <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> / <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> / <a href="../groups/nhs-compliance-regulatory/#gv-cr-8">GV.CR-8</a> (<code>Periodic audit; Event-triggered</code> — DPIA-style), <a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> (<code>One-off gate; Periodic audit; Event-triggered</code>), and <a href="../groups/asr-transcription/#tp-asr-8">TP.ASR-8</a> (<code>One-off gate; Event-triggered</code>).</li>
+<li><strong>14 Lifecycle Phases trims</strong> on metrics where Lifecycle Phases listed Periodic Audit / Continuous but body content is genuinely pre-deployment-only — covers the v5.0.3 multi-cadence-deferred set (<a href="../groups/audio-capture/#tp-ac-3">TP.AC-3</a>, <a href="../groups/audio-capture/#tp-ac-6">TP.AC-6</a>, <a href="../groups/asr-transcription/#tp-asr-1">TP.ASR-1</a>, <a href="../groups/asr-transcription/#tp-asr-2">TP.ASR-2</a>, <a href="../groups/diarisation/#tp-di-1">TP.DI-1</a>, <a href="../groups/diarisation/#tp-di-2">TP.DI-2</a>, <a href="../groups/diarisation/#tp-di-5">TP.DI-5</a>, <a href="../groups/diarisation/#tp-di-8">TP.DI-8</a>, <a href="../groups/summarisation-nlp/#tp-sn-13">TP.SN-13</a>, <a href="../groups/partial-pipeline/#pi-pp-1">PI.PP-1</a>, <a href="../groups/end-to-end-pipeline/#pi-e2e-3">PI.E2E-3</a>, <a href="../groups/fairness-equity/#io-fe-2">IO.FE-2</a>, <a href="../groups/safety-governance/#gv-sg-4">GV.SG-4</a>, <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a>). Cadence stays <code>One-off gate</code>; Lifecycle Phases tightens to <code>Pre-deployment</code>.</li>
+</ul>
+<p><strong><code>Change history:</code> stanzas added</strong> on <a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a>, <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a>, <a href="../groups/safety-governance/#gv-sg-1">GV.SG-1</a>, <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> — the four metrics where the cadence rewrite is most semantically meaningful.</p>
+<p><strong>Audit-side enforcement.</strong> New <code>check_cadence_values</code> in <code>audit.py</code> validates every Cadence string as a semicolon-separated list of known enum values. Catches free-text deviations and prevents future drift. Existing pre-v5.1 deviations were normalised to the enum form as part of the metric edits above.</p>
+<p><strong>Documentation.</strong> <code>_how-to-use.md:Measurement Cadence</code> rewritten to describe the multi-value semantics, name <code>Event-triggered</code> as the fourth value, and explain when a metric pairs multiple cadences.</p>
+<p><strong>Counts unchanged</strong>: 221 / 45-97-79.</p>
+<h2 id="v503-2026-05-05">v5.0.3 (2026-05-05)<a class="headerlink" href="#v503-2026-05-05" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: cadence audit + 2 metric label fixes.</strong></p>
+<p>User noticed <a href="../groups/asr-transcription/#tp-asr-13">TP.ASR-13</a> Numeric Accuracy was labelled <code>Measurement Cadence: One-off gate</code> but its body explicitly described monthly review of production-traffic numeric accuracy + a sustained-drift alert + a pause-on-confirmed-dosage-error trigger in production traffic. The label contradicted the body.</p>
+<p>A scan found 51 metrics labelled <code>One-off gate</code> in the catalogue; 21 of them also listed <code>Periodic Audit</code> or <code>Continuous</code> in their <code>Lifecycle Phases</code> dimension — a widespread under-claiming pattern.</p>
+<p><strong>Phase (a) — direct fix.</strong> <a href="../groups/asr-transcription/#tp-asr-13">TP.ASR-13</a> cadence corrected to <code>Periodic audit</code>. Body is unchanged; pre-deployment retains via Lifecycle Phases. Change history stanza added.</p>
+<p><strong>Phase (b) — full audit triage.</strong> All 51 one-off-gate metrics audited against body content. Outcome:</p>
+<ul>
+<li><strong>1 additional Change</strong> — <a href="../groups/asr-transcription/#tp-asr-12">TP.ASR-12</a> Hallucination-Under-Noise Rate. Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change" — same shape as <a href="../groups/asr-transcription/#tp-asr-13">TP.ASR-13</a>. Cadence corrected to <code>Periodic audit</code> in v5.0.3.</li>
+<li><strong>19 Multi-cadence (defer)</strong> — Lifecycle Phases lists Periodic / Continuous but the body content is pre-deployment-focused; Lifecycle Phases is the outlier, not Cadence. The fix is either tightening Lifecycle Phases per-metric or splitting the Cadence dimension structurally — both v5.1+ work.</li>
+<li><strong>30 Keep</strong> — body and label and Lifecycle Phases all genuinely agree on one-off-gate semantics.</li>
+</ul>
+<p>The triage file at <code>v5.0.3-cadence-audit.md</code> (repo root) has the per-metric verdicts with rationales.</p>
+<p><strong>Structural finding for v5.1+.</strong> <code>Measurement Cadence</code> is a single-value dimension, but at least 3 metrics (<a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a>, <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a>, <a href="../groups/privacy-data-governance/#gv-pd-10">GV.PD-10</a>) have body content that genuinely combines a hard pre-deployment gate AND ongoing periodic / continuous measurement. The single-value dimension can't express that cleanly. v5.1+ should either (a) allow Cadence to be multi-valued, or (b) split into <code>Pre-deployment Gate</code> + <code>Ongoing Cadence</code> columns. Deferred.</p>
+<p><strong>Counts unchanged</strong>: 221 / 45-97-79.</p>
+<p><strong>Other housekeeping (carried in this release).</strong> Three <code>v4.6-threshold-*.md</code> research-output files moved from repo root → <code>archive/v4.6/</code> (they fed the v5.0 structural threshold split which has shipped, so per the CLAUDE.md "archive/ is for finished work only" convention they belong there now). <code>.gitignore</code> updated to ignore <code>.cache/</code>, <code>.playwright-mcp/</code>, <code>.pytest_cache/</code>, <code>.venv/</code>.</p>
 <h2 id="v502-2026-05-04">v5.0.2 (2026-05-04)<a class="headerlink" href="#v502-2026-05-04" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: standalone summary of Registry-needed metrics.</strong></p>
 <p>No metric / catalogue content changes. One additional research-output file at repo root: <code>v5.1-registry-needed-metrics.md</code> — a small, scannable list pulled out of v5.0.1's longer Phase 1a audit, answering the direct question "what metrics does the AVT Registry transitively need?". 38 Tier 1 metrics confirmed Registry-relevant, organised by attestation type (clinical safety, IG, NHS-specific compliance, vendor transparency, AVT-specific accuracy, clinical accountability, operational/interop). Carries the same honest scoping note as v5.0.1: mapped against the <em>transitive surface</em> (CIO/CCIO + IG guidance), not the actual Registry attestation form (which is not publicly accessible).</p>

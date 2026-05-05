@@ -1,5 +1,5 @@
 {
-  "version": "v5.0.2",
+  "version": "v5.1.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 221,
@@ -75,7 +75,7 @@
         "Pipeline Layer": "Audio Capture",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Deployer",
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
@@ -156,7 +156,7 @@
         "Pipeline Layer": "Audio Capture",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Established",
         "Outcome Type": "Proximal",
@@ -264,7 +264,7 @@
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Established",
         "Outcome Type": "Proximal",
@@ -291,7 +291,7 @@
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor, National Body",
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
@@ -449,7 +449,7 @@
       "dimensions": {
         "Reference": "TP.ASR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "One-off gate; Event-triggered",
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Computational",
@@ -557,7 +557,7 @@
       "dimensions": {
         "Reference": "TP.ASR-12",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "Periodic audit",
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -584,7 +584,7 @@
       "dimensions": {
         "Reference": "TP.ASR-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "Periodic audit",
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -596,7 +596,7 @@
         "Source": "Identified as critical gap in clinical ASR evaluation"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 670
+      "heading_line": 672
     },
     {
       "ref_id": "TP.ASR-14",
@@ -623,7 +623,7 @@
         "Source": "Standard ASR post-processing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 741
+      "heading_line": 745
     },
     {
       "ref_id": "TP.DI-1",
@@ -642,7 +642,7 @@
         "Pipeline Layer": "Diarisation",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Established",
         "Outcome Type": "Proximal",
@@ -669,7 +669,7 @@
         "Pipeline Layer": "Diarisation",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Established",
         "Outcome Type": "Proximal",
@@ -750,7 +750,7 @@
         "Pipeline Layer": "Diarisation",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
@@ -831,7 +831,7 @@
         "Pipeline Layer": "ASR + Diarisation",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor, Academic",
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
@@ -1209,7 +1209,7 @@
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Hybrid",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Academic, Deployer",
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
@@ -1826,7 +1826,7 @@
       "dimensions": {
         "Reference": "TP.WB-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "One-off gate; Continuous",
         "Pipeline Layer": "Downstream Write-back",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -1865,7 +1865,7 @@
         "Source": "Standard integration monitoring; IM1 requirements"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 74
+      "heading_line": 76
     },
     {
       "ref_id": "TP.WB-3",
@@ -1880,7 +1880,7 @@
       "dimensions": {
         "Reference": "TP.WB-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "One-off gate; Continuous",
         "Pipeline Layer": "Downstream Write-back",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -1892,7 +1892,7 @@
         "Source": "Identified as distinct failure mode within write-back"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 139
+      "heading_line": 141
     },
     {
       "ref_id": "TP.WB-4",
@@ -1919,7 +1919,7 @@
         "Source": "Identified as safety-critical EPR integration behaviour"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 208
+      "heading_line": 212
     },
     {
       "ref_id": "TP.WB-5",
@@ -1946,7 +1946,7 @@
         "Source": "Identified as essential for incident response"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 283
+      "heading_line": 287
     },
     {
       "ref_id": "TP.WB-6",
@@ -1973,7 +1973,7 @@
         "Source": "[FHIR-UK-Core] R4 validation tooling"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 322
+      "heading_line": 326
     },
     {
       "ref_id": "TP.WB-7",
@@ -2000,7 +2000,7 @@
         "Source": "[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 361
+      "heading_line": 365
     },
     {
       "ref_id": "PI.PP-1",
@@ -2019,7 +2019,7 @@
         "Pipeline Layer": "ASR + Diarisation",
         "Assurance Question": "Fidelity & Accuracy",
         "Measurement Method": "Computational",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
@@ -2316,7 +2316,7 @@
         "Pipeline Layer": "End-to-End",
         "Assurance Question": "Safety",
         "Measurement Method": "Hybrid",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor, Academic",
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
@@ -3396,7 +3396,7 @@
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Fairness & Equity",
         "Measurement Method": "Human Review",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor, National Body",
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
@@ -3581,7 +3581,7 @@
       "dimensions": {
         "Reference": "GV.SG-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Continuous",
+        "Measurement Cadence": "Continuous; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -3608,7 +3608,7 @@
       "dimensions": {
         "Reference": "GV.SG-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "Continuous",
+        "Measurement Cadence": "Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Computational",
@@ -3620,7 +3620,7 @@
         "Source": "[NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 68
+      "heading_line": 70
     },
     {
       "ref_id": "GV.SG-3",
@@ -3647,7 +3647,7 @@
         "Source": "[NICE-ESF] 2022 AI-specific updates; drift detection literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 118
+      "heading_line": 120
     },
     {
       "ref_id": "GV.SG-4",
@@ -3666,7 +3666,7 @@
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
@@ -3674,7 +3674,7 @@
         "Source": "[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 157
+      "heading_line": 159
     },
     {
       "ref_id": "GV.SG-5",
@@ -3701,7 +3701,7 @@
         "Source": "[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 196
+      "heading_line": 198
     },
     {
       "ref_id": "GV.SG-6",
@@ -3728,7 +3728,7 @@
         "Source": "Concept drift literature from ML monitoring applied to clinical NLG"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 237
+      "heading_line": 239
     },
     {
       "ref_id": "GV.SG-7",
@@ -3755,7 +3755,7 @@
         "Source": "[Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT)"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 274
+      "heading_line": 276
     },
     {
       "ref_id": "GV.SG-8",
@@ -3782,7 +3782,7 @@
         "Source": "[DeepScribe]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 317
+      "heading_line": 319
     },
     {
       "ref_id": "GV.SG-9",
@@ -3809,7 +3809,7 @@
         "Source": "[AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 360
+      "heading_line": 362
     },
     {
       "ref_id": "GV.SG-10",
@@ -3836,7 +3836,7 @@
         "Source": "Compound boundary risk model; [NHS-LLM-Framework]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 403
+      "heading_line": 405
     },
     {
       "ref_id": "GV.SG-11",
@@ -3863,7 +3863,7 @@
         "Source": "[LFPSE] national reporting"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 450
+      "heading_line": 452
     },
     {
       "ref_id": "GV.SG-12",
@@ -3890,7 +3890,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 493
+      "heading_line": 495
     },
     {
       "ref_id": "GV.SG-13",
@@ -3917,7 +3917,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 532
+      "heading_line": 534
     },
     {
       "ref_id": "GV.SG-14",
@@ -3944,7 +3944,7 @@
         "Source": "Patient safety leading vs lagging indicator literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 571
+      "heading_line": 573
     },
     {
       "ref_id": "GV.SG-15",
@@ -3971,7 +3971,7 @@
         "Source": "Standard incident response metric applied to AVT"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 640
+      "heading_line": 642
     },
     {
       "ref_id": "GV.SG-16",
@@ -3998,7 +3998,7 @@
         "Source": "Operational extension of [AMLAS-AAIP]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 681
+      "heading_line": 683
     },
     {
       "ref_id": "GV.SG-17",
@@ -4013,7 +4013,7 @@
       "dimensions": {
         "Reference": "GV.SG-17",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Continuous",
+        "Measurement Cadence": "Continuous; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -4025,7 +4025,7 @@
         "Source": "[DCB0129] compliance requirement"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 722
+      "heading_line": 724
     },
     {
       "ref_id": "GV.CR-1",
@@ -4175,7 +4175,7 @@
       "dimensions": {
         "Reference": "GV.CR-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Periodic audit",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -4202,7 +4202,7 @@
       "dimensions": {
         "Reference": "GV.CR-7",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Periodic audit",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -4229,7 +4229,7 @@
       "dimensions": {
         "Reference": "GV.CR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "Periodic audit",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -4241,7 +4241,7 @@
         "Source": "[UK-GDPR] Article 28; NHS data protection guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 458
+      "heading_line": 460
     },
     {
       "ref_id": "GV.CR-9",
@@ -4260,7 +4260,7 @@
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Lifecycle Phases": "Pre-deployment",
         "Responsible Actors": "Vendor",
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
@@ -4268,7 +4268,7 @@
         "Source": "[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 497
+      "heading_line": 499
     },
     {
       "ref_id": "GV.CR-10",
@@ -4295,7 +4295,7 @@
         "Source": "[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 536
+      "heading_line": 538
     },
     {
       "ref_id": "GV.SC-1",
@@ -4607,7 +4607,7 @@
       "dimensions": {
         "Reference": "GV.SC-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate; annual re-verification",
+        "Measurement Cadence": "One-off gate; Periodic audit",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Security",
         "Measurement Method": "Documentary",
@@ -4796,7 +4796,7 @@
       "dimensions": {
         "Reference": "GV.PD-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate",
+        "Measurement Cadence": "One-off gate; Periodic audit; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -4931,7 +4931,7 @@
       "dimensions": {
         "Reference": "GV.PD-16",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate + per-event",
+        "Measurement Cadence": "One-off gate; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -5201,7 +5201,7 @@
       "dimensions": {
         "Reference": "GV.OP-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate + per-event",
+        "Measurement Cadence": "One-off gate; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Operational",
         "Measurement Method": "Human Review",
@@ -5363,7 +5363,7 @@
       "dimensions": {
         "Reference": "GV.TC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "Continuous",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Human Factors",
         "Measurement Method": "Human Review",
@@ -5417,7 +5417,7 @@
       "dimensions": {
         "Reference": "GV.TC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "Continuous",
+        "Measurement Cadence": "Continuous; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Human Factors",
         "Measurement Method": "Human Review",
@@ -5714,7 +5714,7 @@
       "dimensions": {
         "Reference": "GV.VT-15",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate + per-event",
+        "Measurement Cadence": "One-off gate; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
         "Measurement Method": "Human Review",
@@ -5930,7 +5930,7 @@
       "dimensions": {
         "Reference": "ES.ME-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate; reviewed annually",
+        "Measurement Cadence": "One-off gate; Periodic audit",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
         "Measurement Method": "Documentary",
@@ -5957,7 +5957,7 @@
       "dimensions": {
         "Reference": "ES.ME-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
-        "Measurement Cadence": "One-off gate; updated when outcome claims change",
+        "Measurement Cadence": "One-off gate; Event-triggered",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
         "Measurement Method": "Documentary",
