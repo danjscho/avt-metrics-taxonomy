@@ -1,5 +1,29 @@
 # Changelog
 
+## v5.0.3 (2026-05-05)
+
+**Patch release: cadence audit + 2 metric label fixes.**
+
+User noticed TP.ASR-13 Numeric Accuracy was labelled `Measurement Cadence: One-off gate` but its body explicitly described monthly review of production-traffic numeric accuracy + a sustained-drift alert + a pause-on-confirmed-dosage-error trigger in production traffic. The label contradicted the body.
+
+A scan found 51 metrics labelled `One-off gate` in the catalogue; 21 of them also listed `Periodic Audit` or `Continuous` in their `Lifecycle Phases` dimension — a widespread under-claiming pattern.
+
+**Phase (a) — direct fix.** TP.ASR-13 cadence corrected to `Periodic audit`. Body is unchanged; pre-deployment retains via Lifecycle Phases. Change history stanza added.
+
+**Phase (b) — full audit triage.** All 51 one-off-gate metrics audited against body content. Outcome:
+
+- **1 additional Change** — TP.ASR-12 Hallucination-Under-Noise Rate. Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change" — same shape as TP.ASR-13. Cadence corrected to `Periodic audit` in v5.0.3.
+- **19 Multi-cadence (defer)** — Lifecycle Phases lists Periodic / Continuous but the body content is pre-deployment-focused; Lifecycle Phases is the outlier, not Cadence. The fix is either tightening Lifecycle Phases per-metric or splitting the Cadence dimension structurally — both v5.1+ work.
+- **30 Keep** — body and label and Lifecycle Phases all genuinely agree on one-off-gate semantics.
+
+The triage file at `v5.0.3-cadence-audit.md` (repo root) has the per-metric verdicts with rationales.
+
+**Structural finding for v5.1+.** `Measurement Cadence` is a single-value dimension, but at least 3 metrics (TP.WB-1, TP.WB-3, GV.PD-10) have body content that genuinely combines a hard pre-deployment gate AND ongoing periodic / continuous measurement. The single-value dimension can't express that cleanly. v5.1+ should either (a) allow Cadence to be multi-valued, or (b) split into `Pre-deployment Gate` + `Ongoing Cadence` columns. Deferred.
+
+**Counts unchanged**: 221 / 45-97-79.
+
+**Other housekeeping (carried in this release).** Three `v4.6-threshold-*.md` research-output files moved from repo root → `archive/v4.6/` (they fed the v5.0 structural threshold split which has shipped, so per the CLAUDE.md "archive/ is for finished work only" convention they belong there now). `.gitignore` updated to ignore `.cache/`, `.playwright-mcp/`, `.pytest_cache/`, `.venv/`.
+
 ## v5.0.2 (2026-05-04)
 
 **Patch release: standalone summary of Registry-needed metrics.**
