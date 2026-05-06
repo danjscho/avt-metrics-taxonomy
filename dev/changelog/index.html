@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.1.1.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.1.4.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3355,6 +3355,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v514-2026-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.4 (2026-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v513-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.3 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v512-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.2 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v511-2026-05-05" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -4508,6 +4541,39 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v514-2026-05-06" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.4 (2026-05-06)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v513-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.3 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#v512-2026-05-05" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.1.2 (2026-05-05)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v511-2026-05-05" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5639,6 +5705,45 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v514-2026-05-06">v5.1.4 (2026-05-06)<a class="headerlink" href="#v514-2026-05-06" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: v5.2.0-prep Registry-driven action list (Phase 5 reviewable triage).</strong></p>
+<p>No metric / catalogue content changes. One research-output file at repo root: <code>v5.2-registry-action-list.md</code>.</p>
+<p>The user provided the full text of the FTS notice 069369-2025 (NHS England's AVT Self-Certified Supplier Registry tender) — preserved verbatim in <code>reference-docs/v5.2-fts/find-tender-069369-2025-notice.md</code> (gitignored). The FTS notice is the public ceiling on what the Registry actually requires; the granular Atamis application pack remains inaccessible without supplier credentials.</p>
+<p><strong>Frameworks the FTS notice explicitly names</strong>: DTAC + everything DTAC transitively names (DSPT, Cyber Essentials, FHIR R4, WCAG, AIS, NHS Number / PDS, ICO registration, DCB0129); MHRA Class 1 medical device + post-market surveillance; "the guidance issued by NHS England" (NHSE IG Guidance March 2026 transitively).</p>
+<p><strong>Frameworks audited in Phase 1b but NOT Registry-direct</strong>: NHS LLM Framework, NICE ESF, NHS T.E.S.T., PSIRF, PRSB. These map to the Registry-deferrable tier.</p>
+<p><strong>Action list compiled in <code>v5.2-registry-action-list.md</code></strong>:</p>
+<ul>
+<li><strong>10 promotions</strong> Tier 2 → Tier 1 (<a href="../groups/vendor-transparency-contractual/#gv-vt-2">GV.VT-2</a>/-13/-14, <a href="../groups/meta-evaluation/#es-me-8">ES.ME-8</a>, <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a>, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a>, <a href="../groups/safety-governance/#gv-sg-3">GV.SG-3</a>, <a href="../groups/security-adversarial-robustness/#gv-sc-1">GV.SC-1</a>/-2/-6) — each with FTS-direct rationale</li>
+<li><strong>16 pull-throughs</strong> from <code>_gaps.md</code> (5 §2a MHRA + 3 §2c FHIR UK Core + 4 §1c NHSE IG + 1 §2d CQC + 2 §2g Caldicott + 1 §2f PRSB borderline-but-recommended)</li>
+<li><strong>2 new mints</strong>: <code>GV.PD-17 Information Asset Register Completeness</code> (T1) and <code>GV.VT-16 Joint-Controller Status Assessment</code> (T2)</li>
+</ul>
+<p><strong>Net effect on counts</strong> (when Phase 5 lands as v5.3.0): 221 → 239 metrics; 45 → 63 Tier 1.</p>
+<p><strong>Three reviewer decision points flagged</strong> in the file:
+1. Whether <code>GV.SC-1/-2/-6</code> cybersecurity cluster is genuinely T1-shape vs T2-shape (FTS silent on cadence)
+2. Whether the 2 new mints (<code>GV.PD-17</code>, <code>GV.VT-16</code>) belong as metrics or as a separate process-attestation kind
+3. Big-bang vs staged release shape for v5.3.0</p>
+<p><strong>Honest scope ceiling preserved</strong>: the Atamis application pack remains the unaccessed ground truth. Phase 5 verdicts may shift if/when that pack becomes accessible.</p>
+<p><strong>~73 gap items would remain in <code>_gaps.md</code> after Phase 5</strong> — concentrated in product-capability gaps (RSET §1a, ~9), RAI Playbook + Theme governance gaps (§4, ~38), and framework-deferrable gaps (NICE ESF, T.E.S.T., PSIRF, remaining CQC + PRSB, ~21).</p>
+<h2 id="v513-2026-05-05">v5.1.3 (2026-05-05)<a class="headerlink" href="#v513-2026-05-05" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: archive housekeeping.</strong></p>
+<p>No metric / catalogue content changes. Two files moved from repo root to <code>archive/v5.0.3/</code>:</p>
+<ul>
+<li><code>v5.0.3-cadence-plan.md</code></li>
+<li><code>v5.0.3-cadence-audit.md</code></li>
+</ul>
+<p>Both shipped as part of the v5.0.3 cadence audit + v5.1.0 cadence-dimension cleanup. The audit scope is now closed (<a href="../groups/asr-transcription/#tp-asr-13">TP.ASR-13</a> + <a href="../groups/asr-transcription/#tp-asr-12">TP.ASR-12</a> directly fixed, multi-cadence-deferred set addressed in v5.1.0). Per the CLAUDE.md "archive/ is for finished work only" convention, these belong in <code>archive/</code> now.</p>
+<h2 id="v512-2026-05-05">v5.1.2 (2026-05-05)<a class="headerlink" href="#v512-2026-05-05" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: Phase 1b framework coverage audits — batches 2 + 3 (NHS LLM, DSPT, NICE ESF, T.E.S.T., UK GDPR, CQC, FHIR UK Core, ICO).</strong></p>
+<p>No metric / catalogue content changes. One research-output file at repo root: <code>v5.1.2-phase-1b-batches-2-3.md</code>.</p>
+<p>Continues from v5.1.1 batch 1 (DTAC + NHSE IG + DCB + MHRA). v5.1.2 ships the remaining 8 frameworks the Registry transitively requires, completing Phase 1b.</p>
+<p><strong>Headline result for batches 2 + 3</strong>: ~140 sub-criteria audited, <strong>0 NEW gaps</strong> beyond what batch 1 surfaced. Combined with batch 1 (128 sub-criteria, 2 NEW gaps), Phase 1b totals <strong>268 sub-criteria across 12 frameworks, only 2 NEW gaps</strong> (information asset register; joint-controller status assessment).</p>
+<p><strong>Per-batch summary:</strong>
+- Batch 2 (NHS LLM + DSPT + NICE ESF + T.E.S.T.): 0 NEW gaps; ~14 already-roadmapped candidates surfaced (GV.OP-13 TCO, <a href="../groups/meta-evaluation/#es-me-9">ES.ME-9</a>/10, GV.OP-10/11 economic eval, TP.WB-8/9/10 FHIR, GV.VT-11/12, IO.FE-9, etc.)
+- Batch 3 (UK GDPR + CQC + FHIR + ICO): 0 NEW gaps; ~10 already-roadmapped candidates surfaced (GV.CR-12 board governance, GV.SG-19 PSIRF, IO.PX-11/12 complaint handling + engagement, TP.WB-11 PRSB, GV.PD-15 anonymisation provenance, etc.)</p>
+<p><strong>Cross-framework synergies confirmed</strong>: many gap candidates appear across 3-4 frameworks (e.g. <code>GV.CR-12 Board-Level AI Governance</code> covers CQC + RAI Principle 10 + Theme 4 + DTAC C3.1). These multi-framework candidates are the highest-confidence Phase 5 priorities.</p>
+<p><strong>Promotion-to-Tier-1 candidates</strong>: stable at 8 (4 from v5.0.1 + 4 from v5.1.1 batch 1). Batches 2 + 3 surfaced no additional promotion candidates.</p>
+<p><strong>Phase 5 surface estimate (post all of Phase 1b)</strong>: ~25-35 metric content changes. Post-Phase-5 counts would land <strong>221 → 245-255 metrics</strong>, <strong>45 → 65-75 Tier 1</strong>.</p>
+<p><strong>Phase 1b is now complete.</strong> All 12 Registry-transitively-named frameworks audited. Phase 5 is ready to commence pending user review and the Registry attestation form.</p>
 <h2 id="v511-2026-05-05">v5.1.1 (2026-05-05)<a class="headerlink" href="#v511-2026-05-05" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: Phase 1b framework coverage audits — batch 1 (DTAC, NHSE IG, DCB, MHRA).</strong></p>
 <p>No metric / catalogue content changes. One research-output file at repo root: <code>v5.1.1-phase-1b-framework-audits.md</code>.</p>
