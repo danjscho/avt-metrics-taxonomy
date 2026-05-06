@@ -1,5 +1,34 @@
 # Changelog
 
+## v5.1.4 (2026-05-06)
+
+**Patch release: v5.2.0-prep Registry-driven action list (Phase 5 reviewable triage).**
+
+No metric / catalogue content changes. One research-output file at repo root: `v5.2-registry-action-list.md`.
+
+The user provided the full text of the FTS notice 069369-2025 (NHS England's AVT Self-Certified Supplier Registry tender) — preserved verbatim in `reference-docs/v5.2-fts/find-tender-069369-2025-notice.md` (gitignored). The FTS notice is the public ceiling on what the Registry actually requires; the granular Atamis application pack remains inaccessible without supplier credentials.
+
+**Frameworks the FTS notice explicitly names**: DTAC + everything DTAC transitively names (DSPT, Cyber Essentials, FHIR R4, WCAG, AIS, NHS Number / PDS, ICO registration, DCB0129); MHRA Class 1 medical device + post-market surveillance; "the guidance issued by NHS England" (NHSE IG Guidance March 2026 transitively).
+
+**Frameworks audited in Phase 1b but NOT Registry-direct**: NHS LLM Framework, NICE ESF, NHS T.E.S.T., PSIRF, PRSB. These map to the Registry-deferrable tier.
+
+**Action list compiled in `v5.2-registry-action-list.md`**:
+
+- **10 promotions** Tier 2 → Tier 1 (GV.VT-2/-13/-14, ES.ME-8, IO.FE-1, TP.ASR-4, GV.SG-3, GV.SC-1/-2/-6) — each with FTS-direct rationale
+- **16 pull-throughs** from `_gaps.md` (5 §2a MHRA + 3 §2c FHIR UK Core + 4 §1c NHSE IG + 1 §2d CQC + 2 §2g Caldicott + 1 §2f PRSB borderline-but-recommended)
+- **2 new mints**: `GV.PD-17 Information Asset Register Completeness` (T1) and `GV.VT-16 Joint-Controller Status Assessment` (T2)
+
+**Net effect on counts** (when Phase 5 lands as v5.3.0): 221 → 239 metrics; 45 → 63 Tier 1.
+
+**Three reviewer decision points flagged** in the file:
+1. Whether `GV.SC-1/-2/-6` cybersecurity cluster is genuinely T1-shape vs T2-shape (FTS silent on cadence)
+2. Whether the 2 new mints (`GV.PD-17`, `GV.VT-16`) belong as metrics or as a separate process-attestation kind
+3. Big-bang vs staged release shape for v5.3.0
+
+**Honest scope ceiling preserved**: the Atamis application pack remains the unaccessed ground truth. Phase 5 verdicts may shift if/when that pack becomes accessible.
+
+**~73 gap items would remain in `_gaps.md` after Phase 5** — concentrated in product-capability gaps (RSET §1a, ~9), RAI Playbook + Theme governance gaps (§4, ~38), and framework-deferrable gaps (NICE ESF, T.E.S.T., PSIRF, remaining CQC + PRSB, ~21).
+
 ## v5.1.3 (2026-05-05)
 
 **Patch release: archive housekeeping.**
