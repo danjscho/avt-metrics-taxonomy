@@ -280,14 +280,14 @@ For each automated metric m in deployed use: collect a sample of N encounters sc
 
 ---
 
-### ES.ME-8 🟡 Outcome Evidence Commitment Status
+### ES.ME-8 🟢 Outcome Evidence Commitment Status
 
 Whether the vendor and deployer have committed - contractually, via published protocol, or via post-market surveillance plan - to evaluating the actual clinical outcomes of AVT deployment. Operationalises the boundary set by [Outcomes Boundary](#outcomes-boundary): this taxonomy does not measure clinical outcomes, but it can measure whether outcome evaluation is in train.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | ES.ME-8 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -298,6 +298,8 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368] |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.f directly requires "Evidence of impact and benefit in the NHS" via case studies or reports).
 
 **Why this tier?**
 

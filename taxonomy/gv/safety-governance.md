@@ -117,14 +117,14 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
-### GV.SG-3 🟡 Performance Degradation Detection Latency
+### GV.SG-3 🟢 Performance Degradation Detection Latency
 
 Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation - performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
 | **Reference** | GV.SG-3 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                             |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Safety                                                             |
@@ -135,6 +135,8 @@ Time delay between the onset of model performance degradation and its detection 
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
 |**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
+
+**Change history:** v5.3.0 (promoted to Tier 1: MHRA Class 1 post-market surveillance — FTS notice Step 1.i directly requires PMS evidence; ongoing performance-degradation detection is a baseline expectation, not best-practice).
 
 **Why this tier?**
 

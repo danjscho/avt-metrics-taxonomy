@@ -234,8 +234,8 @@ A trust with multiple AVT platforms deployed across different services should pr
 
 ### By Priority Tier
 
-- **🟢 Tier 1 - Minimum Viable Assurance**: 45 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 97 metrics - recommended with reasonable governance capacity
+- **🟢 Tier 1 - Minimum Viable Assurance**: 52 metrics - what every deployer must measure to operate safely
+- **🟡 Tier 2 - Recommended Assurance**: 90 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
@@ -4096,14 +4096,14 @@ def clinical_keyword_error_rate(reference, hypothesis):
 > - 🔵 **Intersectional Performance** (Fairness & Equity) - performance at demographic intersections
 > - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) - formal intersectional fairness quantification
 
-### TP.ASR-4 🟡 Demographic-Disaggregated WER
+### TP.ASR-4 🟢 Demographic-Disaggregated WER
 
 WER by accent group, first language, age band, and speech characteristics. NAS proposes max 5pp gap across groups.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.ASR-4 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fairness & Equity |
@@ -4114,6 +4114,8 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
+
+**Change history:** v5.3.0 (promoted to Tier 1: MHRA GMLP-3 representative-datasets requirement + Performance & Monitoring Response document's "boundaries and bias" content; both transitive from FTS notice).
 
 **Why this tier?**
 
@@ -9854,14 +9856,14 @@ Medication Error Rate = |medication_errors_reported| / |total_prescriptions|, st
 
 > 💡 This closes the loop between AVT documentation accuracy and patient safety outcomes. The implicit theory of change for AVT safety is: better documentation → fewer medication errors → safer patients. Each link in that chain is assumed but not measured. This metric tests the final link directly. If it shows no effect, the proximal metrics need re-examination; if it shows effect, the proximal metrics are validated as meaningful safety signals.
 
-### IO.FE-1 🟡 Deployment Equity Index
+### IO.FE-1 🟢 Deployment Equity Index
 
 Whether AVT creates two-tier documentation quality across practices. Track against deprivation indices.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-1 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fairness & Equity |
@@ -9872,6 +9874,8 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
 | **Source** | [NHS-LLM-Framework] wider impact |
+
+**Change history:** v5.3.0 (promoted to Tier 1: NHSE IG Guidance + CIO/CCIO guidance equity requirement, transitively required by FTS notice "compliance with the guidance issued by NHS England").
 
 **Why this tier?**
 
@@ -10283,14 +10287,14 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
-### GV.SG-3 🟡 Performance Degradation Detection Latency
+### GV.SG-3 🟢 Performance Degradation Detection Latency
 
 Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation - performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
 | **Reference** | GV.SG-3 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                             |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Safety                                                             |
@@ -10301,6 +10305,8 @@ Time delay between the onset of model performance degradation and its detection 
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
 |**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
+
+**Change history:** v5.3.0 (promoted to Tier 1: MHRA Class 1 post-market surveillance — FTS notice Step 1.i directly requires PMS evidence; ongoing performance-degradation detection is a baseline expectation, not best-practice).
 
 **Why this tier?**
 
@@ -13533,14 +13539,14 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 ---
 
-### GV.VT-2 🟡 Telemetry Provision Completeness
+### GV.VT-2 🟢 Telemetry Provision Completeness
 
 Whether the vendor provides the operational data needed for deployer-side monitoring: per-inference logging, confidence scores, model version per output, intermediate outputs for error attribution, and demographic performance data.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-2 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -13552,7 +13558,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
-**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact).
+**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact); v5.3.0 (promoted to Tier 1: Performance & Monitoring Response document directly required by FTS notice 069369-2025 — telemetry is the substrate for the document's "model accuracy and control, boundaries and bias" content).
 
 **Why this tier?**
 
@@ -13866,14 +13872,14 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 
 ---
 
-### GV.VT-13 🟡 Evidence Pack Freshness
+### GV.VT-13 🟢 Evidence Pack Freshness
 
 Currency and provenance of the vendor's published evidence pack on the National Commercial & Procurement Hub. The NHS England AVT Self-Certified Supplier Registry is a self-certification scheme — NHSE undertakes only preliminary completion checks; the substantive evidence (DCB0129 hazard log, DTAC, DSPT, DPIA, MHRA registration, post-market surveillance plans, etc.) is published by the vendor for adopting Trusts to inspect. The integrity of that evidence pack is therefore a procurement-relevant signal: stale evidence published two years ago against a system that has since changed three times is materially worse than current evidence against a stable system, even if both vendors appear listed.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-13 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -13884,6 +13890,8 @@ Currency and provenance of the vendor's published evidence pack on the National 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | [NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice explicitly imposes ongoing currency obligation — "All collateral must be kept up to date and current. It is the supplier's responsibility to keep the Hub up to date").
 
 **Why this tier?**
 
@@ -13950,14 +13958,14 @@ Composite freshness score per component:
 
 ---
 
-### GV.VT-14 🟡 Indicative Pricing Transparency
+### GV.VT-14 🟢 Indicative Pricing Transparency
 
 Publication and currency of the vendor's indicative pricing matrix per the NHS England AVT Self-Certified Supplier Registry requirement (req #12 of 13). The Registry mandates publication of indicative pricing as a listing condition; this metric measures whether the published pricing is current, complete (covers the declared use cases), and aligned with the deployer's contracted scope.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-14 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -13968,6 +13976,8 @@ Publication and currency of the vendor's indicative pricing matrix per the NHS E
 | **Outcome Type** | Process |
 | **Applicability** | AVT-Specific |
 | **Source** | [NHSE-AVT-Registry] req #12 |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.a directly requires Indicative Pricing Matrix submission).
 
 **Why this tier?**
 
@@ -14381,14 +14391,14 @@ For each automated metric m in deployed use: collect a sample of N encounters sc
 
 ---
 
-### ES.ME-8 🟡 Outcome Evidence Commitment Status
+### ES.ME-8 🟢 Outcome Evidence Commitment Status
 
 Whether the vendor and deployer have committed - contractually, via published protocol, or via post-market surveillance plan - to evaluating the actual clinical outcomes of AVT deployment. Operationalises the boundary set by [Outcomes Boundary](#outcomes-boundary): this taxonomy does not measure clinical outcomes, but it can measure whether outcome evaluation is in train.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | ES.ME-8 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | One-off gate; Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -14399,6 +14409,8 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
 | **Source** | This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368] |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.f directly requires "Evidence of impact and benefit in the NHS" via case studies or reports).
 
 **Why this tier?**
 

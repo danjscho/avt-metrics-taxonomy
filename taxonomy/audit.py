@@ -68,7 +68,7 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 45, 2: 97, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 52, 2: 90, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 50,
     "AVT-Contextualised": 79,

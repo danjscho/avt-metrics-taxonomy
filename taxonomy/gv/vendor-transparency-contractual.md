@@ -66,14 +66,14 @@ Compliance rate = |updates_notified_before_deployment| / |total_updates_deployed
 
 ---
 
-### GV.VT-2 🟡 Telemetry Provision Completeness
+### GV.VT-2 🟢 Telemetry Provision Completeness
 
 Whether the vendor provides the operational data needed for deployer-side monitoring: per-inference logging, confidence scores, model version per output, intermediate outputs for error attribution, and demographic performance data.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-2 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -85,7 +85,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Applicability** | General Healthcare AI |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
-**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact).
+**Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact); v5.3.0 (promoted to Tier 1: Performance & Monitoring Response document directly required by FTS notice 069369-2025 — telemetry is the substrate for the document's "model accuracy and control, boundaries and bias" content).
 
 **Why this tier?**
 
@@ -399,14 +399,14 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 
 ---
 
-### GV.VT-13 🟡 Evidence Pack Freshness
+### GV.VT-13 🟢 Evidence Pack Freshness
 
 Currency and provenance of the vendor's published evidence pack on the National Commercial & Procurement Hub. The NHS England AVT Self-Certified Supplier Registry is a self-certification scheme — NHSE undertakes only preliminary completion checks; the substantive evidence (DCB0129 hazard log, DTAC, DSPT, DPIA, MHRA registration, post-market surveillance plans, etc.) is published by the vendor for adopting Trusts to inspect. The integrity of that evidence pack is therefore a procurement-relevant signal: stale evidence published two years ago against a system that has since changed three times is materially worse than current evidence against a stable system, even if both vendors appear listed.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-13 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -417,6 +417,8 @@ Currency and provenance of the vendor's published evidence pack on the National 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | [NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice explicitly imposes ongoing currency obligation — "All collateral must be kept up to date and current. It is the supplier's responsibility to keep the Hub up to date").
 
 **Why this tier?**
 
@@ -483,14 +485,14 @@ Composite freshness score per component:
 
 ---
 
-### GV.VT-14 🟡 Indicative Pricing Transparency
+### GV.VT-14 🟢 Indicative Pricing Transparency
 
 Publication and currency of the vendor's indicative pricing matrix per the NHS England AVT Self-Certified Supplier Registry requirement (req #12 of 13). The Registry mandates publication of indicative pricing as a listing condition; this metric measures whether the published pricing is current, complete (covers the declared use cases), and aligned with the deployer's contracted scope.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | GV.VT-14 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Meta-evaluation |
@@ -501,6 +503,8 @@ Publication and currency of the vendor's indicative pricing matrix per the NHS E
 | **Outcome Type** | Process |
 | **Applicability** | AVT-Specific |
 | **Source** | [NHSE-AVT-Registry] req #12 |
+
+**Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.a directly requires Indicative Pricing Matrix submission).
 
 **Why this tier?**
 
