@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.1.3"
+TAXONOMY_VERSION = "v5.1.4"
 TAXONOMY_DATE = "2026-05-04"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
