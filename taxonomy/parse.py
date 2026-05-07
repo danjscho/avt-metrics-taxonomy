@@ -220,6 +220,15 @@ class Metric:
         return self.dimensions.get("Source", "")
 
     @property
+    def family(self) -> str | None:
+        """Named-metric-family membership (v5.4.0+); None if metric is unaffiliated.
+
+        Family values are declared in `_families.md` and audit-checked for
+        resolution; the dimensions table carries the value per metric.
+        """
+        return self.dimensions.get("Family") or None
+
+    @property
     def is_subpart(self) -> bool:
         """True iff this metric is a sub-part of a parent (ref_id ends in [a-z])."""
         return bool(SUBPART_REF_ID_RE.match(self.ref_id))

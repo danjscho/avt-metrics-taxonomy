@@ -407,6 +407,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Maturity**           |Proposed / Novel                                                     |
 |**Outcome Type**       |Distal                                                               |
 |**Applicability**      |General Healthcare AI                                                |
+|**Family**             |Medication Safety Thread|
 |**Source**             |[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories|
 
 **Why this tier?**

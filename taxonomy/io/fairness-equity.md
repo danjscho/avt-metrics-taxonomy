@@ -15,6 +15,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Family** | Demographic Equity Disaggregation |
 | **Source** | [NHS-LLM-Framework] wider impact |
 
 **Change history:** v5.3.0 (promoted to Tier 1: NHSE IG Guidance + CIO/CCIO guidance equity requirement, transitively required by FTS notice "compliance with the guidance issued by NHS England").
@@ -56,6 +57,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Maturity**           |Proposed / Novel                                              |
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |AVT-Specific                                                  |
+|**Family**             |Demographic Equity Disaggregation|
 |**Source**             |[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature|
 
 **Why this tier?**
@@ -132,6 +134,7 @@ Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women).
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Family** | Demographic Equity Disaggregation |
 | **Source** | Intersectionality literature applied to AI fairness |
 
 **Why this tier?**
@@ -171,6 +174,7 @@ Extension of the existing Intersectional Performance metric proposing a single q
 |**Maturity**           |Emerging                                                                             |
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
+|**Family**             |Demographic Equity Disaggregation|
 |**Source**             |Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)|
 
 **Why this tier?**

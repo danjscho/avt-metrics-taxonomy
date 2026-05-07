@@ -23,7 +23,9 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **Unaffiliated**: 194 metrics - the remainder, not currently grouped into a named family
+- **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 10 metrics — see [Families](families.md#nhse-ig-attestation)
+- **PRSB Semantic Completeness & Write-back Fidelity** (Downstream Write-back) — *new in v5.4.0*: 4 metrics — see [Families](families.md#prsb-semantic-completeness--write-back-fidelity)
+- **Unaffiliated**: 195 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 

@@ -15,6 +15,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Family** | Clinical Transcription Accuracy |
 | **Source** | [Wang-ADS-Eval-2025]; standard ASR literature |
 
 **Why this tier?**
@@ -73,6 +74,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Family** | Clinical Transcription Accuracy |
 | **Source** | [OxonFair-2024] (proposed AVT extension; future work) |
 
 **Why this tier?**
@@ -157,6 +159,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Family** | Clinical Transcription Accuracy |
 | **Source** | [OxonFair-2024] (healthcare voice fairness extension; future work) |
 
 **Why this tier?**
@@ -248,6 +251,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Family** | Demographic Equity Disaggregation |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
 
 **Change history:** v5.3.0 (promoted to Tier 1: MHRA GMLP-3 representative-datasets requirement + Performance & Monitoring Response document's "boundaries and bias" content; both transitive from FTS notice).
@@ -321,6 +325,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Family** | Demographic Equity Disaggregation |
 | **Source** | [OxonFair-2024] (extension analysis; future work) |
 
 **Why this tier?**

@@ -15,6 +15,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Post-Generation Correction |
 | **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -112,6 +113,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Post-Generation Correction |
 | **Source** | [Abridge-Whitepaper-2025]; [DeepScore] |
 
 **Why this tier?**
@@ -350,6 +352,7 @@ Cross-system edit analysis at vendor-reported deployment scale (millions of enco
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Post-Generation Correction |
 | **Source** | [Abridge-Whitepaper-2025] |
 
 **Why this tier?**
@@ -442,6 +445,7 @@ Where in the note do clinicians make edits? Concentration in specific sections (
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Post-Generation Correction |
 | **Source** | Extends edit-pattern monitoring with structural awareness |
 
 **Why this tier?**

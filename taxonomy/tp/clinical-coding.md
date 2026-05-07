@@ -167,6 +167,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |AVT-Contextualised                                        |
+|**Family**             |Medication Safety Thread|
 |**Source**             |[NHS-BSA-dm-plus-d]; gap identified in published AVT literature|
 
 **Why this tier?**
@@ -337,6 +338,7 @@ Whether AVT-driven changes in coding distribution are equitably spread across pa
 |**Maturity**           |Proposed / Novel                                      |
 |**Outcome Type**       |Distal                                                |
 |**Applicability**      |AVT-Contextualised                                    |
+|**Family**             |Demographic Equity Disaggregation|
 |**Source**             |Extension of existing Deployment Equity Index to coding dimension|
 
 **Why this tier?**

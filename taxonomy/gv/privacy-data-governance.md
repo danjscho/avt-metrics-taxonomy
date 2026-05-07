@@ -357,6 +357,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Family** | NHSE IG Attestation |
 | **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
@@ -421,6 +422,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Family** | NHSE IG Attestation |
 | **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
@@ -700,6 +702,7 @@ Whether the deploying organisation's published privacy notices have been updated
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
 
 **Why this tier?**
@@ -739,6 +742,7 @@ Whether the deployer's Subject Access Request handling and AVT data-deletion pro
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
 
 **Why this tier?**
@@ -778,6 +782,7 @@ Whether the deploying organisation's AVT-side tooling supports the UK GDPR Artic
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
 
 **Why this tier?**
@@ -802,7 +807,9 @@ Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishab
 
 ### GV.PD-17 🟡 DPIA Justification Quality
 
-Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian — extending [GV.CR-7 DPIA Template Completion Rate], which tests structural completion. Caldicott Principle 1 ("justify the purpose") is the substantive test that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate.
+Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian. **Sub-part of the DPIA construct paired with [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7)**: GV.CR-7 is the parent (structural completion of all template sections); this metric is the substantive Caldicott Principle 1 ("justify the purpose") sub-part that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate. Both checks are needed because a DPIA can be structurally complete and substantively weak on purpose justification.
+
+**Change history:** v5.4.0 (formalised parent + sub-part relationship with GV.CR-7 — explicit pairing language added; cross-cluster placement preserved because GV.CR-7 is a compliance-attestation gate while GV.PD-17 is a privacy-data-governance substantive review).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|

@@ -101,6 +101,21 @@ EXPECTED_CADENCE_VALUES = {
     "Event-triggered",
 }
 
+# v5.4.0: named-metric-family enum. Family values declared in `_families.md`
+# and recorded per-metric in the dimensions table. Family is optional —
+# metrics without family membership leave the field absent. Audit enforces
+# that any present value resolves to one of the declared families.
+EXPECTED_FAMILIES = {
+    "Clinical Content Fidelity",
+    "Reference-Based Text Similarity",
+    "Clinical Transcription Accuracy",
+    "Post-Generation Correction",
+    "Medication Safety Thread",
+    "Demographic Equity Disaggregation",
+    "NHSE IG Attestation",
+    "PRSB Semantic Completeness & Write-back Fidelity",
+}
+
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
 METRIC_HEADING = re.compile(
@@ -619,6 +634,30 @@ def check_cadence_values(all_metrics: list[Metric]) -> list[Finding]:
                         f"unknown element(s) {unknown}; "
                         f"each semicolon-separated element must be one of "
                         f"{sorted(EXPECTED_CADENCE_VALUES)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
+    return findings
+
+
+def check_family_resolves(all_metrics: list[Metric]) -> list[Finding]:
+    """Every metric's Family dimension, when present, must be one of the
+    declared families in EXPECTED_FAMILIES (v5.4.0+). Family is optional;
+    metrics without family membership leave the field absent."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        fam = m.dimensions.get("Family")
+        if fam is None or fam.strip() == "":
+            continue
+        if fam not in EXPECTED_FAMILIES:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-family",
+                    (
+                        f"metric {m.ref_id} has Family='{fam}', expected one of "
+                        f"{sorted(EXPECTED_FAMILIES)}"
                     ),
                     f"{m.file}:{m.line}",
                 )
@@ -1389,6 +1428,7 @@ def main() -> int:
     findings.extend(check_applicability_totals(all_metrics))
     findings.extend(check_maturity_values(all_metrics))
     findings.extend(check_cadence_values(all_metrics))
+    findings.extend(check_family_resolves(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))

@@ -15,6 +15,7 @@ N-gram overlap between generated and reference text. Demonstrably inadequate for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Reference-Based Text Similarity |
 | **Source** | [ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025] |
 
 **Why this tier?**
@@ -84,6 +85,7 @@ Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Reference-Based Text Similarity |
 | **Source** | [BERTScore-Zhang-2020]; [Croxford-2025] |
 
 **Why this tier?**
@@ -261,6 +263,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Clinical Content Fidelity |
 | **Source** | Various; [Asgari-Tortus-2025] reports 1.47% per sentence |
 
 **Why this tier?**
@@ -359,6 +362,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Clinical Content Fidelity |
 | **Source** | [Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
@@ -428,6 +432,7 @@ Parent construct covering automated factual-verification approaches: classifying
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Clinical Content Fidelity |
 | **Source** | See sub-parts |
 
 **Why this tier?**
@@ -892,6 +897,7 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Clinical Content Fidelity |
 | **Source** | Clinical NLP literature; identified as systematic LLM failure mode |
 
 **Why this tier?**
@@ -1090,6 +1096,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
+|**Family**             |Medication Safety Thread|
 |**Source**             |[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)|
 
 **Why this tier?**
@@ -1129,6 +1136,7 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Family** | Clinical Content Fidelity |
 | **Source** | Clinical NLP hedging/uncertainty literature |
 
 **Why this tier?**
@@ -1204,6 +1212,7 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Maturity**           |Established                                        |
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
+|**Family**             |Medication Safety Thread|
 |**Source**             |[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)|
 
 **Why this tier?**
