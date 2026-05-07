@@ -134,7 +134,9 @@ The two are deliberately different: named families are a structural taxonomy con
 
 ---
 
-## NHSE IG Attestation *(new in v5.4.0)*
+## NHSE IG Attestation { #nhse-ig-attestation }
+
+*(new in v5.4.0)*
 
 **Construct:** documentation and operational verification that AVT deployments comply with NHS England's March 2026 Information Governance Guidance — the binding deployer-side IG framework named transitively by the FTS notice 069369-2025 ("the guidance issued by NHS England"). The family spans transparency, consent, data subject rights, and lawful processing.
 
@@ -142,7 +144,7 @@ The two are deliberately different: named families are a structural taxonomy con
 
 **Why a family.** The 10 metrics share a single underlying construct — *did the deployer operationalise NHSE IG March 2026 across the AVT lifecycle?* — but live in different clusters because the assurance-question split puts compliance attestations in GV.CR and data-governance attestations in GV.PD. Cross-cluster placement is preserved; the family framing makes the IG-attestation thread visible.
 
-**Members of this family (10):**
+**Members of this family (11):**
 
 - 🟢 **GV.CR-1** Patient Dissent Recording Rate — per-encounter dissent recording and respect
 - 🟢 **GV.CR-2** Verbal Notification Compliance — proportion of consultations where verbal notification was delivered
@@ -154,6 +156,7 @@ The two are deliberately different: named families are a structural taxonomy con
 - 🟢 **GV.PD-13** Privacy Notice Currency & Completeness — privacy-notice version-currency and AVT-specific content
 - 🟡 **GV.PD-14** SAR Deletion-Pause Interaction — scenario test of SAR + deletion process composition
 - 🟡 **GV.PD-15** Right-to-Restrict Tooling Support — UK GDPR Article 18 tooling distinct from erasure
+- 🟢 **GV.PD-18** Information Asset Register Completeness — NHSE IG section 8 IAR registration with owner, lawful basis, retention, sub-processor, risk classification *(new in v5.4.0)*
 
 **Outstanding follow-ups.** Several members carry a "section ref to be added on next pass" marker pending the next NHSE IG-guidance review pass — see `v5.3-pre-mint-triage.md` *Outstanding follow-ups*. GV.CR-13's rubric remains placeholder until a national pilot lands.
 

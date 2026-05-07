@@ -68,13 +68,13 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 57, 2: 98, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 58, 2: 99, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 50,
     "AVT-Contextualised": 79,
-    "General Healthcare AI": 105,
+    "General Healthcare AI": 107,
 }
-EXPECTED_TOTAL = 234
+EXPECTED_TOTAL = 236
 
 # v3.8: Maturity values are constrained to a four-value enum. Non-canonical
 # values (e.g. "Partly Established", "Experimental") would silently pass the
@@ -638,6 +638,43 @@ def check_cadence_values(all_metrics: list[Metric]) -> list[Finding]:
                     f"{m.file}:{m.line}",
                 )
             )
+    return findings
+
+
+def check_within_cluster_order(metrics_by_file: dict[str, list[Metric]]) -> list[Finding]:
+    """Within each cluster file, metrics must appear in ascending numeric
+    ref-ID order (v5.4.0+). Sub-parts (e.g. TP.SN-7a) sort immediately
+    after their parent suffix-less form (TP.SN-7); within a numeric base,
+    suffix-less comes before any lettered suffix."""
+    findings: list[Finding] = []
+    for file_path, metrics in metrics_by_file.items():
+        if len(metrics) < 2:
+            continue
+        prev_key = None
+        prev_ref = None
+        for m in metrics:
+            # Extract numeric part + optional letter suffix
+            num_match = re.search(r"-(\d+)([a-z]?)$", m.ref_id)
+            if not num_match:
+                continue
+            n = int(num_match.group(1))
+            suf = num_match.group(2)
+            key = (n, suf)
+            if prev_key is not None and key < prev_key:
+                findings.append(
+                    Finding(
+                        "WARN",
+                        "ref-id-order",
+                        (
+                            f"{m.ref_id} appears after {prev_ref} but should "
+                            f"sort before it (within-cluster numeric ordering "
+                            f"convention, v5.4.0+)"
+                        ),
+                        f"{file_path}:{m.line}",
+                    )
+                )
+            prev_key = key
+            prev_ref = m.ref_id
     return findings
 
 
@@ -1428,6 +1465,7 @@ def main() -> int:
     findings.extend(check_applicability_totals(all_metrics))
     findings.extend(check_maturity_values(all_metrics))
     findings.extend(check_cadence_values(all_metrics))
+    findings.extend(check_within_cluster_order(metrics_by_file))
     findings.extend(check_family_resolves(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))

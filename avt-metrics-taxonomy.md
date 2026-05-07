@@ -1,15 +1,15 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.3.0, 2026-05-07.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.4.0, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
-**234 metrics** across **20 groups**, organised in six clusters. Includes 4 named metric families, 4 sub-clusters, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. The taxonomy maps to **13 NHS / regulatory / procurement frameworks** in [Standards Mapping](#standards-mapping). Two cross-cutting principles govern application:
+**236 metrics** across **20 groups**, organised in six clusters. Includes 4 named metric families, 4 sub-clusters, and 15 metrics carrying explicit underspecification warnings that flag specific measurement-science gaps in the published literature. The taxonomy maps to **13 NHS / regulatory / procurement frameworks** in [Standards Mapping](#standards-mapping). Two cross-cutting principles govern application:
 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.3.0** lands Phase 5 of the v5.x minimum-set extension: 7 promotions T2 → T1 against the FTS-direct surface (cybersecurity GV.SC-1/-2/-6 deliberately held at T2 pending industry-standard adversarial-testing maturity), and 13 new pull-through metrics from `_gaps.md` with full bodies — MHRA-driven (GV.CR-11, GV.SG-18, GV.VT-9, GV.VT-10, GV.PD-12), CQC well-led (GV.CR-12), NHSE IG-driven (GV.CR-13, GV.PD-13, GV.PD-14, GV.PD-15), Caldicott (GV.CR-14, GV.PD-17), and PRSB semantic completeness (TP.WB-8). Two metrics minted at Maturity: Proposed/Novel — GV.CR-13 (rubric pending pilot) and GV.VT-10 (MHRA Roadmap WP-2 outputs in development). FHIR UK Core (TP.WB-8/-9/-10 originally proposed) held back per reviewer; pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`. Counts 221 → 234; Tier 1 45 → 57 (+12 net Tier 1); Tier 2 97 → 98; Tier 3 unchanged at 79. Reviewer triage at `v5.3-pre-mint-triage.md`; merge & family sweep at `v5.3-merge-and-family-sweep.md` for review before any merges/families land in v5.3.1+. **v5.1.4** is a v5.2.0-prep PATCH adding the Registry-driven action list (`v5.2-registry-action-list.md` at repo root) anchored to the FTS notice 069369-2025 — 10 promotions T2→T1, 16 pull-throughs from `_gaps.md`, 2 new mints. No metric content edits; feeds Phase 5 reviewer decisions before v5.3.0 lands the actual changes. **v5.1.3** is housekeeping — cadence-audit research files (v5.0.3-cadence-plan.md, v5.0.3-cadence-audit.md) moved from repo root to archive/v5.0.3/ now that the cadence work is closed. **v5.1.2** completes Phase 1b with batches 2 + 3 (NHS LLM + DSPT + NICE ESF + T.E.S.T. + UK GDPR + CQC + FHIR + ICO — 140 more sub-criteria, 0 NEW gaps beyond batch 1, ~25 already-roadmapped gaps cross-confirmed). Phase 1b totals 268 sub-criteria across 12 frameworks, 2 NEW gaps overall, 8 promotion candidates. Research output only; no metric edits. **v5.1.1** is the first batch of Phase 1b framework coverage audits (DTAC + NHSE IG + DCB + MHRA — 128 sub-criteria, 2 NEW gaps, 8 promotion-to-Tier-1 candidates). Research output only; no metric edits. **v5.1.0** ships a cadence-dimension cleanup: `Measurement Cadence` is now multi-valued (semicolon-separated), and a new `Event-triggered` enum value names the pattern where a metric is re-measured on a material change event (model update, contract renewal, sub-processor disclosure, new failure mode discovered, retirement event, etc.). 32 metric edits — 18 Cadence updates that move metrics to multi-value or to `Event-triggered`, plus 14 Lifecycle Phases trims for the v5.0.3 multi-cadence-deferred set. New audit check `check_cadence_values` enforces the four-element enum across the catalogue. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.4.0** lands the v5.3 merge & family sweep + 2 new mints: 2 parent + sub-part formalisations (GV.CR-9 / GV.SG-18 PCCP pair; GV.CR-7 / GV.PD-17 DPIA pair) where cross-cluster placement is preserved but the relationship is named explicitly; new `_families.md` page consolidating all 8 named-metric families with audit-enforced `Family` dimension on ~50 member metrics; new `_layers-of-defence.md` first-class principle naming the prevention / detection / limitation framing; new `_dimensions-overview.md` reader-orientation page disambiguating the 12 structural cuts; 2 v5.4 mints (GV.PD-18 Information Asset Register Completeness 🟢, GV.VT-11 Joint-Controller Status Assessment 🟡 — both NHSE-IG-derived); within-cluster numerical sort enforced via new audit check `check_within_cluster_order`. Counts 234 → 236. **v5.3.0** lands Phase 5 of the v5.x minimum-set extension: 7 promotions T2 → T1 against the FTS-direct surface (cybersecurity GV.SC-1/-2/-6 deliberately held at T2 pending industry-standard adversarial-testing maturity), and 13 new pull-through metrics from `_gaps.md` with full bodies — MHRA-driven (GV.CR-11, GV.SG-18, GV.VT-9, GV.VT-10, GV.PD-12), CQC well-led (GV.CR-12), NHSE IG-driven (GV.CR-13, GV.PD-13, GV.PD-14, GV.PD-15), Caldicott (GV.CR-14, GV.PD-17), and PRSB semantic completeness (TP.WB-8). Two metrics minted at Maturity: Proposed/Novel — GV.CR-13 (rubric pending pilot) and GV.VT-10 (MHRA Roadmap WP-2 outputs in development). FHIR UK Core (TP.WB-8/-9/-10 originally proposed) held back per reviewer; pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`. Counts 221 → 234; Tier 1 45 → 57 (+12 net Tier 1); Tier 2 97 → 98; Tier 3 unchanged at 79. Reviewer triage at `v5.3-pre-mint-triage.md`; merge & family sweep at `v5.3-merge-and-family-sweep.md` for review before any merges/families land in v5.3.1+. **v5.1.4** is a v5.2.0-prep PATCH adding the Registry-driven action list (`v5.2-registry-action-list.md` at repo root) anchored to the FTS notice 069369-2025 — 10 promotions T2→T1, 16 pull-throughs from `_gaps.md`, 2 new mints. No metric content edits; feeds Phase 5 reviewer decisions before v5.3.0 lands the actual changes. **v5.1.3** is housekeeping — cadence-audit research files (v5.0.3-cadence-plan.md, v5.0.3-cadence-audit.md) moved from repo root to archive/v5.0.3/ now that the cadence work is closed. **v5.1.2** completes Phase 1b with batches 2 + 3 (NHS LLM + DSPT + NICE ESF + T.E.S.T. + UK GDPR + CQC + FHIR + ICO — 140 more sub-criteria, 0 NEW gaps beyond batch 1, ~25 already-roadmapped gaps cross-confirmed). Phase 1b totals 268 sub-criteria across 12 frameworks, 2 NEW gaps overall, 8 promotion candidates. Research output only; no metric edits. **v5.1.1** is the first batch of Phase 1b framework coverage audits (DTAC + NHSE IG + DCB + MHRA — 128 sub-criteria, 2 NEW gaps, 8 promotion-to-Tier-1 candidates). Research output only; no metric edits. **v5.1.0** ships a cadence-dimension cleanup: `Measurement Cadence` is now multi-valued (semicolon-separated), and a new `Event-triggered` enum value names the pattern where a metric is re-measured on a material change event (model update, contract renewal, sub-processor disclosure, new failure mode discovered, retirement event, etc.). 32 metric edits — 18 Cadence updates that move metrics to multi-value or to `Event-triggered`, plus 14 Lifecycle Phases trims for the v5.0.3 multi-cadence-deferred set. New audit check `check_cadence_values` enforces the four-element enum across the catalogue. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -371,7 +371,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **What it's NOT:** Maturity is **not** Tier. Tier is *deployment importance*; Maturity is *measurement-science maturity*. A regulator-named obligation (e.g. NHSE IG section X) creates a Tier 1 importance even if no validated rubric exists yet — those metrics land at Tier 1 with Maturity: Proposed/Novel and a follow-up to upgrade Maturity once a rubric is piloted.
 
-**See also:** the [underspecification warnings](summary.md) flag the 15 metrics where Maturity is genuinely contested (Tier A: no methodology / Tier B: concept defined no AVT validation / Tier C: technically defined but clinical validity unproven).
+**See also:** the underspecification warnings (in the index Summary section) flag the 15 metrics where Maturity is genuinely contested (Tier A: no methodology / Tier B: concept defined no AVT validation / Tier C: technically defined but clinical validity unproven).
 
 ### Outcome Type
 
@@ -421,13 +421,13 @@ Cluster contains Group contains Metric. Pipeline Layer is mostly determined by G
 
 ### By Priority Tier
 
-- **🟢 Tier 1 - Minimum Viable Assurance**: 57 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 98 metrics - recommended with reasonable governance capacity
+- **🟢 Tier 1 - Minimum Viable Assurance**: 58 metrics - what every deployer must measure to operate safely
+- **🟡 Tier 2 - Recommended Assurance**: 99 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
-- **Established**: 60 metrics
+- **Established**: 62 metrics
 - **Emerging**: 53 metrics
 - **Vendor-Proprietary**: 4 metrics
 - **Proposed / Novel**: 110 metrics
@@ -442,9 +442,9 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 10 metrics — see [Families](families.md#nhse-ig-attestation)
+- **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 11 metrics — see [Families](families.md#nhse-ig-attestation)
 - **PRSB Semantic Completeness & Write-back Fidelity** (Downstream Write-back) — *new in v5.4.0*: 4 metrics — see [Families](families.md#prsb-semantic-completeness--write-back-fidelity)
-- **Unaffiliated**: 195 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 196 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -622,9 +622,9 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 | Classification | Count | Percentage |
 |----------------|-------|------------|
 | AVT-Specific | 50 | 21% |
-| AVT-Contextualised | 79 | 34% |
-| General Healthcare AI | 105 | 45% |
-| **Total** | **234** | **100%** |
+| AVT-Contextualised | 79 | 33% |
+| General Healthcare AI | 107 | 45% |
+| **Total** | **236** | **100%** |
 
 ### By Cluster
 
@@ -1111,7 +1111,9 @@ The two are deliberately different: named families are a structural taxonomy con
 
 ---
 
-## NHSE IG Attestation *(new in v5.4.0)*
+## NHSE IG Attestation { #nhse-ig-attestation }
+
+*(new in v5.4.0)*
 
 **Construct:** documentation and operational verification that AVT deployments comply with NHS England's March 2026 Information Governance Guidance — the binding deployer-side IG framework named transitively by the FTS notice 069369-2025 ("the guidance issued by NHS England"). The family spans transparency, consent, data subject rights, and lawful processing.
 
@@ -1119,7 +1121,7 @@ The two are deliberately different: named families are a structural taxonomy con
 
 **Why a family.** The 10 metrics share a single underlying construct — *did the deployer operationalise NHSE IG March 2026 across the AVT lifecycle?* — but live in different clusters because the assurance-question split puts compliance attestations in GV.CR and data-governance attestations in GV.PD. Cross-cluster placement is preserved; the family framing makes the IG-attestation thread visible.
 
-**Members of this family (10):**
+**Members of this family (11):**
 
 - 🟢 **GV.CR-1** Patient Dissent Recording Rate — per-encounter dissent recording and respect
 - 🟢 **GV.CR-2** Verbal Notification Compliance — proportion of consultations where verbal notification was delivered
@@ -1131,6 +1133,7 @@ The two are deliberately different: named families are a structural taxonomy con
 - 🟢 **GV.PD-13** Privacy Notice Currency & Completeness — privacy-notice version-currency and AVT-specific content
 - 🟡 **GV.PD-14** SAR Deletion-Pause Interaction — scenario test of SAR + deletion process composition
 - 🟡 **GV.PD-15** Right-to-Restrict Tooling Support — UK GDPR Article 18 tooling distinct from erasure
+- 🟢 **GV.PD-18** Information Asset Register Completeness — NHSE IG section 8 IAR registration with owner, lawful basis, retention, sub-processor, risk classification *(new in v5.4.0)*
 
 **Outstanding follow-ups.** Several members carry a "section ref to be added on next pass" marker pending the next NHSE IG-guidance review pass — see `v5.3-pre-mint-triage.md` *Outstanding follow-ups*. GV.CR-13's rubric remains placeholder until a national pilot lands.
 
@@ -2906,7 +2909,7 @@ Consolidated register of metrics not yet in the taxonomy but flagged during mapp
 - `deferred` - considered and set aside with reasoning; may revisit
 - `rejected` - considered and dismissed; reasoning preserved so it's not re-raised
 
-**Totals across origins:** 74 outstanding candidates (9 external-review accepted, 4 external-review deferred, 0 NHSE IG, 13 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens) plus 15 promoted-in-earlier-releases rows preserved at the bottom of this file (§7) for historical record. The build's `gap_count` ignores §7.
+**Totals across origins:** 74 outstanding candidates (9 external-review accepted, 4 external-review deferred, 0 NHSE IG, 13 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens) plus 17 promoted-in-earlier-releases rows preserved at the bottom of this file (§7) for historical record. The build's `gap_count` ignores §7.
 
 ---
 
@@ -3206,12 +3209,21 @@ Rows here have already been promoted to active metrics in earlier releases. They
 | DPIA Justification Quality | 🟡 2 | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends GV.CR-7 completion metric. | **GV.PD-17** (v5.3.0) |
 | Consultation-Type Appropriateness Assessment | 🟢 1 | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams). High-risk carve-outs. | **GV.CR-14** (v5.3.0) |
 
-### 7g. Cumulative roll-up
+### 7g. NHSE IG additional mints (2 → both minted directly in v5.4.0)
 
-- **15 candidates promoted** across all releases to date (2 at v3.3, 13 at v5.3.0)
+These two were not enumerated in §1c at v5.3.0 time — they surfaced as additional NHSE IG-driven gaps during the v5.1.1 Phase 1b batch 1 framework audit and were tracked as v5.4.0 mints in `v5.2-registry-action-list.md §C`. They are minted directly without an intermediate `_gaps.md` row.
+
+| Title | Tier at promotion | What it measured | Landed at |
+|---|---|---|---|
+| Information Asset Register Completeness | 🟢 1 | NHSE IG section 8 IAR registration with named owner, lawful basis, retention period, sub-processor list, risk classification. | **GV.PD-18** (v5.4.0) |
+| Joint-Controller Status Assessment | 🟡 2 | UK GDPR Article 26 + NHSE IG section 5 binary determination distinct from sub-processor disclosure. | **GV.VT-11** (v5.4.0) |
+
+### 7h. Cumulative roll-up
+
+- **17 candidates promoted** across all releases to date (2 at v3.3, 13 at v5.3.0, 2 at v5.4.0)
 - 4 origin sections fully closed (NHSE IG, MHRA SaMD)
 - 4 origin sections partially closed (NICE ESF, CQC, PRSB, Caldicott)
-- The build's `gap_count` reports outstanding gaps only (74 as of v5.3.0)
+- The build's `gap_count` reports outstanding gaps only (74 as of v5.4.0)
 
 # Glossary
 
@@ -3344,7 +3356,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.3.0` / `2026-05-07` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.4.0` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -13403,74 +13415,6 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 ---
 
 
-### GV.PD-16 🟢 Decommissioning Data Handling Compliance
-
-When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
-
-| Dimension | Value |
-|-----------|-------|
-| **Reference** | GV.PD-16 |
-| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate; Event-triggered |
-| **Pipeline Layer** | Cross-cutting |
-| **Assurance Question** | Safety |
-| **Measurement Method** | Human Review |
-| **Lifecycle Phases** | Pre-deployment, Continuous |
-| **Responsible Actors** | Vendor, Deployer |
-| **Maturity** | Emerging |
-| **Outcome Type** | Proximal |
-| **Applicability** | AVT-Contextualised |
-| **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
-
-**Why this tier?**
-
-> Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.
-
-**Formal Definition**
-
-```
-Compliance gate (pre-deployment) = the deployer's DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
-
-Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
-
-Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance's three-class outcome distinction).
-```
-
-**Reference Standard**
-
-> Inherits the storage-location enumeration from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7), model training pipelines per [GV.PD-11 Right to Erasure Compliance](#gv-pd-11), and any data ingested for fine-tuning per [GV.PD-7 Training Data Inclusion Status](#gv-pd-7). The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to [DCB0129] / [DCB0160] retirement provisions and to [SI-2024-1368] post-market surveillance closure for any MHRA-classified component.
-
-**Operational Specification**
-
-> - **Window:** procurement contract review (one-off gate); per-event tracking when decommissioning occurs.
-> - **Three sub-metrics MANDATORY:** (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).
-> - **Per-storage-location reporting MANDATORY:** the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).
-> - **Sub-processor cooperation tracked:** every sub-processor in the [GV.VT-7](#gv-vt-7) discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.
-> - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
-> - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
-
-**Trigger Conditions**
-
-> ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
->
-> - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
-> - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
-> - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
->
-> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
-
-
-
-**Limitations**
-
-> Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.
-
-**Novel Thinking / Implications**
-
-> 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
-
----
-
 ### GV.PD-12 🟡 Training Data Representativeness Documentation
 
 Documentation of whether the AVT system's training data covers the intended patient population across demographic and clinical-setting strata — age, ethnicity, accent, comorbidity profile, deprivation, and care-setting mix. The metric is the foundational pre-condition for downstream bias-mitigation work: a deployer cannot defensibly run [TP.ASR-4 Demographic-Disaggregated WER] or [IO.FE-1 Deployment Equity Index] without first knowing whether the training data could plausibly support equivalent performance across strata.
@@ -13630,6 +13574,74 @@ Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishab
 
 ---
 
+### GV.PD-16 🟢 Decommissioning Data Handling Compliance
+
+When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.PD-16 |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | One-off gate; Event-triggered |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
+
+**Why this tier?**
+
+> Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.
+
+**Formal Definition**
+
+```
+Compliance gate (pre-deployment) = the deployer's DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
+
+Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
+
+Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance's three-class outcome distinction).
+```
+
+**Reference Standard**
+
+> Inherits the storage-location enumeration from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7), model training pipelines per [GV.PD-11 Right to Erasure Compliance](#gv-pd-11), and any data ingested for fine-tuning per [GV.PD-7 Training Data Inclusion Status](#gv-pd-7). The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to [DCB0129] / [DCB0160] retirement provisions and to [SI-2024-1368] post-market surveillance closure for any MHRA-classified component.
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when decommissioning occurs.
+> - **Three sub-metrics MANDATORY:** (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).
+> - **Per-storage-location reporting MANDATORY:** the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).
+> - **Sub-processor cooperation tracked:** every sub-processor in the [GV.VT-7](#gv-vt-7) discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.
+> - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
+> - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
+
+**Trigger Conditions**
+
+> ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
+> - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
+> - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
+
+**Limitations**
+
+> Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.
+
+**Novel Thinking / Implications**
+
+> 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
+
+---
+
 ### GV.PD-17 🟡 DPIA Justification Quality
 
 Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian. **Sub-part of the DPIA construct paired with [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7)**: GV.CR-7 is the parent (structural completion of all template sections); this metric is the substantive Caldicott Principle 1 ("justify the purpose") sub-part that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate. Both checks are needed because a DPIA can be structurally complete and substantively weak on purpose justification.
@@ -13668,6 +13680,46 @@ Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott G
 **Novel Thinking / Implications**
 
 > 💡 The completion-vs-quality gap is one of the most consistent pattern in IG metrics: a fully-completed DPIA can still be substantively wrong on purpose justification. Caldicott Guardian review is the structural mechanism the NHS already has for catching this; making it a separately-measured Tier 2 metric forces the review to happen on a documented cadence rather than only when something goes wrong.
+
+---
+
+### GV.PD-18 🟢 Information Asset Register Completeness
+
+Whether the deploying organisation maintains an Information Asset Register (IAR) that includes the AVT system as a named information asset with a documented owner, lawful basis, retention period, sub-processor list, and risk classification. NHSE IG section 8 explicitly requires AVT-deploying organisations to register the system as an information asset alongside their other clinical-system assets — the IAR is the index that ties together DPIA, sub-processor disclosure, retention timing, and incident escalation.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-18 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                          |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation                                      |
+|**Source**             |[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards|
+
+**Why this tier?**
+
+> Tier 1 because the IAR is the structural index that ties the rest of the IG-attestation surface together — without an entry, the AVT deployment is invisible to the IG team's incident escalation, SAR-handling, and audit-cycle workflows. The cost of compliance is small (an IAR row), the cost of non-compliance is high (the system is governed only by ad-hoc memory). Member of the [NHSE IG Attestation family](../families.md#nhse-ig-attestation).
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) AVT system listed in the organisation's Information Asset Register; (2) Named Information Asset Owner (IAO) documented; (3) Lawful basis stated (typically Article 6(1)(e) + Article 9(2)(h)); (4) Retention period stated, consistent with [GV.PD-1] / [GV.PD-2] / [GV.PD-3]; (5) Sub-processor list referenced (consistent with [GV.VT-7]); (6) Risk classification documented (typically aligned with the DPIA risk rating); (7) IAR entry version-dated within 12 months. Full pass = all seven.
+```
+
+**Limitations**
+
+> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+
+**Novel Thinking / Implications**
+
+> 💡 The IAR is the IG team's index into the AVT deployment — without it, every other IG-attestation metric is operating on a system the IG team has no formal record of. NHSE AI early-adopter inspections have repeatedly found AVT deployments that passed individual IG checks but were not registered as information assets, which made cross-cutting questions ("show me all systems handling Special Category data") impossible to answer accurately. Making this Tier 1 makes the index visible.
 
 ### GV.OP-1 🟢 Documentation Time per Consultation
 
@@ -14865,6 +14917,120 @@ Access assessed across stages: (1) raw ASR transcript; (2) diarised transcript w
 
 ---
 
+### GV.VT-9 🟡 Post-Market Surveillance Report Currency
+
+Whether the vendor's MHRA-required post-market surveillance reporting is current and accessible to the deployer on demand. PMSR (Periodic Safety Report — required for Class I and IIa devices) availability is checked on demand; PSUR (Periodic Safety Update Report — required for Class IIb and III) currency is checked annually. FTS Step 1.i directly requires submission of PMS evidence; this metric tests whether the obligation continues post-contract.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-9 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Continuous                                               |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i|
+
+**Why this tier?**
+
+> Reporting cadence rather than gate-level: a vendor with a missing PMSR can usually rectify within days, but a vendor whose PMS reporting has lapsed for the full annual cycle is operating outside the post-market regulatory regime. Tier 2 reflects the recovery window; deployers who need stronger guarantees can elevate to Tier 1 in their own assurance plans.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Vendor confirms which PMS report type applies (PMSR for Class I/IIa, PSUR for Class IIb/III); (2) For PMSR: vendor commits to provide on demand within 10 working days; (3) For PSUR: most recent report dated within 12 months and shared with deployer; (4) Report includes incident summary, complaint register, corrective and preventive actions (CAPA) status; (5) Report contents reconcile against deployer-side incident records. Full pass = all five.
+```
+
+**Limitations**
+
+> PMSR is on-demand for Class I, so currency cannot be tested except by request — sample-based audit only. PSUR contents are vendor-curated; reconciliation against deployer-side records is the only check on completeness, and only practical for deployers with mature incident reporting of their own.
+
+**Novel Thinking / Implications**
+
+> 💡 PMS is the regulatory mechanism for catching deployment-time problems that didn't surface in pre-market evaluation. For AVT, the most important PMS items are bias drift, edit-rate drift, and accent / dialect failure modes — the kinds of issues that emerge slowly across many encounters and would never surface in a single-site bench evaluation. Deployers who don't read PMS reports actively are leaving the most useful safety signal on the table.
+
+---
+
+### GV.VT-10 🟡 MHRA Transparency Content Completeness
+
+Composite check of whether vendor-published transparency content covers the items expected under the MHRA Software and AI as a Medical Device Roadmap, work package 2 (transparency outputs). Items typically include: device characterisation, intended-purpose statement, clinical performance summary, known limitations and contra-indications, lifecycle / version commitment, and human-AI interaction guidance. The metric is a structural completeness check, not a substantive quality check.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-10 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Transparency                                             |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Proposed / Novel                                           |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)|
+
+**Why this tier?**
+
+> Tier 2 because WP-2 transparency outputs are themselves still in development — locking the metric to Tier 1 would over-claim the regulatory weight of a framework that hasn't fully landed. Once WP-2 outputs are published in final form, this metric is a candidate for re-tiering and re-sourcing. Maturity is Proposed/Novel to reflect that the MHRA Roadmap WP-2 transparency outputs are in development; the metric should be re-sourced once the outputs are published in final form (see triage §"Outstanding follow-ups after v5.3.0").
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Device characterisation published (model architecture family, training data summary, intended-purpose statement); (2) Clinical performance summary with stratification by patient and setting characteristics; (3) Known limitations and contra-indications documented; (4) Lifecycle / version commitment statement (which version is current; when next update is expected); (5) Human-AI interaction guidance for clinicians using the system. Composite pass = all five present and dated within 12 months.
+```
+
+**Limitations**
+
+> Cross-references GV.VT-2 (Telemetry Provision Completeness) — telemetry is the substrate for performance summary; this metric tests the published surface. Quality of the content is not tested by this metric — a vendor can publish a "known limitations" statement that says "the system has been comprehensively evaluated" and pass the structural check while providing no substantive transparency. Future minor release should consider adding a quality-tier to the WP-2 source list.
+
+**Novel Thinking / Implications**
+
+> 💡 Transparency content is the deployer-facing artefact of the regulatory surface — the documents a clinician or IG officer can actually read. Structural completeness is the floor; substantive quality is what determines whether the documents are useful in practice. Treating this as a structural metric for now reflects the early stage of WP-2; the substantive-quality metric will follow once the structural baseline is established.
+
+---
+
+### GV.VT-11 🟡 Joint-Controller Status Assessment
+
+Whether the deployer has documented a binary determination of joint-controller status under UK GDPR Article 26 with the AVT vendor. Joint controllers under Article 26 must agree on transparency arrangements, the exercise of data subject rights, and respective compliance responsibilities — the assessment is **distinct** from sub-processor disclosure (which is processor-status, [GV.VT-7](#gv-vt-7)) because joint-controller status creates shared accountability rather than vendor-as-processor accountability. NHSE IG section 5 explicitly requires AVT-deploying organisations to make and document this determination before go-live.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-11 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Vendor                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] section 5 (section ref to be confirmed on next pass)|
+
+**Why this tier?**
+
+> Tier 2 because the assessment is binary and one-off (with re-trigger on material processing change), and most NHS AVT deployments will land at "vendor is processor, not joint controller" — but the determination must be made and documented, not assumed. The cost of getting it wrong is that data subject rights handling becomes ambiguous between deployer and vendor at incident time.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Joint-controller status determination documented (Yes / No / Per-purpose mixed); (2) If "Yes" or "Per-purpose mixed": Article 26 arrangement signed with vendor covering transparency, data subject rights, and compliance responsibilities; (3) Determination revisited on material processing change (new vendor capability, new data flow, new regulatory regime); (4) Determination accessible to the IG team and to data-subject-rights handlers; (5) Cross-link to the DPIA ([GV.CR-7]) and sub-processor list ([GV.VT-7]) so the three artefacts are read together. Full pass = all five.
+```
+
+**Limitations**
+
+> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+
+**Novel Thinking / Implications**
+
+> 💡 Joint-controller status is the legally-substantive cousin of sub-processor disclosure: GV.VT-7 names *who handles the data*, GV.VT-11 names *who is accountable for the data*. The two are often confused in NHS procurement — deployers describe the vendor as "the processor" without making the joint-controller determination explicit, which means at incident time the accountability picture is reconstructed retrospectively rather than read from a pre-existing document.
 ### GV.VT-13 🟢 Evidence Pack Freshness
 
 Currency and provenance of the vendor's published evidence pack on the National Commercial & Procurement Hub. The NHS England AVT Self-Certified Supplier Registry is a self-certification scheme — NHSE undertakes only preliminary completion checks; the substantive evidence (DCB0129 hazard log, DTAC, DSPT, DPIA, MHRA registration, post-market surveillance plans, etc.) is published by the vendor for adopting Trusts to inspect. The integrity of that evidence pack is therefore a procurement-relevant signal: stale evidence published two years ago against a system that has since changed three times is materially worse than current evidence against a stable system, even if both vendors appear listed.
@@ -15103,82 +15269,6 @@ Notification content (mandatory): (i) what is being retired (product, feature, i
 > 💡 Vendor retirement is the failure mode the AVT procurement landscape has not yet faced at scale. The first few cases — a vendor exits the market, a vendor pivots away from primary care, a vendor deprecates a specialty configuration — will set the precedent for what "good notification practice" looks like. Treating retirement notification as Tier 1 from now means deployers writing procurement contracts today specify the lead times and content requirements explicitly, rather than discovering at retirement time that their contract is silent on what notice they're owed.
 
 ---
-
-### GV.VT-9 🟡 Post-Market Surveillance Report Currency
-
-Whether the vendor's MHRA-required post-market surveillance reporting is current and accessible to the deployer on demand. PMSR (Periodic Safety Report — required for Class I and IIa devices) availability is checked on demand; PSUR (Periodic Safety Update Report — required for Class IIb and III) currency is checked annually. FTS Step 1.i directly requires submission of PMS evidence; this metric tests whether the obligation continues post-contract.
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.VT-9 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
-|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Safety                                                   |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Continuous                                               |
-|**Responsible Actors** |Vendor; Deployer                                         |
-|**Maturity**           |Established                                              |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i|
-
-**Why this tier?**
-
-> Reporting cadence rather than gate-level: a vendor with a missing PMSR can usually rectify within days, but a vendor whose PMS reporting has lapsed for the full annual cycle is operating outside the post-market regulatory regime. Tier 2 reflects the recovery window; deployers who need stronger guarantees can elevate to Tier 1 in their own assurance plans.
-
-**Formal Definition**
-
-```
-Pass per criterion: (1) Vendor confirms which PMS report type applies (PMSR for Class I/IIa, PSUR for Class IIb/III); (2) For PMSR: vendor commits to provide on demand within 10 working days; (3) For PSUR: most recent report dated within 12 months and shared with deployer; (4) Report includes incident summary, complaint register, corrective and preventive actions (CAPA) status; (5) Report contents reconcile against deployer-side incident records. Full pass = all five.
-```
-
-**Limitations**
-
-> PMSR is on-demand for Class I, so currency cannot be tested except by request — sample-based audit only. PSUR contents are vendor-curated; reconciliation against deployer-side records is the only check on completeness, and only practical for deployers with mature incident reporting of their own.
-
-**Novel Thinking / Implications**
-
-> 💡 PMS is the regulatory mechanism for catching deployment-time problems that didn't surface in pre-market evaluation. For AVT, the most important PMS items are bias drift, edit-rate drift, and accent / dialect failure modes — the kinds of issues that emerge slowly across many encounters and would never surface in a single-site bench evaluation. Deployers who don't read PMS reports actively are leaving the most useful safety signal on the table.
-
----
-
-### GV.VT-10 🟡 MHRA Transparency Content Completeness
-
-Composite check of whether vendor-published transparency content covers the items expected under the MHRA Software and AI as a Medical Device Roadmap, work package 2 (transparency outputs). Items typically include: device characterisation, intended-purpose statement, clinical performance summary, known limitations and contra-indications, lifecycle / version commitment, and human-AI interaction guidance. The metric is a structural completeness check, not a substantive quality check.
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.VT-10 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
-|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Transparency                                             |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
-|**Responsible Actors** |Vendor                                                   |
-|**Maturity**           |Proposed / Novel                                           |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)|
-
-**Why this tier?**
-
-> Tier 2 because WP-2 transparency outputs are themselves still in development — locking the metric to Tier 1 would over-claim the regulatory weight of a framework that hasn't fully landed. Once WP-2 outputs are published in final form, this metric is a candidate for re-tiering and re-sourcing. Maturity is Proposed/Novel to reflect that the MHRA Roadmap WP-2 transparency outputs are in development; the metric should be re-sourced once the outputs are published in final form (see triage §"Outstanding follow-ups after v5.3.0").
-
-**Formal Definition**
-
-```
-Pass per criterion: (1) Device characterisation published (model architecture family, training data summary, intended-purpose statement); (2) Clinical performance summary with stratification by patient and setting characteristics; (3) Known limitations and contra-indications documented; (4) Lifecycle / version commitment statement (which version is current; when next update is expected); (5) Human-AI interaction guidance for clinicians using the system. Composite pass = all five present and dated within 12 months.
-```
-
-**Limitations**
-
-> Cross-references GV.VT-2 (Telemetry Provision Completeness) — telemetry is the substrate for performance summary; this metric tests the published surface. Quality of the content is not tested by this metric — a vendor can publish a "known limitations" statement that says "the system has been comprehensively evaluated" and pass the structural check while providing no substantive transparency. Future minor release should consider adding a quality-tier to the WP-2 source list.
-
-**Novel Thinking / Implications**
-
-> 💡 Transparency content is the deployer-facing artefact of the regulatory surface — the documents a clinician or IG officer can actually read. Structural completeness is the floor; substantive quality is what determines whether the documents are useful in practice. Treating this as a structural metric for now reflects the early stage of WP-2; the substantive-quality metric will follow once the structural baseline is established.
 
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
@@ -15884,7 +15974,7 @@ The NHS Digital organisation page on Simplifier, the canonical hosting location 
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Short:** NHSE IG guidance (March 2026)
-- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `tp/asr-transcription.md`
+- **Cited-by:** `_calibration-and-context.md`, `_how-to-use.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/vendor-transparency-contractual.md`, `tp/asr-transcription.md`
 
 NHS England's operational landing page for ambient-scribing, under which the IG-team's March 2026 update lives as a sub-page. The substantive cited document for many of the privacy-and-compliance Tier 1 metrics — handle name retains the `2026-03` suffix because Source rows reference the March 2026 version specifically; the URL points at the parent hub since the specific sub-path is not yet stable. Cross-references the same operational hub as [NHSE-AVT-Registry] (different content focus, same parent).
 

@@ -578,74 +578,6 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 ---
 
 
-### GV.PD-16 🟢 Decommissioning Data Handling Compliance
-
-When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
-
-| Dimension | Value |
-|-----------|-------|
-| **Reference** | GV.PD-16 |
-| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
-| **Measurement Cadence** | One-off gate; Event-triggered |
-| **Pipeline Layer** | Cross-cutting |
-| **Assurance Question** | Safety |
-| **Measurement Method** | Human Review |
-| **Lifecycle Phases** | Pre-deployment, Continuous |
-| **Responsible Actors** | Vendor, Deployer |
-| **Maturity** | Emerging |
-| **Outcome Type** | Proximal |
-| **Applicability** | AVT-Contextualised |
-| **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
-
-**Why this tier?**
-
-> Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.
-
-**Formal Definition**
-
-```
-Compliance gate (pre-deployment) = the deployer's DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
-
-Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
-
-Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance's three-class outcome distinction).
-```
-
-**Reference Standard**
-
-> Inherits the storage-location enumeration from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7), model training pipelines per [GV.PD-11 Right to Erasure Compliance](#gv-pd-11), and any data ingested for fine-tuning per [GV.PD-7 Training Data Inclusion Status](#gv-pd-7). The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to [DCB0129] / [DCB0160] retirement provisions and to [SI-2024-1368] post-market surveillance closure for any MHRA-classified component.
-
-**Operational Specification**
-
-> - **Window:** procurement contract review (one-off gate); per-event tracking when decommissioning occurs.
-> - **Three sub-metrics MANDATORY:** (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).
-> - **Per-storage-location reporting MANDATORY:** the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).
-> - **Sub-processor cooperation tracked:** every sub-processor in the [GV.VT-7](#gv-vt-7) discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.
-> - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
-> - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
-
-**Trigger Conditions**
-
-> ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
->
-> - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
-> - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
-> - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
->
-> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
-
-
-
-**Limitations**
-
-> Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.
-
-**Novel Thinking / Implications**
-
-> 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
-
----
-
 ### GV.PD-12 🟡 Training Data Representativeness Documentation
 
 Documentation of whether the AVT system's training data covers the intended patient population across demographic and clinical-setting strata — age, ethnicity, accent, comorbidity profile, deprivation, and care-setting mix. The metric is the foundational pre-condition for downstream bias-mitigation work: a deployer cannot defensibly run [TP.ASR-4 Demographic-Disaggregated WER] or [IO.FE-1 Deployment Equity Index] without first knowing whether the training data could plausibly support equivalent performance across strata.
@@ -805,6 +737,74 @@ Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishab
 
 ---
 
+### GV.PD-16 🟢 Decommissioning Data Handling Compliance
+
+When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
+
+| Dimension | Value |
+|-----------|-------|
+| **Reference** | GV.PD-16 |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
+| **Measurement Cadence** | One-off gate; Event-triggered |
+| **Pipeline Layer** | Cross-cutting |
+| **Assurance Question** | Safety |
+| **Measurement Method** | Human Review |
+| **Lifecycle Phases** | Pre-deployment, Continuous |
+| **Responsible Actors** | Vendor, Deployer |
+| **Maturity** | Emerging |
+| **Outcome Type** | Proximal |
+| **Applicability** | AVT-Contextualised |
+| **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
+
+**Why this tier?**
+
+> Decommissioning is the moment when retention compliance is most likely to silently fail — vendor backups linger past their stated retention window; deployer-side caches retain audio derivatives indefinitely; sub-processors aren't actively decommissioned. Without a Tier 1 gate covering this, the v3.x retention metrics (GV.PD-1/-2/-3) hold for the operational period but break the moment a deployment ends. Tier 1 because the regulatory exposure (UK GDPR storage limitation; NHSE IG guidance; DCB0160 Stage 7) does not pause when an AVT product is retired.
+
+**Formal Definition**
+
+```
+Compliance gate (pre-deployment) = the deployer's DPIA + contract specify a decommissioning data-handling procedure covering: (a) per-storage-location wind-down rules (deletion, anonymisation, or migration to a successor system); (b) deletion-verification method per location; (c) sub-processor decommissioning cooperation; (d) timeline for completion; (e) audit trail format.
+
+Per-event compliance (when decommissioning occurs) = (every storage location in the GV.PD-1 enumeration has a documented disposition AND deletion-verification or migration-confirmation evidence on file AND completion within contracted timeline).
+
+Disposition options per location: (i) deletable — cryptographically erased or physically deleted; (ii) anonymisable — irreversibly de-identified to ICO standard; (iii) migratable — moved to a deployer-controlled or successor-vendor system with a documented data-portability evidence trail; (iv) technically irreversible — flagged and disclosed (parallel to GV.PD-11 Right to Erasure Compliance's three-class outcome distinction).
+```
+
+**Reference Standard**
+
+> Inherits the storage-location enumeration from [GV.PD-1 Audio Retention Compliance](#gv-pd-1): primary vendor storage, vendor backups and DR, vendor logs, downstream analytic systems, deployer-side caches, named sub-processor systems per [GV.VT-7 Sub-Processor Transparency](#gv-vt-7), model training pipelines per [GV.PD-11 Right to Erasure Compliance](#gv-pd-11), and any data ingested for fine-tuning per [GV.PD-7 Training Data Inclusion Status](#gv-pd-7). The decommissioning procedure is documented in the deployer's DPIA + procurement contract + DCB0160 Stage 7 retirement section before go-live; the per-event compliance is verified against that documentation at decommissioning. Cross-link to [DCB0129] / [DCB0160] retirement provisions and to [SI-2024-1368] post-market surveillance closure for any MHRA-classified component.
+
+**Operational Specification**
+
+> - **Window:** procurement contract review (one-off gate); per-event tracking when decommissioning occurs.
+> - **Three sub-metrics MANDATORY:** (a) procedure-document gate (is the wind-down procedure documented in DPIA + contract pre-deployment?); (b) per-location disposition coverage (does every GV.PD-1 storage location have a documented disposition?); (c) execution compliance (was the actual wind-down completed within the contracted timeline with deletion-verification evidence?).
+> - **Per-storage-location reporting MANDATORY:** the matrix of {storage location × disposition outcome} is the unit of reporting. Aggregate "compliance rate" alone hides the failure mode (e.g. backups retained indefinitely while primary storage was deleted).
+> - **Sub-processor cooperation tracked:** every sub-processor in the [GV.VT-7](#gv-vt-7) discovered set has its own disposition evidence on file; sub-processor non-cooperation logged with reason.
+> - **Verification method MANDATORY:** parallel to [GV.PD-1](#gv-pd-1); vendor self-attestation alone is not Tier 1 sufficient. Independent verification required: cryptographic proof of key destruction, third-party audit, or deployer-witnessed deletion test for at least one location per disposition category.
+> - **Three-class outcome reporting MANDATORY:** parallel to [GV.PD-11 Right to Erasure Compliance](#gv-pd-11); every storage location classified as deletable / anonymisable / migratable / technically-irreversible. The technically-irreversible class enumerated explicitly with the disclosure obligation (e.g. influence on already-trained models that cannot be reversed).
+
+**Trigger Conditions**
+
+> ⚠️ **Provenance:** the per-storage-location framing inherits from [GV.PD-1 Audio Retention Compliance](#gv-pd-1) and [GV.PD-11 Right to Erasure Compliance](#gv-pd-11)'s three-class outcome distinction. The procurement-time documentation gate carries from [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7) and [DCB0160] Stage 7. Specific timeline thresholds (90-day completion target for deletion; 180-day target including sub-processor cascade; 100 % per-location disposition gate) are **proposed in v4.0.2 as starting points**, not externally validated. Indicative; require local calibration against the deployer's DPIA risk appetite and contractual SLA before procurement use.
+>
+> - **Pre-deployment gate (procurement):** wind-down procedure documented in DPIA + contract; per-storage-location dispositions enumerated; deletion-verification methods specified per location; sub-processor cooperation timelines specified.
+> - **Per-event monitoring:** decommissioning events trigger logging of (a) per-location disposition completion, (b) deletion-verification evidence per location, (c) timeline compliance. Aggregate compliance reported per decommissioning event.
+> - **Pause / escalation trigger:** any decommissioning event where a primary-storage or named sub-processor location lacks disposition evidence (regulatory failure under [UK-GDPR] storage limitation); OR completion timeline exceeded by > 50 %; OR per-location disposition coverage < 95 % at completion.
+>
+> Specific numerical starting points are deployment-context-dependent and live in [Threshold Reference: GV.PD-16](../thresholds.md#gv-pd-16). Treat them as starting points to calibrate locally — not as contractual gates.
+
+
+
+**Limitations**
+
+> Decommissioning is a low-frequency event (most AVT deployments do not decommission within their first contract term), which means execution-compliance evidence is sparse. The procedure-document gate sub-metric is the load-bearing pre-deployment measurement; the execution sub-metrics activate only when decommissioning occurs. Vendor cooperation at decommissioning is also harder to enforce than at deployment (the contractual relationship is ending); deployer leverage on lingering backups, sub-processor decommissioning, and training-data fate is constrained. The metric makes the surface visible but does not solve the enforcement-at-the-end problem.
+
+**Novel Thinking / Implications**
+
+> 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
+
+---
+
 ### GV.PD-17 🟡 DPIA Justification Quality
 
 Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian. **Sub-part of the DPIA construct paired with [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7)**: GV.CR-7 is the parent (structural completion of all template sections); this metric is the substantive Caldicott Principle 1 ("justify the purpose") sub-part that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate. Both checks are needed because a DPIA can be structurally complete and substantively weak on purpose justification.
@@ -843,4 +843,44 @@ Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott G
 **Novel Thinking / Implications**
 
 > 💡 The completion-vs-quality gap is one of the most consistent pattern in IG metrics: a fully-completed DPIA can still be substantively wrong on purpose justification. Caldicott Guardian review is the structural mechanism the NHS already has for catching this; making it a separately-measured Tier 2 metric forces the review to happen on a documented cadence rather than only when something goes wrong.
+
+---
+
+### GV.PD-18 🟢 Information Asset Register Completeness
+
+Whether the deploying organisation maintains an Information Asset Register (IAR) that includes the AVT system as a named information asset with a documented owner, lawful basis, retention period, sub-processor list, and risk classification. NHSE IG section 8 explicitly requires AVT-deploying organisations to register the system as an information asset alongside their other clinical-system assets — the IAR is the index that ties together DPIA, sub-processor disclosure, retention timing, and incident escalation.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-18 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                          |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation                                      |
+|**Source**             |[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards|
+
+**Why this tier?**
+
+> Tier 1 because the IAR is the structural index that ties the rest of the IG-attestation surface together — without an entry, the AVT deployment is invisible to the IG team's incident escalation, SAR-handling, and audit-cycle workflows. The cost of compliance is small (an IAR row), the cost of non-compliance is high (the system is governed only by ad-hoc memory). Member of the [NHSE IG Attestation family](../families.md#nhse-ig-attestation).
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) AVT system listed in the organisation's Information Asset Register; (2) Named Information Asset Owner (IAO) documented; (3) Lawful basis stated (typically Article 6(1)(e) + Article 9(2)(h)); (4) Retention period stated, consistent with [GV.PD-1] / [GV.PD-2] / [GV.PD-3]; (5) Sub-processor list referenced (consistent with [GV.VT-7]); (6) Risk classification documented (typically aligned with the DPIA risk rating); (7) IAR entry version-dated within 12 months. Full pass = all seven.
+```
+
+**Limitations**
+
+> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+
+**Novel Thinking / Implications**
+
+> 💡 The IAR is the IG team's index into the AVT deployment — without it, every other IG-attestation metric is operating on a system the IG team has no formal record of. NHSE AI early-adopter inspections have repeatedly found AVT deployments that passed individual IG checks but were not registered as information assets, which made cross-cutting questions ("show me all systems handling Special Category data") impossible to answer accurately. Making this Tier 1 makes the index visible.
 

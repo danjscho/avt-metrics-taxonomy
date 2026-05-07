@@ -139,7 +139,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **What it's NOT:** Maturity is **not** Tier. Tier is *deployment importance*; Maturity is *measurement-science maturity*. A regulator-named obligation (e.g. NHSE IG section X) creates a Tier 1 importance even if no validated rubric exists yet — those metrics land at Tier 1 with Maturity: Proposed/Novel and a follow-up to upgrade Maturity once a rubric is piloted.
 
-**See also:** the underspecification warnings (in the [Summary](index.md#by-underspecification-warning)) flag the 15 metrics where Maturity is genuinely contested (Tier A: no methodology / Tier B: concept defined no AVT validation / Tier C: technically defined but clinical validity unproven).
+**See also:** the underspecification warnings (in the index Summary section) flag the 15 metrics where Maturity is genuinely contested (Tier A: no methodology / Tier B: concept defined no AVT validation / Tier C: technically defined but clinical validity unproven).
 
 ### Outcome Type
 

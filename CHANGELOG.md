@@ -1,5 +1,77 @@
 # Changelog
 
+## v5.4.0 (2026-05-08)
+
+**Minor release: merges, families, layers-of-defence, dimensions-overview + 2 NHSE IG mints.**
+
+Five workstreams landed together — the v5.3.0 merge & family sweep (held for reviewer sign-off) executes here, plus the 2 NHSE IG mints flagged in `v5.2-registry-action-list.md §C`, plus two new first-class cross-cutting pages.
+
+### 1) Parent + sub-part formalisations (2 pairs)
+
+- **PCCP pair:** **GV.CR-9** (parent — substantive quality of acceptance criteria) + **GV.SG-18** (sub-part — structural completeness of the documented PCCP). Cross-cluster placement preserved (CR for compliance-attestation; SG for safety-governance) per the assurance-question split. Both bodies updated with explicit parent + sub-part language and Change history stanzas.
+- **DPIA pair:** **GV.CR-7** (parent — structural completion of NHSE March 2026 DPIA template) + **GV.PD-17** (sub-part — substantive Caldicott Principle 1 review). Same cross-cluster pattern.
+
+### 2) Named Metric Families consolidated
+
+Named-metric family framings consolidated to a new top-level `_families.md` page (rendered as `families.md` on the site, in the Principles & Frameworks nav). Eight families:
+
+- 6 existing: Clinical Content Fidelity (5 members), Reference-Based Text Similarity (2), Clinical Transcription Accuracy (3), Post-Generation Correction (4), Medication Safety Thread (4 — cross-cutting), Demographic Equity Disaggregation (7 — cross-cutting)
+- **2 new in v5.4.0:**
+  - **NHSE IG Attestation** (11 members; cross-cutting GV.CR + GV.PD) — documentation and operational verification that AVT deployments comply with NHSE IG March 2026 Guidance. Members: GV.CR-1, GV.CR-2, GV.CR-3, GV.CR-7, GV.CR-13, GV.PD-8, GV.PD-9, GV.PD-13, GV.PD-14, GV.PD-15, GV.PD-18 (the new mint).
+  - **PRSB Semantic Completeness & Write-back Fidelity** (4 members; Downstream Write-back) — end-to-end write-back assurance from output capture through structural FHIR validation to clinical mandatory-element completeness. Members: TP.WB-1, TP.WB-3, TP.WB-6, TP.WB-8.
+
+Family field added to dimensions table on all 51 family-member metrics, audit-enforced via new `check_family_resolves` check + `EXPECTED_FAMILIES` enum. `parse.Metric.family` property; CSV/JSON gain `family` column.
+
+Existing inline family framings in cluster files left in place for v5.4.0 (the inline `*See also: ... family*` italics on per-metric bodies still work as before); a v5.4.1 cleanup can lift them into `_families.md` later if useful. The `_families.md` page is the canonical home; cluster-file inlines are now informally redundant.
+
+### 3) Layers of Defence first-class principle
+
+New `_layers-of-defence.md` page (rendered as `layers-of-defence.md` in Principles & Frameworks nav). Names the **prevention / detection / limitation** framing from prior slide-deck work — *no layer is sufficient alone*. Maps onto existing dimensions (Cadence + Lifecycle Phase + Cluster correlate but don't equal layer-of-defence — it's a derived cut). Three worked examples (hallucination — chain complete; bias drift — limitation thin; medication error — fully instrumented) showing how the three layers compose for each failure mode. Surfaces actionable architectural gaps where coverage is uneven across layers.
+
+### 4) Dimensions overview reader-orientation page
+
+New `_dimensions-overview.md` (rendered as `dimensions-overview.md`, top-level nav next to How-to-use). Disambiguates the 12 structural cuts the taxonomy makes — Tier vs Layer of Defence, Family vs Cluster, Cadence vs Lifecycle Phase, Maturity vs Tier, etc. Per-dimension detail with "what it's NOT" pattern for the most-commonly-conflated cuts. Comparison table at the top giving the 12 cuts at a glance.
+
+### 5) Two new NHSE IG mints
+
+- **GV.PD-18** 🟢 **Information Asset Register Completeness** — NHSE IG section 8 IAR registration with named owner, lawful basis, retention period, sub-processor list, risk classification. Tier 1 because the IAR is the structural index that ties the rest of the IG-attestation surface together.
+- **GV.VT-11** 🟡 **Joint-Controller Status Assessment** — UK GDPR Article 26 binary determination distinct from sub-processor disclosure (GV.VT-7). Tier 2 because most NHS deployments will land at vendor-as-processor, but the determination must be made and documented, not assumed.
+
+Both join the NHSE IG Attestation family.
+
+### 6) Within-cluster numerical sort
+
+`gv/privacy-data-governance.md` and `gv/vendor-transparency-contractual.md` re-sorted by ref-ID (was chronological-append since v3.x). New audit check `check_within_cluster_order` enforces ascending numeric ref-ID order within each cluster file. Other cluster files were already in order.
+
+### Counts
+
+- Metrics: **234 → 236** (+2 net)
+- Tier 1: **57 → 58** (+1; GV.PD-18)
+- Tier 2: **98 → 99** (+1; GV.VT-11)
+- Tier 3: unchanged at 79
+- Maturity: Established 60 → 62; others unchanged
+- Applicability: General Healthcare AI 105 → 107
+- Outstanding gaps: unchanged at 74; promoted-historical-record §7 grows from 15 → 17
+
+### Reconcile
+
+- `_gaps.md` §7g new section recording the 2 v5.4.0 mints; preamble + roll-up updated to 17 promoted across all releases
+- `_summary.md`, `_applicability.md`, `_header.md` count refreshes
+- `audit.py`: `EXPECTED_TIER_TOTALS`, `EXPECTED_APPLICABILITY`, `EXPECTED_TOTAL` updated; `EXPECTED_FAMILIES` enum added; new `check_family_resolves` and `check_within_cluster_order` checks
+- `test_audit.py`: `TestCheckTierTotals.test_pass` shape updated to 58/99/79
+- `parse.Metric.family` property; `build.py` CSV/JSON `family` column; site nav additions for Families / Layers of Defence / Dimensions overview
+
+### Reviewer artefacts at repo root
+
+- `v5.3-pre-mint-triage.md` — kept (Outstanding follow-ups still load-bearing)
+- `v5.3-merge-and-family-sweep.md` — its 2 merge candidates and 2 family mints have all been actioned; can be archived in v5.4.1 housekeeping
+- `v5.2-registry-action-list.md` — its mint section C now actioned; can be archived in v5.4.1 housekeeping
+
+### Plan-future updates
+
+- Plan-future #10 (AI-substrate classification) — still open for v5.5+; complementary to but distinct from Layers of Defence
+- New plan-future candidate: cluster-file-internal ordering convention review — chronological append was not intentional but ref-ID sort breaks v3.x batch grouping logic; documentation needed
+
 ## v5.3.0 (2026-05-07)
 
 **Minor release: Phase 5 lands — promotions + pull-throughs against the FTS-direct surface.**
