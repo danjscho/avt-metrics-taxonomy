@@ -61,3 +61,13 @@ Reference IDs (TP.AC-1 etc.) are stable identifiers. When a metric is removed (e
 - Documentation may continue to reference retired IDs in historical narration; the cross-cut linkifier tolerates them
 
 This applies symmetrically to catalogue handles: a handle that resolves today should resolve in every future version, even if the entry's content changes (e.g. v4.4 corrected the `Chung-NEJM-AI-2025` entry to describe the right paper without renaming the handle).
+
+## Gap-candidate ID allocation (v5.3.0 convention)
+
+Gap candidates in `_gaps.md` no longer reserve specific reference IDs. Earlier versions of `_gaps.md` listed proposed ref-IDs (e.g. `GV.OP-10` for a NICE ESF cost-effectiveness candidate) under the assumption that each gap would land at its proposed slot when promoted. In practice this caused:
+
+- **Numbering gaps inside active clusters** (e.g. GV.OP missing -10/-11/-12/-13 because those were reserved for deferred candidates).
+- **Slot conflicts at promotion time** when two gap candidates competed for the same proposed slot, or when v5.3.0's pull-through plan diverged from the original `_gaps.md` allocation.
+- **Stale cross-references** in archived plans pointing to slots whose meaning changed before promotion.
+
+From v5.3.0 onwards, gap candidates are slot-less. `_gaps.md` rows show `Proposed (slot at promotion)` or similar; the actual ref-ID is allocated to the next-available slot in the natural cluster at the moment the candidate is promoted to an active metric. Deprecated IDs (HL.HF-4, TP.CC-8, TP.SN-8/-10) remain retired under the existing deprecation policy and are *not* reused as fill.
