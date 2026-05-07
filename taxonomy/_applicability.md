@@ -14,10 +14,10 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 | Classification | Count | Percentage |
 |----------------|-------|------------|
-| AVT-Specific | 50 | 23% |
-| AVT-Contextualised | 79 | 36% |
-| General Healthcare AI | 92 | 42% |
-| **Total** | **221** | **100%** |
+| AVT-Specific | 50 | 21% |
+| AVT-Contextualised | 79 | 34% |
+| General Healthcare AI | 105 | 45% |
+| **Total** | **234** | **100%** |
 
 ### By Cluster
 

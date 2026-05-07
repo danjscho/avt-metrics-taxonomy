@@ -635,3 +635,81 @@ Notification content (mandatory): (i) what is being retired (product, feature, i
 **Novel Thinking / Implications**
 
 > 💡 Vendor retirement is the failure mode the AVT procurement landscape has not yet faced at scale. The first few cases — a vendor exits the market, a vendor pivots away from primary care, a vendor deprecates a specialty configuration — will set the precedent for what "good notification practice" looks like. Treating retirement notification as Tier 1 from now means deployers writing procurement contracts today specify the lead times and content requirements explicitly, rather than discovering at retirement time that their contract is silent on what notice they're owed.
+
+---
+
+### GV.VT-9 🟡 Post-Market Surveillance Report Currency
+
+Whether the vendor's MHRA-required post-market surveillance reporting is current and accessible to the deployer on demand. PMSR (Periodic Safety Report — required for Class I and IIa devices) availability is checked on demand; PSUR (Periodic Safety Update Report — required for Class IIb and III) currency is checked annually. FTS Step 1.i directly requires submission of PMS evidence; this metric tests whether the obligation continues post-contract.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-9 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Continuous                                               |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i|
+
+**Why this tier?**
+
+> Reporting cadence rather than gate-level: a vendor with a missing PMSR can usually rectify within days, but a vendor whose PMS reporting has lapsed for the full annual cycle is operating outside the post-market regulatory regime. Tier 2 reflects the recovery window; deployers who need stronger guarantees can elevate to Tier 1 in their own assurance plans.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Vendor confirms which PMS report type applies (PMSR for Class I/IIa, PSUR for Class IIb/III); (2) For PMSR: vendor commits to provide on demand within 10 working days; (3) For PSUR: most recent report dated within 12 months and shared with deployer; (4) Report includes incident summary, complaint register, corrective and preventive actions (CAPA) status; (5) Report contents reconcile against deployer-side incident records. Full pass = all five.
+```
+
+**Limitations**
+
+> PMSR is on-demand for Class I, so currency cannot be tested except by request — sample-based audit only. PSUR contents are vendor-curated; reconciliation against deployer-side records is the only check on completeness, and only practical for deployers with mature incident reporting of their own.
+
+**Novel Thinking / Implications**
+
+> 💡 PMS is the regulatory mechanism for catching deployment-time problems that didn't surface in pre-market evaluation. For AVT, the most important PMS items are bias drift, edit-rate drift, and accent / dialect failure modes — the kinds of issues that emerge slowly across many encounters and would never surface in a single-site bench evaluation. Deployers who don't read PMS reports actively are leaving the most useful safety signal on the table.
+
+---
+
+### GV.VT-10 🟡 MHRA Transparency Content Completeness
+
+Composite check of whether vendor-published transparency content covers the items expected under the MHRA Software and AI as a Medical Device Roadmap, work package 2 (transparency outputs). Items typically include: device characterisation, intended-purpose statement, clinical performance summary, known limitations and contra-indications, lifecycle / version commitment, and human-AI interaction guidance. The metric is a structural completeness check, not a substantive quality check.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-10 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Transparency                                             |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Proposed / Novel                                           |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)|
+
+**Why this tier?**
+
+> Tier 2 because WP-2 transparency outputs are themselves still in development — locking the metric to Tier 1 would over-claim the regulatory weight of a framework that hasn't fully landed. Once WP-2 outputs are published in final form, this metric is a candidate for re-tiering and re-sourcing. Maturity is Proposed/Novel to reflect that the MHRA Roadmap WP-2 transparency outputs are in development; the metric should be re-sourced once the outputs are published in final form (see triage §"Outstanding follow-ups after v5.3.0").
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Device characterisation published (model architecture family, training data summary, intended-purpose statement); (2) Clinical performance summary with stratification by patient and setting characteristics; (3) Known limitations and contra-indications documented; (4) Lifecycle / version commitment statement (which version is current; when next update is expected); (5) Human-AI interaction guidance for clinicians using the system. Composite pass = all five present and dated within 12 months.
+```
+
+**Limitations**
+
+> Cross-references GV.VT-2 (Telemetry Provision Completeness) — telemetry is the substrate for performance summary; this metric tests the published surface. Quality of the content is not tested by this metric — a vendor can publish a "known limitations" statement that says "the system has been comprehensively evaluated" and pass the structural check while providing no substantive transparency. Future minor release should consider adding a quality-tier to the WP-2 source list.
+
+**Novel Thinking / Implications**
+
+> 💡 Transparency content is the deployer-facing artefact of the regulatory surface — the documents a clinician or IG officer can actually read. Structural completeness is the floor; substantive quality is what determines whether the documents are useful in practice. Treating this as a structural metric for now reflects the early stage of WP-2; the substantive-quality metric will follow once the structural baseline is established.

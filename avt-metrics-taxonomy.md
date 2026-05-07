@@ -234,16 +234,16 @@ A trust with multiple AVT platforms deployed across different services should pr
 
 ### By Priority Tier
 
-- **🟢 Tier 1 - Minimum Viable Assurance**: 52 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 90 metrics - recommended with reasonable governance capacity
+- **🟢 Tier 1 - Minimum Viable Assurance**: 57 metrics - what every deployer must measure to operate safely
+- **🟡 Tier 2 - Recommended Assurance**: 98 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
-- **Established**: 54 metrics
-- **Emerging**: 48 metrics
+- **Established**: 60 metrics
+- **Emerging**: 53 metrics
 - **Vendor-Proprietary**: 4 metrics
-- **Proposed / Novel**: 108 metrics
+- **Proposed / Novel**: 110 metrics
 
 ### By Metric Family
 
@@ -432,10 +432,10 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 | Classification | Count | Percentage |
 |----------------|-------|------------|
-| AVT-Specific | 50 | 23% |
-| AVT-Contextualised | 79 | 36% |
-| General Healthcare AI | 92 | 42% |
-| **Total** | **221** | **100%** |
+| AVT-Specific | 50 | 21% |
+| AVT-Contextualised | 79 | 34% |
+| General Healthcare AI | 105 | 45% |
+| **Total** | **234** | **100%** |
 
 ### By Cluster
 
@@ -7292,6 +7292,48 @@ For each generated composition: validate against the applicable openEHR archetyp
 
 > 💡 The UK has bifurcated EPR infrastructure: primary care is standardising on FHIR-based interoperability, while parts of secondary care (particularly the Code4Health-aligned trusts) have significant openEHR investment. AVT vendors focused on primary care may simply not support openEHR, making them structurally unsuitable for some secondary care deployments. This should be a procurement question rather than a post-contract discovery.
 
+---
+
+### TP.WB-8 🟢 PRSB Semantic Completeness
+
+Proportion of PRSB-mandatory information elements present in AVT-generated output, evaluated against the applicable PRSB standard for the consultation type — Core Information Standard (CIS), Outpatient Letter, Discharge Summary, etc. The metric is the cross-framework heavyweight: the same construct surfaces under DTAC C4 (interoperability), FHIR UK Core (extension conformance), CQC Regulation 17 (good governance — adequate records), and PRSB itself. AVT systems that produce FHIR-conformant output but miss PRSB-mandatory information elements pass the structural-conformance metrics (TP.WB-1 / TP.WB-6) while failing the semantic-completeness one this metric tests.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | TP.WB-8 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Continuous; Event-triggered                              |
+|**Pipeline Layer**     |Downstream Write-back                                    |
+|**Assurance Question** |Quality                                                  |
+|**Measurement Method** |Computational                                            |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard|
+
+**Why this tier?**
+
+> Tier 1 because of cross-framework leverage — DTAC C4 + FHIR UK Core + CQC Regulation 17 + PRSB itself all converge on this construct. A deployer who passes structural FHIR validation but fails PRSB semantic completeness is producing records that are technically interoperable but clinically inadequate. The metric is the most leverage-per-measurement item in the v5.3.0 pull-through set.
+
+**Formal Definition**
+
+```
+For each AVT-generated record matched to a PRSB standard applicable to the consultation type, compute:
+  completeness_i = |present_mandatory_elements_i| / |total_mandatory_elements_per_standard|
+PRSB Semantic Completeness = mean(completeness_i) across the sampled set, stratified by consultation type / PRSB standard.
+Reported per standard. A consultation that maps to no PRSB standard is excluded from the denominator.
+```
+
+**Limitations**
+
+> Mandatory-element identification depends on the PRSB standards being machine-readable; not all standards expose a complete machine-readable element list, so part of the matching is done by structured human review of a sampled set. Vendor implementations of the same PRSB standard may map elements differently, which affects per-standard comparability. Stratification by consultation type matters: a primary-care AVT scoring well on CIS may score poorly on Outpatient Letter; a single composite hides this.
+
+**Novel Thinking / Implications**
+
+> 💡 PRSB semantic completeness is the cross-framework gap that the structural-conformance metrics cannot catch. A FHIR-conformant Composition resource can be mandatory-element-incomplete and still validate; a PRSB-complete record can fail FHIR validation. Both metrics are needed; making PRSB semantic completeness a Tier 1 metric in its own right pairs it with TP.WB-6 (FHIR R4 Resource Conformance Rate) at the same priority and forces deployers to evaluate both.
+
 ### PI.PP-1 🔵 Speaker-Attributed Transcript Accuracy
 
 Combined ASR + diarisation: was the right text assigned to the right person? Neither WER nor DER alone captures this - a transcript can have low WER and low DER but still misattribute a critical utterance.
@@ -10936,6 +10978,45 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 ---
 
+### GV.SG-18 🟡 PCCP Documentation Completeness
+
+Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full lifecycle obligations expected of an adaptive AI medical device — pre-specified change types, performance acceptance thresholds, regression test suite, fairness/equity acceptance criteria, rollback procedure, and audit-trail requirements. PCCPs are the structural mechanism by which retrained or fine-tuned AVT models update without requiring a new regulatory submission per change.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.SG-18 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] AI Airlock + Change Programme; [FDA-PCCP-Guidance-2024] (cross-aligned)|
+
+**Why this tier?**
+
+> Tier 2 because PCCP applies specifically to adaptive / retrained models — not all AVT vendors update model weights post-deployment. For vendors that do, PCCP completeness is gate-level: a vendor that retrains without a documented change plan is operating outside the regulatory regime that legitimises post-deployment updates. Closely related to existing GV.CR-9 (FDA PCCP-equivalent acceptance criteria) which tests the substantive criteria; this metric tests the structural completeness of the plan itself.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) PCCP scope statement enumerating which change types are pre-authorised (e.g. retraining cadence, threshold tuning, dictionary updates) and which require new submission; (2) Performance acceptance thresholds quantitative and pre-specified; (3) Regression test suite defined and version-controlled; (4) Fairness / equity acceptance criteria included; (5) Rollback procedure with named trigger conditions; (6) Audit-trail commitment for every PCCP-scope change. Full pass = all six.
+```
+
+**Limitations**
+
+> Cross-references existing GV.CR-9 — both metrics share the substantive criteria question. This metric focuses on structural completeness of the documented plan; GV.CR-9 focuses on the meaningful quality of the criteria. Future minor release may merge them under a parent + sub-parts framing if reviewer confirms the overlap is excessive.
+
+**Novel Thinking / Implications**
+
+> 💡 PCCP completeness is the deployer's only practical lever to verify that vendor-side change control will hold up under inspection. Without a complete PCCP, every model update is a regulatory event the deployer has no visibility into until something goes wrong.
+
+---
+
 ### GV.CR-1 🟢 Patient Dissent Recording Rate
 
 Per-encounter rate at which patient objections or dissent to AVT use are recorded and respected. Distinct from the existing Patient Opt-Out Rate, which is aggregate and applies at the registration or consent level. Patient Dissent Recording is the per-encounter process compliance metric: when a patient objects at the point of care, is that objection documented, is AVT actually paused for that encounter, and is the objection respected in subsequent encounters without re-litigation.
@@ -11509,6 +11590,162 @@ Event logging must capture: (1) period of use (start, duration, stop per session
 **Novel Thinking / Implications**
 
 > 💡 Event logging is the infrastructure that supports retrospective incident investigation. Without it, when an AVT error causes harm six months after the fact, the investigation has nothing to work with - the clinician may not remember the encounter, the patient certainly won't remember the AI's behaviour, and the vendor has no logs to reconstruct what happened. The EU AI Act requirement is essentially mandating the infrastructure for forensic investigation of AI clinical systems, which is a governance improvement regardless of jurisdiction.
+
+---
+
+### GV.CR-11 🟢 Medical Device Classification Documentation
+
+Whether the AVT system's MHRA SaMD classification (Class I / IIa / IIb / III) is documented with a clear justification, and whether that documentation is accessible to the deployer before go-live. NHS AVT Self-Certified Supplier Registry submissions require Class I status; deployers need to verify the classification is correctly assigned and that the underlying intended-purpose statement matches their intended use.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-11 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h            |
+
+**Why this tier?**
+
+> FTS Step 1.h directly requires submission of MHRA classification evidence, and the FTS notice explicitly anchors the Registry on Class I status. Deployer due-diligence cannot proceed without confirmed classification — wrong classification means wrong regulatory regime applies to monitoring, change control, and post-market surveillance.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Classification stated (Class I / IIa / IIb / III); (2) Intended-purpose statement provided and matches deployer use case; (3) Justification for classification grounded in MHRA SaMD framework risk-class rules; (4) UKCA / CE marking status declared where applicable; (5) Documentation dated and accessible to deployer pre-contract. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor self-classification is the norm for Class I devices; MHRA does not pre-approve Class I classifications. Wrong classification (typically under-classification) is a known regulatory risk and only surfaces on inspection or incident. The metric verifies that documentation exists and is internally consistent — not that the classification is independently correct.
+
+**Novel Thinking / Implications**
+
+> 💡 Treating classification documentation as a Tier 1 gate makes the regulatory regime explicit rather than implicit. Deployers who skip this step inherit whatever classification the vendor decided was convenient — which may not survive an MHRA inspection if AVT outputs are later judged to influence diagnosis or treatment beyond the Class I "drives clinical workflow" framing.
+
+---
+
+### GV.CR-12 🟢 Board-Level AI Governance Mechanism
+
+Whether the deploying organisation has a named board-level committee or director with explicit oversight of AI clinical systems, and whether AI-related risk and assurance items appear on its agenda with documented frequency. This is a CQC well-led inspection point and a Responsible AI Playbook Principle 10 (organisational assurance) requirement; AVT specifically tests it because ambient scribes touch every clinical encounter and create a class of risk that deserves named accountability.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-12 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                          |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Governance                                               |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[CQC] well-led KLOEs; DSIT AI Playbook Principle 10     |
+
+**Why this tier?**
+
+> Cross-framework leverage: CQC well-led + RAI Theme 4 (Accountability) + RAI Principle 10 + DTAC C3.1 all converge on board-level AI governance. Without a named accountability point, AI incident response, change-control approval, and equity monitoring have no escalation path. Tier 1 because the absence of board-level governance is a deployment-blocking gap visible to any well-run inspection.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Named board committee or executive director with AI oversight in their formal remit; (2) Terms of reference reference AI clinical systems specifically (not just "digital"); (3) Quarterly minimum agenda cadence with minuted AI items; (4) Escalation path defined for AI-related incidents from operational tier to the named owner; (5) Annual review of AI portfolio risk presented at board level. Full pass = all five; partial pass triggers review.
+```
+
+**Limitations**
+
+> Existence of a committee is not the same as effective governance. A committee that meets quarterly but rubber-stamps vendor reports provides no real assurance. The metric is necessary but not sufficient — it should be paired with substantive metrics (e.g. GV.SG-3 performance-degradation detection, GV.CR-11 classification documentation, IO.FE-1 deployment equity) to test whether the committee is actually exercising oversight.
+
+**Novel Thinking / Implications**
+
+> 💡 The absence of board-level AI governance has been a consistent finding in NHS AI early-adopter inspections. Making this Tier 1 reflects the lesson from those inspections: the operational AI capability arrived ahead of the governance structure to oversee it. AVT, because it touches almost every clinical encounter, is the use case that forces the issue — there is no defensible "we'll add governance once we have enough deployments" argument when the deployment is enterprise-wide on day one.
+
+---
+
+### GV.CR-13 🟡 Refusal Impact-Explanation Quality
+
+When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-13 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Patient Experience                                       |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Continuous                                               |
+|**Responsible Actors** |Clinician; Deployer                                      |
+|**Maturity**           |Proposed / Novel                                           |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
+
+**Why this tier?**
+
+> Tier 2 because the measurement methodology depends on a rubric that is not yet piloted at scale. NHSE IG names the requirement explicitly, so the substantive obligation is Tier 1 in spirit; the metric stays Tier 2 until a rubric is available that makes the measurement repeatable across deployers. Maturity is Proposed/Novel for the same reason — the rubric placeholder is acknowledged as an interim measure (see triage §"Outstanding follow-ups after v5.3.0").
+
+**Formal Definition**
+
+```
+Sample-based audit: in a sampled set of recorded refusals, the recorded explanation is reviewed against a local rubric covering at minimum: (1) impact on documentation completeness named explicitly; (2) impact on consultation duration named explicitly; (3) any clinical-pathway implications named (e.g. delayed coding, manual letter-writing); (4) explanation given in plain language without coercion; (5) patient question response captured. Pass = ≥4 of 5 per refusal; metric reports the proportion of sampled refusals passing.
+```
+
+**Limitations**
+
+> The rubric is not yet piloted at national level; placeholder rubric is "structured per local IG officer review", which is not cross-deployer-comparable. Maturity: Proposed/Novel until a piloted rubric is published — the metric is structurally well-formed but the substantive scoring depends on local rubric quality. Future minor release should re-source against a piloted rubric and lift Maturity to Emerging.
+
+**Novel Thinking / Implications**
+
+> 💡 The "explain the impact of refusal" requirement is the kind of patient-facing communication obligation that sits between clinical-process metrics and patient-experience metrics. Without a piloted rubric, the requirement is real but the measurement is uneven. Treating it as a Proposed/Novel Tier 2 metric records the obligation in the catalogue without over-claiming the measurement maturity — and creates the placeholder under which a rubric pilot can later land.
+
+---
+
+### GV.CR-14 🟢 Consultation-Type Appropriateness Assessment
+
+Whether the deployer has a documented assessment of which consultation types AVT is appropriate for, which require carve-outs, and which are excluded — covering at minimum safeguarding, mental health, paediatrics, intimate examinations, and end-of-life conversations. The assessment must specify how the carve-out is enforced (clinician opt-out, admin-time exclusion list, or AVT-side detection) and how compliance is monitored.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-14 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Clinician                                      |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance|
+
+**Why this tier?**
+
+> Sensitive consultations carry the highest combined privacy and safety risk in AVT. Failure to identify carve-outs in advance produces incidents where patient disclosures (abuse, suicidality, intimate-exam findings) are recorded by an ambient system the patient may not know is running. Tier 1 because the cost of getting this wrong is a serious safeguarding or duty-of-confidence breach.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Documented list of consultation types triaged into "AVT-suitable", "AVT with carve-out", "AVT-excluded"; (2) Carve-out enforcement mechanism specified per category (clinician toggle, scheduling exclusion, AVT-side disable); (3) Monitoring of carve-out compliance — sampled or 100% — defined; (4) Caldicott Guardian sign-off on the categorisation; (5) Annual review reflecting incident learning. Full pass = all five.
+```
+
+**Limitations**
+
+> The metric tests that an assessment exists, not that it's correct for a specific patient cohort. A practice serving a high-deprivation population may need different carve-outs than a private practice; the metric does not currently weight by population. AVT-side detection of sensitive content is technically immature — most carve-outs in 2026 deployments rely on clinician toggle, which is bypassable.
+
+**Novel Thinking / Implications**
+
+> 💡 The carve-out conversation is the part of AVT deployment most often deferred to "we'll work it out as we go". Making it a Tier 1 documented assessment forces the conversation pre-deployment, which is the only time it can be done thoughtfully. After deployment, every individual carve-out request becomes an incident to defend rather than a category to plan for.
 
 ### GV.SC-1 🟡 Prompt Injection Resistance Rate
 
@@ -12675,6 +12912,201 @@ Disposition options per location: (i) deletable — cryptographically erased or 
 **Novel Thinking / Implications**
 
 > 💡 Decommissioning data handling is the regulatory failure mode that has not yet surfaced at scale because the AVT vendor market is too young — most vendors haven't been retired or replaced. The first few cases will reveal whether the v3.9 retention metrics (GV.PD-1/-2/-3/-11) actually hold past the operational period, or whether they're operationally measured but architecturally undefended for end-of-life. Treating decommissioning as Tier 1 from now means deployers writing procurement contracts today specify wind-down procedures explicitly; treating it as Tier 2 means we'll discover the gaps when something goes wrong.
+
+---
+
+### GV.PD-12 🟡 Training Data Representativeness Documentation
+
+Documentation of whether the AVT system's training data covers the intended patient population across demographic and clinical-setting strata — age, ethnicity, accent, comorbidity profile, deprivation, and care-setting mix. The metric is the foundational pre-condition for downstream bias-mitigation work: a deployer cannot defensibly run [TP.ASR-4 Demographic-Disaggregated WER] or [IO.FE-1 Deployment Equity Index] without first knowing whether the training data could plausibly support equivalent performance across strata.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-12 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Fairness                                                 |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — "boundaries and bias"|
+
+**Why this tier?**
+
+> Tier 2 because the metric tests documentation, not in-use performance — actual representativeness shows up in stratified performance metrics during deployment. The pre-deployment documentation is necessary but not sufficient for fairness assurance. Closely tied to the MHRA GMLP principle 3 expectation; deployers who skip this step inherit whatever the vendor decided was "representative".
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Training data corpus characterised by language, accent / dialect, age, sex, ethnicity, deprivation strata; (2) Clinical setting mix documented (primary care / outpatient / inpatient / virtual modality); (3) Specialty mix documented; (4) Known under-representation acknowledged with mitigation plan; (5) Statement on synthetic / augmented data proportion if used. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor-curated documentation is not independently auditable in most cases — training data is commercial-confidential. The metric verifies that documentation is internally consistent and explicitly engages the GMLP principle 3 expectations; it cannot verify that the documentation is empirically true. Independent audit (third-party data-card review) is the harder check and is currently rare.
+
+**Novel Thinking / Implications**
+
+> 💡 Training data representativeness documentation is the upstream control for the entire fairness assurance stack. Without it, every downstream stratified-performance disparity could be either a deployment-time artefact or a built-in training failure, and there is no way to tell. Making the documentation a Tier 2 gate forces vendors to own the upstream answer; deployers can then triage where stratified-performance gaps are coming from.
+
+---
+
+### GV.PD-13 🟢 Privacy Notice Currency & Completeness
+
+Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-13 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
+
+**Why this tier?**
+
+> Tier 1 because the cost is low and the obligation is named. Privacy notice currency is a UK GDPR Article 13/14 obligation that pre-exists AVT; the AVT-specific update is a small marginal task. Deployers who go live with AVT without updating their privacy notice are operating outside the legal basis they claim to operate under.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Each public-facing privacy notice (organisation-level + service-level if separate) includes an AVT-specific section; (2) Lawful basis stated explicitly (typically Article 6(1)(e) public task + Article 9(2)(h) provision of healthcare); (3) Controller / processor relationship named with vendor identified; (4) Retention periods stated for audio, transcript, and any model-training-use data; (5) Notice version-dated and dated within 12 months of last review or material change. Full pass = all five; a single missing item is a fail.
+```
+
+**Limitations**
+
+> Section ref to be added on next pass against the NHSE IG March 2026 guidance — currently the metric cites the document at framework level rather than section level. The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
+
+**Novel Thinking / Implications**
+
+> 💡 Privacy notice currency is the smallest-cost Tier 1 item in the v5.3 pull-through set — a deployer who fails it has likely failed the broader IG-readiness check too. Treating it as a separately-measured Tier 1 metric makes the failure visible early, before it becomes the trailing indicator that an AVT rollout was rushed past its IG governance.
+
+---
+
+### GV.PD-14 🟡 SAR Deletion-Pause Interaction
+
+Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-14 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Vendor                                         |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
+
+**Why this tier?**
+
+> Tier 2 because SAR-active deletion-pause is an interaction-test rather than a standing-state-test, and therefore tested by scenario walk-through rather than continuous monitoring. Wrong behaviour here destroys evidence the patient is entitled to — a serious failure mode but a rare one in practice.
+
+**Formal Definition**
+
+```
+Scenario walk-through: (1) Open a synthetic SAR against a test patient with active AVT-derived data approaching the GV.PD-2 deletion threshold; (2) Verify deletion is paused via the deployer's SAR-handling SOP and any vendor-side pause flag; (3) Verify SAR response can include the AVT-derived data; (4) Close the synthetic SAR; (5) Verify deletion resumes within the GV.PD-2 cadence from SAR-close, not from original creation. Full pass = all five.
+```
+
+**Limitations**
+
+> Scenario testing is sample-based and infrequent; the real-world failure mode (a SAR opened during a deletion countdown that does not pause) only surfaces when a real SAR is mishandled. Dependence on vendor-side cooperation is a known weakness — if the vendor's data-flow does not expose a pause flag, the pause has to happen at the deployer-mediated layer only, which may not catch every copy.
+
+**Novel Thinking / Implications**
+
+> 💡 The SAR / deletion interaction is the kind of regulatory edge case that does not surface in any single-process audit — both processes pass on their own. Making it a separately-measured Tier 2 metric forces the deployer to test the interaction explicitly, which is the only way to discover whether the SOP and the vendor data-flow actually compose correctly under stress.
+
+---
+
+### GV.PD-15 🟡 Right-to-Restrict Tooling Support
+
+Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-15 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Vendor                                         |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
+
+**Why this tier?**
+
+> Tier 2 because restriction requests are infrequent in practice but the absence of supporting tooling is a deployment-blocking gap when one is raised. The deployer cannot manufacture a restriction capability after the fact.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishable from "erase"; (2) Restricted records are excluded from any vendor-side training, analytics, or re-processing pipeline; (3) Restricted records remain accessible for evidence / SAR / audit purposes; (4) Restriction can be lifted via documented reversal procedure; (5) Audit trail of restriction events maintained. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor-side support for the restrict flag is the load-bearing technical dependency. Many AVT vendors implement erasure but not restriction; deployers using such vendors will fail this metric until vendor capability catches up. Future minor release should consider whether to break out a vendor-capability sub-metric explicitly.
+
+**Novel Thinking / Implications**
+
+> 💡 The right-to-restrict is the least-exercised data subject right in routine deployment, which means it is also the most likely to be silently absent from vendor capability. Making it a separately-measured Tier 2 metric surfaces the gap before a patient request makes it an emergency.
+
+---
+
+### GV.PD-17 🟡 DPIA Justification Quality
+
+Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian — extending [GV.CR-7 DPIA Template Completion Rate], which tests structural completion. Caldicott Principle 1 ("justify the purpose") is the substantive test that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-17 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Caldicott Guardian                             |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[Caldicott] Principle 1 (justify the purpose); UK Caldicott Guardian Manual; NDG guidance|
+
+**Why this tier?**
+
+> Tier 2 because the metric extends an existing Tier 1 metric (GV.CR-7) — completing a DPIA is the gate; reviewing its purpose-justification is the recommended next layer. Deployers with mature IG can reasonably elevate this to Tier 1 internally; the taxonomy keeps it at Tier 2 because not all deployments have access to a Caldicott Guardian's review capacity.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott Guardian (or equivalent IG senior); (2) Reviewer's verdict recorded (sufficient / needs revision / insufficient); (3) Where verdict is "needs revision" or "insufficient", revision tracked to closure or deployment paused; (4) Annual re-review tied to [GV.PD-13 Privacy Notice Currency] cycle; (5) Reviewer verdict accessible to incident-investigation processes if a future complaint relates to purpose justification. Full pass = all five.
+```
+
+**Limitations**
+
+> Reviewer judgement is qualitative; two Caldicott Guardians may reach different verdicts on the same DPIA. The metric does not enforce a specific rubric — deferred to local Guardian practice — which means cross-deployer comparability is limited. Future minor release may add a structured rubric if national IG practice converges on one.
+
+**Novel Thinking / Implications**
+
+> 💡 The completion-vs-quality gap is one of the most consistent pattern in IG metrics: a fully-completed DPIA can still be substantively wrong on purpose justification. Caldicott Guardian review is the structural mechanism the NHS already has for catching this; making it a separately-measured Tier 2 metric forces the review to happen on a documented cadence rather than only when something goes wrong.
 
 ### GV.OP-1 🟢 Documentation Time per Consultation
 
@@ -14109,6 +14541,84 @@ Notification content (mandatory): (i) what is being retired (product, feature, i
 
 > 💡 Vendor retirement is the failure mode the AVT procurement landscape has not yet faced at scale. The first few cases — a vendor exits the market, a vendor pivots away from primary care, a vendor deprecates a specialty configuration — will set the precedent for what "good notification practice" looks like. Treating retirement notification as Tier 1 from now means deployers writing procurement contracts today specify the lead times and content requirements explicitly, rather than discovering at retirement time that their contract is silent on what notice they're owed.
 
+---
+
+### GV.VT-9 🟡 Post-Market Surveillance Report Currency
+
+Whether the vendor's MHRA-required post-market surveillance reporting is current and accessible to the deployer on demand. PMSR (Periodic Safety Report — required for Class I and IIa devices) availability is checked on demand; PSUR (Periodic Safety Update Report — required for Class IIb and III) currency is checked annually. FTS Step 1.i directly requires submission of PMS evidence; this metric tests whether the obligation continues post-contract.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-9 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Continuous                                               |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i|
+
+**Why this tier?**
+
+> Reporting cadence rather than gate-level: a vendor with a missing PMSR can usually rectify within days, but a vendor whose PMS reporting has lapsed for the full annual cycle is operating outside the post-market regulatory regime. Tier 2 reflects the recovery window; deployers who need stronger guarantees can elevate to Tier 1 in their own assurance plans.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Vendor confirms which PMS report type applies (PMSR for Class I/IIa, PSUR for Class IIb/III); (2) For PMSR: vendor commits to provide on demand within 10 working days; (3) For PSUR: most recent report dated within 12 months and shared with deployer; (4) Report includes incident summary, complaint register, corrective and preventive actions (CAPA) status; (5) Report contents reconcile against deployer-side incident records. Full pass = all five.
+```
+
+**Limitations**
+
+> PMSR is on-demand for Class I, so currency cannot be tested except by request — sample-based audit only. PSUR contents are vendor-curated; reconciliation against deployer-side records is the only check on completeness, and only practical for deployers with mature incident reporting of their own.
+
+**Novel Thinking / Implications**
+
+> 💡 PMS is the regulatory mechanism for catching deployment-time problems that didn't surface in pre-market evaluation. For AVT, the most important PMS items are bias drift, edit-rate drift, and accent / dialect failure modes — the kinds of issues that emerge slowly across many encounters and would never surface in a single-site bench evaluation. Deployers who don't read PMS reports actively are leaving the most useful safety signal on the table.
+
+---
+
+### GV.VT-10 🟡 MHRA Transparency Content Completeness
+
+Composite check of whether vendor-published transparency content covers the items expected under the MHRA Software and AI as a Medical Device Roadmap, work package 2 (transparency outputs). Items typically include: device characterisation, intended-purpose statement, clinical performance summary, known limitations and contra-indications, lifecycle / version commitment, and human-AI interaction guidance. The metric is a structural completeness check, not a substantive quality check.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.VT-10 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Transparency                                             |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Proposed / Novel                                           |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)|
+
+**Why this tier?**
+
+> Tier 2 because WP-2 transparency outputs are themselves still in development — locking the metric to Tier 1 would over-claim the regulatory weight of a framework that hasn't fully landed. Once WP-2 outputs are published in final form, this metric is a candidate for re-tiering and re-sourcing. Maturity is Proposed/Novel to reflect that the MHRA Roadmap WP-2 transparency outputs are in development; the metric should be re-sourced once the outputs are published in final form (see triage §"Outstanding follow-ups after v5.3.0").
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Device characterisation published (model architecture family, training data summary, intended-purpose statement); (2) Clinical performance summary with stratification by patient and setting characteristics; (3) Known limitations and contra-indications documented; (4) Lifecycle / version commitment statement (which version is current; when next update is expected); (5) Human-AI interaction guidance for clinicians using the system. Composite pass = all five present and dated within 12 months.
+```
+
+**Limitations**
+
+> Cross-references GV.VT-2 (Telemetry Provision Completeness) — telemetry is the substrate for performance summary; this metric tests the published surface. Quality of the content is not tested by this metric — a vendor can publish a "known limitations" statement that says "the system has been comprehensively evaluated" and pass the structural check while providing no substantive transparency. Future minor release should consider adding a quality-tier to the WP-2 source list.
+
+**Novel Thinking / Implications**
+
+> 💡 Transparency content is the deployer-facing artefact of the regulatory surface — the documents a clinician or IG officer can actually read. Structural completeness is the floor; substantive quality is what determines whether the documents are useful in practice. Treating this as a structural metric for now reflects the early stage of WP-2; the substantive-quality metric will follow once the structural baseline is established.
+
 ### ES.ME-1 🔵 Proximal vs Distal Outcome Distinction
 
 The most important structural critique: measuring easy things and assuming they correlate with hard things. Require causal logic models.
@@ -14598,7 +15108,7 @@ National baseline for new digital health technologies seeking NHS deployment, co
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
 - **Short:** MHRA SaMD/AIaMD guidance
-- **Cited-by:** `_calibration-and-context.md`, `_outcomes-boundary.md`, `_standards-mapping.md`
+- **Cited-by:** `_calibration-and-context.md`, `_outcomes-boundary.md`, `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`, `gv/safety-governance.md`, `gv/vendor-transparency-contractual.md`
 
 MHRA's evolving regulatory guidance on Software and AI as a Medical Device (SaMD / AIaMD), including classification (WP1-WP2), qualification, post-market surveillance (WP4), and post-EU-exit recognition routes.
 
@@ -14694,7 +15204,7 @@ ICO's organisation-facing guidance hub. Cited where the taxonomy refers to ICO c
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`, `gv/privacy-data-governance.md`
 
 The eight Caldicott Principles as restated by the National Data Guardian in 2020. The principle of "no surprises" (principle 7) and the proportionality framing (principles 1-5) are the most cited in the AVT context. NDG's organisation page is at https://www.gov.uk/government/organisations/national-data-guardian for guidance beyond the principles publication.
 
@@ -14707,7 +15217,7 @@ The eight Caldicott Principles as restated by the National Data Guardian in 2020
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`
+- **Cited-by:** `_standards-mapping.md`, `gv/nhs-compliance-regulatory.md`
 
 The CQC's broad guidance-and-regulation hub for health and social-care providers, the regulatory frame that surrounds AVT deployment. For the deeper-dive into the assessment framework specifically (the most cited slice in the human-factors sections), see https://www.cqc.org.uk/guidance-regulation/providers/assessment/assessment-framework. CQC Mythbuster 109 on documentation accuracy is the specific guidance most cited in the human-factors sections.
 
@@ -14746,7 +15256,7 @@ NHS England's national service for recording and learning from patient-safety ev
 - **Archive:** _(Phase 1 — pending snapshot.py)_
 - **Retrieved:** 2026-04-26
 - **Local-Mirror:** _(reserved for option (c); empty in v3.9)_
-- **Cited-by:** `_standards-mapping.md`
+- **Cited-by:** `_standards-mapping.md`, `tp/downstream-write-back.md`
 
 PRSB's information-standard set, including clinical-headings standards for consultation summary structure. Most cited where the taxonomy reasons about EPR write-back fidelity and semantic completeness.
 
