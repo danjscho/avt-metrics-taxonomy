@@ -1,8 +1,8 @@
 {
-  "version": "v5.3.0",
+  "version": "v5.4.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
-  "metric_count": 234,
+  "metric_count": 236,
   "metrics": [
     {
       "ref_id": "TP.AC-1",
@@ -14,6 +14,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -41,6 +42,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -68,6 +70,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -95,6 +98,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -122,6 +126,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -149,6 +154,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -176,6 +182,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -203,6 +210,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -230,6 +238,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.AC-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -257,6 +266,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": "Clinical Transcription Accuracy",
       "dimensions": {
         "Reference": "TP.ASR-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -269,6 +279,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Clinical Transcription Accuracy",
         "Source": "[Wang-ADS-Eval-2025]; standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
@@ -284,6 +295,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": "Clinical Transcription Accuracy",
       "dimensions": {
         "Reference": "TP.ASR-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -296,10 +308,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Clinical Transcription Accuracy",
         "Source": "[OxonFair-2024] (proposed AVT extension; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 59
+      "heading_line": 60
     },
     {
       "ref_id": "TP.ASR-3",
@@ -311,6 +324,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": "Clinical Transcription Accuracy",
       "dimensions": {
         "Reference": "TP.ASR-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -323,10 +337,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Clinical Transcription Accuracy",
         "Source": "[OxonFair-2024] (healthcare voice fairness extension; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 143
+      "heading_line": 145
     },
     {
       "ref_id": "TP.ASR-4",
@@ -338,6 +353,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "TP.ASR-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -350,10 +366,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "[NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 234
+      "heading_line": 237
     },
     {
       "ref_id": "TP.ASR-5",
@@ -365,6 +382,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "TP.ASR-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -377,10 +395,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "[OxonFair-2024] (extension analysis; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 307
+      "heading_line": 311
     },
     {
       "ref_id": "TP.ASR-6",
@@ -392,6 +411,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -407,7 +427,7 @@
         "Source": "Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 350
+      "heading_line": 355
     },
     {
       "ref_id": "TP.ASR-7",
@@ -419,6 +439,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -434,7 +455,7 @@
         "Source": "Standard ASR performance metric"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 387
+      "heading_line": 392
     },
     {
       "ref_id": "TP.ASR-8",
@@ -446,6 +467,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -461,7 +483,7 @@
         "Source": "Standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 422
+      "heading_line": 427
     },
     {
       "ref_id": "TP.ASR-9",
@@ -473,6 +495,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -488,7 +511,7 @@
         "Source": "Standard speech recognition literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 478
+      "heading_line": 483
     },
     {
       "ref_id": "TP.ASR-10",
@@ -500,6 +523,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -515,7 +539,7 @@
         "Source": "Machine learning calibration literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 517
+      "heading_line": 522
     },
     {
       "ref_id": "TP.ASR-11",
@@ -527,6 +551,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-11",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -542,7 +567,7 @@
         "Source": "Derived from Abridge Linked Evidence architecture; confidence-based routing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 562
+      "heading_line": 567
     },
     {
       "ref_id": "TP.ASR-12",
@@ -554,6 +579,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-12",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -569,7 +595,7 @@
         "Source": "[Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 603
+      "heading_line": 608
     },
     {
       "ref_id": "TP.ASR-13",
@@ -581,6 +607,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -596,7 +623,7 @@
         "Source": "Identified as critical gap in clinical ASR evaluation"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 674
+      "heading_line": 679
     },
     {
       "ref_id": "TP.ASR-14",
@@ -608,6 +635,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.ASR-14",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -623,7 +651,7 @@
         "Source": "Standard ASR post-processing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 747
+      "heading_line": 752
     },
     {
       "ref_id": "TP.DI-1",
@@ -635,6 +663,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -662,6 +691,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -689,6 +719,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -716,6 +747,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -743,6 +775,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -770,6 +803,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -797,6 +831,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -824,6 +859,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -851,6 +887,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Diarisation",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.DI-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -878,6 +915,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Reference-Based Text Similarity",
       "dimensions": {
         "Reference": "TP.SN-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -890,6 +928,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Reference-Based Text Similarity",
         "Source": "[ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
@@ -905,6 +944,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Reference-Based Text Similarity",
       "dimensions": {
         "Reference": "TP.SN-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -917,10 +957,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Reference-Based Text Similarity",
         "Source": "[BERTScore-Zhang-2020]; [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 70
+      "heading_line": 71
     },
     {
       "ref_id": "TP.SN-3",
@@ -932,6 +973,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -947,7 +989,7 @@
         "Source": "[PDSQI-9]; [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 128
+      "heading_line": 130
     },
     {
       "ref_id": "TP.SN-4",
@@ -959,6 +1001,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -974,7 +1017,7 @@
         "Source": "[Asgari-Tortus-2025]. Now underpins automated guardrails."
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 169
+      "heading_line": 171
     },
     {
       "ref_id": "TP.SN-5",
@@ -986,6 +1029,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Clinical Content Fidelity",
       "dimensions": {
         "Reference": "TP.SN-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -998,10 +1042,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Clinical Content Fidelity",
         "Source": "Various; [Asgari-Tortus-2025] reports 1.47% per sentence"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 247
+      "heading_line": 249
     },
     {
       "ref_id": "TP.SN-6",
@@ -1013,6 +1058,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Clinical Content Fidelity",
       "dimensions": {
         "Reference": "TP.SN-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1025,10 +1071,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Clinical Content Fidelity",
         "Source": "[Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 345
+      "heading_line": 348
     },
     {
       "ref_id": "TP.SN-7a",
@@ -1040,6 +1087,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-7a",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1055,7 +1103,7 @@
         "Source": "[Abridge-Whitepaper-2025] (50,000+ training examples)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 452
+      "heading_line": 457
     },
     {
       "ref_id": "TP.SN-7b",
@@ -1067,6 +1115,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-7b",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1082,7 +1131,7 @@
         "Source": "[Chung-NEJM-AI-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 509
+      "heading_line": 514
     },
     {
       "ref_id": "TP.SN-9a",
@@ -1094,6 +1143,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-9a",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1109,7 +1159,7 @@
         "Source": "[Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 620
+      "heading_line": 625
     },
     {
       "ref_id": "TP.SN-9b",
@@ -1121,6 +1171,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-9b",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1136,7 +1187,7 @@
         "Source": "[Bedi-Stanford-CRFM-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 663
+      "heading_line": 668
     },
     {
       "ref_id": "TP.SN-11",
@@ -1148,6 +1199,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1163,7 +1215,7 @@
         "Source": "[Kanithi-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 706
+      "heading_line": 711
     },
     {
       "ref_id": "TP.SN-12",
@@ -1175,6 +1227,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1190,7 +1243,7 @@
         "Source": "architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 749
+      "heading_line": 754
     },
     {
       "ref_id": "TP.SN-13",
@@ -1202,6 +1255,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-13",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1217,7 +1271,7 @@
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 792
+      "heading_line": 797
     },
     {
       "ref_id": "TP.SN-14",
@@ -1229,6 +1283,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1244,7 +1299,7 @@
         "Source": "[INSYTE-2025]; [DCB0129] gap"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 835
+      "heading_line": 840
     },
     {
       "ref_id": "TP.SN-15",
@@ -1256,6 +1311,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Clinical Content Fidelity",
       "dimensions": {
         "Reference": "TP.SN-15",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1268,10 +1324,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Clinical Content Fidelity",
         "Source": "Clinical NLP literature; identified as systematic LLM failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 878
+      "heading_line": 883
     },
     {
       "ref_id": "TP.SN-16",
@@ -1283,6 +1340,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-16",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1298,7 +1356,7 @@
         "Source": "Clinical NLP literature on temporal expression extraction"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 947
+      "heading_line": 953
     },
     {
       "ref_id": "TP.SN-17",
@@ -1310,6 +1368,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1325,7 +1384,7 @@
         "Source": "[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 986
+      "heading_line": 992
     },
     {
       "ref_id": "TP.SN-18",
@@ -1337,6 +1396,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-18",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1352,7 +1412,7 @@
         "Source": "Identified as systematic LLM summarisation failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1023
+      "heading_line": 1029
     },
     {
       "ref_id": "TP.SN-19",
@@ -1364,6 +1424,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Medication Safety Thread",
       "dimensions": {
         "Reference": "TP.SN-19",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1376,10 +1437,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Medication Safety Thread",
         "Source": "[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1076
+      "heading_line": 1082
     },
     {
       "ref_id": "TP.SN-20",
@@ -1391,6 +1453,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Clinical Content Fidelity",
       "dimensions": {
         "Reference": "TP.SN-20",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1403,10 +1466,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Clinical Content Fidelity",
         "Source": "Clinical NLP hedging/uncertainty literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1115
+      "heading_line": 1122
     },
     {
       "ref_id": "TP.SN-21",
@@ -1418,6 +1482,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": "Medication Safety Thread",
       "dimensions": {
         "Reference": "TP.SN-21",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1430,10 +1495,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Medication Safety Thread",
         "Source": "[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1190
+      "heading_line": 1198
     },
     {
       "ref_id": "TP.SN-22",
@@ -1445,6 +1511,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-22",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1460,7 +1527,7 @@
         "Source": "Human factors literature on documentation consistency"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1229
+      "heading_line": 1238
     },
     {
       "ref_id": "TP.SN-23",
@@ -1472,6 +1539,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-23",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1487,7 +1555,7 @@
         "Source": "Identified as quality dimension not captured by accuracy metrics"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1268
+      "heading_line": 1277
     },
     {
       "ref_id": "TP.SN-24",
@@ -1499,6 +1567,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.SN-24",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1514,7 +1583,7 @@
         "Source": "[Himmelstein-Stigmatising-EHR-JAMA-2022]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1309
+      "heading_line": 1318
     },
     {
       "ref_id": "TP.CC-1",
@@ -1526,6 +1595,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1553,6 +1623,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1580,6 +1651,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1607,6 +1679,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1634,6 +1707,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": "Medication Safety Thread",
       "dimensions": {
         "Reference": "TP.CC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1646,6 +1720,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Medication Safety Thread",
         "Source": "[NHS-BSA-dm-plus-d]; gap identified in published AVT literature"
       },
       "group_file": "tp/clinical-coding.md",
@@ -1661,6 +1736,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1676,7 +1752,7 @@
         "Source": "[Hybrid-Code-v2-2026] (neuro-symbolic verification approach)"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 192
+      "heading_line": 193
     },
     {
       "ref_id": "TP.CC-7",
@@ -1688,6 +1764,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1703,7 +1780,7 @@
         "Source": "NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 248
+      "heading_line": 249
     },
     {
       "ref_id": "TP.CC-9",
@@ -1715,6 +1792,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "TP.CC-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1727,10 +1805,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "Extension of existing Deployment Equity Index to coding dimension"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 323
+      "heading_line": 324
     },
     {
       "ref_id": "TP.CC-10",
@@ -1742,6 +1821,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1757,7 +1837,7 @@
         "Source": "Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 360
+      "heading_line": 362
     },
     {
       "ref_id": "TP.CC-11",
@@ -1769,6 +1849,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1784,7 +1865,7 @@
         "Source": "[SNOMED-CT] hierarchy semantics; clinical audit methodology"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 397
+      "heading_line": 399
     },
     {
       "ref_id": "TP.CC-12",
@@ -1796,6 +1877,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.CC-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1811,7 +1893,7 @@
         "Source": "Standard latency metric"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 436
+      "heading_line": 438
     },
     {
       "ref_id": "TP.WB-1",
@@ -1823,6 +1905,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "dimensions": {
         "Reference": "TP.WB-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1835,6 +1918,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "PRSB Semantic Completeness & Write-back Fidelity",
         "Source": "Critical gap - no standardised FHIR R4 write-back in NHS primary care"
       },
       "group_file": "tp/downstream-write-back.md",
@@ -1850,6 +1934,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.WB-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1865,7 +1950,7 @@
         "Source": "Standard integration monitoring; IM1 requirements"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 76
+      "heading_line": 77
     },
     {
       "ref_id": "TP.WB-3",
@@ -1877,6 +1962,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "dimensions": {
         "Reference": "TP.WB-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1889,10 +1975,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "PRSB Semantic Completeness & Write-back Fidelity",
         "Source": "Identified as distinct failure mode within write-back"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 141
+      "heading_line": 142
     },
     {
       "ref_id": "TP.WB-4",
@@ -1904,6 +1991,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.WB-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1919,7 +2007,7 @@
         "Source": "Identified as safety-critical EPR integration behaviour"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 212
+      "heading_line": 214
     },
     {
       "ref_id": "TP.WB-5",
@@ -1931,6 +2019,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.WB-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1946,7 +2035,7 @@
         "Source": "Identified as essential for incident response"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 287
+      "heading_line": 289
     },
     {
       "ref_id": "TP.WB-6",
@@ -1958,6 +2047,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "dimensions": {
         "Reference": "TP.WB-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1970,10 +2060,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "PRSB Semantic Completeness & Write-back Fidelity",
         "Source": "[FHIR-UK-Core] R4 validation tooling"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 326
+      "heading_line": 328
     },
     {
       "ref_id": "TP.WB-7",
@@ -1985,6 +2076,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "TP.WB-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2000,7 +2092,7 @@
         "Source": "[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 365
+      "heading_line": 368
     },
     {
       "ref_id": "TP.WB-8",
@@ -2012,6 +2104,7 @@
       "cluster_name": "The Technical Pipeline",
       "group": "Downstream Write-back",
       "applicability": "General Healthcare AI",
+      "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "dimensions": {
         "Reference": "TP.WB-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2024,10 +2117,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "PRSB Semantic Completeness & Write-back Fidelity",
         "Source": "[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 404
+      "heading_line": 407
     },
     {
       "ref_id": "PI.PP-1",
@@ -2039,6 +2133,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2066,6 +2161,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2093,6 +2189,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2120,6 +2217,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2147,6 +2245,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2174,6 +2273,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2201,6 +2301,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2228,6 +2329,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2255,6 +2357,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.PP-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2282,6 +2385,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2309,6 +2413,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2336,6 +2441,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2363,6 +2469,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2390,6 +2497,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2417,6 +2525,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2444,6 +2553,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2471,6 +2581,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2498,6 +2609,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2525,6 +2637,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2552,6 +2665,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-11",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2579,6 +2693,7 @@
       "cluster_name": "Pipeline Interactions",
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "PI.E2E-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2606,6 +2721,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": "Post-Generation Correction",
       "dimensions": {
         "Reference": "HL.HF-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2618,6 +2734,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Post-Generation Correction",
         "Source": "[Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "hl/human-factors-workflow.md",
@@ -2633,6 +2750,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": "Post-Generation Correction",
       "dimensions": {
         "Reference": "HL.HF-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2645,10 +2763,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Post-Generation Correction",
         "Source": "[Abridge-Whitepaper-2025]; [DeepScore]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 98
+      "heading_line": 99
     },
     {
       "ref_id": "HL.HF-3a",
@@ -2660,6 +2779,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-3a",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2675,7 +2795,7 @@
         "Source": "[NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 182
+      "heading_line": 184
     },
     {
       "ref_id": "HL.HF-3b",
@@ -2687,6 +2807,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-3b",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2702,7 +2823,7 @@
         "Source": "EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 256
+      "heading_line": 258
     },
     {
       "ref_id": "HL.HF-5",
@@ -2714,6 +2835,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": "Post-Generation Correction",
       "dimensions": {
         "Reference": "HL.HF-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2726,10 +2848,11 @@
         "Maturity": "Vendor-Proprietary",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Post-Generation Correction",
         "Source": "[Abridge-Whitepaper-2025]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 336
+      "heading_line": 338
     },
     {
       "ref_id": "HL.HF-6",
@@ -2741,6 +2864,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2756,7 +2880,7 @@
         "Source": "Proposed in [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 381
+      "heading_line": 384
     },
     {
       "ref_id": "HL.HF-7",
@@ -2768,6 +2892,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": "Post-Generation Correction",
       "dimensions": {
         "Reference": "HL.HF-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2780,10 +2905,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Family": "Post-Generation Correction",
         "Source": "Extends edit-pattern monitoring with structural awareness"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 428
+      "heading_line": 431
     },
     {
       "ref_id": "HL.HF-8",
@@ -2795,6 +2921,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2810,7 +2937,7 @@
         "Source": "Human factors literature; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 469
+      "heading_line": 473
     },
     {
       "ref_id": "HL.HF-9",
@@ -2822,6 +2949,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2837,7 +2965,7 @@
         "Source": "Identified as strong dissatisfaction signal"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 518
+      "heading_line": 522
     },
     {
       "ref_id": "HL.HF-10",
@@ -2849,6 +2977,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2864,7 +2993,7 @@
         "Source": "[NASA-TLX] adapted for clinical documentation review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 557
+      "heading_line": 561
     },
     {
       "ref_id": "HL.HF-11",
@@ -2876,6 +3005,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2891,7 +3021,7 @@
         "Source": "Extends inter-rater reliability concepts to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 604
+      "heading_line": 608
     },
     {
       "ref_id": "HL.HF-12",
@@ -2903,6 +3033,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2918,7 +3049,7 @@
         "Source": "Aviation skill degradation literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 643
+      "heading_line": 647
     },
     {
       "ref_id": "HL.HF-13",
@@ -2930,6 +3061,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-13",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2945,7 +3077,7 @@
         "Source": "Cognitive offloading literature; distinct from automation bias"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 686
+      "heading_line": 690
     },
     {
       "ref_id": "HL.HF-14",
@@ -2957,6 +3089,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-14",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2972,7 +3105,7 @@
         "Source": "Trust halo effect analysis"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 725
+      "heading_line": 729
     },
     {
       "ref_id": "HL.HF-15",
@@ -2984,6 +3117,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-15",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2999,7 +3133,7 @@
         "Source": "Clinical fatigue research applied to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 768
+      "heading_line": 772
     },
     {
       "ref_id": "HL.HF-16",
@@ -3011,6 +3145,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-16",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3026,7 +3161,7 @@
         "Source": "[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 819
+      "heading_line": 823
     },
     {
       "ref_id": "HL.HF-17",
@@ -3038,6 +3173,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3053,7 +3189,7 @@
         "Source": "[GOSH-Phase-4-TimeCat]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 858
+      "heading_line": 862
     },
     {
       "ref_id": "HL.HF-18",
@@ -3065,6 +3201,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-18",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3080,7 +3217,7 @@
         "Source": "[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 897
+      "heading_line": 901
     },
     {
       "ref_id": "HL.HF-19",
@@ -3092,6 +3229,7 @@
       "cluster_name": "The Human Layer",
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "HL.HF-19",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3107,7 +3245,7 @@
         "Source": "Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 941
+      "heading_line": 945
     },
     {
       "ref_id": "IO.PX-1",
@@ -3119,6 +3257,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3146,6 +3285,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3173,6 +3313,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3200,6 +3341,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3227,6 +3369,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3254,6 +3397,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3281,6 +3425,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3308,6 +3453,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3335,6 +3481,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.PX-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3362,6 +3509,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
+      "family": "Medication Safety Thread",
       "dimensions": {
         "Reference": "IO.PX-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3374,6 +3522,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Family": "Medication Safety Thread",
         "Source": "[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories"
       },
       "group_file": "io/patient-experience.md",
@@ -3389,6 +3538,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "IO.FE-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3401,6 +3551,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "[NHS-LLM-Framework] wider impact"
       },
       "group_file": "io/fairness-equity.md",
@@ -3416,6 +3567,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "AVT-Specific",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "IO.FE-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3428,10 +3580,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 42
+      "heading_line": 43
     },
     {
       "ref_id": "IO.FE-3",
@@ -3443,6 +3596,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.FE-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3458,7 +3612,7 @@
         "Source": "Compound boundary risk model"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 79
+      "heading_line": 81
     },
     {
       "ref_id": "IO.FE-4",
@@ -3470,6 +3624,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "IO.FE-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3482,10 +3637,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "Intersectionality literature applied to AI fairness"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 118
+      "heading_line": 120
     },
     {
       "ref_id": "IO.FE-5",
@@ -3497,6 +3653,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": "Demographic Equity Disaggregation",
       "dimensions": {
         "Reference": "IO.FE-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3509,10 +3666,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Family": "Demographic Equity Disaggregation",
         "Source": "Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 157
+      "heading_line": 160
     },
     {
       "ref_id": "IO.FE-6",
@@ -3524,6 +3682,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.FE-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3539,7 +3698,7 @@
         "Source": "Long-tail performance analysis from machine learning literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 196
+      "heading_line": 200
     },
     {
       "ref_id": "IO.FE-7",
@@ -3551,6 +3710,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.FE-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3566,7 +3726,7 @@
         "Source": "Health literacy and equity research"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 235
+      "heading_line": 239
     },
     {
       "ref_id": "IO.FE-8",
@@ -3578,6 +3738,7 @@
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "IO.FE-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3593,7 +3754,7 @@
         "Source": "Extension of existing Cross-Practice Variance Coefficient into equity dimension"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 276
+      "heading_line": 280
     },
     {
       "ref_id": "GV.SG-1",
@@ -3605,6 +3766,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3632,6 +3794,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3659,6 +3822,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3686,6 +3850,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3713,6 +3878,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3740,6 +3906,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3767,6 +3934,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3794,6 +3962,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3821,6 +3990,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-9",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3848,6 +4018,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3875,6 +4046,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3902,6 +4074,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3929,6 +4102,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3956,6 +4130,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-14",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3983,6 +4158,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-15",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4010,6 +4186,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-16",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4037,6 +4214,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-17",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4064,6 +4242,7 @@
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SG-18",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4091,6 +4270,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.CR-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4103,6 +4283,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
@@ -4118,6 +4299,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.CR-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4130,10 +4312,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 70
+      "heading_line": 71
     },
     {
       "ref_id": "GV.CR-3",
@@ -4145,6 +4328,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.CR-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4157,10 +4341,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 140
+      "heading_line": 142
     },
     {
       "ref_id": "GV.CR-4",
@@ -4172,6 +4357,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4187,7 +4373,7 @@
         "Source": "[NHSE-AVT-Registry] (live since January 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 202
+      "heading_line": 205
     },
     {
       "ref_id": "GV.CR-5",
@@ -4199,6 +4385,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4214,7 +4401,7 @@
         "Source": "[CIO-CCIO-Guidance-2026]; NHS CIO priority notification"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 265
+      "heading_line": 268
     },
     {
       "ref_id": "GV.CR-6",
@@ -4226,6 +4413,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4241,7 +4429,7 @@
         "Source": "[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 330
+      "heading_line": 333
     },
     {
       "ref_id": "GV.CR-7",
@@ -4253,6 +4441,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.CR-7",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4265,10 +4454,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 394
+      "heading_line": 397
     },
     {
       "ref_id": "GV.CR-8",
@@ -4280,6 +4470,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4295,7 +4486,7 @@
         "Source": "[UK-GDPR] Article 28; NHS data protection guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 460
+      "heading_line": 466
     },
     {
       "ref_id": "GV.CR-9",
@@ -4307,6 +4498,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4322,7 +4514,7 @@
         "Source": "[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 499
+      "heading_line": 505
     },
     {
       "ref_id": "GV.CR-10",
@@ -4334,6 +4526,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4349,7 +4542,7 @@
         "Source": "[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 538
+      "heading_line": 546
     },
     {
       "ref_id": "GV.CR-11",
@@ -4361,6 +4554,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4376,7 +4570,7 @@
         "Source": "[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 577
+      "heading_line": 585
     },
     {
       "ref_id": "GV.CR-12",
@@ -4388,6 +4582,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-12",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4403,7 +4598,7 @@
         "Source": "[CQC] well-led KLOEs; DSIT AI Playbook Principle 10"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 616
+      "heading_line": 624
     },
     {
       "ref_id": "GV.CR-13",
@@ -4415,6 +4610,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.CR-13",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4427,10 +4623,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 655
+      "heading_line": 663
     },
     {
       "ref_id": "GV.CR-14",
@@ -4442,6 +4639,7 @@
       "cluster_name": "System Governance",
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.CR-14",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4457,7 +4655,7 @@
         "Source": "[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 694
+      "heading_line": 703
     },
     {
       "ref_id": "GV.SC-1",
@@ -4469,6 +4667,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4496,6 +4695,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4523,6 +4723,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4550,6 +4751,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4577,6 +4779,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4604,6 +4807,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4631,6 +4835,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4658,6 +4863,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4685,6 +4891,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4712,6 +4919,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4739,6 +4947,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4766,6 +4975,7 @@
       "cluster_name": "System Governance",
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "GV.SC-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4793,6 +5003,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4820,6 +5031,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4847,6 +5059,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Specific",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4874,6 +5087,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4901,6 +5115,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4928,6 +5143,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4955,6 +5171,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4982,6 +5199,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.PD-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4994,6 +5212,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements"
       },
       "group_file": "gv/privacy-data-governance.md",
@@ -5009,6 +5228,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.PD-9",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5021,10 +5241,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[UK-GDPR] Article 46; [Schrems-II] implications"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 407
+      "heading_line": 408
     },
     {
       "ref_id": "GV.PD-10",
@@ -5036,6 +5257,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-10",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5051,7 +5273,7 @@
         "Source": "[UK-GDPR] Article 15 right of access"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 450
+      "heading_line": 452
     },
     {
       "ref_id": "GV.PD-11",
@@ -5063,6 +5285,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5078,34 +5301,7 @@
         "Source": "[UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 510
-    },
-    {
-      "ref_id": "GV.PD-16",
-      "name": "Decommissioning Data Handling Compliance",
-      "tier": 1,
-      "tier_label": "Minimum Viable",
-      "tier_icon": "🟢",
-      "cluster": "GV",
-      "cluster_name": "System Governance",
-      "group": "Privacy & Data Governance",
-      "applicability": "AVT-Contextualised",
-      "dimensions": {
-        "Reference": "GV.PD-16",
-        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate; Event-triggered",
-        "Pipeline Layer": "Cross-cutting",
-        "Assurance Question": "Safety",
-        "Measurement Method": "Human Review",
-        "Lifecycle Phases": "Pre-deployment, Continuous",
-        "Responsible Actors": "Vendor, Deployer",
-        "Maturity": "Emerging",
-        "Outcome Type": "Proximal",
-        "Applicability": "AVT-Contextualised",
-        "Source": "Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; [DCB0160] Stage 7 (decommissioning)"
-      },
-      "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 579
+      "heading_line": 512
     },
     {
       "ref_id": "GV.PD-12",
@@ -5117,6 +5313,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5132,7 +5329,7 @@
         "Source": "[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — \"boundaries and bias\""
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 647
+      "heading_line": 581
     },
     {
       "ref_id": "GV.PD-13",
@@ -5144,6 +5341,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.PD-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5156,10 +5354,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 686
+      "heading_line": 620
     },
     {
       "ref_id": "GV.PD-14",
@@ -5171,6 +5370,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.PD-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5183,10 +5383,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 725
+      "heading_line": 660
     },
     {
       "ref_id": "GV.PD-15",
@@ -5198,6 +5399,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
       "dimensions": {
         "Reference": "GV.PD-15",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5210,10 +5412,39 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
         "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 764
+      "heading_line": 700
+    },
+    {
+      "ref_id": "GV.PD-16",
+      "name": "Decommissioning Data Handling Compliance",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "AVT-Contextualised",
+      "family": null,
+      "dimensions": {
+        "Reference": "GV.PD-16",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor, Deployer",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "AVT-Contextualised",
+        "Source": "Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; [DCB0160] Stage 7 (decommissioning)"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 740
     },
     {
       "ref_id": "GV.PD-17",
@@ -5225,6 +5456,7 @@
       "cluster_name": "System Governance",
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.PD-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5240,7 +5472,36 @@
         "Source": "[Caldicott] Principle 1 (justify the purpose); UK Caldicott Guardian Manual; NDG guidance"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 803
+      "heading_line": 808
+    },
+    {
+      "ref_id": "GV.PD-18",
+      "name": "Information Asset Register Completeness",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "family": "NHSE IG Attestation",
+      "dimensions": {
+        "Reference": "GV.PD-18",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Family": "NHSE IG Attestation",
+        "Source": "[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 849
     },
     {
       "ref_id": "GV.OP-1",
@@ -5252,6 +5513,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5279,6 +5541,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5306,6 +5569,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5333,6 +5597,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5360,6 +5625,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5387,6 +5653,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5414,6 +5681,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5441,6 +5709,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5468,6 +5737,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5495,6 +5765,7 @@
       "cluster_name": "System Governance",
       "group": "Operational",
       "applicability": "AVT-Contextualised",
+      "family": null,
       "dimensions": {
         "Reference": "GV.OP-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5522,6 +5793,7 @@
       "cluster_name": "System Governance",
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.EN-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5549,6 +5821,7 @@
       "cluster_name": "System Governance",
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.EN-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5576,6 +5849,7 @@
       "cluster_name": "System Governance",
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.EN-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5603,6 +5877,7 @@
       "cluster_name": "System Governance",
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.TC-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5630,6 +5905,7 @@
       "cluster_name": "System Governance",
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.TC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5657,6 +5933,7 @@
       "cluster_name": "System Governance",
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.TC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5684,6 +5961,7 @@
       "cluster_name": "System Governance",
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.TC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5711,6 +5989,7 @@
       "cluster_name": "System Governance",
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.TC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5738,6 +6017,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5765,6 +6045,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5792,6 +6073,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5819,6 +6101,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5846,6 +6129,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5873,6 +6157,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5900,6 +6185,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-7",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5927,6 +6213,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5945,87 +6232,6 @@
       "heading_line": 363
     },
     {
-      "ref_id": "GV.VT-13",
-      "name": "Evidence Pack Freshness",
-      "tier": 1,
-      "tier_label": "Minimum Viable",
-      "tier_icon": "🟢",
-      "cluster": "GV",
-      "cluster_name": "System Governance",
-      "group": "Vendor Transparency & Contractual",
-      "applicability": "AVT-Specific",
-      "dimensions": {
-        "Reference": "GV.VT-13",
-        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Periodic audit",
-        "Pipeline Layer": "Cross-cutting",
-        "Assurance Question": "Meta-evaluation",
-        "Measurement Method": "Documentary",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
-        "Responsible Actors": "Vendor, Deployer",
-        "Maturity": "Emerging",
-        "Outcome Type": "Proximal",
-        "Applicability": "AVT-Specific",
-        "Source": "[NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism"
-      },
-      "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 402
-    },
-    {
-      "ref_id": "GV.VT-14",
-      "name": "Indicative Pricing Transparency",
-      "tier": 1,
-      "tier_label": "Minimum Viable",
-      "tier_icon": "🟢",
-      "cluster": "GV",
-      "cluster_name": "System Governance",
-      "group": "Vendor Transparency & Contractual",
-      "applicability": "AVT-Specific",
-      "dimensions": {
-        "Reference": "GV.VT-14",
-        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "Periodic audit",
-        "Pipeline Layer": "Cross-cutting",
-        "Assurance Question": "Meta-evaluation",
-        "Measurement Method": "Documentary",
-        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
-        "Responsible Actors": "Vendor, Deployer",
-        "Maturity": "Emerging",
-        "Outcome Type": "Process",
-        "Applicability": "AVT-Specific",
-        "Source": "[NHSE-AVT-Registry] req #12"
-      },
-      "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 488
-    },
-    {
-      "ref_id": "GV.VT-15",
-      "name": "Retirement Notification Compliance",
-      "tier": 1,
-      "tier_label": "Minimum Viable",
-      "tier_icon": "🟢",
-      "cluster": "GV",
-      "cluster_name": "System Governance",
-      "group": "Vendor Transparency & Contractual",
-      "applicability": "General Healthcare AI",
-      "dimensions": {
-        "Reference": "GV.VT-15",
-        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
-        "Measurement Cadence": "One-off gate; Event-triggered",
-        "Pipeline Layer": "Cross-cutting",
-        "Assurance Question": "Safety",
-        "Measurement Method": "Human Review",
-        "Lifecycle Phases": "Pre-deployment, Continuous",
-        "Responsible Actors": "Vendor",
-        "Maturity": "Emerging",
-        "Outcome Type": "Distal",
-        "Applicability": "General Healthcare AI",
-        "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
-      },
-      "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 572
-    },
-    {
       "ref_id": "GV.VT-9",
       "name": "Post-Market Surveillance Report Currency",
       "tier": 2,
@@ -6035,6 +6241,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6050,7 +6257,7 @@
         "Source": "[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 641
+      "heading_line": 402
     },
     {
       "ref_id": "GV.VT-10",
@@ -6062,6 +6269,7 @@
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "GV.VT-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6077,7 +6285,119 @@
         "Source": "[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 680
+      "heading_line": 441
+    },
+    {
+      "ref_id": "GV.VT-11",
+      "name": "Joint-Controller Status Assessment",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "General Healthcare AI",
+      "family": null,
+      "dimensions": {
+        "Reference": "GV.VT-11",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer; Vendor",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] section 5 (section ref to be confirmed on next pass)"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 480
+    },
+    {
+      "ref_id": "GV.VT-13",
+      "name": "Evidence Pack Freshness",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "AVT-Specific",
+      "family": null,
+      "dimensions": {
+        "Reference": "GV.VT-13",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Meta-evaluation",
+        "Measurement Method": "Documentary",
+        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Responsible Actors": "Vendor, Deployer",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "AVT-Specific",
+        "Source": "[NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 516
+    },
+    {
+      "ref_id": "GV.VT-14",
+      "name": "Indicative Pricing Transparency",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "AVT-Specific",
+      "family": null,
+      "dimensions": {
+        "Reference": "GV.VT-14",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Meta-evaluation",
+        "Measurement Method": "Documentary",
+        "Lifecycle Phases": "Pre-deployment, Periodic Audit",
+        "Responsible Actors": "Vendor, Deployer",
+        "Maturity": "Emerging",
+        "Outcome Type": "Process",
+        "Applicability": "AVT-Specific",
+        "Source": "[NHSE-AVT-Registry] req #12"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 602
+    },
+    {
+      "ref_id": "GV.VT-15",
+      "name": "Retirement Notification Compliance",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "General Healthcare AI",
+      "family": null,
+      "dimensions": {
+        "Reference": "GV.VT-15",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Distal",
+        "Applicability": "General Healthcare AI",
+        "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 686
     },
     {
       "ref_id": "ES.ME-1",
@@ -6089,6 +6409,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6116,6 +6437,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6143,6 +6465,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6170,6 +6493,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6197,6 +6521,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6224,6 +6549,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6251,6 +6577,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6278,6 +6605,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6305,6 +6633,7 @@
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
+      "family": null,
       "dimensions": {
         "Reference": "ES.ME-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
