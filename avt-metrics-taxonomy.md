@@ -1162,7 +1162,7 @@ The framework has two parts. **Section A** is a binary pass/fail platform-assura
 | Proposed Ref | Title | T.E.S.T. Source | Suggested Placement | Tier |
 |---|---|---|---|---|
 | TP.SN-26 | AI Translation Accuracy & Liability Attribution | Req 13 | TP (Summarisation/NLP) or new translation sub-group | 🟡 2 |
-| GV.PD-15 | Training Data Anonymisation Provenance | Req 4 | GV Privacy & Data Governance | 🟡 2 |
+| ~~GV.PD-15~~ (slot taken in v5.3.0 by Gap-IG-D Right-to-Restrict; reallocate at pickup) | Training Data Anonymisation Provenance | Req 4 | GV Privacy & Data Governance | 🟡 2 |
 | GV.OP-13 | Total Cost of Ownership / Formal Economic Evaluation | Section B.2 | GV Operational | 🟡 2 |
 | GV.VT-11 | Multi-Specialty Validation Coverage | Section B.3 | GV Vendor Transparency | 🔵 3 |
 | IO.FE-9 | Virtual-Care Modality Stratified Performance | Section B.9 | IO Fairness & Equity | 🔵 3 |
@@ -1246,7 +1246,7 @@ The MHRA's regulatory position on software and AI as medical devices is delivere
 | WP1-01 | What qualifies as SaMD | *Process criterion - no metric equivalent; informs scope* | - |
 | WP1-02 | Crafting intended purpose | *Process criterion - documentation requirement* | - |
 | WP1-03 | Manufacturer definition | *Process criterion - legal determination* | - |
-| WP2-01 | Classification rules (UK MDR 2002, IMDRF-aligned) | GV.CR-6 Clinical Safety Case Completeness (evidences classification) | 🟢 1 |
+| WP2-01 | Classification rules (UK MDR 2002, IMDRF-aligned) | GV.CR-11 Medical Device Classification Documentation, GV.CR-6 Clinical Safety Case Completeness (evidences classification) | 🟢 1 |
 | WP2-02 | Regulatory "airlock" sandbox | *Process route - no metric equivalent* | - |
 | WP2-03 | Classification rule interpretation | *Process criterion* | - |
 
@@ -1255,7 +1255,7 @@ The MHRA's regulatory position on software and AI as medical devices is delivere
 | MHRA Criterion | Description | Taxonomy Metrics | Tier |
 |----------------|-------------|-----------------|------|
 | WP3-02 | Best-practice SaMD development | GV.VT-2 Telemetry Provision Completeness, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟡 2 / 🔵 3 |
-| WP3-04 | Data-driven SaMD (joint with HRA) | GV.PD-7 Training Data Inclusion Status, TP.ASR-4 Demographic-Disaggregated WER | 🟡 2 |
+| WP3-04 | Data-driven SaMD (joint with HRA) | GV.PD-7 Training Data Inclusion Status, GV.PD-12 Training Data Representativeness Documentation, TP.ASR-4 Demographic-Disaggregated WER | 🟢 1 / 🟡 2 |
 | WP3-05 | Human-centred SaMD | HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate, HL.HF-6 Automation Bias Detection | 🟢 1 / 🟡 2 |
 
 #### Change Programme - Post-Market Surveillance (WP4 + SI 2024 No. 1368)
@@ -1263,12 +1263,12 @@ The MHRA's regulatory position on software and AI as medical devices is delivere
 | MHRA Criterion | Description | Taxonomy Metrics | Tier |
 |----------------|-------------|-----------------|------|
 | PMS Plan | Signal detection, complaints handling, literature review, field experience | GV.SG-3 Performance Degradation Detection Latency, GV.SG-12 Cross-Practice Variance Coefficient | 🟡 2 |
-| PMSR (Class I/IIa, on demand) | Periodic non-implantable reporting | *No metric equivalent - reporting artefact* | - |
-| PSUR (Class IIb/III, annually) | Periodic Safety Update Report | *No metric equivalent - reporting artefact* | - |
+| PMSR (Class I/IIa, on demand) | Periodic non-implantable reporting | GV.VT-9 Post-Market Surveillance Report Currency | 🟡 2 |
+| PSUR (Class IIb/III, annually) | Periodic Safety Update Report | GV.VT-9 Post-Market Surveillance Report Currency | 🟡 2 |
 | WP4-02 Reportable incidents (including indirect harm) | Documentation errors causing downstream clinical harm | GV.SG-11 Adverse Event / Incident Rate (LFPSE), GV.SG-14 Near-Miss Reporting Rate | 🟢 1 |
 | Trend reporting | Statistically significant increases in non-serious incidents | GV.SG-12 Cross-Practice Variance Coefficient | 🟡 2 |
 | WP4-03 Change management | Post-deployment changes and their re-evaluation | GV.SG-2 Model Update Impact Score, GV.VT-1 Model Change Notification Compliance | 🟡 2 / 🟢 1 |
-| WP4-04 Predetermined Change Control Plans | PCCPs for AIaMD | GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
+| WP4-04 Predetermined Change Control Plans | PCCPs for AIaMD | GV.SG-18 PCCP Documentation Completeness, GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
 | Field Safety Corrective Action (FSCA) | Corrective action execution | GV.SG-15 Time-to-Correct, GV.VT-5 Incident Disclosure Compliance | 🟡 2 / 🟢 1 |
 | Field Safety Notices (FSN) | Targeted notifications | GV.VT-5 Incident Disclosure Compliance | 🟢 1 |
 | Reporting timelines (2/10/15 working days) | Serious threat / death / other serious incidents | GV.SG-16 SPI Escalation Response Time | 🟡 2 |
@@ -1303,7 +1303,7 @@ The MHRA's regulatory position on software and AI as medical devices is delivere
 |----------------|-------------|-----------------|------|
 | WP11-01 | Adaptivity guiding principles (static/batch/individualised/continuous) | GV.SG-1 Model Version Tracking, GV.SG-2 Model Update Impact Score | 🟢 1 / 🟡 2 |
 | WP11-02 | Concept drift and significant-change detection | GV.SG-6 Concept Drift in Clinical Notes, GV.SG-3 Performance Degradation Detection Latency | 🔵 3 / 🟡 2 |
-| WP11-03 | PCCPs for AIaMD | GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
+| WP11-03 | PCCPs for AIaMD | GV.SG-18 PCCP Documentation Completeness, GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria | 🟡 2 |
 
 #### Transparency Guiding Principles (June 2024, joint MHRA/FDA/Health Canada)
 
@@ -1311,7 +1311,7 @@ Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contai
 
 | Transparency Dimension | Content Items | Taxonomy Metrics | Tier |
 |------------------------|---------------|-----------------|------|
-| **WHAT - Device characterisation** | Medical purpose, disease/condition, intended users, use environments, target populations | *Partial gap - no specific "device characterisation completeness" metric* | - |
+| **WHAT - Device characterisation** | Medical purpose, disease/condition, intended users, use environments, target populations | GV.VT-10 MHRA Transparency Content Completeness (composite covering this + workflow + performance + lifecycle) | 🟡 2 |
 | **WHAT - Workflow integration** | How device fits workflow, intended inputs/outputs | HL.HF-1 Edit Rate, HL.HF-3 Review-Before-Signing Rate | 🟢 1 |
 | **WHAT - Performance & safety** | Performance details, benefits/risks, bias-management, clinical study summaries | TP.ASR-1 WER, TP.SN-5 Hallucination Rate, GV.SG-9 Safety Performance Indicators | 🟡 2 / 🟢 1 |
 | **WHAT - Model logic & development** | Output logic, ML approach, training/testing data characterisation | GV.PD-7 Training Data Inclusion Status, GV.VT-3 Benchmark & Evaluation Data Accessibility | 🟡 2 / 🔵 3 |
@@ -1324,7 +1324,7 @@ Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contai
 |----------------|-------------|-----------------|------|
 | GMLP-1 | Multi-Disciplinary Expertise | *Organisational requirement - no direct metric* | - |
 | GMLP-2 | Good Software and Engineering Practices | GV.SC-1/2 security metrics, GV.VT-4 Audit Trail Completeness | 🟡 2 |
-| GMLP-3 | Representative Datasets | TP.ASR-4 Demographic-Disaggregated WER, GV.PD-7 Training Data Inclusion Status | 🟡 2 |
+| GMLP-3 | Representative Datasets | TP.ASR-4 Demographic-Disaggregated WER, GV.PD-12 Training Data Representativeness Documentation, GV.PD-7 Training Data Inclusion Status | 🟢 1 / 🟡 2 |
 | GMLP-4 | Training Data Independent from Test Data | *No metric equivalent - methodology check* | - |
 | GMLP-5 | Best Available Reference Datasets | GV.VT-3 Benchmark & Evaluation Data Accessibility | 🔵 3 |
 | GMLP-6 | Model Design Tailored to Data and Intended Use | ES.ME-1 Proximal vs Distal Outcome Distinction | 🔵 3 |
@@ -1333,12 +1333,12 @@ Six-dimension framework (WHO/WHY/WHAT/WHERE/WHEN/HOW). The WHAT dimension contai
 | GMLP-9 | Users Provided Clear Essential Information | TP.ASR-11 ASR Confidence Exposure, TP.SN-20 Uncertainty Marker Preservation | 🟡 2 / 🟢 1 |
 | GMLP-10 | Deployed Models Monitored, Retraining Risks Managed | GV.SG-3 Performance Degradation Detection Latency, GV.SG-4 Retraining Trigger Threshold Specification, GV.SG-5 AI-Generated Data Contamination Rate | 🟡 2 / 🔵 3 |
 
-**Gaps:**
-- Medical device classification documentation (no metric)
-- PCCP documentation for adaptive algorithms (partial - GV.CR-9 is about acceptance criteria, not the PCCP itself)
-- PMSR / PSUR report completeness (reporting artefacts, no metric)
-- Transparency documentation for all WHAT content items as a composite
-- Device characterisation completeness
+**Gaps:** *(all five MHRA gaps below resolved by v5.3.0 pull-throughs from `_gaps.md §2a`)*
+- ~~Medical device classification documentation~~ → **GV.CR-11**
+- ~~PCCP documentation for adaptive algorithms~~ → **GV.SG-18** (paired with existing GV.CR-9 acceptance-criteria check)
+- ~~PMSR / PSUR report completeness~~ → **GV.VT-9**
+- ~~Transparency documentation for all WHAT content items as a composite~~ → **GV.VT-10**
+- ~~Device characterisation completeness~~ → **GV.VT-10** (covered by the composite)
 
 **Taxonomy extends:** Strong coverage through Safety & Governance (incident detection and response), Security & Adversarial Robustness, Privacy & Data Governance, and Vendor Transparency groups. MHRA guidance is process-heavy; the taxonomy provides the measurement substrate that MHRA assumes exists.
 
@@ -1492,7 +1492,7 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 - **GP Mythbuster 109 baseline assertions:**
   - CQC regulates providers not tools - provider remains accountable for AI output
   - Clinical responsibility non-delegable - clinician must review/sign off before the record is final → covered by HL.HF-3 Review-Before-Signing Rate, HL.HF-1 Edit Rate
-  - Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (no specific "record quality" composite metric)
+  - Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (TP.WB-8 PRSB Semantic Completeness covers content-element presence; record-quality composite still a gap)
   - AVT consent - implied consent acceptable if patients informed and can dissent → covered by GV.CR-1 Patient Dissent Recording Rate, GV.CR-2 Verbal Notification Compliance, IO.PX-1 Patient Opt-Out Rate
   - Medical device classification considerations → cross-reference to MHRA SaMD section
   - DCB0129/DCB0160 clinical safety case → covered by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness
@@ -1507,20 +1507,20 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 - **Responsive**: Partial - accessibility covered by IO.FE-2 Accent Taxonomy Standardisation, IO.FE-7 Health Literacy Performance Variation. Language coverage covered by TP.DI-6 Code-Switching Detection Rate. Equity audit covered by IO.FE-1 Deployment Equity Index, TP.CC-9 Coding Equity Index. Complaint routes specific to AI - gap.
 
-- **Well-led**: Partial - board-level AI governance - gap. Named accountable director - gap. CSO role covered by GV.CR-6 Clinical Safety Case Completeness. Audit trail covered by GV.VT-4 Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via GV.SG-13 Assurance Debt Accumulation Rate.
+- **Well-led**: Board-level AI governance covered by GV.CR-12 Board-Level AI Governance Mechanism (v5.3.0). Named accountable director — covered by GV.CR-12 (Board-Level AI Governance names a board committee or director). CSO role covered by GV.CR-6 Clinical Safety Case Completeness. Audit trail covered by GV.VT-4 Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via GV.SG-13 Assurance Debt Accumulation Rate.
 
 - **CSO expectations**: Registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live. Covered procedurally by GV.CR-6 Clinical Safety Case Completeness, GV.SG-17 Hazard Log Completeness. CSO capacity for AI oversight is a gap (no metric).
 
 **Overall position:** CQC assessment is structurally broader than any single standard because it covers the whole provider operation. The taxonomy provides strong measurement coverage for the Safe and Caring dimensions, partial coverage for Effective and Responsive, and weakest coverage for Well-led (board-level governance, named accountability, AI-specific complaint handling). The gaps are concentrated in provider-organisation-level governance mechanisms rather than clinical-AI performance.
 
 **Gaps:**
-- Board-level AI governance mechanism
-- Named accountable director for AI
-- CSO capacity for AI oversight (separate from CSO sign-off)
-- Patient complaint handling specific to AI outputs
+- ~~Board-level AI governance mechanism~~ → **GV.CR-12** (v5.3.0)
+- ~~Named accountable director for AI~~ → covered by **GV.CR-12** (v5.3.0)
+- CSO capacity for AI oversight (separate from CSO sign-off) — *deferred from v5.3.0; remains in `_gaps.md §2d`*
+- Patient complaint handling specific to AI outputs — *deferred from v5.3.0*
 - Dignity during recording
 - AI-specific equity of access auditing (language/accessibility composite)
-- Record quality composite (Regulation 17 alignment)
+- Record quality composite (Regulation 17 alignment) — *partial via TP.WB-8 PRSB Semantic Completeness (v5.3.0)*
 
 ---
 
@@ -1591,13 +1591,13 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 **Key dimensions and taxonomy coverage:**
 
 - **Main PRSB standards:**
-  - Core Information Standard (CIS) - foundational; gap (no semantic-completeness metric)
-  - GP Connect Access Record - gap
-  - Outpatient Letter Standard - gap
-  - Discharge Summary Standard - gap
-  - Mental Health Inpatient Discharge Summary - gap
-  - Emergency Care Discharge Summary - gap
-  - Transfer of Care Around Medicines (ToCAM) - partial via TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification
+  - Core Information Standard (CIS) - covered by TP.WB-8 PRSB Semantic Completeness (v5.3.0)
+  - GP Connect Access Record - covered by TP.WB-8 PRSB Semantic Completeness (per-standard stratification)
+  - Outpatient Letter Standard - covered by TP.WB-8 PRSB Semantic Completeness
+  - Discharge Summary Standard - covered by TP.WB-8 PRSB Semantic Completeness
+  - Mental Health Inpatient Discharge Summary - covered by TP.WB-8 PRSB Semantic Completeness
+  - Emergency Care Discharge Summary - covered by TP.WB-8 PRSB Semantic Completeness
+  - Transfer of Care Around Medicines (ToCAM) - partial via TP.SN-19 Medication Attribute Extraction F1, TP.SN-21 Medication Event Classification (TP.WB-8 covers semantic completeness against the standard)
   - About Me - gap
   - End of Life Care - gap
   - Maternity Record Standard - gap
@@ -1618,7 +1618,7 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 - **Narrative vs structured trade-off:** PRSB explicitly preserves narrative text as valuable and does not mandate full structurisation. The taxonomy captures aspects of this - TP.SN-22 Style & Format Consistency, TP.SN-23 Length Appropriateness - but not the narrative-preservation-vs-structurisation trade-off directly. An AVT that over-structures at the expense of narrative fails the PRSB spirit; an AVT that preserves narrative but fails to populate required coded fields also fails.
 
-- **Cardinality (Mandatory / Required-if-known / Optional):** Every data item in a PRSB standard has cardinality. The taxonomy has no metric for "is mandatory information present in the AVT output?"
+- **Cardinality (Mandatory / Required-if-known / Optional):** Every data item in a PRSB standard has cardinality. **TP.WB-8 PRSB Semantic Completeness (v5.3.0)** measures the proportion of mandatory information elements present in AVT output, stratified by applicable PRSB standard.
 
 - **Royal College endorsement:** AoMRC, RCGP, RCP, RCS, RCEM, RCPsych, RCPCH, RCOG, RCR, RCPath, RCA, RCN, RPS, AHP federation, patient groups. Process criterion, no metric.
 
@@ -1627,11 +1627,11 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 **Overall position:** PRSB is the clearest gap across all seven new standards. The taxonomy has strong technical integration metrics (TP.WB-1 Write-back Fidelity, TP.WB-3 Field Mapping Accuracy, TP.WB-6 FHIR R4 Resource Conformance) and strong content fidelity metrics (TP.SN-5 Hallucination, TP.SN-6 Omission) but no metric for "does the AVT output include all PRSB-mandatory information elements for the applicable standard?" A PRSB-aware AVT should be able to report per-standard compliance (CIS, Outpatient Letter, Discharge Summary, etc.) as a procurement signal.
 
 **Gaps:**
-- PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)
-- Mandatory information element coverage
-- Professional narrative preservation (narrative vs over-structurisation trade-off)
-- Communication needs (AIS) information capture
-- Legal status information capture (MHA, DoLS, advance decisions)
+- ~~PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)~~ → **TP.WB-8** (v5.3.0)
+- ~~Mandatory information element coverage~~ → **TP.WB-8** (v5.3.0)
+- Professional narrative preservation (narrative vs over-structurisation trade-off) — *deferred from v5.3.0; remains in `_gaps.md §2f` as TP.SN-25*
+- Communication needs (AIS) information capture — *deferred from v5.3.0*
+- Legal status information capture (MHA, DoLS, advance decisions) — *deferred from v5.3.0*
 - Safety netting information capture
 
 ---
@@ -1647,9 +1647,9 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 
 **Key dimensions and taxonomy coverage:**
 
-- **Principle 1 - Justify the purpose(s)**: Partial - GV.CR-7 DPIA Template Completion Rate evidences purpose documentation, but "justify" is judgement-based. Gap: DPIA justification quality metric.
+- **Principle 1 - Justify the purpose(s)**: Covered by GV.CR-7 DPIA Template Completion Rate (structural completion) + GV.PD-17 DPIA Justification Quality (Caldicott Guardian review of substantive justification, v5.3.0).
 
-- **Principle 2 - Use confidential information only when it is necessary**: Partial - GV.PD-4 Data Minimisation Score partially addresses this. Gap: "necessity" judgement metric for AVT processing of specific consultation types (e.g. should AVT be used for safeguarding or mental health consultations?).
+- **Principle 2 - Use confidential information only when it is necessary**: Partial - GV.PD-4 Data Minimisation Score addresses aggregate minimisation; GV.CR-14 Consultation-Type Appropriateness Assessment (v5.3.0) covers carve-outs for sensitive consultation types (safeguarding, mental health, paediatrics, intimate exams, end-of-life).
 
 - **Principle 3 - Use the minimum necessary confidential information**: Partial - GV.PD-4 Data Minimisation Score addresses aggregate minimisation. Gap: per-data-item necessity documentation.
 
@@ -1672,10 +1672,10 @@ ECD7 contains **21 numbered standards across 5 lifecycle areas**. Each has **min
 **Overall position:** Caldicott is largely operationalised by DSPT (already mapped). This section makes the strategic governance layer explicit for readers who come from an IG/ethics perspective rather than an operational security one. Principle 8 is the strongest direct mapping to existing metrics; Principles 4–7 are well covered; Principles 1–3 have partial coverage because judgement-based "justification" and "necessity" don't reduce to single metrics.
 
 **Gaps:**
-- DPIA justification quality under Principle 1
-- Consultation-type appropriateness under Principle 2 (e.g. AVT in safeguarding/MH consultations)
-- Per-data-item necessity documentation under Principle 3
-- Caldicott Guardian AI-specific engagement (review of AVT deployment by the Guardian)
+- ~~DPIA justification quality under Principle 1~~ → **GV.PD-17** (v5.3.0)
+- ~~Consultation-type appropriateness under Principle 2~~ (e.g. AVT in safeguarding/MH consultations) → **GV.CR-14** (v5.3.0)
+- Per-data-item necessity documentation under Principle 3 — *deferred from v5.3.0; remains in `_gaps.md §2g` (Tier 3, granular)*
+- Caldicott Guardian AI-specific engagement — *partially addressed by GV.PD-17 (Guardian sign-off on DPIA justification); broader engagement still a gap*
 
 ---
 
