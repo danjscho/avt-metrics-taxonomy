@@ -22,8 +22,8 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.3.0"
-TAXONOMY_DATE = "2026-05-07"  # ISO date of TAXONOMY_VERSION release; bumped together
+TAXONOMY_VERSION = "v5.4.0"
+TAXONOMY_DATE = "2026-05-08"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
 def ref_id_to_anchor(ref_id: str) -> str:
@@ -218,6 +218,15 @@ class Metric:
     @property
     def source(self) -> str:
         return self.dimensions.get("Source", "")
+
+    @property
+    def family(self) -> str | None:
+        """Named-metric-family membership (v5.4.0+); None if metric is unaffiliated.
+
+        Family values are declared in `_families.md` and audit-checked for
+        resolution; the dimensions table carries the value per metric.
+        """
+        return self.dimensions.get("Family") or None
 
     @property
     def is_subpart(self) -> bool:

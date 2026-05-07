@@ -118,6 +118,7 @@ markdown_extensions:
 nav:
   - Home: index.md
   - How to use: how-to-use.md
+  - Dimensions overview: dimensions-overview.md
   - Quick start (Tier 1): tier-1-quick-reference.md
   - Browse metrics:
       - Contents: contents.md
@@ -149,9 +150,11 @@ nav:
           - Meta-Evaluation: groups/meta-evaluation.md
   - Principles & frameworks:
       - Applicability: applicability.md
+      - Families: families.md
       - Standards Mapping: standards-mapping.md
       - Outcomes Boundary: outcomes-boundary.md
       - Calibration & Context: calibration-and-context.md
+      - Layers of Defence: layers-of-defence.md
       - Responsible AI Lens: responsible-ai-lens.md
   - Catalogue views:
       - Overview: crosscuts/index.md

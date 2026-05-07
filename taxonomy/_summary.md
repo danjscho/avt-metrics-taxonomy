@@ -2,13 +2,13 @@
 
 ### By Priority Tier
 
-- **🟢 Tier 1 - Minimum Viable Assurance**: 57 metrics - what every deployer must measure to operate safely
-- **🟡 Tier 2 - Recommended Assurance**: 98 metrics - recommended with reasonable governance capacity
+- **🟢 Tier 1 - Minimum Viable Assurance**: 58 metrics - what every deployer must measure to operate safely
+- **🟡 Tier 2 - Recommended Assurance**: 99 metrics - recommended with reasonable governance capacity
 - **🔵 Tier 3 - Advanced / Research**: 79 metrics - advanced, research, or requires infrastructure that doesn't yet exist
 
 ### By Maturity
 
-- **Established**: 60 metrics
+- **Established**: 62 metrics
 - **Emerging**: 53 metrics
 - **Vendor-Proprietary**: 4 metrics
 - **Proposed / Novel**: 110 metrics
@@ -23,7 +23,9 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
 - **Medication Safety Thread** (cross-cutting: Summarisation / NLP → Clinical Coding → Patient Experience): 4 metrics - attribute extraction, event classification, dm+d coding, medication error differential
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
-- **Unaffiliated**: 194 metrics - the remainder, not currently grouped into a named family
+- **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 11 metrics — see [Families](families.md#nhse-ig-attestation)
+- **PRSB Semantic Completeness & Write-back Fidelity** (Downstream Write-back) — *new in v5.4.0*: 4 metrics — see [Families](families.md#prsb-semantic-completeness--write-back-fidelity)
+- **Unaffiliated**: 196 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 

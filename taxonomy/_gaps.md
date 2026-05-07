@@ -8,7 +8,7 @@ Consolidated register of metrics not yet in the taxonomy but flagged during mapp
 - `deferred` - considered and set aside with reasoning; may revisit
 - `rejected` - considered and dismissed; reasoning preserved so it's not re-raised
 
-**Totals across origins:** 74 outstanding candidates (9 external-review accepted, 4 external-review deferred, 0 NHSE IG, 13 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens) plus 15 promoted-in-earlier-releases rows preserved at the bottom of this file (§7) for historical record. The build's `gap_count` ignores §7.
+**Totals across origins:** 74 outstanding candidates (9 external-review accepted, 4 external-review deferred, 0 NHSE IG, 13 standards-mapping, 6 NHS T.E.S.T., 38 Responsible AI lens) plus 17 promoted-in-earlier-releases rows preserved at the bottom of this file (§7) for historical record. The build's `gap_count` ignores §7.
 
 ---
 
@@ -308,9 +308,18 @@ Rows here have already been promoted to active metrics in earlier releases. They
 | DPIA Justification Quality | 🟡 2 | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends GV.CR-7 completion metric. | **GV.PD-17** (v5.3.0) |
 | Consultation-Type Appropriateness Assessment | 🟢 1 | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams). High-risk carve-outs. | **GV.CR-14** (v5.3.0) |
 
-### 7g. Cumulative roll-up
+### 7g. NHSE IG additional mints (2 → both minted directly in v5.4.0)
 
-- **15 candidates promoted** across all releases to date (2 at v3.3, 13 at v5.3.0)
+These two were not enumerated in §1c at v5.3.0 time — they surfaced as additional NHSE IG-driven gaps during the v5.1.1 Phase 1b batch 1 framework audit and were tracked as v5.4.0 mints in `v5.2-registry-action-list.md §C`. They are minted directly without an intermediate `_gaps.md` row.
+
+| Title | Tier at promotion | What it measured | Landed at |
+|---|---|---|---|
+| Information Asset Register Completeness | 🟢 1 | NHSE IG section 8 IAR registration with named owner, lawful basis, retention period, sub-processor list, risk classification. | **GV.PD-18** (v5.4.0) |
+| Joint-Controller Status Assessment | 🟡 2 | UK GDPR Article 26 + NHSE IG section 5 binary determination distinct from sub-processor disclosure. | **GV.VT-11** (v5.4.0) |
+
+### 7h. Cumulative roll-up
+
+- **17 candidates promoted** across all releases to date (2 at v3.3, 13 at v5.3.0, 2 at v5.4.0)
 - 4 origin sections fully closed (NHSE IG, MHRA SaMD)
 - 4 origin sections partially closed (NICE ESF, CQC, PRSB, Caldicott)
-- The build's `gap_count` reports outstanding gaps only (74 as of v5.3.0)
+- The build's `gap_count` reports outstanding gaps only (74 as of v5.4.0)

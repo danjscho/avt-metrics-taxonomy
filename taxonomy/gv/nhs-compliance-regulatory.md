@@ -15,6 +15,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Maturity**           |Established                                             |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |General Healthcare AI                                   |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03]                              |
 
 **Why this tier?**
@@ -84,6 +85,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Maturity**           |Established                                               |
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |General Healthcare AI                                     |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context|
 
 **Why this tier?**
@@ -154,6 +156,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Maturity**           |Established                                                |
 |**Outcome Type**       |Proximal                                                   |
 |**Applicability**      |General Healthcare AI                                      |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03]                                 |
 
 **Why this tier?**
@@ -393,7 +396,9 @@ Completeness assessed against DCB0129 standard sections: (1) safety management s
 
 ### GV.CR-7 🟢 DPIA Template Completion Rate
 
-Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure - but the template only helps if it's actually used and completed.
+Proportion of AVT deployments using the NHS-provided March 2026 DPIA template with all mandatory sections completed. Data Protection Impact Assessment is required under UK GDPR Article 35 for high-risk processing, and AVT meets the high-risk threshold. The NHSE template provides standardised structure - but the template only helps if it's actually used and completed. **Parent of the DPIA construct paired with [GV.PD-17 DPIA Justification Quality](#gv-pd-17)**: this metric is the structural-completion gate; GV.PD-17 is the substantive Caldicott-Guardian-reviewed sub-part. A DPIA can be structurally complete (passing this metric) and substantively weak on Principle 1 ("justify the purpose") — both checks are needed.
+
+**Change history:** v5.4.0 (formalised parent + sub-part relationship with [GV.PD-17 DPIA Justification Quality](#gv-pd-17) — GV.CR-7 is the parent (structural completion), GV.PD-17 is the sub-part (substantive Caldicott Principle 1 review)).
 
 |Dimension              |Value                                                 |
 |-----------------------|------------------------------------------------------|
@@ -408,6 +413,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `Periodic audit; Event-triggered` — the body has always required mandatory re-review on significant processing change in addition to the annual audit cadence; the calendar audit acts as the backstop, the change event is the substantive trigger).
@@ -500,6 +506,8 @@ DSPA Status per processor: (a) agreement in place (binary); (b) agreement curren
 
 Whether the vendor has pre-specified quantitative acceptance criteria that any model update must meet before being deployed to production. FDA Predetermined Change Control Plans (finalised December 2024) require this for US-market medical device AI. Even in UK-only deployments, it matters because: (1) EU-market vendors cascade similar requirements through the EU AI Act, and (2) the existence of pre-defined acceptance criteria is a proxy for mature change control regardless of regulatory jurisdiction.
 
+**Change history:** v5.4.0 (formalised parent + sub-part relationship with [GV.SG-18 PCCP Documentation Completeness](#gv-sg-18) — GV.CR-9 is the parent (substantive quality of acceptance criteria), GV.SG-18 is the sub-part (structural completeness of the documented PCCP); both metrics needed for full PCCP assurance).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.CR-9 |
@@ -527,7 +535,7 @@ Assessment against criteria: (1) Performance acceptance thresholds pre-specified
 
 **Limitations**
 
-> Vendors may claim PCCP equivalence without independent verification. The substantive quality of acceptance criteria matters more than their existence - a criterion like "WER not more than 20% worse" technically exists but provides no meaningful safety floor.
+> Vendors may claim PCCP equivalence without independent verification. The substantive quality of acceptance criteria matters more than their existence - a criterion like "WER not more than 20% worse" technically exists but provides no meaningful safety floor. The structural-completeness counterpart [GV.SG-18 PCCP Documentation Completeness](#gv-sg-18) tests whether the documented plan has all the structural elements (scope statement, audit-trail commitment) that this metric assumes; both are needed.
 
 **Novel Thinking / Implications**
 
@@ -669,6 +677,7 @@ When a patient declines AVT use for their consultation, NHSE IG explicitly requi
 |**Maturity**           |Proposed / Novel                                           |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
 |**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
 
 **Why this tier?**

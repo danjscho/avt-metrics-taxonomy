@@ -768,7 +768,9 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 
 ### GV.SG-18 🟡 PCCP Documentation Completeness
 
-Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full lifecycle obligations expected of an adaptive AI medical device — pre-specified change types, performance acceptance thresholds, regression test suite, fairness/equity acceptance criteria, rollback procedure, and audit-trail requirements. PCCPs are the structural mechanism by which retrained or fine-tuned AVT models update without requiring a new regulatory submission per change.
+Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full lifecycle obligations expected of an adaptive AI medical device — pre-specified change types, performance acceptance thresholds, regression test suite, fairness/equity acceptance criteria, rollback procedure, and audit-trail requirements. PCCPs are the structural mechanism by which retrained or fine-tuned AVT models update without requiring a new regulatory submission per change. **Sub-part of the PCCP construct paired with [GV.CR-9 FDA PCCP-Equivalent Pre-Defined Acceptance Criteria](#gv-cr-9)**: GV.CR-9 is the parent (substantive quality of the criteria); this metric is the structural-completeness counterpart. Both are needed for full PCCP assurance.
+
+**Change history:** v5.4.0 (formalised parent + sub-part relationship with GV.CR-9 — GV.CR-9 is parent (substantive quality), GV.SG-18 is sub-part (structural completeness); Limitations updated to reflect formalised relationship).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -787,7 +789,7 @@ Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full li
 
 **Why this tier?**
 
-> Tier 2 because PCCP applies specifically to adaptive / retrained models — not all AVT vendors update model weights post-deployment. For vendors that do, PCCP completeness is gate-level: a vendor that retrains without a documented change plan is operating outside the regulatory regime that legitimises post-deployment updates. Closely related to existing GV.CR-9 (FDA PCCP-equivalent acceptance criteria) which tests the substantive criteria; this metric tests the structural completeness of the plan itself.
+> Tier 2 because PCCP applies specifically to adaptive / retrained models — not all AVT vendors update model weights post-deployment. For vendors that do, PCCP completeness is gate-level: a vendor that retrains without a documented change plan is operating outside the regulatory regime that legitimises post-deployment updates. As the structural-completeness sub-part of the PCCP construct, this metric is paired with the parent [GV.CR-9](#gv-cr-9) which tests the substantive quality of acceptance criteria.
 
 **Formal Definition**
 
@@ -797,7 +799,7 @@ Pass per criterion: (1) PCCP scope statement enumerating which change types are 
 
 **Limitations**
 
-> Cross-references existing GV.CR-9 — both metrics share the substantive criteria question. This metric focuses on structural completeness of the documented plan; GV.CR-9 focuses on the meaningful quality of the criteria. Future minor release may merge them under a parent + sub-parts framing if reviewer confirms the overlap is excessive.
+> Pairs with [GV.CR-9](#gv-cr-9) — the parent. This metric focuses on structural completeness of the documented plan; GV.CR-9 focuses on the meaningful quality of the criteria. The pairing is formalised in v5.4.0; both metrics are needed because a structurally complete PCCP can still have substantively weak criteria (and vice versa). Cross-cluster placement (CR vs SG) preserves the assurance-question split: GV.CR-9 sits in compliance-regulatory because it tests procurement-time quality; GV.SG-18 sits in safety-governance because it tests deployment-lifecycle structural completeness.
 
 **Novel Thinking / Implications**
 

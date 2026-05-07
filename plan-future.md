@@ -259,6 +259,45 @@ The existing **Applicability** dimension answers *"is this AVT-specific?"* (AVT-
 
 ---
 
+## 11. Reference implementation library — extract code snippets as a runnable package
+
+**Status:** open question, candidate for v5.5+ or later. Surfaced 2026-05-08 during v5.4.0 work.
+
+Roughly a dozen metrics in the catalogue carry **code snippets** in their bodies — currently embedded as illustrative pseudocode or runnable-but-not-actually-run blocks (the `pyannote` DER snippet at TP.DI-1, scikit-learn calibration code at the calibration metrics, the stigmatising-language detection lexicon at TP.SN-24, the medication-attribute extraction sketch at TP.SN-19, etc.). Plan-future #5 already surfaced that these snippets need verification against cited sources.
+
+The next step beyond verification is **extraction into a runnable companion library**:
+
+- **What it would be.** A `pip install avt-metrics` (or similar) Python package providing reference implementations of every metric whose definition reduces to a computational operation. Each metric becomes a function with the same name as the metric (e.g. `avt_metrics.tp.asr.wer(reference, hypothesis)`, `avt_metrics.tp.di.der(reference_diar, hypothesis_diar)`). The catalogue body's code snippet is replaced by `from avt_metrics import ...` and the canonical implementation lives in the package.
+
+- **What it would buy.**
+  - **Consistency** — two deployers measuring "Hallucination Rate" today might apply different operationalisations of TP.SN-5; a reference implementation makes the operationalisation auditable.
+  - **Runnability** — readers can actually compute the metric on their own data without re-implementing from prose definitions.
+  - **Versioning** — the package version tracks alongside the taxonomy version, so "I measured this against avt-metrics v5.4.0" is a citable claim. The CHANGELOG already names per-metric Change history; the library would mirror that.
+  - **Test coverage** — every metric function gets unit tests, which surfaces operationalisation ambiguities the prose can paper over.
+  - **Community contribution path** — vendors and deployers who disagree with a reference implementation can PR an alternative, with the discussion happening at function-level rather than at prose-level.
+
+- **What it would cost.**
+  - **Maintenance burden** — every catalogue change that touches an operationalisable metric needs a code change too. The package and the catalogue have to stay in sync; drift becomes a real risk.
+  - **Scope creep** — once a reference implementation exists, readers will ask for plotting helpers, dataset loaders, evaluation harnesses, NHS-context-specific connectors. Easy to balloon.
+  - **Authoritative-but-prototype tension** — the library would be code that *runs* on real data; the taxonomy is explicitly a *prototype for discussion*. The library would need its own prototype-status framing or it would silently elevate the taxonomy's authority.
+  - **Not all metrics fit** — process-attestation metrics (DPIA completion, board oversight, PCCP documentation) have no computational kernel. The library would only cover the ~30-40% of metrics that reduce to a function; the prose taxonomy stays canonical for the rest.
+
+- **Suggested incremental path.**
+  1. **v5.5+ scoping pass** — enumerate which metrics have computational kernels worth packaging. Plan-future #5's Formal Definition + code snippet verification work has to land first; the library can't extract from snippets that haven't been verified.
+  2. **Single-cluster pilot** — extract TP.ASR (WER, M-WER, CK-ER, demographic-disaggregated WER, calibration) as a sub-package. ASR metrics have well-established external implementations (NIST SCTK, jiwer), so wrapping is mostly composition rather than re-implementation. Roughly 8-10 metric functions.
+  3. **CI integration** — add a workflow that runs the library's test suite on every catalogue change to that cluster's metrics; if tests fail, the catalogue prose has drifted from the operationalisation and one or the other needs fixing.
+  4. **Decision point** — after the TP.ASR pilot, evaluate whether the maintenance cost is worth it. If yes, expand cluster-by-cluster. If no, document the conclusion and keep code in metric bodies as illustrative.
+
+- **Open questions to settle before this lands.**
+  1. **Package name and ownership** — is this `avt-metrics`, `nhs-avt-metrics`, something else? Who maintains it? The catalogue is already AI-coauthored prototype; the library would inherit that framing or claim a different one.
+  2. **Licensing** — the catalogue is a documentation artefact; the library is software. License compatibility matters (MIT / Apache 2.0 are common; the catalogue itself doesn't yet declare a license).
+  3. **Versioning** — does the library track the taxonomy version exactly, or have its own SemVer? Tracking exactly is simpler but couples release cadences; independent SemVer is more flexible but harder to cross-reference.
+  4. **Out-of-scope shape** — the package should explicitly say what it does NOT do (no clinical-decision support, no ground-truth datasets, no pre-trained models). The Outcomes Boundary principle from the taxonomy gives a natural framing.
+
+**Promote to a release plan when:** (i) Plan-future #5 (Formal Definition + code snippet verification) has landed for the candidate pilot cluster, AND (ii) at least one external reader has expressed interest in using the library on real data (a deployer, a vendor's evaluation team, or a researcher). Without external pull, the maintenance cost outruns the reader value.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.

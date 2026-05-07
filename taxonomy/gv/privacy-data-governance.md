@@ -357,6 +357,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Family** | NHSE IG Attestation |
 | **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
@@ -421,6 +422,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Family** | NHSE IG Attestation |
 | **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
@@ -576,6 +578,165 @@ Erasure Test: process a synthetic erasure request through the system. Verify del
 ---
 
 
+### GV.PD-12 🟡 Training Data Representativeness Documentation
+
+Documentation of whether the AVT system's training data covers the intended patient population across demographic and clinical-setting strata — age, ethnicity, accent, comorbidity profile, deprivation, and care-setting mix. The metric is the foundational pre-condition for downstream bias-mitigation work: a deployer cannot defensibly run [TP.ASR-4 Demographic-Disaggregated WER] or [IO.FE-1 Deployment Equity Index] without first knowing whether the training data could plausibly support equivalent performance across strata.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-12 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Fairness                                                 |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — "boundaries and bias"|
+
+**Why this tier?**
+
+> Tier 2 because the metric tests documentation, not in-use performance — actual representativeness shows up in stratified performance metrics during deployment. The pre-deployment documentation is necessary but not sufficient for fairness assurance. Closely tied to the MHRA GMLP principle 3 expectation; deployers who skip this step inherit whatever the vendor decided was "representative".
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Training data corpus characterised by language, accent / dialect, age, sex, ethnicity, deprivation strata; (2) Clinical setting mix documented (primary care / outpatient / inpatient / virtual modality); (3) Specialty mix documented; (4) Known under-representation acknowledged with mitigation plan; (5) Statement on synthetic / augmented data proportion if used. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor-curated documentation is not independently auditable in most cases — training data is commercial-confidential. The metric verifies that documentation is internally consistent and explicitly engages the GMLP principle 3 expectations; it cannot verify that the documentation is empirically true. Independent audit (third-party data-card review) is the harder check and is currently rare.
+
+**Novel Thinking / Implications**
+
+> 💡 Training data representativeness documentation is the upstream control for the entire fairness assurance stack. Without it, every downstream stratified-performance disparity could be either a deployment-time artefact or a built-in training failure, and there is no way to tell. Making the documentation a Tier 2 gate forces vendors to own the upstream answer; deployers can then triage where stratified-performance gaps are coming from.
+
+---
+
+### GV.PD-13 🟢 Privacy Notice Currency & Completeness
+
+Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-13 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
+
+**Why this tier?**
+
+> Tier 1 because the cost is low and the obligation is named. Privacy notice currency is a UK GDPR Article 13/14 obligation that pre-exists AVT; the AVT-specific update is a small marginal task. Deployers who go live with AVT without updating their privacy notice are operating outside the legal basis they claim to operate under.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Each public-facing privacy notice (organisation-level + service-level if separate) includes an AVT-specific section; (2) Lawful basis stated explicitly (typically Article 6(1)(e) public task + Article 9(2)(h) provision of healthcare); (3) Controller / processor relationship named with vendor identified; (4) Retention periods stated for audio, transcript, and any model-training-use data; (5) Notice version-dated and dated within 12 months of last review or material change. Full pass = all five; a single missing item is a fail.
+```
+
+**Limitations**
+
+> Section ref to be added on next pass against the NHSE IG March 2026 guidance — currently the metric cites the document at framework level rather than section level. The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
+
+**Novel Thinking / Implications**
+
+> 💡 Privacy notice currency is the smallest-cost Tier 1 item in the v5.3 pull-through set — a deployer who fails it has likely failed the broader IG-readiness check too. Treating it as a separately-measured Tier 1 metric makes the failure visible early, before it becomes the trailing indicator that an AVT rollout was rushed past its IG governance.
+
+---
+
+### GV.PD-14 🟡 SAR Deletion-Pause Interaction
+
+Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-14 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Vendor                                         |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
+
+**Why this tier?**
+
+> Tier 2 because SAR-active deletion-pause is an interaction-test rather than a standing-state-test, and therefore tested by scenario walk-through rather than continuous monitoring. Wrong behaviour here destroys evidence the patient is entitled to — a serious failure mode but a rare one in practice.
+
+**Formal Definition**
+
+```
+Scenario walk-through: (1) Open a synthetic SAR against a test patient with active AVT-derived data approaching the GV.PD-2 deletion threshold; (2) Verify deletion is paused via the deployer's SAR-handling SOP and any vendor-side pause flag; (3) Verify SAR response can include the AVT-derived data; (4) Close the synthetic SAR; (5) Verify deletion resumes within the GV.PD-2 cadence from SAR-close, not from original creation. Full pass = all five.
+```
+
+**Limitations**
+
+> Scenario testing is sample-based and infrequent; the real-world failure mode (a SAR opened during a deletion countdown that does not pause) only surfaces when a real SAR is mishandled. Dependence on vendor-side cooperation is a known weakness — if the vendor's data-flow does not expose a pause flag, the pause has to happen at the deployer-mediated layer only, which may not catch every copy.
+
+**Novel Thinking / Implications**
+
+> 💡 The SAR / deletion interaction is the kind of regulatory edge case that does not surface in any single-process audit — both processes pass on their own. Making it a separately-measured Tier 2 metric forces the deployer to test the interaction explicitly, which is the only way to discover whether the SOP and the vendor data-flow actually compose correctly under stress.
+
+---
+
+### GV.PD-15 🟡 Right-to-Restrict Tooling Support
+
+Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-15 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Vendor                                         |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation|
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
+
+**Why this tier?**
+
+> Tier 2 because restriction requests are infrequent in practice but the absence of supporting tooling is a deployment-blocking gap when one is raised. The deployer cannot manufacture a restriction capability after the fact.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishable from "erase"; (2) Restricted records are excluded from any vendor-side training, analytics, or re-processing pipeline; (3) Restricted records remain accessible for evidence / SAR / audit purposes; (4) Restriction can be lifted via documented reversal procedure; (5) Audit trail of restriction events maintained. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor-side support for the restrict flag is the load-bearing technical dependency. Many AVT vendors implement erasure but not restriction; deployers using such vendors will fail this metric until vendor capability catches up. Future minor release should consider whether to break out a vendor-capability sub-metric explicitly.
+
+**Novel Thinking / Implications**
+
+> 💡 The right-to-restrict is the least-exercised data subject right in routine deployment, which means it is also the most likely to be silently absent from vendor capability. Making it a separately-measured Tier 2 metric surfaces the gap before a patient request makes it an emergency.
+
+---
+
 ### GV.PD-16 🟢 Decommissioning Data Handling Compliance
 
 When an AVT deployment is wound down — whether by deployer choice, vendor retirement ([GV.VT-15 Retirement Notification Compliance](#gv-vt-15)), or contract termination ([GV.VT-6 Exit & Data Portability Provisions](#gv-vt-6)) — what happens to audio, transcripts, AI-generated notes, telemetry, and any patient data the vendor or deployer retained? This metric covers the *data-handling* dimension of decommissioning: every storage location named in the deployment's [GV.PD-1 Audio Retention Compliance](#gv-pd-1) enumeration must follow a defined wind-down procedure with deletion or migration documented per location.
@@ -644,165 +805,11 @@ Disposition options per location: (i) deletable — cryptographically erased or 
 
 ---
 
-### GV.PD-12 🟡 Training Data Representativeness Documentation
-
-Documentation of whether the AVT system's training data covers the intended patient population across demographic and clinical-setting strata — age, ethnicity, accent, comorbidity profile, deprivation, and care-setting mix. The metric is the foundational pre-condition for downstream bias-mitigation work: a deployer cannot defensibly run [TP.ASR-4 Demographic-Disaggregated WER] or [IO.FE-1 Deployment Equity Index] without first knowing whether the training data could plausibly support equivalent performance across strata.
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.PD-12 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
-|**Measurement Cadence**|One-off gate; Event-triggered                            |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Fairness                                                 |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment                                           |
-|**Responsible Actors** |Vendor                                                   |
-|**Maturity**           |Emerging                                                 |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — "boundaries and bias"|
-
-**Why this tier?**
-
-> Tier 2 because the metric tests documentation, not in-use performance — actual representativeness shows up in stratified performance metrics during deployment. The pre-deployment documentation is necessary but not sufficient for fairness assurance. Closely tied to the MHRA GMLP principle 3 expectation; deployers who skip this step inherit whatever the vendor decided was "representative".
-
-**Formal Definition**
-
-```
-Pass per criterion: (1) Training data corpus characterised by language, accent / dialect, age, sex, ethnicity, deprivation strata; (2) Clinical setting mix documented (primary care / outpatient / inpatient / virtual modality); (3) Specialty mix documented; (4) Known under-representation acknowledged with mitigation plan; (5) Statement on synthetic / augmented data proportion if used. Full pass = all five.
-```
-
-**Limitations**
-
-> Vendor-curated documentation is not independently auditable in most cases — training data is commercial-confidential. The metric verifies that documentation is internally consistent and explicitly engages the GMLP principle 3 expectations; it cannot verify that the documentation is empirically true. Independent audit (third-party data-card review) is the harder check and is currently rare.
-
-**Novel Thinking / Implications**
-
-> 💡 Training data representativeness documentation is the upstream control for the entire fairness assurance stack. Without it, every downstream stratified-performance disparity could be either a deployment-time artefact or a built-in training failure, and there is no way to tell. Making the documentation a Tier 2 gate forces vendors to own the upstream answer; deployers can then triage where stratified-performance gaps are coming from.
-
----
-
-### GV.PD-13 🟢 Privacy Notice Currency & Completeness
-
-Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.PD-13 |
-|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
-|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Privacy                                                  |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
-|**Responsible Actors** |Deployer                                                 |
-|**Maturity**           |Established                                              |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
-
-**Why this tier?**
-
-> Tier 1 because the cost is low and the obligation is named. Privacy notice currency is a UK GDPR Article 13/14 obligation that pre-exists AVT; the AVT-specific update is a small marginal task. Deployers who go live with AVT without updating their privacy notice are operating outside the legal basis they claim to operate under.
-
-**Formal Definition**
-
-```
-Pass per criterion: (1) Each public-facing privacy notice (organisation-level + service-level if separate) includes an AVT-specific section; (2) Lawful basis stated explicitly (typically Article 6(1)(e) public task + Article 9(2)(h) provision of healthcare); (3) Controller / processor relationship named with vendor identified; (4) Retention periods stated for audio, transcript, and any model-training-use data; (5) Notice version-dated and dated within 12 months of last review or material change. Full pass = all five; a single missing item is a fail.
-```
-
-**Limitations**
-
-> Section ref to be added on next pass against the NHSE IG March 2026 guidance — currently the metric cites the document at framework level rather than section level. The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
-
-**Novel Thinking / Implications**
-
-> 💡 Privacy notice currency is the smallest-cost Tier 1 item in the v5.3 pull-through set — a deployer who fails it has likely failed the broader IG-readiness check too. Treating it as a separately-measured Tier 1 metric makes the failure visible early, before it becomes the trailing indicator that an AVT rollout was rushed past its IG governance.
-
----
-
-### GV.PD-14 🟡 SAR Deletion-Pause Interaction
-
-Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.PD-14 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
-|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Privacy                                                  |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
-|**Responsible Actors** |Deployer; Vendor                                         |
-|**Maturity**           |Emerging                                                 |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
-
-**Why this tier?**
-
-> Tier 2 because SAR-active deletion-pause is an interaction-test rather than a standing-state-test, and therefore tested by scenario walk-through rather than continuous monitoring. Wrong behaviour here destroys evidence the patient is entitled to — a serious failure mode but a rare one in practice.
-
-**Formal Definition**
-
-```
-Scenario walk-through: (1) Open a synthetic SAR against a test patient with active AVT-derived data approaching the GV.PD-2 deletion threshold; (2) Verify deletion is paused via the deployer's SAR-handling SOP and any vendor-side pause flag; (3) Verify SAR response can include the AVT-derived data; (4) Close the synthetic SAR; (5) Verify deletion resumes within the GV.PD-2 cadence from SAR-close, not from original creation. Full pass = all five.
-```
-
-**Limitations**
-
-> Scenario testing is sample-based and infrequent; the real-world failure mode (a SAR opened during a deletion countdown that does not pause) only surfaces when a real SAR is mishandled. Dependence on vendor-side cooperation is a known weakness — if the vendor's data-flow does not expose a pause flag, the pause has to happen at the deployer-mediated layer only, which may not catch every copy.
-
-**Novel Thinking / Implications**
-
-> 💡 The SAR / deletion interaction is the kind of regulatory edge case that does not surface in any single-process audit — both processes pass on their own. Making it a separately-measured Tier 2 metric forces the deployer to test the interaction explicitly, which is the only way to discover whether the SOP and the vendor data-flow actually compose correctly under stress.
-
----
-
-### GV.PD-15 🟡 Right-to-Restrict Tooling Support
-
-Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
-
-|Dimension              |Value                                                   |
-|-----------------------|---------------------------------------------------------|
-| **Reference** | GV.PD-15 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
-|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
-|**Pipeline Layer**     |Cross-cutting                                            |
-|**Assurance Question** |Privacy                                                  |
-|**Measurement Method** |Human Review                                             |
-|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
-|**Responsible Actors** |Deployer; Vendor                                         |
-|**Maturity**           |Emerging                                                 |
-|**Outcome Type**       |Proximal                                                 |
-|**Applicability**      |General Healthcare AI                                    |
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
-
-**Why this tier?**
-
-> Tier 2 because restriction requests are infrequent in practice but the absence of supporting tooling is a deployment-blocking gap when one is raised. The deployer cannot manufacture a restriction capability after the fact.
-
-**Formal Definition**
-
-```
-Pass per criterion: (1) AVT-side tooling exposes a "restrict" flag distinguishable from "erase"; (2) Restricted records are excluded from any vendor-side training, analytics, or re-processing pipeline; (3) Restricted records remain accessible for evidence / SAR / audit purposes; (4) Restriction can be lifted via documented reversal procedure; (5) Audit trail of restriction events maintained. Full pass = all five.
-```
-
-**Limitations**
-
-> Vendor-side support for the restrict flag is the load-bearing technical dependency. Many AVT vendors implement erasure but not restriction; deployers using such vendors will fail this metric until vendor capability catches up. Future minor release should consider whether to break out a vendor-capability sub-metric explicitly.
-
-**Novel Thinking / Implications**
-
-> 💡 The right-to-restrict is the least-exercised data subject right in routine deployment, which means it is also the most likely to be silently absent from vendor capability. Making it a separately-measured Tier 2 metric surfaces the gap before a patient request makes it an emergency.
-
----
-
 ### GV.PD-17 🟡 DPIA Justification Quality
 
-Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian — extending [GV.CR-7 DPIA Template Completion Rate], which tests structural completion. Caldicott Principle 1 ("justify the purpose") is the substantive test that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate.
+Independent review of the substantive quality of the AVT Data Protection Impact Assessment's purpose-justification — typically by the deploying organisation's Caldicott Guardian. **Sub-part of the DPIA construct paired with [GV.CR-7 DPIA Template Completion Rate](#gv-cr-7)**: GV.CR-7 is the parent (structural completion of all template sections); this metric is the substantive Caldicott Principle 1 ("justify the purpose") sub-part that completion alone cannot pass. The metric outputs a graded review (sufficient / needs revision / insufficient) with Guardian sign-off as the binding gate. Both checks are needed because a DPIA can be structurally complete and substantively weak on purpose justification.
+
+**Change history:** v5.4.0 (formalised parent + sub-part relationship with GV.CR-7 — explicit pairing language added; cross-cluster placement preserved because GV.CR-7 is a compliance-attestation gate while GV.PD-17 is a privacy-data-governance substantive review).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -836,4 +843,44 @@ Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott G
 **Novel Thinking / Implications**
 
 > 💡 The completion-vs-quality gap is one of the most consistent pattern in IG metrics: a fully-completed DPIA can still be substantively wrong on purpose justification. Caldicott Guardian review is the structural mechanism the NHS already has for catching this; making it a separately-measured Tier 2 metric forces the review to happen on a documented cadence rather than only when something goes wrong.
+
+---
+
+### GV.PD-18 🟢 Information Asset Register Completeness
+
+Whether the deploying organisation maintains an Information Asset Register (IAR) that includes the AVT system as a named information asset with a documented owner, lawful basis, retention period, sub-processor list, and risk classification. NHSE IG section 8 explicitly requires AVT-deploying organisations to register the system as an information asset alongside their other clinical-system assets — the IAR is the index that ties together DPIA, sub-processor disclosure, retention timing, and incident escalation.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.PD-18 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                          |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Privacy                                                  |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Family**             |NHSE IG Attestation                                      |
+|**Source**             |[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards|
+
+**Why this tier?**
+
+> Tier 1 because the IAR is the structural index that ties the rest of the IG-attestation surface together — without an entry, the AVT deployment is invisible to the IG team's incident escalation, SAR-handling, and audit-cycle workflows. The cost of compliance is small (an IAR row), the cost of non-compliance is high (the system is governed only by ad-hoc memory). Member of the [NHSE IG Attestation family](../families.md#nhse-ig-attestation).
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) AVT system listed in the organisation's Information Asset Register; (2) Named Information Asset Owner (IAO) documented; (3) Lawful basis stated (typically Article 6(1)(e) + Article 9(2)(h)); (4) Retention period stated, consistent with [GV.PD-1] / [GV.PD-2] / [GV.PD-3]; (5) Sub-processor list referenced (consistent with [GV.VT-7]); (6) Risk classification documented (typically aligned with the DPIA risk rating); (7) IAR entry version-dated within 12 months. Full pass = all seven.
+```
+
+**Limitations**
+
+> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+
+**Novel Thinking / Implications**
+
+> 💡 The IAR is the IG team's index into the AVT deployment — without it, every other IG-attestation metric is operating on a system the IG team has no formal record of. NHSE AI early-adopter inspections have repeatedly found AVT deployments that passed individual IG checks but were not registered as information assets, which made cross-cutting questions ("show me all systems handling Special Category data") impossible to answer accurately. Making this Tier 1 makes the index visible.
 
