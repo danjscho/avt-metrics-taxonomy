@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.1.4.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.3.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -6375,7 +6375,7 @@
 <td>🟡 2</td>
 </tr>
 <tr>
-<td>GV.PD-15</td>
+<td>~~<a href="../groups/privacy-data-governance/#gv-pd-15">GV.PD-15</a>~~ (slot taken in v5.3.0 by Gap-IG-D Right-to-Restrict; reallocate at pickup)</td>
 <td>Training Data Anonymisation Provenance</td>
 <td>Req 4</td>
 <td>GV Privacy &amp; Data Governance</td>
@@ -6587,7 +6587,7 @@
 <tr>
 <td>WP2-01</td>
 <td>Classification rules (UK MDR 2002, IMDRF-aligned)</td>
-<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness (evidences classification)</td>
+<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-11">GV.CR-11</a> Medical Device Classification Documentation, <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness (evidences classification)</td>
 <td>🟢 1</td>
 </tr>
 <tr>
@@ -6624,8 +6624,8 @@
 <tr>
 <td>WP3-04</td>
 <td>Data-driven SaMD (joint with HRA)</td>
-<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER</td>
-<td>🟡 2</td>
+<td><a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status, <a href="../groups/privacy-data-governance/#gv-pd-12">GV.PD-12</a> Training Data Representativeness Documentation, <a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER</td>
+<td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>WP3-05</td>
@@ -6655,14 +6655,14 @@
 <tr>
 <td>PMSR (Class I/IIa, on demand)</td>
 <td>Periodic non-implantable reporting</td>
-<td><em>No metric equivalent - reporting artefact</em></td>
-<td>-</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-9">GV.VT-9</a> Post-Market Surveillance Report Currency</td>
+<td>🟡 2</td>
 </tr>
 <tr>
 <td>PSUR (Class IIb/III, annually)</td>
 <td>Periodic Safety Update Report</td>
-<td><em>No metric equivalent - reporting artefact</em></td>
-<td>-</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-9">GV.VT-9</a> Post-Market Surveillance Report Currency</td>
+<td>🟡 2</td>
 </tr>
 <tr>
 <td>WP4-02 Reportable incidents (including indirect harm)</td>
@@ -6685,7 +6685,7 @@
 <tr>
 <td>WP4-04 Predetermined Change Control Plans</td>
 <td>PCCPs for AIaMD</td>
-<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
+<td><a href="../groups/safety-governance/#gv-sg-18">GV.SG-18</a> PCCP Documentation Completeness, <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
 <td>🟡 2</td>
 </tr>
 <tr>
@@ -6827,7 +6827,7 @@
 <tr>
 <td>WP11-03</td>
 <td>PCCPs for AIaMD</td>
-<td><a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
+<td><a href="../groups/safety-governance/#gv-sg-18">GV.SG-18</a> PCCP Documentation Completeness, <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> FDA PCCP-Equivalent Pre-Defined Acceptance Criteria</td>
 <td>🟡 2</td>
 </tr>
 </tbody>
@@ -6847,8 +6847,8 @@
 <tr>
 <td><strong>WHAT - Device characterisation</strong></td>
 <td>Medical purpose, disease/condition, intended users, use environments, target populations</td>
-<td><em>Partial gap - no specific "device characterisation completeness" metric</em></td>
-<td>-</td>
+<td><a href="../groups/vendor-transparency-contractual/#gv-vt-10">GV.VT-10</a> MHRA Transparency Content Completeness (composite covering this + workflow + performance + lifecycle)</td>
+<td>🟡 2</td>
 </tr>
 <tr>
 <td><strong>WHAT - Workflow integration</strong></td>
@@ -6908,8 +6908,8 @@
 <tr>
 <td>GMLP-3</td>
 <td>Representative Datasets</td>
-<td><a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status</td>
-<td>🟡 2</td>
+<td><a href="../groups/asr-transcription/#tp-asr-4">TP.ASR-4</a> Demographic-Disaggregated WER, <a href="../groups/privacy-data-governance/#gv-pd-12">GV.PD-12</a> Training Data Representativeness Documentation, <a href="../groups/privacy-data-governance/#gv-pd-7">GV.PD-7</a> Training Data Inclusion Status</td>
+<td>🟢 1 / 🟡 2</td>
 </tr>
 <tr>
 <td>GMLP-4</td>
@@ -6955,12 +6955,12 @@
 </tr>
 </tbody>
 </table>
-<p><strong>Gaps:</strong>
-- Medical device classification documentation (no metric)
-- PCCP documentation for adaptive algorithms (partial - <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> is about acceptance criteria, not the PCCP itself)
-- PMSR / PSUR report completeness (reporting artefacts, no metric)
-- Transparency documentation for all WHAT content items as a composite
-- Device characterisation completeness</p>
+<p><strong>Gaps:</strong> <em>(all five MHRA gaps below resolved by v5.3.0 pull-throughs from <code>_gaps.md §2a</code>)</em>
+- ~~Medical device classification documentation~~ → <strong><a href="../groups/nhs-compliance-regulatory/#gv-cr-11">GV.CR-11</a></strong>
+- ~~PCCP documentation for adaptive algorithms~~ → <strong><a href="../groups/safety-governance/#gv-sg-18">GV.SG-18</a></strong> (paired with existing <a href="../groups/nhs-compliance-regulatory/#gv-cr-9">GV.CR-9</a> acceptance-criteria check)
+- ~~PMSR / PSUR report completeness~~ → <strong><a href="../groups/vendor-transparency-contractual/#gv-vt-9">GV.VT-9</a></strong>
+- ~~Transparency documentation for all WHAT content items as a composite~~ → <strong><a href="../groups/vendor-transparency-contractual/#gv-vt-10">GV.VT-10</a></strong>
+- ~~Device characterisation completeness~~ → <strong><a href="../groups/vendor-transparency-contractual/#gv-vt-10">GV.VT-10</a></strong> (covered by the composite)</p>
 <p><strong>Taxonomy extends:</strong> Strong coverage through Safety &amp; Governance (incident detection and response), Security &amp; Adversarial Robustness, Privacy &amp; Data Governance, and Vendor Transparency groups. MHRA guidance is process-heavy; the taxonomy provides the measurement substrate that MHRA assumes exists.</p>
 <hr />
 <h3 id="nice-evidence-standards-framework-for-digital-health-technologies-ecd7">NICE Evidence Standards Framework for Digital Health Technologies (ECD7)<a class="headerlink" href="#nice-evidence-standards-framework-for-digital-health-technologies-ecd7" title="Permanent link">&para;</a></h3>
@@ -7391,7 +7391,7 @@
 <li><strong>GP Mythbuster 109 baseline assertions:</strong></li>
 <li>CQC regulates providers not tools - provider remains accountable for AI output</li>
 <li>Clinical responsibility non-delegable - clinician must review/sign off before the record is final → covered by <a href="../groups/human-factors-workflow/#hl-hf-3">HL.HF-3</a> Review-Before-Signing Rate, <a href="../groups/human-factors-workflow/#hl-hf-1">HL.HF-1</a> Edit Rate</li>
-<li>Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (no specific "record quality" composite metric)</li>
+<li>Record-keeping duty (Regulation 17, good governance) applies unchanged → partial (<a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness covers content-element presence; record-quality composite still a gap)</li>
 <li>AVT consent - implied consent acceptable if patients informed and can dissent → covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-1">GV.CR-1</a> Patient Dissent Recording Rate, <a href="../groups/nhs-compliance-regulatory/#gv-cr-2">GV.CR-2</a> Verbal Notification Compliance, <a href="../groups/patient-experience/#io-px-1">IO.PX-1</a> Patient Opt-Out Rate</li>
 <li>Medical device classification considerations → cross-reference to MHRA SaMD section</li>
 <li>DCB0129/DCB0160 clinical safety case → covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness</li>
@@ -7412,7 +7412,7 @@
 <p><strong>Responsive</strong>: Partial - accessibility covered by <a href="../groups/fairness-equity/#io-fe-2">IO.FE-2</a> Accent Taxonomy Standardisation, <a href="../groups/fairness-equity/#io-fe-7">IO.FE-7</a> Health Literacy Performance Variation. Language coverage covered by <a href="../groups/diarisation/#tp-di-6">TP.DI-6</a> Code-Switching Detection Rate. Equity audit covered by <a href="../groups/fairness-equity/#io-fe-1">IO.FE-1</a> Deployment Equity Index, <a href="../groups/clinical-coding/#tp-cc-9">TP.CC-9</a> Coding Equity Index. Complaint routes specific to AI - gap.</p>
 </li>
 <li>
-<p><strong>Well-led</strong>: Partial - board-level AI governance - gap. Named accountable director - gap. CSO role covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness. Audit trail covered by <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via <a href="../groups/safety-governance/#gv-sg-13">GV.SG-13</a> Assurance Debt Accumulation Rate.</p>
+<p><strong>Well-led</strong>: Board-level AI governance covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-12">GV.CR-12</a> Board-Level AI Governance Mechanism (v5.3.0). Named accountable director — covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-12">GV.CR-12</a> (Board-Level AI Governance names a board committee or director). CSO role covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness. Audit trail covered by <a href="../groups/vendor-transparency-contractual/#gv-vt-4">GV.VT-4</a> Audit Trail Completeness. Vendor management covered by GV.VT group (transparency, incident disclosure, sub-processor). Risk register - partial via <a href="../groups/safety-governance/#gv-sg-13">GV.SG-13</a> Assurance Debt Accumulation Rate.</p>
 </li>
 <li>
 <p><strong>CSO expectations</strong>: Registered clinician, DCB0129/0160 trained, maintains Clinical Safety Case and Hazard Log, signs off DCB0160 before go-live. Covered procedurally by <a href="../groups/nhs-compliance-regulatory/#gv-cr-6">GV.CR-6</a> Clinical Safety Case Completeness, <a href="../groups/safety-governance/#gv-sg-17">GV.SG-17</a> Hazard Log Completeness. CSO capacity for AI oversight is a gap (no metric).</p>
@@ -7420,13 +7420,13 @@
 </ul>
 <p><strong>Overall position:</strong> CQC assessment is structurally broader than any single standard because it covers the whole provider operation. The taxonomy provides strong measurement coverage for the Safe and Caring dimensions, partial coverage for Effective and Responsive, and weakest coverage for Well-led (board-level governance, named accountability, AI-specific complaint handling). The gaps are concentrated in provider-organisation-level governance mechanisms rather than clinical-AI performance.</p>
 <p><strong>Gaps:</strong>
-- Board-level AI governance mechanism
-- Named accountable director for AI
-- CSO capacity for AI oversight (separate from CSO sign-off)
-- Patient complaint handling specific to AI outputs
+- ~~Board-level AI governance mechanism~~ → <strong><a href="../groups/nhs-compliance-regulatory/#gv-cr-12">GV.CR-12</a></strong> (v5.3.0)
+- ~~Named accountable director for AI~~ → covered by <strong><a href="../groups/nhs-compliance-regulatory/#gv-cr-12">GV.CR-12</a></strong> (v5.3.0)
+- CSO capacity for AI oversight (separate from CSO sign-off) — <em>deferred from v5.3.0; remains in <code>_gaps.md §2d</code></em>
+- Patient complaint handling specific to AI outputs — <em>deferred from v5.3.0</em>
 - Dignity during recording
 - AI-specific equity of access auditing (language/accessibility composite)
-- Record quality composite (Regulation 17 alignment)</p>
+- Record quality composite (Regulation 17 alignment) — <em>partial via <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness (v5.3.0)</em></p>
 <hr />
 <h3 id="patient-safety-incident-response-framework-psirf">Patient Safety Incident Response Framework (PSIRF)<a class="headerlink" href="#patient-safety-incident-response-framework-psirf" title="Permanent link">&para;</a></h3>
 <p><strong>Reference:</strong> <a href="../references/#psirf">PSIRF</a></p>
@@ -7501,13 +7501,13 @@
 <p><strong>Key dimensions and taxonomy coverage:</strong></p>
 <ul>
 <li><strong>Main PRSB standards:</strong></li>
-<li>Core Information Standard (CIS) - foundational; gap (no semantic-completeness metric)</li>
-<li>GP Connect Access Record - gap</li>
-<li>Outpatient Letter Standard - gap</li>
-<li>Discharge Summary Standard - gap</li>
-<li>Mental Health Inpatient Discharge Summary - gap</li>
-<li>Emergency Care Discharge Summary - gap</li>
-<li>Transfer of Care Around Medicines (ToCAM) - partial via <a href="../groups/summarisation-nlp/#tp-sn-19">TP.SN-19</a> Medication Attribute Extraction F1, <a href="../groups/summarisation-nlp/#tp-sn-21">TP.SN-21</a> Medication Event Classification</li>
+<li>Core Information Standard (CIS) - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness (v5.3.0)</li>
+<li>GP Connect Access Record - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness (per-standard stratification)</li>
+<li>Outpatient Letter Standard - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness</li>
+<li>Discharge Summary Standard - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness</li>
+<li>Mental Health Inpatient Discharge Summary - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness</li>
+<li>Emergency Care Discharge Summary - covered by <a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness</li>
+<li>Transfer of Care Around Medicines (ToCAM) - partial via <a href="../groups/summarisation-nlp/#tp-sn-19">TP.SN-19</a> Medication Attribute Extraction F1, <a href="../groups/summarisation-nlp/#tp-sn-21">TP.SN-21</a> Medication Event Classification (<a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> covers semantic completeness against the standard)</li>
 <li>About Me - gap</li>
 <li>End of Life Care - gap</li>
 <li>Maternity Record Standard - gap</li>
@@ -7534,7 +7534,7 @@
 <p><strong>Narrative vs structured trade-off:</strong> PRSB explicitly preserves narrative text as valuable and does not mandate full structurisation. The taxonomy captures aspects of this - <a href="../groups/summarisation-nlp/#tp-sn-22">TP.SN-22</a> Style &amp; Format Consistency, <a href="../groups/summarisation-nlp/#tp-sn-23">TP.SN-23</a> Length Appropriateness - but not the narrative-preservation-vs-structurisation trade-off directly. An AVT that over-structures at the expense of narrative fails the PRSB spirit; an AVT that preserves narrative but fails to populate required coded fields also fails.</p>
 </li>
 <li>
-<p><strong>Cardinality (Mandatory / Required-if-known / Optional):</strong> Every data item in a PRSB standard has cardinality. The taxonomy has no metric for "is mandatory information present in the AVT output?"</p>
+<p><strong>Cardinality (Mandatory / Required-if-known / Optional):</strong> Every data item in a PRSB standard has cardinality. <strong><a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a> PRSB Semantic Completeness (v5.3.0)</strong> measures the proportion of mandatory information elements present in AVT output, stratified by applicable PRSB standard.</p>
 </li>
 <li>
 <p><strong>Royal College endorsement:</strong> AoMRC, RCGP, RCP, RCS, RCEM, RCPsych, RCPCH, RCOG, RCR, RCPath, RCA, RCN, RPS, AHP federation, patient groups. Process criterion, no metric.</p>
@@ -7545,11 +7545,11 @@
 </ul>
 <p><strong>Overall position:</strong> PRSB is the clearest gap across all seven new standards. The taxonomy has strong technical integration metrics (<a href="../groups/downstream-write-back/#tp-wb-1">TP.WB-1</a> Write-back Fidelity, <a href="../groups/downstream-write-back/#tp-wb-3">TP.WB-3</a> Field Mapping Accuracy, <a href="../groups/downstream-write-back/#tp-wb-6">TP.WB-6</a> FHIR R4 Resource Conformance) and strong content fidelity metrics (<a href="../groups/summarisation-nlp/#tp-sn-5">TP.SN-5</a> Hallucination, <a href="../groups/summarisation-nlp/#tp-sn-6">TP.SN-6</a> Omission) but no metric for "does the AVT output include all PRSB-mandatory information elements for the applicable standard?" A PRSB-aware AVT should be able to report per-standard compliance (CIS, Outpatient Letter, Discharge Summary, etc.) as a procurement signal.</p>
 <p><strong>Gaps:</strong>
-- PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)
-- Mandatory information element coverage
-- Professional narrative preservation (narrative vs over-structurisation trade-off)
-- Communication needs (AIS) information capture
-- Legal status information capture (MHA, DoLS, advance decisions)
+- ~~PRSB semantic completeness per standard (CIS, Outpatient Letter, Discharge, ToCAM)~~ → <strong><a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a></strong> (v5.3.0)
+- ~~Mandatory information element coverage~~ → <strong><a href="../groups/downstream-write-back/#tp-wb-8">TP.WB-8</a></strong> (v5.3.0)
+- Professional narrative preservation (narrative vs over-structurisation trade-off) — <em>deferred from v5.3.0; remains in <code>_gaps.md §2f</code> as TP.SN-25</em>
+- Communication needs (AIS) information capture — <em>deferred from v5.3.0</em>
+- Legal status information capture (MHA, DoLS, advance decisions) — <em>deferred from v5.3.0</em>
 - Safety netting information capture</p>
 <hr />
 <h3 id="caldicott-principles-2020-revision">Caldicott Principles (2020 revision)<a class="headerlink" href="#caldicott-principles-2020-revision" title="Permanent link">&para;</a></h3>
@@ -7561,10 +7561,10 @@
 <p><strong>Key dimensions and taxonomy coverage:</strong></p>
 <ul>
 <li>
-<p><strong>Principle 1 - Justify the purpose(s)</strong>: Partial - <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate evidences purpose documentation, but "justify" is judgement-based. Gap: DPIA justification quality metric.</p>
+<p><strong>Principle 1 - Justify the purpose(s)</strong>: Covered by <a href="../groups/nhs-compliance-regulatory/#gv-cr-7">GV.CR-7</a> DPIA Template Completion Rate (structural completion) + <a href="../groups/privacy-data-governance/#gv-pd-17">GV.PD-17</a> DPIA Justification Quality (Caldicott Guardian review of substantive justification, v5.3.0).</p>
 </li>
 <li>
-<p><strong>Principle 2 - Use confidential information only when it is necessary</strong>: Partial - <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score partially addresses this. Gap: "necessity" judgement metric for AVT processing of specific consultation types (e.g. should AVT be used for safeguarding or mental health consultations?).</p>
+<p><strong>Principle 2 - Use confidential information only when it is necessary</strong>: Partial - <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score addresses aggregate minimisation; <a href="../groups/nhs-compliance-regulatory/#gv-cr-14">GV.CR-14</a> Consultation-Type Appropriateness Assessment (v5.3.0) covers carve-outs for sensitive consultation types (safeguarding, mental health, paediatrics, intimate exams, end-of-life).</p>
 </li>
 <li>
 <p><strong>Principle 3 - Use the minimum necessary confidential information</strong>: Partial - <a href="../groups/privacy-data-governance/#gv-pd-4">GV.PD-4</a> Data Minimisation Score addresses aggregate minimisation. Gap: per-data-item necessity documentation.</p>
@@ -7596,10 +7596,10 @@
 </ul>
 <p><strong>Overall position:</strong> Caldicott is largely operationalised by DSPT (already mapped). This section makes the strategic governance layer explicit for readers who come from an IG/ethics perspective rather than an operational security one. Principle 8 is the strongest direct mapping to existing metrics; Principles 4–7 are well covered; Principles 1–3 have partial coverage because judgement-based "justification" and "necessity" don't reduce to single metrics.</p>
 <p><strong>Gaps:</strong>
-- DPIA justification quality under Principle 1
-- Consultation-type appropriateness under Principle 2 (e.g. AVT in safeguarding/MH consultations)
-- Per-data-item necessity documentation under Principle 3
-- Caldicott Guardian AI-specific engagement (review of AVT deployment by the Guardian)</p>
+- ~~DPIA justification quality under Principle 1~~ → <strong><a href="../groups/privacy-data-governance/#gv-pd-17">GV.PD-17</a></strong> (v5.3.0)
+- ~~Consultation-type appropriateness under Principle 2~~ (e.g. AVT in safeguarding/MH consultations) → <strong><a href="../groups/nhs-compliance-regulatory/#gv-cr-14">GV.CR-14</a></strong> (v5.3.0)
+- Per-data-item necessity documentation under Principle 3 — <em>deferred from v5.3.0; remains in <code>_gaps.md §2g</code> (Tier 3, granular)</em>
+- Caldicott Guardian AI-specific engagement — <em>partially addressed by <a href="../groups/privacy-data-governance/#gv-pd-17">GV.PD-17</a> (Guardian sign-off on DPIA justification); broader engagement still a gap</em></p>
 <hr />
 <h3 id="gap-summary">Gap Summary<a class="headerlink" href="#gap-summary" title="Permanent link">&para;</a></h3>
 <p>Gaps where the taxonomy has no coverage against a standard's requirements:</p>

@@ -1,8 +1,8 @@
 {
-  "version": "v5.1.4",
+  "version": "v5.3.0",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
-  "metric_count": 221,
+  "metric_count": 234,
   "metrics": [
     {
       "ref_id": "TP.AC-1",
@@ -331,16 +331,16 @@
     {
       "ref_id": "TP.ASR-4",
       "name": "Demographic-Disaggregated WER",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "TP",
       "cluster_name": "The Technical Pipeline",
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "dimensions": {
         "Reference": "TP.ASR-4",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Periodic audit",
         "Pipeline Layer": "ASR / Transcription",
         "Assurance Question": "Fairness & Equity",
@@ -380,7 +380,7 @@
         "Source": "[OxonFair-2024] (extension analysis; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 305
+      "heading_line": 307
     },
     {
       "ref_id": "TP.ASR-6",
@@ -407,7 +407,7 @@
         "Source": "Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 348
+      "heading_line": 350
     },
     {
       "ref_id": "TP.ASR-7",
@@ -434,7 +434,7 @@
         "Source": "Standard ASR performance metric"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 385
+      "heading_line": 387
     },
     {
       "ref_id": "TP.ASR-8",
@@ -461,7 +461,7 @@
         "Source": "Standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 420
+      "heading_line": 422
     },
     {
       "ref_id": "TP.ASR-9",
@@ -488,7 +488,7 @@
         "Source": "Standard speech recognition literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 476
+      "heading_line": 478
     },
     {
       "ref_id": "TP.ASR-10",
@@ -515,7 +515,7 @@
         "Source": "Machine learning calibration literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 515
+      "heading_line": 517
     },
     {
       "ref_id": "TP.ASR-11",
@@ -542,7 +542,7 @@
         "Source": "Derived from Abridge Linked Evidence architecture; confidence-based routing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 560
+      "heading_line": 562
     },
     {
       "ref_id": "TP.ASR-12",
@@ -569,7 +569,7 @@
         "Source": "[Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 601
+      "heading_line": 603
     },
     {
       "ref_id": "TP.ASR-13",
@@ -596,7 +596,7 @@
         "Source": "Identified as critical gap in clinical ASR evaluation"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 672
+      "heading_line": 674
     },
     {
       "ref_id": "TP.ASR-14",
@@ -623,7 +623,7 @@
         "Source": "Standard ASR post-processing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 745
+      "heading_line": 747
     },
     {
       "ref_id": "TP.DI-1",
@@ -2003,6 +2003,33 @@
       "heading_line": 365
     },
     {
+      "ref_id": "TP.WB-8",
+      "name": "PRSB Semantic Completeness",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "TP",
+      "cluster_name": "The Technical Pipeline",
+      "group": "Downstream Write-back",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "TP.WB-8",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Continuous; Event-triggered",
+        "Pipeline Layer": "Downstream Write-back",
+        "Assurance Question": "Quality",
+        "Measurement Method": "Computational",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor; Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard"
+      },
+      "group_file": "tp/downstream-write-back.md",
+      "heading_line": 404
+    },
+    {
       "ref_id": "PI.PP-1",
       "name": "Speaker-Attributed Transcript Accuracy",
       "tier": 3,
@@ -3355,16 +3382,16 @@
     {
       "ref_id": "IO.FE-1",
       "name": "Deployment Equity Index",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "IO",
       "cluster_name": "Impact & Outcomes",
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "dimensions": {
         "Reference": "IO.FE-1",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Continuous",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Fairness & Equity",
@@ -3404,7 +3431,7 @@
         "Source": "[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 40
+      "heading_line": 42
     },
     {
       "ref_id": "IO.FE-3",
@@ -3431,7 +3458,7 @@
         "Source": "Compound boundary risk model"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 77
+      "heading_line": 79
     },
     {
       "ref_id": "IO.FE-4",
@@ -3458,7 +3485,7 @@
         "Source": "Intersectionality literature applied to AI fairness"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 116
+      "heading_line": 118
     },
     {
       "ref_id": "IO.FE-5",
@@ -3485,7 +3512,7 @@
         "Source": "Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 155
+      "heading_line": 157
     },
     {
       "ref_id": "IO.FE-6",
@@ -3512,7 +3539,7 @@
         "Source": "Long-tail performance analysis from machine learning literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 194
+      "heading_line": 196
     },
     {
       "ref_id": "IO.FE-7",
@@ -3539,7 +3566,7 @@
         "Source": "Health literacy and equity research"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 233
+      "heading_line": 235
     },
     {
       "ref_id": "IO.FE-8",
@@ -3566,7 +3593,7 @@
         "Source": "Extension of existing Cross-Practice Variance Coefficient into equity dimension"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 274
+      "heading_line": 276
     },
     {
       "ref_id": "GV.SG-1",
@@ -3625,16 +3652,16 @@
     {
       "ref_id": "GV.SG-3",
       "name": "Performance Degradation Detection Latency",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "GV",
       "cluster_name": "System Governance",
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "dimensions": {
         "Reference": "GV.SG-3",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Continuous",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Safety",
@@ -3674,7 +3701,7 @@
         "Source": "[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 159
+      "heading_line": 161
     },
     {
       "ref_id": "GV.SG-5",
@@ -3701,7 +3728,7 @@
         "Source": "[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 198
+      "heading_line": 200
     },
     {
       "ref_id": "GV.SG-6",
@@ -3728,7 +3755,7 @@
         "Source": "Concept drift literature from ML monitoring applied to clinical NLG"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 239
+      "heading_line": 241
     },
     {
       "ref_id": "GV.SG-7",
@@ -3755,7 +3782,7 @@
         "Source": "[Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT)"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 276
+      "heading_line": 278
     },
     {
       "ref_id": "GV.SG-8",
@@ -3782,7 +3809,7 @@
         "Source": "[DeepScribe]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 319
+      "heading_line": 321
     },
     {
       "ref_id": "GV.SG-9",
@@ -3809,7 +3836,7 @@
         "Source": "[AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 362
+      "heading_line": 364
     },
     {
       "ref_id": "GV.SG-10",
@@ -3836,7 +3863,7 @@
         "Source": "Compound boundary risk model; [NHS-LLM-Framework]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 405
+      "heading_line": 407
     },
     {
       "ref_id": "GV.SG-11",
@@ -3863,7 +3890,7 @@
         "Source": "[LFPSE] national reporting"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 452
+      "heading_line": 454
     },
     {
       "ref_id": "GV.SG-12",
@@ -3890,7 +3917,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 495
+      "heading_line": 497
     },
     {
       "ref_id": "GV.SG-13",
@@ -3917,7 +3944,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 534
+      "heading_line": 536
     },
     {
       "ref_id": "GV.SG-14",
@@ -3944,7 +3971,7 @@
         "Source": "Patient safety leading vs lagging indicator literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 573
+      "heading_line": 575
     },
     {
       "ref_id": "GV.SG-15",
@@ -3971,7 +3998,7 @@
         "Source": "Standard incident response metric applied to AVT"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 642
+      "heading_line": 644
     },
     {
       "ref_id": "GV.SG-16",
@@ -3998,7 +4025,7 @@
         "Source": "Operational extension of [AMLAS-AAIP]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 683
+      "heading_line": 685
     },
     {
       "ref_id": "GV.SG-17",
@@ -4025,7 +4052,34 @@
         "Source": "[DCB0129] compliance requirement"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 724
+      "heading_line": 726
+    },
+    {
+      "ref_id": "GV.SG-18",
+      "name": "PCCP Documentation Completeness",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Safety & Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.SG-18",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment",
+        "Responsible Actors": "Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[MHRA-SaMD] AI Airlock + Change Programme; [FDA-PCCP-Guidance-2024] (cross-aligned)"
+      },
+      "group_file": "gv/safety-governance.md",
+      "heading_line": 769
     },
     {
       "ref_id": "GV.CR-1",
@@ -4296,6 +4350,114 @@
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
       "heading_line": 538
+    },
+    {
+      "ref_id": "GV.CR-11",
+      "name": "Medical Device Classification Documentation",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "NHS Compliance & Regulatory",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.CR-11",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment",
+        "Responsible Actors": "Vendor; Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h"
+      },
+      "group_file": "gv/nhs-compliance-regulatory.md",
+      "heading_line": 577
+    },
+    {
+      "ref_id": "GV.CR-12",
+      "name": "Board-Level AI Governance Mechanism",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "NHS Compliance & Regulatory",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.CR-12",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Governance",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[CQC] well-led KLOEs; DSIT AI Playbook Principle 10"
+      },
+      "group_file": "gv/nhs-compliance-regulatory.md",
+      "heading_line": 616
+    },
+    {
+      "ref_id": "GV.CR-13",
+      "name": "Refusal Impact-Explanation Quality",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "NHS Compliance & Regulatory",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.CR-13",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Patient Experience",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Continuous",
+        "Responsible Actors": "Clinician; Deployer",
+        "Maturity": "Proposed / Novel",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)"
+      },
+      "group_file": "gv/nhs-compliance-regulatory.md",
+      "heading_line": 655
+    },
+    {
+      "ref_id": "GV.CR-14",
+      "name": "Consultation-Type Appropriateness Assessment",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "NHS Compliance & Regulatory",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.CR-14",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer; Clinician",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance"
+      },
+      "group_file": "gv/nhs-compliance-regulatory.md",
+      "heading_line": 694
     },
     {
       "ref_id": "GV.SC-1",
@@ -4946,6 +5108,141 @@
       "heading_line": 579
     },
     {
+      "ref_id": "GV.PD-12",
+      "name": "Training Data Representativeness Documentation",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.PD-12",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "One-off gate; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Fairness",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment",
+        "Responsible Actors": "Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — \"boundaries and bias\""
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 647
+    },
+    {
+      "ref_id": "GV.PD-13",
+      "name": "Privacy Notice Currency & Completeness",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.PD-13",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 686
+    },
+    {
+      "ref_id": "GV.PD-14",
+      "name": "SAR Deletion-Pause Interaction",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.PD-14",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer; Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 725
+    },
+    {
+      "ref_id": "GV.PD-15",
+      "name": "Right-to-Restrict Tooling Support",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.PD-15",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer; Vendor",
+        "Maturity": "Emerging",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 764
+    },
+    {
+      "ref_id": "GV.PD-17",
+      "name": "DPIA Justification Quality",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Privacy & Data Governance",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.PD-17",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Privacy",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Deployer; Caldicott Guardian",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[Caldicott] Principle 1 (justify the purpose); UK Caldicott Guardian Manual; NDG guidance"
+      },
+      "group_file": "gv/privacy-data-governance.md",
+      "heading_line": 803
+    },
+    {
       "ref_id": "GV.OP-1",
       "name": "Documentation Time per Consultation",
       "tier": 1,
@@ -5461,16 +5758,16 @@
     {
       "ref_id": "GV.VT-2",
       "name": "Telemetry Provision Completeness",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "GV",
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "dimensions": {
         "Reference": "GV.VT-2",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Continuous",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
@@ -5650,16 +5947,16 @@
     {
       "ref_id": "GV.VT-13",
       "name": "Evidence Pack Freshness",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "GV",
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "AVT-Specific",
       "dimensions": {
         "Reference": "GV.VT-13",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Periodic audit",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
@@ -5677,16 +5974,16 @@
     {
       "ref_id": "GV.VT-14",
       "name": "Indicative Pricing Transparency",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "GV",
       "cluster_name": "System Governance",
       "group": "Vendor Transparency & Contractual",
       "applicability": "AVT-Specific",
       "dimensions": {
         "Reference": "GV.VT-14",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "Periodic audit",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
@@ -5699,7 +5996,7 @@
         "Source": "[NHSE-AVT-Registry] req #12"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 486
+      "heading_line": 488
     },
     {
       "ref_id": "GV.VT-15",
@@ -5726,7 +6023,61 @@
         "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 568
+      "heading_line": 572
+    },
+    {
+      "ref_id": "GV.VT-9",
+      "name": "Post-Market Surveillance Report Currency",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.VT-9",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Safety",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Continuous",
+        "Responsible Actors": "Vendor; Deployer",
+        "Maturity": "Established",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 641
+    },
+    {
+      "ref_id": "GV.VT-10",
+      "name": "MHRA Transparency Content Completeness",
+      "tier": 2,
+      "tier_label": "Recommended",
+      "tier_icon": "🟡",
+      "cluster": "GV",
+      "cluster_name": "System Governance",
+      "group": "Vendor Transparency & Contractual",
+      "applicability": "General Healthcare AI",
+      "dimensions": {
+        "Reference": "GV.VT-10",
+        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Measurement Cadence": "Periodic audit; Event-triggered",
+        "Pipeline Layer": "Cross-cutting",
+        "Assurance Question": "Transparency",
+        "Measurement Method": "Human Review",
+        "Lifecycle Phases": "Pre-deployment, Continuous",
+        "Responsible Actors": "Vendor",
+        "Maturity": "Proposed / Novel",
+        "Outcome Type": "Proximal",
+        "Applicability": "General Healthcare AI",
+        "Source": "[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)"
+      },
+      "group_file": "gv/vendor-transparency-contractual.md",
+      "heading_line": 680
     },
     {
       "ref_id": "ES.ME-1",
@@ -5920,16 +6271,16 @@
     {
       "ref_id": "ES.ME-8",
       "name": "Outcome Evidence Commitment Status",
-      "tier": 2,
-      "tier_label": "Recommended",
-      "tier_icon": "🟡",
+      "tier": 1,
+      "tier_label": "Minimum Viable",
+      "tier_icon": "🟢",
       "cluster": "ES",
       "cluster_name": "Evaluation Science",
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "dimensions": {
         "Reference": "ES.ME-8",
-        "Priority Tier": "🟡 Tier 2 - Recommended",
+        "Priority Tier": "🟢 Tier 1 - Minimum Viable",
         "Measurement Cadence": "One-off gate; Periodic audit",
         "Pipeline Layer": "Cross-cutting",
         "Assurance Question": "Meta-evaluation",
@@ -5969,7 +6320,7 @@
         "Source": "This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique)"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 334
+      "heading_line": 336
     }
   ]
 }

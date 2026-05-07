@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.1.4.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.3.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -3355,6 +3355,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gap-candidate-id-allocation-v530-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gap-candidate ID allocation (v5.3.0 convention)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3564,6 +3575,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#gap-candidate-id-allocation-v530-convention" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Gap-candidate ID allocation (v5.3.0 convention)
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -3636,7 +3658,7 @@
 <ul>
 <li>All releases tag on <code>main</code> after a <code>--no-ff</code> merge from the release branch</li>
 <li>Tag format: <code>vX.Y.Z</code> (no leading zero, no <code>v0.x</code> prerelease numbering — the prototype is at v4.x already)</li>
-<li><code>parse.py:TAXONOMY_VERSION</code> and <code>pyproject.toml:version</code> bumped together in the release commit; the <code>v5.1.4</code> / <code>2026-05-04</code> template tokens propagate to every header, banner, and citation block at build time</li>
+<li><code>parse.py:TAXONOMY_VERSION</code> and <code>pyproject.toml:version</code> bumped together in the release commit; the <code>v5.3.0</code> / <code>2026-05-07</code> template tokens propagate to every header, banner, and citation block at build time</li>
 </ul>
 <h2 id="deprecation-policy">Deprecation policy<a class="headerlink" href="#deprecation-policy" title="Permanent link">&para;</a></h2>
 <p>Reference IDs (<a href="../groups/audio-capture/#tp-ac-1">TP.AC-1</a> etc.) are stable identifiers. When a metric is removed (e.g. v3.7 redundancy resolution promoting two related metrics into a parent + sub-parts), the original ID is <strong>retired, not reused</strong>:</p>
@@ -3646,6 +3668,14 @@
 <li>Documentation may continue to reference retired IDs in historical narration; the cross-cut linkifier tolerates them</li>
 </ul>
 <p>This applies symmetrically to catalogue handles: a handle that resolves today should resolve in every future version, even if the entry's content changes (e.g. v4.4 corrected the <code>Chung-NEJM-AI-2025</code> entry to describe the right paper without renaming the handle).</p>
+<h2 id="gap-candidate-id-allocation-v530-convention">Gap-candidate ID allocation (v5.3.0 convention)<a class="headerlink" href="#gap-candidate-id-allocation-v530-convention" title="Permanent link">&para;</a></h2>
+<p>Gap candidates in <code>_gaps.md</code> no longer reserve specific reference IDs. Earlier versions of <code>_gaps.md</code> listed proposed ref-IDs (e.g. <code>GV.OP-10</code> for a NICE ESF cost-effectiveness candidate) under the assumption that each gap would land at its proposed slot when promoted. In practice this caused:</p>
+<ul>
+<li><strong>Numbering gaps inside active clusters</strong> (e.g. GV.OP missing -10/-11/-12/-13 because those were reserved for deferred candidates).</li>
+<li><strong>Slot conflicts at promotion time</strong> when two gap candidates competed for the same proposed slot, or when v5.3.0's pull-through plan diverged from the original <code>_gaps.md</code> allocation.</li>
+<li><strong>Stale cross-references</strong> in archived plans pointing to slots whose meaning changed before promotion.</li>
+</ul>
+<p>From v5.3.0 onwards, gap candidates are slot-less. <code>_gaps.md</code> rows show <code>Proposed (slot at promotion)</code> or similar; the actual ref-ID is allocated to the next-available slot in the natural cluster at the moment the candidate is promoted to an active metric. Deprecated IDs (HL.HF-4, TP.CC-8, TP.SN-8/-10) remain retired under the existing deprecation policy and are <em>not</em> reused as fill.</p>
 
 
 

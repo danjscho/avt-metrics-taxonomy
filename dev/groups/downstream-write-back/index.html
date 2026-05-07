@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.1.4.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.3.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -981,6 +981,17 @@
     <span class="md-ellipsis">
       
         TP.WB-7 🔵 openEHR Archetype Conformance
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#tp-wb-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TP.WB-8 🟢 PRSB Semantic Completeness
       
     </span>
   </a>
@@ -3566,6 +3577,17 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#tp-wb-8" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        TP.WB-8 🟢 PRSB Semantic Completeness
+      
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -4255,6 +4277,85 @@
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
 <p>💡 The UK has bifurcated EPR infrastructure: primary care is standardising on FHIR-based interoperability, while parts of secondary care (particularly the Code4Health-aligned trusts) have significant openEHR investment. AVT vendors focused on primary care may simply not support openEHR, making them structurally unsuitable for some secondary care deployments. This should be a procurement question rather than a post-contract discovery.</p>
+</blockquote>
+<hr />
+<h3 id="tp-wb-8">TP.WB-8 🟢 PRSB Semantic Completeness<a class="headerlink" href="#tp-wb-8" title="Permanent link">&para;</a></h3>
+<p>Proportion of PRSB-mandatory information elements present in AVT-generated output, evaluated against the applicable PRSB standard for the consultation type — Core Information Standard (CIS), Outpatient Letter, Discharge Summary, etc. The metric is the cross-framework heavyweight: the same construct surfaces under DTAC C4 (interoperability), FHIR UK Core (extension conformance), CQC Regulation 17 (good governance — adequate records), and PRSB itself. AVT systems that produce FHIR-conformant output but miss PRSB-mandatory information elements pass the structural-conformance metrics (TP.WB-1 / TP.WB-6) while failing the semantic-completeness one this metric tests.</p>
+<table>
+<thead>
+<tr>
+<th>Dimension</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Reference</strong></td>
+<td>TP.WB-8</td>
+</tr>
+<tr>
+<td><strong>Priority Tier</strong></td>
+<td>🟢 Tier 1 - Minimum Viable</td>
+</tr>
+<tr>
+<td><strong>Measurement Cadence</strong></td>
+<td>Continuous; Event-triggered</td>
+</tr>
+<tr>
+<td><strong>Pipeline Layer</strong></td>
+<td>Downstream Write-back</td>
+</tr>
+<tr>
+<td><strong>Assurance Question</strong></td>
+<td>Quality</td>
+</tr>
+<tr>
+<td><strong>Measurement Method</strong></td>
+<td>Computational</td>
+</tr>
+<tr>
+<td><strong>Lifecycle Phases</strong></td>
+<td>Pre-deployment, Continuous</td>
+</tr>
+<tr>
+<td><strong>Responsible Actors</strong></td>
+<td>Vendor; Deployer</td>
+</tr>
+<tr>
+<td><strong>Maturity</strong></td>
+<td>Established</td>
+</tr>
+<tr>
+<td><strong>Outcome Type</strong></td>
+<td>Proximal</td>
+</tr>
+<tr>
+<td><strong>Applicability</strong></td>
+<td>General Healthcare AI</td>
+</tr>
+<tr>
+<td><strong>Source</strong></td>
+<td><a href="../../references/#prsb">PRSB</a> Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Why this tier?</strong></p>
+<blockquote>
+<p>Tier 1 because of cross-framework leverage — DTAC C4 + FHIR UK Core + CQC Regulation 17 + PRSB itself all converge on this construct. A deployer who passes structural FHIR validation but fails PRSB semantic completeness is producing records that are technically interoperable but clinically inadequate. The metric is the most leverage-per-measurement item in the v5.3.0 pull-through set.</p>
+</blockquote>
+<p><strong>Formal Definition</strong></p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>For each AVT-generated record matched to a PRSB standard applicable to the consultation type, compute:
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>  completeness_i = |present_mandatory_elements_i| / |total_mandatory_elements_per_standard|
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>PRSB Semantic Completeness = mean(completeness_i) across the sampled set, stratified by consultation type / PRSB standard.
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a>Reported per standard. A consultation that maps to no PRSB standard is excluded from the denominator.
+</code></pre></div>
+<p><strong>Limitations</strong></p>
+<blockquote>
+<p>Mandatory-element identification depends on the PRSB standards being machine-readable; not all standards expose a complete machine-readable element list, so part of the matching is done by structured human review of a sampled set. Vendor implementations of the same PRSB standard may map elements differently, which affects per-standard comparability. Stratification by consultation type matters: a primary-care AVT scoring well on CIS may score poorly on Outpatient Letter; a single composite hides this.</p>
+</blockquote>
+<p><strong>Novel Thinking / Implications</strong></p>
+<blockquote>
+<p>💡 PRSB semantic completeness is the cross-framework gap that the structural-conformance metrics cannot catch. A FHIR-conformant Composition resource can be mandatory-element-incomplete and still validate; a PRSB-complete record can fail FHIR validation. Both metrics are needed; making PRSB semantic completeness a Tier 1 metric in its own right pairs it with TP.WB-6 (FHIR R4 Resource Conformance Rate) at the same priority and forces deployers to evaluate both.</p>
 </blockquote>
 
 
