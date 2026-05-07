@@ -43,16 +43,18 @@ Considered and set aside. Preserved so the reasoning is durable if the same gaps
 | Gap-RSET-C | Transcript edit metrics (parallel to summary) | (would have been 🔵 3) | Only meaningful where the transcript is user-editable - a minority feature. HL.HF-* metrics can be applied to transcript edits by analogy if the product supports it; no new metric needed. |
 | Gap-RSET-D | Configurability surface integrity | (would have been 🔵 3) | Meta-property of product configuration surfaces (whether safety-critical features can be toggled off). Unusual measurement shape - closer to a design review than a continuous metric. Out of scope for an assurance metrics taxonomy; belongs to vendor-transparency reporting. Revisit only if configuration-related incidents surface. |
 
-### 1c. Accepted - NHSE IG alignment (4 candidates)
+### 1c. Accepted - NHSE IG alignment (4 candidates) — **all 4 promoted in v5.3.0**
 
 Derived from the NHSE IG guidance alignment audit. All are IG-driven compliance surfaces not covered by existing metrics.
 
-| Gap ID | Title | Suggested Tier | Rationale | Source |
-|--------|-------|----------------|-----------|--------|
-| Gap-IG-A | Refusal impact-explanation quality | 🟡 2 | NHSE IG explicitly requires clinicians to explain *how* refusal affects care. We measure recording/respecting dissent (GV.CR-1) but not the quality of the explanation. Periodic audit. | NHSE IG Mar-2026 |
-| Gap-IG-B | Privacy notice currency & completeness | 🟢 1 | Organisational privacy notices must be updated to include ambient-scribe processing specifics. Binary compliance, trivial measurement cost, named requirement in the guidance. | NHSE IG Mar-2026 |
-| Gap-IG-C | SAR deletion-pause interaction | 🟡 2 | Guidance explicitly requires deletion paused during active SAR handling. GV.PD-2 Audio Time-to-Deletion doesn't test the SAR interaction - the two processes are measured separately today. | NHSE IG Mar-2026 |
-| Gap-IG-D | Right-to-restrict tooling support | 🟡 2 | Restriction is distinct from erasure - data held, marked, not processed. Current GV.PD-11 covers erasure only. IG guidance explicitly requires tool functionality for restriction. | NHSE IG Mar-2026 |
+**v5.3.0 promotion status:** all four rows promoted to active metrics. Specific NHSE IG section refs deferred to a follow-up pass; bodies carry "section ref to be added on next pass" markers.
+
+| Gap ID | Title | Suggested Tier | Rationale | Source | v5.3.0 status |
+|--------|-------|----------------|-----------|--------|---------------|
+| Gap-IG-A | Refusal impact-explanation quality | 🟡 2 | NHSE IG explicitly requires clinicians to explain *how* refusal affects care. We measure recording/respecting dissent (GV.CR-1) but not the quality of the explanation. Periodic audit. | NHSE IG Mar-2026 | **Promoted → GV.CR-13** (Maturity: Proposed/Novel pending piloted rubric) |
+| Gap-IG-B | Privacy notice currency & completeness | 🟢 1 | Organisational privacy notices must be updated to include ambient-scribe processing specifics. Binary compliance, trivial measurement cost, named requirement in the guidance. | NHSE IG Mar-2026 | **Promoted → GV.PD-13** |
+| Gap-IG-C | SAR deletion-pause interaction | 🟡 2 | Guidance explicitly requires deletion paused during active SAR handling. GV.PD-2 Audio Time-to-Deletion doesn't test the SAR interaction - the two processes are measured separately today. | NHSE IG Mar-2026 | **Promoted → GV.PD-14** |
+| Gap-IG-D | Right-to-restrict tooling support | 🟡 2 | Restriction is distinct from erasure - data held, marked, not processed. Current GV.PD-11 covers erasure only. IG guidance explicitly requires tool functionality for restriction. | NHSE IG Mar-2026 | **Promoted → GV.PD-15** |
 
 ---
 
@@ -60,15 +62,15 @@ Derived from the NHSE IG guidance alignment audit. All are IG-driven compliance 
 
 Identified during assertion-level mapping to extended standards (`_standards-mapping.md`). Proposed reference IDs reserve the next available slot in each group; if adopted, full dimensions-table entries would be drafted matching the existing metric format.
 
-### 2a. MHRA SaMD / AIaMD (5)
+### 2a. MHRA SaMD / AIaMD (5) — **all 5 promoted in v5.3.0**
 
-| Proposed Ref | Title | Tier | What it measures |
-|---|---|---|---|
-| GV.CR-11 | Medical Device Classification Documentation | 🟢 1 | Whether the AVT system's SaMD classification (Class I/IIa/IIb/III) is documented with justification. Deployer must know regulatory status before go-live. |
-| GV.SG-18 | PCCP Documentation Completeness | 🟡 2 | Whether Predetermined Change Control Plans cover model updates, thresholds, and rollback. Required for adaptive/retrained models. |
-| GV.VT-9 | Post-Market Surveillance Report Currency | 🟡 2 | PMSR (Class I/IIa) availability on demand; PSUR (Class IIb/III) annual currency. Regulatory reporting cadence. |
-| GV.VT-10 | MHRA Transparency Content Completeness | 🟡 2 | Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle). |
-| GV.PD-12 | Training Data Representativeness Documentation | 🟡 2 | Evidence that training data covers intended patient population (age, ethnicity, accent, comorbidity). Foundational for bias mitigation. |
+| Proposed Ref | Title | Tier | What it measures | v5.3.0 status |
+|---|---|---|---|---|
+| GV.CR-11 | Medical Device Classification Documentation | 🟢 1 | Whether the AVT system's SaMD classification (Class I/IIa/IIb/III) is documented with justification. Deployer must know regulatory status before go-live. | **Promoted** |
+| GV.SG-18 | PCCP Documentation Completeness | 🟡 2 | Whether Predetermined Change Control Plans cover model updates, thresholds, and rollback. Required for adaptive/retrained models. | **Promoted** |
+| GV.VT-9 | Post-Market Surveillance Report Currency | 🟡 2 | PMSR (Class I/IIa) availability on demand; PSUR (Class IIb/III) annual currency. Regulatory reporting cadence. | **Promoted** |
+| GV.VT-10 | MHRA Transparency Content Completeness | 🟡 2 | Composite check of WHAT content items (device characterisation, performance, limitations, lifecycle). | **Promoted** (Maturity: Proposed/Novel pending WP-2 final outputs) |
+| GV.PD-12 | Training Data Representativeness Documentation | 🟡 2 | Evidence that training data covers intended patient population (age, ethnicity, accent, comorbidity). Foundational for bias mitigation. | **Promoted** |
 
 ### 2b. NICE Evidence Standards Framework (5)
 
@@ -80,22 +82,24 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 | GV.OP-10 | Cost-Effectiveness Analysis Availability | 🔵 3 | For Tier C AVT: CEA with QALY or cost-consequences. Research-grade for most deployments. |
 | GV.OP-11 | Budget Impact Analysis Completeness | 🟡 2 | Direct and indirect costs; NHS reference costs; sensitivity analysis. Extends GV.OP-7. |
 
-### 2c. FHIR UK Core (3)
+### 2c. FHIR UK Core (3) — **deferred from v5.3.0; pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`**
 
-| Proposed Ref | Title | Tier | What it measures |
+These three were originally in scope for v5.3.0 but held back by reviewer 2026-05-07 pending UK Core STU landscape stabilisation. Proposed slots below are **superseded** — `TP.WB-8` was reallocated to PRSB Semantic Completeness in v5.3.0; new slot allocations should be confirmed against `taxonomy/parse.py` cluster-slot status when this work is picked up. Pre-flight checklist in the deferred-outline file.
+
+| Proposed Ref (superseded) | Title | Tier | What it measures |
 |---|---|---|---|
-| TP.WB-8 | Per-Resource UK Core Conformance | 🟡 2 | Stratified conformance by resource type (Composition, Condition, AllergyIntolerance, etc.). |
-| TP.WB-9 | UK Core Extension Conformance | 🟡 2 | NHS Number verification status, Ethnic Category, Birth Sex, Death Notification extensions. |
-| TP.WB-10 | STU Version Targeting Declaration | 🟢 1 | Vendor declaration of which UK Core STU version(s) supported. Procurement requirement. |
+| ~~TP.WB-8~~ (taken; reallocate) | Per-Resource UK Core Conformance | 🟡 2 | Stratified conformance by resource type (Composition, Condition, AllergyIntolerance, etc.). |
+| TP.WB-9 (still free) | UK Core Extension Conformance | 🟡 2 | NHS Number verification status, Ethnic Category, Birth Sex, Death Notification extensions. |
+| TP.WB-10 (still free) | STU Version Targeting Declaration | 🟢 1 | Vendor declaration of which UK Core STU version(s) supported. Procurement requirement. |
 
-### 2d. CQC Assessment (4)
+### 2d. CQC Assessment (4) — **1 of 4 promoted in v5.3.0**
 
-| Proposed Ref | Title | Tier | What it measures |
-|---|---|---|---|
-| GV.CR-12 | Board-Level AI Governance Mechanism | 🟢 1 | Named board committee or director with AI oversight responsibility. CQC inspection point. Also flagged under RAI Theme 4 (Accountability) and Principle 10 (Org assurance). |
-| GV.CR-13 | CSO AI Oversight Capacity | 🟡 2 | Protected time / budget for CSO to oversee AI safety (not just sign-off). Operational capacity. |
-| IO.PX-11 | AI-Specific Complaint Handling Rate | 🟡 2 | Rate of complaints about AI-generated records and their resolution time. Also flagged under RAI Theme 5 (Contestability). |
-| GV.OP-12 | Record Quality Composite (Reg 17) | 🟡 2 | Composite of content accuracy, completeness, and timeliness against Reg 17 good-governance standard. |
+| Proposed Ref | Title | Tier | What it measures | v5.3.0 status |
+|---|---|---|---|---|
+| GV.CR-12 | Board-Level AI Governance Mechanism | 🟢 1 | Named board committee or director with AI oversight responsibility. CQC inspection point. Also flagged under RAI Theme 4 (Accountability) and Principle 10 (Org assurance). | **Promoted** |
+| ~~GV.CR-13~~ (slot taken by Gap-IG-A; reallocate when this is picked up) | CSO AI Oversight Capacity | 🟡 2 | Protected time / budget for CSO to oversee AI safety (not just sign-off). Operational capacity. | Deferred |
+| IO.PX-11 | AI-Specific Complaint Handling Rate | 🟡 2 | Rate of complaints about AI-generated records and their resolution time. Also flagged under RAI Theme 5 (Contestability). | Deferred |
+| GV.OP-12 | Record Quality Composite (Reg 17) | 🟡 2 | Composite of content accuracy, completeness, and timeliness against Reg 17 good-governance standard. | Deferred |
 
 ### 2e. PSIRF (4)
 
@@ -106,35 +110,35 @@ Identified during assertion-level mapping to extended standards (`_standards-map
 | GV.TC-6 | Staff Just Culture Protection | 🔵 3 | Staff survey on whether they feel supported vs blamed after AI-related incidents. Organisational culture. |
 | GV.SG-20 | Learning Implementation Tracking | 🟡 2 | Did identified learning actually change practice? Closure rate on systemic actions. |
 
-### 2f. PRSB (4)
+### 2f. PRSB (4) — **1 of 4 promoted in v5.3.0**
 
-| Proposed Ref | Title | Tier | What it measures |
-|---|---|---|---|
-| TP.WB-11 | PRSB Semantic Completeness | 🟢 1 | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.). **Highest-leverage single addition** - appears as a gap across PRSB, FHIR UK Core, and CQC record quality. |
-| TP.SN-25 | Professional Narrative Preservation | 🟡 2 | Ratio of free-text narrative vs structured extraction; flags over-structurisation and loss of clinical nuance. |
-| TP.WB-12 | Communication Needs (AIS) Capture | 🟡 2 | Whether Accessible Information Standard flags (interpreter, BSL, etc.) are captured and preserved. Accessibility-critical. |
-| TP.WB-13 | Legal Status Information Capture | 🟡 2 | Whether MHA status, DoLS, LPA, advance decisions are preserved when present. Clinical-legal critical. |
+| Proposed Ref | Title | Tier | What it measures | v5.3.0 status |
+|---|---|---|---|---|
+| ~~TP.WB-11~~ → **TP.WB-8** | PRSB Semantic Completeness | 🟢 1 | Proportion of PRSB-mandatory information elements present in AVT-generated output, per applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.). **Highest-leverage single addition** - appears as a gap across PRSB, FHIR UK Core, and CQC record quality. | **Promoted → TP.WB-8** (reallocated to free slot left by FHIR UK Core hold-back) |
+| TP.SN-25 | Professional Narrative Preservation | 🟡 2 | Ratio of free-text narrative vs structured extraction; flags over-structurisation and loss of clinical nuance. | Deferred |
+| TP.WB-12 | Communication Needs (AIS) Capture | 🟡 2 | Whether Accessible Information Standard flags (interpreter, BSL, etc.) are captured and preserved. Accessibility-critical. | Deferred |
+| TP.WB-13 | Legal Status Information Capture | 🟡 2 | Whether MHA status, DoLS, LPA, advance decisions are preserved when present. Clinical-legal critical. | Deferred |
 
-### 2g. Caldicott Principles (3)
+### 2g. Caldicott Principles (3) — **2 of 3 promoted in v5.3.0**
 
-| Proposed Ref | Title | Tier | What it measures |
-|---|---|---|---|
-| GV.PD-13 | DPIA Justification Quality | 🟡 2 | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends GV.CR-7 completion metric. |
-| GV.CR-14 | Consultation-Type Appropriateness Assessment | 🟢 1 | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams). High-risk carve-outs. |
-| GV.PD-14 | Per-Data-Item Necessity Documentation | 🔵 3 | DPIA-level documentation of why each data element processed is necessary. Granular and burdensome but thorough. |
+| Proposed Ref | Title | Tier | What it measures | v5.3.0 status |
+|---|---|---|---|---|
+| ~~GV.PD-13~~ → **GV.PD-17** | DPIA Justification Quality | 🟡 2 | Independent review (e.g. by Caldicott Guardian) of DPIA purpose justification, not just completion. Extends GV.CR-7 completion metric. | **Promoted → GV.PD-17** (proposed slot taken by Gap-IG-B; reallocated to next free slot) |
+| GV.CR-14 | Consultation-Type Appropriateness Assessment | 🟢 1 | Documented assessment of whether AVT is appropriate for sensitive consultation types (safeguarding, MH, children, intimate exams). High-risk carve-outs. | **Promoted** |
+| ~~GV.PD-14~~ (slot taken by Gap-IG-C; reallocate when this is picked up) | Per-Data-Item Necessity Documentation | 🔵 3 | DPIA-level documentation of why each data element processed is necessary. Granular and burdensome but thorough. | Deferred |
 
 ### 2h. Standards summary
 
-| Source Standard | Gaps | Tier Distribution |
-|-----------------|------|-------------------|
-| MHRA SaMD / AIaMD | 5 | 1 × Tier 1, 4 × Tier 2 |
-| NICE ESF | 5 | 1 × Tier 1, 3 × Tier 2, 1 × Tier 3 |
-| FHIR UK Core | 3 | 1 × Tier 1, 2 × Tier 2 |
-| CQC Assessment | 4 | 1 × Tier 1, 3 × Tier 2 |
-| PSIRF | 4 | 3 × Tier 2, 1 × Tier 3 |
-| PRSB | 4 | 1 × Tier 1, 3 × Tier 2 |
-| Caldicott | 3 | 1 × Tier 1, 1 × Tier 2, 1 × Tier 3 |
-| **Total** | **28** | **6 × Tier 1, 19 × Tier 2, 3 × Tier 3** |
+| Source Standard | Gaps | Tier Distribution | v5.3.0 promoted |
+|-----------------|------|-------------------|-----------------|
+| MHRA SaMD / AIaMD | 5 | 1 × Tier 1, 4 × Tier 2 | 5 of 5 |
+| NICE ESF | 5 | 1 × Tier 1, 3 × Tier 2, 1 × Tier 3 | 0 of 5 (Registry-deferrable) |
+| FHIR UK Core | 3 | 1 × Tier 1, 2 × Tier 2 | 0 of 3 (held back; see §2c) |
+| CQC Assessment | 4 | 1 × Tier 1, 3 × Tier 2 | 1 of 4 |
+| PSIRF | 4 | 3 × Tier 2, 1 × Tier 3 | 0 of 4 (Registry-deferrable) |
+| PRSB | 4 | 1 × Tier 1, 3 × Tier 2 | 1 of 4 |
+| Caldicott | 3 | 1 × Tier 1, 1 × Tier 2, 1 × Tier 3 | 2 of 3 |
+| **Total** | **28** | **6 × Tier 1, 19 × Tier 2, 3 × Tier 3** | **9 of 28** |
 
 ---
 
