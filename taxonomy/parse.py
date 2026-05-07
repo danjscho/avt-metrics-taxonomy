@@ -22,8 +22,8 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.1.4"
-TAXONOMY_DATE = "2026-05-04"  # ISO date of TAXONOMY_VERSION release; bumped together
+TAXONOMY_VERSION = "v5.3.0"
+TAXONOMY_DATE = "2026-05-07"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
 def ref_id_to_anchor(ref_id: str) -> str:
@@ -409,17 +409,19 @@ def _parse_gap_row(cells: list[str], origin: str, source: str) -> Gap | None:
             severity = c
             break
 
-    # For standards rows the first cell is a proposed ref ID (e.g. GV.CR-11).
-    # For external-review rows the first cell is Gap-RSET-* / Gap-IG-*.
-    # For RAI rows there's no gap ID - first cell is the principle/theme label.
+    # Column-1 disposition (v5.3.0+):
+    # - External-review rows: cells[0] is `Gap-RSET-*` / `Gap-IG-*` (gap_id), cells[1] is title
+    # - Standards rows (post-v5.3.0): cells[0] is title (slot-less per the convention shift)
+    # - Standards rows (pre-v5.3.0 promoted entries with a v5.3.0-status column): cells[0] is title
+    # - RAI rows: cells[0] is the principle/theme label (no separate title column)
     gap_id = None
     if cells and re.match(
         r"^(Gap-[A-Z]+-[A-Z0-9]+|[A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+)$", cells[0]
     ):
         gap_id = cells[0]
-
-    # Title: for standards/external rows, column index 1. For RAI rows, column 1 is the gap itself.
-    title_cell = cells[1] if len(cells) >= 2 else cells[0]
+        title_cell = cells[1] if len(cells) >= 2 else cells[0]
+    else:
+        title_cell = cells[0]
 
     # Notes: last cell is usually "cross-reference" or rationale.
     notes = cells[-1] if len(cells) >= 3 else ""

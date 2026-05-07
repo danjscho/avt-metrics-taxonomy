@@ -117,14 +117,14 @@ Impact IS = Σ w_m × (metric_new - metric_old) / metric_old. Mandatory re-evalu
 
 ---
 
-### GV.SG-3 🟡 Performance Degradation Detection Latency
+### GV.SG-3 🟢 Performance Degradation Detection Latency
 
 Time delay between the onset of model performance degradation and its detection by the monitoring infrastructure. Distinct from the existing Model Update Impact Score, which measures the effect of notified updates at a known switchover point. This metric addresses silent degradation - performance decay that occurs without any vendor notification or identifiable event, from causes including data drift, infrastructure changes, or subtle model updates that are not disclosed.
 
 |Dimension              |Value                                                              |
 |-----------------------|-------------------------------------------------------------------|
 | **Reference** | GV.SG-3 |
-|**Priority Tier**      |🟡 Tier 2 - Recommended                                             |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                             |
 |**Measurement Cadence**|Continuous                                                         |
 |**Pipeline Layer**     |Cross-cutting                                                      |
 |**Assurance Question** |Safety                                                             |
@@ -135,6 +135,8 @@ Time delay between the onset of model performance degradation and its detection 
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
 |**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
+
+**Change history:** v5.3.0 (promoted to Tier 1: MHRA Class 1 post-market surveillance — FTS notice Step 1.i directly requires PMS evidence; ongoing performance-degradation detection is a baseline expectation, not best-practice).
 
 **Why this tier?**
 
@@ -761,6 +763,45 @@ Hazard Log Currency = (date_of_last_update - today) in days. Hazard Coverage = |
 **Novel Thinking / Implications**
 
 > 💡 DCB0129 hazard logs are often written once at deployment and forgotten. As operational monitoring discovers new failure modes (through edit pattern analysis, near-miss reporting, incident investigation), these should be added to the hazard log with mitigations. A hazard log that hasn't been updated in 6 months is either a perfect system or a compliance failure - and almost certainly the latter.
+
+---
+
+### GV.SG-18 🟡 PCCP Documentation Completeness
+
+Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full lifecycle obligations expected of an adaptive AI medical device — pre-specified change types, performance acceptance thresholds, regression test suite, fairness/equity acceptance criteria, rollback procedure, and audit-trail requirements. PCCPs are the structural mechanism by which retrained or fine-tuned AVT models update without requiring a new regulatory submission per change.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.SG-18 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor                                                   |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD] AI Airlock + Change Programme; [FDA-PCCP-Guidance-2024] (cross-aligned)|
+
+**Why this tier?**
+
+> Tier 2 because PCCP applies specifically to adaptive / retrained models — not all AVT vendors update model weights post-deployment. For vendors that do, PCCP completeness is gate-level: a vendor that retrains without a documented change plan is operating outside the regulatory regime that legitimises post-deployment updates. Closely related to existing GV.CR-9 (FDA PCCP-equivalent acceptance criteria) which tests the substantive criteria; this metric tests the structural completeness of the plan itself.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) PCCP scope statement enumerating which change types are pre-authorised (e.g. retraining cadence, threshold tuning, dictionary updates) and which require new submission; (2) Performance acceptance thresholds quantitative and pre-specified; (3) Regression test suite defined and version-controlled; (4) Fairness / equity acceptance criteria included; (5) Rollback procedure with named trigger conditions; (6) Audit-trail commitment for every PCCP-scope change. Full pass = all six.
+```
+
+**Limitations**
+
+> Cross-references existing GV.CR-9 — both metrics share the substantive criteria question. This metric focuses on structural completeness of the documented plan; GV.CR-9 focuses on the meaningful quality of the criteria. Future minor release may merge them under a parent + sub-parts framing if reviewer confirms the overlap is excessive.
+
+**Novel Thinking / Implications**
+
+> 💡 PCCP completeness is the deployer's only practical lever to verify that vendor-side change control will hold up under inspection. Without a complete PCCP, every model update is a regulatory event the deployer has no visibility into until something goes wrong.
 
 ---
 

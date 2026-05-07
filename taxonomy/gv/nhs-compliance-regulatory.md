@@ -571,3 +571,159 @@ Event logging must capture: (1) period of use (start, duration, stop per session
 **Novel Thinking / Implications**
 
 > 💡 Event logging is the infrastructure that supports retrospective incident investigation. Without it, when an AVT error causes harm six months after the fact, the investigation has nothing to work with - the clinician may not remember the encounter, the patient certainly won't remember the AI's behaviour, and the vendor has no logs to reconstruct what happened. The EU AI Act requirement is essentially mandating the infrastructure for forensic investigation of AI clinical systems, which is a governance improvement regardless of jurisdiction.
+
+---
+
+### GV.CR-11 🟢 Medical Device Classification Documentation
+
+Whether the AVT system's MHRA SaMD classification (Class I / IIa / IIb / III) is documented with a clear justification, and whether that documentation is accessible to the deployer before go-live. NHS AVT Self-Certified Supplier Registry submissions require Class I status; deployers need to verify the classification is correctly assigned and that the underlying intended-purpose statement matches their intended use.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-11 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|One-off gate; Event-triggered                            |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment                                           |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h            |
+
+**Why this tier?**
+
+> FTS Step 1.h directly requires submission of MHRA classification evidence, and the FTS notice explicitly anchors the Registry on Class I status. Deployer due-diligence cannot proceed without confirmed classification — wrong classification means wrong regulatory regime applies to monitoring, change control, and post-market surveillance.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Classification stated (Class I / IIa / IIb / III); (2) Intended-purpose statement provided and matches deployer use case; (3) Justification for classification grounded in MHRA SaMD framework risk-class rules; (4) UKCA / CE marking status declared where applicable; (5) Documentation dated and accessible to deployer pre-contract. Full pass = all five.
+```
+
+**Limitations**
+
+> Vendor self-classification is the norm for Class I devices; MHRA does not pre-approve Class I classifications. Wrong classification (typically under-classification) is a known regulatory risk and only surfaces on inspection or incident. The metric verifies that documentation exists and is internally consistent — not that the classification is independently correct.
+
+**Novel Thinking / Implications**
+
+> 💡 Treating classification documentation as a Tier 1 gate makes the regulatory regime explicit rather than implicit. Deployers who skip this step inherit whatever classification the vendor decided was convenient — which may not survive an MHRA inspection if AVT outputs are later judged to influence diagnosis or treatment beyond the Class I "drives clinical workflow" framing.
+
+---
+
+### GV.CR-12 🟢 Board-Level AI Governance Mechanism
+
+Whether the deploying organisation has a named board-level committee or director with explicit oversight of AI clinical systems, and whether AI-related risk and assurance items appear on its agenda with documented frequency. This is a CQC well-led inspection point and a Responsible AI Playbook Principle 10 (organisational assurance) requirement; AVT specifically tests it because ambient scribes touch every clinical encounter and create a class of risk that deserves named accountability.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-12 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                          |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Governance                                               |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer                                                 |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[CQC] well-led KLOEs; DSIT AI Playbook Principle 10     |
+
+**Why this tier?**
+
+> Cross-framework leverage: CQC well-led + RAI Theme 4 (Accountability) + RAI Principle 10 + DTAC C3.1 all converge on board-level AI governance. Without a named accountability point, AI incident response, change-control approval, and equity monitoring have no escalation path. Tier 1 because the absence of board-level governance is a deployment-blocking gap visible to any well-run inspection.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Named board committee or executive director with AI oversight in their formal remit; (2) Terms of reference reference AI clinical systems specifically (not just "digital"); (3) Quarterly minimum agenda cadence with minuted AI items; (4) Escalation path defined for AI-related incidents from operational tier to the named owner; (5) Annual review of AI portfolio risk presented at board level. Full pass = all five; partial pass triggers review.
+```
+
+**Limitations**
+
+> Existence of a committee is not the same as effective governance. A committee that meets quarterly but rubber-stamps vendor reports provides no real assurance. The metric is necessary but not sufficient — it should be paired with substantive metrics (e.g. GV.SG-3 performance-degradation detection, GV.CR-11 classification documentation, IO.FE-1 deployment equity) to test whether the committee is actually exercising oversight.
+
+**Novel Thinking / Implications**
+
+> 💡 The absence of board-level AI governance has been a consistent finding in NHS AI early-adopter inspections. Making this Tier 1 reflects the lesson from those inspections: the operational AI capability arrived ahead of the governance structure to oversee it. AVT, because it touches almost every clinical encounter, is the use case that forces the issue — there is no defensible "we'll add governance once we have enough deployments" argument when the deployment is enterprise-wide on day one.
+
+---
+
+### GV.CR-13 🟡 Refusal Impact-Explanation Quality
+
+When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-13 |
+|**Priority Tier**      |🟡 Tier 2 - Recommended                                   |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Patient Experience                                       |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Continuous                                               |
+|**Responsible Actors** |Clinician; Deployer                                      |
+|**Maturity**           |Proposed / Novel                                           |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
+
+**Why this tier?**
+
+> Tier 2 because the measurement methodology depends on a rubric that is not yet piloted at scale. NHSE IG names the requirement explicitly, so the substantive obligation is Tier 1 in spirit; the metric stays Tier 2 until a rubric is available that makes the measurement repeatable across deployers. Maturity is Proposed/Novel for the same reason — the rubric placeholder is acknowledged as an interim measure (see triage §"Outstanding follow-ups after v5.3.0").
+
+**Formal Definition**
+
+```
+Sample-based audit: in a sampled set of recorded refusals, the recorded explanation is reviewed against a local rubric covering at minimum: (1) impact on documentation completeness named explicitly; (2) impact on consultation duration named explicitly; (3) any clinical-pathway implications named (e.g. delayed coding, manual letter-writing); (4) explanation given in plain language without coercion; (5) patient question response captured. Pass = ≥4 of 5 per refusal; metric reports the proportion of sampled refusals passing.
+```
+
+**Limitations**
+
+> The rubric is not yet piloted at national level; placeholder rubric is "structured per local IG officer review", which is not cross-deployer-comparable. Maturity: Proposed/Novel until a piloted rubric is published — the metric is structurally well-formed but the substantive scoring depends on local rubric quality. Future minor release should re-source against a piloted rubric and lift Maturity to Emerging.
+
+**Novel Thinking / Implications**
+
+> 💡 The "explain the impact of refusal" requirement is the kind of patient-facing communication obligation that sits between clinical-process metrics and patient-experience metrics. Without a piloted rubric, the requirement is real but the measurement is uneven. Treating it as a Proposed/Novel Tier 2 metric records the obligation in the catalogue without over-claiming the measurement maturity — and creates the placeholder under which a rubric pilot can later land.
+
+---
+
+### GV.CR-14 🟢 Consultation-Type Appropriateness Assessment
+
+Whether the deployer has a documented assessment of which consultation types AVT is appropriate for, which require carve-outs, and which are excluded — covering at minimum safeguarding, mental health, paediatrics, intimate examinations, and end-of-life conversations. The assessment must specify how the carve-out is enforced (clinician opt-out, admin-time exclusion list, or AVT-side detection) and how compliance is monitored.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | GV.CR-14 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Periodic audit; Event-triggered                                  |
+|**Pipeline Layer**     |Cross-cutting                                            |
+|**Assurance Question** |Safety                                                   |
+|**Measurement Method** |Human Review                                             |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Deployer; Clinician                                      |
+|**Maturity**           |Emerging                                                 |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance|
+
+**Why this tier?**
+
+> Sensitive consultations carry the highest combined privacy and safety risk in AVT. Failure to identify carve-outs in advance produces incidents where patient disclosures (abuse, suicidality, intimate-exam findings) are recorded by an ambient system the patient may not know is running. Tier 1 because the cost of getting this wrong is a serious safeguarding or duty-of-confidence breach.
+
+**Formal Definition**
+
+```
+Pass per criterion: (1) Documented list of consultation types triaged into "AVT-suitable", "AVT with carve-out", "AVT-excluded"; (2) Carve-out enforcement mechanism specified per category (clinician toggle, scheduling exclusion, AVT-side disable); (3) Monitoring of carve-out compliance — sampled or 100% — defined; (4) Caldicott Guardian sign-off on the categorisation; (5) Annual review reflecting incident learning. Full pass = all five.
+```
+
+**Limitations**
+
+> The metric tests that an assessment exists, not that it's correct for a specific patient cohort. A practice serving a high-deprivation population may need different carve-outs than a private practice; the metric does not currently weight by population. AVT-side detection of sensitive content is technically immature — most carve-outs in 2026 deployments rely on clinician toggle, which is bypassable.
+
+**Novel Thinking / Implications**
+
+> 💡 The carve-out conversation is the part of AVT deployment most often deferred to "we'll work it out as we go". Making it a Tier 1 documented assessment forces the conversation pre-deployment, which is the only time it can be done thoughtfully. After deployment, every individual carve-out request becomes an incident to defend rather than a category to plan for.

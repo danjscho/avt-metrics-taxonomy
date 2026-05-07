@@ -398,3 +398,45 @@ For each generated composition: validate against the applicable openEHR archetyp
 **Novel Thinking / Implications**
 
 > 💡 The UK has bifurcated EPR infrastructure: primary care is standardising on FHIR-based interoperability, while parts of secondary care (particularly the Code4Health-aligned trusts) have significant openEHR investment. AVT vendors focused on primary care may simply not support openEHR, making them structurally unsuitable for some secondary care deployments. This should be a procurement question rather than a post-contract discovery.
+
+---
+
+### TP.WB-8 🟢 PRSB Semantic Completeness
+
+Proportion of PRSB-mandatory information elements present in AVT-generated output, evaluated against the applicable PRSB standard for the consultation type — Core Information Standard (CIS), Outpatient Letter, Discharge Summary, etc. The metric is the cross-framework heavyweight: the same construct surfaces under DTAC C4 (interoperability), FHIR UK Core (extension conformance), CQC Regulation 17 (good governance — adequate records), and PRSB itself. AVT systems that produce FHIR-conformant output but miss PRSB-mandatory information elements pass the structural-conformance metrics (TP.WB-1 / TP.WB-6) while failing the semantic-completeness one this metric tests.
+
+|Dimension              |Value                                                   |
+|-----------------------|---------------------------------------------------------|
+| **Reference** | TP.WB-8 |
+|**Priority Tier**      |🟢 Tier 1 - Minimum Viable                                |
+|**Measurement Cadence**|Continuous; Event-triggered                              |
+|**Pipeline Layer**     |Downstream Write-back                                    |
+|**Assurance Question** |Quality                                                  |
+|**Measurement Method** |Computational                                            |
+|**Lifecycle Phases**   |Pre-deployment, Continuous                               |
+|**Responsible Actors** |Vendor; Deployer                                         |
+|**Maturity**           |Established                                              |
+|**Outcome Type**       |Proximal                                                 |
+|**Applicability**      |General Healthcare AI                                    |
+|**Source**             |[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard|
+
+**Why this tier?**
+
+> Tier 1 because of cross-framework leverage — DTAC C4 + FHIR UK Core + CQC Regulation 17 + PRSB itself all converge on this construct. A deployer who passes structural FHIR validation but fails PRSB semantic completeness is producing records that are technically interoperable but clinically inadequate. The metric is the most leverage-per-measurement item in the v5.3.0 pull-through set.
+
+**Formal Definition**
+
+```
+For each AVT-generated record matched to a PRSB standard applicable to the consultation type, compute:
+  completeness_i = |present_mandatory_elements_i| / |total_mandatory_elements_per_standard|
+PRSB Semantic Completeness = mean(completeness_i) across the sampled set, stratified by consultation type / PRSB standard.
+Reported per standard. A consultation that maps to no PRSB standard is excluded from the denominator.
+```
+
+**Limitations**
+
+> Mandatory-element identification depends on the PRSB standards being machine-readable; not all standards expose a complete machine-readable element list, so part of the matching is done by structured human review of a sampled set. Vendor implementations of the same PRSB standard may map elements differently, which affects per-standard comparability. Stratification by consultation type matters: a primary-care AVT scoring well on CIS may score poorly on Outpatient Letter; a single composite hides this.
+
+**Novel Thinking / Implications**
+
+> 💡 PRSB semantic completeness is the cross-framework gap that the structural-conformance metrics cannot catch. A FHIR-conformant Composition resource can be mandatory-element-incomplete and still validate; a PRSB-complete record can fail FHIR validation. Both metrics are needed; making PRSB semantic completeness a Tier 1 metric in its own right pairs it with TP.WB-6 (FHIR R4 Resource Conformance Rate) at the same priority and forces deployers to evaluate both.

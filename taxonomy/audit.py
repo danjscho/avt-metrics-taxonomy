@@ -68,13 +68,13 @@ GROUP_FILES = {
 }
 
 TIER_ICON_TO_NUM = {"🟢": 1, "🟡": 2, "🔵": 3}
-EXPECTED_TIER_TOTALS = {1: 45, 2: 97, 3: 79}
+EXPECTED_TIER_TOTALS = {1: 57, 2: 98, 3: 79}
 EXPECTED_APPLICABILITY = {
     "AVT-Specific": 50,
     "AVT-Contextualised": 79,
-    "General Healthcare AI": 92,
+    "General Healthcare AI": 105,
 }
-EXPECTED_TOTAL = 221
+EXPECTED_TOTAL = 234
 
 # v3.8: Maturity values are constrained to a four-value enum. Non-canonical
 # values (e.g. "Partly Established", "Experimental") would silently pass the

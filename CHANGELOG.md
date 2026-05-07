@@ -1,5 +1,95 @@
 # Changelog
 
+## v5.3.0 (2026-05-07)
+
+**Minor release: Phase 5 lands — promotions + pull-throughs against the FTS-direct surface.**
+
+The largest content-change release since the early v2.x consolidation. Reviewer-gated through three commits on the `v5-3-phase-5-promotions-and-pull-throughs` branch: promotions first, triage before bodies land, then bodies + reconcile + threshold-page additions.
+
+### 7 promotions Tier 2 → Tier 1
+
+Against the FTS notice 069369-2025 surface and its transitively-named frameworks (DTAC, MHRA Class I, "the guidance issued by NHS England"):
+
+- **GV.VT-2** Telemetry Provision Completeness — FTS Performance & Monitoring Response substrate
+- **GV.VT-13** Evidence Pack Freshness — FTS "all collateral must be kept up to date"
+- **GV.VT-14** Indicative Pricing Transparency — FTS Step 1.a direct submission
+- **ES.ME-8** Outcome Evidence Commitment Status — FTS Step 1.f
+- **IO.FE-1** Deployment Equity Index — NHSE IG + CIO/CCIO equity guidance (transitive)
+- **TP.ASR-4** Demographic-Disaggregated WER — MHRA GMLP-3 + Performance & Monitoring "boundaries and bias"
+- **GV.SG-3** Performance Degradation Detection Latency — MHRA post-market surveillance (FTS Step 1.i)
+
+Cybersecurity cluster (GV.SC-1 / -2 / -6) deliberately held at Tier 2 pending industry-standard adversarial-testing maturity — MHRA WP5 names cybersecurity as gate-level but AVT-specific adversarial-prompt-injection testing isn't yet industry-standard, and the FTS notice is silent on cybersecurity testing cadence specifically. Defensible to revisit when industry capability matures.
+
+### 13 new pull-through metrics from `_gaps.md`
+
+**MHRA-driven (`_gaps.md §2a`, all 5 promoted):**
+- **GV.CR-11** 🟢 Medical Device Classification Documentation
+- **GV.SG-18** 🟡 PCCP Documentation Completeness
+- **GV.VT-9** 🟡 Post-Market Surveillance Report Currency
+- **GV.VT-10** 🟡 MHRA Transparency Content Completeness *(Maturity: Proposed/Novel — pending MHRA Roadmap WP-2 final outputs)*
+- **GV.PD-12** 🟡 Training Data Representativeness Documentation
+
+**CQC well-led (`_gaps.md §2d`, 1 of 4 promoted):**
+- **GV.CR-12** 🟢 Board-Level AI Governance Mechanism
+
+**NHSE IG-driven (`_gaps.md §1c`, all 4 promoted):**
+- **GV.CR-13** 🟡 Refusal Impact-Explanation Quality *(Maturity: Proposed/Novel — placeholder rubric pending national pilot)*
+- **GV.PD-13** 🟢 Privacy Notice Currency & Completeness
+- **GV.PD-14** 🟡 SAR Deletion-Pause Interaction
+- **GV.PD-15** 🟡 Right-to-Restrict Tooling Support
+
+**Caldicott (`_gaps.md §2g`, 2 of 3 promoted):**
+- **GV.CR-14** 🟢 Consultation-Type Appropriateness Assessment
+- **GV.PD-17** 🟡 DPIA Justification Quality
+
+**PRSB (`_gaps.md §2f`, 1 of 4 promoted):**
+- **TP.WB-8** 🟢 PRSB Semantic Completeness — cross-framework heavyweight (DTAC C4 + FHIR UK Core + CQC Reg 17 + PRSB)
+
+### FHIR UK Core deferred from v5.3.0
+
+`TP.WB-8 Per-Resource UK Core Conformance`, `TP.WB-9 UK Core Extension Conformance`, and `TP.WB-10 STU Version Targeting Declaration` were originally in v5.3.0 scope but held back by reviewer pending UK Core STU landscape stabilisation. Entries remain in `_gaps.md §2c` with annotations pointing to the pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md` (gitignored — same convention as `v5.2-fts/`). The slot freed by FHIR hold-back was claimed by PRSB Semantic Completeness, which moved from proposed `TP.WB-11` → `TP.WB-8`.
+
+### Slot reallocations recorded in `_gaps.md`
+
+- Gap-IG-A → **GV.CR-13** (slot was originally proposed for "CSO AI Oversight Capacity"; that metric remains deferred and the slot will be reallocated when picked up)
+- Gap-IG-B → **GV.PD-13** (was originally proposed for Caldicott DPIA Justification Quality, which moved to GV.PD-17)
+- Gap-IG-C → **GV.PD-14** (was originally proposed for Per-Data-Item Necessity Documentation, which remains deferred at Tier 3)
+- Gap-IG-D → **GV.PD-15** (was originally proposed for NHS T.E.S.T. Training Data Anonymisation Provenance, which remains deferred)
+
+### Counts
+
+- Metrics: **221 → 234** (+13 net)
+- Tier 1: **45 → 57** (+12 net Tier 1, of which 7 are promotions and 5 are new at Tier 1)
+- Tier 2: **97 → 98** (+1 net — new T2 metrics in, promotions out)
+- Tier 3: unchanged at 79
+- Maturity: Established 54 → 60; Emerging 48 → 53; Vendor-Proprietary unchanged at 4; Proposed/Novel 108 → 110
+- Applicability: General Healthcare AI 92 → 105 (all 13 new metrics)
+
+### Reconcile
+
+- `_gaps.md` rows for the 13 promoted metrics annotated with v5.3.0-status column; FHIR UK Core §2c annotated as deferred
+- `_standards-mapping.md` per-framework references updated for MHRA, CQC, PRSB, Caldicott — gaps lists crossed-through for resolved items
+- `docs/thresholds.md` gains rows for the 3 new metrics with quantitative thresholds (GV.CR-13 rubric, GV.VT-9 PMSR/PSUR cadence, GV.PD-13 currency)
+- `audit.py`: `EXPECTED_TIER_TOTALS`, `EXPECTED_APPLICABILITY`, `EXPECTED_TOTAL` updated; `test_audit.py` shape updated
+- `_summary.md`, `_applicability.md` aggregate counts updated
+
+### Outstanding follow-ups (carried forward from triage)
+
+- **Gap-IG-A rubric piloting** — placeholder rubric should be replaced with a piloted national rubric in a future minor; metric Maturity then moves Proposed/Novel → Emerging
+- **NHSE IG section refs** for the four IG-derived metrics (GV.CR-13, GV.PD-13/-14/-15) — body prose currently says "section ref to be added on next pass"
+- **MHRA Roadmap WP-2 transparency outputs** — GV.VT-10 to be re-sourced once WP-2 outputs are published in final form
+- **FHIR UK Core pickup** — three deferred metrics, outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`
+
+### Reviewer artefacts at repo root (deferred archive until the work they support closes)
+
+- `v5.3-pre-mint-triage.md` — Pass A/B verdicts on the 16 pull-through candidates; reviewer decisions recorded inline
+- `v5.3-merge-and-family-sweep.md` — research-only sweep flagging 2 parent + sub-part merge candidates (GV.SG-18 / GV.CR-9 PCCP pair; GV.PD-17 / GV.CR-7 DPIA pair) and 2 emergent named-metric families (NHSE IG Attestation; PRSB Semantic Completeness & Write-back Fidelity). Reviewer to sign off before any merges or family framings land — deferred to v5.3.1 or v5.4.0
+- `v5.2-registry-action-list.md` — already shipped in v5.1.4; remains until v5.4.0 wraps the action list
+
+### Plan-future updates
+
+- v5.4.0 will mint the 2 new attestation metrics flagged in v5.1.4 (Information Asset Register Completeness, Joint-Controller Status Assessment) at the next available slots — GV.PD-17 was originally reserved but is now taken by Caldicott DPIA Justification Quality, so Information Asset Register will land at GV.PD-18.
+
 ## v5.1.4 (2026-05-06)
 
 **Patch release: v5.2.0-prep Registry-driven action list (Phase 5 reviewable triage).**

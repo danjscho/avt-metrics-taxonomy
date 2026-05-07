@@ -126,11 +126,11 @@ class TestCheckNumbering:
 class TestCheckTierTotals:
     def test_pass(self):
         # check_tier_totals enforces specific tier counts; we feed exactly the
-        # shape it expects (45 / 97 / 79 as of v4.2.0).
+        # shape it expects (57 / 98 / 79 as of v5.3.0 Phase 5 pull-throughs).
         ms = (
-            [_make_metric(ref_id=f"TP.AC-{i}", tier=1) for i in range(1, 46)]
-            + [_make_metric(ref_id=f"TP.AC-{i}", tier=2) for i in range(46, 143)]
-            + [_make_metric(ref_id=f"TP.AC-{i}", tier=3) for i in range(143, 222)]
+            [_make_metric(ref_id=f"TP.AC-{i}", tier=1) for i in range(1, 58)]
+            + [_make_metric(ref_id=f"TP.AC-{i}", tier=2) for i in range(58, 156)]
+            + [_make_metric(ref_id=f"TP.AC-{i}", tier=3) for i in range(156, 235)]
         )
         findings = audit.check_tier_totals(ms)
         assert findings == []

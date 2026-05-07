@@ -1,11 +1,11 @@
-### IO.FE-1 🟡 Deployment Equity Index
+### IO.FE-1 🟢 Deployment Equity Index
 
 Whether AVT creates two-tier documentation quality across practices. Track against deprivation indices.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | IO.FE-1 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Continuous |
 | **Pipeline Layer** | Cross-cutting |
 | **Assurance Question** | Fairness & Equity |
@@ -16,6 +16,8 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
 | **Source** | [NHS-LLM-Framework] wider impact |
+
+**Change history:** v5.3.0 (promoted to Tier 1: NHSE IG Guidance + CIO/CCIO guidance equity requirement, transitively required by FTS notice "compliance with the guidance issued by NHS England").
 
 **Why this tier?**
 

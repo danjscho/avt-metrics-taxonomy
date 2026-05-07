@@ -231,14 +231,14 @@ def clinical_keyword_error_rate(reference, hypothesis):
 > - 🔵 **Intersectional Performance** (Fairness & Equity) - performance at demographic intersections
 > - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) - formal intersectional fairness quantification
 
-### TP.ASR-4 🟡 Demographic-Disaggregated WER
+### TP.ASR-4 🟢 Demographic-Disaggregated WER
 
 WER by accent group, first language, age band, and speech characteristics. NAS proposes max 5pp gap across groups.
 
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.ASR-4 |
-| **Priority Tier** | 🟡 Tier 2 - Recommended |
+| **Priority Tier** | 🟢 Tier 1 - Minimum Viable |
 | **Measurement Cadence** | Periodic audit |
 | **Pipeline Layer** | ASR / Transcription |
 | **Assurance Question** | Fairness & Equity |
@@ -249,6 +249,8 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
+
+**Change history:** v5.3.0 (promoted to Tier 1: MHRA GMLP-3 representative-datasets requirement + Performance & Monitoring Response document's "boundaries and bias" content; both transitive from FTS notice).
 
 **Why this tier?**
 
