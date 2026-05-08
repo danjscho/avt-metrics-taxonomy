@@ -1,0 +1,48 @@
+[project]
+name = "avt-metrics-ref"
+version = "0.1.0"
+description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Pilot covers TP.ASR cluster only."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Dan Schofield" }]
+keywords = ["nhs", "avt", "ambient-scribing", "asr", "wer", "metrics", "healthcare-ai"]
+
+# Track the catalogue version this library targets. Bump in lockstep with
+# avt-metrics-taxonomy releases that touch operationalised TP.ASR metrics.
+# A package version of `0.x.0` matches catalogue `v5.x.y` baselines; the
+# `0.x.0` major remains 0 while the package is itself prototype.
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Healthcare Industry",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "jiwer>=3.0",
+    "numpy>=1.24",
+]
+
+[project.optional-dependencies]
+test = [
+    "pytest>=7.0",
+]
+
+[project.urls]
+Homepage = "https://danjscho.github.io/avt-metrics-taxonomy/"
+Repository = "https://github.com/danjscho/avt-metrics-taxonomy"
+Catalogue = "https://danjscho.github.io/avt-metrics-taxonomy/"
+Issues = "https://github.com/danjscho/avt-metrics-taxonomy/issues"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["avt_metrics_ref"]
