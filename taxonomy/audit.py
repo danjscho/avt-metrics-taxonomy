@@ -684,6 +684,67 @@ def check_within_cluster_order(metrics_by_file: dict[str, list[Metric]]) -> list
     return findings
 
 
+def check_readme_headline_counts(all_metrics: list[Metric]) -> list[Finding]:
+    """README's headline "Status / version" section claims specific counts
+    that should match the live catalogue. v5.5.7 audit check guards against
+    drift on the most-cited claims (total metrics, tier counts). Other
+    README claims (maturity distribution, layer distribution, etc.) are
+    less load-bearing and are verified manually at release wrap rather
+    than enforced here.
+
+    The README lives at the repo root (one level up from this file).
+    """
+    findings: list[Finding] = []
+    readme_path = pathlib.Path(__file__).resolve().parent.parent / "README.md"
+    if not readme_path.exists():
+        return findings
+    text = readme_path.read_text()
+    parents = {sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id}
+    countable = [m for m in all_metrics if m.ref_id not in parents]
+    total = len(countable)
+    from collections import Counter as _Counter
+    by_tier = _Counter(m.tier for m in countable)
+
+    # Check for "<total> metrics across 20 groups" style claims with a wrong number.
+    # Only flag tokens in current-state contexts (Quick links, Status, headline).
+    # Pattern: bold-ish "X metrics across" — used in headline.
+    for m in re.finditer(r"\*\*(\d+) metrics across", text):
+        n = int(m.group(1))
+        if n != total:
+            findings.append(
+                Finding(
+                    "WARN",
+                    "readme-total-drift",
+                    (
+                        f"README claims '{n} metrics across' but live count is {total}. "
+                        f"Update the headline to match."
+                    ),
+                    "README.md",
+                )
+            )
+
+    # Check tier-count claims like "Tier 1 (X metrics)"
+    for tier_num, label in ((1, "Tier 1"), (2, "Tier 2"), (3, "Tier 3")):
+        for m in re.finditer(
+            rf"{re.escape(label)}\s*\((\d+) metrics?\)", text
+        ):
+            n = int(m.group(1))
+            actual = by_tier.get(tier_num, 0)
+            if n != actual:
+                findings.append(
+                    Finding(
+                        "WARN",
+                        "readme-tier-drift",
+                        (
+                            f"README claims '{label} ({n} metrics)' but live count is "
+                            f"{actual}. Update the README headline to match."
+                        ),
+                        "README.md",
+                    )
+                )
+    return findings
+
+
 def check_summary_maturity_counts(all_metrics: list[Metric]) -> list[Finding]:
     """`_summary.md` declares Maturity-bucket totals as part of the catalogue
     summary. v5.5.5 audit check verifies the declared values match the live
@@ -1541,6 +1602,7 @@ def main() -> int:
     findings.extend(check_family_resolves(all_metrics))
     findings.extend(check_layer_resolves(all_metrics))
     findings.extend(check_summary_maturity_counts(all_metrics))
+    findings.extend(check_readme_headline_counts(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))

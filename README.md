@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perspective.
 
-**236 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v5.5.6, 2026-05-08.** Shared to provoke conversation; not a settled standard.
+**236 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v5.5.7, 2026-05-08.** Shared to provoke conversation; not a settled standard.
 
 > ⚠️ This is an **AI-coauthored prototype for discussion**, not a finished taxonomy. Substantial portions were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. It is shared openly to provoke conversation about what an AVT assurance frame should look like — *not* as an NHS-endorsed standard, regulatory document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. **You are invited to disagree, propose changes, point at gaps, flag errors, and share with colleagues. You should not paste threshold numbers into contracts, cite metrics as authoritative without flagging the prototype status, or treat any specific metric as policy.** See [docs site → Prototype status](https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/) for the full framing.
 
@@ -102,16 +102,16 @@ Source rows in metric Dimensions tables, Reference Standard / Trigger Conditions
 
 ## Status / version
 
-**Current prototype version:** v5.5.6, released 2026-05-08.
+**Current prototype version:** v5.5.7, released 2026-05-08.
 
-**Headline state at v5.5.6:**
+**Headline state at v5.5.7:**
 
 - **236 metrics** across **20 groups**, organised in six clusters (TP / PI / HL / IO / GV / ES).
 - **Tier counts:** 58 / 99 / 79 (Tier 1 / Tier 2 / Tier 3).
 - **Maturity:** 69 Established / 64 Emerging / 4 Vendor-Proprietary / 99 Proposed/Novel.
 - **8 named metric families** (cross-cluster construct groupings); ~50 metrics carry an explicit `Family` field.
-- **All 236 metrics carry an explicit `Layer` field** (Prevention / Detection / Limitation): 77 Prevention, 137 Detection, 22 Limitation.
-- **AI-substrate classification** derived per metric: 127 AI-Substrate, 64 AI-Agnostic Governance, 30 AI-Mediated Workflow, 9 Pre-AI, 9 Post-AI.
+- **All 236 countable metrics carry an explicit `Layer` field** (Prevention / Detection / Limitation): 77 Prevention, 134 Detection, 25 Limitation. Three additional parent-construct metrics (TP.SN-7, TP.SN-9, HL.HF-3) also carry a Layer for routing purposes; sub-parts inherit the parent's classification.
+- **AI-substrate classification** derived per metric (countable view): 125 AI-Substrate, 64 AI-Agnostic Governance, 29 AI-Mediated Workflow, 9 Pre-AI, 9 Post-AI.
 - **74 outstanding roadmap candidates** in `_gaps.md`; 17 candidates promoted across all releases to date (lifted to `_gaps.md §7` historical record).
 - **13 NHS / regulatory frameworks** mapped in `_standards-mapping.md`.
 - **~110 References-catalogue entries** in `_references.md`, all audit-enforced.
@@ -132,7 +132,7 @@ The v5.x line went from a mid-stage prototype (221 metrics, ~45 Tier 1) to a mor
 - **v5.5.3** — AI-substrate Option 2: derived classification at build time; 5 new `by-ai-substrate/` cross-cut pages; `ai_substrate` column in CSV/JSON.
 - **v5.5.4** — Explicit `Layer` extended from 33 to all 236 metrics (77/137/25 Prevention/Detection/Limitation); cadence heuristic retained as fallback.
 - **v5.5.5** — Consistency sweep: refreshed `_tier-1-quick-reference.md` with the 15 missing v4.1/v5.3/v5.4 Tier 1 metrics; corrected Maturity totals in `_summary.md` (Established 62→69, Emerging 53→64, Proposed/Novel 110→99); cleaned up stale "(NHS framing; was X)" suffixes; closed plan-future #4 and #5 with status updates; new `check_summary_maturity_counts` audit check.
-- **v5.5.6** *(this release)* — Catalogue licensed under CC BY 4.0; README refreshed with current counts and v5.x highlights.
+- **v5.5.7** *(this release)* — Catalogue licensed under CC BY 4.0; README refreshed with current counts and v5.x highlights.
 
 See [CHANGELOG.md](CHANGELOG.md) for full per-release notes including all earlier v3.x and v4.x releases.
 
@@ -140,9 +140,9 @@ See [CHANGELOG.md](CHANGELOG.md) for full per-release notes including all earlie
 
 Until the prototype reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v5.5.6* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v5.5.7* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
-Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v5.5.6) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
+Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v5.5.7) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
 
 ## Contributing
 
@@ -168,4 +168,4 @@ If your use case doesn't fit cleanly into these categories, open an issue and we
 
 ---
 
-*Last updated: v5.5.6 / 2026-05-08.*
+*Last updated: v5.5.7 / 2026-05-08.*
