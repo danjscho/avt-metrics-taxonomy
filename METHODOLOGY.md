@@ -274,7 +274,7 @@ Hard-won lessons from this project:
 
 - **Don't start with the website.** Content structure first; presentation is derived. Every hour spent on the site before the metric catalogue is stable is re-work.
 - **Don't add YAML frontmatter speculatively.** If the information is already in a structured table in prose, parse the table. Frontmatter rots; prose tables are reviewed every time a human edits the metric.
-- **Don't invent a new grouping primitive every time something feels "different".** Two primitives (families, sub-clusters) cover every real case we've encountered in 214 metrics.
+- **Don't invent a new grouping primitive every time something feels "different".** Two primitives (families, sub-clusters) cover every real case we've encountered across 200+ metrics. (As of v5.5.x in the AVT instance: 8 named families, ~10 sub-clusters across 236 metrics.)
 - **Don't treat Tier 1 as "the important ones".** Tier 1 means "measurable today with existing tools and consensus definitions". A profoundly important metric with no agreed-upon definition is Tier 2 or 3 with a gap flag, not Tier 1.
 - **Don't conflate the taxonomy with the implementation guide.** This produces the *what* to measure and roughly *how*; it does not produce local clinical SOPs, vendor-specific test plans, or DPIAs. Keep those downstream.
 - **Don't let gaps drift into multiple files.** Unify them, or they will contradict each other within a year.
@@ -358,6 +358,16 @@ Replicate these for any new system class (see `taxonomy/audit.py`):
 
 ## 10. Attribution
 
-This methodology was distilled from constructing the AVT Metrics Taxonomy (214 metrics, 20 groups, 11 mapped standards) through v1 → v3.1. The patterns survived three major additive rounds without structural rewrite - that's the strongest evidence they work. The concrete files referenced above (`audit.py`, `build.py`, `_applicability.md`, `_standards-mapping.md`, `_responsible-ai-lens.md`) exist in this repo as worked examples.
+This methodology was distilled from constructing the AVT Metrics Taxonomy (236 metrics, 20 groups, 13 mapped standards as of v5.5.x). The patterns survived through major additive rounds (v1.0 → v2.0 first major extension; v3.x tier-1 tightening waves; v4.0 cluster-code restructure; v5.x Phase-5 minimum-set extension) without structural rewrite — that's the strongest evidence they work. The concrete files referenced above (`audit.py`, `build.py`, `_applicability.md`, `_standards-mapping.md`, `_responsible-ai-lens.md`) exist in this repo as worked examples.
+
+Several primitives accumulated since the original methodology was written and now form part of the recipe:
+
+- **Per-metric `Family`** (v5.4.0): named cross-construct groupings as an audit-enforced dimension; canonical home in `_families.md` rather than scattered cluster-file framings.
+- **Layers of Defence** (v5.4.0): Prevention / Detection / Limitation as a per-metric explicit dimension. Names the architectural shape rather than leaving readers to derive it.
+- **AI-Substrate classification** (v5.5.0+): five-class derived cut surfacing which metrics test the AI itself vs the infrastructure around it vs the governance of it.
+- **Failure Pathways** (v5.5.1): worked failure-mode archetypes plus a day-by-day timeline showing how the taxonomy operates in motion. Complements the architectural framing with scenario framing.
+- **Threshold Reference structural split** (v5.0.0): numerical thresholds live on a dedicated reference page, freeing metric bodies for qualitative Trigger Conditions.
+
+These are recipe extensions, not replacements — the original primitives remain load-bearing.
 
 When adapting, cite this repo as the methodology source and your own work as the content; the structure is transferable, the metric choices are not.
