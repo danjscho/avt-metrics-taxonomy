@@ -198,6 +198,7 @@ def add_metric_anchors(text: str) -> str:
 GITHUB_BLOB = "https://github.com/danjscho/avt-metrics-taxonomy/blob/main"
 EXTERNAL_LINK_REWRITES: dict[str, str] = {
     "CHANGELOG.md": "changelog.md",
+    "CHANGELOG-archive.md": f"{GITHUB_BLOB}/CHANGELOG-archive.md",
     "README.md": f"{GITHUB_BLOB}/README.md",
 }
 

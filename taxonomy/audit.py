@@ -156,6 +156,11 @@ class Metric:
     dimensions: dict = field(default_factory=dict)  # dim name -> raw value
     body: str = ""  # Full metric body from heading to next heading (for sub-block detection)
 
+    @property
+    def parent_ref_id(self) -> str | None:
+        m = re.match(r"^([A-Z]{2}\.[A-Z0-9]+-\d+)[a-z]$", self.ref_id)
+        return m.group(1) if m else None
+
 
 @dataclass
 class Finding:
@@ -1564,7 +1569,7 @@ def check_no_part_letter_prose() -> list[Finding]:
             continue
         # Skip files that describe the v3.x → v4.0 rename itself —
         # they refer to Part X by necessity (historical / migration prose).
-        if rel.name in {"CHANGELOG.md", "plan-v4.0.md", "plan-future.md"}:
+        if rel.name in {"CHANGELOG.md", "CHANGELOG-archive.md", "plan-v4.0.md", "plan-future.md"}:
             continue
         text = path.read_text()
         for match in pattern.finditer(text):

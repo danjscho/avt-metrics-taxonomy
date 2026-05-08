@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.5.7, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.5.8, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -621,12 +621,12 @@ The two icons below align with the existing entries above:
 
 **TP — The Technical Pipeline**
 
-- [Audio Capture & Environment](#audio-capture-environment) (9 metrics - 1 Tier 1)
-- [ASR / Transcription](#asr-transcription) (14 metrics - 2 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
+- [Audio Capture & Environment](#audio-capture-environment) (9 metrics — 1 Tier 1)
+- [ASR / Transcription](#asr-transcription) (14 metrics — 3 Tier 1) *contains Clinical Transcription Accuracy and Demographic Equity Disaggregation families*
 - [Diarisation](#diarisation) (9 metrics) *contains Conversation Analysis sub-cluster*
-- [Summarisation / NLP](#summarisation-nlp) (24 metrics - 4 Tier 1) *contains Clinical Content Fidelity, Reference-Based Text Similarity, and Medication Safety Thread families*
-- [Clinical Coding](#clinical-coding) (11 metrics - 1 Tier 1) *contains Coding Fidelity sub-cluster*
-- [Downstream Write-back](#epr-write-back) (7 metrics - 4 Tier 1) *contains Write-back Safety sub-cluster*
+- [Summarisation / NLP](#summarisation-nlp) (24 metrics — 4 Tier 1) *contains Clinical Content Fidelity, Reference-Based Text Similarity, and Medication Safety Thread families*
+- [Clinical Coding](#clinical-coding) (11 metrics — 1 Tier 1) *contains Coding Fidelity sub-cluster*
+- [Downstream Write-back](#downstream-write-back) (8 metrics — 5 Tier 1) *contains PRSB Semantic Completeness & Write-back Fidelity family and Write-back Safety sub-cluster*
 
 **PI — Pipeline Interactions**
 
@@ -635,36 +635,41 @@ The two icons below align with the existing entries above:
 
 **HL — The Human Layer**
 
-- [Human Factors & Workflow](#human-factors-workflow) (19 metrics - 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
+- [Human Factors & Workflow](#human-factors-workflow) (19 metrics — 3 Tier 1) *contains Post-Generation Correction family and Sociotechnical & Resilience sub-cluster*
 
 **IO — Impact & Outcomes**
 
-- [Patient Experience](#patient-experience) (10 metrics - 1 Tier 1) *contains Patient Clinical Outcomes sub-cluster*
-- [Fairness & Equity](#fairness-equity) (8 metrics)
+- [Patient Experience](#patient-experience) (10 metrics — 1 Tier 1) *contains Patient Clinical Outcomes sub-cluster*
+- [Fairness & Equity](#fairness-equity) (8 metrics — 1 Tier 1)
 
 **GV — System Governance**
 
-- [Safety & Governance](#safety-governance) (17 metrics - 6 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
-- [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (10 metrics - 7 Tier 1) *NEW GROUP*
+- [Safety & Governance](#safety-governance) (18 metrics — 7 Tier 1) *contains Longitudinal Drift & Model Contamination sub-cluster*
+- [NHS Compliance & Regulatory](#nhs-compliance-regulatory) (14 metrics — 10 Tier 1) *contains members of the NHSE IG Attestation family*
 - [Security & Adversarial Robustness](#security-adversarial-robustness) (12 metrics)
-- [Privacy & Data Governance](#privacy-data-governance) (12 metrics - 8 Tier 1)
-- [Operational](#operational) (10 metrics - 3 Tier 1)
-- [Environmental & Sustainability](#environmental-sustainability) (3 metrics) *NEW GROUP*
-- [Training & Competency](#training-competency) (5 metrics - 1 Tier 1)
-- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (11 metrics - 4 Tier 1)
+- [Privacy & Data Governance](#privacy-data-governance) (18 metrics — 10 Tier 1) *contains members of the NHSE IG Attestation family*
+- [Operational](#operational) (10 metrics — 3 Tier 1)
+- [Environmental & Sustainability](#environmental-sustainability) (3 metrics)
+- [Training & Competency](#training-competency) (5 metrics — 1 Tier 1)
+- [Vendor Transparency & Contractual](#vendor-transparency-contractual) (14 metrics — 7 Tier 1) *contains members of the NHSE IG Attestation family*
 
 **ES — Evaluation Science**
 
-- [Meta-evaluation](#meta-evaluation) (9 metrics) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
+- [Meta-evaluation](#meta-evaluation) (9 metrics — 1 Tier 1) *contains the outcomes-evidence pair (ES.ME-8, ES.ME-9) that operationalises the [Outcomes Boundary](#outcomes-boundary)*
 
 **Cross-cutting**
 
-- [Applicability Classification](#applicability-classification) - which metrics are AVT-specific, which apply to any healthcare AI system
-- [Standards Mapping](#standards-mapping) - assertion-level mapping to DTAC, DSPT, DCB0129/0160, NHS LLM Evaluation Framework, MHRA SaMD/AIaMD, NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, and Caldicott Principles
-- [Responsible AI Lens](#responsible-ai-lens) - policy-intent view against the DSIT AI Playbook's 10 principles and the six Responsible AI ethical themes
-- [Gaps & Proposed Metrics (Roadmap)](#gaps-proposed-metrics-roadmap) - consolidated register of 83 gap candidates from external coverage audits, standards mapping, and Responsible AI lens
+- [Applicability Classification](#applicability-classification) — which metrics are AVT-specific, which apply to any healthcare AI system
+- [Families](families.md) — eight named cross-construct groupings consolidated to one canonical home
+- [Layers of Defence](layers-of-defence.md) — Prevention / Detection / Limitation framing applied per metric
+- [Failure Pathways](failure-pathways.md) — three concrete failure-mode archetypes plus a day-by-day worked timeline
+- [AI-Substrate Classification](ai-substrate.md) — five-class derived cut (Pre-AI / AI-Substrate / Post-AI / AI-Mediated Workflow / AI-Agnostic Governance)
+- [Dimensions Overview](dimensions-overview.md) — what each per-metric dimension means and how it differs from neighbouring cuts
+- [Standards Mapping](#standards-mapping) — assertion-level mapping to thirteen frameworks: DTAC, DSPT, DCB0129/0160, NHS LLM Evaluation Framework, NHS T.E.S.T., MHRA SaMD/AIaMD, NICE ESF, FHIR UK Core, CQC, PSIRF, PRSB, Caldicott Principles, and the NHS England AVT Self-Certified Supplier Registry
+- [Responsible AI Lens](#responsible-ai-lens) — policy-intent view against the DSIT AI Playbook's 10 principles and the six Responsible AI ethical themes
+- [Gaps & Proposed Metrics (Roadmap)](#gaps-proposed-metrics-roadmap) — 74 outstanding candidates plus 17 promoted-in-earlier-releases rows preserved as historical record at §7
 
-*Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Some families are cross-cutting, spanning multiple groups and pipeline layers (e.g. Medication Safety Thread spans Summarisation, Clinical Coding, and Patient Experience). Family framings appear before the first metric of each family and provide parent-construct context. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation - they are additive context within the existing group structure.*
+*Several groups contain named metric families or sub-clusters. A **metric family** is a group of related metrics measuring facets of a shared construct (e.g. Clinical Content Fidelity groups Hallucination Rate, Omission Rate, Confabulation Detection, Negation Handling Accuracy, and Uncertainty Marker Preservation). Some families are cross-cutting, spanning multiple groups and pipeline layers (e.g. Medication Safety Thread spans Summarisation, Clinical Coding, and Patient Experience; NHSE IG Attestation spans Compliance & Regulatory, Privacy & Data Governance, and Vendor Transparency). Family framings live on the canonical [Families](families.md) page (since v5.5.0); per-metric `*See also: ... family*` italics on individual metric bodies cross-reference back to the family page. A **sub-cluster** is a thematic grouping within a larger group (e.g. Conversation Analysis within Diarisation covers role identification, code-switching, turn-taking, and addressee recognition). Sub-clusters have italic introductory text before the first metric in the sub-cluster. Neither families nor sub-clusters require separate navigation — they are additive context within the existing group structure.*
 
 ---
 
@@ -3545,7 +3550,7 @@ Quick reference for terms, abbreviations, and standards referenced throughout th
 
 ## Pipeline and technical terms
 
-- **AVT** - Ambient Voice Technology. Generic term for AI systems that listen to a consultation and produce clinical documentation, typically comprising audio capture → ASR → diarisation → summarisation → EPR write-back.
+- **AVT** - Ambient Voice Technology. Generic term for AI systems that listen to a consultation and produce clinical documentation, typically comprising audio capture → ASR → diarisation → summarisation → clinical coding → downstream write-back. (v4.0 reframed "EPR write-back" as "Downstream Write-back" to reflect that targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals.)
 - **ASR** - Automatic Speech Recognition. The pipeline stage that converts speech audio to text (transcript).
 - **Diarisation** - Speaker attribution. Determining who spoke which segment of the transcript (clinician, patient, bystander).
 - **EPR** - Electronic Patient Record. Used synonymously with EHR (Electronic Health Record) in this taxonomy.
@@ -3604,17 +3609,30 @@ Quick reference for terms, abbreviations, and standards referenced throughout th
 - **DPO** - Data Protection Officer.
 - **AIS** - Accessible Information Standard (NHS).
 - **ATRS** - Algorithmic Transparency Recording Standard (UK government).
+- **AVT Self-Certified Supplier Registry** - NHS England registry of AVT suppliers self-certifying compliance with the Day Zero requirements; the FTS notice 069369-2025 anchored its publicly-visible procurement surface, and v5.3.0 / v5.4.0 mapped it as the 13th framework in the standards-mapping. Registry-direct obligations drove the v5.x Phase 5 minimum-set extension.
+- **FTS** - Find a Tender Service (UK government). Public-tender publication mechanism; FTS notice 069369-2025 is the AVT Self-Certified Supplier Registry tender. (Cited because it provides the publicly-readable ceiling on what the Registry actually requires — the granular Atamis application pack remains inaccessible without supplier credentials.)
+- **NHSE IG Guidance March 2026** - NHS England Information Governance guidance on ambient scribing. The March 2026 update introduced new transparency, dissent-handling, privacy-notice, SAR-handling, and right-to-restrict requirements that drove several v5.3.0 / v5.4.0 metric promotions and mints. Cited via the `[NHSE-IG-Guidance-2026-03]` catalogue handle. Per the v5.5.0 topic-cited convention, source rows reference the substantive obligation rather than fabricating section numbers, since the parent guidance hub doesn't currently expose stable per-section URL anchors.
 
 ## Taxonomy-specific
 
-- **Metric family** - A named parent-construct grouping of related metrics (e.g. *Clinical Content Fidelity*) that may span multiple groups. The full list: Reference-Based Text Similarity, Clinical Content Fidelity, Clinical Transcription Accuracy, Post-Generation Correction, Medication Safety Thread, Demographic Equity Disaggregation.
+- **Metric family** - A named parent-construct grouping of related metrics (e.g. *Clinical Content Fidelity*) that may span multiple groups. The eight families as of v5.4.0: Clinical Content Fidelity, Reference-Based Text Similarity, Clinical Transcription Accuracy, Post-Generation Correction, Medication Safety Thread, Demographic Equity Disaggregation, NHSE IG Attestation, and PRSB Semantic Completeness & Write-back Fidelity. Family framings live on the canonical `_families.md` page since v5.5.0; `Family` is an audit-enforced per-metric dimension since v5.4.0.
 - **Sub-cluster** - A thematic grouping of metrics within a single group. Sub-clusters have italic introductory text before the first member.
-- **Reference ID** - Format `{Part}.{Group}-{Number}` (e.g. `TP.AC-1`). Stable across versions; cite as `TP.AC-1` → `/groups/audio-capture/#tp-ac-1`.
+- **Reference ID** - Format `{Cluster}.{Group}-{Number}` (e.g. `TP.AC-1`). Stable across versions; cite as `TP.AC-1` → `/groups/audio-capture/#tp-ac-1`. Retired IDs are recorded in `_retired-ids.md` and never reused (v3.7+ deprecate-don't-renumber convention).
+- **Cluster** - Six top-level groupings: TP (Technical Pipeline), PI (Pipeline Interactions), HL (Human Layer), IO (Impact & Outcomes), GV (System Governance), ES (Evaluation Science). The cluster-code naming surface canonical since v4.0.
 - **Tier 1 / 2 / 3** - Priority classification: Tier 1 is minimum viable assurance (measurable today, every deployer must do it); Tier 2 is recommended; Tier 3 is advanced/research-grade.
-- **Cadence** - One of *Gate* (pre-deployment), *Continuous*, or *Audit* (periodic).
-- **Responsible Actor** - Who is accountable for measuring: *Vendor*, *Deployer*, *Regional body* (ICB), *National body* (NHS England), or *Academic*.
-- **Applicability** - Three-way classification per metric: *AVT-Specific*, *AVT-Contextualised*, or *General Healthcare AI*.
-- **Underspecification warning** - Explicit flag on a metric where the measurement science does not yet have consensus. Readers should treat these as calls for caution.
+- **Cadence** - Multi-valued since v5.1.0. Each value drawn from a four-element enum: `One-off gate` (pre-deployment), `Periodic audit` (scheduled review), `Continuous` (always-on monitoring), `Event-triggered` (re-measured on a material change event such as a model update, contract renewal, or new failure mode).
+- **Responsible Actor** - Who is accountable for measuring: *Vendor*, *Deployer*, *Clinician*, *Regional (ICB)*, or *National Body*. Multi-valued.
+- **Applicability** - Three-way classification per metric: *AVT-Specific* (50 metrics), *AVT-Contextualised* (79), or *General Healthcare AI* (107).
+- **Layer of Defence** - Per-metric explicit dimension since v5.4.0 (extended to all 236 metrics in v5.5.4). One of *Prevention* (pre-deployment gates), *Detection* (continuous monitoring), or *Limitation* (governance infrastructure that bounds damage when detection fires). Documented in `_layers-of-defence.md`. The catalogue distribution is honestly thin on Limitation (25 metrics, 11%), which surfaces a real architectural gap.
+- **AI-Substrate** - Five-class derived classification since v5.5.3: *Pre-AI* (microphone hardware, signal capture), *AI-Substrate* (the model itself), *Post-AI* (write-back, EPR integration), *AI-Mediated Workflow* (clinician edits, automation bias), *AI-Agnostic Governance* (DPIA, board oversight, sub-processor disclosure). Derived at build time from cluster + per-metric overrides; documented in `_ai-substrate.md`.
+- **Failure Pathway** - Worked failure-mode archetype showing how an error propagates through the pipeline and which Tier 1 metrics catch it where. Three pathways named (hallucination cascade, silent write-back failure, undisclosed model update) plus a day-by-day worked timeline of one closed governance loop. Documented in `_failure-pathways.md` since v5.5.1.
+- **Outcomes Boundary** - First-class principle (v3.3+) naming what is *out of scope* for this taxonomy: clinical-outcome validation belongs to national research bodies, not deployers. Operationalised by ES.ME-8 (Outcome Evidence Commitment Status) and ES.ME-9 (Causal Model Operationalisation).
+- **Calibration & Context principle** - First-class principle (v3.7+) naming what is *in scope but context-dependent*: tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
+- **Maturity** - Four-value enum: *Established*, *Emerging*, *Vendor-Proprietary*, *Proposed / Novel*. Distinct from Tier — a Tier 1 metric can be Proposed/Novel if a regulatory obligation names it but the measurement science isn't yet settled (e.g. GV.CR-13 Refusal Impact-Explanation Quality awaiting a piloted national rubric).
+- **Underspecification warning** - Explicit flag on a metric where the measurement science does not yet have consensus. Readers should treat these as calls for caution. Three tiers: A (no established methodology), B (concept defined, no AVT-specific validation), C (technically defined, clinical validity unproven or disproven).
+- **Outcome Type** - Two-value enum: *Proximal* (what's happening in the AVT pipeline now) or *Distal* (downstream patient outcome). Bounds Outcomes-Boundary applicability.
+- **Tightening pattern** - Tier 1 metric structure introduced in v3.4+ with the **Reference Standard** + **Operational Specification** + **Trigger Conditions** sub-blocks. Numerical thresholds live in `docs/thresholds.md` since v5.0.0 (was: inline in metric bodies). The pattern carries explicit ⚠️ Provenance preludes distinguishing externally-cited thresholds from proposed-as-starting-points.
+- **Provenance prelude** - The ⚠️ paragraph at the top of a Trigger Conditions block (or threshold table) naming where each numerical threshold comes from. Honest about author judgement vs cited source; required for Tier 1 metrics with the tightening pattern.
 
 *This glossary is a convenience only; the authoritative source for any term is the standards document or the metric entry itself.*
 
@@ -3670,7 +3688,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.7` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.8` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 

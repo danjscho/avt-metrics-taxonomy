@@ -304,6 +304,17 @@ The next step beyond verification is **extraction into a runnable companion libr
 
 ---
 
+## 12. Outstanding follow-ups from v5.3 pre-mint triage
+
+**Status:** carried forward from `archive/v5.4/v5.3-pre-mint-triage.md`. Not blockers; tracked for future minor releases.
+
+- **Gap-IG-A rubric piloting** — the metric currently uses the placeholder "structured per local IG officer review" with Maturity: Proposed/Novel. Once a piloted rubric exists, Maturity can move Proposed/Novel → Emerging.
+- **GV.VT-10 Option-2 source verification** — the MHRA Roadmap WP-2 transparency outputs need to be cited in the metric's References block once WP-2 outputs are publicly available. Currently held as Proposed/Novel pending citation.
+
+Both items are low-cost to action when the upstream artefacts (piloted rubric / published WP-2 output) become available; neither needs proactive chasing.
+
+---
+
 ## How to use this file
 
 - **Adding items:** follow the format above. Lead with status, then *why*, then *starting points*. Don't write the implementation here — that goes in a release plan when the item is promoted.
