@@ -1,5 +1,42 @@
 # Changelog
 
+## v5.5.6 (2026-05-08)
+
+**Patch release: catalogue licence + README refresh.**
+
+### Catalogue licensed under CC BY 4.0
+
+The catalogue content (Markdown source under `taxonomy/`, the assembled `avt-metrics-taxonomy.md`, the rendered MkDocs site, and supporting documents at the repo root) is now licensed under **[Creative Commons Attribution 4.0 International (CC BY 4.0)](https://creativecommons.org/licenses/by/4.0/)**. New `LICENSE` file at the repo root carries the full terms, suggested attribution recipe, and explicit scope notes for the per-artefact licence split:
+
+- **Catalogue content** — CC BY 4.0 (this release).
+- **Reference implementation library** at `pkg/avt_metrics_ref/` (on `reference-library-pilot` branch only) — MIT, separately.
+- **Build / parse / audit / site-build Python tooling** at `taxonomy/build.py`, `taxonomy/parse.py`, `taxonomy/audit.py`, `taxonomy/build_site.py`, `taxonomy/tools/`, `taxonomy/tests/` — supplied to make the catalogue reproducible; treated as MIT for independent re-use.
+- **Quoted framework material** (DTAC, NHSE IG, MHRA SaMD, Caldicott, NICE ESF, etc.) remains under each publisher's own licence; the catalogue cites under fair-dealing conventions.
+
+CC BY 4.0 was chosen over alternatives because (a) it's the convention for documentation-as-knowledge-artefact (Wikipedia, OpenAPI spec, NHSE OGL-equivalent content); (b) attribution requirement keeps the prototype-status framing legally enforceable when the catalogue is cited; (c) no share-alike requirement, so vendor / deployer / regulator re-use isn't blocked; (d) compatible with academic and procurement citation.
+
+### README refresh
+
+The README on main was carrying counts from earlier in the v5.x line. Refreshed across:
+
+- Headline counts: 236 metrics; 58 / 99 / 79 tier distribution; 69 / 64 / 4 / 99 maturity distribution.
+- Tier 1 Quick Reference description: 45 → 58 metrics.
+- Standards mapping: "twelve frameworks" → "thirteen" (since v3.8 added the AVT Self-Certified Supplier Registry).
+- Roadmap candidate count: 89 → 74 outstanding (reflects v5.3.0 lift of promoted candidates to `_gaps.md §7` historical record).
+- Pytest count: 88 → 99.
+- Stale `taxonomy/part-f/` paths (pre-v4.0 naming scheme) → `taxonomy/es/`.
+- Quick links section gains entries for the new v5.4 / v5.5 cross-cutting pages: Layers of Defence, Failure Pathways, AI Substrate, Dimensions Overview.
+- New "Headline state at v5.5.6" section in *Status / version* summarising current state at a glance.
+- New "v5.x highlights" section condensing the v5.0.0 → v5.5.6 release arc into one place.
+- Reference implementation library cross-reference added to Quick links (with explicit note that it lives on a branch and isn't merged to main).
+- Licence section: replaced "TBD" with the full CC BY 4.0 framing + per-artefact split.
+
+### Build effects
+
+- No metric content edits.
+- No site-build changes.
+- Audit and pytest unaffected.
+
 ## v5.5.5 (2026-05-08)
 
 **Patch release: v5.x consistency sweep + closure of plan-future #4 and #5.**
