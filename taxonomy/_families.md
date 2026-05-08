@@ -21,13 +21,15 @@ The two are deliberately different: named families are a structural taxonomy con
 
 **Why a family.** Aggregate "hallucination rate" obscures three things: (1) the existence of distinct error subtypes with different clinical implications; (2) the difference between factuality and faithfulness; (3) the reason that aggregate rates can mask serious category-specific failures. Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations.
 
-**Subtypes (from CREOLA + AutoscriberValidate, regrouped):**
+**Subtypes (from CREOLA + AutoscriberValidate, regrouped).** The CREOLA framework ([Asgari-Tortus-2025]) defines four hallucination subtypes — *fabrication, negation, causality, contextual* — and three omission subtypes (*current issues, past medical / family / social, information-and-plan*). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. **The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure** — the source-attested taxonomy is the 4+3 above.
 
-- **Fabrication** — completely invented clinical content with no basis in the source. Most dangerous.
-- **Context conflation** — content misattributed between conversation parts or speakers.
-- **Incorrect negation** — polarity reversal of a clinical assertion (measured by Negation Handling Accuracy).
-- **Speculation or inference beyond source** — plausible but unverifiable content extending beyond what was discussed.
-- **Certainty inflation** — clinician uncertainty markers stripped (measured by Uncertainty Marker Preservation).
+- **Fabrication** (Asgari "fabrication") — completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.
+- **Context conflation** (closest to Asgari "contextual") — content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
+- **Incorrect negation** (Asgari "negation") — polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated **TP.SN-15** Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
+- **Speculation or inference beyond source** (closest to Asgari "causality") — plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
+- **Certainty inflation** (taxonomy-extension; not a dedicated CREOLA subtype) — clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the dedicated **TP.SN-20** Uncertainty Marker Preservation metric in this family.
+
+Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
 
 **Faithfulness vs factuality.** For ambient scribes, **faithfulness is the primary assurance concern** because the scribe's job is to represent the consultation, not to exercise clinical judgment. A system that silently corrects clinician errors or adds information the clinician did not state has exceeded its safe operating scope regardless of whether the resulting statement is factually true.
 

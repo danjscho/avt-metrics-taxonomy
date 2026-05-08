@@ -217,32 +217,7 @@ extension and not part of Asgari's published structure.
 
 ---
 
-### Family: Clinical Content Fidelity
-
-> **Parent construct** - whether the generated note faithfully represents the clinical content of the source consultation.
->
-> The next five metrics measure different facets of a single underlying construct. Treating them as unrelated obscures three important things: the existence of distinct error subtypes with different clinical implications, the difference between factuality and faithfulness, and the reason that aggregate rates can mask serious category-specific failures.
->
-> **Subtypes are not substitutes.** The CREOLA framework ([Asgari-Tortus-2025]) defines four hallucination subtypes — *fabrication, negation, causality, contextual* — and three omission subtypes (*current issues, past medical / family / social, information-and-plan*). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. **The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure** — the source-attested taxonomy is the 4+3 above.
->
-> - **Fabrication** (Asgari "fabrication") - completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.
-> - **Context conflation** (closest to Asgari "contextual") - content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
-> - **Incorrect negation** (Asgari "negation") - polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
-> - **Speculation or inference beyond source** (closest to Asgari "causality") - plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
-> - **Certainty inflation** (taxonomy-extension; not a dedicated CREOLA subtype) - clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the Uncertainty Marker Preservation metric in this family.
->
-> Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
->
-> **Factuality and faithfulness are distinct dimensions within the family.** Factuality is world-correctness: does the statement match clinical reality? Faithfulness is source-correctness: does the statement match what was discussed? A note can be factually correct but unfaithful (the summariser inferred a correct diagnosis the clinician never stated) or faithful but factually incorrect (the summariser accurately captured the clinician's mistake). For ambient scribes, **faithfulness is the primary assurance concern** because the scribe's job is to represent the consultation, not to exercise clinical judgment. A system that silently corrects clinician errors or adds information the clinician did not state has exceeded its safe operating scope regardless of whether the resulting statement is factually true.
->
-> **Recommendation for measurement.** When measuring content fidelity in periodic audit, require subtype reporting rather than aggregate rate only. A single headline number hides the distribution that matters for intervention. Vendors reporting only aggregate rates should be asked to provide the CREOLA subtype breakdown or equivalent.
->
-> **Metrics in this family:**
-> - 🟢 **Hallucination Rate** - the aggregate rate of generated content unsupported by source. Entry point to the family. *See underspecification warning re: definitional instability.*
-> - 🟢 **Omission Rate** - the silent killer. Arguably more dangerous than hallucination because omissions are invisible to the reviewer looking at a clean-looking note.
-> - 🔵 **Confabulation Detection (Support × Severity)** - vendor-proprietary two-axis approach (Abridge) that stratifies by evidence support and clinical severity. Methodologically superior where available.
-> - 🟢 **Negation Handling Accuracy** - measures the Incorrect Negation subtype as a dedicated metric because of its direct clinical harm potential.
-> - 🟢 **Uncertainty Marker Preservation** - measures the Certainty Inflation subtype as a dedicated metric because certainty inflation is the more dangerous direction of epistemic drift.
+*The next five metrics are members of the **Clinical Content Fidelity** named family — see [Families § Clinical Content Fidelity](../families.md#clinical-content-fidelity) for the construct definition, CREOLA subtype mapping, faithfulness-vs-factuality framing, and full member list.*
 
 ---
 
@@ -1065,19 +1040,7 @@ For each quantifier in reference: Quantifier Preservation = (quantifier present 
 
 ---
 
-### Family: Medication Safety Thread
-
-> **Parent construct** - the family of metrics that track medication information accuracy across the full pipeline, from spoken consultation to structured EPR record. Medication errors are the canonical safety-critical failure mode in clinical documentation AI.
->
-> Unlike the other families in this taxonomy, the Medication Safety Thread spans multiple pipeline layers and multiple groups: extraction and event classification at the summarisation layer, terminology coding at the clinical coding layer, and downstream outcome monitoring at the patient experience layer. The family exists because a medication error can originate at any of these stages, and measuring only one stage gives false assurance about the others.
->
-> **The safety argument.** A medication mentioned in consultation passes through at least four processing stages before it affects patient care: (1) ASR must transcribe the drug name, dose, and frequency correctly; (2) the summariser must extract these attributes and classify the medication event (start, stop, change); (3) the clinical coder must map to the correct dm+d concept; (4) the EPR write-back must place the medication data in the correct structured field. An error at any stage propagates - and the stages are tested by different metrics in different groups. The family framing makes the end-to-end thread visible.
->
-> **Metrics in this family:**
-> - 🟡 **Medication Attribute Extraction F1** (Summarisation / NLP) - per-attribute accuracy for drug name, dose, route, frequency, duration, indication
-> - 🟡 **Medication Event Classification** (Summarisation / NLP) - classification of medication actions: start, stop, increase, decrease, continue
-> - 🟡 **dm+d Medication Coding Accuracy** (Clinical Coding) - mapping to NHS dm+d terminology; currency against quarterly updates
-> - 🔵 **Medication Error Rate Differential** (Patient Experience) - downstream outcome: pre/post AVT medication error rates
+*The next two metrics (TP.SN-19, TP.SN-21), plus TP.CC-5 in the Clinical Coding cluster and IO.PX-10 in Patient Experience, are members of the cross-cutting **Medication Safety Thread** named family — see [Families § Medication Safety Thread](../families.md#medication-safety-thread) for the construct definition, four-stage pipeline argument, and full member list.*
 
 ### TP.SN-19 🟡 Medication Attribute Extraction F1
 

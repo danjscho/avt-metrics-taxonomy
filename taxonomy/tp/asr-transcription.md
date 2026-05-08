@@ -217,22 +217,7 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 ---
 
-### Family: Demographic Equity Disaggregation
-
-> **Parent construct** - the family of metrics that apply demographic disaggregation to pipeline performance, measuring whether system quality varies across population subgroups. The underlying principle is the same at every layer: compute the base metric separately for each demographic group, then quantify the gap.
->
-> This family spans the full pipeline because equity failures can originate at any stage. ASR accuracy may vary by accent; summarisation quality may vary by consultation style correlated with ethnicity; coding completeness may systematically differ across patient populations. Measuring equity at only one layer provides false assurance - a system that transcribes equitably may still summarise or code inequitably.
->
-> **The disaggregation axes.** Most metrics in this family operate on the same set of demographic variables: accent/dialect, first language, age band, sex, ethnicity, deprivation quintile, and speech characteristics (rate, volume, disorder). The specific axes depend on the base metric and available data. The NAS framework proposes a maximum 5 percentage-point gap across groups as a starting threshold.
->
-> **Metrics in this family:**
-> - 🟡 **Demographic-Disaggregated WER** (ASR / Transcription) - WER by accent, language, age, speech characteristics
-> - 🔵 **Speaker-Stratified WER** (ASR / Transcription) - WER by speaker role (clinician vs patient)
-> - 🟡 **Coding Equity Index** (Clinical Coding) - whether AVT-driven coding changes are equitable across demographics
-> - 🔵 **Compound Demographic Performance** (End-to-End Pipeline) - intersectional performance at full-pipeline level
-> - 🟡 **Accent Taxonomy Standardisation** (Fairness & Equity) - standardised accent/dialect categorisation for disaggregation
-> - 🔵 **Intersectional Performance** (Fairness & Equity) - performance at demographic intersections
-> - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) - formal intersectional fairness quantification
+*The next ASR metric is the entry point for the **Demographic Equity Disaggregation** named family — see [Families § Demographic Equity Disaggregation](../families.md#demographic-equity-disaggregation) for the construct definition, full member list across clusters, and discussion of disaggregation axes.*
 
 ### TP.ASR-4 🟢 Demographic-Disaggregated WER
 
