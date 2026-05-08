@@ -1,5 +1,5 @@
 {
-  "version": "v5.5.0",
+  "version": "v5.5.2",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 236,
@@ -4549,7 +4549,7 @@
         "Source": "[NHSE-AVT-Registry] (live since January 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 205
+      "heading_line": 207
     },
     {
       "ref_id": "GV.CR-5",
@@ -4578,7 +4578,7 @@
         "Source": "[CIO-CCIO-Guidance-2026]; NHS CIO priority notification"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 268
+      "heading_line": 270
     },
     {
       "ref_id": "GV.CR-6",
@@ -4607,7 +4607,7 @@
         "Source": "[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 333
+      "heading_line": 335
     },
     {
       "ref_id": "GV.CR-7",
@@ -4637,7 +4637,7 @@
         "Source": "[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 397
+      "heading_line": 399
     },
     {
       "ref_id": "GV.CR-8",
@@ -4666,7 +4666,7 @@
         "Source": "[UK-GDPR] Article 28; NHS data protection guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 466
+      "heading_line": 468
     },
     {
       "ref_id": "GV.CR-9",
@@ -4695,7 +4695,7 @@
         "Source": "[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 505
+      "heading_line": 507
     },
     {
       "ref_id": "GV.CR-10",
@@ -4724,7 +4724,7 @@
         "Source": "[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 546
+      "heading_line": 548
     },
     {
       "ref_id": "GV.CR-11",
@@ -4753,7 +4753,7 @@
         "Source": "[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 585
+      "heading_line": 587
     },
     {
       "ref_id": "GV.CR-12",
@@ -4782,7 +4782,7 @@
         "Source": "[CQC] well-led KLOEs; DSIT AI Playbook Principle 10"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 624
+      "heading_line": 626
     },
     {
       "ref_id": "GV.CR-13",
@@ -4812,7 +4812,7 @@
         "Source": "[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 663
+      "heading_line": 665
     },
     {
       "ref_id": "GV.CR-14",
@@ -4841,7 +4841,7 @@
         "Source": "[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 705
+      "heading_line": 707
     },
     {
       "ref_id": "GV.SC-1",

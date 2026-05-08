@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.5.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -1684,6 +1684,8 @@
       
         
       
+        
+      
     
     
     
@@ -1904,10 +1906,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prsb-semantic-completeness-write-back-fidelity-new-in-v540" class="md-nav__link">
+  <a href="#prsb-semantic-completeness-and-write-back-fidelity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PRSB Semantic Completeness &amp; Write-back Fidelity (new in v5.4.0)
+        PRSB Semantic Completeness &amp; Write-back Fidelity
       
     </span>
   </a>
@@ -2022,6 +2024,34 @@
     
   
     Layers of Defence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../failure-pathways/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Pathways
   
 
     
@@ -4158,10 +4188,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#prsb-semantic-completeness-write-back-fidelity-new-in-v540" class="md-nav__link">
+  <a href="#prsb-semantic-completeness-and-write-back-fidelity" class="md-nav__link">
     <span class="md-ellipsis">
       
-        PRSB Semantic Completeness &amp; Write-back Fidelity (new in v5.4.0)
+        PRSB Semantic Completeness &amp; Write-back Fidelity
       
     </span>
   </a>
@@ -4306,7 +4336,8 @@
 </ul>
 <p><strong>Outstanding follow-ups.</strong> <a href="../groups/nhs-compliance-regulatory/#gv-cr-13">GV.CR-13</a>'s rubric remains placeholder (Maturity: Proposed/Novel) until a national pilot lands — section ref convention since v5.5.0 is <em>topic-cited</em> against <a href="../references/#nhse-ig-guidance-2026-03">NHSE IG guidance (March 2026)</a> because the parent guidance hub does not currently expose a stable section anchor. If a stable per-section URL becomes available, member Source rows can be re-tightened to use it.</p>
 <hr />
-<h2 id="prsb-semantic-completeness-write-back-fidelity-new-in-v540">PRSB Semantic Completeness &amp; Write-back Fidelity <em>(new in v5.4.0)</em><a class="headerlink" href="#prsb-semantic-completeness-write-back-fidelity-new-in-v540" title="Permanent link">&para;</a></h2>
+<h2 id="prsb-semantic-completeness-and-write-back-fidelity">PRSB Semantic Completeness &amp; Write-back Fidelity<a class="headerlink" href="#prsb-semantic-completeness-and-write-back-fidelity" title="Permanent link">&para;</a></h2>
+<p><em>(new in v5.4.0)</em></p>
 <p><strong>Construct:</strong> end-to-end write-back assurance from AVT output generation through EHR persistence — testing content fidelity, field mapping accuracy, structural FHIR conformance, and mandatory information element presence per PRSB standard and consultation type. The family spans output quality, integration correctness, and clinical adequacy of the final record.</p>
 <p><strong>Cluster placement:</strong> Downstream Write-back (single-cluster).</p>
 <p><strong>Why a family.</strong> Write-back is a stack: a record can pass structural FHIR validation but fail PRSB semantic completeness (technically interoperable, clinically inadequate); it can pass content fidelity but fail field mapping (correct content in the wrong place); it can pass all three of those and still miss the PRSB-mandatory elements that make it a good clinical record. The family framing names the layered assurance: each member tests a distinct failure mode that the others cannot catch.</p>

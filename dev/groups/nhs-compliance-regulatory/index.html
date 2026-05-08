@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.5.0.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.5.2.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -1904,6 +1904,8 @@
       
         
       
+        
+      
     
     
     
@@ -2104,6 +2106,34 @@
     
   
     Layers of Defence
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../failure-pathways/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Failure Pathways
   
 
     
@@ -4563,6 +4593,7 @@
 <hr />
 <h3 id="gv-cr-3">GV.CR-3 🟢 AI-Generated Content Labelling Compliance<a class="headerlink" href="#gv-cr-3" title="Permanent link">&para;</a></h3>
 <p>Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content - essential for audit, safety investigation, and future training data curation.</p>
+<p><strong>Change history:</strong> v5.5.2 (Limitations gain a verification flag against the specific SNOMED concept ID — carried forward from earlier catalogue revisions but not currently re-verifiable at a stable URL; deployers should cross-check against the SNOMED CT UK Edition browser).</p>
 <table>
 <thead>
 <tr>
@@ -4655,7 +4686,7 @@
 </code></pre></div>
 <p><strong>Limitations</strong></p>
 <blockquote>
-<p>Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.</p>
+<p>Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology. The specific SNOMED concept ID <code>24771000000105</code> cited as "Audio Dictation" carries a v5.5.2 verification flag — the ID was carried forward from earlier catalogue revisions and the parent NHSE IG guidance hub doesn't currently expose the specific concept-ID assignment at a stable URL. Deployers implementing this metric should verify the concept ID against the <a href="https://termbrowser.nhs.uk/">SNOMED CT UK Edition browser</a> and the latest NHSE IG guidance before relying on it as the canonical AVT label suffix.</p>
 </blockquote>
 <p><strong>Novel Thinking / Implications</strong></p>
 <blockquote>
