@@ -143,6 +143,8 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content - essential for audit, safety investigation, and future training data curation.
 
+**Change history:** v5.5.2 (Limitations gain a verification flag against the specific SNOMED concept ID — carried forward from earlier catalogue revisions but not currently re-verifiable at a stable URL; deployers should cross-check against the SNOMED CT UK Edition browser).
+
 |Dimension              |Value                                                     |
 |-----------------------|-----------------------------------------------------------|
 | **Reference** | GV.CR-3 |
@@ -194,7 +196,7 @@ def check_labelling_compliance(epr_entries):
 
 **Limitations**
 
-> Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.
+> Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology. The specific SNOMED concept ID `24771000000105` cited as "Audio Dictation" carries a v5.5.2 verification flag — the ID was carried forward from earlier catalogue revisions and the parent NHSE IG guidance hub doesn't currently expose the specific concept-ID assignment at a stable URL. Deployers implementing this metric should verify the concept ID against the [SNOMED CT UK Edition browser](https://termbrowser.nhs.uk/) and the latest NHSE IG guidance before relying on it as the canonical AVT label suffix.
 
 **Novel Thinking / Implications**
 

@@ -1,5 +1,47 @@
 # Changelog
 
+## v5.5.2 (2026-05-08)
+
+**Patch release: code-snippet + Formal Definition verification + threshold-page regression fix.**
+
+### Code-snippet verification (plan-future #5)
+
+23 code snippets across 23 metrics enumerated and verified against current public APIs of their cited libraries:
+
+- **jiwer** (TP.ASR-1, TP.ASR-4, TP.ASR-8) — `wer()`, `cer()`, `process_words()` all current
+- **librosa** (TP.AC-1) — `librosa.load`, `librosa.feature.rms` current
+- **pyannote.metrics** (TP.DI-1) — `DiarizationErrorRate(collar=0.25)` current
+- **rouge_score** (TP.SN-1) — `RougeScorer` current
+- **bert_score** (TP.SN-2) — `score()` returning P, R, F1 current
+- **transformers** (TP.SN-5) — `microsoft/deberta-v3-large-mnli` model exists on HF
+- **sentence-transformers** (PI.E2E-6) — `all-MiniLM-L6-v2` model exists
+- **medcat** (TP.ASR-3, PI.PP-7) — `CAT.load_model_pack` API current
+- **scipy.stats** (HL.HF-1) — `linregress` returns 5-tuple (slope, intercept, r, p, stderr); code unpacks correctly
+- **Levenshtein** (TP.ASR-3) — `ratio` import current
+- Pseudocode-flagged (TP.ASR-2, TP.SN-7b, PI.E2E-3, PI.E2E-4, PI.E2E-7) — explicitly named as illustrative
+
+**One verification flag added:** GV.CR-3's claimed SNOMED concept ID `24771000000105` ("Audio Dictation") cannot be re-verified at a stable URL (parent NHSE IG hub doesn't expose stable section anchors). Limitations section gains a flag pointing deployers at the [SNOMED CT UK Edition browser](https://termbrowser.nhs.uk/) to verify before relying on it. Change history stanza added.
+
+### Formal Definition verification
+
+Sampled the 15 metrics added in v5.3.0 / v5.4.0:
+- All 15 Formal Definitions are internally consistent rubrics, scenario walk-throughs, or formulae
+- UK GDPR Article references (13/14, 18, 26) correct
+- No fabricable claims embedded in the definitions
+
+### Threshold-page regression fix (v5.3.0)
+
+The v5.3.0 commit `0fcb19e` added GV.CR-13 / GV.VT-9 / GV.PD-13 threshold rows to `docs/thresholds.md` directly — but `docs/` is regenerated from `taxonomy/_thresholds.md` on every build, so those additions were silently overwritten on subsequent builds.
+
+This release ports those entries into `taxonomy/_thresholds.md` so they survive build:
+- **GV.CR-13** Refusal Impact-Explanation Quality — ≥4-of-5 rubric pass per refusal (rubric not nationally piloted)
+- **GV.VT-9** PMSR/PSUR Currency — ≤10 working days PMSR; ≤12 months PSUR
+- **GV.PD-13** Privacy Notice Currency — 12-month version-dating; 5-of-5 content elements
+
+No metric content edits beyond the GV.CR-3 verification flag and Change history. Counts unchanged at 236.
+
+Build clean. Audit zero ERROR/WARN. 99/99 pytest. mkdocs strict pass.
+
 ## v5.5.1 (2026-05-08)
 
 **Patch release: Failure Pathways page.**

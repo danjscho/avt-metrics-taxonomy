@@ -4177,6 +4177,33 @@ Per-metric tables. Each row has the threshold value, its operational context, an
     | < 50 % of contracted lead time | Escalation | Multiplicative drift trigger |
     | < 80 % completeness | Escalation | Twenty-point completeness gap |
 
+#### GV.CR-13 — Refusal Impact-Explanation Quality { #gv-cr-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 4 of 5 rubric criteria per refusal | Per-refusal pass | Author judgement; one missing rubric criterion is recoverable, two indicates explanation is failing its purpose. **The rubric itself is not nationally piloted** — see [GV.CR-13](#gv-cr-13) Maturity: Proposed/Novel. |
+    | Sample-based audit; sample size local | Cadence | Recorded refusals are infrequent; aggregate denominator is small in most deployments |
+
+#### GV.VT-9 — Post-Market Surveillance Report Currency { #gv-vt-9 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 10 working days PMSR delivery | On-demand SLA (Class I/IIa) | Author judgement; matches general "promptly on request" expectation in vendor SLAs |
+    | ≤ 12 months PSUR currency | PSUR cadence (Class IIb/III) | MHRA / UK MDR PSUR cadence — annual |
+
+#### GV.PD-13 — Privacy Notice Currency & Completeness { #gv-pd-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | Notice version-dated within 12 months | Currency | Annual review cadence aligns with broader IG review cycles |
+    | All 5 content elements present | Completeness | Definitional — single missing element is a fail |
+
 ---
 
 ## Cross-metric conventions
@@ -11961,6 +11988,8 @@ Compliance Rate = |consultations_with_verbal_notification_delivered| / |total_AV
 
 Automated verification that AI-generated clinical record entries carry the mandatory SNOMED suffix identifying them as AVT output (e.g. "Audio Dictation 24771000000105" per NHSE guidance). Required for downstream systems to distinguish AI-generated content from clinician-authored content - essential for audit, safety investigation, and future training data curation.
 
+**Change history:** v5.5.2 (Limitations gain a verification flag against the specific SNOMED concept ID — carried forward from earlier catalogue revisions but not currently re-verifiable at a stable URL; deployers should cross-check against the SNOMED CT UK Edition browser).
+
 |Dimension              |Value                                                     |
 |-----------------------|-----------------------------------------------------------|
 | **Reference** | GV.CR-3 |
@@ -12012,7 +12041,7 @@ def check_labelling_compliance(epr_entries):
 
 **Limitations**
 
-> Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology.
+> Assumes the vendor's write-back system supports the suffix - some EPR integrations strip metadata fields that don't map to native EPR structures. The suffix location (free-text vs metadata) affects automated detection methodology. The specific SNOMED concept ID `24771000000105` cited as "Audio Dictation" carries a v5.5.2 verification flag — the ID was carried forward from earlier catalogue revisions and the parent NHSE IG guidance hub doesn't currently expose the specific concept-ID assignment at a stable URL. Deployers implementing this metric should verify the concept ID against the [SNOMED CT UK Edition browser](https://termbrowser.nhs.uk/) and the latest NHSE IG guidance before relying on it as the canonical AVT label suffix.
 
 **Novel Thinking / Implications**
 

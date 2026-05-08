@@ -524,6 +524,33 @@ Per-metric tables. Each row has the threshold value, its operational context, an
     | < 50 % of contracted lead time | Escalation | Multiplicative drift trigger |
     | < 80 % completeness | Escalation | Twenty-point completeness gap |
 
+#### GV.CR-13 — Refusal Impact-Explanation Quality { #gv-cr-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≥ 4 of 5 rubric criteria per refusal | Per-refusal pass | Author judgement; one missing rubric criterion is recoverable, two indicates explanation is failing its purpose. **The rubric itself is not nationally piloted** — see [GV.CR-13](#gv-cr-13) Maturity: Proposed/Novel. |
+    | Sample-based audit; sample size local | Cadence | Recorded refusals are infrequent; aggregate denominator is small in most deployments |
+
+#### GV.VT-9 — Post-Market Surveillance Report Currency { #gv-vt-9 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | ≤ 10 working days PMSR delivery | On-demand SLA (Class I/IIa) | Author judgement; matches general "promptly on request" expectation in vendor SLAs |
+    | ≤ 12 months PSUR currency | PSUR cadence (Class IIb/III) | MHRA / UK MDR PSUR cadence — annual |
+
+#### GV.PD-13 — Privacy Notice Currency & Completeness { #gv-pd-13 }
+
+!!! note "Starting points"
+
+    | Threshold | Context | Why this number |
+    |---|---|---|
+    | Notice version-dated within 12 months | Currency | Annual review cadence aligns with broader IG review cycles |
+    | All 5 content elements present | Completeness | Definitional — single missing element is a fail |
+
 ---
 
 ## Cross-metric conventions
