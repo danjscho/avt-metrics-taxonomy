@@ -87,6 +87,7 @@ Clinician knowledge of AVT-specific failure modes: can they identify hallucinati
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | Proposed - extends error injection concept to training assessment |
 
 **Why this tier?**
@@ -126,6 +127,7 @@ Ongoing competency maintenance: are clinicians completing periodic refresher tra
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Standard clinical governance CPD requirements; applied to AVT |
 
 **Why this tier?**
@@ -174,6 +176,7 @@ Does AVT use during training affect junior clinician skill development? GMC educ
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Medical education literature; [GMC] standards consideration |
 
 **Why this tier?**
@@ -213,6 +216,7 @@ Is training content updated to reflect newly discovered failure modes from opera
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Standard training governance |
 
 **Why this tier?**

@@ -85,6 +85,7 @@ Standardised before/after on update. Governance: vendor notifies → regional be
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -135,6 +136,7 @@ Time delay between the onset of model performance degradation and its detection 
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Proximal                                                           |
 |**Applicability**      |General Healthcare AI                                              |
+|**Layer**              |Detection|
 |**Source**             |[NICE-ESF] 2022 AI-specific updates; drift detection literature|
 
 **Change history:** v5.3.0 (promoted to Tier 1: MHRA Class 1 post-market surveillance — FTS notice Step 1.i directly requires PMS evidence; ongoing performance-degradation detection is a baseline expectation, not best-practice).
@@ -176,6 +178,7 @@ Pre-defined, quantitative criteria specifying the conditions under which a model
 |**Maturity**           |Emerging                                                          |
 |**Outcome Type**       |Proximal                                                          |
 |**Applicability**      |General Healthcare AI                                             |
+|**Layer**              |Prevention|
 |**Source**             |[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions|
 
 **Why this tier?**
@@ -215,6 +218,7 @@ The proportion of training or fine-tuning data that is itself AI-generated clini
 |**Maturity**           |Emerging                                                                                         |
 |**Outcome Type**       |Distal                                                                                           |
 |**Applicability**      |General Healthcare AI                                                                            |
+|**Layer**              |Detection|
 |**Source**             |[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]|
 
 **Change history:** v4.4 (re-attributed the model-autophagy claims to the actual He et al. medRxiv 2026 paper via the new [He-AI-Contamination-Pathology-2026] catalogue handle; replaced an unverifiable specific "98.9% by generation 4" number with the qualitative findings the paper does support).
@@ -256,6 +260,7 @@ Statistical detection of drift in the distribution of clinical concepts present 
 |**Maturity**           |Proposed / Novel                                          |
 |**Outcome Type**       |Distal                                                    |
 |**Applicability**      |General Healthcare AI                                     |
+|**Layer**              |Detection|
 |**Source**             |Concept drift literature from ML monitoring applied to clinical NLG|
 
 **Why this tier?**
@@ -293,6 +298,7 @@ Medical device safety paradigm for LLMs. Applies the Kalinich et al. 2025 simula
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT) |
 
 **Why this tier?**
@@ -336,6 +342,7 @@ Two-tier: Major Defect-Free Rate + Critical Defect-Free Rate. Vendor-disclosed e
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [DeepScribe] |
 
 **Why this tier?**
@@ -423,6 +430,7 @@ AVT use outside validated contexts. Well-intentioned scope creep - each boundary
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Compound boundary risk model; [NHS-LLM-Framework] |
 
 **Why this tier?**
@@ -514,6 +522,7 @@ Performance variation across practices within ICB. High variance = context-depen
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -663,6 +672,7 @@ When an AVT error is detected, how quickly is it corrected and the lessons disse
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Standard incident response metric applied to AVT |
 
 **Why this tier?**
@@ -704,6 +714,7 @@ When an SPI threshold is breached, how quickly does the governance response actu
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Operational extension of [AMLAS-AAIP] |
 
 **Why this tier?**
@@ -791,6 +802,7 @@ Whether the vendor's Predetermined Change Control Plan (PCCP) covers the full li
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[MHRA-SaMD] AI Airlock + Change Programme; [FDA-PCCP-Guidance-2024] (cross-aligned)|
 
 **Why this tier?**

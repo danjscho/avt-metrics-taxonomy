@@ -15,6 +15,7 @@ End-to-end: comparing original consultation audio directly against the final EPR
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed as the ultimate AVT safety metric - captures cumulative pipeline effect |
 
 **Why this tier?**
@@ -99,6 +100,7 @@ The positive framing of source-to-record concordance: what proportion of the cli
 |**Maturity**           |Proposed / Novel                                                                 |
 |**Outcome Type**       |Distal                                                                           |
 |**Applicability**      |AVT-Contextualised                                                               |
+|**Layer**              |Detection|
 |**Source**             |Extension of existing Source-to-Record Concordance with categorical yield decomposition|
 
 **Why this tier?**
@@ -136,6 +138,7 @@ End-to-end: tracking how a single upstream error amplifies or gets corrected thr
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Proposed - analogous to fault propagation analysis in safety engineering |
 
 **Why this tier?**
@@ -212,6 +215,7 @@ End-to-end per-item trace for highest-risk content: did this specific allergy su
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed - analogous to chain-of-custody in evidence management and traceability in safety-critical systems |
 
 **Why this tier?**
@@ -296,6 +300,7 @@ End-to-end: demographic performance gap measured at the final output, not just a
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed - extends demographic-disaggregated WER to end-to-end measurement |
 
 **Why this tier?**
@@ -335,6 +340,7 @@ End-to-end: measuring cumulative meaning transformation across stages. Each stag
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Proposed - inspired by signal processing concept of cumulative distortion |
 
 **Why this tier?**
@@ -411,6 +417,7 @@ End-to-end: if you re-process the same audio, do you get the same output? Each s
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Prevention |
 | **Source** | Proposed - standard practice in safety-critical software testing but not yet applied to AVT pipelines |
 
 **Why this tier?**
@@ -496,6 +503,7 @@ End-to-end: when an error appears in the final output, which stage introduced it
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed - analogous to root cause analysis in incident investigation |
 
 **Why this tier?**
@@ -535,6 +543,7 @@ End-to-end: does the final note support the same clinical decisions a clinician 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed - the ultimate validity test for clinical documentation |
 
 **Why this tier?**
@@ -578,6 +587,7 @@ End-to-end: total time from consultation end to note availability in EPR, broken
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed as operational metric - RTF alone doesn't capture full workflow impact |
 
 **Why this tier?**
@@ -617,6 +627,7 @@ When one stage fails (e.g. diarisation crashes), what does the system produce? G
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Prevention |
 | **Source** | Standard fault tolerance testing applied to AVT pipelines |
 
 **Why this tier?**
@@ -656,6 +667,7 @@ If the AVT-generated note were used to reconstruct the original consultation, ho
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Information theory applied to clinical documentation |
 
 **Why this tier?**

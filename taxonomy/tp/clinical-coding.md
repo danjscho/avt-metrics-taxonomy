@@ -15,6 +15,7 @@ AI-suggested code correctness. Precision, recall, and F1 reported separately for
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Standard clinical audit; [NAS-Day-Zero-SPI-internal] baselines |
 
 **Why this tier?**
@@ -54,6 +55,7 @@ Accuracy of the mapping from extracted clinical entities in free-text to the cor
 |**Maturity**           |Established                                                              |
 |**Outcome Type**       |Proximal                                                                 |
 |**Applicability**      |AVT-Contextualised                                                       |
+|**Layer**              |Detection|
 |**Source**             |[NLP2FHIR-Pipeline]; [John-Snow-Labs-FHIR-Ready-AI]; [MedCAT-Benchmarks]|
 
 **Why this tier?**
@@ -91,6 +93,7 @@ Precision of ICD coding at maximum digit specificity, reported separately from c
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Contextualised                          |
+|**Layer**              |Detection|
 |**Source**             |[Hybrid-Code-v2-2026]; [WHO-ICD-11]|
 
 **Why this tier?**
@@ -130,6 +133,7 @@ Accuracy of OPCS-4 procedure code assignment from consultation documentation. NH
 |**Maturity**           |Proposed / Novel                              |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |AVT-Contextualised                            |
+|**Layer**              |Detection|
 |**Source**             |[NHS-Digital-OPCS-4]; gap identified in published AVT literature|
 
 **Why this tier?**
@@ -168,6 +172,7 @@ Accuracy of Dictionary of Medicines and Devices (dm+d) coding for medications di
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |AVT-Contextualised                                        |
 |**Family**             |Medication Safety Thread|
+|**Layer**              |Detection|
 |**Source**             |[NHS-BSA-dm-plus-d]; gap identified in published AVT literature|
 
 **Why this tier?**
@@ -207,6 +212,7 @@ Rate at which the system generates codes that do not exist in the target code se
 |**Maturity**           |Emerging                                             |
 |**Outcome Type**       |Proximal                                             |
 |**Applicability**      |AVT-Contextualised                                   |
+|**Layer**              |Detection|
 |**Source**             |[Hybrid-Code-v2-2026] (neuro-symbolic verification approach)|
 
 **Why this tier?**
@@ -263,6 +269,7 @@ Systematic detection of pre/post-AVT shifts in clinical coding distributions. In
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT |
 
 **Why this tier?**
@@ -339,6 +346,7 @@ Whether AVT-driven changes in coding distribution are equitably spread across pa
 |**Outcome Type**       |Distal                                                |
 |**Applicability**      |AVT-Contextualised                                    |
 |**Family**             |Demographic Equity Disaggregation|
+|**Layer**              |Detection|
 |**Source**             |Extension of existing Deployment Equity Index to coding dimension|
 
 **Why this tier?**
@@ -376,6 +384,7 @@ Attribution of workload or tariff-relevant coding changes to AVT specifically, s
 |**Maturity**           |Proposed / Novel                             |
 |**Outcome Type**       |Distal                                       |
 |**Applicability**      |AVT-Contextualised                           |
+|**Layer**              |Detection|
 |**Source**             |Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent|
 
 **Why this tier?**
@@ -413,6 +422,7 @@ Whether suggested codes are at appropriate hierarchy level. SNOMED has multiple 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [SNOMED-CT] hierarchy semantics; clinical audit methodology |
 
 **Why this tier?**
@@ -452,6 +462,7 @@ Time from note generation to code suggestion availability. Affects coding workfl
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Standard latency metric |
 
 **Why this tier?**

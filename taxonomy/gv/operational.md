@@ -84,6 +84,7 @@ Clinician time spent on EHR and documentation work outside of scheduled clinical
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Sinsky-Mayo-EHR-Studies] (concept: physician time-allocation); [Sinsky-Adler-Milstein-EHR-Logs-2020] (methodology: audit-log-derived activity metrics); American Medical Association EHR use studies |
 
 **Why this tier?**
@@ -123,6 +124,7 @@ Elapsed time from consultation end to note availability in the EPR, measured fro
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard operational workflow metric; extends Full-Pipeline Latency Budget |
 
 **Why this tier?**
@@ -164,6 +166,7 @@ Composite metric grouping Documentation Time per Consultation, Pyjama Time, and 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Sinsky-Mayo-EHR-Studies] extended to AVT context; NHS workforce wellbeing frameworks |
 
 **Why this tier?**
@@ -279,6 +282,7 @@ Total cost including licence, infrastructure, training, and governance overhead.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard healthcare technology economic evaluation |
 
 **Why this tier?**
@@ -318,6 +322,7 @@ Clinician and admin time spent on AVT-related tasks: template updates, error rep
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Identified as systematically under-measured cost |
 
 **Why this tier?**
@@ -357,6 +362,7 @@ Initial and refresher training hours required per clinician. Affects both adopti
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard implementation metric |
 
 **Why this tier?**
@@ -393,6 +399,7 @@ After an AVT product is retired, replaced, or decommissioned, can clinicians and
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Limitation |
 | **Source** | Promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; complements [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) and [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16) |
 
 **Why this tier?**

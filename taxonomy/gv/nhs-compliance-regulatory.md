@@ -16,6 +16,7 @@ Per-encounter rate at which patient objections or dissent to AVT use are recorde
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |General Healthcare AI                                   |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Detection|
 |**Source**             |[NHSE-IG-Guidance-2026-03]                              |
 
 **Why this tier?**
@@ -86,6 +87,7 @@ Proportion of AVT-using consultations where verbal notification was delivered to
 |**Outcome Type**       |Proximal                                                  |
 |**Applicability**      |General Healthcare AI                                     |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Detection|
 |**Source**             |[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context|
 
 **Why this tier?**
@@ -159,6 +161,7 @@ Automated verification that AI-generated clinical record entries carry the manda
 |**Outcome Type**       |Proximal                                                   |
 |**Applicability**      |General Healthcare AI                                      |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Detection|
 |**Source**             |[NHSE-IG-Guidance-2026-03]                                 |
 
 **Why this tier?**
@@ -221,6 +224,7 @@ Procurement and ongoing verification that the deployed AVT system is listed on t
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
+|**Layer**              |Prevention|
 |**Source**             |[NHSE-AVT-Registry] (live since January 2026)         |
 
 **Why this tier?**
@@ -284,6 +288,7 @@ Documented evidence that the deployer engaged with their ICB digital team (or eq
 |**Maturity**           |Established                                                  |
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |General Healthcare AI                                        |
+|**Layer**              |Prevention|
 |**Source**             |[CIO-CCIO-Guidance-2026]; NHS CIO priority notification|
 
 **Why this tier?**
@@ -349,6 +354,7 @@ Existence, currency, and coverage of a formal DCB0129/0160 clinical safety case 
 |**Maturity**           |Established                                                                                      |
 |**Outcome Type**       |Proximal                                                                                         |
 |**Applicability**      |General Healthcare AI                                                                            |
+|**Layer**              |Prevention|
 |**Source**             |[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]|
 
 **Why this tier?**
@@ -416,6 +422,7 @@ Proportion of AVT deployments using the NHS-provided March 2026 DPIA template wi
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |General Healthcare AI                                 |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Prevention|
 |**Source**             |[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template|
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `Periodic audit; Event-triggered` — the body has always required mandatory re-review on significant processing change in addition to the annual audit cadence; the calendar audit acts as the backstop, the change event is the substantive trigger).
@@ -482,6 +489,7 @@ Existence and currency of Data Sharing/Processing Agreements with all data proce
 |**Maturity**           |Established                                   |
 |**Outcome Type**       |Proximal                                      |
 |**Applicability**      |General Healthcare AI                         |
+|**Layer**              |Prevention|
 |**Source**             |[UK-GDPR] Article 28; NHS data protection guidance|
 
 **Why this tier?**
@@ -523,6 +531,7 @@ Whether the vendor has pre-specified quantitative acceptance criteria that any m
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates|
 
 **Why this tier?**
@@ -562,6 +571,7 @@ Compliance with EU AI Act Article 12 automatic event logging requirements for hi
 |**Maturity**           |Emerging                                            |
 |**Outcome Type**       |Proximal                                            |
 |**Applicability**      |General Healthcare AI                               |
+|**Layer**              |Limitation|
 |**Source**             |[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)|
 
 **Why this tier?**
@@ -601,6 +611,7 @@ Whether the AVT system's MHRA SaMD classification (Class I / IIa / IIb / III) is
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h            |
 
 **Why this tier?**
@@ -640,6 +651,7 @@ Whether the deploying organisation has a named board-level committee or director
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Limitation|
 |**Source**             |[CQC] well-led KLOEs; DSIT AI Playbook Principle 10     |
 
 **Why this tier?**
@@ -682,6 +694,7 @@ When a patient declines AVT use for their consultation, NHSE IG explicitly requi
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Detection|
 |**Source**             |[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)|
 
 **Why this tier?**
@@ -721,6 +734,7 @@ Whether the deployer has a documented assessment of which consultation types AVT
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance|
 
 **Why this tier?**

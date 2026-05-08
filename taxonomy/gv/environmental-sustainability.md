@@ -15,6 +15,7 @@ Electrical energy cost of generating a single clinical note, measured in watt-ho
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Jegham-AI-Hunger-2025] ("How Hungry is AI?") |
 
 **Why this tier?**
@@ -54,6 +55,7 @@ Greenhouse gas emissions per clinical note, measured in grams of CO₂-equivalen
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Mistral-AI-LCA]; [Jegham-AI-Hunger-2025] grid carbon intensity adjustment |
 
 **Why this tier?**
@@ -93,6 +95,7 @@ Water consumed by data centre cooling infrastructure per clinical note inference
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Jegham-AI-Hunger-2025]; [Li-Making-AI-Less-Thirsty] |
 
 **Why this tier?**
