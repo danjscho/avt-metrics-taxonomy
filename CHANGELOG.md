@@ -1,5 +1,19 @@
 # Changelog
 
+## v5.4.1 (2026-05-08)
+
+**Patch release: housekeeping.**
+
+No metric / catalogue content changes. Two changes:
+
+1. `_versioning.md` gains a "Within-cluster metric ordering (v5.4.0 convention)" section explicitly documenting the ascending-numeric ref-ID convention applied in v5.4.0 (audit-enforced via `check_within_cluster_order`). Notes compatibility with retired IDs, sub-cluster intros, and named-family framings.
+
+2. Two completed working files moved from repo root to `archive/v5.4/`:
+   - `v5.2-registry-action-list.md` — its mint section C actioned in v5.4.0
+   - `v5.3-merge-and-family-sweep.md` — its 2 merge candidates + 2 family mints all actioned in v5.4.0
+
+`v5.3-pre-mint-triage.md` stays at repo root because its Outstanding follow-ups (NHSE IG section refs, Gap-IG-A rubric pilot, MHRA WP-2 re-source) are still load-bearing for v5.5+.
+
 ## v5.4.0 (2026-05-08)
 
 **Minor release: merges, families, layers-of-defence, dimensions-overview + 2 NHSE IG mints.**
