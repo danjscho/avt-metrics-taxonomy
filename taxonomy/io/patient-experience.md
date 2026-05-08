@@ -88,6 +88,7 @@ When patients are shown their AVT-generated notes, do they recognise the consult
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Patient-centred care evaluation methodology |
 
 **Why this tier?**
@@ -127,6 +128,7 @@ Does the note capture the patient's emotional state when clinically relevant? AV
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified gap in clinical AI evaluation - affective content is systematically deprioritised |
 
 **Why this tier?**
@@ -166,6 +168,7 @@ Does the note use language that respects the patient's cultural and linguistic c
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Patient-centred care literature; growing concern with patient access to records |
 
 **Why this tier?**
@@ -205,6 +208,7 @@ Whether AVT suppresses sensitive disclosures. Most under-researched risk - popul
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [NHS-LLM-Framework] gap analysis |
 
 **Why this tier?**
@@ -244,6 +248,7 @@ How AVT affects consultation quality. Net impact depends on whether review is in
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Consultation quality literature |
 
 **Why this tier?**
@@ -291,6 +296,7 @@ Proportion of consultation time during which the clinician is fully attentive to
 |**Maturity**           |Emerging                                                        |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Contextualised                                              |
+|**Layer**              |Detection|
 |**Source**             |See-also [Stults-2025] (clinician self-reported attentiveness gains; different construct from objective time-on-task)|
 
 **Why this tier?**
@@ -330,6 +336,7 @@ When AI-generated clinical summaries are shared with patients (via NHS App, pati
 |**Maturity**           |Proposed / Novel                                                         |
 |**Outcome Type**       |Distal                                                                   |
 |**Applicability**      |General Healthcare AI                                                    |
+|**Layer**              |Detection|
 |**Source**             |Health literacy research; growing relevance as patient access to records expands|
 
 **Why this tier?**
@@ -369,6 +376,7 @@ Whether clinicians making subsequent decisions based on AVT-generated notes arri
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
+|**Layer**              |Detection|
 |**Source**             |[Coiera-Fraile-Navarro-JMIR-2026]                                 |
 
 **Why this tier?**
@@ -409,6 +417,7 @@ Pre/post AVT comparison of medication errors at the practice or trust level, inc
 |**Outcome Type**       |Distal                                                               |
 |**Applicability**      |General Healthcare AI                                                |
 |**Family**             |Medication Safety Thread|
+|**Layer**              |Detection|
 |**Source**             |[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories|
 
 **Why this tier?**

@@ -14,12 +14,14 @@ This section is a first-class principle of the taxonomy, parallel to the [Outcom
 
 ### How metrics are classified into layers
 
-**Two-tier classification (v5.5.0+).** Some metrics carry an **explicit `Layer` field** in their dimensions table (Prevention / Detection / Limitation); others fall back to a **cadence heuristic**.
+**Per-metric explicit `Layer` (v5.5.4+).** Every metric carries an explicit `Layer` field in its dimensions table — Prevention, Detection, or Limitation. The classification is per-metric authoritative; the by-layer-of-defence cross-cut page is built directly from these fields.
 
-- **Explicit `Layer`** is the authoritative answer where present. Seeded in v5.5.0 with 33 metrics from an early-draft slide-deck classification (the original "minimum viable assurance" presentation). Future releases will extend explicit classification to the rest of the catalogue.
-- **Cadence heuristic** is the v5.5.0 fallback for the ~200 metrics that don't yet have an explicit `Layer`: One-off gate → Prevention; Continuous / Periodic audit → Detection; Event-triggered → Limitation. **The heuristic is wrong about a third of the time** — it conflates always-on limitation infrastructure with detection (e.g. LFPSE incident reporting runs continuously but its purpose is to bound damage, not detect drift) and miscategorises pre-deployment gates with continuous nominal cadence as detection. Treat as a starting point.
+**Two-stage seeding history.**
 
-The by-layer-of-defence cross-cut page renders both cohorts separately so the distinction is visible to readers.
+- **v5.5.0** seeded 33 metrics with explicit `Layer` from an early-draft slide-deck classification (the original "minimum viable assurance" presentation). For the remaining ~200, the cross-cut page used a cadence-based heuristic as fallback. Reconciliation against the slide-deck list showed the heuristic was wrong about a third of the time (the heuristic conflated always-on limitation infrastructure with detection, and miscategorised pre-deployment gates with continuous nominal cadence as detection).
+- **v5.5.4** extended explicit classification to the remaining 206 metrics through a per-cluster pattern-based pass — One-off gate cadences → Prevention, Continuous/Periodic audit on AI-substrate or workflow → Detection, governance/oversight infrastructure → Limitation. Distribution: **77 Prevention / 137 Detection / 25 Limitation**.
+
+**Cadence heuristic remains as a fallback** in `parse.derive_layer_of_defence` for any future metric that lands without an explicit `Layer`. The catalogue currently has 0 such cases. The new audit check `check_layer_resolves` enforces the enum on present values; metrics without `Layer` would surface in the by-layer-of-defence crosscut as heuristically classified rather than fail the build.
 
 ### How the layers correlate with other dimensions
 

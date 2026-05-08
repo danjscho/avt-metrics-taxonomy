@@ -307,6 +307,7 @@ When errors are detected, can the write-back be reversed cleanly? Particularly i
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Limitation |
 | **Source** | Identified as essential for incident response |
 
 **Why this tier?**
@@ -347,6 +348,7 @@ Validated conformance of generated structured data against FHIR R4 profiles. FHI
 |**Outcome Type**       |Proximal                                 |
 |**Applicability**      |AVT-Contextualised                       |
 |**Family**             |PRSB Semantic Completeness & Write-back Fidelity|
+|**Layer**              |Detection|
 |**Source**             |[FHIR-UK-Core] R4 validation tooling|
 
 **Why this tier?**
@@ -386,6 +388,7 @@ Conformance of generated clinical data against openEHR archetypes for NHS trusts
 |**Maturity**           |Established                               |
 |**Outcome Type**       |Proximal                                  |
 |**Applicability**      |AVT-Contextualised                        |
+|**Layer**              |Detection|
 |**Source**             |[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library|
 
 **Why this tier?**
@@ -426,6 +429,7 @@ Proportion of PRSB-mandatory information elements present in AVT-generated outpu
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |PRSB Semantic Completeness & Write-back Fidelity|
+|**Layer**              |Detection|
 |**Source**             |[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard|
 
 **Why this tier?**

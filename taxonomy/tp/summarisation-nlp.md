@@ -16,6 +16,7 @@ N-gram overlap between generated and reference text. Demonstrably inadequate for
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Reference-Based Text Similarity |
+| **Layer** | Prevention |
 | **Source** | [ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025] |
 
 **Why this tier?**
@@ -86,6 +87,7 @@ Semantic similarity via contextual embeddings. More meaning-aware than ROUGE but
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Reference-Based Text Similarity |
+| **Layer** | Prevention |
 | **Source** | [BERTScore-Zhang-2020]; [Croxford-2025] |
 
 **Why this tier?**
@@ -144,6 +146,7 @@ Nine-item validated rubric. Gold standard for human evaluation - now automatable
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [PDSQI-9]; [Croxford-2025] |
 
 **Change history:** v4.2 (Croxford-bundle confabulation fix — previously cited a Kendall-Tau / Pearson / ICC constellation not actually present in either Croxford paper; replaced with the verified 0.867 inter-rater ICC and added [Croxford-PDSQI9-JAMIA-2025] catalogue entry).
@@ -185,6 +188,7 @@ Structured error categories: omission, addition, incorrect - with sub-types. 12,
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [Asgari-Tortus-2025]. Now underpins automated guardrails. |
 
 **Why this tier?**
@@ -410,6 +414,7 @@ Parent construct covering automated factual-verification approaches: classifying
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | See sub-parts |
 
 **Why this tier?**
@@ -448,6 +453,7 @@ Two-axis classification: evidential support × clinical severity. Abridge model 
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [Abridge-Whitepaper-2025] (50,000+ training examples) |
 
 **Change history:** v4.2 (Support × Severity axes corrected to match Abridge whitepaper's actual 5×3 schema — earlier 4×3 was a confabulation; catalogue author list also corrected).
@@ -505,6 +511,7 @@ Automated EHR fact-checking via RAG + LLM-as-a-Judge. 92.7% agreement with clini
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [Chung-NEJM-AI-2025] |
 
 **Why this tier?**
@@ -578,6 +585,7 @@ Parent construct covering LLM-judge approaches to documentation evaluation. Two 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | See sub-parts |
 
 **Why this tier?**
@@ -616,6 +624,7 @@ Reasoning LLMs scoring documentation against the PDSQI-9 rubric at substantially
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [Croxford-2025] |
 
 **Why this tier?**
@@ -659,6 +668,7 @@ Reasoning LLM prompted with the PDSQI-9 rubric scores each note on 9 dimensions 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Prevention |
 | **Source** | [Bedi-Stanford-CRFM-2025] |
 
 **Why this tier?**
@@ -702,6 +712,7 @@ One LLM interrogates another to detect hallucinations without references. Identi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [Kanithi-2025] |
 
 **Why this tier?**
@@ -745,6 +756,7 @@ Every text span linked to source audio. Architectural safety property - transfor
 | **Maturity** | Vendor-Proprietary |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification) |
 
 **Why this tier?**
@@ -788,6 +800,7 @@ First comprehensive multi-modal AVT evaluation: simulation + computational + hum
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [Wang-ADS-Eval-2025] |
 
 **Why this tier?**
@@ -831,6 +844,7 @@ INSYTE underspecification delta when clinicians modify AVT templates. Every modi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [INSYTE-2025]; [DCB0129] gap |
 
 **Why this tier?**
@@ -945,6 +959,7 @@ Preservation of when things happened. 'Patient had chest pain three weeks ago' v
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Clinical NLP literature on temporal expression extraction |
 
 **Why this tier?**
@@ -984,6 +999,7 @@ Accuracy of reconstructing the chronological sequence of clinical events from no
 |**Maturity**           |Emerging                                                |
 |**Outcome Type**       |Proximal                                                |
 |**Applicability**      |AVT-Contextualised                                      |
+|**Layer**              |Detection|
 |**Source**             |[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature|
 
 **Why this tier?**
@@ -1021,6 +1037,7 @@ Preservation of clinical qualifiers: 'occasional', 'frequent', 'constant', 'mild
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as systematic LLM summarisation failure mode |
 
 **Why this tier?**
@@ -1063,6 +1080,7 @@ Per-attribute accuracy for each component of a medication reference: drug name, 
 |**Outcome Type**       |Proximal                                                     |
 |**Applicability**      |AVT-Contextualised                                           |
 |**Family**             |Medication Safety Thread|
+|**Layer**              |Detection|
 |**Source**             |[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)|
 
 **Why this tier?**
@@ -1180,6 +1198,7 @@ Classification of medication *actions* discussed in a consultation: start, stop,
 |**Outcome Type**       |Proximal                                           |
 |**Applicability**      |AVT-Contextualised                                 |
 |**Family**             |Medication Safety Thread|
+|**Layer**              |Detection|
 |**Source**             |[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)|
 
 **Why this tier?**
@@ -1219,6 +1238,7 @@ Does the system produce notes in the same structure each time? Inconsistency inc
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Human factors literature on documentation consistency |
 
 **Why this tier?**
@@ -1258,6 +1278,7 @@ Over-summarisation (losing detail) vs under-summarisation (verbatim transcript).
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as quality dimension not captured by accuracy metrics |
 
 **Why this tier?**
@@ -1299,6 +1320,7 @@ Proportion of AI-generated notes that reproduce biased or stigmatising language 
 |**Maturity**           |Proposed / Novel                                                            |
 |**Outcome Type**       |Distal                                                                      |
 |**Applicability**      |AVT-Contextualised                                                          |
+|**Layer**              |Detection|
 |**Source**             |[Himmelstein-Stigmatising-EHR-JAMA-2022]|
 
 **Why this tier?**

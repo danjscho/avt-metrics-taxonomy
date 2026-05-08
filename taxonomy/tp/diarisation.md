@@ -15,6 +15,7 @@ Proportion of audio time with incorrect speaker labels. Combines missed speech, 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [Wang-ADS-Eval-2025]; standard diarisation literature |
 
 **Why this tier?**
@@ -72,6 +73,7 @@ Percentage of utterances assigned to correct speaker. Misattributed medication i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [Wang-ADS-Eval-2025] |
 
 **Why this tier?**
@@ -115,6 +117,7 @@ Does the system correctly identify how many speakers are present? Particularly i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard diarisation evaluation |
 
 **Why this tier?**
@@ -154,6 +157,7 @@ Temporal accuracy of where one speaker stops and another starts. Affects attribu
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard diarisation literature |
 
 **Why this tier?**
@@ -201,6 +205,7 @@ Accuracy of classifying speakers into clinical roles - clinician, patient, famil
 |**Maturity**           |Emerging                                                             |
 |**Outcome Type**       |Proximal                                                             |
 |**Applicability**      |AVT-Specific                                                         |
+|**Layer**              |Prevention|
 |**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]; extends standard diarisation |
 
 **Why this tier?**
@@ -242,6 +247,7 @@ Accuracy of detecting within-utterance language switching - a speaker moving bet
 |**Maturity**           |Established                                           |
 |**Outcome Type**       |Proximal                                              |
 |**Applicability**      |AVT-Specific                                          |
+|**Layer**              |Prevention|
 |**Source**             |[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature|
 
 **Why this tier?**
@@ -281,6 +287,7 @@ Accuracy of attributing words spoken during overlapping speech - when two or mor
 |**Maturity**           |Established                                    |
 |**Outcome Type**       |Proximal                                       |
 |**Applicability**      |AVT-Specific                                   |
+|**Layer**              |Prevention|
 |**Source**             |[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature|
 
 **Why this tier?**
@@ -320,6 +327,7 @@ Clinician-Preferred Human-Evaluated Word Error Rate. A speaker-attribution-aware
 |**Maturity**           |Emerging                                    |
 |**Outcome Type**       |Proximal                                    |
 |**Applicability**      |AVT-Specific                                |
+|**Layer**              |Prevention|
 |**Source**             |[mpathic-Clinical-ASR-Benchmark-2025]                     |
 
 **Why this tier?**
@@ -369,6 +377,7 @@ In multi-party consultations, correctly identifying who the speaker is addressin
 |**Maturity**           |Proposed / Novel                                 |
 |**Outcome Type**       |Proximal                                         |
 |**Applicability**      |AVT-Specific                                     |
+|**Layer**              |Prevention|
 |**Source**             |Multi-party dialogue research; pragmatics literature|
 
 **Why this tier?**

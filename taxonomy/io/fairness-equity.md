@@ -16,6 +16,7 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
 | **Family** | Demographic Equity Disaggregation |
+| **Layer** | Detection |
 | **Source** | [NHS-LLM-Framework] wider impact |
 
 **Change history:** v5.3.0 (promoted to Tier 1: NHSE IG Guidance + CIO/CCIO guidance equity requirement, transitively required by FTS notice "compliance with the guidance issued by NHS England").
@@ -58,6 +59,7 @@ Meta-metric assessing whether demographic-disaggregated WER uses a sociolinguist
 |**Outcome Type**       |Proximal                                                      |
 |**Applicability**      |AVT-Specific                                                  |
 |**Family**             |Demographic Equity Disaggregation|
+|**Layer**              |Prevention|
 |**Source**             |[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature|
 
 **Why this tier?**
@@ -95,6 +97,7 @@ Accuracy variation across specialties and complexity. Compound boundary risk: de
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Compound boundary risk model |
 
 **Why this tier?**
@@ -135,6 +138,7 @@ Accuracy at the intersection of demographic dimensions (e.g. elderly EAL women).
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
 | **Family** | Demographic Equity Disaggregation |
+| **Layer** | Detection |
 | **Source** | Intersectionality literature applied to AI fairness |
 
 **Why this tier?**
@@ -175,6 +179,7 @@ Extension of the existing Intersectional Performance metric proposing a single q
 |**Outcome Type**       |Distal                                                                               |
 |**Applicability**      |General Healthcare AI                                                                |
 |**Family**             |Demographic Equity Disaggregation|
+|**Layer**              |Detection|
 |**Source**             |Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)|
 
 **Why this tier?**
@@ -214,6 +219,7 @@ Accuracy on uncommon clinical presentations vs common ones. Long-tail performanc
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Long-tail performance analysis from machine learning literature |
 
 **Why this tier?**
@@ -253,6 +259,7 @@ Does AVT performance vary with patient health literacy level? Medically sophisti
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Health literacy and equity research |
 
 **Why this tier?**
@@ -294,6 +301,7 @@ Whether fairness properties are consistent across multiple AVT platforms deploye
 |**Maturity**           |Proposed / Novel                                                   |
 |**Outcome Type**       |Distal                                                             |
 |**Applicability**      |General Healthcare AI                                              |
+|**Layer**              |Detection|
 |**Source**             |Extension of existing Cross-Practice Variance Coefficient into equity dimension|
 
 **Why this tier?**

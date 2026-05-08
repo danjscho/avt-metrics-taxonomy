@@ -15,6 +15,7 @@ Combined ASR + diarisation: was the right text assigned to the right person? Nei
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Identified as compound metric gap - neither WER nor DER alone captures this |
 
 **Why this tier?**
@@ -87,6 +88,7 @@ Combined ASR + diarisation degradation when >2 speakers present: interpreter, fa
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Identified in NHS consultation pattern analysis - interpreter-mediated, family-present, and MDT consultations are common |
 
 **Why this tier?**
@@ -126,6 +128,7 @@ Spans ASR + summarisation: what proportion of clinically relevant content in sou
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as structural gap - component metrics don't capture cross-stage information loss |
 
 **Why this tier?**
@@ -193,6 +196,7 @@ Spans ASR + summarisation: how gracefully does the final note quality degrade as
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Proposed for pre-deployment testing - NHS clinical environments have variable acoustics |
 
 **Why this tier?**
@@ -232,6 +236,7 @@ Spans diarisation + summarisation: does the note correctly distinguish what was 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as critical clinical documentation quality dimension not captured by existing metrics |
 
 **Why this tier?**
@@ -305,6 +310,7 @@ WER computed separately for each speaker after diarisation. Captures the compoun
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Compound metric exposing diarisation impact on ASR measurement |
 
 **Why this tier?**
@@ -344,6 +350,7 @@ Spans summarisation + coding: do the SNOMED codes match the clinical concepts in
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed as automated internal consistency check - no ground truth needed |
 
 **Why this tier?**
@@ -415,6 +422,7 @@ Whether the system correctly identifies where an utterance ends. Affects both di
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard speech processing metric |
 
 **Why this tier?**
@@ -454,6 +462,7 @@ Spans summarisation + write-back: does the coded allergy entry agree with allerg
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as post-write-back automated safety check |
 
 **Why this tier?**

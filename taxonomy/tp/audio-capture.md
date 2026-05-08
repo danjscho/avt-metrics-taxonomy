@@ -15,6 +15,7 @@ Continuous measurement of audio input quality. SNR below threshold degrades ASR 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Standard audio engineering; applied to AVT quality assurance |
 
 **Why this tier?**
@@ -86,6 +87,7 @@ Accuracy of detecting when speech is occurring vs silence/noise. VAD errors caus
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard speech processing; critical for clinical AVT given variable environment |
 
 **Why this tier?**
@@ -125,6 +127,7 @@ Characterisation of the deployment acoustic environment against the vendor's val
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Proposed - extends validated use envelope concept to acoustic conditions |
 
 **Why this tier?**
@@ -166,6 +169,7 @@ Ability to detect and flag speech from individuals who have not consented to AVT
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Identified in NHSE IG guidance on ambient scribing privacy implications; CQC Mythbuster 109 context |
 
 **Why this tier?**
@@ -243,6 +247,7 @@ Proportion of audio time with simultaneous speech from multiple speakers. Common
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard speech processing; particularly relevant for clinical consultations |
 
 **Why this tier?**
@@ -282,6 +287,7 @@ Frequency of audio level exceeding the dynamic range of the capture system, caus
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Standard audio engineering |
 
 **Why this tier?**
@@ -339,6 +345,7 @@ Whether audio meets minimum bit depth and sample rate specifications for the AVT
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Standard audio engineering; vendor minimum specifications |
 
 **Why this tier?**
@@ -378,6 +385,7 @@ Detection of gradual hardware degradation over time: declining battery performan
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Proposed - extends hardware validation to ongoing monitoring |
 
 **Why this tier?**

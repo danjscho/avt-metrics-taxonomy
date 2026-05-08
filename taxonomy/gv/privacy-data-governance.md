@@ -79,6 +79,7 @@ Measured time from consultation end to verified deletion of the captured audio. 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage limitation |
 
 **Why this tier?**
@@ -139,6 +140,7 @@ Parallel metric to Audio Time-to-Deletion, but for transcripts. Often treated as
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) |
 
 **Why this tier?**
@@ -202,6 +204,7 @@ Whether the AVT system processes only the minimum data necessary for its functio
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 5(1)(c) data minimisation; DGX Spark / local processing potential |
 
 **Why this tier?**
@@ -241,6 +244,7 @@ Adversarial privacy testing: the rate at which a determined attacker can extract
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [IEEE-S-and-P-2023-LLM-PII-Leakage]; [OWASP-LLM-Top-10] (Sensitive Information Disclosure) |
 
 **Why this tier?**
@@ -280,6 +284,7 @@ Structured assessment of the risk that de-identified data retained for quality i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [ICO] anonymisation code of practice; [NIST-Privacy-Framework] |
 
 **Why this tier?**
@@ -319,6 +324,7 @@ Clear documentation of whether deployer audio, transcripts, or notes are used by
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] transparency requirements; derived from emerging AVT procurement practice |
 
 **Why this tier?**
@@ -600,6 +606,7 @@ Documentation of whether the AVT system's training data covers the intended pati
 |**Maturity**           |Emerging                                                 |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — "boundaries and bias"|
 
 **Why this tier?**
@@ -642,6 +649,7 @@ Whether the deploying organisation's published privacy notices have been updated
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Prevention|
 |**Source**             |[NHSE-IG-Guidance-2026-03] — privacy notice / AVT-processing transparency content (topic-cited; parent hub no stable section anchor); UK GDPR Art 13/14|
 
 **Why this tier?**
@@ -684,6 +692,7 @@ Whether the deployer's Subject Access Request handling and AVT data-deletion pro
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Detection|
 |**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / SAR-handling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 12-22 (data subject rights)|
 
 **Why this tier?**
@@ -726,6 +735,7 @@ Whether the deploying organisation's AVT-side tooling supports the UK GDPR Artic
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
+|**Layer**              |Prevention|
 |**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / restriction tooling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 18|
 
 **Why this tier?**
@@ -765,6 +775,7 @@ When an AVT deployment is wound down — whether by deployer choice, vendor reti
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Limitation |
 | **Source** | Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry; [DCB0160] Stage 7 (decommissioning) |
 
 **Why this tier?**
@@ -835,6 +846,7 @@ Independent review of the substantive quality of the AVT Data Protection Impact 
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |[Caldicott] Principle 1 (justify the purpose); UK Caldicott Guardian Manual; NDG guidance|
 
 **Why this tier?**
@@ -877,6 +889,7 @@ Whether the deploying organisation maintains an Information Asset Register (IAR)
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation                                      |
+|**Layer**              |Prevention|
 |**Source**             |[NHSE-IG-Guidance-2026-03] — information asset register / IAO-naming content (topic-cited; the unverified 'section 8' placeholder from v5.4.0 is dropped — parent hub no stable section anchor); NDG Data Security Standards|
 
 **Why this tier?**

@@ -115,6 +115,7 @@ Categorising edits: additions (omission fix), deletions (hallucination fix), mod
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Post-Generation Correction |
+| **Layer** | Detection |
 | **Source** | [Abridge-Whitepaper-2025]; [DeepScore] |
 
 **Why this tier?**
@@ -161,6 +162,7 @@ Parent construct covering two complementary telemetry approaches to detecting in
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -356,6 +358,7 @@ Cross-system edit analysis at vendor-reported deployment scale (millions of enco
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Post-Generation Correction |
+| **Layer** | Detection |
 | **Source** | [Abridge-Whitepaper-2025] |
 
 **Why this tier?**
@@ -401,6 +404,7 @@ Deliberately seeded errors to test clinician catch rate. The only metric directl
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Proposed in [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
@@ -449,6 +453,7 @@ Where in the note do clinicians make edits? Concentration in specific sections (
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Post-Generation Correction |
+| **Layer** | Detection |
 | **Source** | Extends edit-pattern monitoring with structural awareness |
 
 **Why this tier?**
@@ -490,6 +495,7 @@ Clinician confidence vs actual accuracy. Overconfidence = automation bias risk. 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Human factors literature; [NAS-Day-Zero-SPI-internal] |
 
 **Change history:** v4.3 (HATAS instrument removed from candidate list — Pass B confirmed it is not a real published instrument; Dokkyo Medical University-specific attribution softened to "recent reviews").
@@ -539,6 +545,7 @@ Frequency of clinicians abandoning AVT mid-consultation and starting again, or a
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Identified as strong dissatisfaction signal |
 
 **Why this tier?**
@@ -578,6 +585,7 @@ Mental effort for review. Target: 'effortful but efficient' - enough to catch er
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [NASA-TLX] adapted for clinical documentation review |
 
 **Why this tier?**
@@ -625,6 +633,7 @@ Do different clinicians edit the same AI output similarly? High variance suggest
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Extends inter-rater reliability concepts to AVT review |
 
 **Why this tier?**
@@ -664,6 +673,7 @@ Longitudinal ability to document without AI. Sleeper risk - if a generation trai
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Aviation skill degradation literature |
 
 **Why this tier?**
@@ -707,6 +717,7 @@ Proportion of clinicians who report relying on AI for content recall ('I don't n
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Cognitive offloading literature; distinct from automation bias |
 
 **Why this tier?**
@@ -746,6 +757,7 @@ Whether initial high trust persists after errors. Absent decay = dangerous over-
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Trust halo effect analysis |
 
 **Why this tier?**
@@ -789,6 +801,7 @@ Review quality degradation over a clinical session. The 9am note review may be d
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Clinical fatigue research applied to AVT review |
 
 **Why this tier?**
@@ -840,6 +853,7 @@ The gap between how AVT is intended to be used (per procedures, training, and go
 |**Maturity**           |Proposed / Novel                                                       |
 |**Outcome Type**       |Distal                                                                 |
 |**Applicability**      |General Healthcare AI                                                  |
+|**Layer**              |Detection|
 |**Source**             |[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)|
 
 **Why this tier?**
@@ -879,6 +893,7 @@ The additional workload created by the need to verify AI-generated content again
 |**Maturity**           |Emerging                                                            |
 |**Outcome Type**       |Proximal                                                            |
 |**Applicability**      |AVT-Contextualised                                                  |
+|**Layer**              |Detection|
 |**Source**             |[GOSH-Phase-4-TimeCat]                                              |
 
 **Why this tier?**
@@ -918,6 +933,7 @@ Structured assessment of the clinician-AVT joint cognitive system against the fo
 |**Maturity**           |Proposed / Novel                                                  |
 |**Outcome Type**       |Distal                                                            |
 |**Applicability**      |General Healthcare AI                                             |
+|**Layer**              |Detection|
 |**Source**             |[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature|
 
 **Why this tier?**
@@ -962,6 +978,7 @@ Scheduled exercises where clinicians document a clinical encounter without AVT a
 |**Maturity**           |Proposed / Novel                                                                                      |
 |**Outcome Type**       |Distal                                                                                                |
 |**Applicability**      |General Healthcare AI                                                                                 |
+|**Layer**              |Detection|
 |**Source**             |Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)|
 
 **Why this tier?**

@@ -15,6 +15,7 @@ The most important structural critique: measuring easy things and assuming they 
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Coiera-Fraile-Navarro-JMIR-2026]; [NIHR-RSET] |
 
 **Why this tier?**
@@ -59,6 +60,7 @@ Clinician agreement ceiling. VeriFact exceeds it (92.7% vs 88.5%). When automate
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [VeriFact]; [MedHELM] |
 
 **Why this tier?**
@@ -102,6 +104,7 @@ Do the metrics in the taxonomy correlate or conflict? A system optimised for low
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Multi-metric evaluation literature |
 
 **Why this tier?**
@@ -141,6 +144,7 @@ When a metric becomes a target, does it cease to be a good measure? Specifically
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Goodhart's Law applied to clinical AI metrics |
 
 **Why this tier?**
@@ -180,6 +184,7 @@ What failure modes are not captured by any metric in the taxonomy? Periodic revi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard safety engineering coverage analysis |
 
 **Why this tier?**
@@ -219,6 +224,7 @@ Systematic measurement of known biases in LLM-as-a-Judge evaluation: position bi
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | [Croxford-2025]; [Croxford-PDSQI9-JAMIA-2025] |
 
 **Why this tier?**
@@ -258,6 +264,7 @@ Systematic measurement of how well automated metrics correlate with expert human
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard meta-evaluation methodology; [Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics |
 
 **Why this tier?**
@@ -297,6 +304,7 @@ Whether the vendor and deployer have committed - contractually, via published pr
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368] |
 
 **Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.f directly requires "Evidence of impact and benefit in the NHS" via case studies or reports).
@@ -350,6 +358,7 @@ Whether the vendor has documented an explicit causal chain from the proximal met
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique) |
 
 **Why this tier?**

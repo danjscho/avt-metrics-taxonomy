@@ -16,6 +16,7 @@ Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' 
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Family** | Clinical Transcription Accuracy |
+| **Layer** | Prevention |
 | **Source** | [Wang-ADS-Eval-2025]; standard ASR literature |
 
 **Why this tier?**
@@ -75,6 +76,7 @@ Weighted WER where errors on clinically significant tokens carry higher penalty.
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Family** | Clinical Transcription Accuracy |
+| **Layer** | Prevention |
 | **Source** | [OxonFair-2024] (proposed AVT extension; future work) |
 
 **Why this tier?**
@@ -160,6 +162,7 @@ Focused accuracy for high-stakes clinical terminology. Binary: was the keyword c
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Family** | Clinical Transcription Accuracy |
+| **Layer** | Detection |
 | **Source** | [OxonFair-2024] (healthcare voice fairness extension; future work) |
 
 **Why this tier?**
@@ -237,6 +240,7 @@ WER by accent group, first language, age band, and speech characteristics. NAS p
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Family** | Demographic Equity Disaggregation |
+| **Layer** | Detection |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03] |
 
 **Change history:** v5.3.0 (promoted to Tier 1: MHRA GMLP-3 representative-datasets requirement + Performance & Monitoring Response document's "boundaries and bias" content; both transitive from FTS notice).
@@ -311,6 +315,7 @@ Separate WER for clinician vs patient speech. Patient speech is more diagnostica
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
 | **Family** | Demographic Equity Disaggregation |
+| **Layer** | Detection |
 | **Source** | [OxonFair-2024] (extension analysis; future work) |
 
 **Why this tier?**
@@ -354,6 +359,7 @@ Proportion of ASR transcription errors that survive into the final clinical note
 |**Maturity**           |Emerging                                                               |
 |**Outcome Type**       |Proximal                                                               |
 |**Applicability**      |AVT-Specific                                                           |
+|**Layer**              |Detection|
 |**Source**             |Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)|
 
 **Why this tier?**
@@ -391,6 +397,7 @@ Processing speed relative to audio duration. RTF < 1.0 = faster than real-time.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Standard ASR performance metric |
 
 **Why this tier?**
@@ -426,6 +433,7 @@ Character-level edit distance between reference and hypothesis. More sensitive t
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard ASR literature |
 
 **Why this tier?**
@@ -482,6 +490,7 @@ Proportion of tokens the ASR model doesn't recognise as valid vocabulary. New dr
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | Standard speech recognition literature |
 
 **Why this tier?**
@@ -521,6 +530,7 @@ Whether the ASR's stated confidence scores correlate with actual accuracy. A poo
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Machine learning calibration literature |
 
 **Why this tier?**
@@ -566,6 +576,7 @@ Whether the ASR system exposes per-token or per-segment confidence scores to dow
 |**Maturity**           |Proposed / Novel                                                |
 |**Outcome Type**       |Proximal                                                        |
 |**Applicability**      |AVT-Specific                                                    |
+|**Layer**              |Prevention|
 |**Source**             |Derived from Abridge Linked Evidence architecture; confidence-based routing literature|
 
 **Why this tier?**
@@ -753,6 +764,7 @@ Accuracy of sentence boundary detection, punctuation, and capitalisation. Affect
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard ASR post-processing literature |
 
 **Why this tier?**

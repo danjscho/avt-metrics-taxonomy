@@ -84,6 +84,7 @@ Whether the vendor provides the operational data needed for deployer-side monito
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics |
 
 **Change history:** v4.3 (Keyes-Stanford verbatim quote replaced with paraphrase aligned to the paper's verified three-principle framework — system integrity / performance / impact); v5.3.0 (promoted to Tier 1: Performance & Monitoring Response document directly required by FTS notice 069369-2025 — telemetry is the substrate for the document's "model accuracy and control, boundaries and bias" content).
@@ -129,6 +130,7 @@ Whether the vendor provides access to benchmarking infrastructure: test datasets
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | Proposed - vendors currently self-evaluate with proprietary benchmarks |
 
 **Why this tier?**
@@ -168,6 +170,7 @@ Whether the system maintains a complete, tamper-evident audit trail from audio i
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Clinical record governance requirements; applied to AI-generated documentation |
 
 **Why this tier?**
@@ -272,6 +275,7 @@ When a deployer terminates their contract, can they export their data, audit tra
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | Standard procurement practice; lock-in risk analysis |
 
 **Why this tier?**
@@ -380,6 +384,7 @@ Whether the vendor provides contractual access to intermediate pipeline outputs 
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | Prerequisite for existing Error Attribution Analysis metric; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -419,6 +424,7 @@ Whether the vendor's MHRA-required post-market surveillance reporting is current
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Limitation|
 |**Source**             |[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i|
 
 **Why this tier?**
@@ -458,6 +464,7 @@ Composite check of whether vendor-published transparency content covers the item
 |**Maturity**           |Proposed / Novel                                           |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Limitation|
 |**Source**             |[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)|
 
 **Why this tier?**
@@ -499,6 +506,7 @@ Whether the deployer has documented a binary determination of joint-controller s
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
+|**Layer**              |Prevention|
 |**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] — controller-status determination content (topic-cited; the unverified 'section 5' placeholder from v5.4.0 is dropped — parent hub no stable section anchor)|
 
 **Why this tier?**
@@ -535,6 +543,7 @@ Currency and provenance of the vendor's published evidence pack on the National 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Limitation |
 | **Source** | [NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism |
 
 **Change history:** v5.3.0 (promoted to Tier 1: FTS notice explicitly imposes ongoing currency obligation — "All collateral must be kept up to date and current. It is the supplier's responsibility to keep the Hub up to date").
@@ -621,6 +630,7 @@ Publication and currency of the vendor's indicative pricing matrix per the NHS E
 | **Maturity** | Emerging |
 | **Outcome Type** | Process |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [NHSE-AVT-Registry] req #12 |
 
 **Change history:** v5.3.0 (promoted to Tier 1: FTS notice Step 1.a directly requires Indicative Pricing Matrix submission).
@@ -705,6 +715,7 @@ Whether the vendor provides advance notice of AVT product retirement, end-of-lif
 | **Maturity** | Emerging |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle "Decommissioning plan" entry |
 
 **Why this tier?**

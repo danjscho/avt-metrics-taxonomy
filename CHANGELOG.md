@@ -1,5 +1,50 @@
 # Changelog
 
+## v5.5.4 (2026-05-08)
+
+**Patch release: explicit `Layer` dimension extended from 33 → 236 metrics.**
+
+v5.5.0 seeded explicit `Layer` (Prevention / Detection / Limitation) on 33 metrics from an early-draft slide-deck classification, leaving ~200 unclassified and falling back to a cadence-based heuristic that was wrong about a third of the time. v5.5.4 extends explicit classification to all 206 remaining metrics through a per-cluster pattern-based pass:
+
+- **TP.AC (8)** — One-off gates → Prevention; Continuous monitoring → Detection
+- **TP.ASR (12)** — Mostly Prevention (one-off corpus evaluation); Detection where continuous (CK-ER, RTF, OOV)
+- **TP.DI (9)** — All Prevention (one-off pre-deployment gates)
+- **TP.SN (22)** — Mostly Detection (in-service summarisation quality); Prevention for benchmarks (ROUGE, BERTScore, MedHELM)
+- **TP.CC (11)** — All Detection (continuous coding quality monitoring)
+- **TP.WB (4)** — Detection for conformance metrics; Limitation for rollback capability
+- **PI.PP (9)** — Mostly Prevention (one-off gates); Detection where continuous
+- **PI.E2E (12)** — Mostly Detection (post-deployment pipeline evaluation); Prevention for one-off cascade/reproducibility/recovery tests
+- **HL.HF (17)** — All Detection (workflow signals)
+- **IO.FE (8)** — All Detection except IO.FE-2 Accent Taxonomy (one-off Prevention gate)
+- **IO.PX (9)** — All Detection (post-deployment outcome / patient-experience signals)
+- **ES.ME (9)** — Mostly Detection; Prevention for ES.ME-2/-8/-9 (one-off gates)
+- **GV.CR (14)** — Mostly Prevention (compliance gates); Detection for continuous compliance metrics; Limitation for board oversight + EU AI Act event logging
+- **GV.SC (12)** — Mostly Prevention (one-off resistance tests) + Detection (continuous monitoring)
+- **GV.SG (12 of remainder)** — Mostly Detection; Limitation for incident response (Time-to-Correct, SPI Escalation, Model Update Impact)
+- **GV.PD (13)** — Mostly Prevention (compliance gates); Detection for continuous monitoring; Limitation for decommissioning
+- **GV.OP (7)** — Mostly Detection (operational signals); Limitation for governance burden + historical output continuity
+- **GV.VT (11)** — Mostly Limitation (vendor-side infrastructure for bounded response); Prevention for one-off procurement gates
+- **GV.TC (4)** — Mix of Prevention (training gates), Detection (impact assessment), Limitation (CPD currency)
+- **GV.EN (3)** — All Detection (operational sustainability monitoring)
+
+### Distribution
+
+After v5.5.4, all 236 metrics carry explicit `Layer`:
+
+- **Prevention: 77 (33%)**
+- **Detection: 137 (58%)**
+- **Limitation: 25 (11%)**
+
+The 11% Limitation share is honestly thin — it surfaces the architectural gap that `_layers-of-defence.md` already names: limitation infrastructure (incident response, vendor disclosure, board oversight, rollback capability) is the layer most often under-instrumented in deployer plans.
+
+### Build effects
+
+- `_layers-of-defence.md` updated: removed two-stage classification framing; documents the unified per-metric explicit dimension. Cadence heuristic remains as a fallback in `parse.derive_layer_of_defence` for any future metric that lands without explicit `Layer` (catalogue currently has 0 such cases).
+- `_layer_page` site builder simplified: no longer renders separate "Explicit" / "Heuristic" sections since all metrics are now explicit.
+- Audit `check_layer_resolves` continues enforcing the enum.
+
+Build clean. Audit zero ERROR/WARN. 99/99 pytest. mkdocs strict pass. No metric content edits beyond the new dimension row.
+
 ## v5.5.3 (2026-05-08)
 
 **Patch release: AI-substrate Option 2 (derived classification at build time).**
