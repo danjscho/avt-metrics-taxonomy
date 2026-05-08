@@ -1086,27 +1086,60 @@ def _family_page(label: str, metrics: list) -> str:
 
 
 def _layer_page(label: str, metrics: list) -> str:
-    """Render the `crosscuts/by-layer-of-defence/<slug>.md` page."""
+    """Render the `crosscuts/by-layer-of-defence/<slug>.md` page.
+
+    Two cohorts of classification are visible in the table:
+    - **Explicit** — metrics with a per-metric `Layer` dimension (seeded
+      in v5.5.0 from an early-draft slide-deck classification).
+    - **Heuristic** — metrics without an explicit Layer field, classified
+      from Measurement Cadence (cadence-only is wrong about a third of
+      the time; treat as starting point, not authoritative).
+    """
+    explicit = [m for m in metrics if m.layer]
+    heuristic = [m for m in metrics if not m.layer]
     lines = [
         f"# Layer of Defence: {label}",
         "",
-        f"{len(metrics)} metrics derived as serving the **{label}** layer "
-        f"(heuristic classification from Measurement Cadence — see "
-        f"[Layers of Defence](../../layers-of-defence.md) for the framing "
-        f"and the derivation rules). The classification is a starting "
-        f"point; per-metric Cadence and Lifecycle Phase tell you which "
-        f"layer the metric actually serves.",
+        f"{len(metrics)} metrics serving the **{label}** layer — see "
+        f"[Layers of Defence](../../layers-of-defence.md) for the framing.",
         "",
-        "| Ref | Metric | Group | Tier | Cadence |",
-        "|-----|--------|-------|------|---------|",
+        f"**Classification source.** {len(explicit)} metrics carry an "
+        f"explicit per-metric `Layer` dimension (authoritative). "
+        f"{len(heuristic)} are classified by the cadence heuristic at "
+        f"`parse.derive_layer_of_defence` (the cadence-only heuristic is "
+        f"wrong about a third of the time — treat as a starting point). "
+        f"Future releases will extend explicit classification to the "
+        f"remaining metrics.",
+        "",
     ]
-    for m in sorted(metrics, key=lambda x: (x.cluster, x.group, x.ref_id)):
-        link = _metric_page_link(m.ref_id, m.name, m.group_file)
-        cadence = m.dimensions.get("Measurement Cadence", "")
-        lines.append(
-            f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} | {cadence} |"
-        )
-    lines.append("")
+    if explicit:
+        lines += [
+            "## Explicit (per-metric `Layer` dimension)",
+            "",
+            "| Ref | Metric | Group | Tier | Cadence |",
+            "|-----|--------|-------|------|---------|",
+        ]
+        for m in sorted(explicit, key=lambda x: (x.cluster, x.group, x.ref_id)):
+            link = _metric_page_link(m.ref_id, m.name, m.group_file)
+            cadence = m.dimensions.get("Measurement Cadence", "")
+            lines.append(
+                f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} | {cadence} |"
+            )
+        lines.append("")
+    if heuristic:
+        lines += [
+            "## Derived (cadence heuristic)",
+            "",
+            "| Ref | Metric | Group | Tier | Cadence |",
+            "|-----|--------|-------|------|---------|",
+        ]
+        for m in sorted(heuristic, key=lambda x: (x.cluster, x.group, x.ref_id)):
+            link = _metric_page_link(m.ref_id, m.name, m.group_file)
+            cadence = m.dimensions.get("Measurement Cadence", "")
+            lines.append(
+                f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} | {cadence} |"
+            )
+        lines.append("")
     return "\n".join(lines)
 
 

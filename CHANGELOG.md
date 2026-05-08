@@ -1,5 +1,86 @@
 # Changelog
 
+## v5.5.0 (2026-05-08)
+
+**Minor release: NHSE IG section refs cleanup, AI-substrate framing, family-page consolidation, by-family + by-layer-of-defence cross-cuts, and explicit `Layer` dimension on 33 metrics.**
+
+Five workstreams.
+
+### 1) NHSE IG section refs cleanup
+
+Six v5.3.0/v5.4.0 metrics carrying `(section ref to be added on next pass)` markers in their Source rows tightened to **topic-cited convention**. The parent NHSE IG guidance hub does not currently expose a stable per-section URL anchor (already noted in the catalogue entry itself), so rather than fabricate section numbers I can't verify, the convention shifts to topic-cited references — naming the substantive obligation the metric tests rather than guessing a section number.
+
+Metrics touched:
+- **GV.CR-13** Refusal Impact-Explanation Quality → topic: transparency / dissent-handling
+- **GV.PD-13** Privacy Notice Currency & Completeness → topic: privacy notice / AVT-processing transparency
+- **GV.PD-14** SAR Deletion-Pause Interaction → topic: data subject rights / SAR-handling
+- **GV.PD-15** Right-to-Restrict Tooling Support → topic: data subject rights / restriction tooling
+- **GV.PD-18** Information Asset Register Completeness → topic: information asset register / IAO-naming (drops the unverified "section 8" placeholder from v5.4.0)
+- **GV.VT-11** Joint-Controller Status Assessment → topic: controller-status determination (drops the unverified "section 5" placeholder)
+
+Body-prose duplicates of the deferred markers also removed; each affected metric gains a v5.5.0 Change history stanza.
+
+### 2) AI-substrate classification (documentation-only)
+
+New cross-cutting page **`_ai-substrate.md`** (rendered as `ai-substrate.md` in Principles & Frameworks nav). Names the five-class derived cut answering "which metrics test the AI itself, vs the infrastructure around the AI, vs the governance of the AI?":
+
+- **Pre-AI** — microphone hardware, signal capture
+- **AI-Substrate** — the model itself (hallucination, calibration, drift)
+- **Post-AI** — write-back, EPR integration, downstream consumption
+- **AI-Mediated Workflow** — clinician edits, automation bias, time-to-sign
+- **AI-Agnostic Governance** — DPIA, board oversight, sub-processor disclosure
+
+Documentation-only Option 3 chosen (per plan-future #10): the cut is real but fuzzy at the edges. Page covers derivation rules from Pipeline Layer + Cluster + Responsible Actors, worked examples covering each class, and four reader-archetype views. Plan-future #10 status note added; structural Option 2 upgrade remains queued.
+
+### 3) Inline family framings lifted to `_families.md`
+
+Three inline family framings in cluster files migrated to `_families.md` as canonical home:
+
+- Demographic Equity Disaggregation framing in `tp/asr-transcription.md` → one-line italic pointer.
+- Clinical Content Fidelity framing in `tp/summarisation-nlp.md` → one-line pointer; substantive content (CREOLA citation, Asgari subtype mapping, faithfulness-vs-factuality framing) lifted into `_families.md` where the family already had a compact section.
+- Medication Safety Thread framing in `tp/summarisation-nlp.md` → one-line pointer.
+
+Per-metric `*See also: ... family*` italics on individual metric bodies left in place — those work as cross-references back to the family page from each member.
+
+### 4) Site-side cross-cut pages for Family + Layer of Defence
+
+Two new auto-generated cross-cut surfaces under `docs/crosscuts/`:
+
+- **`by-family/`** — one page per declared family in `EXPECTED_FAMILIES`. 8 pages: clinical-content-fidelity, reference-based-text-similarity, clinical-transcription-accuracy, post-generation-correction, medication-safety-thread, demographic-equity-disaggregation, nhse-ig-attestation, prsb-semantic-completeness-write-back-fidelity.
+- **`by-layer-of-defence/`** — three pages (Prevention / Detection / Limitation). Each page renders two cohorts: explicit (per-metric `Layer` field) and heuristic (cadence-derived) — the distinction is visible on the page so readers know what's authoritative.
+
+`parse.py` gains `group_metrics_by_family()`, `derive_layer_of_defence(m)` (heuristic with explicit-Layer override), and `group_metrics_by_layer_of_defence()`. `build_site.py` gains `_family_page()` and `_layer_page()` helpers.
+
+mkdocs.yml gains nav entries for the 8 family pages and 3 layer pages under "Catalogue views".
+
+Site grows **70 → 81 pages**; 29 → 40 crosscut pages.
+
+### 5) `Layer` as an optional per-metric dimension
+
+`Layer` (Prevention / Detection / Limitation) is now an **optional** per-metric dimension. Seeded in v5.5.0 with **33 metrics** classified from an early-draft slide-deck "minimum viable assurance" presentation:
+
+- **Prevention (11)**: TP.AC-5, TP.ASR-12, TP.ASR-13, TP.WB-1, TP.WB-3, TP.WB-4, GV.PD-9, GV.PD-10, GV.PD-11, GV.TC-1, GV.SG-17
+- **Detection (14)**: HL.HF-1, HL.HF-3a, HL.HF-3b, TP.SN-5, TP.SN-6, TP.SN-15, TP.SN-20, TP.WB-2, GV.OP-5, IO.PX-1, GV.SG-14, GV.OP-6, GV.PD-1, GV.PD-8
+- **Limitation (8)**: GV.SG-9, GV.SG-1, GV.VT-1, GV.SG-11, GV.SG-13, GV.OP-1, GV.VT-5, GV.VT-7
+
+Reconciliation against the cadence-only heuristic showed **63% agreement**: the heuristic conflates always-on limitation infrastructure (LFPSE incident reporting, sub-processor transparency) with detection (8 cases), and miscategorises pre-deployment gates with continuous nominal cadence as detection (3 cases). The explicit field is authoritative where present.
+
+`parse.Metric.layer` property; `EXPECTED_LAYERS` enum + `check_layer_resolves` audit check; `layer` column added to CSV/JSON.
+
+`_dimensions-overview.md` updated: 12 → 13 fields; new Layer section; Cadence "what it's NOT" tightened to acknowledge the heuristic-vs-explicit split. `_layers-of-defence.md` updated: section heading shifted from "How the layers map onto existing dimensions" to "How metrics are classified into layers" with honest two-tier-classification disclaimer.
+
+Future work: extend explicit `Layer` classification to the remaining ~200 metrics. Queued for v5.5.x or v5.6.x; see plan-future when promoted.
+
+### Counts
+
+- Metrics: unchanged at **236**
+- Tier counts: unchanged at **58 / 99 / 79**
+- Maturity: unchanged at 62 / 53 / 4 / 110
+
+### Reviewer artefact still at repo root
+
+`v5.3-pre-mint-triage.md` remains at root — the rubric-piloting follow-up for GV.CR-13 and the WP-2 re-source for GV.VT-10 are still load-bearing for future minor releases.
+
 ## v5.4.1 (2026-05-08)
 
 **Patch release: housekeeping.**

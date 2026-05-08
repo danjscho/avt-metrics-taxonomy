@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.4.1"
+TAXONOMY_VERSION = "v5.5.0"
 TAXONOMY_DATE = "2026-05-08"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -227,6 +227,17 @@ class Metric:
         resolution; the dimensions table carries the value per metric.
         """
         return self.dimensions.get("Family") or None
+
+    @property
+    def layer(self) -> str | None:
+        """Layer of Defence — Prevention / Detection / Limitation (v5.5.0+).
+
+        Optional per-metric field. v5.5.0 seeds 33 metrics from an
+        early-draft slide-deck classification; remaining metrics leave
+        the field absent and the by-layer-of-defence crosscut falls
+        back to the cadence heuristic at `derive_layer_of_defence`.
+        """
+        return self.dimensions.get("Layer") or None
 
     @property
     def is_subpart(self) -> bool:
@@ -868,25 +879,27 @@ def group_metrics_by_family(metrics: list[Metric]) -> dict[str, list[Metric]]:
 
 
 def derive_layer_of_defence(m: Metric) -> str | None:
-    """Heuristic Layer-of-Defence classifier (v5.5.0+).
+    """Layer-of-Defence classifier (v5.5.0+).
 
-    Derives from Measurement Cadence (the strongest signal):
+    Prefers the explicit per-metric `Layer` field. Falls back to a
+    Cadence-based heuristic for metrics that don't carry the field:
+
     - `One-off gate` → Prevention
     - `Continuous` / `Periodic audit` → Detection
-    - `Event-triggered` → Limitation (often paired with another layer)
+    - `Event-triggered` → Limitation
 
-    Multi-valued cadence (e.g. "Periodic audit; Event-triggered") returns
-    the first non-Event-triggered value's class, or Limitation if only
-    Event-triggered. Returns None if cadence is missing or unrecognised.
-
-    The classification is documented in `_layers-of-defence.md` — this
-    derivation is the build-time approximation used to generate the
-    by-layer-of-defence cross-cut page. It will mis-classify a small
-    number of metrics where the cadence pattern doesn't match the
-    layer pattern (e.g. one-off limitation infrastructure tests, or
-    detection metrics with continuous cadence that actually serve
-    prevention via gate logic). Treat as a starting point.
+    The cadence heuristic is **wrong about a third of the time** (it
+    conflates always-on limitation infrastructure with detection, and
+    misses pre-deployment gates that have continuous nominal cadence).
+    The explicit `Layer` field — seeded for 33 Tier 1 metrics in
+    v5.5.0 from an early-draft slide-deck classification — is the
+    authoritative answer where present. Remaining metrics use the
+    heuristic with a known-imperfect-but-honest disclaimer on the
+    crosscut page.
     """
+    explicit = m.layer
+    if explicit:
+        return explicit
     cadence = m.dimensions.get("Measurement Cadence", "").strip()
     if not cadence:
         return None

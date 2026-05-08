@@ -15,6 +15,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [Keyes-Stanford-Monitoring-2025] |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `Continuous; Event-triggered` — every model component change is itself the trigger for re-tracking, and the per-inference logging is the continuous component).
@@ -378,6 +379,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
@@ -468,6 +470,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [LFPSE] national reporting |
 
 **Why this tier?**
@@ -550,6 +553,7 @@ Gap between required and completed assurance. The honest metric - better visible
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -589,6 +593,7 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Patient safety leading vs lagging indicator literature |
 
 **Why this tier?**
@@ -740,6 +745,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [DCB0129] compliance requirement |
 
 **Why this tier?**

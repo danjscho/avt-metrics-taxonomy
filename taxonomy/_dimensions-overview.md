@@ -1,6 +1,8 @@
 ## Dimensions Overview
 
-This page is the reader's orientation to the **structural cuts** the taxonomy makes. Every metric body carries a dimensions table with up to 12 fields; this page explains what each cut does, why it exists separately from the others, and how to use it. Readers commonly conflate cuts that are structurally distinct (Tier vs Layer of Defence, Family vs Cluster, Cadence vs Lifecycle Phase) — this page names those distinctions.
+This page is the reader's orientation to the **structural cuts** the taxonomy makes. Every metric body carries a dimensions table with up to 13 fields; this page explains what each cut does, why it exists separately from the others, and how to use it. Readers commonly conflate cuts that are structurally distinct (Tier vs Layer of Defence, Family vs Cluster, Cadence vs Lifecycle Phase) — this page names those distinctions.
+
+**v5.5.0 update.** `Layer` (Prevention / Detection / Limitation) is now an optional per-metric dimension, seeded for 33 Tier 1 metrics from an early-draft classification. Metrics without an explicit `Layer` fall back to a cadence-based heuristic on the by-layer-of-defence cross-cut page. The previous version of this page described Layer of Defence as a fully-derived cut; that's no longer accurate for the seeded subset.
 
 Per-dimension detail lives in the dedicated cross-cutting pages where present. This page is the **map** to those cuts; the dedicated pages are the territory.
 
@@ -27,6 +29,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 | **Priority Tier** | How essential is this metric to a defensible deployment? | 🟢 1 / 🟡 2 / 🔵 3 | vs Layers of Defence (function) — Tier is *importance*, Layer is *role in assurance architecture* |
 | **Applicability** | How AVT-specific is this metric? | AVT-Specific / AVT-Contextualised / General Healthcare AI | vs Cluster — Applicability is about generalisability; Cluster is about pipeline placement |
 | **Family** | Is this metric part of a named construct cluster? | One of 8 declared families, or absent | vs Cluster — Family is shared *construct*, Cluster is shared *pipeline location* |
+| **Layer** *(v5.5.0+, optional)* | What role does this metric play in the assurance architecture? | Prevention / Detection / Limitation, or absent | vs Tier — Layer is *function*, Tier is *importance*; vs Cadence — Layer is *purpose*, Cadence is *frequency-as-proxy* |
 | **Pipeline Layer** | Where in the AVT processing chain does this metric sit? | Audio Capture / ASR / Diarisation / Summarisation / Coding / Downstream Write-back / Cross-cutting | vs Cluster — Layer is the technical pipeline stage; Cluster is the catalogue's content-organisation grouping |
 | **Assurance Question** | What kind of question does this metric answer? | Safety / Privacy / Fairness / Quality / Patient Experience / Transparency / Governance / Meta-evaluation / Human Factors | vs Cluster — Assurance Question is *what we want to know*, Cluster is *where the metric lives* |
 | **Measurement Method** | How is this metric measured? | Computational / Human Review / Hybrid / Passive Observational | vs Lifecycle Phase — Method is *how*, Lifecycle is *when* |
@@ -81,6 +84,18 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **See also:** [Families](families.md) for the family framings and member lists.
 
+### Layer *(new in v5.5.0; optional)*
+
+**Answers:** what role does this metric play in the assurance architecture?
+
+**Values:** Prevention / Detection / Limitation, or absent. **Optional** — most metrics don't yet carry an explicit `Layer` field. Seeded for 33 Tier 1 metrics in v5.5.0 from an early-draft slide-deck classification; future releases will extend.
+
+**Fallback for unclassified metrics.** Metrics without an explicit `Layer` are classified on the by-layer-of-defence cross-cut page using a cadence heuristic (One-off gate → Prevention; Continuous / Periodic audit → Detection; Event-triggered → Limitation). The heuristic is **wrong about a third of the time**: it conflates always-on limitation infrastructure (LFPSE incident reporting, sub-processor transparency) with detection, and miscategorises pre-deployment gates with continuous nominal cadence as detection. Treat the heuristic-derived classifications as a starting point; the explicit field is authoritative where present.
+
+**What it's NOT.** Layer is **not** Tier. A Tier 1 metric can be at any layer (GV.CR-11 Medical Device Classification at Prevention; HL.HF-1 Edit Rate at Detection; GV.SG-9 Safety Performance Indicators at Limitation). Layer is **not** Cadence either, even though Cadence is the heuristic input — Cadence describes *how often* the measurement runs, Layer describes *what assurance role* it plays. A continuous-cadence metric can serve any of the three layers depending on its purpose.
+
+**See also:** [Layers of Defence](layers-of-defence.md) for the Prevention / Detection / Limitation framing, worked examples, and architectural-gap analysis.
+
 ### Pipeline Layer
 
 **Answers:** where in the AVT processing chain does this metric sit?
@@ -119,7 +134,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **Values:** One-off gate / Periodic audit / Continuous / Event-triggered. **Multi-valued** since v5.1.0 — a metric can be `Continuous; Event-triggered` (continuously logged, with re-test triggered by specific events).
 
-**What it's NOT:** Cadence is **not** Lifecycle Phase (see above). Cadence is also **not** Layer of Defence — though there's a strong correlation (one-off gate ≈ prevention; continuous ≈ detection; event-triggered often ≈ limitation), the cut surfaces are different. A One-off gate cadence can serve any layer (a one-off vendor-retirement notification check is limitation-layer infrastructure measured at one-off cadence).
+**What it's NOT:** Cadence is **not** Lifecycle Phase (see above). Cadence is also **not** Layer of Defence — Cadence is the *heuristic input* used to classify unlabelled metrics into layers on the cross-cut page, but the explicit `Layer` field (when present) overrides it. The reason the heuristic gets ~⅓ of metrics wrong is exactly that the cuts are different: a One-off gate cadence can serve any layer (a one-off vendor-retirement notification check is limitation-layer infrastructure measured at one-off cadence), and a Continuous cadence is often Limitation-layer rather than Detection-layer (LFPSE incident reporting runs continuously but its purpose is to bound damage, not to detect drift).
 
 **See also:** [Versioning](versioning.md) for the v5.1.0 multi-valued-cadence convention; [Layers of Defence](layers-of-defence.md) for the related-but-distinct architectural cut.
 
@@ -170,8 +185,8 @@ The 12 dimensions are deliberately overlapping but structurally distinct. A read
 **Pattern 1 — orthogonal cuts that look correlated.**
 Tier and Maturity correlate weakly (most Tier 1 metrics are Established or Emerging) but are not the same — see Maturity above. Family and Cluster correlate moderately (most Clinical Content Fidelity members are in TP.SN) but a family can span clusters.
 
-**Pattern 2 — derived cuts that look like new dimensions.**
-Layers of Defence is *not* a recorded dimension — it is derived from Cadence + Lifecycle Phase + Cluster. AI-Substrate (a future v5.5+ candidate, see plan-future #10) is similarly derived from Pipeline Layer + Responsible Actor. Derived cuts are documented as cross-cutting principle pages, not as per-metric attributes.
+**Pattern 2 — partially-explicit cuts (v5.5.0).**
+Layer of Defence is now an *optional* per-metric dimension: 33 metrics carry an explicit value, the rest fall back to a cadence heuristic. The hybrid is honest — the explicit values are authoritative where present, the heuristic is a known-imperfect fallback. AI-Substrate (plan-future #10) remains a fully-derived cut documented only on the principle page, not as a per-metric attribute.
 
 **Pattern 3 — hierarchy that looks flat.**
 Cluster contains Group contains Metric. Pipeline Layer is mostly determined by Group but has Cross-cutting as a non-pipeline value. Some readers expect a single hierarchy; the taxonomy uses several overlapping hierarchies because no single structure captures every assurance question.
@@ -180,7 +195,7 @@ Cluster contains Group contains Metric. Pipeline Layer is mostly determined by G
 
 ## Where each dimension lives
 
-- **Per-metric body** (dimensions table): all 12 listed above.
-- **CSV / JSON downloads:** all 12 listed above (under field names: `ref_id`, `tier`, `applicability`, `family`, `pipeline_layer`, `assurance_question`, `measurement_method`, `lifecycle_phases`, `cadence`, `responsible_actors`, `maturity`, `source`).
-- **Site cross-cuts:** by-tier, by-applicability, by-cluster, by-Playbook-principle, by-ethical-theme (the Playbook + theme cuts are *not* per-metric dimensions; they are derived from the Responsible AI Lens).
-- **Audit:** closed-enum dimensions are audit-enforced (Tier, Applicability, Family, Maturity, Cadence, plus presence checks for Source).
+- **Per-metric body** (dimensions table): all 13 listed above; Layer is optional and present on 33 metrics in v5.5.0.
+- **CSV / JSON downloads:** all 13 listed above (field names: `ref_id`, `tier`, `applicability`, `family`, `layer`, `pipeline_layer`, `assurance_question`, `measurement_method`, `lifecycle_phases`, `cadence`, `responsible_actors`, `maturity`, `source`).
+- **Site cross-cuts:** by-tier, by-applicability, by-family, by-layer-of-defence (mixed explicit + heuristic), by-cluster, by-Playbook-principle, by-ethical-theme (the Playbook + theme cuts are *not* per-metric dimensions; they are derived from the Responsible AI Lens).
+- **Audit:** closed-enum dimensions are audit-enforced (Tier, Applicability, Family, Layer, Maturity, Cadence, plus presence checks for Source).

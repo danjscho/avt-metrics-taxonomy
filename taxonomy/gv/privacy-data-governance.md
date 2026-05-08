@@ -15,6 +15,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | [UK-GDPR] Article 5(1)(e) storage limitation; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
@@ -358,6 +359,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
 | **Family** | NHSE IG Attestation |
+| **Layer** | Detection |
 | **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
@@ -423,6 +425,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
 | **Family** | NHSE IG Attestation |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
@@ -466,6 +469,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 15 right of access |
 
 **Why this tier?**
@@ -528,6 +532,7 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope |
 
 **Why this tier?**

@@ -607,6 +607,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
 
 **Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking] (any ASR weight or model update triggers re-test)" and the Trigger Conditions describe alert-on-new-critical-class-hallucination signals against a prior baseline — neither of which is one-off).
@@ -678,6 +679,7 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Identified as critical gap in clinical ASR evaluation |
 
 **Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The body has always described monthly review of production-traffic numeric accuracy, a sustained-drift alert over two months, and a pause-on-confirmed-dosage-error trigger in production traffic — none of which is one-off. Pre-deployment is preserved via Lifecycle Phases).

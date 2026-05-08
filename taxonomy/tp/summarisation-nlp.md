@@ -239,6 +239,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Various; [Asgari-Tortus-2025] reports 1.47% per sentence |
 
 **Why this tier?**
@@ -338,6 +339,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | [Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
@@ -873,6 +875,7 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Clinical NLP literature; identified as systematic LLM failure mode |
 
 **Why this tier?**
@@ -1100,6 +1103,7 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Clinical NLP hedging/uncertainty literature |
 
 **Why this tier?**
