@@ -39,6 +39,7 @@ MAPPING: dict[str, str] = {
     "_outcomes-boundary.md": "outcomes-boundary.md",
     "_calibration-and-context.md": "calibration-and-context.md",
     "_layers-of-defence.md": "layers-of-defence.md",
+    "_failure-pathways.md": "failure-pathways.md",
     "_ai-substrate.md": "ai-substrate.md",
     "_responsible-ai-lens.md": "responsible-ai-lens.md",
     "_gaps.md": "gaps.md",

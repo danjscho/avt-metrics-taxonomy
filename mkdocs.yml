@@ -155,6 +155,7 @@ nav:
       - Outcomes Boundary: outcomes-boundary.md
       - Calibration & Context: calibration-and-context.md
       - Layers of Defence: layers-of-defence.md
+      - Failure Pathways: failure-pathways.md
       - AI Substrate: ai-substrate.md
       - Responsible AI Lens: responsible-ai-lens.md
   - Catalogue views:
