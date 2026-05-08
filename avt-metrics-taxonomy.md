@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.4.0, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.4.1, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -3356,7 +3356,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.4.0` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.4.1` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -3377,6 +3377,16 @@ Gap candidates in `_gaps.md` no longer reserve specific reference IDs. Earlier v
 - **Stale cross-references** in archived plans pointing to slots whose meaning changed before promotion.
 
 From v5.3.0 onwards, gap candidates are slot-less. `_gaps.md` rows show `Proposed (slot at promotion)` or similar; the actual ref-ID is allocated to the next-available slot in the natural cluster at the moment the candidate is promoted to an active metric. Deprecated IDs (HL.HF-4, TP.CC-8, TP.SN-8/-10) remain retired under the existing deprecation policy and are *not* reused as fill.
+
+## Within-cluster metric ordering (v5.4.0 convention)
+
+Within each cluster file, metric blocks (`### REF Name`) appear in **ascending numeric ref-ID order**. Sub-parts (e.g. TP.SN-7a, TP.SN-7b) sort immediately after their suffix-less parent. This convention was made explicit in v5.4.0 — earlier releases used chronological-append (every new metric joined at the end of its cluster file), which left visible gaps once new metrics were minted in the middle of a numeric range (e.g. GV.PD-12 through GV.PD-15 added after the v4.1 GV.PD-16 had already been appended).
+
+The convention is enforced by `audit.check_within_cluster_order`. The check is a WARN, not an ERROR — out-of-order metrics still build cleanly, but the audit surfaces drift on every release.
+
+**Compatibility with retired IDs.** Deprecated/retired IDs are still skipped (they don't appear as `### REF` headings). The order check ignores gaps in the sequence — `### TP.CC-7` followed by `### TP.CC-9` is fine because TP.CC-8 is in `_retired-ids.md`.
+
+**Compatibility with sub-clusters.** Sub-cluster intro paragraphs and named-family framings between metrics are preserved by the sort tooling — they sort *with* the metric they immediately precede. Operators applying the sort to a new cluster file should diff carefully if the file contains sub-cluster intros.
 
 # Threshold Reference
 
