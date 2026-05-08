@@ -55,9 +55,9 @@ The design question is whether to:
 There's no obviously-right answer; this needs an explicit design decision and probably a short ADR-style write-up before implementation.
 
 **Starting points:**
-- Read the v3.8.x release sub-numbering convention in the memory entries ([project_v3_8_1_site_fixes.md](.claude/projects/-home-djs-projects-claude-avt-taxonomy/memory/project_v3_8_1_site_fixes.md) through [v3_8_4](.claude/projects/-home-djs-projects-claude-avt-taxonomy/memory/project_v3_8_4_banner_live_derived.md)) — those four point releases are the clearest evidence that the current single-version scheme is being stretched.
+- Read the v3.8.x release sub-numbering convention in the [v3.8.1 / v3.8.2 / v3.8.3 / v3.8.4 CHANGELOG entries](CHANGELOG.md) — those four point releases are the clearest evidence that the current single-version scheme is being stretched.
 - Look at how comparable taxonomies / standards bodies handle this. SNOMED CT has separate version lines for the international edition vs national extensions; HL7 FHIR has a release version + a profile version + an implementation guide version. ICD-11 has annual minor revisions distinct from major editions. Worth picking 2–3 reference models and seeing which fits the AVT taxonomy's downstream-use patterns.
-- Look at the v3.7 deprecate-don't-renumber pattern in [project_v3_7_release.md](.claude/projects/-home-djs-projects-claude-avt-taxonomy/memory/project_v3_7_release.md) and the relevant TP.CC-7/8 → parent + sub-parts refactor — that's the closest existing precedent for per-metric lineage.
+- Look at the v3.7 deprecate-don't-renumber pattern (see the [v3.7 CHANGELOG entry](CHANGELOG.md) and the relevant TP.CC-7/8 → parent + sub-parts refactor) — that's the closest existing precedent for per-metric lineage.
 - Lighter-weight alternatives to consider before committing to a full scheme: a "Last-tightened" date field in each Dimensions table; a Changes section per metric; a release-by-release diff table at the catalogue level; a "Tier set as-of" timestamp in `_tier-1-quick-reference.md`.
 - Trade-off to think about: every additional version axis is overhead at every edit. The right answer might be no more than one or two extra axes, not five.
 

@@ -1,5 +1,31 @@
 # Changelog
 
+## v5.5.7 (2026-05-08)
+
+**Patch release: number + link sweep across the v5.x catalogue.**
+
+Systematic sweep for misaligned numbers and broken links. Five real issues found and fixed; one false-positive class (assembled-output static link checks) confirmed harmless.
+
+### Number alignment fixes
+
+1. **Layer-of-defence distribution** — README and CHANGELOG cited 77 / 137 / 25 (Prevention / Detection / Limitation), which was the with-parents view. The countable view (parents excluded, consistent with the 236-metric headline) is **77 / 134 / 25**. Three parents (TP.SN-7, TP.SN-9, HL.HF-3, all Detection) account for the difference. Both views are now documented; countable view is the canonical headline.
+2. **AI-substrate distribution** — same pattern. With-parents view was 127 / 64 / 30 / 9 / 9; countable view is **125 / 64 / 29 / 9 / 9**. Both views now documented; countable view is canonical.
+
+### Broken link fixes
+
+3. **`plan-future.md`** — three references to private `.claude/projects/.../memory/...` paths (leftovers from an early draft) replaced with public CHANGELOG cross-references.
+4. **`CHANGELOG.md`** — three broken `archive/v3.6-duplication-review.md` and `archive/v3.3-tier1-classification.md` paths corrected to their actual locations under `archive/audits/`.
+
+### New audit guard
+
+5. **`check_readme_headline_counts`** added — verifies README's "X metrics across 20 groups" and "Tier N (X metrics)" claims against live count. WARN-level. Catches future drift on the most-cited claims automatically.
+
+### Sweep results saved
+
+The sweep tooling at `/tmp/full_sweep.py` (not committed) found 153 link-issue candidates across all repo Markdown files. After filtering known false-positive classes (the assembled `avt-metrics-taxonomy.md` output reuses path patterns from many source files; site-context filenames like `families.md` resolve via the linkifier at site time), only the four issues above remained.
+
+mkdocs strict pass (the rendered links work fine — the static-source check was over-flagging). 99/99 pytest. Audit zero ERROR/WARN. No metric content edits.
+
 ## v5.5.6 (2026-05-08)
 
 **Patch release: catalogue licence + README refresh.**
@@ -114,11 +140,13 @@ v5.5.0 seeded explicit `Layer` (Prevention / Detection / Limitation) on 33 metri
 
 ### Distribution
 
-After v5.5.4, all 236 metrics carry explicit `Layer`:
+After v5.5.4, all 236 countable metrics carry explicit `Layer`:
 
 - **Prevention: 77 (33%)**
-- **Detection: 137 (58%)**
+- **Detection: 134 (57%)**
 - **Limitation: 25 (11%)**
+
+Three parent-construct metrics (TP.SN-7, TP.SN-9, HL.HF-3) also carry a Layer (all Detection) for routing purposes — sub-parts inherit the parent classification. Counting parents would give 77 / 137 / 25; the countable view (parents excluded) is the canonical headline.
 
 The 11% Limitation share is honestly thin — it surfaces the architectural gap that `_layers-of-defence.md` already names: limitation infrastructure (incident response, vendor disclosure, board oversight, rollback capability) is the layer most often under-instrumented in deployer plans.
 
@@ -148,14 +176,16 @@ Plan-future #10 promotes from documentation-only Option 3 (landed in v5.5.0) to 
 
 ### Distribution
 
-Across 236 metrics:
+Across the 236 countable metrics:
 
-- AI-Substrate — 127 (54%)
+- AI-Substrate — 125 (53%)
 - AI-Agnostic Governance — 64 (27%)
-- AI-Mediated Workflow — 30 (13%)
+- AI-Mediated Workflow — 29 (12%)
 - Pre-AI — 9 (4%)
 - Post-AI — 9 (4%)
 - **Disputed — 0 (0%)** — well under the >20% promotion threshold from plan-future #10.
+
+Counting parents (TP.SN-7 / TP.SN-9 / HL.HF-3, which inherit AI-Substrate / AI-Substrate / AI-Mediated Workflow respectively) gives the with-parents view 127 / 64 / 30 / 9 / 9; the countable view is the canonical headline.
 
 ### `_ai-substrate.md` updated
 
@@ -1252,7 +1282,7 @@ Add See-also lines to the highest-value paired metrics from the v3.6 duplication
 - GV.SG-15 ↔ GV.SG-16 (incident-correction latency vs SPI-breach escalation latency)
 - GV.SG-16 → GV.SG-9 (escalation response time has GV.SG-9 SPI framework as a direct dependency)
 
-Remaining ~10 cross-reference candidates from the v3.6 duplication review deferred to v3.8+ (recorded in `archive/v3.6-duplication-review.md` as the remaining set).
+Remaining ~10 cross-reference candidates from the v3.6 duplication review deferred to v3.8+ (recorded in `archive/audits/v3.6-duplication-review.md` as the remaining set).
 
 ### Phase 2.3 — US-flavour audit and reframe
 
@@ -1291,7 +1321,7 @@ The 5 pattern-may-not-fit metrics (GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3
 
 - **Phase 3 bespoke deferred-pool scoping:** 1-2 of GV.OP-6, GV.SG-9, GV.SG-11, GV.SG-13, HL.HF-3 (the latter partially addressed by Phase 2.1 parent-construct framing; reassess at kick-off)
 - **HL.HF-3a tightening** — now a Tier 1 sub-part not yet carrying the pattern; v3.8 should consider tightening it alongside Phase 3
-- **Remaining ~10 cross-reference / framing additions** from the v3.6 duplication review (see `archive/v3.6-duplication-review.md`)
+- **Remaining ~10 cross-reference / framing additions** from the v3.6 duplication review (see `archive/audits/v3.6-duplication-review.md`)
 - **Outcomes layer** stays at ES.ME-8/9
 - **Roadmap** (`_gaps.md`) untouched in v3.7 — 89 candidates still queued
 
@@ -1313,7 +1343,7 @@ The classification rationale prose in `_applicability.md` stays; per-metric tabl
 
 ### Phase B — Duplication review (research artefact)
 
-[`archive/v3.6-duplication-review.md`](archive/v3.6-duplication-review.md) classifies every within-group metric pair as `distinct` / `overlapping` / `redundant`, with cross-group analysis for surfaced candidates. Frozen at v3.6 ship date; **no metrics changed**.
+[`archive/audits/v3.6-duplication-review.md`](archive/audits/v3.6-duplication-review.md) classifies every within-group metric pair as `distinct` / `overlapping` / `redundant`, with cross-group analysis for surfaced candidates. Frozen at v3.6 ship date; **no metrics changed**.
 
 Headline findings:
 
@@ -1449,7 +1479,7 @@ Tightened count: 9/43 → **13/43**.
 
 ### Phase C — Full Tier 1 LOOSE classification
 
-`archive/v3.3-tier1-classification.md` (new) classifies every Tier 1 metric not yet tightened as **TIGHT** (8), **LOOSE** (18), or **SURROGATE-and-LOOSE** (3, also LOOSE) with one-sentence per-metric reasoning. The artefact is frozen at v3.4 ship date and is the input to v3.5+ scoping.
+`archive/audits/v3.3-tier1-classification.md` (new) classifies every Tier 1 metric not yet tightened as **TIGHT** (8), **LOOSE** (18), or **SURROGATE-and-LOOSE** (3, also LOOSE) with one-sentence per-metric reasoning. The artefact is frozen at v3.4 ship date and is the input to v3.5+ scoping.
 
 Suggested v3.5+ waves identified in the artefact:
 
