@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.4.1"
+TAXONOMY_VERSION = "v5.5.0"
 TAXONOMY_DATE = "2026-05-08"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -227,6 +227,17 @@ class Metric:
         resolution; the dimensions table carries the value per metric.
         """
         return self.dimensions.get("Family") or None
+
+    @property
+    def layer(self) -> str | None:
+        """Layer of Defence — Prevention / Detection / Limitation (v5.5.0+).
+
+        Optional per-metric field. v5.5.0 seeds 33 metrics from an
+        early-draft slide-deck classification; remaining metrics leave
+        the field absent and the by-layer-of-defence crosscut falls
+        back to the cadence heuristic at `derive_layer_of_defence`.
+        """
+        return self.dimensions.get("Layer") or None
 
     @property
     def is_subpart(self) -> bool:
@@ -850,6 +861,74 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
     for m in metrics:
         key = m.applicability or "Unclassified"
         out.setdefault(key, []).append(m)
+    return out
+
+
+def group_metrics_by_family(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    """Group metrics by Family dimension value (v5.4.0+). Metrics without a
+    Family value are excluded entirely (no `Unaffiliated` bucket — the
+    families page already names "Unaffiliated" in prose; here we surface
+    only the named families)."""
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        fam = m.family
+        if not fam:
+            continue
+        out.setdefault(fam, []).append(m)
+    return out
+
+
+def derive_layer_of_defence(m: Metric) -> str | None:
+    """Layer-of-Defence classifier (v5.5.0+).
+
+    Prefers the explicit per-metric `Layer` field. Falls back to a
+    Cadence-based heuristic for metrics that don't carry the field:
+
+    - `One-off gate` → Prevention
+    - `Continuous` / `Periodic audit` → Detection
+    - `Event-triggered` → Limitation
+
+    The cadence heuristic is **wrong about a third of the time** (it
+    conflates always-on limitation infrastructure with detection, and
+    misses pre-deployment gates that have continuous nominal cadence).
+    The explicit `Layer` field — seeded for 33 Tier 1 metrics in
+    v5.5.0 from an early-draft slide-deck classification — is the
+    authoritative answer where present. Remaining metrics use the
+    heuristic with a known-imperfect-but-honest disclaimer on the
+    crosscut page.
+    """
+    explicit = m.layer
+    if explicit:
+        return explicit
+    cadence = m.dimensions.get("Measurement Cadence", "").strip()
+    if not cadence:
+        return None
+    elements = [e.strip() for e in cadence.split(";") if e.strip()]
+    layer_for = {
+        "One-off gate": "Prevention",
+        "Periodic audit": "Detection",
+        "Continuous": "Detection",
+        "Event-triggered": "Limitation",
+    }
+    classified = [layer_for[e] for e in elements if e in layer_for]
+    if not classified:
+        return None
+    # Tie-break: prefer Prevention > Detection > Limitation when multi-valued
+    for preferred in ("Prevention", "Detection", "Limitation"):
+        if preferred in classified:
+            return preferred
+    return classified[0]
+
+
+def group_metrics_by_layer_of_defence(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    """Group metrics by derived layer-of-defence classification (v5.5.0+).
+    Metrics without a derivable layer are excluded."""
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        layer = derive_layer_of_defence(m)
+        if layer is None:
+            continue
+        out.setdefault(layer, []).append(m)
     return out
 
 

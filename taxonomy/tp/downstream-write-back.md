@@ -16,6 +16,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | PRSB Semantic Completeness & Write-back Fidelity |
+| **Layer** | Prevention |
 | **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect that body describes both the highest-priority pre-deployment gate AND continuous monthly auditing of safety-critical fidelity in production traffic; v5.1 also introduces `Event-triggered` as a fourth Cadence enum value and makes the dimension semicolon-separated).
@@ -91,6 +92,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Standard integration monitoring; IM1 requirements |
 
 **Why this tier?**
@@ -157,6 +159,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | PRSB Semantic Completeness & Write-back Fidelity |
+| **Layer** | Prevention |
 | **Source** | Identified as distinct failure mode within write-back |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect both the safety-critical pre-deployment test AND ongoing continuous-monitoring of mapping accuracy in production traffic).
@@ -228,6 +231,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Prevention |
 | **Source** | Identified as safety-critical EPR integration behaviour |
 
 **Why this tier?**

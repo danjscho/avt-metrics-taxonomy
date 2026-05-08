@@ -116,6 +116,12 @@ EXPECTED_FAMILIES = {
     "PRSB Semantic Completeness & Write-back Fidelity",
 }
 
+# v5.5.0: Layer of Defence enum. Optional per-metric field — only the 33
+# metrics seeded from the early-draft slide-deck classification carry it
+# in v5.5.0; remaining metrics fall back to the cadence heuristic at
+# `parse.derive_layer_of_defence`.
+EXPECTED_LAYERS = {"Prevention", "Detection", "Limitation"}
+
 # Heading form:  ### TP.AC-1 🟡 Signal-to-Noise Ratio (SNR) Monitoring
 # Sub-parts (v3.7+) carry a single lowercase letter suffix: ### TP.SN-7a ...
 METRIC_HEADING = re.compile(
@@ -675,6 +681,31 @@ def check_within_cluster_order(metrics_by_file: dict[str, list[Metric]]) -> list
                 )
             prev_key = key
             prev_ref = m.ref_id
+    return findings
+
+
+def check_layer_resolves(all_metrics: list[Metric]) -> list[Finding]:
+    """Every metric's Layer dimension, when present, must be one of
+    Prevention / Detection / Limitation (v5.5.0+). Layer is optional;
+    metrics without an explicit Layer fall back to the cadence
+    heuristic in the by-layer-of-defence crosscut."""
+    findings: list[Finding] = []
+    for m in countable_metrics(all_metrics):
+        layer = m.dimensions.get("Layer")
+        if layer is None or layer.strip() == "":
+            continue
+        if layer not in EXPECTED_LAYERS:
+            findings.append(
+                Finding(
+                    "ERROR",
+                    "invalid-layer",
+                    (
+                        f"metric {m.ref_id} has Layer='{layer}', expected one of "
+                        f"{sorted(EXPECTED_LAYERS)}"
+                    ),
+                    f"{m.file}:{m.line}",
+                )
+            )
     return findings
 
 
@@ -1467,6 +1498,7 @@ def main() -> int:
     findings.extend(check_cadence_values(all_metrics))
     findings.extend(check_within_cluster_order(metrics_by_file))
     findings.extend(check_family_resolves(all_metrics))
+    findings.extend(check_layer_resolves(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))

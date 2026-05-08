@@ -12,9 +12,18 @@ This section is a first-class principle of the taxonomy, parallel to the [Outcom
 
 **Why all three.** A capability tested only at prevention is exposed to deployment-time drift. A capability tested only at detection has no closed-loop response to alerts. A capability tested only at limitation is responding to failures that better prevention or detection should have caught earlier. **Defensible AVT assurance requires all three layers for every safety-critical failure mode** — and the catalogue is structured so this composition can be checked.
 
-### How the layers map onto existing dimensions
+### How metrics are classified into layers
 
-Layers of defence is a **derived cut** — it is not a separately-recorded dimension on each metric. It is composed from existing dimensions:
+**Two-tier classification (v5.5.0+).** Some metrics carry an **explicit `Layer` field** in their dimensions table (Prevention / Detection / Limitation); others fall back to a **cadence heuristic**.
+
+- **Explicit `Layer`** is the authoritative answer where present. Seeded in v5.5.0 with 33 metrics from an early-draft slide-deck classification (the original "minimum viable assurance" presentation). Future releases will extend explicit classification to the rest of the catalogue.
+- **Cadence heuristic** is the v5.5.0 fallback for the ~200 metrics that don't yet have an explicit `Layer`: One-off gate → Prevention; Continuous / Periodic audit → Detection; Event-triggered → Limitation. **The heuristic is wrong about a third of the time** — it conflates always-on limitation infrastructure with detection (e.g. LFPSE incident reporting runs continuously but its purpose is to bound damage, not detect drift) and miscategorises pre-deployment gates with continuous nominal cadence as detection. Treat as a starting point.
+
+The by-layer-of-defence cross-cut page renders both cohorts separately so the distinction is visible to readers.
+
+### How the layers correlate with other dimensions
+
+Even with explicit classification, the cadence / lifecycle / cluster signals correlate with layer membership in predictable ways:
 
 | Layer | Strongest signal | Cluster bias | Cadence bias | Lifecycle Phase bias |
 |---|---|---|---|---|

@@ -15,6 +15,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [NAS-Day-Zero-SPI-internal] requirements; standard clinical governance |
 
 **Why this tier?**

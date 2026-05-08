@@ -39,6 +39,7 @@ MAPPING: dict[str, str] = {
     "_outcomes-boundary.md": "outcomes-boundary.md",
     "_calibration-and-context.md": "calibration-and-context.md",
     "_layers-of-defence.md": "layers-of-defence.md",
+    "_ai-substrate.md": "ai-substrate.md",
     "_responsible-ai-lens.md": "responsible-ai-lens.md",
     "_gaps.md": "gaps.md",
     "_glossary.md": "glossary.md",
@@ -1063,6 +1064,85 @@ def _applicability_page(label: str, metrics: list) -> str:
     return "\n".join(lines)
 
 
+def _family_page(label: str, metrics: list) -> str:
+    """Render the `crosscuts/by-family/<slug>.md` page listing family members."""
+    lines = [
+        f"# Family: {label}",
+        "",
+        f"{len(metrics)} metrics in this named family. Construct definition, "
+        f"why-this-family rationale, and full framing prose live on the "
+        f"canonical [Families page](../../families.md).",
+        "",
+        "| Ref | Metric | Group | Tier |",
+        "|-----|--------|-------|------|",
+    ]
+    for m in sorted(metrics, key=lambda x: (x.cluster, x.group, x.ref_id)):
+        link = _metric_page_link(m.ref_id, m.name, m.group_file)
+        lines.append(
+            f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
+def _layer_page(label: str, metrics: list) -> str:
+    """Render the `crosscuts/by-layer-of-defence/<slug>.md` page.
+
+    Two cohorts of classification are visible in the table:
+    - **Explicit** — metrics with a per-metric `Layer` dimension (seeded
+      in v5.5.0 from an early-draft slide-deck classification).
+    - **Heuristic** — metrics without an explicit Layer field, classified
+      from Measurement Cadence (cadence-only is wrong about a third of
+      the time; treat as starting point, not authoritative).
+    """
+    explicit = [m for m in metrics if m.layer]
+    heuristic = [m for m in metrics if not m.layer]
+    lines = [
+        f"# Layer of Defence: {label}",
+        "",
+        f"{len(metrics)} metrics serving the **{label}** layer — see "
+        f"[Layers of Defence](../../layers-of-defence.md) for the framing.",
+        "",
+        f"**Classification source.** {len(explicit)} metrics carry an "
+        f"explicit per-metric `Layer` dimension (authoritative). "
+        f"{len(heuristic)} are classified by the cadence heuristic at "
+        f"`parse.derive_layer_of_defence` (the cadence-only heuristic is "
+        f"wrong about a third of the time — treat as a starting point). "
+        f"Future releases will extend explicit classification to the "
+        f"remaining metrics.",
+        "",
+    ]
+    if explicit:
+        lines += [
+            "## Explicit (per-metric `Layer` dimension)",
+            "",
+            "| Ref | Metric | Group | Tier | Cadence |",
+            "|-----|--------|-------|------|---------|",
+        ]
+        for m in sorted(explicit, key=lambda x: (x.cluster, x.group, x.ref_id)):
+            link = _metric_page_link(m.ref_id, m.name, m.group_file)
+            cadence = m.dimensions.get("Measurement Cadence", "")
+            lines.append(
+                f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} | {cadence} |"
+            )
+        lines.append("")
+    if heuristic:
+        lines += [
+            "## Derived (cadence heuristic)",
+            "",
+            "| Ref | Metric | Group | Tier | Cadence |",
+            "|-----|--------|-------|------|---------|",
+        ]
+        for m in sorted(heuristic, key=lambda x: (x.cluster, x.group, x.ref_id)):
+            link = _metric_page_link(m.ref_id, m.name, m.group_file)
+            cadence = m.dimensions.get("Measurement Cadence", "")
+            lines.append(
+                f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} | {cadence} |"
+            )
+        lines.append("")
+    return "\n".join(lines)
+
+
 def _principle_or_theme_page(kind: str, code: str, label: str, entries: list) -> str:
     header = "Playbook principle" if kind == "principle" else "Ethical theme"
     lines = [
@@ -1168,11 +1248,15 @@ def build_crosscuts() -> int:
     }
     metrics = [m for m in all_metrics if m.ref_id not in parent_ids]
     apps = parse_src.group_metrics_by_applicability(metrics)
+    families = parse_src.group_metrics_by_family(metrics)
+    layers = parse_src.group_metrics_by_layer_of_defence(metrics)
     principles = parse_src.parse_rai_principle_membership()
     themes = parse_src.parse_rai_theme_membership()
 
     base = DOCS / CROSSCUT_DIR
     (base / "by-applicability").mkdir(parents=True, exist_ok=True)
+    (base / "by-family").mkdir(parents=True, exist_ok=True)
+    (base / "by-layer-of-defence").mkdir(parents=True, exist_ok=True)
     (base / "by-principle").mkdir(parents=True, exist_ok=True)
     (base / "by-theme").mkdir(parents=True, exist_ok=True)
     (base / "by-standard").mkdir(parents=True, exist_ok=True)
@@ -1218,8 +1302,30 @@ def build_crosscuts() -> int:
             _principle_or_theme_page("theme", code, name, entries)
         )
 
+    # Family pages (v5.5.0+)
+    def _slugify(s: str) -> str:
+        import re as _re
+        return _re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
+
+    for label, fam_metrics in families.items():
+        (base / "by-family" / f"{_slugify(label)}.md").write_text(
+            _family_page(label, fam_metrics)
+        )
+
+    # Layer-of-defence pages (v5.5.0+; derived classification)
+    for label, layer_metrics in layers.items():
+        (base / "by-layer-of-defence" / f"{label.lower()}.md").write_text(
+            _layer_page(label, layer_metrics)
+        )
+
     total = (
-        1 + len(applicability_slugs) + len(principles) + len(themes) + len(standards)
+        1
+        + len(applicability_slugs)
+        + len(families)
+        + len(layers)
+        + len(principles)
+        + len(themes)
+        + len(standards)
     )
     print(f"Generated {total} crosscut pages under docs/{CROSSCUT_DIR}/.")
     return total

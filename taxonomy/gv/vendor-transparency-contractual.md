@@ -15,6 +15,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; three-principle monitoring framework (system integrity, performance, impact) |
 
 **Why this tier?**
@@ -206,6 +207,7 @@ Does the vendor disclose security incidents, model failures, and known issues to
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Standard security incident disclosure practice |
 
 **Why this tier?**
@@ -309,6 +311,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [UK-GDPR] Article 28 |
 
 **Why this tier?**
@@ -481,6 +484,8 @@ Pass per criterion: (1) Device characterisation published (model architecture fa
 
 Whether the deployer has documented a binary determination of joint-controller status under UK GDPR Article 26 with the AVT vendor. Joint controllers under Article 26 must agree on transparency arrangements, the exercise of data subject rights, and respective compliance responsibilities — the assessment is **distinct** from sub-processor disclosure (which is processor-status, [GV.VT-7](#gv-vt-7)) because joint-controller status creates shared accountability rather than vendor-as-processor accountability. NHSE IG section 5 explicitly requires AVT-deploying organisations to make and document this determination before go-live.
 
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.VT-11 |
@@ -494,7 +499,7 @@ Whether the deployer has documented a binary determination of joint-controller s
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] section 5 (section ref to be confirmed on next pass)|
+|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] — controller-status determination content (topic-cited; the unverified 'section 5' placeholder from v5.4.0 is dropped — parent hub no stable section anchor)|
 
 **Why this tier?**
 
@@ -508,7 +513,7 @@ Pass per criterion: (1) Joint-controller status determination documented (Yes / 
 
 **Limitations**
 
-> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law.
 
 **Novel Thinking / Implications**
 

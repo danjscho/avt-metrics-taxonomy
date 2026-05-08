@@ -205,6 +205,7 @@ Verification that the capture hardware meets minimum specifications for the AVT 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard audio hardware validation; vendor deployment requirements |
 
 **Why this tier?**

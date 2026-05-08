@@ -155,6 +155,7 @@ nav:
       - Outcomes Boundary: outcomes-boundary.md
       - Calibration & Context: calibration-and-context.md
       - Layers of Defence: layers-of-defence.md
+      - AI Substrate: ai-substrate.md
       - Responsible AI Lens: responsible-ai-lens.md
   - Catalogue views:
       - Overview: crosscuts/index.md
@@ -162,6 +163,19 @@ nav:
           - AVT-Specific: crosscuts/by-applicability/avt-specific.md
           - AVT-Contextualised: crosscuts/by-applicability/avt-contextualised.md
           - General Healthcare AI: crosscuts/by-applicability/general.md
+      - By family:
+          - Clinical Content Fidelity: crosscuts/by-family/clinical-content-fidelity.md
+          - Reference-Based Text Similarity: crosscuts/by-family/reference-based-text-similarity.md
+          - Clinical Transcription Accuracy: crosscuts/by-family/clinical-transcription-accuracy.md
+          - Post-Generation Correction: crosscuts/by-family/post-generation-correction.md
+          - Medication Safety Thread: crosscuts/by-family/medication-safety-thread.md
+          - Demographic Equity Disaggregation: crosscuts/by-family/demographic-equity-disaggregation.md
+          - NHSE IG Attestation: crosscuts/by-family/nhse-ig-attestation.md
+          - PRSB Semantic Completeness & Write-back Fidelity: crosscuts/by-family/prsb-semantic-completeness-write-back-fidelity.md
+      - By layer of defence:
+          - Prevention: crosscuts/by-layer-of-defence/prevention.md
+          - Detection: crosscuts/by-layer-of-defence/detection.md
+          - Limitation: crosscuts/by-layer-of-defence/limitation.md
       - By Playbook principle:
           - P1 - Limitations: crosscuts/by-principle/p1.md
           - P2 - Lawful/ethical: crosscuts/by-principle/p2.md
