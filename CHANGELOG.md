@@ -1,5 +1,43 @@
 # Changelog
 
+## v5.5.3 (2026-05-08)
+
+**Patch release: AI-substrate Option 2 (derived classification at build time).**
+
+Plan-future #10 promotes from documentation-only Option 3 (landed in v5.5.0) to derived-at-build-time Option 2.
+
+### What changed
+
+- `parse._AI_SUBSTRATE_GROUP_DEFAULTS` defines per-cluster defaults for the five-class cut (Pre-AI / AI-Substrate / Post-AI / AI-Mediated Workflow / AI-Agnostic Governance).
+- `parse._AI_SUBSTRATE_OVERRIDES` carries 10 per-metric exceptions where the cluster default is wrong (training-data metrics → AI-Substrate; downstream IO.PX outcome metrics → AI-Substrate; system availability → Post-AI; some GV.SG metrics → AI-Agnostic Governance or AI-Mediated Workflow).
+- `parse.derive_ai_substrate(m)` and `parse.group_metrics_by_ai_substrate(metrics)` provide the build-time derivation.
+- `Metric.ai_substrate` property exposes the classification.
+- New `by-ai-substrate/` cross-cut directory at `docs/crosscuts/by-ai-substrate/`, one page per class (5 pages).
+- `ai_substrate` column added to CSV / JSON downloads.
+- mkdocs.yml gains "By AI substrate" sub-nav under Catalogue views.
+
+### Distribution
+
+Across 236 metrics:
+
+- AI-Substrate — 127 (54%)
+- AI-Agnostic Governance — 64 (27%)
+- AI-Mediated Workflow — 30 (13%)
+- Pre-AI — 9 (4%)
+- Post-AI — 9 (4%)
+- **Disputed — 0 (0%)** — well under the >20% promotion threshold from plan-future #10.
+
+### `_ai-substrate.md` updated
+
+The page is no longer "documentation-only" framing; it now explains the build-time derivation, names the override list, and documents the promotion criteria that were met. Future structural promotion (Option 1: per-metric `AI Substrate` field on bodies) remains open if the cut becomes contractually load-bearing.
+
+### Build effects
+
+- 82 → 87 site pages.
+- 40 → 45 crosscut pages.
+- Build clean. Audit zero ERROR/WARN. 99/99 pytest. mkdocs strict pass.
+- No metric content edits.
+
 ## v5.5.2 (2026-05-08)
 
 **Patch release: code-snippet + Formal Definition verification + threshold-page regression fix.**
