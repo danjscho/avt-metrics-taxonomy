@@ -1,0 +1,70 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 Dan Schofield
+
+This work is licensed under the Creative Commons Attribution 4.0 International
+License. You are free to:
+
+- **Share** — copy and redistribute the material in any medium or format
+- **Adapt** — remix, transform, and build upon the material for any purpose,
+  even commercially
+
+The licensor cannot revoke these freedoms as long as you follow the license
+terms.
+
+Under the following terms:
+
+- **Attribution** — You must give appropriate credit, provide a link to the
+  license, and indicate if changes were made. You may do so in any reasonable
+  manner, but not in any way that suggests the licensor endorses you or your
+  use.
+
+No additional restrictions — You may not apply legal terms or technological
+measures that legally restrict others from doing anything the license permits.
+
+Notices:
+
+- You do not have to comply with the license for elements of the material in
+  the public domain or where your use is permitted by an applicable exception
+  or limitation.
+- No warranties are given. The license may not give you all of the
+  permissions necessary for your intended use. For example, other rights such
+  as publicity, privacy, or moral rights may limit how you use the material.
+
+Full legal text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+---
+
+## Suggested attribution
+
+> Schofield, D. (2026). *AVT Metrics Taxonomy* [prototype-for-discussion].
+> Licensed under CC BY 4.0. Retrieved from
+> https://danjscho.github.io/avt-metrics-taxonomy/
+
+## Scope of this licence
+
+This licence covers the **catalogue content** (Markdown source under
+`taxonomy/`, the assembled `avt-metrics-taxonomy.md`, the rendered MkDocs
+site, and the supporting cross-cutting documents at the repo root such as
+`plan-future.md`, `CHANGELOG.md`, and `README.md`).
+
+The licence does **not** cover:
+
+- **Quoted framework material** — references to DTAC, NHS England IG
+  Guidance, MHRA SaMD documents, Caldicott Principles, NICE ESF, NHS
+  T.E.S.T., DSPT, FHIR UK Core, PRSB, UK GDPR, the FTS notice 069369-2025,
+  and other external sources cited in the catalogue. Each remains under its
+  publisher's own licence; the catalogue cites them under fair-dealing /
+  fair-use conventions for review and commentary.
+- **Code in `pkg/`** — the `avt-metrics-ref` reference implementation
+  package is licensed separately under MIT (see `pkg/avt_metrics_ref/LICENSE`).
+- **Code in `taxonomy/`** — the build / parse / audit / site-build Python
+  source in `taxonomy/build.py`, `taxonomy/parse.py`, `taxonomy/audit.py`,
+  `taxonomy/build_site.py`, the `taxonomy/tools/` and `taxonomy/tests/`
+  directories. This tooling is supplied to make the catalogue reproducible;
+  if you re-use it independently of the catalogue content, treat it as MIT
+  licensed for that purpose.
+
+If you have a use case that doesn't fit cleanly into these categories,
+open an issue at https://github.com/danjscho/avt-metrics-taxonomy/issues
+and we'll figure it out.
