@@ -37,6 +37,7 @@ FILES = [
     "_outcomes-boundary.md",
     "_calibration-and-context.md",
     "_layers-of-defence.md",
+    "_ai-substrate.md",
     "_gaps.md",
     "_glossary.md",
     "_versioning.md",

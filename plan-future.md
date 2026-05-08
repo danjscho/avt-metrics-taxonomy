@@ -246,6 +246,8 @@ The existing **Applicability** dimension answers *"is this AVT-specific?"* (AVT-
 
 3. **Documentation-only:** add an "AI relevance" framing in `_applicability.md` explaining that the cleanest answer is "look at Pipeline Layer" and walk through examples. Lowest cost, no structural change.
 
+**Status update (v5.5.0):** Option 3 (documentation-only framing page) landed at `_ai-substrate.md`. The page names the five substrate classes, explains why this cut is documentation-only rather than per-metric structural, and walks through derivation rules + worked examples. Promotion to Option 2 (derived classification at build time) remains open; the page documents the criteria for that promotion.
+
 **Default plan if this gets picked up:** Option 2 — derived classification at build time. Avoids editing 234 metric bodies. The classification is genuinely cluster-level for ~90% of metrics; the `disputed` category lets the catalogue be honest about edge cases.
 
 **Open questions to settle before this lands:**
