@@ -4753,6 +4753,8 @@ Track baseline audio quality metrics (SNR, frequency response, noise floor) over
 
 Standard ASR accuracy metric. Treats all word errors equally - a misheard 'the' counts the same as a misheard drug name.
 
+**Reference implementation:** [`avt_metrics_ref.wer`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/wer.py) (wraps `jiwer.wer` / `process_words`; supports `return_breakdown=True` for substitution / deletion / insertion / hit counts).
+
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.ASR-1 |
@@ -4812,6 +4814,8 @@ corpus_wer = out.wer  # macro-averaged across utterances
 ### TP.ASR-2 🔵 Medical Word Error Rate (M-WER)
 
 Weighted WER where errors on clinically significant tokens carry higher penalty. Requires a clinical significance ontology to define token weights.
+
+**Reference implementation:** [`avt_metrics_ref.medical_wer`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/mwer.py) (composes `jiwer.process_words` alignment with a user-supplied per-token classifier; ships with a default weight matrix matching the catalogue snippet but accepts custom weights). Domain NER choice (MedCAT, scispaCy, custom) deferred to caller.
 
 | Dimension | Value |
 |-----------|-------|
@@ -4899,6 +4903,8 @@ def medical_wer(ref_tokens, hyp_tokens, ner_model):
 
 Focused accuracy for high-stakes clinical terminology. Binary: was the keyword captured correctly or not?
 
+**Reference implementation:** [`avt_metrics_ref.clinical_keyword_error_rate`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/cker.py) (user-supplied keyword extractor; library handles Levenshtein-ratio similarity matching with configurable threshold, default 0.85 per the catalogue snippet).
+
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.ASR-3 |
@@ -4976,6 +4982,8 @@ def clinical_keyword_error_rate(reference, hypothesis):
 ### TP.ASR-4 🟢 Demographic-Disaggregated WER
 
 WER by accent group, first language, age band, and speech characteristics. NAS proposes max 5pp gap across groups.
+
+**Reference implementation:** [`avt_metrics_ref.disaggregated_wer`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/disaggregated.py) (composes `wer` per-group; returns per-group WER + n, equity gap, threshold-met flag, worst/best group, and aggregate WER for comparison; configurable threshold, default 0.05 per NAS).
 
 | Dimension | Value |
 |-----------|-------|
@@ -5171,6 +5179,8 @@ RTF = T_processing / T_audio. For streaming ASR, report both first-token latency
 
 Character-level edit distance between reference and hypothesis. More sensitive than WER for medical terminology where subword errors are common: 'amoxicillin' vs 'amoxycillin' has WER=1 but CER=1/12. Particularly important for drug names, anatomical terms, and proper nouns.
 
+**Reference implementation:** [`avt_metrics_ref.cer`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/cer.py) (wraps `jiwer.cer`; library tests confirm CER < WER for the canonical near-miss case).
+
 | Dimension | Value |
 |-----------|-------|
 | **Reference** | TP.ASR-8 |
@@ -5267,6 +5277,8 @@ OOV Rate = |tokens_not_in_vocab| / |total_tokens|. Compute against the ASR's lex
 ### TP.ASR-10 🟡 ASR Confidence Calibration
 
 Whether the ASR's stated confidence scores correlate with actual accuracy. A poorly-calibrated ASR that reports 95% confidence on 70%-accurate output is dangerous because downstream consumers (summariser, clinician) trust the output inappropriately.
+
+**Reference implementation:** [`avt_metrics_ref.asr_confidence_calibration`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/asr/calibration.py) (Expected Calibration Error + Maximum Calibration Error via fixed-width binning; configurable bin count; per-bin breakdown for reliability-diagram rendering).
 
 | Dimension | Value |
 |-----------|-------|
