@@ -22,7 +22,7 @@ ROOT = pathlib.Path(__file__).parent
 # Single-source version stamp. Bumped manually at each release; consumed by
 # build.py (JSON metadata), build_site.py (landing + downloads citation), and
 # pyproject.toml. Keep these in sync at release time.
-TAXONOMY_VERSION = "v5.5.2"
+TAXONOMY_VERSION = "v5.5.3"
 TAXONOMY_DATE = "2026-05-08"  # ISO date of TAXONOMY_VERSION release; bumped together
 
 
@@ -227,6 +227,18 @@ class Metric:
         resolution; the dimensions table carries the value per metric.
         """
         return self.dimensions.get("Family") or None
+
+    @property
+    def ai_substrate(self) -> str | None:
+        """AI-Substrate class (v5.5.3+, derived; plan-future #10 Option 2).
+
+        One of: Pre-AI / AI-Substrate / Post-AI / AI-Mediated Workflow /
+        AI-Agnostic Governance. Derived from cluster + per-metric
+        overrides at read time — not a per-metric dimension. See
+        `_ai-substrate.md` for the framing and `derive_ai_substrate`
+        for the rules.
+        """
+        return derive_ai_substrate(self)
 
     @property
     def layer(self) -> str | None:
@@ -875,6 +887,91 @@ def group_metrics_by_family(metrics: list[Metric]) -> dict[str, list[Metric]]:
         if not fam:
             continue
         out.setdefault(fam, []).append(m)
+    return out
+
+
+# v5.5.3: AI-Substrate derived classification (plan-future #10 Option 2).
+# Cluster-default + per-metric overrides; documented at `_ai-substrate.md`.
+_AI_SUBSTRATE_GROUP_DEFAULTS: dict[str, str] = {
+    "TP.AC": "Pre-AI",
+    "TP.ASR": "AI-Substrate",
+    "TP.DI": "AI-Substrate",
+    "TP.SN": "AI-Substrate",
+    "TP.CC": "AI-Substrate",
+    "TP.WB": "Post-AI",
+    "PI.PP": "AI-Substrate",
+    "PI.E2E": "AI-Substrate",
+    "HL.HF": "AI-Mediated Workflow",
+    "IO.PX": "AI-Mediated Workflow",
+    "IO.FE": "AI-Substrate",
+    "ES.ME": "AI-Substrate",
+    "GV.SG": "AI-Substrate",
+    "GV.SC": "AI-Substrate",
+    "GV.CR": "AI-Agnostic Governance",
+    "GV.VT": "AI-Agnostic Governance",
+    "GV.PD": "AI-Agnostic Governance",
+    "GV.OP": "AI-Agnostic Governance",
+    "GV.TC": "AI-Agnostic Governance",
+    "GV.EN": "AI-Agnostic Governance",
+}
+_AI_SUBSTRATE_OVERRIDES: dict[str, str] = {
+    # Training data metrics live in privacy-data-governance for cluster
+    # placement but test the model's data substrate.
+    "GV.PD-7": "AI-Substrate",
+    "GV.PD-12": "AI-Substrate",
+    # IO.PX outcome metrics that test downstream AI-output quality, not
+    # the patient-clinician interaction.
+    "IO.PX-9": "AI-Substrate",
+    "IO.PX-10": "AI-Substrate",
+    # System availability is the infrastructure consumed by the AI; the
+    # metric tests deployer-side uptime, not AI behaviour.
+    "GV.OP-5": "Post-AI",
+    # Some GV.SG metrics test deployer governance posture (versioning,
+    # change tracking, assurance debt) rather than model behaviour.
+    "GV.SG-1": "AI-Agnostic Governance",
+    "GV.SG-2": "AI-Agnostic Governance",
+    "GV.SG-13": "AI-Agnostic Governance",
+    # Some GV.SG metrics route AI-failure through human/organisational
+    # channels (LFPSE incident reporting, near-miss reporting).
+    "GV.SG-14": "AI-Mediated Workflow",
+    "GV.SG-11": "AI-Mediated Workflow",
+}
+
+
+def derive_ai_substrate(m: Metric) -> str | None:
+    """Heuristic AI-substrate classifier (v5.5.3+; plan-future #10 Option 2).
+
+    Five-class derived cut: Pre-AI / AI-Substrate / Post-AI /
+    AI-Mediated Workflow / AI-Agnostic Governance. Documented at
+    `_ai-substrate.md`. Per-group defaults + per-metric overrides
+    yield 0% disputed coverage on the catalogue at v5.5.3 time of
+    introduction. Promotion criterion (>80% non-disputed) is met.
+
+    The classifier is documentation-derived, not per-metric structural
+    — there is no `AI Substrate` field on metric bodies. Future
+    releases may add the field if the cut becomes load-bearing.
+    """
+    ref_id = m.ref_id
+    if ref_id in _AI_SUBSTRATE_OVERRIDES:
+        return _AI_SUBSTRATE_OVERRIDES[ref_id]
+    cluster = m.cluster
+    parts = ref_id.split(".", 1)
+    if len(parts) != 2:
+        return None
+    group = parts[1].split("-")[0]
+    group_key = f"{cluster}.{group}"
+    return _AI_SUBSTRATE_GROUP_DEFAULTS.get(group_key)
+
+
+def group_metrics_by_ai_substrate(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    """Group metrics by derived AI-substrate classification (v5.5.3+).
+    Metrics without a derivable class are excluded."""
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        cls = derive_ai_substrate(m)
+        if cls is None:
+            continue
+        out.setdefault(cls, []).append(m)
     return out
 
 

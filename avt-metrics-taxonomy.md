@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.5.1, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.5.3, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -3070,7 +3070,7 @@ This page is a documentation artefact, not a structural cut. It complements [Lay
 
 This section names a **derived cut** the taxonomy makes available to readers who want to ask "which metrics test the AI itself, vs the infrastructure around the AI, vs the governance of the AI?" Those are different questions, and they sit orthogonally to the Tier / Family / Layer-of-Defence cuts already documented elsewhere.
 
-This is a **documentation-only** classification — there is no `AI Substrate` field on metric bodies and no audit-enforced enum. The classification is *derived* from existing dimensions (Pipeline Layer + Responsible Actors + Cluster) at reading time. The page exists because the substantive question is real and the existing dimensions don't quite answer it directly.
+This is a **derived** classification (v5.5.3+) — there is no `AI Substrate` field on metric bodies, but the classification is **computed at build time** from cluster + per-metric overrides and surfaced through the `by-ai-substrate/` cross-cut pages and the `ai_substrate` column in CSV / JSON downloads. The page is the canonical home for the framing; the build-time derivation is the operational surface.
 
 ### The five substrate classes
 
@@ -3080,17 +3080,19 @@ This is a **documentation-only** classification — there is no `AI Substrate` f
 - **AI-Mediated Workflow** — metrics that test the human-AI interaction: clinician review behaviour, edit patterns, automation bias, time-to-sign. The metric is about how the human and the AI compose, not about either alone.
 - **AI-Agnostic Governance** — metrics that test deployer-side or vendor-side governance infrastructure that is *substantively the same whether the system is AI or not*: DPIA completion, board oversight, privacy notice currency, sub-processor disclosure. AI-deployed systems trigger the obligation, but the metric tests organisational behaviour rather than AI behaviour.
 
-### Why this cut is documentation-only
+### How this cut evolved
 
 In v5.4.0 the taxonomy considered three options for surfacing this cut (plan-future #10):
 
 1. **Add an `AI Substrate` dimension** on every metric body — high authoring cost (236 entries), structurally enforceable.
-2. **Derive at build time** from existing dimensions — low cost, covers ~80% cleanly, but introduces a `disputed` category for genuine edge cases.
-3. **Documentation-only framing page** (this one) — lowest cost, no structural change, depends on the reader doing the lookup.
+2. **Derive at build time** from existing dimensions — low cost, covers ~80% cleanly, with a `disputed` category for genuine edge cases.
+3. **Documentation-only framing page** — lowest cost, no structural change, depends on the reader doing the lookup.
 
-**Option 3 was chosen because** the cut is real but fuzzy at the edges. A handful of metrics genuinely span two classes — GV.PD-12 Training Data Representativeness Documentation is *both* an AI-Substrate concern (does the data cover the population?) *and* an AI-Agnostic Governance concern (is the documentation complete?). Forcing a single classification per metric would either pretend the fuzziness doesn't exist (Option 1) or surface it as a `disputed` value the audit has to tolerate (Option 2). Documentation-only acknowledges the fuzziness honestly.
+**v5.5.0 landed Option 3** as a starting point. The plan-future #10 promotion criteria were: prototype Option 2 against ~30 metrics; if `disputed` covers >20% of metrics, the cut is too fuzzy and Option 3 stays.
 
-If the cut later proves substantively load-bearing — readers consistently ask "show me the AI-Substrate metrics" — Option 2 (derived classification) becomes the right next step. The derivation rules are sketched below.
+**v5.5.3 promotes to Option 2.** Prototyping the derivation against the full 236-metric catalogue (cluster defaults + ~10 per-metric overrides for genuine edge cases) yielded **0% disputed** — well under the >20% rule. The classification is now build-time-derived and surfaced as a per-metric attribute (CSV/JSON `ai_substrate` field) and a cross-cut site surface (`by-ai-substrate/` pages, one per class).
+
+**The promotion is non-structural** — there is still no `AI Substrate` field on metric bodies. The classification lives in `parse._AI_SUBSTRATE_GROUP_DEFAULTS` and `parse._AI_SUBSTRATE_OVERRIDES`. This keeps cluster files unchanged while making the cut operationally available.
 
 ### How to derive class from existing dimensions
 
@@ -3155,12 +3157,11 @@ A metric like TP.SN-5 Hallucination Rate is simultaneously: Tier 1 / Detection l
 
 ### Status and future
 
-This page is **documentation-only as of v5.5.0**. Plan-future #10 records the option to upgrade to a derived (build-time) classification later if the cut proves load-bearing. The promotion criteria from #10:
+**v5.5.3 status:** Option 2 (derived classification at build time) is live. Cross-cut pages live at `by-ai-substrate/` for each of the five classes. CSV / JSON downloads carry an `ai_substrate` field. 0 metrics classified as `disputed`; the override list in `parse._AI_SUBSTRATE_OVERRIDES` handles the genuine edge cases (training-data metrics, downstream outcome metrics, system-availability infrastructure, governance-of-the-AI-stack metrics).
 
-- Prototype the derivation against ~30 metrics; if `disputed` covers >20% of metrics, the cut is too fuzzy for structural surfacing and the documentation-only treatment is the right answer.
-- At least one reader who's not the author has reviewed the cut and confirmed it carries weight.
+**Future structural promotion (Option 1) remains open** if the cut becomes contractually load-bearing — e.g. if procurement teams start citing "AI-Substrate metrics" as a procurement gate. The decision criterion would be: do readers want audit-enforceable structural commitments per metric, or is the build-time derivation sufficient? For now, Option 2 is sufficient and lower-friction.
 
-Until then, this page is the canonical home for the framing.
+**Override hygiene.** Per-metric overrides should be added when a metric's cluster default is wrong; current overrides are documented in `parse._AI_SUBSTRATE_OVERRIDES` with comments explaining each. Adding new overrides should be a small per-release task as the catalogue grows.
 
 ## Gaps & Proposed Metrics (Roadmap)
 
@@ -3619,7 +3620,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.1` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.3` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 

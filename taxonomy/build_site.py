@@ -1086,6 +1086,34 @@ def _family_page(label: str, metrics: list) -> str:
     return "\n".join(lines)
 
 
+def _ai_substrate_page(label: str, metrics: list) -> str:
+    """Render the `crosscuts/by-ai-substrate/<slug>.md` page (v5.5.3+).
+
+    AI-Substrate is a fully-derived classification (no per-metric
+    field). The page is informational; `_ai-substrate.md` carries the
+    construct definition and class-by-class rationale.
+    """
+    lines = [
+        f"# AI-Substrate: {label}",
+        "",
+        f"{len(metrics)} metrics derived as **{label}** — see "
+        f"[AI-Substrate](../../ai-substrate.md) for the five-class "
+        f"framing and derivation rules. The classification is fully "
+        f"derived from cluster + per-metric overrides at build time; "
+        f"it is **not** a per-metric dimension on metric bodies.",
+        "",
+        "| Ref | Metric | Group | Tier |",
+        "|-----|--------|-------|------|",
+    ]
+    for m in sorted(metrics, key=lambda x: (x.cluster, x.group, x.ref_id)):
+        link = _metric_page_link(m.ref_id, m.name, m.group_file)
+        lines.append(
+            f"| {m.ref_id} | {link} | {m.group} | {_tier_icon(m.tier)} {m.tier} |"
+        )
+    lines.append("")
+    return "\n".join(lines)
+
+
 def _layer_page(label: str, metrics: list) -> str:
     """Render the `crosscuts/by-layer-of-defence/<slug>.md` page.
 
@@ -1251,6 +1279,7 @@ def build_crosscuts() -> int:
     apps = parse_src.group_metrics_by_applicability(metrics)
     families = parse_src.group_metrics_by_family(metrics)
     layers = parse_src.group_metrics_by_layer_of_defence(metrics)
+    substrates = parse_src.group_metrics_by_ai_substrate(metrics)
     principles = parse_src.parse_rai_principle_membership()
     themes = parse_src.parse_rai_theme_membership()
 
@@ -1258,6 +1287,7 @@ def build_crosscuts() -> int:
     (base / "by-applicability").mkdir(parents=True, exist_ok=True)
     (base / "by-family").mkdir(parents=True, exist_ok=True)
     (base / "by-layer-of-defence").mkdir(parents=True, exist_ok=True)
+    (base / "by-ai-substrate").mkdir(parents=True, exist_ok=True)
     (base / "by-principle").mkdir(parents=True, exist_ok=True)
     (base / "by-theme").mkdir(parents=True, exist_ok=True)
     (base / "by-standard").mkdir(parents=True, exist_ok=True)
@@ -1313,10 +1343,16 @@ def build_crosscuts() -> int:
             _family_page(label, fam_metrics)
         )
 
-    # Layer-of-defence pages (v5.5.0+; derived classification)
+    # Layer-of-defence pages (v5.5.0+; explicit + heuristic)
     for label, layer_metrics in layers.items():
         (base / "by-layer-of-defence" / f"{label.lower()}.md").write_text(
             _layer_page(label, layer_metrics)
+        )
+
+    # AI-substrate pages (v5.5.3+; fully derived)
+    for label, sub_metrics in substrates.items():
+        (base / "by-ai-substrate" / f"{_slugify(label)}.md").write_text(
+            _ai_substrate_page(label, sub_metrics)
         )
 
     total = (
@@ -1324,6 +1360,7 @@ def build_crosscuts() -> int:
         + len(applicability_slugs)
         + len(families)
         + len(layers)
+        + len(substrates)
         + len(principles)
         + len(themes)
         + len(standards)

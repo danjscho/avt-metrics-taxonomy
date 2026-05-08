@@ -177,6 +177,12 @@ nav:
           - Prevention: crosscuts/by-layer-of-defence/prevention.md
           - Detection: crosscuts/by-layer-of-defence/detection.md
           - Limitation: crosscuts/by-layer-of-defence/limitation.md
+      - By AI substrate:
+          - Pre-AI: crosscuts/by-ai-substrate/pre-ai.md
+          - AI-Substrate: crosscuts/by-ai-substrate/ai-substrate.md
+          - Post-AI: crosscuts/by-ai-substrate/post-ai.md
+          - AI-Mediated Workflow: crosscuts/by-ai-substrate/ai-mediated-workflow.md
+          - AI-Agnostic Governance: crosscuts/by-ai-substrate/ai-agnostic-governance.md
       - By Playbook principle:
           - P1 - Limitations: crosscuts/by-principle/p1.md
           - P2 - Lawful/ethical: crosscuts/by-principle/p2.md
