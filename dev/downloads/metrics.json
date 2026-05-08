@@ -1,5 +1,5 @@
 {
-  "version": "v5.5.2",
+  "version": "v5.5.8",
   "status": "ai-coauthored-prototype-for-discussion",
   "status_note": "This taxonomy is an AI-coauthored prototype for discussion, not a settled standard. Substantial portions were drafted with AI assistance and human-reviewed; specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review. Verify before use. Tier assignments and threshold numbers will change in response to feedback. Do not paste threshold numbers into contracts or treat any specific metric as policy. See https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/",
   "metric_count": 236,
@@ -15,7 +15,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -28,6 +29,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Standard audio engineering; applied to AVT quality assurance"
       },
       "group_file": "tp/audio-capture.md",
@@ -44,7 +46,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -57,10 +60,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard speech processing; critical for clinical AVT given variable environment"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 72
+      "heading_line": 73
     },
     {
       "ref_id": "TP.AC-3",
@@ -73,7 +77,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -86,10 +91,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Proposed - extends validated use envelope concept to acoustic conditions"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 111
+      "heading_line": 113
     },
     {
       "ref_id": "TP.AC-4",
@@ -102,7 +108,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -115,10 +122,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Identified in NHSE IG guidance on ambient scribing privacy implications; CQC Mythbuster 109 context"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 152
+      "heading_line": 155
     },
     {
       "ref_id": "TP.AC-5",
@@ -132,6 +140,7 @@
       "applicability": "AVT-Specific",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -148,7 +157,7 @@
         "Source": "Standard audio hardware validation; vendor deployment requirements"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 191
+      "heading_line": 195
     },
     {
       "ref_id": "TP.AC-6",
@@ -161,7 +170,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -174,10 +184,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard speech processing; particularly relevant for clinical consultations"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 229
+      "heading_line": 233
     },
     {
       "ref_id": "TP.AC-7",
@@ -190,7 +201,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -203,10 +215,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Standard audio engineering"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 268
+      "heading_line": 273
     },
     {
       "ref_id": "TP.AC-8",
@@ -219,7 +232,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -232,10 +246,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Standard audio engineering; vendor minimum specifications"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 325
+      "heading_line": 331
     },
     {
       "ref_id": "TP.AC-9",
@@ -248,7 +263,8 @@
       "group": "Audio Capture & Environment",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Pre-AI",
       "dimensions": {
         "Reference": "TP.AC-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -261,10 +277,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Proposed - extends hardware validation to ongoing monitoring"
       },
       "group_file": "tp/audio-capture.md",
-      "heading_line": 364
+      "heading_line": 371
     },
     {
       "ref_id": "TP.ASR-1",
@@ -277,7 +294,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": "Clinical Transcription Accuracy",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -291,6 +309,7 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Clinical Transcription Accuracy",
+        "Layer": "Prevention",
         "Source": "[Wang-ADS-Eval-2025]; standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
@@ -307,7 +326,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": "Clinical Transcription Accuracy",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -321,10 +341,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Clinical Transcription Accuracy",
+        "Layer": "Prevention",
         "Source": "[OxonFair-2024] (proposed AVT extension; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 60
+      "heading_line": 61
     },
     {
       "ref_id": "TP.ASR-3",
@@ -337,7 +358,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": "Clinical Transcription Accuracy",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -351,10 +373,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Clinical Transcription Accuracy",
+        "Layer": "Detection",
         "Source": "[OxonFair-2024] (healthcare voice fairness extension; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 145
+      "heading_line": 147
     },
     {
       "ref_id": "TP.ASR-4",
@@ -367,7 +390,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -381,10 +405,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "[NAS-Day-Zero-SPI-internal]; [NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 222
+      "heading_line": 225
     },
     {
       "ref_id": "TP.ASR-5",
@@ -397,7 +422,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -411,10 +437,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "[OxonFair-2024] (extension analysis; future work)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 296
+      "heading_line": 300
     },
     {
       "ref_id": "TP.ASR-6",
@@ -427,7 +454,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -440,10 +468,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Anderson et al., Mayo Clinic Proceedings Digital Health, 2025 (OHSU 5-platform study found 19.5% transmission rate)"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 340
+      "heading_line": 345
     },
     {
       "ref_id": "TP.ASR-7",
@@ -456,7 +485,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -469,10 +499,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Standard ASR performance metric"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 377
+      "heading_line": 383
     },
     {
       "ref_id": "TP.ASR-8",
@@ -485,7 +516,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -498,10 +530,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard ASR literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 412
+      "heading_line": 419
     },
     {
       "ref_id": "TP.ASR-9",
@@ -514,7 +547,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -527,10 +561,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Standard speech recognition literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 468
+      "heading_line": 476
     },
     {
       "ref_id": "TP.ASR-10",
@@ -543,7 +578,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -556,10 +592,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Machine learning calibration literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 507
+      "heading_line": 516
     },
     {
       "ref_id": "TP.ASR-11",
@@ -572,7 +609,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-11",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -585,10 +623,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Derived from Abridge Linked Evidence architecture; confidence-based routing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 552
+      "heading_line": 562
     },
     {
       "ref_id": "TP.ASR-12",
@@ -602,6 +641,7 @@
       "applicability": "AVT-Specific",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-12",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -618,7 +658,7 @@
         "Source": "[Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 593
+      "heading_line": 604
     },
     {
       "ref_id": "TP.ASR-13",
@@ -632,6 +672,7 @@
       "applicability": "AVT-Specific",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -648,7 +689,7 @@
         "Source": "Identified as critical gap in clinical ASR evaluation"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 665
+      "heading_line": 676
     },
     {
       "ref_id": "TP.ASR-14",
@@ -661,7 +702,8 @@
       "group": "ASR / Transcription",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.ASR-14",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -674,10 +716,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard ASR post-processing literature"
       },
       "group_file": "tp/asr-transcription.md",
-      "heading_line": 739
+      "heading_line": 750
     },
     {
       "ref_id": "TP.DI-1",
@@ -690,7 +733,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -703,6 +747,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[Wang-ADS-Eval-2025]; standard diarisation literature"
       },
       "group_file": "tp/diarisation.md",
@@ -719,7 +764,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -732,10 +778,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 58
+      "heading_line": 59
     },
     {
       "ref_id": "TP.DI-3",
@@ -748,7 +795,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -761,10 +809,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard diarisation evaluation"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 101
+      "heading_line": 103
     },
     {
       "ref_id": "TP.DI-4",
@@ -777,7 +826,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -790,10 +840,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard diarisation literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 140
+      "heading_line": 143
     },
     {
       "ref_id": "TP.DI-5",
@@ -806,7 +857,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -819,10 +871,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[mpathic-Clinical-ASR-Benchmark-2025]; extends standard diarisation"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 187
+      "heading_line": 191
     },
     {
       "ref_id": "TP.DI-6",
@@ -835,7 +888,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -848,10 +902,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[Sitaram-Code-Switching-Survey-2019]; multilingual ASR literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 228
+      "heading_line": 233
     },
     {
       "ref_id": "TP.DI-7",
@@ -864,7 +919,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -877,10 +933,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[ACL-SIGDIAL-2023]; standard overlap-aware ASR literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 267
+      "heading_line": 273
     },
     {
       "ref_id": "TP.DI-8",
@@ -893,7 +950,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -906,10 +964,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[mpathic-Clinical-ASR-Benchmark-2025]"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 306
+      "heading_line": 313
     },
     {
       "ref_id": "TP.DI-9",
@@ -922,7 +981,8 @@
       "group": "Diarisation",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.DI-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -935,10 +995,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Multi-party dialogue research; pragmatics literature"
       },
       "group_file": "tp/diarisation.md",
-      "heading_line": 355
+      "heading_line": 363
     },
     {
       "ref_id": "TP.SN-1",
@@ -951,7 +1012,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": "Reference-Based Text Similarity",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -965,6 +1027,7 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Reference-Based Text Similarity",
+        "Layer": "Prevention",
         "Source": "[ROUGE-Lin-2004]; inadequacy shown by [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
@@ -981,7 +1044,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": "Reference-Based Text Similarity",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -995,10 +1059,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Reference-Based Text Similarity",
+        "Layer": "Prevention",
         "Source": "[BERTScore-Zhang-2020]; [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 71
+      "heading_line": 72
     },
     {
       "ref_id": "TP.SN-3",
@@ -1011,7 +1076,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1024,10 +1090,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[PDSQI-9]; [Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 130
+      "heading_line": 132
     },
     {
       "ref_id": "TP.SN-4",
@@ -1040,7 +1107,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1053,10 +1121,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Asgari-Tortus-2025]. Now underpins automated guardrails."
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 171
+      "heading_line": 174
     },
     {
       "ref_id": "TP.SN-5",
@@ -1070,6 +1139,7 @@
       "applicability": "AVT-Contextualised",
       "family": "Clinical Content Fidelity",
       "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1087,7 +1157,7 @@
         "Source": "Various; [Asgari-Tortus-2025] reports 1.47% per sentence"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 224
+      "heading_line": 228
     },
     {
       "ref_id": "TP.SN-6",
@@ -1101,6 +1171,7 @@
       "applicability": "AVT-Contextualised",
       "family": "Clinical Content Fidelity",
       "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1118,7 +1189,7 @@
         "Source": "[Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 324
+      "heading_line": 328
     },
     {
       "ref_id": "TP.SN-7a",
@@ -1131,7 +1202,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-7a",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1144,10 +1216,11 @@
         "Maturity": "Vendor-Proprietary",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Abridge-Whitepaper-2025] (50,000+ training examples)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 434
+      "heading_line": 439
     },
     {
       "ref_id": "TP.SN-7b",
@@ -1160,7 +1233,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-7b",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1173,10 +1247,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Chung-NEJM-AI-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 491
+      "heading_line": 497
     },
     {
       "ref_id": "TP.SN-9a",
@@ -1189,7 +1264,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-9a",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1202,10 +1278,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Croxford-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 602
+      "heading_line": 610
     },
     {
       "ref_id": "TP.SN-9b",
@@ -1218,7 +1295,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-9b",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1231,10 +1309,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Prevention",
         "Source": "[Bedi-Stanford-CRFM-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 645
+      "heading_line": 654
     },
     {
       "ref_id": "TP.SN-11",
@@ -1247,7 +1326,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1260,10 +1340,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Kanithi-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 688
+      "heading_line": 698
     },
     {
       "ref_id": "TP.SN-12",
@@ -1276,7 +1357,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1289,10 +1371,11 @@
         "Maturity": "Vendor-Proprietary",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "architectural pattern; [Abridge-Linked-Evidence] cited as a representative vendor implementation (not an authoritative architectural specification)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 731
+      "heading_line": 742
     },
     {
       "ref_id": "TP.SN-13",
@@ -1305,7 +1388,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-13",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1318,10 +1402,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[Wang-ADS-Eval-2025]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 774
+      "heading_line": 786
     },
     {
       "ref_id": "TP.SN-14",
@@ -1334,7 +1419,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1347,10 +1433,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[INSYTE-2025]; [DCB0129] gap"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 817
+      "heading_line": 830
     },
     {
       "ref_id": "TP.SN-15",
@@ -1364,6 +1451,7 @@
       "applicability": "AVT-Contextualised",
       "family": "Clinical Content Fidelity",
       "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-15",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1381,7 +1469,7 @@
         "Source": "Clinical NLP literature; identified as systematic LLM failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 860
+      "heading_line": 874
     },
     {
       "ref_id": "TP.SN-16",
@@ -1394,7 +1482,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-16",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1407,10 +1496,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Clinical NLP literature on temporal expression extraction"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 931
+      "heading_line": 945
     },
     {
       "ref_id": "TP.SN-17",
@@ -1423,7 +1513,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1436,10 +1527,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[i2b2-2012-Temporal-Challenge]; clinical temporal reasoning literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 970
+      "heading_line": 985
     },
     {
       "ref_id": "TP.SN-18",
@@ -1452,7 +1544,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-18",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1465,10 +1558,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as systematic LLM summarisation failure mode"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1007
+      "heading_line": 1023
     },
     {
       "ref_id": "TP.SN-19",
@@ -1481,7 +1575,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": "Medication Safety Thread",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-19",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1495,10 +1590,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Medication Safety Thread",
+        "Layer": "Detection",
         "Source": "[n2c2-Shared-Tasks] (2018 Track 2 ADE & Medication Extraction; best systems reported F1 ~0.94 concept extraction / ~0.96 relation classification / ~0.89 end-to-end)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1048
+      "heading_line": 1065
     },
     {
       "ref_id": "TP.SN-20",
@@ -1512,6 +1608,7 @@
       "applicability": "AVT-Contextualised",
       "family": "Clinical Content Fidelity",
       "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-20",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1529,7 +1626,7 @@
         "Source": "Clinical NLP hedging/uncertainty literature"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1088
+      "heading_line": 1106
     },
     {
       "ref_id": "TP.SN-21",
@@ -1542,7 +1639,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": "Medication Safety Thread",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-21",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1556,10 +1654,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Medication Safety Thread",
+        "Layer": "Detection",
         "Source": "[n2c2-Shared-Tasks] (2018 ADE & medication-extraction task framework, extended with action-class taxonomy below)"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1165
+      "heading_line": 1183
     },
     {
       "ref_id": "TP.SN-22",
@@ -1572,7 +1671,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-22",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1585,10 +1685,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Human factors literature on documentation consistency"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1205
+      "heading_line": 1224
     },
     {
       "ref_id": "TP.SN-23",
@@ -1601,7 +1702,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-23",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1614,10 +1716,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as quality dimension not captured by accuracy metrics"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1244
+      "heading_line": 1264
     },
     {
       "ref_id": "TP.SN-24",
@@ -1630,7 +1733,8 @@
       "group": "Summarisation / NLP",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.SN-24",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1643,10 +1747,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Himmelstein-Stigmatising-EHR-JAMA-2022]"
       },
       "group_file": "tp/summarisation-nlp.md",
-      "heading_line": 1285
+      "heading_line": 1306
     },
     {
       "ref_id": "TP.CC-1",
@@ -1659,7 +1764,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1672,6 +1778,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Standard clinical audit; [NAS-Day-Zero-SPI-internal] baselines"
       },
       "group_file": "tp/clinical-coding.md",
@@ -1688,7 +1795,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1701,10 +1809,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[NLP2FHIR-Pipeline]; [John-Snow-Labs-FHIR-Ready-AI]; [MedCAT-Benchmarks]"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 40
+      "heading_line": 41
     },
     {
       "ref_id": "TP.CC-3",
@@ -1717,7 +1826,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1730,10 +1840,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Hybrid-Code-v2-2026]; [WHO-ICD-11]"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 77
+      "heading_line": 79
     },
     {
       "ref_id": "TP.CC-4",
@@ -1746,7 +1857,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1759,10 +1871,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[NHS-Digital-OPCS-4]; gap identified in published AVT literature"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 116
+      "heading_line": 119
     },
     {
       "ref_id": "TP.CC-5",
@@ -1775,7 +1888,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": "Medication Safety Thread",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1789,10 +1903,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Medication Safety Thread",
+        "Layer": "Detection",
         "Source": "[NHS-BSA-dm-plus-d]; gap identified in published AVT literature"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 153
+      "heading_line": 157
     },
     {
       "ref_id": "TP.CC-6",
@@ -1805,7 +1920,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -1818,14 +1934,15 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[Hybrid-Code-v2-2026] (neuro-symbolic verification approach)"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 193
+      "heading_line": 198
     },
     {
       "ref_id": "TP.CC-7",
-      "name": "Coding Drift Detection (NHS framing; was Coding Inflation Detection)",
+      "name": "Coding Drift Detection",
       "tier": 2,
       "tier_label": "Recommended",
       "tier_icon": "🟡",
@@ -1834,7 +1951,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1847,10 +1965,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "NHS data-integrity risk analysis; US payer countermeasures (E/M upcoding literature); [npj-DM-AI-Coding-Drift-2025] documented 3.0→4.1 diagnoses/encounter post-AVT"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 249
+      "heading_line": 255
     },
     {
       "ref_id": "TP.CC-9",
@@ -1863,7 +1982,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -1877,14 +1997,15 @@
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "Extension of existing Deployment Equity Index to coding dimension"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 324
+      "heading_line": 331
     },
     {
       "ref_id": "TP.CC-10",
-      "name": "HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)",
+      "name": "HRG / Tariff Impact Attribution",
       "tier": 3,
       "tier_label": "Advanced / Research",
       "tier_icon": "🔵",
@@ -1893,7 +2014,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1906,10 +2028,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Extends [TP.CC-7 Coding Drift Detection](#tp-cc-7) with quasi-experimental causal attribution; NHS PbR / HRG context primary; US wRVU literature provides the methodological precedent"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 362
+      "heading_line": 370
     },
     {
       "ref_id": "TP.CC-11",
@@ -1922,7 +2045,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1935,10 +2059,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[SNOMED-CT] hierarchy semantics; clinical audit methodology"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 399
+      "heading_line": 408
     },
     {
       "ref_id": "TP.CC-12",
@@ -1951,7 +2076,8 @@
       "group": "Clinical Coding",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "TP.CC-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -1964,10 +2090,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Standard latency metric"
       },
       "group_file": "tp/clinical-coding.md",
-      "heading_line": 438
+      "heading_line": 448
     },
     {
       "ref_id": "TP.WB-1",
@@ -1981,6 +2108,7 @@
       "applicability": "AVT-Contextualised",
       "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "layer": "Prevention",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2012,6 +2140,7 @@
       "applicability": "AVT-Contextualised",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2042,6 +2171,7 @@
       "applicability": "AVT-Contextualised",
       "family": "PRSB Semantic Completeness & Write-back Fidelity",
       "layer": "Prevention",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2073,6 +2203,7 @@
       "applicability": "AVT-Contextualised",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2102,7 +2233,8 @@
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2115,6 +2247,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Limitation",
         "Source": "Identified as essential for incident response"
       },
       "group_file": "tp/downstream-write-back.md",
@@ -2131,7 +2264,8 @@
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
       "family": "PRSB Semantic Completeness & Write-back Fidelity",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2145,10 +2279,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "PRSB Semantic Completeness & Write-back Fidelity",
+        "Layer": "Detection",
         "Source": "[FHIR-UK-Core] R4 validation tooling"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 332
+      "heading_line": 333
     },
     {
       "ref_id": "TP.WB-7",
@@ -2161,7 +2296,8 @@
       "group": "Downstream Write-back",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2174,10 +2310,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[openEHR-Foundation]; [openEHR-Clinical-Knowledge-Manager] archetype library"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 372
+      "heading_line": 374
     },
     {
       "ref_id": "TP.WB-8",
@@ -2190,7 +2327,8 @@
       "group": "Downstream Write-back",
       "applicability": "General Healthcare AI",
       "family": "PRSB Semantic Completeness & Write-back Fidelity",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "TP.WB-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2204,10 +2342,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "PRSB Semantic Completeness & Write-back Fidelity",
+        "Layer": "Detection",
         "Source": "[PRSB] Core Information Standard; PRSB Outpatient Letter Standard; PRSB Discharge Summary Standard"
       },
       "group_file": "tp/downstream-write-back.md",
-      "heading_line": 411
+      "heading_line": 414
     },
     {
       "ref_id": "PI.PP-1",
@@ -2220,7 +2359,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2233,6 +2373,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Identified as compound metric gap - neither WER nor DER alone captures this"
       },
       "group_file": "pi/partial-pipeline.md",
@@ -2249,7 +2390,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2262,10 +2404,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Identified in NHS consultation pattern analysis - interpreter-mediated, family-present, and MDT consultations are common"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 73
+      "heading_line": 74
     },
     {
       "ref_id": "PI.PP-3",
@@ -2278,7 +2421,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2291,10 +2435,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as structural gap - component metrics don't capture cross-stage information loss"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 112
+      "heading_line": 114
     },
     {
       "ref_id": "PI.PP-4",
@@ -2307,7 +2452,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2320,10 +2466,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Proposed for pre-deployment testing - NHS clinical environments have variable acoustics"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 179
+      "heading_line": 182
     },
     {
       "ref_id": "PI.PP-5",
@@ -2336,7 +2483,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2349,10 +2497,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as critical clinical documentation quality dimension not captured by existing metrics"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 218
+      "heading_line": 222
     },
     {
       "ref_id": "PI.PP-6",
@@ -2365,7 +2514,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2378,10 +2528,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Compound metric exposing diarisation impact on ASR measurement"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 291
+      "heading_line": 296
     },
     {
       "ref_id": "PI.PP-7",
@@ -2394,7 +2545,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2407,10 +2559,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed as automated internal consistency check - no ground truth needed"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 330
+      "heading_line": 336
     },
     {
       "ref_id": "PI.PP-8",
@@ -2423,7 +2576,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2436,10 +2590,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Standard speech processing metric"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 401
+      "heading_line": 408
     },
     {
       "ref_id": "PI.PP-9",
@@ -2452,7 +2607,8 @@
       "group": "Partial-Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.PP-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2465,10 +2621,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as post-write-back automated safety check"
       },
       "group_file": "pi/partial-pipeline.md",
-      "heading_line": 440
+      "heading_line": 448
     },
     {
       "ref_id": "PI.E2E-1",
@@ -2481,7 +2638,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2494,6 +2652,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed as the ultimate AVT safety metric - captures cumulative pipeline effect"
       },
       "group_file": "pi/end-to-end-pipeline.md",
@@ -2510,7 +2669,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2523,10 +2683,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Extension of existing Source-to-Record Concordance with categorical yield decomposition"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 85
+      "heading_line": 86
     },
     {
       "ref_id": "PI.E2E-3",
@@ -2539,7 +2700,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2552,10 +2714,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "Proposed - analogous to fault propagation analysis in safety engineering"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 122
+      "heading_line": 124
     },
     {
       "ref_id": "PI.E2E-4",
@@ -2568,7 +2731,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2581,10 +2745,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed - analogous to chain-of-custody in evidence management and traceability in safety-critical systems"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 198
+      "heading_line": 201
     },
     {
       "ref_id": "PI.E2E-5",
@@ -2597,7 +2762,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2610,10 +2776,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed - extends demographic-disaggregated WER to end-to-end measurement"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 282
+      "heading_line": 286
     },
     {
       "ref_id": "PI.E2E-6",
@@ -2626,7 +2793,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2639,10 +2807,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Proposed - inspired by signal processing concept of cumulative distortion"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 321
+      "heading_line": 326
     },
     {
       "ref_id": "PI.E2E-7",
@@ -2655,7 +2824,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2668,10 +2838,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Prevention",
         "Source": "Proposed - standard practice in safety-critical software testing but not yet applied to AVT pipelines"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 397
+      "heading_line": 403
     },
     {
       "ref_id": "PI.E2E-8",
@@ -2684,7 +2855,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2697,10 +2869,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed - analogous to root cause analysis in incident investigation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 482
+      "heading_line": 489
     },
     {
       "ref_id": "PI.E2E-9",
@@ -2713,7 +2886,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2726,10 +2900,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed - the ultimate validity test for clinical documentation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 521
+      "heading_line": 529
     },
     {
       "ref_id": "PI.E2E-10",
@@ -2742,7 +2917,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2755,10 +2931,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed as operational metric - RTF alone doesn't capture full workflow impact"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 564
+      "heading_line": 573
     },
     {
       "ref_id": "PI.E2E-11",
@@ -2771,7 +2948,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-11",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2784,10 +2962,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Prevention",
         "Source": "Standard fault tolerance testing applied to AVT pipelines"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 603
+      "heading_line": 613
     },
     {
       "ref_id": "PI.E2E-12",
@@ -2800,7 +2979,8 @@
       "group": "End-to-End Pipeline",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "PI.E2E-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2813,10 +2993,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Information theory applied to clinical documentation"
       },
       "group_file": "pi/end-to-end-pipeline.md",
-      "heading_line": 642
+      "heading_line": 653
     },
     {
       "ref_id": "HL.HF-1",
@@ -2830,6 +3011,7 @@
       "applicability": "AVT-Contextualised",
       "family": "Post-Generation Correction",
       "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2860,7 +3042,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": "Post-Generation Correction",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2874,6 +3057,7 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Post-Generation Correction",
+        "Layer": "Detection",
         "Source": "[Abridge-Whitepaper-2025]; [DeepScore]"
       },
       "group_file": "hl/human-factors-workflow.md",
@@ -2891,6 +3075,7 @@
       "applicability": "AVT-Contextualised",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-3a",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2907,7 +3092,7 @@
         "Source": "[NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 185
+      "heading_line": 187
     },
     {
       "ref_id": "HL.HF-3b",
@@ -2921,6 +3106,7 @@
       "applicability": "AVT-Contextualised",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-3b",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -2937,7 +3123,7 @@
         "Source": "EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 260
+      "heading_line": 262
     },
     {
       "ref_id": "HL.HF-5",
@@ -2950,7 +3136,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": "Post-Generation Correction",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -2964,10 +3151,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Post-Generation Correction",
+        "Layer": "Detection",
         "Source": "[Abridge-Whitepaper-2025]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 341
+      "heading_line": 343
     },
     {
       "ref_id": "HL.HF-6",
@@ -2980,7 +3168,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -2993,10 +3182,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Proposed in [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 387
+      "heading_line": 390
     },
     {
       "ref_id": "HL.HF-7",
@@ -3009,7 +3199,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": "Post-Generation Correction",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3023,10 +3214,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
         "Family": "Post-Generation Correction",
+        "Layer": "Detection",
         "Source": "Extends edit-pattern monitoring with structural awareness"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 434
+      "heading_line": 438
     },
     {
       "ref_id": "HL.HF-8",
@@ -3039,7 +3231,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3052,10 +3245,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Human factors literature; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 476
+      "heading_line": 481
     },
     {
       "ref_id": "HL.HF-9",
@@ -3068,7 +3262,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3081,10 +3276,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified as strong dissatisfaction signal"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 525
+      "heading_line": 531
     },
     {
       "ref_id": "HL.HF-10",
@@ -3097,7 +3293,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3110,10 +3307,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[NASA-TLX] adapted for clinical documentation review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 564
+      "heading_line": 571
     },
     {
       "ref_id": "HL.HF-11",
@@ -3126,7 +3324,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3139,10 +3338,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Extends inter-rater reliability concepts to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 611
+      "heading_line": 619
     },
     {
       "ref_id": "HL.HF-12",
@@ -3155,7 +3355,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-12",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3168,10 +3369,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Aviation skill degradation literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 650
+      "heading_line": 659
     },
     {
       "ref_id": "HL.HF-13",
@@ -3184,7 +3386,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-13",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3197,10 +3400,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Cognitive offloading literature; distinct from automation bias"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 693
+      "heading_line": 703
     },
     {
       "ref_id": "HL.HF-14",
@@ -3213,7 +3417,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-14",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3226,10 +3431,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Trust halo effect analysis"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 732
+      "heading_line": 743
     },
     {
       "ref_id": "HL.HF-15",
@@ -3242,7 +3448,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-15",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3255,10 +3462,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Clinical fatigue research applied to AVT review"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 775
+      "heading_line": 787
     },
     {
       "ref_id": "HL.HF-16",
@@ -3271,7 +3479,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-16",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3284,10 +3493,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Hollnagel-FRAM]; [Park-SEIPS-Transfusion-2026] (SEIPS-CQR methodology demonstrated on a transfusion-system context, applicable to AVT — paper itself is not AVT-specific)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 826
+      "heading_line": 839
     },
     {
       "ref_id": "HL.HF-17",
@@ -3300,7 +3510,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3313,10 +3524,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[GOSH-Phase-4-TimeCat]"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 865
+      "heading_line": 879
     },
     {
       "ref_id": "HL.HF-18",
@@ -3329,7 +3541,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-18",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3342,10 +3555,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Hollnagel-FRAM] (Safety-II framing); resilience engineering literature"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 904
+      "heading_line": 919
     },
     {
       "ref_id": "HL.HF-19",
@@ -3358,7 +3572,8 @@
       "group": "Human Factors & Workflow",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "HL.HF-19",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3371,10 +3586,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Operationalisation of existing Clinical Documentation Skill Attenuation metric; [Lancet-Gastroenterology-Endoscopist-AI-Off-2025] (ADR fell 28.4%→22.4% when AI removed)"
       },
       "group_file": "hl/human-factors-workflow.md",
-      "heading_line": 948
+      "heading_line": 964
     },
     {
       "ref_id": "IO.PX-1",
@@ -3388,6 +3604,7 @@
       "applicability": "AVT-Contextualised",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3417,7 +3634,8 @@
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3430,6 +3648,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Patient-centred care evaluation methodology"
       },
       "group_file": "io/patient-experience.md",
@@ -3446,7 +3665,8 @@
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3459,10 +3679,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Identified gap in clinical AI evaluation - affective content is systematically deprioritised"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 113
+      "heading_line": 114
     },
     {
       "ref_id": "IO.PX-4",
@@ -3475,7 +3696,8 @@
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3488,10 +3710,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Patient-centred care literature; growing concern with patient access to records"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 152
+      "heading_line": 154
     },
     {
       "ref_id": "IO.PX-5",
@@ -3504,7 +3727,8 @@
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3517,10 +3741,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "[NHS-LLM-Framework] gap analysis"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 191
+      "heading_line": 194
     },
     {
       "ref_id": "IO.PX-6",
@@ -3533,7 +3758,8 @@
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3546,10 +3772,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "Consultation quality literature"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 230
+      "heading_line": 234
     },
     {
       "ref_id": "IO.PX-7",
@@ -3562,7 +3789,8 @@
       "group": "Patient Experience",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3575,10 +3803,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Detection",
         "Source": "See-also [Stults-2025] (clinician self-reported attentiveness gains; different construct from objective time-on-task)"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 277
+      "heading_line": 282
     },
     {
       "ref_id": "IO.PX-8",
@@ -3591,7 +3820,8 @@
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "IO.PX-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3604,10 +3834,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Health literacy research; growing relevance as patient access to records expands"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 316
+      "heading_line": 322
     },
     {
       "ref_id": "IO.PX-9",
@@ -3620,7 +3851,8 @@
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.PX-9",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3633,10 +3865,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Coiera-Fraile-Navarro-JMIR-2026]"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 355
+      "heading_line": 362
     },
     {
       "ref_id": "IO.PX-10",
@@ -3649,7 +3882,8 @@
       "group": "Patient Experience",
       "applicability": "General Healthcare AI",
       "family": "Medication Safety Thread",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.PX-10",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3663,10 +3897,11 @@
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
         "Family": "Medication Safety Thread",
+        "Layer": "Detection",
         "Source": "[Coiera-Fraile-Navarro-JMIR-2026] (critique); patient safety outcome literature; [LFPSE] medication categories"
       },
       "group_file": "io/patient-experience.md",
-      "heading_line": 394
+      "heading_line": 402
     },
     {
       "ref_id": "IO.FE-1",
@@ -3679,7 +3914,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3693,6 +3929,7 @@
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "[NHS-LLM-Framework] wider impact"
       },
       "group_file": "io/fairness-equity.md",
@@ -3709,7 +3946,8 @@
       "group": "Fairness & Equity",
       "applicability": "AVT-Specific",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3723,10 +3961,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Prevention",
         "Source": "[FAccT-2024-ASR-Accent-Critique]; sociolinguistics literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 43
+      "heading_line": 44
     },
     {
       "ref_id": "IO.FE-3",
@@ -3739,7 +3978,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3752,10 +3992,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Compound boundary risk model"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 81
+      "heading_line": 83
     },
     {
       "ref_id": "IO.FE-4",
@@ -3768,7 +4009,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3782,10 +4024,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "Intersectionality literature applied to AI fairness"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 120
+      "heading_line": 123
     },
     {
       "ref_id": "IO.FE-5",
@@ -3798,7 +4041,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": "Demographic Equity Disaggregation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3812,10 +4056,11 @@
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
         "Family": "Demographic Equity Disaggregation",
+        "Layer": "Detection",
         "Source": "Taxonomy-proposed metric extending intersectional-fairness literature (e.g. *Gender Shades* — Buolamwini & Gebru 2018; subgroup-fairness work)"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 160
+      "heading_line": 164
     },
     {
       "ref_id": "IO.FE-6",
@@ -3828,7 +4073,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3841,10 +4087,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Long-tail performance analysis from machine learning literature"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 200
+      "heading_line": 205
     },
     {
       "ref_id": "IO.FE-7",
@@ -3857,7 +4104,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3870,10 +4118,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Health literacy and equity research"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 239
+      "heading_line": 245
     },
     {
       "ref_id": "IO.FE-8",
@@ -3886,7 +4135,8 @@
       "group": "Fairness & Equity",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "IO.FE-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -3899,10 +4149,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Extension of existing Cross-Practice Variance Coefficient into equity dimension"
       },
       "group_file": "io/fairness-equity.md",
-      "heading_line": 280
+      "heading_line": 287
     },
     {
       "ref_id": "GV.SG-1",
@@ -3916,6 +4167,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.SG-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3945,7 +4197,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.SG-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -3958,6 +4211,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "gv/safety-governance.md",
@@ -3974,7 +4228,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -3987,10 +4242,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[NICE-ESF] 2022 AI-specific updates; drift detection literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 121
+      "heading_line": 122
     },
     {
       "ref_id": "GV.SG-4",
@@ -4003,7 +4259,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4016,10 +4273,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[FDA-PCCP-Guidance-2024]; [NICE-ESF] 2022 AI-specific additions"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 162
+      "heading_line": 164
     },
     {
       "ref_id": "GV.SG-5",
@@ -4032,7 +4290,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4045,10 +4304,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Alemohammad-MAD-2023]; [Shumailov-Curse-of-Recursion]; [He-AI-Contamination-Pathology-2026]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 201
+      "heading_line": 204
     },
     {
       "ref_id": "GV.SG-6",
@@ -4061,7 +4321,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4074,10 +4335,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Concept drift literature from ML monitoring applied to clinical NLG"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 242
+      "heading_line": 246
     },
     {
       "ref_id": "GV.SG-7",
@@ -4090,7 +4352,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4103,10 +4366,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Kalinich-LLM-SaMD-PRA-2025] (PRA framework demonstrated on suicide-risk chatbot safety, applied here to AVT)"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 279
+      "heading_line": 284
     },
     {
       "ref_id": "GV.SG-8",
@@ -4119,7 +4383,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4132,10 +4397,11 @@
         "Maturity": "Vendor-Proprietary",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[DeepScribe]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 322
+      "heading_line": 328
     },
     {
       "ref_id": "GV.SG-9",
@@ -4149,6 +4415,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-9",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4165,7 +4432,7 @@
         "Source": "[AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 365
+      "heading_line": 372
     },
     {
       "ref_id": "GV.SG-10",
@@ -4178,7 +4445,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4191,10 +4459,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Compound boundary risk model; [NHS-LLM-Framework]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 409
+      "heading_line": 416
     },
     {
       "ref_id": "GV.SG-11",
@@ -4208,6 +4477,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "GV.SG-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4224,7 +4494,7 @@
         "Source": "[LFPSE] national reporting"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 456
+      "heading_line": 464
     },
     {
       "ref_id": "GV.SG-12",
@@ -4237,7 +4507,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4250,10 +4521,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 500
+      "heading_line": 508
     },
     {
       "ref_id": "GV.SG-13",
@@ -4267,6 +4539,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.SG-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4283,7 +4556,7 @@
         "Source": "Multi-level assurance framework"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 539
+      "heading_line": 548
     },
     {
       "ref_id": "GV.SG-14",
@@ -4297,6 +4570,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Mediated Workflow",
       "dimensions": {
         "Reference": "GV.SG-14",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4313,7 +4587,7 @@
         "Source": "Patient safety leading vs lagging indicator literature"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 579
+      "heading_line": 588
     },
     {
       "ref_id": "GV.SG-15",
@@ -4326,7 +4600,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-15",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4339,10 +4614,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Standard incident response metric applied to AVT"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 649
+      "heading_line": 658
     },
     {
       "ref_id": "GV.SG-16",
@@ -4355,7 +4631,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-16",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4368,10 +4645,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Operational extension of [AMLAS-AAIP]"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 690
+      "heading_line": 700
     },
     {
       "ref_id": "GV.SG-17",
@@ -4385,6 +4663,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-17",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4401,7 +4680,7 @@
         "Source": "[DCB0129] compliance requirement"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 731
+      "heading_line": 742
     },
     {
       "ref_id": "GV.SG-18",
@@ -4414,7 +4693,8 @@
       "group": "Safety & Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SG-18",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4427,10 +4707,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[MHRA-SaMD] AI Airlock + Change Programme; [FDA-PCCP-Guidance-2024] (cross-aligned)"
       },
       "group_file": "gv/safety-governance.md",
-      "heading_line": 775
+      "heading_line": 786
     },
     {
       "ref_id": "GV.CR-1",
@@ -4443,7 +4724,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4457,6 +4739,7 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Detection",
         "Source": "[NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
@@ -4473,7 +4756,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4487,10 +4771,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Detection",
         "Source": "[NHSE-IG-Guidance-2026-03]; [CQC-Mythbuster-109] context"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 71
+      "heading_line": 72
     },
     {
       "ref_id": "GV.CR-3",
@@ -4503,7 +4788,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4517,10 +4803,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Detection",
         "Source": "[NHSE-IG-Guidance-2026-03]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 142
+      "heading_line": 144
     },
     {
       "ref_id": "GV.CR-4",
@@ -4533,7 +4820,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-4",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4546,10 +4834,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[NHSE-AVT-Registry] (live since January 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 207
+      "heading_line": 210
     },
     {
       "ref_id": "GV.CR-5",
@@ -4562,7 +4851,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4575,10 +4865,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[CIO-CCIO-Guidance-2026]; NHS CIO priority notification"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 270
+      "heading_line": 274
     },
     {
       "ref_id": "GV.CR-6",
@@ -4591,7 +4882,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4604,10 +4896,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[DCB0129] / [DCB0160]; [PubMed-41172285-FOI-Study]"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 335
+      "heading_line": 340
     },
     {
       "ref_id": "GV.CR-7",
@@ -4620,7 +4913,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-7",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4634,10 +4928,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Prevention",
         "Source": "[UK-GDPR] Article 35; [NHSE-IG-Guidance-2026-03] template"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 399
+      "heading_line": 405
     },
     {
       "ref_id": "GV.CR-8",
@@ -4650,7 +4945,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4663,10 +4959,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[UK-GDPR] Article 28; NHS data protection guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 468
+      "heading_line": 475
     },
     {
       "ref_id": "GV.CR-9",
@@ -4679,7 +4976,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4692,10 +4990,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[FDA-PCCP-Guidance-2024]; [EU-AI-Act] Article 15; [NICE-ESF] 2022 AI updates"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 507
+      "heading_line": 515
     },
     {
       "ref_id": "GV.CR-10",
@@ -4708,7 +5007,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4721,10 +5021,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[EU-AI-Act] Article 12 (high-risk provisions effective August 2026)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 548
+      "heading_line": 557
     },
     {
       "ref_id": "GV.CR-11",
@@ -4737,7 +5038,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4750,10 +5052,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[MHRA-SaMD]; FTS notice 069369-2025 Step 1.h"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 587
+      "heading_line": 597
     },
     {
       "ref_id": "GV.CR-12",
@@ -4766,7 +5069,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-12",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4779,10 +5083,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[CQC] well-led KLOEs; DSIT AI Playbook Principle 10"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 626
+      "heading_line": 637
     },
     {
       "ref_id": "GV.CR-13",
@@ -4795,7 +5100,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-13",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4809,10 +5115,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Detection",
         "Source": "[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 665
+      "heading_line": 677
     },
     {
       "ref_id": "GV.CR-14",
@@ -4825,7 +5132,8 @@
       "group": "NHS Compliance & Regulatory",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.CR-14",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -4838,10 +5146,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[Caldicott] Principle 1 (justify the purpose); RCGP / RCPsych sensitive-consultation guidance"
       },
       "group_file": "gv/nhs-compliance-regulatory.md",
-      "heading_line": 707
+      "heading_line": 720
     },
     {
       "ref_id": "GV.SC-1",
@@ -4854,7 +5163,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-1",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4867,6 +5177,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026]; adversarial ML literature"
       },
       "group_file": "gv/security-adversarial-robustness.md",
@@ -4883,7 +5194,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4896,10 +5208,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[Mindgard-Heidi-2026]; [Mindgard-Doctronic-2026]"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 45
+      "heading_line": 46
     },
     {
       "ref_id": "GV.SC-3",
@@ -4912,7 +5225,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4925,10 +5239,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Adversarial ML literature; identified in [NHS-LLM-Framework] 'intentional misuse' dimension"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 89
+      "heading_line": 91
     },
     {
       "ref_id": "GV.SC-4",
@@ -4941,7 +5256,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -4954,10 +5270,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[Carlini-Web-Scale-Poisoning-2024] (0.001 % web-scale poisoning threshold); historical/conceptual basis [discipline-data-poisoning] (Biggio et al. ICML 2012)"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 132
+      "heading_line": 135
     },
     {
       "ref_id": "GV.SC-5",
@@ -4970,7 +5287,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -4983,10 +5301,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[NeMo-Guardrails] (representative implementation of the output-classifier pattern); absence noted in vendor safety architecture review"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 171
+      "heading_line": 175
     },
     {
       "ref_id": "GV.SC-6",
@@ -4999,7 +5318,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5012,10 +5332,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Identified in [INSYTE-2025] underspecification analysis; extends template modification risk to adversarial context"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 215
+      "heading_line": 220
     },
     {
       "ref_id": "GV.SC-7",
@@ -5028,7 +5349,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5041,10 +5363,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Detection",
         "Source": "Voice biometric and deepfake detection literature"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 254
+      "heading_line": 260
     },
     {
       "ref_id": "GV.SC-8",
@@ -5057,7 +5380,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5070,10 +5394,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard application security testing"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 293
+      "heading_line": 300
     },
     {
       "ref_id": "GV.SC-9",
@@ -5086,7 +5411,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5099,10 +5425,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[MIT-Jameel-2026] cross-patient leakage disclosure"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 332
+      "heading_line": 340
     },
     {
       "ref_id": "GV.SC-10",
@@ -5115,7 +5442,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5128,10 +5456,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Standard authentication security; [CIS2] requirements"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 369
+      "heading_line": 378
     },
     {
       "ref_id": "GV.SC-11",
@@ -5144,7 +5473,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-11",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5157,10 +5487,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[IEEE-S-and-P-2023-LLM-PII-Leakage]; [Luo-PII-CRM-2026]"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 410
+      "heading_line": 420
     },
     {
       "ref_id": "GV.SC-12",
@@ -5173,7 +5504,8 @@
       "group": "Security & Adversarial Robustness",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.SC-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5186,10 +5518,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Prevention",
         "Source": "[NHSE-AVT-Registry] (req #5); [NCSC-Cyber-Essentials] (Plus variant administered by IASME)"
       },
       "group_file": "gv/security-adversarial-robustness.md",
-      "heading_line": 449
+      "heading_line": 460
     },
     {
       "ref_id": "GV.PD-1",
@@ -5203,6 +5536,7 @@
       "applicability": "AVT-Specific",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5232,7 +5566,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5245,6 +5580,7 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e) storage limitation"
       },
       "group_file": "gv/privacy-data-governance.md",
@@ -5261,7 +5597,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-3",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5274,10 +5611,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[NHSE-IG-Guidance-2026-03]; [UK-GDPR] Article 5(1)(e)"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 125
+      "heading_line": 126
     },
     {
       "ref_id": "GV.PD-4",
@@ -5290,7 +5628,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5303,10 +5642,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[UK-GDPR] Article 5(1)(c) data minimisation; DGX Spark / local processing potential"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 188
+      "heading_line": 190
     },
     {
       "ref_id": "GV.PD-5",
@@ -5319,7 +5659,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5332,10 +5673,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[IEEE-S-and-P-2023-LLM-PII-Leakage]; [OWASP-LLM-Top-10] (Sensitive Information Disclosure)"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 227
+      "heading_line": 230
     },
     {
       "ref_id": "GV.PD-6",
@@ -5348,7 +5690,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5361,10 +5704,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[ICO] anonymisation code of practice; [NIST-Privacy-Framework]"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 266
+      "heading_line": 270
     },
     {
       "ref_id": "GV.PD-7",
@@ -5377,7 +5721,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.PD-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5390,10 +5735,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[UK-GDPR] transparency requirements; derived from emerging AVT procurement practice"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 305
+      "heading_line": 310
     },
     {
       "ref_id": "GV.PD-8",
@@ -5407,6 +5753,7 @@
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
       "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5424,7 +5771,7 @@
         "Source": "[CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 344
+      "heading_line": 350
     },
     {
       "ref_id": "GV.PD-9",
@@ -5438,6 +5785,7 @@
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
       "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-9",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5455,7 +5803,7 @@
         "Source": "[UK-GDPR] Article 46; [Schrems-II] implications"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 410
+      "heading_line": 416
     },
     {
       "ref_id": "GV.PD-10",
@@ -5469,6 +5817,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-10",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5485,7 +5834,7 @@
         "Source": "[UK-GDPR] Article 15 right of access"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 455
+      "heading_line": 461
     },
     {
       "ref_id": "GV.PD-11",
@@ -5499,6 +5848,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-11",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5515,7 +5865,7 @@
         "Source": "[UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 516
+      "heading_line": 522
     },
     {
       "ref_id": "GV.PD-12",
@@ -5528,7 +5878,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "GV.PD-12",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5541,10 +5892,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[MHRA-SaMD] GMLP principle 3 (representative datasets); FTS Performance & Monitoring Response — \"boundaries and bias\""
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 586
+      "heading_line": 592
     },
     {
       "ref_id": "GV.PD-13",
@@ -5557,7 +5909,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5571,10 +5924,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Prevention",
         "Source": "[NHSE-IG-Guidance-2026-03] — privacy notice / AVT-processing transparency content (topic-cited; parent hub no stable section anchor); UK GDPR Art 13/14"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 625
+      "heading_line": 632
     },
     {
       "ref_id": "GV.PD-14",
@@ -5587,7 +5941,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5601,10 +5956,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Detection",
         "Source": "[NHSE-IG-Guidance-2026-03] — data subject rights / SAR-handling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 12-22 (data subject rights)"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 667
+      "heading_line": 675
     },
     {
       "ref_id": "GV.PD-15",
@@ -5617,7 +5973,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-15",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5631,10 +5988,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Prevention",
         "Source": "[NHSE-IG-Guidance-2026-03] — data subject rights / restriction tooling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 18"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 709
+      "heading_line": 718
     },
     {
       "ref_id": "GV.PD-16",
@@ -5647,7 +6005,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-16",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5660,10 +6019,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Limitation",
         "Source": "Operational extension of [GV.PD-1] retention enumeration; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; [DCB0160] Stage 7 (decommissioning)"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 751
+      "heading_line": 761
     },
     {
       "ref_id": "GV.PD-17",
@@ -5676,7 +6036,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-17",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5689,10 +6050,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[Caldicott] Principle 1 (justify the purpose); UK Caldicott Guardian Manual; NDG guidance"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 819
+      "heading_line": 830
     },
     {
       "ref_id": "GV.PD-18",
@@ -5705,7 +6067,8 @@
       "group": "Privacy & Data Governance",
       "applicability": "General Healthcare AI",
       "family": "NHSE IG Attestation",
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.PD-18",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5719,10 +6082,11 @@
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
         "Family": "NHSE IG Attestation",
+        "Layer": "Prevention",
         "Source": "[NHSE-IG-Guidance-2026-03] — information asset register / IAO-naming content (topic-cited; the unverified 'section 8' placeholder from v5.4.0 is dropped — parent hub no stable section anchor); NDG Data Security Standards"
       },
       "group_file": "gv/privacy-data-governance.md",
-      "heading_line": 860
+      "heading_line": 872
     },
     {
       "ref_id": "GV.OP-1",
@@ -5736,6 +6100,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5765,7 +6130,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5778,6 +6144,7 @@
         "Maturity": "Established",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Sinsky-Mayo-EHR-Studies] (concept: physician time-allocation); [Sinsky-Adler-Milstein-EHR-Logs-2020] (methodology: audit-log-derived activity metrics); American Medical Association EHR use studies"
       },
       "group_file": "gv/operational.md",
@@ -5794,7 +6161,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5807,10 +6175,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard operational workflow metric; extends Full-Pipeline Latency Budget"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 109
+      "heading_line": 110
     },
     {
       "ref_id": "GV.OP-4",
@@ -5823,7 +6192,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5836,10 +6206,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Sinsky-Mayo-EHR-Studies] extended to AVT context; NHS workforce wellbeing frameworks"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 150
+      "heading_line": 152
     },
     {
       "ref_id": "GV.OP-5",
@@ -5853,6 +6224,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "Post-AI",
       "dimensions": {
         "Reference": "GV.OP-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5869,7 +6241,7 @@
         "Source": "Standard SLA; [NAS-Day-Zero-SPI-internal]"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 189
+      "heading_line": 192
     },
     {
       "ref_id": "GV.OP-6",
@@ -5883,6 +6255,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-6",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -5899,7 +6272,7 @@
         "Source": "Standard deployment metric"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 225
+      "heading_line": 228
     },
     {
       "ref_id": "GV.OP-7",
@@ -5912,7 +6285,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-7",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5925,10 +6299,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard healthcare technology economic evaluation"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 265
+      "heading_line": 268
     },
     {
       "ref_id": "GV.OP-8",
@@ -5941,7 +6316,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-8",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -5954,10 +6330,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Identified as systematically under-measured cost"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 304
+      "heading_line": 308
     },
     {
       "ref_id": "GV.OP-9",
@@ -5970,7 +6347,8 @@
       "group": "Operational",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -5983,10 +6361,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard implementation metric"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 343
+      "heading_line": 348
     },
     {
       "ref_id": "GV.OP-14",
@@ -5999,7 +6378,8 @@
       "group": "Operational",
       "applicability": "AVT-Contextualised",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.OP-14",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6012,10 +6392,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "AVT-Contextualised",
+        "Layer": "Limitation",
         "Source": "Promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry; complements [GV.VT-15 Retirement Notification Compliance](#gv-vt-15) and [GV.PD-16 Decommissioning Data Handling Compliance](#gv-pd-16)"
       },
       "group_file": "gv/operational.md",
-      "heading_line": 379
+      "heading_line": 385
     },
     {
       "ref_id": "GV.EN-1",
@@ -6028,7 +6409,8 @@
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.EN-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6041,6 +6423,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Jegham-AI-Hunger-2025] (\"How Hungry is AI?\")"
       },
       "group_file": "gv/environmental-sustainability.md",
@@ -6057,7 +6440,8 @@
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.EN-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6070,10 +6454,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Mistral-AI-LCA]; [Jegham-AI-Hunger-2025] grid carbon intensity adjustment"
       },
       "group_file": "gv/environmental-sustainability.md",
-      "heading_line": 40
+      "heading_line": 41
     },
     {
       "ref_id": "GV.EN-3",
@@ -6086,7 +6471,8 @@
       "group": "Environmental & Sustainability",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.EN-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6099,10 +6485,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Jegham-AI-Hunger-2025]; [Li-Making-AI-Less-Thirsty]"
       },
       "group_file": "gv/environmental-sustainability.md",
-      "heading_line": 79
+      "heading_line": 81
     },
     {
       "ref_id": "GV.TC-1",
@@ -6116,6 +6503,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.TC-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6145,7 +6533,8 @@
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.TC-2",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6158,6 +6547,7 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Proposed - extends error injection concept to training assessment"
       },
       "group_file": "gv/training-competency.md",
@@ -6174,7 +6564,8 @@
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.TC-3",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6187,10 +6578,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Standard clinical governance CPD requirements; applied to AVT"
       },
       "group_file": "gv/training-competency.md",
-      "heading_line": 112
+      "heading_line": 113
     },
     {
       "ref_id": "GV.TC-4",
@@ -6203,7 +6595,8 @@
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.TC-4",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6216,10 +6609,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Medical education literature; [GMC] standards consideration"
       },
       "group_file": "gv/training-competency.md",
-      "heading_line": 160
+      "heading_line": 162
     },
     {
       "ref_id": "GV.TC-5",
@@ -6232,7 +6626,8 @@
       "group": "Training & Competency",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.TC-5",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6245,10 +6640,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Standard training governance"
       },
       "group_file": "gv/training-competency.md",
-      "heading_line": 199
+      "heading_line": 202
     },
     {
       "ref_id": "GV.VT-1",
@@ -6262,6 +6658,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-1",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6291,7 +6688,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-2",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6304,6 +6702,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[Keyes-Stanford-Monitoring-2025]; identified as prerequisite for most continuous monitoring metrics"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
@@ -6320,7 +6719,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6333,10 +6733,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Proposed - vendors currently self-evaluate with proprietary benchmarks"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 115
+      "heading_line": 116
     },
     {
       "ref_id": "GV.VT-4",
@@ -6349,7 +6750,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6362,10 +6764,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Clinical record governance requirements; applied to AI-generated documentation"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 154
+      "heading_line": 156
     },
     {
       "ref_id": "GV.VT-5",
@@ -6379,6 +6782,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-5",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6395,7 +6799,7 @@
         "Source": "Standard security incident disclosure practice"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 193
+      "heading_line": 196
     },
     {
       "ref_id": "GV.VT-6",
@@ -6408,7 +6812,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-6",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6421,10 +6826,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Standard procurement practice; lock-in risk analysis"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 258
+      "heading_line": 261
     },
     {
       "ref_id": "GV.VT-7",
@@ -6438,6 +6844,7 @@
       "applicability": "General Healthcare AI",
       "family": null,
       "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-7",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6454,7 +6861,7 @@
         "Source": "[UK-GDPR] Article 28"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 297
+      "heading_line": 301
     },
     {
       "ref_id": "GV.VT-8",
@@ -6467,7 +6874,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-8",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6480,10 +6888,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "Prerequisite for existing Error Attribution Analysis metric; [Keyes-Stanford-Monitoring-2025]"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 366
+      "heading_line": 370
     },
     {
       "ref_id": "GV.VT-9",
@@ -6496,7 +6905,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6509,10 +6919,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[MHRA-SaMD] PMS framework; UK MDR 2002 Schedule; FTS notice 069369-2025 Step 1.i"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 405
+      "heading_line": 410
     },
     {
       "ref_id": "GV.VT-10",
@@ -6525,7 +6936,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-10",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6538,10 +6950,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "[MHRA-SaMD] Roadmap WP-2 transparency outputs (in development at v5.3 time of writing)"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 444
+      "heading_line": 450
     },
     {
       "ref_id": "GV.VT-11",
@@ -6554,7 +6967,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-11",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6567,10 +6981,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] — controller-status determination content (topic-cited; the unverified 'section 5' placeholder from v5.4.0 is dropped — parent hub no stable section anchor)"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 483
+      "heading_line": 490
     },
     {
       "ref_id": "GV.VT-13",
@@ -6583,7 +6998,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-13",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6596,10 +7012,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "AVT-Specific",
+        "Layer": "Limitation",
         "Source": "[NHSE-AVT-Registry]; National Commercial & Procurement Hub publication mechanism"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 521
+      "heading_line": 529
     },
     {
       "ref_id": "GV.VT-14",
@@ -6612,7 +7029,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "AVT-Specific",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-14",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6625,10 +7043,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Process",
         "Applicability": "AVT-Specific",
+        "Layer": "Prevention",
         "Source": "[NHSE-AVT-Registry] req #12"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 607
+      "heading_line": 616
     },
     {
       "ref_id": "GV.VT-15",
@@ -6641,7 +7060,8 @@
       "group": "Vendor Transparency & Contractual",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Limitation",
+      "ai_substrate": "AI-Agnostic Governance",
       "dimensions": {
         "Reference": "GV.VT-15",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6654,10 +7074,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Limitation",
         "Source": "Operational extension of [GV.VT-1] and [GV.VT-6]; promoted from `_gaps.md` P5-Lifecycle \"Decommissioning plan\" entry"
       },
       "group_file": "gv/vendor-transparency-contractual.md",
-      "heading_line": 691
+      "heading_line": 701
     },
     {
       "ref_id": "ES.ME-1",
@@ -6670,7 +7091,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-1",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6683,6 +7105,7 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Coiera-Fraile-Navarro-JMIR-2026]; [NIHR-RSET]"
       },
       "group_file": "es/meta-evaluation.md",
@@ -6699,7 +7122,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-2",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6712,10 +7136,11 @@
         "Maturity": "Established",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "[VeriFact]; [MedHELM]"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 45
+      "heading_line": 46
     },
     {
       "ref_id": "ES.ME-3",
@@ -6728,7 +7153,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-3",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6741,10 +7167,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Multi-metric evaluation literature"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 88
+      "heading_line": 90
     },
     {
       "ref_id": "ES.ME-4",
@@ -6757,7 +7184,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-4",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6770,10 +7198,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Goodhart's Law applied to clinical AI metrics"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 127
+      "heading_line": 130
     },
     {
       "ref_id": "ES.ME-5",
@@ -6786,7 +7215,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-5",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6799,10 +7229,11 @@
         "Maturity": "Proposed / Novel",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard safety engineering coverage analysis"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 166
+      "heading_line": 170
     },
     {
       "ref_id": "ES.ME-6",
@@ -6815,7 +7246,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-6",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6828,10 +7260,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Proximal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "[Croxford-2025]; [Croxford-PDSQI9-JAMIA-2025]"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 205
+      "heading_line": 210
     },
     {
       "ref_id": "ES.ME-7",
@@ -6844,7 +7277,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Detection",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-7",
         "Priority Tier": "🔵 Tier 3 - Advanced / Research",
@@ -6857,10 +7291,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Distal",
         "Applicability": "General Healthcare AI",
+        "Layer": "Detection",
         "Source": "Standard meta-evaluation methodology; [Croxford-2025] review; [BenAbacha-EvalMetrics-2023] on automated medical-note evaluation metrics"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 244
+      "heading_line": 250
     },
     {
       "ref_id": "ES.ME-8",
@@ -6873,7 +7308,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-8",
         "Priority Tier": "🟢 Tier 1 - Minimum Viable",
@@ -6886,10 +7322,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Process",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "This taxonomy v3.3; [NHS-TEST] Section B Clinical Effectiveness (50 pts RCT validation); [SI-2024-1368]"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 283
+      "heading_line": 290
     },
     {
       "ref_id": "ES.ME-9",
@@ -6902,7 +7339,8 @@
       "group": "Meta-Evaluation",
       "applicability": "General Healthcare AI",
       "family": null,
-      "layer": null,
+      "layer": "Prevention",
+      "ai_substrate": "AI-Substrate",
       "dimensions": {
         "Reference": "ES.ME-9",
         "Priority Tier": "🟡 Tier 2 - Recommended",
@@ -6915,10 +7353,11 @@
         "Maturity": "Emerging",
         "Outcome Type": "Process",
         "Applicability": "General Healthcare AI",
+        "Layer": "Prevention",
         "Source": "This taxonomy v3.3; ES.ME-1 (proximal/distal causal-logic framework); [Coiera-Fraile-Navarro-JMIR-2026] (structural critique)"
       },
       "group_file": "es/meta-evaluation.md",
-      "heading_line": 336
+      "heading_line": 344
     }
   ]
 }
