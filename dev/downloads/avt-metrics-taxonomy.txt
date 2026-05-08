@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.4.0, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.5.0, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -9,7 +9,7 @@ Comprehensive metrics for NHS ambient voice technology assurance - covering the 
 - The [**Outcomes Boundary**](#outcomes-boundary) (v3.3) names what is *out of scope* — clinical-outcome validation belongs to national research bodies, not deployers — and is operationalised by two ES.ME meta-metrics (ES.ME-8/-9) measuring vendor commitment to outcome evidence.
 - The [**Calibration & Context principle**](#calibration-context) (v3.7) names what is *in scope but context-dependent* — tier assignments and threshold numbers are deployer-calibrated starting points against six named deployment-setting axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume), not universal gates.
 
-Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.4.0** lands the v5.3 merge & family sweep + 2 new mints: 2 parent + sub-part formalisations (GV.CR-9 / GV.SG-18 PCCP pair; GV.CR-7 / GV.PD-17 DPIA pair) where cross-cluster placement is preserved but the relationship is named explicitly; new `_families.md` page consolidating all 8 named-metric families with audit-enforced `Family` dimension on ~50 member metrics; new `_layers-of-defence.md` first-class principle naming the prevention / detection / limitation framing; new `_dimensions-overview.md` reader-orientation page disambiguating the 12 structural cuts; 2 v5.4 mints (GV.PD-18 Information Asset Register Completeness 🟢, GV.VT-11 Joint-Controller Status Assessment 🟡 — both NHSE-IG-derived); within-cluster numerical sort enforced via new audit check `check_within_cluster_order`. Counts 234 → 236. **v5.3.0** lands Phase 5 of the v5.x minimum-set extension: 7 promotions T2 → T1 against the FTS-direct surface (cybersecurity GV.SC-1/-2/-6 deliberately held at T2 pending industry-standard adversarial-testing maturity), and 13 new pull-through metrics from `_gaps.md` with full bodies — MHRA-driven (GV.CR-11, GV.SG-18, GV.VT-9, GV.VT-10, GV.PD-12), CQC well-led (GV.CR-12), NHSE IG-driven (GV.CR-13, GV.PD-13, GV.PD-14, GV.PD-15), Caldicott (GV.CR-14, GV.PD-17), and PRSB semantic completeness (TP.WB-8). Two metrics minted at Maturity: Proposed/Novel — GV.CR-13 (rubric pending pilot) and GV.VT-10 (MHRA Roadmap WP-2 outputs in development). FHIR UK Core (TP.WB-8/-9/-10 originally proposed) held back per reviewer; pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`. Counts 221 → 234; Tier 1 45 → 57 (+12 net Tier 1); Tier 2 97 → 98; Tier 3 unchanged at 79. Reviewer triage at `v5.3-pre-mint-triage.md`; merge & family sweep at `v5.3-merge-and-family-sweep.md` for review before any merges/families land in v5.3.1+. **v5.1.4** is a v5.2.0-prep PATCH adding the Registry-driven action list (`v5.2-registry-action-list.md` at repo root) anchored to the FTS notice 069369-2025 — 10 promotions T2→T1, 16 pull-throughs from `_gaps.md`, 2 new mints. No metric content edits; feeds Phase 5 reviewer decisions before v5.3.0 lands the actual changes. **v5.1.3** is housekeeping — cadence-audit research files (v5.0.3-cadence-plan.md, v5.0.3-cadence-audit.md) moved from repo root to archive/v5.0.3/ now that the cadence work is closed. **v5.1.2** completes Phase 1b with batches 2 + 3 (NHS LLM + DSPT + NICE ESF + T.E.S.T. + UK GDPR + CQC + FHIR + ICO — 140 more sub-criteria, 0 NEW gaps beyond batch 1, ~25 already-roadmapped gaps cross-confirmed). Phase 1b totals 268 sub-criteria across 12 frameworks, 2 NEW gaps overall, 8 promotion candidates. Research output only; no metric edits. **v5.1.1** is the first batch of Phase 1b framework coverage audits (DTAC + NHSE IG + DCB + MHRA — 128 sub-criteria, 2 NEW gaps, 8 promotion-to-Tier-1 candidates). Research output only; no metric edits. **v5.1.0** ships a cadence-dimension cleanup: `Measurement Cadence` is now multi-valued (semicolon-separated), and a new `Event-triggered` enum value names the pattern where a metric is re-measured on a material change event (model update, contract renewal, sub-processor disclosure, new failure mode discovered, retirement event, etc.). 32 metric edits — 18 Cadence updates that move metrics to multi-value or to `Event-triggered`, plus 14 Lifecycle Phases trims for the v5.0.3 multi-cadence-deferred set. New audit check `check_cadence_values` enforces the four-element enum across the catalogue. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
+Tier 1 metrics increasingly carry a structured Reference Standard / Operational Specification / Threshold Guidance pattern with ⚠️ Provenance preludes that distinguish cited thresholds from proposed-as-starting-points. As of v3.8, **32 of 42 Tier 1 constructs** carry this pattern (33 of 43 individual entries when sub-parts are counted separately). v3.7 introduced parent-with-sub-parts structure for redundancy resolution; v3.8 added the NHS England AVT Self-Certified Supplier Registry as the 13th mapped framework, three registry-driven metrics (Cyber Essentials Plus certification, evidence-pack freshness, indicative pricing transparency), and two new audit checks (Maturity-value enum; Source presence). v3.9 introduced a structured citation grammar: every external authority resolves through a [References catalogue](#references) of ~100 entries with handles, URLs, Wayback snapshots, and retrieval dates. v3.9.1 added an 88-test pytest suite covering parse / build / build_site / audit / tools/snapshot. **v5.5.0** ships five workstreams: (1) NHSE IG section refs cleanup — six metrics retire the "section ref to be added on next pass" markers in favour of a topic-cited convention since the parent guidance hub doesn't currently expose a stable section anchor; (2) new `_ai-substrate.md` documentation-only page naming the five-class derived cut (Pre-AI / AI-Substrate / Post-AI / AI-Mediated Workflow / AI-Agnostic Governance) with worked examples; (3) three inline family framings lifted from cluster files into the canonical `_families.md` page; (4) auto-generated by-family + by-layer-of-defence cross-cut site pages — 8 family pages + 3 layer pages, with `Family` and `Layer` columns now in CSV/JSON; (5) `Layer` is now an *optional per-metric* dimension seeded with 33 explicit values from the early-draft slide-deck classification (Prevention / Detection / Limitation), with cadence-heuristic fallback for unclassified metrics on the cross-cut page (the heuristic is honest about being wrong about a third of the time; the explicit values are authoritative where present). `_dimensions-overview.md` and `_layers-of-defence.md` updated to reflect the partially-explicit Layer model; new audit check `check_layer_resolves`. Counts unchanged at 236. **v5.4.0** lands the v5.3 merge & family sweep + 2 new mints: 2 parent + sub-part formalisations (GV.CR-9 / GV.SG-18 PCCP pair; GV.CR-7 / GV.PD-17 DPIA pair) where cross-cluster placement is preserved but the relationship is named explicitly; new `_families.md` page consolidating all 8 named-metric families with audit-enforced `Family` dimension on ~50 member metrics; new `_layers-of-defence.md` first-class principle naming the prevention / detection / limitation framing; new `_dimensions-overview.md` reader-orientation page disambiguating the 12 structural cuts; 2 v5.4 mints (GV.PD-18 Information Asset Register Completeness 🟢, GV.VT-11 Joint-Controller Status Assessment 🟡 — both NHSE-IG-derived); within-cluster numerical sort enforced via new audit check `check_within_cluster_order`. Counts 234 → 236. **v5.3.0** lands Phase 5 of the v5.x minimum-set extension: 7 promotions T2 → T1 against the FTS-direct surface (cybersecurity GV.SC-1/-2/-6 deliberately held at T2 pending industry-standard adversarial-testing maturity), and 13 new pull-through metrics from `_gaps.md` with full bodies — MHRA-driven (GV.CR-11, GV.SG-18, GV.VT-9, GV.VT-10, GV.PD-12), CQC well-led (GV.CR-12), NHSE IG-driven (GV.CR-13, GV.PD-13, GV.PD-14, GV.PD-15), Caldicott (GV.CR-14, GV.PD-17), and PRSB semantic completeness (TP.WB-8). Two metrics minted at Maturity: Proposed/Novel — GV.CR-13 (rubric pending pilot) and GV.VT-10 (MHRA Roadmap WP-2 outputs in development). FHIR UK Core (TP.WB-8/-9/-10 originally proposed) held back per reviewer; pickup-ready outline at `reference-docs/v5.3-deferred-fhir-uk-core.md`. Counts 221 → 234; Tier 1 45 → 57 (+12 net Tier 1); Tier 2 97 → 98; Tier 3 unchanged at 79. Reviewer triage at `v5.3-pre-mint-triage.md`; merge & family sweep at `v5.3-merge-and-family-sweep.md` for review before any merges/families land in v5.3.1+. **v5.1.4** is a v5.2.0-prep PATCH adding the Registry-driven action list (`v5.2-registry-action-list.md` at repo root) anchored to the FTS notice 069369-2025 — 10 promotions T2→T1, 16 pull-throughs from `_gaps.md`, 2 new mints. No metric content edits; feeds Phase 5 reviewer decisions before v5.3.0 lands the actual changes. **v5.1.3** is housekeeping — cadence-audit research files (v5.0.3-cadence-plan.md, v5.0.3-cadence-audit.md) moved from repo root to archive/v5.0.3/ now that the cadence work is closed. **v5.1.2** completes Phase 1b with batches 2 + 3 (NHS LLM + DSPT + NICE ESF + T.E.S.T. + UK GDPR + CQC + FHIR + ICO — 140 more sub-criteria, 0 NEW gaps beyond batch 1, ~25 already-roadmapped gaps cross-confirmed). Phase 1b totals 268 sub-criteria across 12 frameworks, 2 NEW gaps overall, 8 promotion candidates. Research output only; no metric edits. **v5.1.1** is the first batch of Phase 1b framework coverage audits (DTAC + NHSE IG + DCB + MHRA — 128 sub-criteria, 2 NEW gaps, 8 promotion-to-Tier-1 candidates). Research output only; no metric edits. **v5.1.0** ships a cadence-dimension cleanup: `Measurement Cadence` is now multi-valued (semicolon-separated), and a new `Event-triggered` enum value names the pattern where a metric is re-measured on a material change event (model update, contract renewal, sub-processor disclosure, new failure mode discovered, retirement event, etc.). 32 metric edits — 18 Cadence updates that move metrics to multi-value or to `Event-triggered`, plus 14 Lifecycle Phases trims for the v5.0.3 multi-cadence-deferred set. New audit check `check_cadence_values` enforces the four-element enum across the catalogue. **v5.0.3** is a small cadence-correction PATCH: TP.ASR-13 and TP.ASR-12 had `Measurement Cadence: One-off gate` labels that contradicted their bodies (both describe periodic re-test triggers and production-traffic monitoring); both are now `Periodic audit`. A full audit of the remaining 49 one-off-gate metrics surfaces 19 multi-cadence cases (Lifecycle Phases lists Periodic / Continuous but body is pre-deployment-only) deferred for v5.1+ structural review of the Cadence dimension. **v5.0.1** is a v5.x-prep PATCH: Phase 1a Registry coverage audit (research output for the upcoming Tier 1 minimum-set extension work, plan-future #4). 14 transitively-required frameworks all already in catalogue; ~70 substantive requirements mapped; 4 promotion candidates and ~12 gap candidates surfaced for discussion. No metric edits. **v5.0.0** lands the structural split: threshold numbers move out of metric bodies into a dedicated [Threshold Reference](thresholds.md) page; the **Threshold Guidance** sub-block is renamed **Trigger Conditions** with qualitative-only content; per-metric pointers link to per-anchor sections on the Threshold Reference page; "starting points" framing is structurally repeated; the compound-errors caveat is made explicit. Phase 2a tightenings applied (TP.ASR-12 drift, TP.WB-2 IER provenance, GV.TC-1 minute-floors); 4 cross-metric conventions named (severity-weighting, test-corpus floor, severity-band ladders, aggregate-rate-vs-zero-tolerance). Plan-future #8 closes. **v4.5.1** is the v5.0-prep patch — three research-output files at repo root scoping the upcoming structural split where threshold numbers move out of metric bodies into a dedicated Threshold Reference page (Phases 1, 2a, 2b: enumeration → per-number verdict → cross-metric consolidation). No metric content edits in v4.5.1; the structural split lands at v5.0. **v4.5.0** ships three workstreams together: (1) a citation-grammar polish where catalogue entries can declare a `**Short:**` field that the site rewriter uses as the link label (handles continue to appear as `[Handle]` in source — audit-enforceable — but render as e.g. *NHSE IG guidance (March 2026)* on the site); (2) a written-down [Versioning](versioning.md) convention plus an audit slice that surfaces release-version over/under-bumps; (3) per-metric provenance — an auto-built [Metric history](metric-history.md) page from git tag history, plus opt-in `**Change history:**` stanzas on metrics with substantive fixes (5 seeded; convention is opt-in for substantive fixes, not a universal "Last updated" stamp). Counts unchanged. Plan-future #3 and #7 close. **v4.4.0** runs Pass B (external source fetching + claim verification) across the 138-metric ✓ set that v4.2 / v4.3 Pass A had cleared but not externally verified, closing the verification loop end-to-end across all 221 metrics. Headline result: 137 / 138 verified clean; 1 fix on GV.SG-5 (added `He-AI-Contamination-Pathology-2026` catalogue handle for the medRxiv 2026 model-autophagy paper, replaced an unverified specific number with the qualitative findings the paper does support). Also formalises the 5 v4.3 future-promote catalogue-promotion-candidates (`NIST-SCTK`, `dscore-Ryant` promoted; philipchung/verifact folded into Chung handle metadata; Woodard & NEQAS kept inline). Incidental fixes: corrected `Chung-NEJM-AI-2025` catalogue entry (was describing the wrong NEJM AI paper); HL.HF-2 / HL.HF-5 Abridge phrasing tightened to "millions of encounters per month" matching the disclosed whitepaper wording. **v4.3.0** extends the v4.2 Formal Definition + code snippet verification methodology to the remaining clusters (GV / HL / PI / IO.PX, ~134 metrics): Pass A internal-coherence triage on all 131 in-scope metrics, Pass B external source verification on 22 source bundles, then 3 metric content fixes (HL.HF-8 trust instruments, GV.VT-2 Keyes paraphrase, vendor-scale softening across HL.HF-2/-5/GV.SG-8) and a References-block grammar drift sweep promoting 11 new catalogue handles (~33 inline references migrated to `[Handle]` form). Code snippets in PI/HL/GV verified; 3 illustrative-pseudocode snippets gained clarifying comments. Source-cache notes preserved at `reference-docs/v4.3-pass-b/`. Counts unchanged. **v4.2.1** patches the site build so ref-IDs in cross-cutting prose (standards-mapping, applicability, responsible-AI-lens) now linkify directly to the relevant per-metric page — 800+ new clickable links across the rendered site; new audit check surfaces unresolved ref-IDs at INFO. **v4.2.0** verifies Formal Definitions and code snippets across the TP cluster + IO.FE + ES.ME (92 metrics) against their cited sources — 16 sources fetched, 18 metrics corrected for confabulated source attributions, source-cache notes preserved at `reference-docs/v4.2-pass-b/` for re-reading. **v4.1.0** promotes three deprecation/decommissioning metrics from `_gaps.md` (GV.VT-15 Retirement Notification, GV.PD-16 Decommissioning Data Handling, GV.OP-14 Historical Output Continuity) and adds a Priority Tier column to the AVT Registry table in standards-mapping. **v4.0.0** retires the v3.x Part-letter scheme (A–F) in favour of the two-letter cluster code (TP / PI / HL / IO / GV / ES) that was already canonical on every ref-ID; folders, prose, CSV / JSON downloads, and site nav all use cluster codes throughout. v4.0 also relaxed the TP.WB group from "EPR Write-back" to "Downstream Write-back" to reflect that write-back targets include GP clinical systems, e-prescribing, FHIR endpoints, and patient portals. Source rows, Reference Standard / Threshold Guidance prose blocks, and standards-mapping framework sections all use `[Handle]` inline links resolving to the References catalogue, audit-enforced. See `taxonomy/audit.py` output for the live tightening-status manifest. The full release history is in [CHANGELOG.md](CHANGELOG.md).
 
 ## Prototype status
 
@@ -232,7 +232,9 @@ A trust with multiple AVT platforms deployed across different services should pr
 
 ## Dimensions Overview
 
-This page is the reader's orientation to the **structural cuts** the taxonomy makes. Every metric body carries a dimensions table with up to 12 fields; this page explains what each cut does, why it exists separately from the others, and how to use it. Readers commonly conflate cuts that are structurally distinct (Tier vs Layer of Defence, Family vs Cluster, Cadence vs Lifecycle Phase) — this page names those distinctions.
+This page is the reader's orientation to the **structural cuts** the taxonomy makes. Every metric body carries a dimensions table with up to 13 fields; this page explains what each cut does, why it exists separately from the others, and how to use it. Readers commonly conflate cuts that are structurally distinct (Tier vs Layer of Defence, Family vs Cluster, Cadence vs Lifecycle Phase) — this page names those distinctions.
+
+**v5.5.0 update.** `Layer` (Prevention / Detection / Limitation) is now an optional per-metric dimension, seeded for 33 Tier 1 metrics from an early-draft classification. Metrics without an explicit `Layer` fall back to a cadence-based heuristic on the by-layer-of-defence cross-cut page. The previous version of this page described Layer of Defence as a fully-derived cut; that's no longer accurate for the seeded subset.
 
 Per-dimension detail lives in the dedicated cross-cutting pages where present. This page is the **map** to those cuts; the dedicated pages are the territory.
 
@@ -259,6 +261,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 | **Priority Tier** | How essential is this metric to a defensible deployment? | 🟢 1 / 🟡 2 / 🔵 3 | vs Layers of Defence (function) — Tier is *importance*, Layer is *role in assurance architecture* |
 | **Applicability** | How AVT-specific is this metric? | AVT-Specific / AVT-Contextualised / General Healthcare AI | vs Cluster — Applicability is about generalisability; Cluster is about pipeline placement |
 | **Family** | Is this metric part of a named construct cluster? | One of 8 declared families, or absent | vs Cluster — Family is shared *construct*, Cluster is shared *pipeline location* |
+| **Layer** *(v5.5.0+, optional)* | What role does this metric play in the assurance architecture? | Prevention / Detection / Limitation, or absent | vs Tier — Layer is *function*, Tier is *importance*; vs Cadence — Layer is *purpose*, Cadence is *frequency-as-proxy* |
 | **Pipeline Layer** | Where in the AVT processing chain does this metric sit? | Audio Capture / ASR / Diarisation / Summarisation / Coding / Downstream Write-back / Cross-cutting | vs Cluster — Layer is the technical pipeline stage; Cluster is the catalogue's content-organisation grouping |
 | **Assurance Question** | What kind of question does this metric answer? | Safety / Privacy / Fairness / Quality / Patient Experience / Transparency / Governance / Meta-evaluation / Human Factors | vs Cluster — Assurance Question is *what we want to know*, Cluster is *where the metric lives* |
 | **Measurement Method** | How is this metric measured? | Computational / Human Review / Hybrid / Passive Observational | vs Lifecycle Phase — Method is *how*, Lifecycle is *when* |
@@ -313,6 +316,18 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **See also:** [Families](families.md) for the family framings and member lists.
 
+### Layer *(new in v5.5.0; optional)*
+
+**Answers:** what role does this metric play in the assurance architecture?
+
+**Values:** Prevention / Detection / Limitation, or absent. **Optional** — most metrics don't yet carry an explicit `Layer` field. Seeded for 33 Tier 1 metrics in v5.5.0 from an early-draft slide-deck classification; future releases will extend.
+
+**Fallback for unclassified metrics.** Metrics without an explicit `Layer` are classified on the by-layer-of-defence cross-cut page using a cadence heuristic (One-off gate → Prevention; Continuous / Periodic audit → Detection; Event-triggered → Limitation). The heuristic is **wrong about a third of the time**: it conflates always-on limitation infrastructure (LFPSE incident reporting, sub-processor transparency) with detection, and miscategorises pre-deployment gates with continuous nominal cadence as detection. Treat the heuristic-derived classifications as a starting point; the explicit field is authoritative where present.
+
+**What it's NOT.** Layer is **not** Tier. A Tier 1 metric can be at any layer (GV.CR-11 Medical Device Classification at Prevention; HL.HF-1 Edit Rate at Detection; GV.SG-9 Safety Performance Indicators at Limitation). Layer is **not** Cadence either, even though Cadence is the heuristic input — Cadence describes *how often* the measurement runs, Layer describes *what assurance role* it plays. A continuous-cadence metric can serve any of the three layers depending on its purpose.
+
+**See also:** [Layers of Defence](layers-of-defence.md) for the Prevention / Detection / Limitation framing, worked examples, and architectural-gap analysis.
+
 ### Pipeline Layer
 
 **Answers:** where in the AVT processing chain does this metric sit?
@@ -351,7 +366,7 @@ Sub-clusters and italic intro paragraphs are *not* dimensions — they are withi
 
 **Values:** One-off gate / Periodic audit / Continuous / Event-triggered. **Multi-valued** since v5.1.0 — a metric can be `Continuous; Event-triggered` (continuously logged, with re-test triggered by specific events).
 
-**What it's NOT:** Cadence is **not** Lifecycle Phase (see above). Cadence is also **not** Layer of Defence — though there's a strong correlation (one-off gate ≈ prevention; continuous ≈ detection; event-triggered often ≈ limitation), the cut surfaces are different. A One-off gate cadence can serve any layer (a one-off vendor-retirement notification check is limitation-layer infrastructure measured at one-off cadence).
+**What it's NOT:** Cadence is **not** Lifecycle Phase (see above). Cadence is also **not** Layer of Defence — Cadence is the *heuristic input* used to classify unlabelled metrics into layers on the cross-cut page, but the explicit `Layer` field (when present) overrides it. The reason the heuristic gets ~⅓ of metrics wrong is exactly that the cuts are different: a One-off gate cadence can serve any layer (a one-off vendor-retirement notification check is limitation-layer infrastructure measured at one-off cadence), and a Continuous cadence is often Limitation-layer rather than Detection-layer (LFPSE incident reporting runs continuously but its purpose is to bound damage, not to detect drift).
 
 **See also:** [Versioning](versioning.md) for the v5.1.0 multi-valued-cadence convention; [Layers of Defence](layers-of-defence.md) for the related-but-distinct architectural cut.
 
@@ -402,8 +417,8 @@ The 12 dimensions are deliberately overlapping but structurally distinct. A read
 **Pattern 1 — orthogonal cuts that look correlated.**
 Tier and Maturity correlate weakly (most Tier 1 metrics are Established or Emerging) but are not the same — see Maturity above. Family and Cluster correlate moderately (most Clinical Content Fidelity members are in TP.SN) but a family can span clusters.
 
-**Pattern 2 — derived cuts that look like new dimensions.**
-Layers of Defence is *not* a recorded dimension — it is derived from Cadence + Lifecycle Phase + Cluster. AI-Substrate (a future v5.5+ candidate, see plan-future #10) is similarly derived from Pipeline Layer + Responsible Actor. Derived cuts are documented as cross-cutting principle pages, not as per-metric attributes.
+**Pattern 2 — partially-explicit cuts (v5.5.0).**
+Layer of Defence is now an *optional* per-metric dimension: 33 metrics carry an explicit value, the rest fall back to a cadence heuristic. The hybrid is honest — the explicit values are authoritative where present, the heuristic is a known-imperfect fallback. AI-Substrate (plan-future #10) remains a fully-derived cut documented only on the principle page, not as a per-metric attribute.
 
 **Pattern 3 — hierarchy that looks flat.**
 Cluster contains Group contains Metric. Pipeline Layer is mostly determined by Group but has Cross-cutting as a non-pipeline value. Some readers expect a single hierarchy; the taxonomy uses several overlapping hierarchies because no single structure captures every assurance question.
@@ -412,10 +427,10 @@ Cluster contains Group contains Metric. Pipeline Layer is mostly determined by G
 
 ## Where each dimension lives
 
-- **Per-metric body** (dimensions table): all 12 listed above.
-- **CSV / JSON downloads:** all 12 listed above (under field names: `ref_id`, `tier`, `applicability`, `family`, `pipeline_layer`, `assurance_question`, `measurement_method`, `lifecycle_phases`, `cadence`, `responsible_actors`, `maturity`, `source`).
-- **Site cross-cuts:** by-tier, by-applicability, by-cluster, by-Playbook-principle, by-ethical-theme (the Playbook + theme cuts are *not* per-metric dimensions; they are derived from the Responsible AI Lens).
-- **Audit:** closed-enum dimensions are audit-enforced (Tier, Applicability, Family, Maturity, Cadence, plus presence checks for Source).
+- **Per-metric body** (dimensions table): all 13 listed above; Layer is optional and present on 33 metrics in v5.5.0.
+- **CSV / JSON downloads:** all 13 listed above (field names: `ref_id`, `tier`, `applicability`, `family`, `layer`, `pipeline_layer`, `assurance_question`, `measurement_method`, `lifecycle_phases`, `cadence`, `responsible_actors`, `maturity`, `source`).
+- **Site cross-cuts:** by-tier, by-applicability, by-family, by-layer-of-defence (mixed explicit + heuristic), by-cluster, by-Playbook-principle, by-ethical-theme (the Playbook + theme cuts are *not* per-metric dimensions; they are derived from the Responsible AI Lens).
+- **Audit:** closed-enum dimensions are audit-enforced (Tier, Applicability, Family, Layer, Maturity, Cadence, plus presence checks for Source).
 
 ## Summary
 
@@ -998,13 +1013,15 @@ The two are deliberately different: named families are a structural taxonomy con
 
 **Why a family.** Aggregate "hallucination rate" obscures three things: (1) the existence of distinct error subtypes with different clinical implications; (2) the difference between factuality and faithfulness; (3) the reason that aggregate rates can mask serious category-specific failures. Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations.
 
-**Subtypes (from CREOLA + AutoscriberValidate, regrouped):**
+**Subtypes (from CREOLA + AutoscriberValidate, regrouped).** The CREOLA framework ([Asgari-Tortus-2025]) defines four hallucination subtypes — *fabrication, negation, causality, contextual* — and three omission subtypes (*current issues, past medical / family / social, information-and-plan*). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. **The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure** — the source-attested taxonomy is the 4+3 above.
 
-- **Fabrication** — completely invented clinical content with no basis in the source. Most dangerous.
-- **Context conflation** — content misattributed between conversation parts or speakers.
-- **Incorrect negation** — polarity reversal of a clinical assertion (measured by Negation Handling Accuracy).
-- **Speculation or inference beyond source** — plausible but unverifiable content extending beyond what was discussed.
-- **Certainty inflation** — clinician uncertainty markers stripped (measured by Uncertainty Marker Preservation).
+- **Fabrication** (Asgari "fabrication") — completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.
+- **Context conflation** (closest to Asgari "contextual") — content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
+- **Incorrect negation** (Asgari "negation") — polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated **TP.SN-15** Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
+- **Speculation or inference beyond source** (closest to Asgari "causality") — plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
+- **Certainty inflation** (taxonomy-extension; not a dedicated CREOLA subtype) — clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the dedicated **TP.SN-20** Uncertainty Marker Preservation metric in this family.
+
+Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
 
 **Faithfulness vs factuality.** For ambient scribes, **faithfulness is the primary assurance concern** because the scribe's job is to represent the consultation, not to exercise clinical judgment. A system that silently corrects clinician errors or adds information the clinician did not state has exceeded its safe operating scope regardless of whether the resulting statement is factually true.
 
@@ -1135,7 +1152,7 @@ The two are deliberately different: named families are a structural taxonomy con
 - 🟡 **GV.PD-15** Right-to-Restrict Tooling Support — UK GDPR Article 18 tooling distinct from erasure
 - 🟢 **GV.PD-18** Information Asset Register Completeness — NHSE IG section 8 IAR registration with owner, lawful basis, retention, sub-processor, risk classification *(new in v5.4.0)*
 
-**Outstanding follow-ups.** Several members carry a "section ref to be added on next pass" marker pending the next NHSE IG-guidance review pass — see `v5.3-pre-mint-triage.md` *Outstanding follow-ups*. GV.CR-13's rubric remains placeholder until a national pilot lands.
+**Outstanding follow-ups.** GV.CR-13's rubric remains placeholder (Maturity: Proposed/Novel) until a national pilot lands — section ref convention since v5.5.0 is *topic-cited* against [NHSE-IG-Guidance-2026-03] because the parent guidance hub does not currently expose a stable section anchor. If a stable per-section URL becomes available, member Source rows can be re-tightened to use it.
 
 ---
 
@@ -2833,9 +2850,18 @@ This section is a first-class principle of the taxonomy, parallel to the [Outcom
 
 **Why all three.** A capability tested only at prevention is exposed to deployment-time drift. A capability tested only at detection has no closed-loop response to alerts. A capability tested only at limitation is responding to failures that better prevention or detection should have caught earlier. **Defensible AVT assurance requires all three layers for every safety-critical failure mode** — and the catalogue is structured so this composition can be checked.
 
-### How the layers map onto existing dimensions
+### How metrics are classified into layers
 
-Layers of defence is a **derived cut** — it is not a separately-recorded dimension on each metric. It is composed from existing dimensions:
+**Two-tier classification (v5.5.0+).** Some metrics carry an **explicit `Layer` field** in their dimensions table (Prevention / Detection / Limitation); others fall back to a **cadence heuristic**.
+
+- **Explicit `Layer`** is the authoritative answer where present. Seeded in v5.5.0 with 33 metrics from an early-draft slide-deck classification (the original "minimum viable assurance" presentation). Future releases will extend explicit classification to the rest of the catalogue.
+- **Cadence heuristic** is the v5.5.0 fallback for the ~200 metrics that don't yet have an explicit `Layer`: One-off gate → Prevention; Continuous / Periodic audit → Detection; Event-triggered → Limitation. **The heuristic is wrong about a third of the time** — it conflates always-on limitation infrastructure with detection (e.g. LFPSE incident reporting runs continuously but its purpose is to bound damage, not detect drift) and miscategorises pre-deployment gates with continuous nominal cadence as detection. Treat as a starting point.
+
+The by-layer-of-defence cross-cut page renders both cohorts separately so the distinction is visible to readers.
+
+### How the layers correlate with other dimensions
+
+Even with explicit classification, the cadence / lifecycle / cluster signals correlate with layer membership in predictable ways:
 
 | Layer | Strongest signal | Cluster bias | Cadence bias | Lifecycle Phase bias |
 |---|---|---|---|---|
@@ -2898,6 +2924,102 @@ The taxonomy does not enforce the three-layer composition because failure modes 
 - **[Outcomes Boundary](#outcomes-boundary)** names what is *out of scope* (clinical-outcome validation belongs to national research bodies). Layers of Defence names how *in-scope* assurance composes.
 - **[Calibration & Context](#calibration-context)** says tier assignments and threshold numbers are starting points, not universal gates. Layers of Defence says no single layer is sufficient regardless of how well-calibrated each individual metric is — composition matters as much as calibration.
 - **[Named Metric Families](families.md)** group metrics by shared *construct*; layers of defence groups them by shared *function* in the assurance architecture. The two cuts are orthogonal: the Demographic Equity Disaggregation family is mostly detection-layer; the NHSE IG Attestation family spans all three layers.
+
+## AI-Substrate Classification
+
+This section names a **derived cut** the taxonomy makes available to readers who want to ask "which metrics test the AI itself, vs the infrastructure around the AI, vs the governance of the AI?" Those are different questions, and they sit orthogonally to the Tier / Family / Layer-of-Defence cuts already documented elsewhere.
+
+This is a **documentation-only** classification — there is no `AI Substrate` field on metric bodies and no audit-enforced enum. The classification is *derived* from existing dimensions (Pipeline Layer + Responsible Actors + Cluster) at reading time. The page exists because the substantive question is real and the existing dimensions don't quite answer it directly.
+
+### The five substrate classes
+
+- **Pre-AI** — metrics that test infrastructure that exists *before* the AI runs and would still matter if the AI weren't there. Hardware quality, signal capture, data minimisation at the input stage. The AI inherits these but doesn't create them.
+- **AI-Substrate** — metrics that test the AI model itself: its outputs, its calibration, its bias, its hallucination rate, its drift. The model is the load-bearing component of the metric.
+- **Post-AI** — metrics that test the infrastructure that consumes AI output: write-back fidelity, EPR integration, downstream coding accuracy. The AI produces; these test what happens next.
+- **AI-Mediated Workflow** — metrics that test the human-AI interaction: clinician review behaviour, edit patterns, automation bias, time-to-sign. The metric is about how the human and the AI compose, not about either alone.
+- **AI-Agnostic Governance** — metrics that test deployer-side or vendor-side governance infrastructure that is *substantively the same whether the system is AI or not*: DPIA completion, board oversight, privacy notice currency, sub-processor disclosure. AI-deployed systems trigger the obligation, but the metric tests organisational behaviour rather than AI behaviour.
+
+### Why this cut is documentation-only
+
+In v5.4.0 the taxonomy considered three options for surfacing this cut (plan-future #10):
+
+1. **Add an `AI Substrate` dimension** on every metric body — high authoring cost (236 entries), structurally enforceable.
+2. **Derive at build time** from existing dimensions — low cost, covers ~80% cleanly, but introduces a `disputed` category for genuine edge cases.
+3. **Documentation-only framing page** (this one) — lowest cost, no structural change, depends on the reader doing the lookup.
+
+**Option 3 was chosen because** the cut is real but fuzzy at the edges. A handful of metrics genuinely span two classes — GV.PD-12 Training Data Representativeness Documentation is *both* an AI-Substrate concern (does the data cover the population?) *and* an AI-Agnostic Governance concern (is the documentation complete?). Forcing a single classification per metric would either pretend the fuzziness doesn't exist (Option 1) or surface it as a `disputed` value the audit has to tolerate (Option 2). Documentation-only acknowledges the fuzziness honestly.
+
+If the cut later proves substantively load-bearing — readers consistently ask "show me the AI-Substrate metrics" — Option 2 (derived classification) becomes the right next step. The derivation rules are sketched below.
+
+### How to derive class from existing dimensions
+
+For most metrics, the class is obvious from Pipeline Layer + Cluster:
+
+| Pipeline Layer | Typical class |
+|---|---|
+| Audio Capture (TP.AC) | Pre-AI |
+| ASR / Diarisation / Summarisation / Clinical Coding (TP.ASR / TP.DI / TP.SN / TP.CC) | AI-Substrate |
+| Downstream Write-back (TP.WB) | Post-AI |
+| Cross-cutting + Cluster: HL | AI-Mediated Workflow |
+| Cross-cutting + Cluster: GV | mostly AI-Agnostic Governance, with exceptions |
+| Cross-cutting + Cluster: IO.PX | AI-Mediated Workflow (patient experience of the AI-using clinician) |
+| Cross-cutting + Cluster: IO.FE | AI-Substrate (fairness of the model) or AI-Mediated (fairness of the human-AI workflow), depending on the metric |
+| Cross-cutting + Cluster: ES | AI-Substrate (most ES.ME metrics test the model) |
+
+GV is the cluster with the most class diversity:
+
+- **AI-Substrate** subset of GV: GV.SG (most safety-governance metrics test the model — drift, contamination, hazard logs); GV.SC (most security metrics test AI-specific attack surfaces — prompt injection, jailbreak); parts of GV.PD (training-data metrics).
+- **AI-Agnostic Governance** subset of GV: GV.CR (most compliance-regulatory metrics test attestations); GV.VT (vendor-transparency metrics test contractual relationships); most of GV.PD (data-handling metrics that pre-exist AI); GV.OP (operational metrics that test deployment economics, not AI behaviour); GV.TC (training-and-competency metrics that test clinician knowledge); GV.EN (environmental metrics).
+
+### Worked examples
+
+**TP.SN-5 Hallucination Rate** — clearly **AI-Substrate**. The metric is exactly "the AI is producing content that isn't in the source"; without the AI there is no metric.
+
+**TP.AC-1 Signal-to-Noise Ratio Monitoring** — **Pre-AI**. The microphone hardware would matter for any audio capture (clinical or not, AI or not). The AI inherits the SNR; it doesn't create it.
+
+**TP.WB-8 PRSB Semantic Completeness** — **Post-AI**. The AI generates the output; this metric tests whether the output, once written to the EHR, contains the mandatory PRSB elements. The AI can pass content fidelity (TP.WB-1) and field mapping (TP.WB-3) and still fail PRSB completeness — a Post-AI failure mode.
+
+**HL.HF-1 Edit Rate** — **AI-Mediated Workflow**. The metric is exactly "what proportion of AI-generated notes do clinicians edit before signing?" — neither pure AI-Substrate (the human's behaviour is the load-bearing variable) nor pure governance (the metric is per-encounter not organisational).
+
+**GV.CR-7 DPIA Template Completion Rate** — **AI-Agnostic Governance**. DPIAs pre-date AVT; the metric tests whether the deployer has filled out the standard form, not anything specific to the AI's behaviour. AI deployment triggers the obligation but the metric tests deployer documentation discipline.
+
+**GV.SG-3 Performance Degradation Detection Latency** — **AI-Substrate**. The metric is about detecting when the *model's behaviour* has degraded; it requires AI-specific telemetry that no non-AI system would generate.
+
+**GV.PD-12 Training Data Representativeness Documentation** — **disputed**: simultaneously AI-Substrate (the underlying concern is whether the model can perform across the population) and AI-Agnostic Governance (the metric tests whether documentation exists). For now: classify as AI-Substrate because the underlying construct is model-fairness-readiness; the documentation is the surface.
+
+**GV.SC-1 Prompt Injection Resistance Rate** — **AI-Substrate**. Prompt injection is an LLM-specific attack surface; pre-LLM systems do not have this failure mode.
+
+**GV.SC-12 Cyber Essentials Plus Certification Status** — **AI-Agnostic Governance**. Cyber Essentials Plus is a general organisational cyber-hygiene certification; the AI-deployed organisation needs it for the same reasons any digital health organisation does.
+
+### Why care about this cut
+
+Different audiences want different views of the catalogue. This cut serves four concrete questions:
+
+1. **Vendor evaluation teams** building model-evaluation infrastructure want the **AI-Substrate** subset — they're the metrics that need new test harnesses, datasets, and continuous-integration tooling. (~40-50% of the catalogue.)
+
+2. **Deployer IG and governance teams** want the **AI-Agnostic Governance** subset — these are obligations they already have for non-AI systems, recontextualised for AVT. The work is mostly extending existing processes rather than building new ones. (~30% of the catalogue.)
+
+3. **Clinical safety officers** want the **AI-Mediated Workflow** subset — these are the metrics that test how clinicians actually use the system, where the highest-leverage behaviour-change interventions sit. (~10-15%.)
+
+4. **Procurement officers** want the **Pre-AI** + **Post-AI** subsets — the infrastructure compatibility checks and integration-correctness checks that determine whether the AI can be deployed at all. (~10-15%.)
+
+The AI-Substrate cut **complements but does not replace** the existing cuts:
+
+- **Tier** says how essential a metric is.
+- **Layer of Defence** says what role it plays in the assurance architecture (prevention / detection / limitation).
+- **AI Substrate** (this page) says where the metric sits relative to the AI itself.
+- **Family** says which named construct the metric belongs to.
+
+A metric like TP.SN-5 Hallucination Rate is simultaneously: Tier 1 / Detection layer / AI-Substrate / Clinical Content Fidelity family. Different readers come at it from different angles.
+
+### Status and future
+
+This page is **documentation-only as of v5.5.0**. Plan-future #10 records the option to upgrade to a derived (build-time) classification later if the cut proves load-bearing. The promotion criteria from #10:
+
+- Prototype the derivation against ~30 metrics; if `disputed` covers >20% of metrics, the cut is too fuzzy for structural surfacing and the documentation-only treatment is the right answer.
+- At least one reader who's not the author has reviewed the cut and confirmed it carries weight.
+
+Until then, this page is the canonical home for the framing.
 
 ## Gaps & Proposed Metrics (Roadmap)
 
@@ -3356,7 +3478,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.4.0` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.0` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -3377,6 +3499,16 @@ Gap candidates in `_gaps.md` no longer reserve specific reference IDs. Earlier v
 - **Stale cross-references** in archived plans pointing to slots whose meaning changed before promotion.
 
 From v5.3.0 onwards, gap candidates are slot-less. `_gaps.md` rows show `Proposed (slot at promotion)` or similar; the actual ref-ID is allocated to the next-available slot in the natural cluster at the moment the candidate is promoted to an active metric. Deprecated IDs (HL.HF-4, TP.CC-8, TP.SN-8/-10) remain retired under the existing deprecation policy and are *not* reused as fill.
+
+## Within-cluster metric ordering (v5.4.0 convention)
+
+Within each cluster file, metric blocks (`### REF Name`) appear in **ascending numeric ref-ID order**. Sub-parts (e.g. TP.SN-7a, TP.SN-7b) sort immediately after their suffix-less parent. This convention was made explicit in v5.4.0 — earlier releases used chronological-append (every new metric joined at the end of its cluster file), which left visible gaps once new metrics were minted in the middle of a numeric range (e.g. GV.PD-12 through GV.PD-15 added after the v4.1 GV.PD-16 had already been appended).
+
+The convention is enforced by `audit.check_within_cluster_order`. The check is a WARN, not an ERROR — out-of-order metrics still build cleanly, but the audit surfaces drift on every release.
+
+**Compatibility with retired IDs.** Deprecated/retired IDs are still skipped (they don't appear as `### REF` headings). The order check ignores gaps in the sequence — `### TP.CC-7` followed by `### TP.CC-9` is fine because TP.CC-8 is in `_retired-ids.md`.
+
+**Compatibility with sub-clusters.** Sub-cluster intro paragraphs and named-family framings between metrics are preserved by the sort tooling — they sort *with* the metric they immediately precede. Operators applying the sort to a new cluster file should diff carefully if the file contains sub-cluster intros.
 
 # Threshold Reference
 
@@ -4193,6 +4325,7 @@ Verification that the capture hardware meets minimum specifications for the AVT 
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Standard audio hardware validation; vendor deployment requirements |
 
 **Why this tier?**
@@ -4608,22 +4741,7 @@ def clinical_keyword_error_rate(reference, hypothesis):
 
 ---
 
-### Family: Demographic Equity Disaggregation
-
-> **Parent construct** - the family of metrics that apply demographic disaggregation to pipeline performance, measuring whether system quality varies across population subgroups. The underlying principle is the same at every layer: compute the base metric separately for each demographic group, then quantify the gap.
->
-> This family spans the full pipeline because equity failures can originate at any stage. ASR accuracy may vary by accent; summarisation quality may vary by consultation style correlated with ethnicity; coding completeness may systematically differ across patient populations. Measuring equity at only one layer provides false assurance - a system that transcribes equitably may still summarise or code inequitably.
->
-> **The disaggregation axes.** Most metrics in this family operate on the same set of demographic variables: accent/dialect, first language, age band, sex, ethnicity, deprivation quintile, and speech characteristics (rate, volume, disorder). The specific axes depend on the base metric and available data. The NAS framework proposes a maximum 5 percentage-point gap across groups as a starting threshold.
->
-> **Metrics in this family:**
-> - 🟡 **Demographic-Disaggregated WER** (ASR / Transcription) - WER by accent, language, age, speech characteristics
-> - 🔵 **Speaker-Stratified WER** (ASR / Transcription) - WER by speaker role (clinician vs patient)
-> - 🟡 **Coding Equity Index** (Clinical Coding) - whether AVT-driven coding changes are equitable across demographics
-> - 🔵 **Compound Demographic Performance** (End-to-End Pipeline) - intersectional performance at full-pipeline level
-> - 🟡 **Accent Taxonomy Standardisation** (Fairness & Equity) - standardised accent/dialect categorisation for disaggregation
-> - 🔵 **Intersectional Performance** (Fairness & Equity) - performance at demographic intersections
-> - 🔵 **Intersectional Compound Fairness Score** (Fairness & Equity) - formal intersectional fairness quantification
+*The next ASR metric is the entry point for the **Demographic Equity Disaggregation** named family — see [Families § Demographic Equity Disaggregation](../families.md#demographic-equity-disaggregation) for the construct definition, full member list across clusters, and discussion of disaggregation axes.*
 
 ### TP.ASR-4 🟢 Demographic-Disaggregated WER
 
@@ -5013,6 +5131,7 @@ Rate at which the ASR generates plausible-sounding but fabricated text when fed 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | [Koenecke-Careless-Whisper-2024]; specific to neural end-to-end ASR architectures |
 
 **Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The Operational Specification explicitly says "periodic audit re-runs the test corpus on every component change per [GV.SG-1 Model Version Tracking] (any ASR weight or model update triggers re-test)" and the Trigger Conditions describe alert-on-new-critical-class-hallucination signals against a prior baseline — neither of which is one-off).
@@ -5084,6 +5203,7 @@ Accuracy specifically on numbers: dosages, dates, vital signs, lab values, durat
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Prevention |
 | **Source** | Identified as critical gap in clinical ASR evaluation |
 
 **Change history:** v5.0.3 (Cadence corrected: One-off gate → Periodic audit. The body has always described monthly review of production-traffic numeric accuracy, a sustained-drift alert over two months, and a pause-on-confirmed-dosage-error trigger in production traffic — none of which is one-off. Pre-deployment is preserved via Lifecycle Phases).
@@ -5789,32 +5909,7 @@ extension and not part of Asgari's published structure.
 
 ---
 
-### Family: Clinical Content Fidelity
-
-> **Parent construct** - whether the generated note faithfully represents the clinical content of the source consultation.
->
-> The next five metrics measure different facets of a single underlying construct. Treating them as unrelated obscures three important things: the existence of distinct error subtypes with different clinical implications, the difference between factuality and faithfulness, and the reason that aggregate rates can mask serious category-specific failures.
->
-> **Subtypes are not substitutes.** The CREOLA framework ([Asgari-Tortus-2025]) defines four hallucination subtypes — *fabrication, negation, causality, contextual* — and three omission subtypes (*current issues, past medical / family / social, information-and-plan*). Drawing on that 4+3 original plus AutoscriberValidate analysis (medRxiv 2026), this taxonomy uses the following five cross-cutting subtypes for the Clinical Content Fidelity family. Each maps onto Asgari's structure but regroups for clinical-decision-relevance and to align with dedicated downstream metrics where they exist. **The five-subtype regrouping is a v4.2 taxonomy-side framing, not Asgari's published structure** — the source-attested taxonomy is the 4+3 above.
->
-> - **Fabrication** (Asgari "fabrication") - completely invented clinical content with no basis in the source. Fictional examination findings are the canonical example. Most dangerous.
-> - **Context conflation** (closest to Asgari "contextual") - content misattributed between different parts of the conversation or between speakers, e.g. one patient's symptom attributed to another's discussion in a multi-encounter session. Compounds diarisation errors.
-> - **Incorrect negation** (Asgari "negation") - polarity reversal of a clinical assertion, e.g. "no chest pain" rendered as "chest pain". Measured by the dedicated Negation Handling Accuracy metric in this family. Directly causes clinical harm via phantom allergies, eliminated presenting symptoms, and inverted medication instructions.
-> - **Speculation or inference beyond source** (closest to Asgari "causality") - plausible but unverifiable content that extends beyond what was discussed, e.g. adding a likely diagnosis the clinician never stated. The summariser is exercising clinical judgment it shouldn't.
-> - **Certainty inflation** (taxonomy-extension; not a dedicated CREOLA subtype) - clinician uncertainty markers ("possibly", "consistent with", "rule out") stripped from the note, converting hedged observations into definitive statements. Measured by the Uncertainty Marker Preservation metric in this family.
->
-> Subtypes have different root causes (ASR vs LLM vs diarisation) and different mitigations. An aggregate "hallucination rate" of 2% means very different things if 90% of the errors are speculation vs if 90% are fabrications.
->
-> **Factuality and faithfulness are distinct dimensions within the family.** Factuality is world-correctness: does the statement match clinical reality? Faithfulness is source-correctness: does the statement match what was discussed? A note can be factually correct but unfaithful (the summariser inferred a correct diagnosis the clinician never stated) or faithful but factually incorrect (the summariser accurately captured the clinician's mistake). For ambient scribes, **faithfulness is the primary assurance concern** because the scribe's job is to represent the consultation, not to exercise clinical judgment. A system that silently corrects clinician errors or adds information the clinician did not state has exceeded its safe operating scope regardless of whether the resulting statement is factually true.
->
-> **Recommendation for measurement.** When measuring content fidelity in periodic audit, require subtype reporting rather than aggregate rate only. A single headline number hides the distribution that matters for intervention. Vendors reporting only aggregate rates should be asked to provide the CREOLA subtype breakdown or equivalent.
->
-> **Metrics in this family:**
-> - 🟢 **Hallucination Rate** - the aggregate rate of generated content unsupported by source. Entry point to the family. *See underspecification warning re: definitional instability.*
-> - 🟢 **Omission Rate** - the silent killer. Arguably more dangerous than hallucination because omissions are invisible to the reviewer looking at a clean-looking note.
-> - 🔵 **Confabulation Detection (Support × Severity)** - vendor-proprietary two-axis approach (Abridge) that stratifies by evidence support and clinical severity. Methodologically superior where available.
-> - 🟢 **Negation Handling Accuracy** - measures the Incorrect Negation subtype as a dedicated metric because of its direct clinical harm potential.
-> - 🟢 **Uncertainty Marker Preservation** - measures the Certainty Inflation subtype as a dedicated metric because certainty inflation is the more dangerous direction of epistemic drift.
+*The next five metrics are members of the **Clinical Content Fidelity** named family — see [Families § Clinical Content Fidelity](../families.md#clinical-content-fidelity) for the construct definition, CREOLA subtype mapping, faithfulness-vs-factuality framing, and full member list.*
 
 ---
 
@@ -5836,6 +5931,7 @@ Proportion of generated content unsupported by source. Currently defined inconsi
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Various; [Asgari-Tortus-2025] reports 1.47% per sentence |
 
 **Why this tier?**
@@ -5935,6 +6031,7 @@ Clinically relevant source content absent from note. More dangerous than halluci
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | [Asgari-Tortus-2025] reports 3.45%; [CREOLA-Hallucination-Taxonomy] |
 
 **Why this tier?**
@@ -6470,6 +6567,7 @@ Does the summary correctly preserve negations? 'No chest pain' vs 'chest pain' i
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Clinical NLP literature; identified as systematic LLM failure mode |
 
 **Why this tier?**
@@ -6637,19 +6735,7 @@ For each quantifier in reference: Quantifier Preservation = (quantifier present 
 
 ---
 
-### Family: Medication Safety Thread
-
-> **Parent construct** - the family of metrics that track medication information accuracy across the full pipeline, from spoken consultation to structured EPR record. Medication errors are the canonical safety-critical failure mode in clinical documentation AI.
->
-> Unlike the other families in this taxonomy, the Medication Safety Thread spans multiple pipeline layers and multiple groups: extraction and event classification at the summarisation layer, terminology coding at the clinical coding layer, and downstream outcome monitoring at the patient experience layer. The family exists because a medication error can originate at any of these stages, and measuring only one stage gives false assurance about the others.
->
-> **The safety argument.** A medication mentioned in consultation passes through at least four processing stages before it affects patient care: (1) ASR must transcribe the drug name, dose, and frequency correctly; (2) the summariser must extract these attributes and classify the medication event (start, stop, change); (3) the clinical coder must map to the correct dm+d concept; (4) the EPR write-back must place the medication data in the correct structured field. An error at any stage propagates - and the stages are tested by different metrics in different groups. The family framing makes the end-to-end thread visible.
->
-> **Metrics in this family:**
-> - 🟡 **Medication Attribute Extraction F1** (Summarisation / NLP) - per-attribute accuracy for drug name, dose, route, frequency, duration, indication
-> - 🟡 **Medication Event Classification** (Summarisation / NLP) - classification of medication actions: start, stop, increase, decrease, continue
-> - 🟡 **dm+d Medication Coding Accuracy** (Clinical Coding) - mapping to NHS dm+d terminology; currency against quarterly updates
-> - 🔵 **Medication Error Rate Differential** (Patient Experience) - downstream outcome: pre/post AVT medication error rates
+*The next two metrics (TP.SN-19, TP.SN-21), plus TP.CC-5 in the Clinical Coding cluster and IO.PX-10 in Patient Experience, are members of the cross-cutting **Medication Safety Thread** named family — see [Families § Medication Safety Thread](../families.md#medication-safety-thread) for the construct definition, four-stage pipeline argument, and full member list.*
 
 ### TP.SN-19 🟡 Medication Attribute Extraction F1
 
@@ -6709,6 +6795,7 @@ Does the summary maintain clinician diagnostic uncertainty ('possibly', 'suggest
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Clinical Content Fidelity |
+| **Layer** | Detection |
 | **Source** | Clinical NLP hedging/uncertainty literature |
 
 **Why this tier?**
@@ -7451,6 +7538,7 @@ Data transfer accuracy to EPR structured fields. Where errors become patient saf
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | PRSB Semantic Completeness & Write-back Fidelity |
+| **Layer** | Prevention |
 | **Source** | Critical gap - no standardised FHIR R4 write-back in NHS primary care |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect that body describes both the highest-priority pre-deployment gate AND continuous monthly auditing of safety-critical fidelity in production traffic; v5.1 also introduces `Event-triggered` as a fourth Cadence enum value and makes the dimension semicolon-separated).
@@ -7526,6 +7614,7 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | Standard integration monitoring; IM1 requirements |
 
 **Why this tier?**
@@ -7592,6 +7681,7 @@ Does content land in the correct EPR field even when content is correct? A corre
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | PRSB Semantic Completeness & Write-back Fidelity |
+| **Layer** | Prevention |
 | **Source** | Identified as distinct failure mode within write-back |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `One-off gate; Continuous` to reflect both the safety-critical pre-deployment test AND ongoing continuous-monitoring of mapping accuracy in production traffic).
@@ -7663,6 +7753,7 @@ Does the system correctly handle existing structured data? Overwriting an existi
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Prevention |
 | **Source** | Identified as safety-critical EPR integration behaviour |
 
 **Why this tier?**
@@ -9056,6 +9147,7 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
 | **Family** | Post-Generation Correction |
+| **Layer** | Detection |
 | **Source** | [Abridge-Whitepaper-2025]; [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -9238,6 +9330,7 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [Keyes-Stanford-Monitoring-2025] |
 
 **Why this tier?**
@@ -9312,6 +9405,7 @@ Distribution of duration between generation and approval. Model as distribution 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | EPR workflow data; [Keyes-Stanford-Monitoring-2025] principles |
 
 **Why this tier?**
@@ -10036,6 +10130,7 @@ Percentage declining AVT. Disaggregate by demographics to reveal equity issues i
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Contextualised |
+| **Layer** | Detection |
 | **Source** | [NAS-Day-Zero-SPI-internal]; [CQC-Mythbuster-109] |
 
 **Why this tier?**
@@ -10782,6 +10877,7 @@ Logging which model version produces each output. Foundation for all continuous 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [Keyes-Stanford-Monitoring-2025] |
 
 **Change history:** v5.1.0 (Cadence updated to multi-value `Continuous; Event-triggered` — every model component change is itself the trigger for re-tracking, and the per-inference logging is the continuous component).
@@ -11145,6 +11241,7 @@ Metrics + thresholds + escalation = governance. A metric without a threshold is 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [AMLAS-AAIP]; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
@@ -11235,6 +11332,7 @@ National patient safety reporting. Ultimate lagging indicator. No specific LFPSE
 | **Maturity** | Established |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [LFPSE] national reporting |
 
 **Why this tier?**
@@ -11317,6 +11415,7 @@ Gap between required and completed assurance. The honest metric - better visible
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Multi-level assurance framework |
 
 **Why this tier?**
@@ -11356,6 +11455,7 @@ Incidents caught by clinician review before reaching the EPR. The leading indica
 | **Maturity** | Proposed / Novel |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Patient safety leading vs lagging indicator literature |
 
 **Why this tier?**
@@ -11507,6 +11607,7 @@ DCB0129 requires a hazard log. Is it actually maintained and updated as new fail
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [DCB0129] compliance requirement |
 
 **Why this tier?**
@@ -12238,7 +12339,9 @@ Pass per criterion: (1) Named board committee or executive director with AI over
 
 ### GV.CR-13 🟡 Refusal Impact-Explanation Quality
 
-When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -12254,7 +12357,7 @@ When a patient declines AVT use for their consultation, NHSE IG explicitly requi
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)|
 
 **Why this tier?**
 
@@ -12852,6 +12955,7 @@ Whether audio recordings are retained, for how long, and whether retention compl
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | AVT-Specific |
+| **Layer** | Detection |
 | **Source** | [UK-GDPR] Article 5(1)(e) storage limitation; [NHSE-IG-Guidance-2026-03] |
 
 **Why this tier?**
@@ -13195,6 +13299,7 @@ Whether patients are actually informed about AVT use as required by CQC Mythbust
 | **Outcome Type** | Distal |
 | **Applicability** | General Healthcare AI |
 | **Family** | NHSE IG Attestation |
+| **Layer** | Detection |
 | **Source** | [CQC-Mythbuster-109]; [NHSE-IG-Guidance-2026-03]; common law implied consent requirements |
 
 **Why this tier?**
@@ -13260,6 +13365,7 @@ Does AVT processing involve data transfer outside UK/EU? UK GDPR Article 46 requ
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
 | **Family** | NHSE IG Attestation |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 46; [Schrems-II] implications |
 
 **Why this tier?**
@@ -13303,6 +13409,7 @@ Can the deployer fulfil patient SAR requests for AVT-related data within statuto
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 15 right of access |
 
 **Why this tier?**
@@ -13365,6 +13472,7 @@ If a patient requests erasure under UK GDPR Article 17, can audio, transcripts, 
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [UK-GDPR] Article 17 right to erasure; [NHSE-IG-Guidance-2026-03] for individual-care exemption scope |
 
 **Why this tier?**
@@ -13456,7 +13564,9 @@ Pass per criterion: (1) Training data corpus characterised by language, accent /
 
 ### GV.PD-13 🟢 Privacy Notice Currency & Completeness
 
-Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13472,7 +13582,7 @@ Whether the deploying organisation's published privacy notices have been updated
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — privacy notice / AVT-processing transparency content (topic-cited; parent hub no stable section anchor); UK GDPR Art 13/14|
 
 **Why this tier?**
 
@@ -13486,7 +13596,7 @@ Pass per criterion: (1) Each public-facing privacy notice (organisation-level + 
 
 **Limitations**
 
-> Section ref to be added on next pass against the NHSE IG March 2026 guidance — currently the metric cites the document at framework level rather than section level. The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
+> The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
 
 **Novel Thinking / Implications**
 
@@ -13496,7 +13606,9 @@ Pass per criterion: (1) Each public-facing privacy notice (organisation-level + 
 
 ### GV.PD-14 🟡 SAR Deletion-Pause Interaction
 
-Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13512,7 +13624,7 @@ Whether the deployer's Subject Access Request handling and AVT data-deletion pro
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / SAR-handling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 12-22 (data subject rights)|
 
 **Why this tier?**
 
@@ -13536,7 +13648,9 @@ Scenario walk-through: (1) Open a synthetic SAR against a test patient with acti
 
 ### GV.PD-15 🟡 Right-to-Restrict Tooling Support
 
-Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13552,7 +13666,7 @@ Whether the deploying organisation's AVT-side tooling supports the UK GDPR Artic
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / restriction tooling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 18|
 
 **Why this tier?**
 
@@ -13687,6 +13801,8 @@ Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott G
 
 Whether the deploying organisation maintains an Information Asset Register (IAR) that includes the AVT system as a named information asset with a documented owner, lawful basis, retention period, sub-processor list, and risk classification. NHSE IG section 8 explicitly requires AVT-deploying organisations to register the system as an information asset alongside their other clinical-system assets — the IAR is the index that ties together DPIA, sub-processor disclosure, retention timing, and incident escalation.
 
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.PD-18 |
@@ -13701,7 +13817,7 @@ Whether the deploying organisation maintains an Information Asset Register (IAR)
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation                                      |
-|**Source**             |[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — information asset register / IAO-naming content (topic-cited; the unverified 'section 8' placeholder from v5.4.0 is dropped — parent hub no stable section anchor); NDG Data Security Standards|
 
 **Why this tier?**
 
@@ -13715,7 +13831,7 @@ Pass per criterion: (1) AVT system listed in the organisation's Information Asse
 
 **Limitations**
 
-> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims.
 
 **Novel Thinking / Implications**
 
@@ -13738,6 +13854,7 @@ Most cited benefit metric. Tells you nothing about safety. 'Time saved' alone is
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Widely used; critiqued [Coiera-Fraile-Navarro-JMIR-2026] |
 
 **Why this tier?**
@@ -13925,6 +14042,7 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard SLA; [NAS-Day-Zero-SPI-internal] |
 
 **Why this tier?**
@@ -13960,6 +14078,7 @@ Who uses AVT and for which consultations. Selective patterns reveal practical sy
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Detection |
 | **Source** | Standard deployment metric |
 
 **Why this tier?**
@@ -14297,6 +14416,7 @@ Percentage of AVT-using clinicians who have completed required training modules:
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Prevention |
 | **Source** | [NAS-Day-Zero-SPI-internal] requirements; standard clinical governance |
 
 **Why this tier?**
@@ -14533,6 +14653,7 @@ Whether the vendor notifies deployers of model updates before deployment, with s
 | **Maturity** | Emerging |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [Keyes-Stanford-Monitoring-2025]; three-principle monitoring framework (system integrity, performance, impact) |
 
 **Why this tier?**
@@ -14724,6 +14845,7 @@ Does the vendor disclose security incidents, model failures, and known issues to
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | Standard security incident disclosure practice |
 
 **Why this tier?**
@@ -14827,6 +14949,7 @@ Does the vendor disclose all third parties with access to data: cloud providers,
 | **Maturity** | Established |
 | **Outcome Type** | Proximal |
 | **Applicability** | General Healthcare AI |
+| **Layer** | Limitation |
 | **Source** | [UK-GDPR] Article 28 |
 
 **Why this tier?**
@@ -14999,6 +15122,8 @@ Pass per criterion: (1) Device characterisation published (model architecture fa
 
 Whether the deployer has documented a binary determination of joint-controller status under UK GDPR Article 26 with the AVT vendor. Joint controllers under Article 26 must agree on transparency arrangements, the exercise of data subject rights, and respective compliance responsibilities — the assessment is **distinct** from sub-processor disclosure (which is processor-status, [GV.VT-7](#gv-vt-7)) because joint-controller status creates shared accountability rather than vendor-as-processor accountability. NHSE IG section 5 explicitly requires AVT-deploying organisations to make and document this determination before go-live.
 
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.VT-11 |
@@ -15012,7 +15137,7 @@ Whether the deployer has documented a binary determination of joint-controller s
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] section 5 (section ref to be confirmed on next pass)|
+|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] — controller-status determination content (topic-cited; the unverified 'section 5' placeholder from v5.4.0 is dropped — parent hub no stable section anchor)|
 
 **Why this tier?**
 
@@ -15026,7 +15151,7 @@ Pass per criterion: (1) Joint-controller status determination documented (Yes / 
 
 **Limitations**
 
-> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law.
 
 **Novel Thinking / Implications**
 
