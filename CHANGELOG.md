@@ -1,5 +1,53 @@
 # Changelog
 
+## v5.5.1 (2026-05-08)
+
+**Patch release: Failure Pathways page.**
+
+New cross-cutting page `_failure-pathways.md` (rendered as `failure-pathways.md` in Principles & Frameworks nav). Sourced from prior slide-deck work and provides **scenario framing** to complement the architectural framing in `_layers-of-defence.md` and the construct framing in `_families.md`.
+
+Two complementary views on one page:
+
+### Three failure pathways (archetypes)
+
+Three parallel failure shapes traced step by step through the pipeline. Each pathway names the pipeline stages traversed and the Tier 1 metrics that are the catches at each stage:
+
+- **Pathway I — The hallucination cascade.** ASR fabrication → patient safety incident. ASR → Summarisation → Human Review → EPR → Detection → Escalation. Concrete instance: a Whisper-style hallucination from a 4-second silence becomes a drug prescribed on a symptom the patient never reported.
+- **Pathway II — The silent write-back failure.** Content correct, field wrong → interaction warning bypass. ASR → Summarisation → Write-back → EPR → Prescribing. Concrete instance: an allergy correctly transcribed but routed to the free-text field instead of the structured allergy list.
+- **Pathway III — The undisclosed model update.** Silent vendor change → population accuracy drift. Vendor → Telemetry → Workflow → Audit → Governance Action. Concrete instance: a vendor deploys a new model without notification; accuracy drops 14% on EAL patients.
+
+The framing carries the load-bearing claim: **no single metric covers a whole pathway. The taxonomy is a net, not a filter.**
+
+### One worked timeline (taxonomy in motion)
+
+Pathway III traced day by day from silent change to bounded response, showing the closed-loop escalation in concrete time terms:
+
+- **Day 0** Silent update (GV.VT-1 Notification breached)
+- **Day 1** Version detected (GV.SG-1 Model Version Tracking)
+- **Day 3–7** Edit rate climbs (HL.HF-1 Edit Rate)
+- **Day 14** SPI breach (GV.SG-9 DSCMS thresholds)
+- **Day 16** Audit confirms (TP.SN-5 Hallucination Rate)
+- **Day 17** Pause & file (GV.SG-11 LFPSE Reporting)
+
+Five of the six catches in this timeline are Limitation-layer — the timeline demonstrates what a *fully wired* Limitation layer looks like in practice, complementing the architectural-gap finding in `_layers-of-defence.md` that Limitation is the thinnest layer when not actively wired.
+
+The page also enumerates "what's not in this timeline" honestly — patient harm, inter-deployer correlation, non-AI failure modes — so the worked example doesn't overclaim coverage.
+
+### How to use
+
+The page closes with a four-step "how to use" stub for deployers reviewing their own assurance plans:
+1. Walk a pathway end-to-end against your own deployment.
+2. Test the closed loop (would Day 0 reach Day 17 in your setup?).
+3. Stratify before aggregating (demographic-disaggregated detection is faster).
+4. The metrics are the catches; the wiring is the work.
+
+### Build effects
+
+- 81 → 82 site pages.
+- Build clean. Audit zero ERROR/WARN. 99/99 pytest. mkdocs strict pass.
+
+No metric content edits.
+
 ## v5.5.0 (2026-05-08)
 
 **Minor release: NHSE IG section refs cleanup, AI-substrate framing, family-page consolidation, by-family + by-layer-of-defence cross-cuts, and explicit `Layer` dimension on 33 metrics.**

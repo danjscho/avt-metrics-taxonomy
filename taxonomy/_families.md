@@ -164,7 +164,9 @@ Subtypes have different root causes (ASR vs LLM vs diarisation) and different mi
 
 ---
 
-## PRSB Semantic Completeness & Write-back Fidelity *(new in v5.4.0)*
+## PRSB Semantic Completeness & Write-back Fidelity { #prsb-semantic-completeness-and-write-back-fidelity }
+
+*(new in v5.4.0)*
 
 **Construct:** end-to-end write-back assurance from AVT output generation through EHR persistence — testing content fidelity, field mapping accuracy, structural FHIR conformance, and mandatory information element presence per PRSB standard and consultation type. The family spans output quality, integration correctness, and clinical adequacy of the final record.
 
