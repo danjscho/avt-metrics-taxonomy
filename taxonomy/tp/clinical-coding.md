@@ -252,7 +252,7 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation - the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### TP.CC-7 🟡 Coding Drift Detection (NHS framing; was Coding Inflation Detection)
+### TP.CC-7 🟡 Coding Drift Detection
 
 Systematic detection of pre/post-AVT shifts in clinical coding distributions. In the NHS, the primary concern is **data-quality corruption** — coding drift that distorts epidemiological data, QOF returns, Hospital Episode Statistics, population-health analytics, and SNOMED specificity profiles. The equivalent US concern is revenue inflation via E/M level upcoding (which TP.CC-8 was a US-specific specialisation of pre-v3.7); the framing differs because NHS coding incentives differ from US payer-billing incentives, but the underlying SPC + distribution-shift detection methodology applies in both contexts. v3.7 folds the previous TP.CC-8 (E/M Level Shift Monitoring) into this metric — its KL-divergence and demographic-disaggregation content survives in the Operational Specification.
 
@@ -367,7 +367,7 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### TP.CC-10 🔵 HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)
+### TP.CC-10 🔵 HRG / Tariff Impact Attribution
 
 Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to **HRG (Healthcare Resource Group) tariffs under Payment by Results (PbR)**, QOF achievement, and secondary-care activity-based funding. The US analogue is **wRVU** (work Relative Value Units in CMS Medicare); the underlying causal-attribution methodology applies in both contexts but the framing focus and tariff structures differ. v3.7 reframes this metric as NHS-primary with the US wRVU analogue called out for cross-context comparison.
 

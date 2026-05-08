@@ -8,16 +8,16 @@
 
 ### By Maturity
 
-- **Established**: 62 metrics
-- **Emerging**: 53 metrics
+- **Established**: 69 metrics
+- **Emerging**: 64 metrics
 - **Vendor-Proprietary**: 4 metrics
-- **Proposed / Novel**: 110 metrics
+- **Proposed / Novel**: 99 metrics
 
 ### By Metric Family
 
 Some groups contain named metric families - clusters of related metrics that measure facets of a shared construct. Family framings appear before the first metric of each family.
 
-- **Clinical Content Fidelity** (Summarisation / NLP): 5 metrics - hallucination, omission, confabulation, negation, uncertainty
+- **Clinical Content Fidelity** (Summarisation / NLP): 4 metrics + 1 parent construct (TP.SN-7 Factual Verification) - hallucination, omission, confabulation, negation, uncertainty
 - **Post-Generation Correction** (Human Factors & Workflow): 4 metrics - edit rate, type, location, pattern
 - **Clinical Transcription Accuracy** (ASR / Transcription): 3 metrics - WER, M-WER, CK-ER
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
@@ -25,7 +25,7 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
 - **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 11 metrics — see [Families](families.md#nhse-ig-attestation)
 - **PRSB Semantic Completeness & Write-back Fidelity** (Downstream Write-back) — *new in v5.4.0*: 4 metrics — see [Families](families.md#prsb-semantic-completeness--write-back-fidelity)
-- **Unaffiliated**: 196 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 197 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 

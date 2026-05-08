@@ -4,7 +4,7 @@ This section is an explicit scope statement: what this taxonomy assures, what it
 
 ### What this taxonomy assures
 
-The 215 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
+The 236 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
 
 - **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
 - **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (TP — Summarisation / NLP)

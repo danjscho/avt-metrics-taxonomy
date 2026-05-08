@@ -1,6 +1,6 @@
 ## Standards Mapping
 
-This section maps the taxonomy's 215 metrics against thirteen NHS / regulatory / procurement frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
+This section maps the taxonomy's 236 metrics against thirteen NHS / regulatory / procurement frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
 
 Where a standard criterion has no corresponding taxonomy metric, this is flagged as a **gap**. Where the taxonomy provides coverage beyond the standard's scope, this is noted as **taxonomy extends**.
 
