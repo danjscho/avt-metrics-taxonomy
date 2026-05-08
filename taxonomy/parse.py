@@ -853,6 +853,72 @@ def group_metrics_by_applicability(metrics: list[Metric]) -> dict[str, list[Metr
     return out
 
 
+def group_metrics_by_family(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    """Group metrics by Family dimension value (v5.4.0+). Metrics without a
+    Family value are excluded entirely (no `Unaffiliated` bucket — the
+    families page already names "Unaffiliated" in prose; here we surface
+    only the named families)."""
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        fam = m.family
+        if not fam:
+            continue
+        out.setdefault(fam, []).append(m)
+    return out
+
+
+def derive_layer_of_defence(m: Metric) -> str | None:
+    """Heuristic Layer-of-Defence classifier (v5.5.0+).
+
+    Derives from Measurement Cadence (the strongest signal):
+    - `One-off gate` → Prevention
+    - `Continuous` / `Periodic audit` → Detection
+    - `Event-triggered` → Limitation (often paired with another layer)
+
+    Multi-valued cadence (e.g. "Periodic audit; Event-triggered") returns
+    the first non-Event-triggered value's class, or Limitation if only
+    Event-triggered. Returns None if cadence is missing or unrecognised.
+
+    The classification is documented in `_layers-of-defence.md` — this
+    derivation is the build-time approximation used to generate the
+    by-layer-of-defence cross-cut page. It will mis-classify a small
+    number of metrics where the cadence pattern doesn't match the
+    layer pattern (e.g. one-off limitation infrastructure tests, or
+    detection metrics with continuous cadence that actually serve
+    prevention via gate logic). Treat as a starting point.
+    """
+    cadence = m.dimensions.get("Measurement Cadence", "").strip()
+    if not cadence:
+        return None
+    elements = [e.strip() for e in cadence.split(";") if e.strip()]
+    layer_for = {
+        "One-off gate": "Prevention",
+        "Periodic audit": "Detection",
+        "Continuous": "Detection",
+        "Event-triggered": "Limitation",
+    }
+    classified = [layer_for[e] for e in elements if e in layer_for]
+    if not classified:
+        return None
+    # Tie-break: prefer Prevention > Detection > Limitation when multi-valued
+    for preferred in ("Prevention", "Detection", "Limitation"):
+        if preferred in classified:
+            return preferred
+    return classified[0]
+
+
+def group_metrics_by_layer_of_defence(metrics: list[Metric]) -> dict[str, list[Metric]]:
+    """Group metrics by derived layer-of-defence classification (v5.5.0+).
+    Metrics without a derivable layer are excluded."""
+    out: dict[str, list[Metric]] = {}
+    for m in metrics:
+        layer = derive_layer_of_defence(m)
+        if layer is None:
+            continue
+        out.setdefault(layer, []).append(m)
+    return out
+
+
 # ---------------------------------------------------------------------------
 # References catalogue (v3.9)
 #
