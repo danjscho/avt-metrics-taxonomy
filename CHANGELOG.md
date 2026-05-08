@@ -1,5 +1,53 @@
 # Changelog
 
+## v5.5.5 (2026-05-08)
+
+**Patch release: v5.x consistency sweep + closure of plan-future #4 and #5.**
+
+### Plan-future #4 closure (Tier 1 minimum-set)
+
+Plan-future #4 ("Full Tier 1 gap review and minimum-set construction (post-agreement)") closes. Substantively actioned through the v5.0.1 → v5.5.0 Phase 5 work — the FTS notice 069369-2025 provided the external trigger for "what counts as minimum viable", v5.1.4 framed the criteria, and v5.3.0 / v5.4.0 actioned the gap-fill. The catalogue moved 218 / 43 Tier 1 → 236 / 58 across that arc.
+
+### Plan-future #5 reconfirmation
+
+Plan-future #5 ("Verify code snippets and Formal Definitions against sources") was already marked complete in v4.5+ but v5.5.5 audits the verification chain end-to-end:
+
+- v4.2 covered TP / IO.FE / ES.ME (92 metrics)
+- v4.3 covered GV / HL / PI / IO.PX (131 metrics)
+- v4.4 ran Pass B externally over the 138-metric ✓ set (137/138 verified clean, 1 fix on GV.SG-5)
+- v5.5.2 verified the 23 code snippets + 15 v5.3/v5.4 Formal Definitions added since v4.4
+- **v5.5.5 confirms no FD edits between v4.4 and v5.5.2 bypassed verification** — the v4.5 / v5.0 / v5.1 / v5.2 commits did not modify Formal Definitions (they ran citation-grammar polish, threshold-block structural split, cadence-dimension cleanup, and research-output additions respectively). Verification arc is end-to-end across all 236 metrics.
+
+### Consistency sweep — issues found and fixed
+
+A systematic sweep across the v5.x catalogue surfaced 8 real consistency issues:
+
+1. **`_tier-1-quick-reference.md` missing 15 of 58 Tier 1 metrics.** Refreshed: section header counts corrected (Deployer 36 → 47, Vendor 20 → 33, Regional 2 → 5, National 1 → 5 — multi-actor responsibilities counted per-actor, totals exceed 58 by design); new "v4.1 / v5.3 / v5.4 additions to Tier 1" supplement section added with all missing metrics grouped by Responsible Actor.
+
+2. **`_summary.md` Maturity counts drifted.** Established 62 → 69; Emerging 53 → 64; Vendor-Proprietary 4 (unchanged); Proposed/Novel 110 → 99. Drift accumulated from v5.3.0 / v5.4.0 promotions and pull-throughs that updated tier counts but not maturity counts.
+
+3. **`_summary.md` Family count for Clinical Content Fidelity.** Changed 5 → "4 + 1 parent construct (TP.SN-7 Factual Verification)" — consistent with the parent-vs-countable distinction the build uses.
+
+4. **`_summary.md` Unaffiliated count.** 196 → 197.
+
+5. **`_outcomes-boundary.md` count.** "215 metrics" → "236 metrics".
+
+6. **`_standards-mapping.md` count.** "215 metrics" → "236 metrics".
+
+7. **TP.CC-7 / TP.CC-10 stale renaming suffixes.** "(NHS framing; was Coding Inflation Detection)" / "(NHS framing; was wRVU / Tariff Impact)" removed from the canonical metric headings — the v3.7 reframing context lives in body prose where it belongs.
+
+8. **plan-future #4 stale counts.** Updated from v3.x-era 218 / 43 baseline to current 236 / 58.
+
+### New audit check
+
+`check_summary_maturity_counts` enforces that `_summary.md`'s declared Maturity bucket totals match the live countable-metric distribution. Catches future drift automatically. WARN-level (non-blocking).
+
+### Build effects
+
+- 87 site pages (unchanged from v5.5.4).
+- Build clean. Audit zero ERROR/WARN. 99/99 pytest. mkdocs strict pass.
+- No metric content edits; all changes are headline-text or audit-tooling.
+
 ## v5.5.4 (2026-05-08)
 
 **Patch release: explicit `Layer` dimension extended from 33 → 236 metrics.**

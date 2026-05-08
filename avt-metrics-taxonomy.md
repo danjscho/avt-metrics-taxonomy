@@ -1,6 +1,6 @@
 # AVT Metrics Taxonomy
 
-> **AI-coauthored prototype for discussion — v5.5.4, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
+> **AI-coauthored prototype for discussion — v5.5.5, 2026-05-08.** Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared openly to provoke conversation, not as a settled standard, NHS-endorsed document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. See the [prototype status](#prototype-status) page for what you're invited to do, what you shouldn't do, and how the artefact evolves.
 
 Comprehensive metrics for NHS ambient voice technology assurance - covering the full pipeline from audio capture to clinical record, with formal definitions, code snippets, responsible actors, tiered priority guidance, and novel proposals.
 
@@ -442,16 +442,16 @@ Cluster contains Group contains Metric. Pipeline Layer is mostly determined by G
 
 ### By Maturity
 
-- **Established**: 62 metrics
-- **Emerging**: 53 metrics
+- **Established**: 69 metrics
+- **Emerging**: 64 metrics
 - **Vendor-Proprietary**: 4 metrics
-- **Proposed / Novel**: 110 metrics
+- **Proposed / Novel**: 99 metrics
 
 ### By Metric Family
 
 Some groups contain named metric families - clusters of related metrics that measure facets of a shared construct. Family framings appear before the first metric of each family.
 
-- **Clinical Content Fidelity** (Summarisation / NLP): 5 metrics - hallucination, omission, confabulation, negation, uncertainty
+- **Clinical Content Fidelity** (Summarisation / NLP): 4 metrics + 1 parent construct (TP.SN-7 Factual Verification) - hallucination, omission, confabulation, negation, uncertainty
 - **Post-Generation Correction** (Human Factors & Workflow): 4 metrics - edit rate, type, location, pattern
 - **Clinical Transcription Accuracy** (ASR / Transcription): 3 metrics - WER, M-WER, CK-ER
 - **Reference-Based Text Similarity** (Summarisation / NLP): 2 metrics - ROUGE, BERTScore
@@ -459,7 +459,7 @@ Some groups contain named metric families - clusters of related metrics that mea
 - **Demographic Equity Disaggregation** (cross-cutting: ASR → Clinical Coding → End-to-End → Fairness & Equity): 7 metrics - demographic WER, speaker-stratified WER, coding equity, compound demographic, accent taxonomy, intersectional performance, compound fairness
 - **NHSE IG Attestation** (cross-cutting: Compliance & Regulatory + Privacy & Data Governance) — *new in v5.4.0*: 11 metrics — see [Families](families.md#nhse-ig-attestation)
 - **PRSB Semantic Completeness & Write-back Fidelity** (Downstream Write-back) — *new in v5.4.0*: 4 metrics — see [Families](families.md#prsb-semantic-completeness--write-back-fidelity)
-- **Unaffiliated**: 196 metrics - the remainder, not currently grouped into a named family
+- **Unaffiliated**: 197 metrics - the remainder, not currently grouped into a named family
 
 ### By Underspecification Warning
 
@@ -492,9 +492,13 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 
 **Tier 1 expanded substantially with the January–March 2026 NHS guidance suite.** Nine metrics moved into Tier 1 or were added as new Tier 1 entries reflecting compliance requirements that did not exist when the taxonomy was first drafted: the NHS Compliance & Regulatory cluster (Patient Dissent Recording, Verbal Notification, AI-Generated Content Labelling, AVT Supplier Registry, ICB Engagement, Clinical Safety Case, DPIA Template, Audio Time-to-Deletion, Transcript Retention) plus Code Hallucination Rate. For NHS deployers, the shape of Day Zero minimum assurance has changed materially since early-2025 vendor procurement; re-assess existing deployments against the expanded Tier 1 set.
 
+**Tier 1 expanded again in v5.3.0 / v5.4.0** following the FTS notice 069369-2025 anchoring the AVT Self-Certified Supplier Registry surface. 13 metrics moved into Tier 1: 7 promotions T2 → T1 (Telemetry Provision Completeness, Evidence Pack Freshness, Indicative Pricing Transparency, Outcome Evidence Commitment Status, Deployment Equity Index, Demographic-Disaggregated WER, Performance Degradation Detection Latency) and 6 new T1 mints (Medical Device Classification Documentation, Board-Level AI Governance Mechanism, Consultation-Type Appropriateness Assessment, Privacy Notice Currency & Completeness, Information Asset Register Completeness, PRSB Semantic Completeness). The current Tier 1 set comprises **58 countable metrics** (236 total / 58 / 99 / 79).
+
+Multi-actor responsibilities are counted once per actor, so per-actor totals below sum to more than 58.
+
 ### Tier 1 by Responsible Actor
 
-**Deployer** (36 metrics)
+**Deployer** (47 metrics)
 
 - 🚪 **Microphone & Hardware Validation** - Basic pre-deployment hardware check. No AVT should go live without confirming capture hardware meets minimum specifications. Measurable today by any deployer.
 - 🔄 **Hallucination Rate** ⚠️ - Core safety metric. NAS Day Zero SPI with <2% review and ≥5% pause thresholds. Every deployer must measure this through periodic clinical audit even if methodology is manual. *See underspecification warning in full entry - the term has no universally accepted definition and reported rates across the literature span 1–67% due largely to methodological differences. Document the specific subtype taxonomy and reference dataset used.*
@@ -533,7 +537,7 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - 📡 **Audio Time-to-Deletion** - NHSE IG guidance March 2026 requires deletion after summary sign-off. Measurement makes the policy operational rather than assertive. Must verify deletion in primary storage, caches, and backups.
 - 📡 **Transcript Retention Compliance** - Parallel to audio deletion but often treated as less sensitive despite being higher-risk (structured, searchable, readily consumable). Explicit retention policy required; compliance measurable continuously.
 
-**Vendor** (20 metrics)
+**Vendor** (33 metrics)
 
 - 🚪 **Hallucination-Under-Noise Rate** - Critical pre-deployment test. Whisper-based systems are documented to hallucinate from silence - this must be tested before clinical use. Tier 1 because the failure mode is well-documented and the test is straightforward.
 - 🚪 **Numeric Accuracy** - Safety-critical and underspecified by current vendor reporting. Should be a Day Zero acceptance criterion. Numeric errors are disproportionately dangerous and should be reported separately from general WER.
@@ -556,14 +560,58 @@ The smallest set of metrics that a deployer cannot responsibly skip. All are mea
 - 📡 **Incident Disclosure Compliance** - Should be a contractual requirement. Without timely incident disclosure, deployers cannot respond to vendor-side security issues.
 - 📡 **Sub-Processor Transparency** - Legal compliance requirement under UK GDPR Article 28. Must be assessed at procurement and monitored for changes.
 
-**Regional (ICB)** (2 metrics)
+**Regional (ICB)** (5 metrics)
 
 - 📡 **Safety Performance Indicators with Thresholds (DSCMS)** - The governance mechanism that converts metrics into action. Without pre-defined thresholds and escalation paths, metrics are information without teeth. Every Tier 1 metric needs an SPI wrapper.
 - 📡 **Assurance Debt Accumulation Rate** - The honest governance metric. Every deployer will accumulate it. Making it visible, tracked, and managed prevents governance theatre.
 
-**National Body** (1 metrics)
+**National Body** (5 metrics)
 
 - 📡 **Adverse Event / Incident Rate (LFPSE)** - Established national reporting. The ultimate lagging indicator - by the time this metric moves, harm has occurred. Needs dedicated LFPSE category for AI/AVT incidents.
+
+---
+
+### v4.1 / v5.3 / v5.4 additions to Tier 1
+
+The following Tier 1 metrics were promoted or minted in releases since the original quick-reference content above. They are listed here separately to preserve the original prose without disturbing it; the catalogue's per-metric pages are the canonical source for each.
+
+**Deployer**
+
+- 🚪 **Decommissioning Data Handling Compliance** *(GV.PD-16, v4.1)* — End-of-life data handling per the deployer-vendor contract. Limitation-layer infrastructure that bounds damage at retirement. Procurement gate for new contracts; activation triggers at retirement notification.
+- 🚪 **Privacy Notice Currency & Completeness** *(GV.PD-13, v5.3)* — Each public-facing privacy notice (organisation-level + service-level) must include an AVT-specific section with lawful basis, controller/processor relationship, retention periods, and any model-training-use disclosure. Annual currency check; any material processing change re-triggers. NHSE IG Attestation family.
+- 🚪 **Information Asset Register Completeness** *(GV.PD-18, v5.4)* — AVT system listed in the IAR with named Information Asset Owner, lawful basis, retention period, sub-processor list, and risk classification. Annual review tied to broader IG cadence.
+- 🚪 **Consultation-Type Appropriateness Assessment** *(GV.CR-14, v5.3)* — Documented assessment of which consultation types (safeguarding, mental health, paediatrics, intimate exams, end-of-life) AVT is appropriate for vs requires carve-outs. Caldicott Guardian sign-off; annual review.
+- 📡 **Board-Level AI Governance Mechanism** *(GV.CR-12, v5.3)* — Named board committee or executive director with AI oversight in formal remit, quarterly minimum cadence, and escalation path. CQC well-led inspection point; cross-framework leverage (DTAC C3.1, RAI Theme 4, Principle 10).
+- 📡 **Deployment Equity Index** *(IO.FE-1, v5.3)* — Deployment equity disaggregated by site, setting, and demographic axes. Continuous monitoring; complements the cluster-level disaggregated metrics (Demographic Equity Disaggregation family).
+- 📡 **PRSB Semantic Completeness** *(TP.WB-8, v5.3)* — Proportion of PRSB-mandatory information elements present in AVT-generated output, stratified by applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.). Cross-framework heavyweight (DTAC C4 + FHIR UK Core + CQC Reg 17 + PRSB).
+
+**Vendor**
+
+- 📡 **Telemetry Provision Completeness** *(GV.VT-2, promoted v5.3)* — Per-inference logging, confidence scores, model version per output, intermediate outputs, demographic performance data. The substrate for FTS Performance & Monitoring Response.
+- 📡 **Evidence Pack Freshness** *(GV.VT-13, promoted v5.3)* — All collateral kept up to date and current; vendor's responsibility to keep the Hub up to date. Periodic audit cadence.
+- 🚪 **Indicative Pricing Transparency** *(GV.VT-14, promoted v5.3)* — FTS Step 1.a direct submission requirement. Pricing structure transparency for procurement.
+- 📡 **Retirement Notification Compliance** *(GV.VT-15, v4.1)* — Notice period before product retirement, feature withdrawal, integration withdrawal. End-of-life infrastructure that activates on retirement event.
+- 🚪 **Medical Device Classification Documentation** *(GV.CR-11, v5.3)* — MHRA SaMD classification (Class I / IIa / IIb / III) documented with justification. FTS Step 1.h direct submission requirement.
+
+**Vendor + Deployer + National Body**
+
+- 🚪 **Outcome Evidence Commitment Status** *(ES.ME-8, promoted v5.3)* — FTS Step 1.f "Evidence of impact and benefit in the NHS" required submission.
+
+**Vendor + National Body**
+
+- 📡 **Demographic-Disaggregated WER** *(TP.ASR-4, promoted v5.3)* — WER by accent, language, age, speech characteristics. NAS proposes max 5pp gap. MHRA GMLP-3 + Performance & Monitoring "boundaries and bias".
+
+**Regional (ICB) + National Body**
+
+- 📡 **Performance Degradation Detection Latency** *(GV.SG-3, promoted v5.3)* — Time from drift signal to detection. MHRA post-market surveillance (FTS Step 1.i). Limitation-layer detection sitting at regional / national level.
+
+---
+
+The two icons below align with the existing entries above:
+
+- 🚪 = pre-deployment gate (Prevention layer)
+- 📡 = continuous in-service signal (Detection or Limitation layer)
+- 🔄 = periodic content audit (Detection layer)
 
 ---
 
@@ -1184,7 +1232,7 @@ Subtypes have different root causes (ASR vs LLM vs diarisation) and different mi
 
 ## Standards Mapping
 
-This section maps the taxonomy's 215 metrics against thirteen NHS / regulatory / procurement frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
+This section maps the taxonomy's 236 metrics against thirteen NHS / regulatory / procurement frameworks to help deployers, vendors, and assurance teams identify which metrics satisfy which compliance obligations. For each framework, individual criteria or assertions are mapped to specific taxonomy metrics.
 
 Where a standard criterion has no corresponding taxonomy metric, this is flagged as a **gap**. Where the taxonomy provides coverage beyond the standard's scope, this is noted as **taxonomy extends**.
 
@@ -2667,7 +2715,7 @@ This section is an explicit scope statement: what this taxonomy assures, what it
 
 ### What this taxonomy assures
 
-The 215 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
+The 236 metrics measure the conditions under which an AVT system can be deployed safely and operated responsibly:
 
 - **Technical fidelity** — does the system transcribe, diarise, summarise, and write back accurately enough for the intended clinical use? (Parts A and B)
 - **Documentation quality** — do generated notes preserve clinical content, negation, uncertainty, and structure? (TP — Summarisation / NLP)
@@ -3622,7 +3670,7 @@ Most metrics have only whitespace / cross-reference / grammar churn since their 
 
 - All releases tag on `main` after a `--no-ff` merge from the release branch
 - Tag format: `vX.Y.Z` (no leading zero, no `v0.x` prerelease numbering — the prototype is at v4.x already)
-- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.4` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
+- `parse.py:TAXONOMY_VERSION` and `pyproject.toml:version` bumped together in the release commit; the `v5.5.5` / `2026-05-08` template tokens propagate to every header, banner, and citation block at build time
 
 ## Deprecation policy
 
@@ -7524,7 +7572,7 @@ def code_hallucination_rate(generated_codes, code_set):
 
 > 💡 This is a zero-tolerance metric. A non-existent code in a clinical record is a data quality failure that breaks downstream systems. The correct architectural response is constrained generation - the system should be structurally unable to produce a code outside the target code set. Any vendor reporting a non-zero hallucination rate is implicitly admitting that their generation is unconstrained, which is a procurement red flag.
 
-### TP.CC-7 🟡 Coding Drift Detection (NHS framing; was Coding Inflation Detection)
+### TP.CC-7 🟡 Coding Drift Detection
 
 Systematic detection of pre/post-AVT shifts in clinical coding distributions. In the NHS, the primary concern is **data-quality corruption** — coding drift that distorts epidemiological data, QOF returns, Hospital Episode Statistics, population-health analytics, and SNOMED specificity profiles. The equivalent US concern is revenue inflation via E/M level upcoding (which TP.CC-8 was a US-specific specialisation of pre-v3.7); the framing differs because NHS coding incentives differ from US payer-billing incentives, but the underlying SPC + distribution-shift detection methodology applies in both contexts. v3.7 folds the previous TP.CC-8 (E/M Level Shift Monitoring) into this metric — its KL-divergence and demographic-disaggregation content survives in the Operational Specification.
 
@@ -7639,7 +7687,7 @@ For each coding category: compute the pre/post AVT change ratio per demographic 
 
 > 💡 If AVT makes the documented patient population look healthier for some demographics and more accurately unwell for others, the resource allocation implications compound existing health inequalities. This is an equity dimension that the existing taxonomy's fairness metrics don't capture - they focus on AVT accuracy across demographics, not on AVT's effect on the resulting data about those demographics.
 
-### TP.CC-10 🔵 HRG / Tariff Impact Attribution (NHS framing; was wRVU / Tariff Impact)
+### TP.CC-10 🔵 HRG / Tariff Impact Attribution
 
 Attribution of workload or tariff-relevant coding changes to AVT specifically, separated from concurrent changes (training, policy updates, case mix shifts). Quasi-experimental methodology required. In NHS context, applies to **HRG (Healthcare Resource Group) tariffs under Payment by Results (PbR)**, QOF achievement, and secondary-care activity-based funding. The US analogue is **wRVU** (work Relative Value Units in CMS Medicare); the underlying causal-attribution methodology applies in both contexts but the framing focus and tariff structures differ. v3.7 reframes this metric as NHS-primary with the US wRVU analogue called out for cross-context comparison.
 

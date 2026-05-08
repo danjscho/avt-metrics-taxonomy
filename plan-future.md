@@ -67,23 +67,27 @@ There's no obviously-right answer; this needs an explicit design decision and pr
 
 ## 4. Full Tier 1 gap review and minimum-set construction (post-agreement)
 
-**Status:** queued — needs explicit go-ahead before starting.
+**Status: closed in v5.5.5.** Substantively actioned through the v5.0.1 → v5.5.0 Phase 5 work — the FTS notice 069369-2025 provided the external trigger for "what counts as minimum viable" (the AVT Self-Certified Supplier Registry surface), the v5.1.4 action list framed the criteria, and v5.3.0 / v5.4.0 actioned the gap-fill (7 promotions T2 → T1, 13 pull-throughs, 2 mints). The catalogue moved 218 metrics / 43 Tier 1 → 236 / 58.
 
-**Context:** The catalogue is at 218 metrics with 43 in Tier 1 (`Minimum Viable`), but Tier 1 was built up incrementally rather than as a coherent minimum-viable set with explicit coverage criteria. A full review of `_gaps.md` (cross-referenced against the existing Tier 1 metrics and the Tier 1 Quick Reference) would identify whether the current 43 actually constitute a defensible minimum-viable assurance set, or whether there are coverage holes that need filling.
+**v5.5.5 closure work:**
+- `_tier-1-quick-reference.md` refreshed with the 13 v5.3/v5.4 promoted/minted Tier 1 metrics and the 2 v4.1 promotions that had been missed (Decommissioning Data Handling, Retirement Notification Compliance). Per-actor headline counts corrected to reflect multi-actor responsibilities.
+- Counts in this plan-future entry corrected from the v3.x-era 218/43 baseline to the current 236/58.
+- Original "agreement criteria" question (every assurance question? every layer? every actor?) was settled implicitly by the FTS-derived approach: the Registry surface is the criteria, FTS Step 1.a–j defines the substantive obligations, the catalogue maps each substantive obligation to a Tier 1 metric.
 
-This is a substantial body of work and should not start without an explicit user decision on scope and criteria — hence the "after agreement" qualifier in the original ask.
+**What's still open:** ongoing maintenance — when new Tier 1 obligations surface (regulatory updates, new NHSE guidance, new Registry requirements), the same gap-then-fill loop runs again rather than as a one-off review.
 
-**Starting points:**
+**Starting points** (now historical):
 - The existing Tier 1 set is summarised in `taxonomy/_tier-1-quick-reference.md` (organised by responsible actor).
-- Gaps file at [taxonomy/_gaps.md](taxonomy/_gaps.md) lists known coverage holes by category (P1–P5).
-- The v3.3 Tier 1 classification work in `archive/v3.3-tier1-classification.md` is the closest existing artefact to a Tier 1 review and frames where the gaps are likely to be.
-- Decision points to surface before starting: what counts as "minimum viable" coverage (every assurance question? every pipeline layer? every responsible actor?), and what threshold of evidence promotes a gap into a metric.
+- Gaps file at [taxonomy/_gaps.md](taxonomy/_gaps.md) lists outstanding candidates organised by source standard.
+- Promoted candidates are now lifted to `_gaps.md §7` historical record for clean separation.
 
 ---
 
 ## 5. Verify code snippets *and* Formal Definitions against sources
 
-**Status:** complete (v4.2 covered TP / IO.FE / ES.ME — 92 metrics; v4.3 covered GV / HL / PI / IO.PX — 131 metrics). Two-pass methodology (Pass A internal coherence + Pass B external source verification) plus per-snippet API check is now the established pattern; future releases that touch these surfaces should follow the same shape.
+**Status:** complete. v4.2 covered TP / IO.FE / ES.ME (92 metrics); v4.3 covered GV / HL / PI / IO.PX (131 metrics); v4.4 ran Pass B externally over the 138-metric ✓ set (137/138 verified clean, 1 fix on GV.SG-5); v5.5.2 verified the 23 code snippets + the 15 v5.3/v5.4 Formal Definitions added since v4.4. Two-pass methodology (Pass A internal coherence + Pass B external source verification) plus per-snippet API check is the established pattern.
+
+**v5.5.5 reconfirms closure.** No FD edits between v4.4 and v5.5.2 bypassed verification — the v4.5 / v5.0 / v5.1 / v5.2 commits did not modify Formal Definitions (they ran citation-grammar polish, threshold-block structural split, cadence-dimension cleanup, and research-output additions respectively). The verification arc is end-to-end across all 236 metrics.
 
 **Context:** Two adjacent bodies of content carry the same provenance risk and should be reviewed together:
 

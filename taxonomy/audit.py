@@ -684,6 +684,47 @@ def check_within_cluster_order(metrics_by_file: dict[str, list[Metric]]) -> list
     return findings
 
 
+def check_summary_maturity_counts(all_metrics: list[Metric]) -> list[Finding]:
+    """`_summary.md` declares Maturity-bucket totals as part of the catalogue
+    summary. v5.5.5 audit check verifies the declared values match the live
+    countable-metric distribution. Drift between `_summary.md` and the
+    catalogue silently misleads readers about how settled the measurement
+    science is across the catalogue."""
+    findings: list[Finding] = []
+    summary_path = pathlib.Path(__file__).resolve().parent / "_summary.md"
+    if not summary_path.exists():
+        return findings
+    text = summary_path.read_text()
+    # Live counts (countable metrics only)
+    parents = {sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id}
+    countable = [m for m in all_metrics if m.ref_id not in parents]
+    from collections import Counter as _Counter
+    live = _Counter(m.dimensions.get("Maturity", "") for m in countable)
+    for label in ("Established", "Emerging", "Vendor-Proprietary", "Proposed / Novel"):
+        m = re.search(
+            rf"^- \*\*{re.escape(label)}\*\*:\s*(\d+) metrics?",
+            text,
+            re.MULTILINE,
+        )
+        if not m:
+            continue
+        declared = int(m.group(1))
+        actual = live.get(label, 0)
+        if declared != actual:
+            findings.append(
+                Finding(
+                    "WARN",
+                    "summary-maturity-drift",
+                    (
+                        f"_summary.md declares Maturity '{label}': {declared} metrics, "
+                        f"but live count is {actual}. Update _summary.md to match."
+                    ),
+                    "_summary.md",
+                )
+            )
+    return findings
+
+
 def check_layer_resolves(all_metrics: list[Metric]) -> list[Finding]:
     """Every metric's Layer dimension, when present, must be one of
     Prevention / Detection / Limitation (v5.5.0+). Layer is optional;
@@ -1499,6 +1540,7 @@ def main() -> int:
     findings.extend(check_within_cluster_order(metrics_by_file))
     findings.extend(check_family_resolves(all_metrics))
     findings.extend(check_layer_resolves(all_metrics))
+    findings.extend(check_summary_maturity_counts(all_metrics))
     findings.extend(check_source_presence(all_metrics))
     findings.extend(check_tier1_quickref(all_metrics))
     findings.extend(check_see_also_resolves(all_metrics))
