@@ -158,7 +158,7 @@ The two are deliberately different: named families are a structural taxonomy con
 - 🟡 **GV.PD-15** Right-to-Restrict Tooling Support — UK GDPR Article 18 tooling distinct from erasure
 - 🟢 **GV.PD-18** Information Asset Register Completeness — NHSE IG section 8 IAR registration with owner, lawful basis, retention, sub-processor, risk classification *(new in v5.4.0)*
 
-**Outstanding follow-ups.** Several members carry a "section ref to be added on next pass" marker pending the next NHSE IG-guidance review pass — see `v5.3-pre-mint-triage.md` *Outstanding follow-ups*. GV.CR-13's rubric remains placeholder until a national pilot lands.
+**Outstanding follow-ups.** GV.CR-13's rubric remains placeholder (Maturity: Proposed/Novel) until a national pilot lands — section ref convention since v5.5.0 is *topic-cited* against [NHSE-IG-Guidance-2026-03] because the parent guidance hub does not currently expose a stable section anchor. If a stable per-section URL becomes available, member Source rows can be re-tightened to use it.
 
 ---
 

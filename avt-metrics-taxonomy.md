@@ -1135,7 +1135,7 @@ The two are deliberately different: named families are a structural taxonomy con
 - 🟡 **GV.PD-15** Right-to-Restrict Tooling Support — UK GDPR Article 18 tooling distinct from erasure
 - 🟢 **GV.PD-18** Information Asset Register Completeness — NHSE IG section 8 IAR registration with owner, lawful basis, retention, sub-processor, risk classification *(new in v5.4.0)*
 
-**Outstanding follow-ups.** Several members carry a "section ref to be added on next pass" marker pending the next NHSE IG-guidance review pass — see `v5.3-pre-mint-triage.md` *Outstanding follow-ups*. GV.CR-13's rubric remains placeholder until a national pilot lands.
+**Outstanding follow-ups.** GV.CR-13's rubric remains placeholder (Maturity: Proposed/Novel) until a national pilot lands — section ref convention since v5.5.0 is *topic-cited* against [NHSE-IG-Guidance-2026-03] because the parent guidance hub does not currently expose a stable section anchor. If a stable per-section URL becomes available, member Source rows can be re-tightened to use it.
 
 ---
 
@@ -12248,7 +12248,9 @@ Pass per criterion: (1) Named board committee or executive director with AI over
 
 ### GV.CR-13 🟡 Refusal Impact-Explanation Quality
 
-When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -12264,7 +12266,7 @@ When a patient declines AVT use for their consultation, NHSE IG explicitly requi
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)|
 
 **Why this tier?**
 
@@ -13466,7 +13468,9 @@ Pass per criterion: (1) Training data corpus characterised by language, accent /
 
 ### GV.PD-13 🟢 Privacy Notice Currency & Completeness
 
-Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deploying organisation's published privacy notices have been updated to include AVT-specific processing — at minimum the lawful basis, controller / processor relationship, retention timelines for audio and transcripts, and the existence of any post-deployment training use. The metric is binary per privacy-notice instance, with currency tested against the AVT deployment date and any subsequent material change.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13482,7 +13486,7 @@ Whether the deploying organisation's published privacy notices have been updated
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 13/14|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — privacy notice / AVT-processing transparency content (topic-cited; parent hub no stable section anchor); UK GDPR Art 13/14|
 
 **Why this tier?**
 
@@ -13496,7 +13500,7 @@ Pass per criterion: (1) Each public-facing privacy notice (organisation-level + 
 
 **Limitations**
 
-> Section ref to be added on next pass against the NHSE IG March 2026 guidance — currently the metric cites the document at framework level rather than section level. The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
+> The metric tests the deployer-published privacy notice; it does not test whether patients have actually read or understood it (that would belong under IO.PX patient-experience metrics).
 
 **Novel Thinking / Implications**
 
@@ -13506,7 +13510,9 @@ Pass per criterion: (1) Each public-facing privacy notice (organisation-level + 
 
 ### GV.PD-14 🟡 SAR Deletion-Pause Interaction
 
-Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deployer's Subject Access Request handling and AVT data-deletion processes interact correctly: when a SAR is opened on a patient with active AVT-derived data, deletion of that patient's audio / transcript is paused for the duration of the SAR and resumed only after the SAR is formally closed. NHSE IG explicitly requires this interaction; it is distinct from [GV.PD-2 Audio Time-to-Deletion] which tests the routine deletion timeline in the absence of a SAR.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13522,7 +13528,7 @@ Whether the deployer's Subject Access Request handling and AVT data-deletion pro
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 12-22 (data subject rights)|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / SAR-handling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 12-22 (data subject rights)|
 
 **Why this tier?**
 
@@ -13546,7 +13552,9 @@ Scenario walk-through: (1) Open a synthetic SAR against a test patient with acti
 
 ### GV.PD-15 🟡 Right-to-Restrict Tooling Support
 
-Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+Whether the deploying organisation's AVT-side tooling supports the UK GDPR Article 18 right-to-restrict — data marked, retained, but not actively processed — distinct from the right-to-erasure already tested by [GV.PD-11 Erasure Workflow Coverage]. Restriction is a less-common rights request but explicitly named in the NHSE IG guidance; the deployer needs the ability to tag a patient's AVT-derived data such that it is preserved for evidence purposes but excluded from any model-training, analytics, or downstream re-processing.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -13562,7 +13570,7 @@ Whether the deploying organisation's AVT-side tooling supports the UK GDPR Artic
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass); UK GDPR Art 18|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — data subject rights / restriction tooling content (topic-cited; parent hub no stable section anchor); UK GDPR Art 18|
 
 **Why this tier?**
 
@@ -13697,6 +13705,8 @@ Pass per criterion: (1) DPIA purpose-justification reviewed by named Caldicott G
 
 Whether the deploying organisation maintains an Information Asset Register (IAR) that includes the AVT system as a named information asset with a documented owner, lawful basis, retention period, sub-processor list, and risk classification. NHSE IG section 8 explicitly requires AVT-deploying organisations to register the system as an information asset alongside their other clinical-system assets — the IAR is the index that ties together DPIA, sub-processor disclosure, retention timing, and incident escalation.
 
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.PD-18 |
@@ -13711,7 +13721,7 @@ Whether the deploying organisation maintains an Information Asset Register (IAR)
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation                                      |
-|**Source**             |[NHSE-IG-Guidance-2026-03] section 8 (section ref to be confirmed on next pass); NDG Data Security Standards|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — information asset register / IAO-naming content (topic-cited; the unverified 'section 8' placeholder from v5.4.0 is dropped — parent hub no stable section anchor); NDG Data Security Standards|
 
 **Why this tier?**
 
@@ -13725,7 +13735,7 @@ Pass per criterion: (1) AVT system listed in the organisation's Information Asse
 
 **Limitations**
 
-> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+> The metric tests that the IAR entry exists and is internally consistent — it does not test whether the IAR entry is empirically accurate (e.g. whether the listed retention period actually matches operational reality). Pair with [GV.PD-1] / [GV.PD-2] / [GV.PD-3] for empirical verification of the retention claims.
 
 **Novel Thinking / Implications**
 
@@ -15009,6 +15019,8 @@ Pass per criterion: (1) Device characterisation published (model architecture fa
 
 Whether the deployer has documented a binary determination of joint-controller status under UK GDPR Article 26 with the AVT vendor. Joint controllers under Article 26 must agree on transparency arrangements, the exercise of data subject rights, and respective compliance responsibilities — the assessment is **distinct** from sub-processor disclosure (which is processor-status, [GV.VT-7](#gv-vt-7)) because joint-controller status creates shared accountability rather than vendor-as-processor accountability. NHSE IG section 5 explicitly requires AVT-deploying organisations to make and document this determination before go-live.
 
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
+
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
 | **Reference** | GV.VT-11 |
@@ -15022,7 +15034,7 @@ Whether the deployer has documented a binary determination of joint-controller s
 |**Maturity**           |Established                                              |
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
-|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] section 5 (section ref to be confirmed on next pass)|
+|**Source**             |UK GDPR Article 26; [NHSE-IG-Guidance-2026-03] — controller-status determination content (topic-cited; the unverified 'section 5' placeholder from v5.4.0 is dropped — parent hub no stable section anchor)|
 
 **Why this tier?**
 
@@ -15036,7 +15048,7 @@ Pass per criterion: (1) Joint-controller status determination documented (Yes / 
 
 **Limitations**
 
-> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law. Section ref to be added on next pass against the NHSE IG March 2026 guidance document.
+> Determination quality depends on the deployer's IG team's knowledge of joint-controller jurisprudence (Wirtschaftsakademie Schleswig-Holstein, Fashion ID, etc.) — which is uneven across NHS organisations. The metric tests that a determination exists and is internally consistent; it does not test whether the determination is empirically correct against current case law.
 
 **Novel Thinking / Implications**
 

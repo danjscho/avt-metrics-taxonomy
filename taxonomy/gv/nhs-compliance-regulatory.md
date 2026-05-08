@@ -662,7 +662,9 @@ Pass per criterion: (1) Named board committee or executive director with AI over
 
 ### GV.CR-13 🟡 Refusal Impact-Explanation Quality
 
-When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up. Section ref to be added on next pass against [NHSE-IG-Guidance-2026-03].
+When a patient declines AVT use for their consultation, NHSE IG explicitly requires the clinician to explain *how* refusal affects care. This metric measures the quality of that explanation — distinct from [GV.CR-1 Patient Dissent Recording Rate], which measures whether the dissent itself was recorded. The current implementation uses a placeholder rubric ("structured per local IG officer review"); a piloted national rubric is a known follow-up.
+
+**Change history:** v5.5.0 (Source row updated — `(section ref to be added on next pass)` placeholder replaced with topic-cited content reference; the parent NHSE IG guidance hub does not currently expose a stable section anchor).
 
 |Dimension              |Value                                                   |
 |-----------------------|---------------------------------------------------------|
@@ -678,7 +680,7 @@ When a patient declines AVT use for their consultation, NHSE IG explicitly requi
 |**Outcome Type**       |Proximal                                                 |
 |**Applicability**      |General Healthcare AI                                    |
 |**Family**             |NHSE IG Attestation|
-|**Source**             |[NHSE-IG-Guidance-2026-03] (section ref to be added on next pass)|
+|**Source**             |[NHSE-IG-Guidance-2026-03] — transparency / dissent-handling content (parent guidance hub does not currently expose a stable section anchor; topic-cited)|
 
 **Why this tier?**
 
