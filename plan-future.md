@@ -8,6 +8,8 @@ Items that landed in earlier releases are preserved in [`archive/plan-future-arc
 
 ---
 
+---
+
 ## 1. Interactive metric explorer — demo first, permanent later
 
 **Status:** queued — wanted as a quick demo artefact, with a path to a permanent site feature.
@@ -33,6 +35,8 @@ The user wants a **scrappy demo soon** but with the understanding that this is l
 - *Permanent (later):* same page promoted to a first-class site feature, fed live from build outputs, integrated with site nav, accessibility-reviewed, mobile-friendly, citable URL. Treat the demo as scaffolding, not the finished thing.
 
 The thing to avoid: building the demo, getting positive stakeholder reaction, and then having the demo become the permanent feature by inertia without the deliberate design pass. Flag explicitly when promoting from demo to permanent that the second pass is needed.
+
+---
 
 ---
 
@@ -83,42 +87,6 @@ That's it. Neither **ISO/IEC 42001** (AI management system, 2023 — already sho
 
 ---
 
-## 10. AI-substrate classification — separate cut from Applicability
-
-**Status:** open question, candidate for v5.5+. Surfaced 2026-05-07 during v5.3.0 review.
-
-The existing **Applicability** dimension answers *"is this AVT-specific?"* (AVT-Specific / AVT-Contextualised / General Healthcare AI). It does NOT answer *"is this metric about the AI itself, the infrastructure around the AI, or the governance of the AI?"* — those are different cuts. A user asking "which metrics test the LLM?" can't currently get a clean answer.
-
-**Why this matters.** Different audiences want different cuts:
-
-- A vendor team building model-evaluation infrastructure wants the AI-substrate metrics (hallucination, calibration, WER) — they're the test surface.
-- A deployer's IG officer wants the AI-agnostic governance metrics (DPIA completeness, board oversight, privacy notice currency) — they're the same regardless of vendor.
-- A clinical safety officer wants the human-AI-workflow metrics (edit rate, automation bias, time-to-sign) — they're where AI shapes practice.
-- A procurement officer wants the pre-AI infrastructure metrics (microphone validation, audio capture) — they're vendor-agnostic hardware concerns.
-
-**Three approaches considered:**
-
-1. **Add a new dimension `AI Substrate`** with values like `Pre-AI`, `AI-Substrate` (the model itself), `Post-AI` (write-back, EPR integration), `AI-Mediated Workflow` (clinician edits, automation bias), `AI-Agnostic Governance` (DPIA, board oversight). Honest but adds authoring cost to all 234 metric bodies.
-
-2. **Derive from existing fields rather than add a new one.** Pipeline Layer already encodes most of this: TP.AC = pre-AI signal capture, TP.ASR/TP.SN/TP.CC = AI core, TP.WB = post-AI integration, HL.HF = human-AI workflow, IO/GV = mostly governance-of-AI. Add a derived classification at build time via cluster → AI-substrate-class lookup, with a small `disputed` category for honest edge cases (e.g. GV.PD-12 Training Data Representativeness sits between AI-substrate and AI-agnostic governance). Less precise but zero authoring cost on existing metrics.
-
-3. **Documentation-only:** add an "AI relevance" framing in `_applicability.md` explaining that the cleanest answer is "look at Pipeline Layer" and walk through examples. Lowest cost, no structural change.
-
-**Status update (v5.5.0):** Option 3 (documentation-only framing page) landed at `_ai-substrate.md`. The page names the five substrate classes, explains why this cut is documentation-only rather than per-metric structural, and walks through derivation rules + worked examples. Promotion to Option 2 (derived classification at build time) remains open; the page documents the criteria for that promotion.
-
-**Default plan if this gets picked up:** Option 2 — derived classification at build time. Avoids editing 234 metric bodies. The classification is genuinely cluster-level for ~90% of metrics; the `disputed` category lets the catalogue be honest about edge cases.
-
-**Open questions to settle before this lands:**
-
-1. **Where does the classification surface?** A new column in CSV/JSON downloads? A new cross-cut page on the site (`docs/ai-substrate.md`)? Both? Audit dependency from `_applicability.md`?
-2. **What happens to metrics that span classes?** GV.PD-12 (training data representativeness) is both AI-substrate (about the model) AND AI-agnostic governance (a documentation attestation). Force a single classification? Allow multi-valued like Cadence is now? Keep `disputed` as a real value rather than a fudge?
-3. **Does this replace or supplement Applicability?** Best read: it's a different cut; both stay. AVT-Specific × AI-Substrate gives a 4-way intersection (e.g. "AVT-Specific AI-Substrate = ASR/diarisation/voice-summarisation models"; "General Healthcare AI AI-Agnostic Governance = the governance attestations").
-4. **Does the taxonomy gain or lose by foregrounding this?** The Applicability dimension already gets occasional pushback for being a confusing cut; adding a second cross-cut may compound the noise rather than clarify. Worth piloting with a small group of readers before committing.
-
-**Promote to a release plan when:** (i) Option 2 derivation has been prototyped against ~30 metrics to see how often `disputed` shows up, AND (ii) at least one reader who's not the author has reviewed the cut and confirmed it carries weight. If `disputed` covers >20% of metrics, the cut is too fuzzy to be useful and Option 3 (documentation-only) becomes the better answer.
-
----
-
 ---
 
 ## 11. Reference implementation library — extract code snippets as a runnable package
@@ -162,6 +130,8 @@ The next step beyond verification is **extraction into a runnable companion libr
 
 ---
 
+---
+
 ## 12. Outstanding follow-ups from v5.3 pre-mint triage
 
 **Status:** carried forward from `archive/v5.4/v5.3-pre-mint-triage.md`. Not blockers; tracked for future minor releases.
@@ -170,6 +140,8 @@ The next step beyond verification is **extraction into a runnable companion libr
 - **GV.VT-10 Option-2 source verification** — the MHRA Roadmap WP-2 transparency outputs need to be cited in the metric's References block once WP-2 outputs are publicly available. Currently held as Proposed/Novel pending citation.
 
 Both items are low-cost to action when the upstream artefacts (piloted rubric / published WP-2 output) become available; neither needs proactive chasing.
+
+---
 
 ---
 

@@ -163,3 +163,44 @@ These thresholds carry a `⚠️ Provenance` prelude that distinguishes **cited 
 **Promote to a release plan when:** (i) a single option is chosen with reader-experience evidence backing it, AND (ii) the surface enumeration is complete (so we know what we're committing to). Until then this stays in plan-future as a problem statement, not a release item.
 
 **v4.2 update:** Pass A / Pass B verification (plan-v4.2.md) flagged that several Tier 2/3 metrics outside the Tier 1 tightened set ALSO state engineering-default thresholds authoritatively without Provenance preludes. The v4.2 TP.AC sweep added preludes to ~6 such metrics, and the mpathic / Hybrid-Code / n2c2 fixes added preludes to several more across TP.DI, TP.SN, TP.CC. The surface enumeration this item depends on is therefore now larger than the original ~25–30 Provenance lines — closer to ~40 across both the Tier 1 tightenings and the v4.2 additions. The reviewer of v4.2 explicitly raised whether the taxonomy should be publishing thresholds at all (vs. saying "these should be derived locally") — this option now sits above the existing Option 1–6 design space as a more radical alternative worth weighing. **Add Option 7: Drop all numerical thresholds; provide only calibration framework + reasoning prompts.** The v4.2-added preludes are deliberately non-load-bearing rewordings — they preserve the numbers as proposed-as-starting-points so they're easy to remove wholesale if Option 7 wins, or to keep with stronger framing if Option 3/6 wins.
+
+---
+
+## 10. AI-substrate classification — separate cut from Applicability
+
+**Status:** complete (v5.5.3). Option 2 landed — five-class derived classification (`Pre-AI` / `AI-Substrate` / `Post-AI` / `AI-Mediated Workflow` / `AI-Agnostic Governance`) computed at build time from cluster + per-metric overrides. Surfaced as `ai_substrate` column in CSV/JSON, five `by-ai-substrate/` cross-cut pages on the site, and audit-enforced via `check_ai_substrate_resolves`. The earlier text below is preserved for historical context.
+
+
+The existing **Applicability** dimension answers *"is this AVT-specific?"* (AVT-Specific / AVT-Contextualised / General Healthcare AI). It does NOT answer *"is this metric about the AI itself, the infrastructure around the AI, or the governance of the AI?"* — those are different cuts. A user asking "which metrics test the LLM?" can't currently get a clean answer.
+
+**Why this matters.** Different audiences want different cuts:
+
+- A vendor team building model-evaluation infrastructure wants the AI-substrate metrics (hallucination, calibration, WER) — they're the test surface.
+- A deployer's IG officer wants the AI-agnostic governance metrics (DPIA completeness, board oversight, privacy notice currency) — they're the same regardless of vendor.
+- A clinical safety officer wants the human-AI-workflow metrics (edit rate, automation bias, time-to-sign) — they're where AI shapes practice.
+- A procurement officer wants the pre-AI infrastructure metrics (microphone validation, audio capture) — they're vendor-agnostic hardware concerns.
+
+**Three approaches considered:**
+
+1. **Add a new dimension `AI Substrate`** with values like `Pre-AI`, `AI-Substrate` (the model itself), `Post-AI` (write-back, EPR integration), `AI-Mediated Workflow` (clinician edits, automation bias), `AI-Agnostic Governance` (DPIA, board oversight). Honest but adds authoring cost to all 234 metric bodies.
+
+2. **Derive from existing fields rather than add a new one.** Pipeline Layer already encodes most of this: TP.AC = pre-AI signal capture, TP.ASR/TP.SN/TP.CC = AI core, TP.WB = post-AI integration, HL.HF = human-AI workflow, IO/GV = mostly governance-of-AI. Add a derived classification at build time via cluster → AI-substrate-class lookup, with a small `disputed` category for honest edge cases (e.g. GV.PD-12 Training Data Representativeness sits between AI-substrate and AI-agnostic governance). Less precise but zero authoring cost on existing metrics.
+
+3. **Documentation-only:** add an "AI relevance" framing in `_applicability.md` explaining that the cleanest answer is "look at Pipeline Layer" and walk through examples. Lowest cost, no structural change.
+
+**Status update (v5.5.0):** Option 3 (documentation-only framing page) landed at `_ai-substrate.md`. The page names the five substrate classes, explains why this cut is documentation-only rather than per-metric structural, and walks through derivation rules + worked examples. Promotion to Option 2 (derived classification at build time) remains open; the page documents the criteria for that promotion.
+
+**Default plan if this gets picked up:** Option 2 — derived classification at build time. Avoids editing 234 metric bodies. The classification is genuinely cluster-level for ~90% of metrics; the `disputed` category lets the catalogue be honest about edge cases.
+
+**Open questions to settle before this lands:**
+
+1. **Where does the classification surface?** A new column in CSV/JSON downloads? A new cross-cut page on the site (`docs/ai-substrate.md`)? Both? Audit dependency from `_applicability.md`?
+2. **What happens to metrics that span classes?** GV.PD-12 (training data representativeness) is both AI-substrate (about the model) AND AI-agnostic governance (a documentation attestation). Force a single classification? Allow multi-valued like Cadence is now? Keep `disputed` as a real value rather than a fudge?
+3. **Does this replace or supplement Applicability?** Best read: it's a different cut; both stay. AVT-Specific × AI-Substrate gives a 4-way intersection (e.g. "AVT-Specific AI-Substrate = ASR/diarisation/voice-summarisation models"; "General Healthcare AI AI-Agnostic Governance = the governance attestations").
+4. **Does the taxonomy gain or lose by foregrounding this?** The Applicability dimension already gets occasional pushback for being a confusing cut; adding a second cross-cut may compound the noise rather than clarify. Worth piloting with a small group of readers before committing.
+
+**Promote to a release plan when:** (i) Option 2 derivation has been prototyped against ~30 metrics to see how often `disputed` shows up, AND (ii) at least one reader who's not the author has reviewed the cut and confirmed it carries weight. If `disputed` covers >20% of metrics, the cut is too fuzzy to be useful and Option 3 (documentation-only) becomes the better answer.
+
+---
+
+---
