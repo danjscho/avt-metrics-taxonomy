@@ -2,7 +2,7 @@
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perspective.
 
-**236 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v5.5.9, 2026-05-09.** Shared to provoke conversation; not a settled standard.
+**236 metrics across 20 groups**, covering the full AVT pipeline from audio capture to downstream write-back, plus governance, human factors, equity, and meta-evaluation. **AI-coauthored prototype for discussion — v5.5.10, 2026-05-09.** Shared to provoke conversation; not a settled standard.
 
 > ⚠️ This is an **AI-coauthored prototype for discussion**, not a finished taxonomy. Substantial portions were drafted with AI assistance and human-reviewed; **specific claims, citations, and threshold numbers may still contain confabulations or factual errors** despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. It is shared openly to provoke conversation about what an AVT assurance frame should look like — *not* as an NHS-endorsed standard, regulatory document, or procurement gate. Tier assignments, threshold numbers, and metric framings will change in response to feedback. **You are invited to disagree, propose changes, point at gaps, flag errors, and share with colleagues. You should not paste threshold numbers into contracts, cite metrics as authoritative without flagging the prototype status, or treat any specific metric as policy.** See [docs site → Prototype status](https://danjscho.github.io/avt-metrics-taxonomy/prototype-status/) for the full framing.
 
@@ -102,9 +102,9 @@ Source rows in metric Dimensions tables, Reference Standard / Trigger Conditions
 
 ## Status / version
 
-**Current prototype version:** v5.5.9, released 2026-05-09.
+**Current prototype version:** v5.5.10, released 2026-05-09.
 
-**Headline state at v5.5.9:**
+**Headline state at v5.5.10:**
 
 - **236 metrics** across **20 groups**, organised in six clusters (TP / PI / HL / IO / GV / ES).
 - **Tier counts:** 58 / 99 / 79 (Tier 1 / Tier 2 / Tier 3).
@@ -134,7 +134,8 @@ The v5.x line went from a mid-stage prototype (221 metrics, ~45 Tier 1) to a mor
 - **v5.5.5** — Consistency sweep: refreshed `_tier-1-quick-reference.md` with the 15 missing v4.1/v5.3/v5.4 Tier 1 metrics; corrected Maturity totals in `_summary.md` (Established 62→69, Emerging 53→64, Proposed/Novel 110→99); cleaned up stale "(NHS framing; was X)" suffixes; closed plan-future #4 and #5 with status updates; new `check_summary_maturity_counts` audit check.
 - **v5.5.7** — Catalogue licensed under CC BY 4.0; README refreshed with current counts and v5.x highlights.
 - **v5.5.8** — Repo-wide documentation sweep: refreshed `_contents.md` per-group counts, `taxonomy/README.md`, `CLAUDE.md`, `_glossary.md`, `METHODOLOGY.md`; added CC-BY-4.0 to `pyproject.toml`; archived `v5.3-pre-mint-triage.md` (live items lifted into `plan-future.md`); split `CHANGELOG.md` (v5.0+ stays, v1.0–v4.5.1 moved to `CHANGELOG-archive.md`); new `archive/v4.6/README.md` documenting the working-name-vs-released-tag distinction.
-- **v5.5.9** *(this release)* — Reader-experience polish: home-page release-summary block restructured from one wall-of-text paragraph into structural-patterns + recent-highlights bullets; Tier 1 Quick Reference reformatted as per-actor tables (Metric · Cadence · Why) with v4.1/v5.3/v5.4 promoted/minted entries merged into the main lists with `(new)` / `(promoted)` markers; `_applicability.md` By-Cluster table refreshed (was stuck at the v3.x 221-metric / Part-letter shape, now uses cluster codes and 236 totals); standards-mapping / applicability / RAI-lens table cells now linkify metric-name mentions to per-metric pages at build time (new `link_metric_names_in_tables` build pass); `plan-future.md` split — completed items 3/4/5/7/8 moved to `archive/plan-future-archive.md` with original numbering preserved.
+- **v5.5.9** — Reader-experience polish: home-page release-summary block restructured from one wall-of-text paragraph into structural-patterns + recent-highlights bullets; Tier 1 Quick Reference reformatted as per-actor tables (Metric · Cadence · Why) with v4.1/v5.3/v5.4 promoted/minted entries merged into the main lists with `(new)` / `(promoted)` markers; `_applicability.md` By-Cluster table refreshed (was stuck at the v3.x 221-metric / Part-letter shape, now uses cluster codes and 236 totals); standards-mapping / applicability / RAI-lens table cells now linkify metric-name mentions to per-metric pages at build time (new `link_metric_names_in_tables` build pass); `plan-future.md` split — completed items 3/4/5/7/8 moved to `archive/plan-future-archive.md` with original numbering preserved.
+- **v5.5.10** *(this release)* — Browse-by-applicability counts on the contents page were hard-coded at 48/77/89 (v3.x baseline); now live-derived from the parsed catalogue (50 / 79 / 107) so they stay in sync with `_applicability.md` automatically.
 
 See [CHANGELOG.md](CHANGELOG.md) for full per-release notes including all earlier v3.x and v4.x releases.
 
@@ -142,9 +143,9 @@ See [CHANGELOG.md](CHANGELOG.md) for full per-release notes including all earlie
 
 Until the prototype reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v5.5.9* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *AVT Metrics Taxonomy v5.5.10* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
-Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v5.5.9) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
+Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v5.5.10) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
 
 ## Contributing
 
@@ -170,4 +171,4 @@ If your use case doesn't fit cleanly into these categories, open an issue and we
 
 ---
 
-*Last updated: v5.5.9 / 2026-05-09.*
+*Last updated: v5.5.10 / 2026-05-09.*

@@ -1,5 +1,15 @@
 # Changelog
 
+## v5.5.10 (2026-05-09)
+
+**Patch release: live-derived applicability counts on the contents page.**
+
+The contents page's "Browse by applicability" tip block had hard-coded counts (48 AVT-Specific / 77 AVT-Contextualised / 89 General Healthcare AI) baked into `_inject_contents_applicability_row` in `taxonomy/build_site.py`. Those numbers were the v3.x baseline and had drifted with every metric mint since. Live counts at v5.5.x are 50 / 79 / 107 — the count surface elsewhere on the site (`_applicability.md` summary table, `crosscuts/by-applicability/*.md` page intros) was already correct, but this one inject-helper was stale.
+
+**Fix:** reworked the inject-helper to parse the catalogue and derive counts from the live `Applicability` dimension at build time (countable metrics only — sub-parts excluded), matching the same derivation used elsewhere. The block can no longer drift.
+
+**Counts unchanged**: 236 metrics / 58-99-79 tiers.
+
 ## v5.5.9 (2026-05-09)
 
 **Patch release: reader-experience polish — no metric content edits.**
