@@ -12,7 +12,7 @@ import pathlib
 import re
 import shutil
 import subprocess
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import parse as parse_src
 
@@ -1689,14 +1689,23 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
 def _inject_contents_applicability_row(text: str) -> str:
     """Inject a prominent applicability-filter row near the top of the
     contents page so a reader can jump to AVT-Specific / AVT-Contextualised
-    / General Healthcare AI in one click."""
+    / General Healthcare AI in one click. Counts are live-derived from the
+    parsed catalogue (countable metrics only — sub-parts excluded) so this
+    row stays in sync with `_applicability.md` without manual edits."""
+    metrics = parse_src.parse_all_metrics()
+    parents = {m.parent_ref_id for m in metrics if m.parent_ref_id}
+    countable = [m for m in metrics if m.ref_id not in parents]
+    counts = Counter(m.dimensions.get("Applicability", "") for m in countable)
+    avt = counts.get("AVT-Specific", 0)
+    ctx = counts.get("AVT-Contextualised", 0)
+    gen = counts.get("General Healthcare AI", 0)
     block = (
         "\n"
         '!!! tip "Browse by applicability"\n'
         "    Jump straight to the metrics that match your scope:\n\n"
-        "    [:material-target: 48 AVT-Specific](crosscuts/by-applicability/avt-specific.md){ .md-button }\n"
-        "    [:material-shuffle-variant: 77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){ .md-button }\n"
-        "    [:material-earth: 89 General Healthcare AI](crosscuts/by-applicability/general.md){ .md-button }\n"
+        f"    [:material-target: {avt} AVT-Specific](crosscuts/by-applicability/avt-specific.md){{ .md-button }}\n"
+        f"    [:material-shuffle-variant: {ctx} AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){{ .md-button }}\n"
+        f"    [:material-earth: {gen} General Healthcare AI](crosscuts/by-applicability/general.md){{ .md-button }}\n"
         "\n"
     )
     # Insert after the h1 (first `# ` line) and any immediately following blank lines.
