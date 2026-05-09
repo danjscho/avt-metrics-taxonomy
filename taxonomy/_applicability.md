@@ -21,15 +21,15 @@ This section classifies each metric by whether it is specific to Ambient Voice T
 
 ### By Cluster
 
-| Part | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
-|------|-------------|--------------------|--------------------|-------|
-| A - Technical Pipeline | 33 | 41 | 0 | 74 |
-| B - Pipeline Interactions | 8 | 13 | 0 | 21 |
-| C - The Human Layer | 0 | 16 | 3 | 19 |
-| D - Impact & Outcomes | 1 | 6 | 11 | 18 |
-| E - System Governance | 8 | 3 | 69 | 80 |
-| F - Evaluation Science | 0 | 0 | 9 | 9 |
-| **Total** | **50** | **79** | **92** | **221** |
+| Cluster | AVT-Specific | AVT-Contextualised | General Healthcare AI | Total |
+|---------|-------------|--------------------|----------------------|-------|
+| TP — Technical Pipeline | 33 | 41 | 1 | 75 |
+| PI — Pipeline Interactions | 8 | 13 | 0 | 21 |
+| HL — Human Layer | 0 | 16 | 3 | 19 |
+| IO — Impact & Outcomes | 1 | 6 | 11 | 18 |
+| GV — System Governance | 8 | 3 | 83 | 94 |
+| ES — Evaluation Science | 0 | 0 | 9 | 9 |
+| **Total** | **50** | **79** | **107** | **236** |
 
 
 ### Full Classification

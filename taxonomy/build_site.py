@@ -181,6 +181,64 @@ def link_tier1_quickref(text: str) -> str:
     return _BOLD_METRIC_TOKEN.sub(sub, text)
 
 
+def link_metric_names_in_tables(text: str) -> str:
+    """Linkify bare metric-name occurrences inside markdown table cells on
+    cross-cutting pages (standards-mapping, applicability summary tables,
+    responsible-AI lens tables, etc.). The source authors write metric
+    names as plain prose in the "Taxonomy Metrics" column — at build time
+    we look each name up in the parsed catalogue and rewrite to a link to
+    the per-metric anchor.
+
+    Match strategy: walk lines that look like markdown table rows (`|`
+    delimited), and within each cell, longest-match each catalogue metric
+    name against the cell text. Skip cells that already contain a markdown
+    link to avoid double-linking. Leave bolded names alone (they are
+    handled by `link_tier1_quickref` on its dedicated page).
+    """
+    idx = _metric_name_index()
+    # Sort names by length descending so longer matches (e.g. "Demographic-
+    # Disaggregated WER") win over shorter prefixes ("WER").
+    names_sorted = sorted(idx.keys(), key=len, reverse=True)
+    # Build one big alternation regex; escape names for regex use. Require
+    # word boundaries on both ends so partial-substring hits don't fire.
+    if not names_sorted:
+        return text
+    pattern = re.compile(
+        r"(?<![\w`\[])(" + "|".join(re.escape(n) for n in names_sorted) + r")(?![\w`\]])"
+    )
+
+    def sub_in_cell(cell: str) -> str:
+        # Skip cells that already contain a link
+        if "](" in cell:
+            return cell
+
+        def repl(m: re.Match) -> str:
+            name = m.group(1)
+            hit = idx.get(name)
+            if hit is None:
+                return name
+            slug = parse_src.ref_id_to_anchor(hit.ref_id)
+            page = SRC_GROUP_FILE_TO_PAGE.get(hit.group_file, "")
+            if not page:
+                return name
+            return f"[{name}]({page}#{slug})"
+
+        return pattern.sub(repl, cell)
+
+    out_lines: list[str] = []
+    for line in text.splitlines():
+        # Identify markdown table rows (start with |, contain at least one
+        # other |). Skip separator rows (---|---).
+        stripped = line.strip()
+        if stripped.startswith("|") and stripped.count("|") >= 2 and "---" not in stripped:
+            cells = line.split("|")
+            cells = [sub_in_cell(c) for c in cells]
+            out_lines.append("|".join(cells))
+        else:
+            out_lines.append(line)
+    return "\n".join(out_lines)
+
+
 def add_metric_anchors(text: str) -> str:
     def sub(m: re.Match) -> str:
         prefix, ref_id, tail = m.group(1), m.group(2), m.group(3)
@@ -810,6 +868,12 @@ def main() -> None:
         # the round-trip.
         if not dst_rel.startswith("groups/") and dst_rel != "thresholds.md":
             text = link_bare_ref_ids(text, dst_rel)
+            # Linkify metric names inside markdown table cells (standards
+            # mapping, applicability, RAI lens etc.). Skip the Tier-1
+            # quick reference because its bolded names are handled
+            # separately by `link_tier1_quickref`.
+            if dst_rel != "tier-1-quick-reference.md":
+                text = link_metric_names_in_tables(text)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)
         if dst_rel == "gaps.md":
