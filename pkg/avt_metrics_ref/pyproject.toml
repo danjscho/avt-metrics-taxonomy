@@ -1,7 +1,7 @@
 [project]
 name = "avt-metrics-ref"
-version = "0.1.0"
-description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Pilot covers TP.ASR cluster only."
+version = "0.2.0"
+description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Covers the TP.ASR cluster and the TP.SN Reference-Based Text Similarity family."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
@@ -27,11 +27,18 @@ classifiers = [
 dependencies = [
     "jiwer>=3.0",
     "numpy>=1.24",
+    "rouge-score>=0.1.2",
 ]
 
 [project.optional-dependencies]
 test = [
     "pytest>=7.0",
+]
+# BERTScore requires loading a HuggingFace transformer model (~1.5 GB for
+# the default DeBERTa). Opt-in so the default install stays light enough
+# to use in CI for the catalogue-side tests.
+bertscore = [
+    "bert-score>=0.3.13",
 ]
 
 [project.urls]

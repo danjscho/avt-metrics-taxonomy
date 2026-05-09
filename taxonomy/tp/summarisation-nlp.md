@@ -48,6 +48,8 @@ scores = scorer.score(reference, hypothesis)
 # This is exactly why ROUGE is insufficient for clinical eval.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.rouge`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/sn/rouge.py) (wraps Google's `rouge-score`; returns precision / recall / F1 NamedTuples for ROUGE-1, ROUGE-2, ROUGE-L; supports corpus-level evaluation; default Porter stemmer matches the standard ROUGE configuration).
+
 **References**
 
 - **Original**: [ROUGE-Lin-2004]
@@ -112,6 +114,8 @@ P, R, F1 = score(
 # F1 tensor - higher = more semantically similar
 # BUT: semantic similarity ≠ clinical correctness
 ```
+
+**Reference implementation:** [`avt_metrics_ref.tp.sn.bertscore`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/sn/bertscore.py) (wraps the `bert-score` package; behind the optional `[bertscore]` extra to keep the default install light; returns per-pair precision / recall / F1 plus model + layer metadata; default model is the bert-score package default DeBERTa-XL, but in-domain biomedical models are recommended for clinical text — see the catalogue snippet for the `BiomedNLP-BiomedBERT` example).
 
 **References**
 
