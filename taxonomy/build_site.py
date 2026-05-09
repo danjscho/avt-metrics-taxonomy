@@ -12,7 +12,7 @@ import pathlib
 import re
 import shutil
 import subprocess
-from collections import defaultdict
+from collections import Counter, defaultdict
 
 import parse as parse_src
 
@@ -181,6 +181,189 @@ def link_tier1_quickref(text: str) -> str:
     return _BOLD_METRIC_TOKEN.sub(sub, text)
 
 
+# Map cluster code → friendly cluster name for the Tier-1 quick-reference
+# sub-headers. Group names come from the parsed metric's group attribute.
+_CLUSTER_FRIENDLY = {
+    "TP": "Technical Pipeline",
+    "PI": "Pipeline Interactions",
+    "HL": "Human Layer",
+    "IO": "Impact & Outcomes",
+    "GV": "System Governance",
+    "ES": "Evaluation Science",
+}
+
+
+def regroup_tier1_tables_by_cluster(text: str) -> str:
+    """Split each per-actor Tier-1 table into per-cluster sub-tables. The
+    source authors a single 3-column table per actor (Metric · Cadence ·
+    Why); at build time we look each row's metric up, group by cluster +
+    group, and emit one mini-table per (cluster, group) pair under a
+    bolded subheader. Preserves the existing table column order; adds
+    structural breaks so a long actor block is scannable.
+
+    Runs *after* link_tier1_quickref so the rewritten Markdown links
+    `[`REF-ID` **Name**](page.md#anchor)` are still visible to the row
+    parser — we extract the ref-ID from the link target rather than from
+    the metric-name index.
+    """
+    idx = _metric_name_index()
+    name_to_metric = idx
+    lines = text.splitlines()
+    out: list[str] = []
+    i = 0
+    while i < len(lines):
+        line = lines[i]
+        # Detect a table header followed by a separator row
+        is_header = (
+            line.startswith("| Metric ")
+            and i + 1 < len(lines)
+            and re.match(r"^\|\s*-+", lines[i + 1])
+        )
+        if not is_header:
+            out.append(line)
+            i += 1
+            continue
+        header = line
+        sep = lines[i + 1]
+        # Collect data rows until a non-table line
+        j = i + 2
+        rows: list[str] = []
+        while j < len(lines) and lines[j].startswith("|"):
+            rows.append(lines[j])
+            j += 1
+        # Group rows by (cluster, group)
+        groups: dict[tuple[str, str], list[str]] = {}
+        ungrouped: list[str] = []
+        for row in rows:
+            # Try to extract a metric name from the first cell. After
+            # link_tier1_quickref has run the cell looks like:
+            #   | [`TP.AC-5` **Microphone & Hardware Validation**](...) | ... |
+            # Pre-link form (if regroup runs before link) is just bolded.
+            cells = [c.strip() for c in row.split("|")]
+            cell0 = cells[1] if len(cells) > 1 else ""
+            ref_id_match = re.search(r"`([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)`", cell0)
+            name_match = re.search(r"\*\*([^*]+?)\*\*", cell0)
+            metric = None
+            if ref_id_match:
+                ref_id = ref_id_match.group(1)
+                metric = next(
+                    (m for m in name_to_metric.values() if m.ref_id == ref_id), None
+                )
+            if metric is None and name_match:
+                raw = name_to_metric.get(name_match.group(1).strip().rstrip(" ⚠️"))
+                if raw:
+                    metric = raw
+            if metric is None:
+                ungrouped.append(row)
+                continue
+            cl = metric.ref_id.split(".")[0]
+            grp = metric.group
+            groups.setdefault((cl, grp), []).append(row)
+
+        # Emit per-cluster subgroups in cluster order, preserving the
+        # within-group order rows arrived in.
+        cluster_order = ["TP", "PI", "HL", "IO", "GV", "ES"]
+        emitted_any = False
+        for cl in cluster_order:
+            for (c, grp), grp_rows in list(groups.items()):
+                if c != cl:
+                    continue
+                friendly = _CLUSTER_FRIENDLY.get(c, c)
+                if emitted_any:
+                    out.append("")
+                out.append(f"**{c} · {grp}** *({friendly})*")
+                out.append("")
+                out.append(header)
+                out.append(sep)
+                out.extend(grp_rows)
+                emitted_any = True
+                del groups[(c, grp)]
+        # Any remaining (unknown cluster) groups
+        for (c, grp), grp_rows in groups.items():
+            if emitted_any:
+                out.append("")
+            out.append(f"**{c} · {grp}**")
+            out.append("")
+            out.append(header)
+            out.append(sep)
+            out.extend(grp_rows)
+            emitted_any = True
+        if ungrouped:
+            if emitted_any:
+                out.append("")
+            out.append("**Other**")
+            out.append("")
+            out.append(header)
+            out.append(sep)
+            out.extend(ungrouped)
+        i = j
+    return "\n".join(out)
+
+
+def link_metric_names_in_tables(text: str) -> str:
+    """Linkify bare metric-name occurrences inside markdown table cells on
+    cross-cutting pages (standards-mapping, applicability summary tables,
+    responsible-AI lens tables, etc.). The source authors write metric
+    names as plain prose in the "Taxonomy Metrics" column — at build time
+    we look each name up in the parsed catalogue and rewrite to a link to
+    the per-metric anchor.
+
+    Match strategy: walk lines that look like markdown table rows (`|`
+    delimited), and within each cell, longest-match each catalogue metric
+    name against the cell text. Skip cells that already contain a markdown
+    link to avoid double-linking. Leave bolded names alone (they are
+    handled by `link_tier1_quickref` on its dedicated page).
+    """
+    idx = _metric_name_index()
+    # Sort names by length descending so longer matches (e.g. "Demographic-
+    # Disaggregated WER") win over shorter prefixes ("WER").
+    names_sorted = sorted(idx.keys(), key=len, reverse=True)
+    # Build one big alternation regex; escape names for regex use. Require
+    # word boundaries on both ends so partial-substring hits don't fire.
+    if not names_sorted:
+        return text
+    pattern = re.compile(
+        r"(?<![\w`\[])("
+        + "|".join(re.escape(n) for n in names_sorted)
+        + r")(?![\w`\]])"
+    )
+
+    def sub_in_cell(cell: str) -> str:
+        # Skip cells that already contain a link
+        if "](" in cell:
+            return cell
+
+        def repl(m: re.Match) -> str:
+            name = m.group(1)
+            hit = idx.get(name)
+            if hit is None:
+                return name
+            slug = parse_src.ref_id_to_anchor(hit.ref_id)
+            page = SRC_GROUP_FILE_TO_PAGE.get(hit.group_file, "")
+            if not page:
+                return name
+            return f"[{name}]({page}#{slug})"
+
+        return pattern.sub(repl, cell)
+
+    out_lines: list[str] = []
+    for line in text.splitlines():
+        # Identify markdown table rows (start with |, contain at least one
+        # other |). Skip separator rows (---|---).
+        stripped = line.strip()
+        if (
+            stripped.startswith("|")
+            and stripped.count("|") >= 2
+            and "---" not in stripped
+        ):
+            cells = line.split("|")
+            cells = [sub_in_cell(c) for c in cells]
+            out_lines.append("|".join(cells))
+        else:
+            out_lines.append(line)
+    return "\n".join(out_lines)
+
+
 def add_metric_anchors(text: str) -> str:
     def sub(m: re.Match) -> str:
         prefix, ref_id, tail = m.group(1), m.group(2), m.group(3)
@@ -198,6 +381,7 @@ def add_metric_anchors(text: str) -> str:
 GITHUB_BLOB = "https://github.com/danjscho/avt-metrics-taxonomy/blob/main"
 EXTERNAL_LINK_REWRITES: dict[str, str] = {
     "CHANGELOG.md": "changelog.md",
+    "CHANGELOG-archive.md": f"{GITHUB_BLOB}/CHANGELOG-archive.md",
     "README.md": f"{GITHUB_BLOB}/README.md",
 }
 
@@ -406,9 +590,7 @@ def rewrite_anchors(text: str, current_page: str) -> str:
 # form (TP.AC-1) and the sub-part form (HL.HF-3a). Cluster prefix is 2-3
 # letters; group prefix is 2-3 alphanumeric chars; integer; optional
 # single-letter sub-part suffix.
-_BARE_REF_ID_RE = re.compile(
-    r"\b([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\b"
-)
+_BARE_REF_ID_RE = re.compile(r"\b([A-Z]{2,3}\.[A-Z0-9]{2,3}-\d+[a-z]?)\b")
 
 # Markdown link / inline-code / fenced-code matchers used to mask out
 # regions where bare ref-IDs must NOT be linkified.
@@ -499,6 +681,7 @@ def link_bare_ref_ids(text: str, current_page: str) -> str:
 CLUSTER_TITLES = {
     code: f"{code} — {name}" for code, name in parse_src.CLUSTER_NAMES.items()
 }
+
 
 def _cluster_title_for_group_file(src_rel: str) -> str | None:
     """Look up the cluster title for a source group file, via the parser's
@@ -648,18 +831,17 @@ def _build_metric_history_page() -> str:
         except (subprocess.CalledProcessError, FileNotFoundError):
             continue
         changed = sorted(
-            f for f in diff_out.splitlines()
+            f
+            for f in diff_out.splitlines()
             if f.startswith("taxonomy/") and f.endswith(".md")
         )
         # Filter to group files (those that contain metrics) — exclude
         # _-prefixed cross-cutting files and the catalogue
-        group_changes = [
-            f for f in changed
-            if not pathlib.Path(f).name.startswith("_")
-        ]
+        group_changes = [f for f in changed if not pathlib.Path(f).name.startswith("_")]
         catalogue_changed = "taxonomy/_references.md" in changed
         crosscut_changes = [
-            f for f in changed
+            f
+            for f in changed
             if pathlib.Path(f).name.startswith("_")
             and pathlib.Path(f).name != "_references.md"
         ]
@@ -675,7 +857,7 @@ def _build_metric_history_page() -> str:
             lines.append("**Metric files changed:**")
             lines.append("")
             for f in group_changes:
-                rel = f[len("taxonomy/"):]
+                rel = f[len("taxonomy/") :]
                 metrics = metrics_by_file.get(rel, [])
                 names = ", ".join(m.ref_id for m in metrics) if metrics else "—"
                 lines.append(f"- `{rel}` — {len(metrics)} metric(s): {names}")
@@ -687,7 +869,7 @@ def _build_metric_history_page() -> str:
             lines.append("**Cross-cutting / framework files changed:**")
             lines.append("")
             for f in crosscut_changes:
-                lines.append(f"- `{f[len('taxonomy/'):]}`")
+                lines.append(f"- `{f[len('taxonomy/') :]}`")
             lines.append("")
     return "\n".join(lines)
 
@@ -708,12 +890,16 @@ def _git_dates_for(rel_path: str) -> tuple[str, str] | None:
     plugin can produce valid feed entries from generated content.
     """
     try:
-        created = subprocess.check_output(
-            ["git", "log", "--reverse", "--format=%aI", "--", rel_path],
-            cwd=REPO,
-            text=True,
-            stderr=subprocess.DEVNULL,
-        ).strip().split("\n")[0]
+        created = (
+            subprocess.check_output(
+                ["git", "log", "--reverse", "--format=%aI", "--", rel_path],
+                cwd=REPO,
+                text=True,
+                stderr=subprocess.DEVNULL,
+            )
+            .strip()
+            .split("\n")[0]
+        )
         updated = subprocess.check_output(
             ["git", "log", "-1", "--format=%aI", "--", rel_path],
             cwd=REPO,
@@ -738,13 +924,7 @@ def _inject_changelog_dates_frontmatter(text: str) -> str:
     if dates is None:
         return text
     created, updated = dates
-    frontmatter = (
-        "---\n"
-        "date:\n"
-        f"  created: {created}\n"
-        f"  updated: {updated}\n"
-        "---\n\n"
-    )
+    frontmatter = f"---\ndate:\n  created: {created}\n  updated: {updated}\n---\n\n"
     return frontmatter + text
 
 
@@ -770,8 +950,8 @@ def _refresh_announce_banner() -> None:
         "wrong — feedback on errors is genuinely welcome. This is shared to provoke "
         "conversation, not as a settled standard or procurement gate. See the\n"
         "  <a href=\"{{ 'prototype-status/' | url }}\" style=\"color: inherit; text-decoration: underline;\">prototype status</a> page for what you're invited to do (and what you shouldn't), the\n"
-        "  <a href=\"{{ 'changelog/' | url }}\" style=\"color: inherit; text-decoration: underline;\">changelog</a> for recent changes, and the\n"
-        "  <a href=\"{{ 'gaps/' | url }}\" style=\"color: inherit; text-decoration: underline;\">roadmap</a> for what's pending.\n"
+        '  <a href="{{ \'changelog/\' | url }}" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the\n'
+        '  <a href="{{ \'gaps/\' | url }}" style="color: inherit; text-decoration: underline;">roadmap</a> for what\'s pending.\n'
         "{% endblock %}\n"
     )
     overrides.write_text(content)
@@ -809,8 +989,15 @@ def main() -> None:
         # the round-trip.
         if not dst_rel.startswith("groups/") and dst_rel != "thresholds.md":
             text = link_bare_ref_ids(text, dst_rel)
+            # Linkify metric names inside markdown table cells (standards
+            # mapping, applicability, RAI lens etc.). Skip the Tier-1
+            # quick reference because its bolded names are handled
+            # separately by `link_tier1_quickref`.
+            if dst_rel != "tier-1-quick-reference.md":
+                text = link_metric_names_in_tables(text)
         if dst_rel == "tier-1-quick-reference.md":
             text = link_tier1_quickref(text)
+            text = regroup_tier1_tables_by_cluster(text)
         if dst_rel == "gaps.md":
             text = _inject_roadmap_prelude(text)
         if dst_rel == "contents.md":
@@ -818,6 +1005,7 @@ def main() -> None:
         if dst_rel.startswith("groups/"):
             text = _add_applicability_badges(text, dst_rel)
             text = _add_related_metrics_footers(text, dst_rel)
+            text = _add_feedback_footer(text)
         if dst_rel == "index.md":
             # Root index page - replace the source h1 and the repeated
             # summary prose with a concise landing block; keep the source's
@@ -1307,6 +1495,7 @@ def build_crosscuts() -> int:
     # Family pages (v5.5.0+)
     def _slugify(s: str) -> str:
         import re as _re
+
         return _re.sub(r"[^a-z0-9]+", "-", s.lower()).strip("-")
 
     for label, fam_metrics in families.items():
@@ -1350,7 +1539,7 @@ _APPLICABILITY_BADGES = {
 def _legend_block(how_to_use_link: str) -> str:
     return (
         "\n"
-        "??? note \"Legend: tier and cadence icons\"\n"
+        '??? note "Legend: tier and cadence icons"\n'
         "    **Priority tier** (leading dot in each metric heading):\n\n"
         "    - 🟢 **Tier 1** - Minimum viable assurance (measurable today with existing tools)\n"
         "    - 🟡 **Tier 2** - Recommended for any AVT deployment\n"
@@ -1405,15 +1594,17 @@ def _insert_after_h1(text: str, block: str) -> str:
     # Skip any number of single-line italic paragraphs (e.g. intro) and
     # their trailing blank lines.
     while (
-        i < len(lines)
-        and lines[i].startswith("*")
-        and lines[i].rstrip().endswith("*")
+        i < len(lines) and lines[i].startswith("*") and lines[i].rstrip().endswith("*")
     ):
         i += 1
         while i < len(lines) and not lines[i].strip():
             i += 1
-    return "\n".join(lines[:i]) + "\n" + block + "\n".join(lines[i:]) + (
-        "\n" if not text.endswith("\n") else ""
+    return (
+        "\n".join(lines[:i])
+        + "\n"
+        + block
+        + "\n".join(lines[i:])
+        + ("\n" if not text.endswith("\n") else "")
     )
 
 
@@ -1515,6 +1706,28 @@ def _rai_membership_by_ref_id() -> dict[str, list[tuple[str, str]]]:
             out.setdefault(e.ref_id, []).append(("Theme", code))
     _RAI_MEMBERSHIP_CACHE = out
     return out
+
+
+_FEEDBACK_FOOTER = """
+---
+
+!!! tip "Spotted an error or disagree with a tier?"
+    This catalogue is a [prototype-for-discussion](../prototype-status.md), and feedback on specific metrics is exactly what shapes the next version. Open an issue and pick the template that fits:
+
+    - [Factual error](https://github.com/danjscho/avt-metrics-taxonomy/issues/new?template=01-factual-error.yml) — a claim, citation, threshold, or formula in a metric body looks wrong.
+    - [Tier disagreement](https://github.com/danjscho/avt-metrics-taxonomy/issues/new?template=02-tier-disagreement.yml) — a metric is at the wrong priority tier for your context.
+    - [Missing metric / gap](https://github.com/danjscho/avt-metrics-taxonomy/issues/new?template=03-missing-metric.yml) — an assurance question that should be in the catalogue but isn't.
+    - [Broken link / site bug](https://github.com/danjscho/avt-metrics-taxonomy/issues/new?template=04-broken-link.yml) — internal link, dead citation, rendering issue.
+    - [Framing feedback](https://github.com/danjscho/avt-metrics-taxonomy/issues/new?template=05-feedback.yml) — higher-level concern about principles, dimensions, or scope.
+"""
+
+
+def _add_feedback_footer(text: str) -> str:
+    """Append a feedback / issue-templates footer to each group page so a
+    reader who spots an error has a one-click path to the right issue
+    template. Lives at the page bottom rather than per-metric to keep the
+    metric bodies clean."""
+    return text.rstrip() + "\n" + _FEEDBACK_FOOTER
 
 
 def _add_related_metrics_footers(text: str, current_page: str) -> str:
@@ -1624,14 +1837,23 @@ def _add_related_metrics_footers(text: str, current_page: str) -> str:
 def _inject_contents_applicability_row(text: str) -> str:
     """Inject a prominent applicability-filter row near the top of the
     contents page so a reader can jump to AVT-Specific / AVT-Contextualised
-    / General Healthcare AI in one click."""
+    / General Healthcare AI in one click. Counts are live-derived from the
+    parsed catalogue (countable metrics only — sub-parts excluded) so this
+    row stays in sync with `_applicability.md` without manual edits."""
+    metrics = parse_src.parse_all_metrics()
+    parents = {m.parent_ref_id for m in metrics if m.parent_ref_id}
+    countable = [m for m in metrics if m.ref_id not in parents]
+    counts = Counter(m.dimensions.get("Applicability", "") for m in countable)
+    avt = counts.get("AVT-Specific", 0)
+    ctx = counts.get("AVT-Contextualised", 0)
+    gen = counts.get("General Healthcare AI", 0)
     block = (
         "\n"
         '!!! tip "Browse by applicability"\n'
         "    Jump straight to the metrics that match your scope:\n\n"
-        "    [:material-target: 48 AVT-Specific](crosscuts/by-applicability/avt-specific.md){ .md-button }\n"
-        "    [:material-shuffle-variant: 77 AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){ .md-button }\n"
-        "    [:material-earth: 89 General Healthcare AI](crosscuts/by-applicability/general.md){ .md-button }\n"
+        f"    [:material-target: {avt} AVT-Specific](crosscuts/by-applicability/avt-specific.md){{ .md-button }}\n"
+        f"    [:material-shuffle-variant: {ctx} AVT-Contextualised](crosscuts/by-applicability/avt-contextualised.md){{ .md-button }}\n"
+        f"    [:material-earth: {gen} General Healthcare AI](crosscuts/by-applicability/general.md){{ .md-button }}\n"
         "\n"
     )
     # Insert after the h1 (first `# ` line) and any immediately following blank lines.
@@ -1723,6 +1945,7 @@ def _landing_page(header_body: str) -> str:
     parent_ids = {sp.parent_ref_id for sp in all_metrics if sp.parent_ref_id}
     countable = [m for m in all_metrics if m.ref_id not in parent_ids]
     from collections import Counter
+
     app_counts = Counter(m.applicability for m in countable)
     avt_specific = app_counts.get("AVT-Specific", 0)
     avt_contextualised = app_counts.get("AVT-Contextualised", 0)
@@ -1748,9 +1971,11 @@ def _landing_page(header_body: str) -> str:
 
     ---
 
-    🟢 **{t1}** Tier 1 - minimum viable assurance, measurable today
-    🟡 **{t2}** Tier 2 - recommended for any AVT deployment
-    🔵 **{t3}** Tier 3 - advanced / research-grade
+    🟢 **{t1}** Tier 1 — minimum viable assurance, measurable today  
+
+    🟡 **{t2}** Tier 2 — recommended for AVT deployment  
+    
+    🔵 **{t3}** Tier 3 — advanced / research-grade
 
     [Jump to Tier 1 quick reference](tier-1-quick-reference.md)
 

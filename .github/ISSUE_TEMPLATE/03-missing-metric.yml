@@ -1,0 +1,67 @@
+name: Missing metric / gap
+description: A metric or assurance question is missing from the catalogue and should be added (or already exists in `_gaps.md` as a roadmap candidate).
+title: "[gap] <short construct name>"
+labels: ["gap", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        The [roadmap / gaps page](https://danjscho.github.io/avt-metrics-taxonomy/gaps/) lists 74 outstanding candidates — please check there first to see if your gap is already known. If so, a +1 with extra context (use case, citation, supporting evidence) is more useful than a duplicate.
+
+  - type: input
+    id: name
+    attributes:
+      label: Proposed metric name
+      description: Use the cluster grammar — short noun-phrase ending in something quantifiable (Rate / Compliance / Latency / Coverage / Accuracy etc.).
+      placeholder: "FHIR-UK-Core Resource Conformance Rate"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: cluster
+    attributes:
+      label: Likely cluster
+      options:
+        - TP — Technical Pipeline (audio / ASR / diarisation / summarisation / coding / write-back)
+        - PI — Pipeline Interactions (cross-stage error propagation)
+        - HL — Human Layer (human factors, workflow, automation bias)
+        - IO — Impact & Outcomes (patient experience, fairness, equity)
+        - GV — System Governance (compliance, safety, security, privacy, ops, sustainability, training, vendor)
+        - ES — Evaluation Science (meta-evaluation, benchmark hygiene)
+        - Not sure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: tier
+    attributes:
+      label: Suggested priority tier
+      options:
+        - Tier 1 — minimum viable assurance (every deployer must do it)
+        - Tier 2 — recommended for any AVT deployment
+        - Tier 3 — advanced / research-grade
+        - Not sure
+    validations:
+      required: true
+
+  - type: textarea
+    id: assurance_question
+    attributes:
+      label: Assurance question this answers
+      description: What unsafe / unmonitored situation does this metric catch? One sentence.
+      placeholder: "Are FHIR resources written by the AVT system conformant to UK Core profiles, or do they validate against R4 generic?"
+    validations:
+      required: true
+
+  - type: textarea
+    id: source
+    attributes:
+      label: External authority / source
+      description: Which standard, framework, paper, or guidance requires or proposes this measurement? Add a URL where possible. Without an external authority, the metric will probably land at Maturity = Proposed/Novel.
+      placeholder: "FHIR UK Core profile guidance: https://..."
+
+  - type: textarea
+    id: measurement
+    attributes:
+      label: Measurement method (if known)
+      description: How would a deployer / vendor / national body actually compute this? Computational / Manual audit / Survey / Documentation review / Hybrid.

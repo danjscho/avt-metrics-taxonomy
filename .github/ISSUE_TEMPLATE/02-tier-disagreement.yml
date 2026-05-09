@@ -1,0 +1,50 @@
+name: Tier disagreement
+description: A metric is at the wrong priority tier (Tier 1 / Tier 2 / Tier 3) for a particular deployment context.
+title: "[tier] <REF-ID> — proposed shift T<N>→T<N>"
+labels: ["tier-disagreement", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Tier assignments are calibrated starting points, not universal gates. The [Calibration & Context principle](https://danjscho.github.io/avt-metrics-taxonomy/calibration-and-context/) names the six axes (specialty mix, patient population, platform maturity, governance capacity, risk appetite, volume) along which local context shifts the right tier. Tier disagreements are useful even when they're context-specific — they help calibrate the published default.
+
+  - type: input
+    id: ref_id
+    attributes:
+      label: Metric reference ID
+      placeholder: "GV.SC-1"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: direction
+    attributes:
+      label: Proposed direction
+      options:
+        - Promote (move up in priority — e.g. T2 → T1)
+        - Demote (move down in priority — e.g. T1 → T2)
+    validations:
+      required: true
+
+  - type: textarea
+    id: rationale
+    attributes:
+      label: Rationale
+      description: Why does this metric belong at a different tier? Reference the Calibration & Context axes where relevant.
+      placeholder: "In a high-volume secondary-care deployment, this metric should be ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: deployment_context
+    attributes:
+      label: Deployment context (optional but useful)
+      description: Specialty mix, patient population, governance maturity, etc. Helps decide whether this is a universal tier shift or a context-specific calibration note.
+
+  - type: checkboxes
+    id: prototype_status
+    attributes:
+      label: Prototype-status acknowledgement
+      options:
+        - label: I understand the published tier is a calibrated starting point, not a procurement gate, and that local calibration may legitimately produce a different answer.
+          required: true
