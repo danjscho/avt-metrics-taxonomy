@@ -33,7 +33,7 @@ Versioning:
   while the package is itself prototype-shaped.
 """
 
-__version__ = "0.3.0"
+__version__ = "0.3.1"
 
 # The catalogue version this release was authored against. Bumped when a
 # catalogue release modifies a Formal Definition for a metric this library

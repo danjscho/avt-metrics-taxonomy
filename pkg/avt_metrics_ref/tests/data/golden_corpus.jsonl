@@ -1,0 +1,8 @@
+{"id": "g01", "speaker_group": "british-rp", "reference": "the patient reports chest pain radiating to the left arm", "hypothesis": "the patient reports chest pain radiating to the left arm"}
+{"id": "g02", "speaker_group": "british-rp", "reference": "blood pressure is one hundred and forty over ninety", "hypothesis": "blood pressure is one hundred and forty over ninety"}
+{"id": "g03", "speaker_group": "scottish", "reference": "the patient is taking metformin five hundred milligrams twice daily", "hypothesis": "the patient is taking metformin five hundred milligrams twice daily"}
+{"id": "g04", "speaker_group": "scottish", "reference": "she has a history of asthma and uses a salbutamol inhaler", "hypothesis": "she has a history of asthma and uses a salbutamol puffer"}
+{"id": "g05", "speaker_group": "general-american", "reference": "no history of diabetes or cardiovascular disease", "hypothesis": "no history of diabetes or cardiovascular disease"}
+{"id": "g06", "speaker_group": "general-american", "reference": "patient denies chest pain shortness of breath or palpitations", "hypothesis": "patient denies chest pain shortness of breath or papitations"}
+{"id": "g07", "speaker_group": "south-asian", "reference": "started on amlodipine five milligrams once daily two weeks ago", "hypothesis": "started on amlodipine five milligrams daily two weeks ago"}
+{"id": "g08", "speaker_group": "south-asian", "reference": "the patient has a temperature of thirty eight point five celsius", "hypothesis": "the patient has a temperature of thirty eight point five celsius"}

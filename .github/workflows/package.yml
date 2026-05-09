@@ -1,0 +1,73 @@
+name: Reference implementation library tests
+
+# Runs the avt-metrics-ref package test suite. Independent of the catalogue
+# build because the package has its own dependency surface (jiwer, numpy,
+# rouge-score) that the catalogue site doesn't need.
+#
+# The package lives only on the reference-library-pilot branch (and any
+# branches cut from it). Triggering on main would fail because pkg/ does
+# not exist there yet, so we only run when the package directory is
+# present in the checked-out tree.
+
+on:
+  push:
+    branches:
+      - reference-library-pilot
+    paths:
+      - 'pkg/avt_metrics_ref/**'
+      - '.github/workflows/package.yml'
+  pull_request:
+    branches:
+      - reference-library-pilot
+    paths:
+      - 'pkg/avt_metrics_ref/**'
+      - '.github/workflows/package.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: pkg/avt_metrics_ref
+
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.11", "3.12"]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v6
+        with:
+          enable-cache: true
+
+      - name: Set up Python ${{ matrix.python-version }}
+        run: uv python install ${{ matrix.python-version }}
+
+      - name: Install package + test extras
+        run: uv sync --extra test --python ${{ matrix.python-version }}
+
+      - name: Run pytest
+        run: uv run --python ${{ matrix.python-version }} pytest -v
+
+      - name: Confirm package import surface is intact
+        run: |
+          uv run --python ${{ matrix.python-version }} python -c "
+          import avt_metrics_ref as a
+          # Each public function should be reachable via the top-level import.
+          assert callable(a.wer)
+          assert callable(a.rouge)
+          assert callable(a.system_availability)
+          assert callable(a.degradation_detection_latency)
+          # bertscore is reachable via the lazy attribute on tp.sn but
+          # deliberately NOT at the top level (heavy dependency).
+          assert not hasattr(a, 'bertscore')
+          # Catalogue version pointer is set
+          assert a.__catalogue_version__.startswith('v5.')
+          print(f'avt-metrics-ref v{a.__version__} ({a.__catalogue_version__}): import surface intact')
+          "

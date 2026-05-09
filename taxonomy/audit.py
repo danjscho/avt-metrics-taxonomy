@@ -1552,6 +1552,64 @@ def check_version_bump_consistency() -> list[Finding]:
     return findings
 
 
+def check_reference_implementation_links(all_metrics: list[Metric]) -> list[Finding]:
+    """Validate that `**Reference implementation:**` cross-links in metric
+    bodies point at files that actually exist under `pkg/avt_metrics_ref/`.
+
+    The cross-links live on metric bodies and target GitHub blob URLs on
+    the `reference-library-pilot` branch. If the package on that branch
+    renames a function or moves a file, the catalogue silently rots
+    unless we check the link target exists. This audit slice runs only
+    when the package directory is present in the working tree (i.e. on
+    the pilot branch); on main, where the package doesn't exist yet,
+    the audit silently skips."""
+    findings: list[Finding] = []
+    # ROOT is taxonomy/; the package lives one level up at repo root.
+    repo_root = ROOT.parent
+    pkg_dir = repo_root / "pkg" / "avt_metrics_ref"
+    if not pkg_dir.exists():
+        return findings  # main branch — package not present, nothing to check
+
+    # Pattern matches the GitHub blob URL form we use, capturing the path
+    # inside the package directory.
+    ref_impl_re = re.compile(
+        r"\*\*Reference implementation:\*\*[^\n]*?"
+        r"github\.com/[^/]+/[^/]+/blob/reference-library-pilot/"
+        r"pkg/avt_metrics_ref/(?P<path>[^)\s]+)"
+    )
+
+    # Walk each unique source file once (not per-metric — the audit's Metric
+    # objects don't carry the metric body, just heading metadata).
+    seen_files: set[str] = set()
+    for m in all_metrics:
+        if m.file in seen_files:
+            continue
+        seen_files.add(m.file)
+        path = ROOT / m.file
+        if not path.exists():
+            continue
+        try:
+            text = path.read_text()
+        except OSError:
+            continue
+        for hit in ref_impl_re.finditer(text):
+            target_path = pkg_dir / hit.group("path")
+            if not target_path.exists():
+                line_num = text[: hit.start()].count("\n") + 1
+                findings.append(
+                    Finding(
+                        "ERROR",
+                        "reference-implementation-link-broken",
+                        f"Reference-implementation cross-link "
+                        f"points at `pkg/avt_metrics_ref/{hit.group('path')}` "
+                        f"but no such file exists in the package",
+                        f"{m.file}:{line_num}",
+                    )
+                )
+
+    return findings
+
+
 def check_no_part_letter_prose() -> list[Finding]:
     """v4.0 retired the Part-letter scheme (A-F) in favour of cluster
     codes (TP/PI/HL/IO/GV/ES). Any `Part [A-F]\\b` match in non-archive
@@ -1621,6 +1679,7 @@ def main() -> int:
     findings.extend(check_crosscut_ref_ids_resolve(all_metrics))
     findings.extend(check_change_history_versions())
     findings.extend(check_version_bump_consistency())
+    findings.extend(check_reference_implementation_links(all_metrics))
 
     # Report
     errors = [f for f in findings if f.severity == "ERROR"]
