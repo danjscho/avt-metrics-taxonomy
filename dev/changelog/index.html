@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.5.9.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.5.10.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4193,6 +4193,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v5510-2026-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.5.10 (2026-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v559-2026-05-09" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5098,6 +5109,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v5510-2026-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.5.10 (2026-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v559-2026-05-09" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5981,6 +6003,11 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v5510-2026-05-09">v5.5.10 (2026-05-09)<a class="headerlink" href="#v5510-2026-05-09" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: live-derived applicability counts on the contents page.</strong></p>
+<p>The contents page's "Browse by applicability" tip block had hard-coded counts (48 AVT-Specific / 77 AVT-Contextualised / 89 General Healthcare AI) baked into <code>_inject_contents_applicability_row</code> in <code>taxonomy/build_site.py</code>. Those numbers were the v3.x baseline and had drifted with every metric mint since. Live counts at v5.5.x are 50 / 79 / 107 — the count surface elsewhere on the site (<code>_applicability.md</code> summary table, <code>crosscuts/by-applicability/*.md</code> page intros) was already correct, but this one inject-helper was stale.</p>
+<p><strong>Fix:</strong> reworked the inject-helper to parse the catalogue and derive counts from the live <code>Applicability</code> dimension at build time (countable metrics only — sub-parts excluded), matching the same derivation used elsewhere. The block can no longer drift.</p>
+<p><strong>Counts unchanged</strong>: 236 metrics / 58-99-79 tiers.</p>
 <h2 id="v559-2026-05-09">v5.5.9 (2026-05-09)<a class="headerlink" href="#v559-2026-05-09" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: reader-experience polish — no metric content edits.</strong></p>
 <p>A focused tidy-up surfaced after an end-user readability pass: the home-page release-summary was a single ~4 KB paragraph; the Tier 1 Quick Reference duplicated v4.1/v5.3/v5.4 promotions in a separate trailing section; the Standards Mapping tables referenced metric names as plain prose; the Applicability by-cluster table was stale at the v3.x shape.</p>
