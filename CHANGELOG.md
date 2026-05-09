@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.5.12 (2026-05-09)
+
+**Patch release: small home-page tier-block tweak. No metric content edits.**
+
+- "Three priority tiers" block on the home page: Tier 2 line trimmed from "recommended for any AVT deployment" to "recommended for AVT deployment"; the three lines now render as separate paragraphs (blank line between each) rather than as a bulleted list.
+
+**Counts unchanged**: 236 metrics / 58-99-79 tiers.
+
 ## v5.5.11 (2026-05-09)
 
 **Patch release: reader-feedback wiring + Tier 1 quick-reference structural breaks. No metric content edits.**

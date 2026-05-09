@@ -1973,7 +1973,7 @@ def _landing_page(header_body: str) -> str:
 
     🟢 **{t1}** Tier 1 — minimum viable assurance, measurable today  
 
-    🟡 **{t2}** Tier 2 — recommended for any AVT deployment  
+    🟡 **{t2}** Tier 2 — recommended for AVT deployment  
     
     🔵 **{t3}** Tier 3 — advanced / research-grade
 
