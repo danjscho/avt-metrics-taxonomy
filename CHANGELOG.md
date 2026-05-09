@@ -1,5 +1,21 @@
 # Changelog
 
+## v5.5.9 (2026-05-09)
+
+**Patch release: reader-experience polish — no metric content edits.**
+
+A focused tidy-up surfaced after an end-user readability pass: the home-page release-summary was a single ~4 KB paragraph; the Tier 1 Quick Reference duplicated v4.1/v5.3/v5.4 promotions in a separate trailing section; the Standards Mapping tables referenced metric names as plain prose; the Applicability by-cluster table was stale at the v3.x shape.
+
+**What changed:**
+
+- **Home page (`taxonomy/_header.md`)** — replaced the wall-of-text release summary with a structural-patterns block (Tier 1 tightening, citation grammar, per-metric dimensions, honest-prototype framing, test/audit safety net) plus a recent-highlights bullet list (v5.5.x → v4.0.0). Full per-release notes still in CHANGELOG.
+- **Tier 1 Quick Reference (`taxonomy/_tier-1-quick-reference.md`)** — rewritten as per-actor markdown tables (Metric · Cadence · Why this tier). v4.1 / v5.3 / v5.4 promoted/minted entries merged into the main per-actor lists with `(new in vX.Y)` / `(promoted vX.Y)` markers; the standalone trailing additions section removed. Cadence icons (🚪 / 📡 / 🔄) explained once at the top.
+- **Applicability by-cluster table (`taxonomy/_applicability.md`)** — refreshed from the v3.x baseline (221 total, Part-letter A–F naming, 0 GHA in TP) to v5.5.x state (236 total, TP/PI/HL/IO/GV/ES cluster codes, current per-cluster splits 75/21/19/18/94/9). Headline summary block was already current; only the by-cluster cut was stale.
+- **Metric-name linkification in cross-cutting tables** — new `link_metric_names_in_tables` pass in `taxonomy/build_site.py` rewrites bare metric-name occurrences inside markdown table cells on cross-cutting pages (standards-mapping, applicability, responsible-AI lens, etc.) into links to the per-metric anchor. Skips cells that already contain a markdown link; longest-match precedence so "Demographic-Disaggregated WER" wins over "WER". Closes the gap between the "ref-IDs in cross-cutting prose linkify" v4.2.1 feature and the standards-mapping tables that use metric *names* not ref-IDs.
+- **`plan-future.md` split** — completed items 3 / 4 / 5 / 7 / 8 (versioning conventions; Tier 1 minimum-set construction; snippet + Formal Definition verification; citation grammar `Short:` field; threshold-numbers structural split) lifted into `archive/plan-future-archive.md` as a historical record. Active backlog (1, 9, 10, 11, 12) stays at root. Original per-item numbering preserved across both files so cross-references in CHANGELOG / commits continue to resolve.
+
+**Counts unchanged**: 236 metrics / 58-99-79 tiers.
+
 ## v5.5.8 (2026-05-08)
 
 **Patch release: repo-wide documentation sweep — no metric content edits.**
