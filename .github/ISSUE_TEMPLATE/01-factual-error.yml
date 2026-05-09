@@ -1,0 +1,65 @@
+name: Factual error or confabulation
+description: A specific claim, citation, threshold number, or formula in a metric body looks wrong or unsupported.
+title: "[error] <REF-ID> — short description"
+labels: ["error", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for flagging — this is exactly the kind of feedback the prototype framing invites. The catalogue is AI-coauthored and human-reviewed, but specific claims, citations, and threshold numbers may still contain confabulations or factual errors despite review.
+
+  - type: input
+    id: ref_id
+    attributes:
+      label: Metric reference ID
+      description: e.g. `TP.SN-5`, `GV.PD-13`. One per issue please — split multi-metric reports into separate issues.
+      placeholder: "TP.SN-5"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of error?
+      options:
+        - Cited paper / standard says something different from what the metric claims
+        - Threshold number isn't supported by the cited source
+        - Formal Definition formula is wrong or doesn't match cited source
+        - Source row attributes a claim to a paper that doesn't make that claim (confabulated citation)
+        - Code snippet doesn't implement what the Formal Definition says
+        - Cross-reference points at the wrong metric / page
+        - Other (describe below)
+    validations:
+      required: true
+
+  - type: textarea
+    id: claim
+    attributes:
+      label: What the catalogue says
+      description: Quote the specific sentence / number / formula from the metric body, with a link to the relevant section of the published site if possible.
+      placeholder: "The metric body says: ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: What the source actually says
+      description: Quote (with section / page / DOI if available) what the cited authority actually says. If the source is unreachable, say so — flagging an unverifiable claim is still useful.
+      placeholder: "Section 4.2 of the cited paper says: ..."
+    validations:
+      required: true
+
+  - type: textarea
+    id: suggested_fix
+    attributes:
+      label: Suggested fix (optional)
+      description: How would you rewrite the metric body? Anything from a one-line correction to a full draft is welcome.
+
+  - type: checkboxes
+    id: prototype_status
+    attributes:
+      label: Prototype-status acknowledgement
+      options:
+        - label: I understand this catalogue is a prototype-for-discussion, not a settled NHS-endorsed standard, and I'm flagging this error to improve the artefact rather than to claim it as policy.
+          required: true

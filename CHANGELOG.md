@@ -1,5 +1,25 @@
 # Changelog
 
+## v5.5.11 (2026-05-09)
+
+**Patch release: reader-feedback wiring + Tier 1 quick-reference structural breaks. No metric content edits.**
+
+Three reader-experience fixes surfaced after live testing:
+
+1. **GitHub issue templates** — five issue-form templates at `.github/ISSUE_TEMPLATE/` so reporting a problem produces a structured submission rather than a blank issue: factual error / confabulation, tier disagreement, missing metric / gap, broken link / dead citation / site bug, framing / structural feedback. Each template captures the metadata reviewers actually need (ref-ID, what the catalogue says, what the source says, suggested fix). The factual-error template also asks the reader to tick a prototype-status acknowledgement so error reports are framed as "improving the artefact" rather than "this is broken policy."
+2. **"Spotted an error?" footer on every group page** — each rendered group page now ends with a links block pointing directly at the five issue templates. Source side: a single `_FEEDBACK_FOOTER` string appended at build time via the new `_add_feedback_footer` pass; no per-metric edits needed. Closes the loop between the prototype-status framing and the actual one-click reporting flow.
+3. **Prototype-status page** — replaced the bare `/issues` URL with a `/issues/new/choose` link plus a five-bullet list of what each template is for. Same wiring as the per-page footer; reduces friction for readers who land on the prototype-status page first.
+
+Plus a Tier 1 Quick Reference structural break:
+
+- **Per-actor tables now subdivide by cluster/group at build time** — new `regroup_tier1_tables_by_cluster` pass walks each per-actor table on the rendered Tier 1 quick reference, groups rows by their metric's `cluster · group`, and emits one mini-table per group under a bolded sub-header (e.g. *TP · ASR / Transcription* / *GV · Privacy & Data Governance*). Long actor blocks (Deployer has 43 entries) now scan in cluster-sized chunks instead of as one wall-of-rows. The source `_tier-1-quick-reference.md` is unchanged — the regrouping happens in `taxonomy/build_site.py` after `link_tier1_quickref` has injected the per-row ref-IDs.
+
+And a small home-page rendering fix:
+
+- **"Three priority tiers" block on the home page** — the three tier lines used soft line-breaks, which Markdown collapses to one paragraph. Converted to a proper bulleted list so each tier renders on its own line.
+
+**Counts unchanged**: 236 metrics / 58-99-79 tiers.
+
 ## v5.5.10 (2026-05-09)
 
 **Patch release: live-derived applicability counts on the contents page.**

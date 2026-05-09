@@ -1,0 +1,40 @@
+name: Broken link / dead citation / site bug
+description: A link in the catalogue or on the published site is broken, a cited URL is dead, or the site renders incorrectly.
+title: "[bug] <short description>"
+labels: ["site-bug", "needs-triage"]
+body:
+  - type: dropdown
+    id: kind
+    attributes:
+      label: What kind of issue?
+      options:
+        - Broken internal link (cross-reference between metrics / pages)
+        - Dead external URL (cited paper / standard / guidance no longer reachable)
+        - Site rendering bug (table broken, anchor missing, CSS / mobile issue)
+        - CSV / JSON download issue
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: location
+    attributes:
+      label: Where on the site?
+      description: Page URL, metric ref-ID, or repo file path.
+      placeholder: "https://danjscho.github.io/avt-metrics-taxonomy/groups/asr-transcription/#tp-asr-1"
+    validations:
+      required: true
+
+  - type: textarea
+    id: details
+    attributes:
+      label: What's broken?
+      description: Link target, HTTP status, screenshot, or repro steps.
+    validations:
+      required: true
+
+  - type: textarea
+    id: archive
+    attributes:
+      label: Archive URL (for dead citations)
+      description: If the source is gone but a Wayback Machine / archive.today snapshot exists, paste it here. The catalogue's `_references.md` retrieval-date convention can be updated to point at the archive.
