@@ -9,9 +9,11 @@ Library coverage:
   (ROUGE, BERTScore). The rest of TP.SN (Hallucination Rate, Omission
   Rate, LLM-Judge family, etc.) requires human-rater or LLM-call
   pipelines that this library does not yet abstract.
+- ``tp.wb`` — TP.WB-2 Integration Error Rate. Other TP.WB metrics
+  (write-back fidelity, field mapping accuracy, update vs append
+  behaviour) need a per-EPR adapter pattern this library has not yet
+  committed to.
 
-Other TP groups (audio capture, diarisation, clinical coding, downstream
-write-back) are out of scope for the current release — write-back fidelity
-and field-mapping accuracy in particular need a per-EPR adapter pattern
-this library has not yet committed to.
+Other TP groups (audio capture, diarisation, clinical coding) are out
+of scope for the current release.
 """

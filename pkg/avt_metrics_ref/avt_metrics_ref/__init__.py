@@ -7,6 +7,13 @@ Taxonomy (https://danjscho.github.io/avt-metrics-taxonomy/). Coverage so far:
   ASR confidence calibration (full operationalisable subset).
 - **TP.SN**: ROUGE (TP.SN-1), BERTScore (TP.SN-2) — the Reference-Based
   Text Similarity family.
+- **TP.WB**: Integration Error Rate (TP.WB-2) — the computational subset
+  of the downstream-write-back group.
+- **HL.HF**: Edit Rate (HL.HF-1), Review-Before-Signing Rate (HL.HF-3a),
+  Time-to-Sign Distribution (HL.HF-3b) — the Tier 1 telemetry triplet
+  read from EPR / AVT workflow events.
+- **IO.FE**: Deployment Equity Index (IO.FE-1) — the
+  Demographic Equity Disaggregation family.
 - **GV**: System Availability / Uptime (GV.OP-5), Performance Degradation
   Detection Latency (GV.SG-3) — the small subset of governance metrics
   that have a computational kernel.
@@ -33,7 +40,7 @@ Versioning:
   while the package is itself prototype-shaped.
 """
 
-__version__ = "0.3.1"
+__version__ = "0.4.0"
 
 # The catalogue version this release was authored against. Bumped when a
 # catalogue release modifies a Formal Definition for a metric this library
@@ -52,7 +59,10 @@ from .tp.asr import (
     asr_confidence_calibration,
 )
 from .tp.sn import rouge
+from .tp.wb import integration_error_rate
 from .gv import degradation_detection_latency, system_availability
+from .hl import edit_rate, review_before_signing_rate, time_to_sign_distribution
+from .io import deployment_equity_index
 
 __all__ = [
     "__version__",
@@ -70,9 +80,17 @@ __all__ = [
     # `bertscore` is reachable via `from avt_metrics_ref.tp.sn import bertscore`
     # but not exported at the top level so an `import avt_metrics_ref` does
     # not force the heavyweight bert-score dependency to load.
+    # TP.WB cluster (computational subset)
+    "integration_error_rate",
     # GV cluster (sparse — only metrics with computational kernels)
     "system_availability",
     "degradation_detection_latency",
+    # HL cluster — Tier 1 telemetry triplet (HL.HF-1, HL.HF-3a, HL.HF-3b)
+    "edit_rate",
+    "review_before_signing_rate",
+    "time_to_sign_distribution",
+    # IO cluster — Demographic Equity Disaggregation family
+    "deployment_equity_index",
 ]
 
 

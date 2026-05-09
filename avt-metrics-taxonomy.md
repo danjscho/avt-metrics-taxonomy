@@ -7950,6 +7950,8 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.integration_error_rate`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/wb/integration_error_rate.py) (per-write event stream in; aggregate IER + per-error-type breakdown — `failed` / `partial` / `degraded` — plus per-severity counts — `critical` / `moderate` / `benign` — plus optional per-EPR stratification when `epr_system` is supplied; classifies into `meets-sla` / `alert-rate` / `pause-trigger` / `escalation-critical` per the catalogue's pause and escalation triggers; SLA target configurable for local calibration).
+
 **Reference Standard**
 
 > Pipeline telemetry from the AVT product, the integration middleware (where present), and the target EPR. An "integration error" is any write-back attempt that does not result in a complete, conformant target-EPR record. Three error types distinguished:
@@ -9508,6 +9510,8 @@ Percentage of AI notes edited before approval. At Day Zero: quality signal. Decl
 ER(t) = |N_edited(t)| / |N_total(t)|. Complacency signal: dER/dt < 0 sustained ≥4 weeks without AI accuracy improvement. Alert: ER drops >15pp from baseline within 3 months.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.edit_rate`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/hl/edit_rate.py) (per-note event stream in; aggregate ER + optional severity-stratified rates — `safety_critical` / `clinically_meaningful` / `stylistic` — plus per-clinician breakdown; with a `baseline_pct` argument, classifies into `meets-baseline` / `complacency-alert` / `pause-trigger` per the catalogue's complacency signal and pause triggers; without baseline, flags `inadequate-review` when ER < 30% in early deployment).
+
 **Reference Standard**
 
 > EPR or AVT-product telemetry capturing the post-generation, pre-signature note-state diff. An "edit" is any change to the AI-generated text between AI output and clinician signature. Out of scope: changes after signature (correction workflows are tracked under [GV.SG-15 Time-to-Correct](#gv-sg-15), not Edit Rate). Edit detection MUST distinguish:
@@ -9693,6 +9697,8 @@ Notes demonstrably reviewed before sign-off. Binary per-note signal from EPR / A
 RBS = |N_reviewed| / |N_total|. N_reviewed = notes with edit events, scroll events, or dwell > T_min. T_min = max(15s, 3s × word_count/100).
 ```
 
+**Reference implementation:** [`avt_metrics_ref.review_before_signing_rate`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/hl/review_before_signing.py) (per-note event stream with `word_count` / `edit_events` / `scroll_events` / `dwell_seconds` in; aggregate RBS + per-clinician breakdown + NAS-band classification — `meets-target` ≥ 95% / `below-target` 85–95% / `pause-trigger` < 85%; T_min computed per-note as `max(15s, 3s × word_count/100)`; thresholds configurable for local calibration).
+
 **Reference Standard**
 
 > EPR + AVT product telemetry. A "review event" is any of three telemetry signals between AVT note availability (`t_generated`) and clinician signature (`t_approve`):
@@ -9767,6 +9773,8 @@ Distribution of duration between generation and approval. Model as distribution 
 ```
 TTS = t_approve - t_generated. Report: median, P5, P10, P90. Normalise: TTS_norm = TTS / word_count. Flag: TTS_norm < 0.5s/word suggests rubber-stamping.
 ```
+
+**Reference implementation:** [`avt_metrics_ref.time_to_sign_distribution`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/hl/time_to_sign.py) (per-note `(generated_at, approved_at, word_count)` events in; mandatory distribution percentiles — median / P5 / P10 / P90 — plus `TTS_norm` median and P5 in seconds-per-word; rubber-stamp count flagging notes with `TTS_norm < 0.5s/word`; very-fast-on-long-note count flagging the worked example signal of `< 5s` on `> 200`-word notes; thresholds all configurable).
 
 **Reference Standard**
 
@@ -10950,6 +10958,8 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 ```
 Correlation r(AVT_deployed, IMD_decile). Positive correlation = deployment inequity. Target: access independent of deprivation (r ≈ 0).
 ```
+
+**Reference implementation:** [`avt_metrics_ref.deployment_equity_index`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/io/deployment_equity.py) (mapping of bucket→deployment-rate in; Pearson correlation + direction (`pro-equity` / `neutral` / `inequity`) + band classification (`meets-target` |r|<0.10 / `alert` 0.10–0.30 / `inequity-flagged` ≥0.30); axis-convention-neutral — caller decides whether their axis convention makes positive r mean inequity or pro-equity, but for IMD with the ONS convention (decile 1 = most deprived) positive r = inequity per the catalogue).
 
 **Limitations**
 

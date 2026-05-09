@@ -31,6 +31,8 @@ Whether AVT creates two-tier documentation quality across practices. Track again
 Correlation r(AVT_deployed, IMD_decile). Positive correlation = deployment inequity. Target: access independent of deprivation (r ≈ 0).
 ```
 
+**Reference implementation:** [`avt_metrics_ref.deployment_equity_index`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/io/deployment_equity.py) (mapping of bucket→deployment-rate in; Pearson correlation + direction (`pro-equity` / `neutral` / `inequity`) + band classification (`meets-target` |r|<0.10 / `alert` 0.10–0.30 / `inequity-flagged` ≥0.30); axis-convention-neutral — caller decides whether their axis convention makes positive r mean inequity or pro-equity, but for IMD with the ONS convention (decile 1 = most deprived) positive r = inequity per the catalogue).
+
 **Limitations**
 
 > Requires cross-organisational data.

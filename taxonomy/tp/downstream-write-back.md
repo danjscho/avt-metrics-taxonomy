@@ -105,6 +105,8 @@ AVT-to-EPR pipeline failures: failed writes, partial writes, timeouts, truncatio
 IER = (N_failed + N_partial + N_degraded) / N_total. SLA target: IER < 0.001.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.integration_error_rate`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/tp/wb/integration_error_rate.py) (per-write event stream in; aggregate IER + per-error-type breakdown — `failed` / `partial` / `degraded` — plus per-severity counts — `critical` / `moderate` / `benign` — plus optional per-EPR stratification when `epr_system` is supplied; classifies into `meets-sla` / `alert-rate` / `pause-trigger` / `escalation-critical` per the catalogue's pause and escalation triggers; SLA target configurable for local calibration).
+
 **Reference Standard**
 
 > Pipeline telemetry from the AVT product, the integration middleware (where present), and the target EPR. An "integration error" is any write-back attempt that does not result in a complete, conformant target-EPR record. Three error types distinguished:

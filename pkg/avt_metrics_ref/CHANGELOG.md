@@ -18,6 +18,32 @@ The package follows SemVer. Versioning conventions:
   from the package SemVer because the catalogue and the package release
   on different cadences.
 
+## 0.4.0 (2026-05-09)
+
+**Phases 7-9 of plan-reference-library: HL telemetry triplet + TP.WB-2 + IO.FE-1.**
+
+Added — five new public functions across three new sub-packages:
+
+**HL.HF Tier 1 telemetry triplet (`avt_metrics_ref.hl`):**
+
+- **`edit_rate(events, baseline_pct=None, ...)` — HL.HF-1.** Per-note event stream in; aggregate ER, optional severity-stratified rates (`safety_critical` / `clinically_meaningful` / `stylistic` per the catalogue's mandatory severity stratification), per-clinician breakdown, NAS-band classification. With `baseline_pct` supplied, classifies into `meets-baseline` / `complacency-alert` (>15pp drop) / `pause-trigger` (<50% of baseline).
+- **`review_before_signing_rate(events, ...)` — HL.HF-3a.** Per-note event stream with `word_count` / `edit_events` / `scroll_events` / `dwell_seconds`; library computes `T_min = max(15s, 3s × word_count/100)` per the catalogue Formal Definition; aggregate RBS + per-clinician breakdown + NAS-band classification (`meets-target` ≥95% / `below-target` 85-95% / `pause-trigger` <85%).
+- **`time_to_sign_distribution(events, ...)` — HL.HF-3b.** Per-note `(generated_at, approved_at, word_count)` events; mandatory distribution percentiles (median / P5 / P10 / P90 in seconds and seconds-per-word) per the catalogue's "single-number reporting is not Tier 1 sufficient"; rubber-stamp count flagging notes with `TTS_norm < 0.5s/word`; very-fast-on-long-note count for the worked-example signal.
+
+**TP.WB computational subset (`avt_metrics_ref.tp.wb`):**
+
+- **`integration_error_rate(events, ...)` — TP.WB-2.** Per-write event stream with `success` / `error_type` / `severity` / optional `epr_system`; aggregate IER + per-error-type breakdown (`failed` / `partial` / `degraded`) + per-severity counts (`critical` / `moderate` / `benign`) + per-EPR stratification per the catalogue's mandatory stratifications; classification surfaces `meets-sla` / `alert-rate` / `pause-trigger` (>5× SLA) / `escalation-critical` (any critical event, per the catalogue's zero-tolerance trigger).
+
+**IO Demographic Equity Disaggregation family (`avt_metrics_ref.io`):**
+
+- **`deployment_equity_index(bucket_to_rate, ...)` — IO.FE-1.** Mapping of axis-bucket→deployment-rate in (e.g. IMD decile 1-10 → per-decile coverage); Pearson r between axis and rate; direction classification (`pro-equity` / `neutral` / `inequity`) + band classification (`meets-target` |r|<0.10 / `alert` 0.10-0.30 / `inequity-flagged` ≥0.30). Composes structurally with `disaggregated_wer` for cross-cluster equity reporting.
+
+Catalogue cross-links added on HL.HF-1, HL.HF-3a, HL.HF-3b, TP.WB-2, IO.FE-1 metric bodies.
+
+Tests: 41 new across the five functions (9 edit-rate + 12 RBS + 10 TTS + 11 IER-by-type + 8 deployment-equity, with 1 TTS distribution check overlapping). Pilot total: 119+ tests passing.
+
+Package version 0.3.1 → 0.4.0 (five new public functions; SemVer minor). `__catalogue_version__` unchanged at v5.5.12.
+
 ## 0.3.1 (2026-05-09)
 
 **Phase 6 of plan-reference-library: golden-corpus regression suite + plumbing.**
