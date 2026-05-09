@@ -2,11 +2,18 @@
 
 This is a **prototype-for-discussion** companion library to the AVT Metrics
 Taxonomy (https://danjscho.github.io/avt-metrics-taxonomy/). Coverage so far:
-the full TP.ASR cluster, plus TP.SN-1 ROUGE and TP.SN-2 BERTScore from the
-Reference-Based Text Similarity family. The catalogue itself remains the
-canonical source of metric definitions; this library is one possible
-operationalisation of those definitions, made runnable so deployers can
-compute the metrics on their own data.
+
+- **TP.ASR**: WER, M-WER, CK-ER, demographic-disaggregated WER, CER,
+  ASR confidence calibration (full operationalisable subset).
+- **TP.SN**: ROUGE (TP.SN-1), BERTScore (TP.SN-2) — the Reference-Based
+  Text Similarity family.
+- **GV**: System Availability / Uptime (GV.OP-5), Performance Degradation
+  Detection Latency (GV.SG-3) — the small subset of governance metrics
+  that have a computational kernel.
+
+The catalogue itself remains the canonical source of metric definitions;
+this library is one possible operationalisation of those definitions,
+made runnable so deployers can compute the metrics on their own data.
 
 Important:
 - The functions here implement the catalogue's Formal Definitions but cannot
@@ -26,7 +33,7 @@ Versioning:
   while the package is itself prototype-shaped.
 """
 
-__version__ = "0.2.0"
+__version__ = "0.3.0"
 
 # The catalogue version this release was authored against. Bumped when a
 # catalogue release modifies a Formal Definition for a metric this library
@@ -45,6 +52,7 @@ from .tp.asr import (
     asr_confidence_calibration,
 )
 from .tp.sn import rouge
+from .gv import degradation_detection_latency, system_availability
 
 __all__ = [
     "__version__",
@@ -62,6 +70,9 @@ __all__ = [
     # `bertscore` is reachable via `from avt_metrics_ref.tp.sn import bertscore`
     # but not exported at the top level so an `import avt_metrics_ref` does
     # not force the heavyweight bert-score dependency to load.
+    # GV cluster (sparse — only metrics with computational kernels)
+    "system_availability",
+    "degradation_detection_latency",
 ]
 
 

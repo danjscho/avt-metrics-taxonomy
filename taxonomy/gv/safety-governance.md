@@ -151,6 +151,8 @@ Time delay between the onset of model performance degradation and its detection 
 Detection Latency = t_detection - t_degradation_onset. Requires: (1) continuous measurement of sentinel metrics against a stable reference; (2) statistical drift detection (CUSUM, Page-Hinkley, or equivalent sequential testing); (3) pre-specified threshold for declaring drift. Report Latency distribution across detected drift events. Target: detection within 4 weeks of onset for clinically significant degradation.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.degradation_detection_latency`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/gv/degradation_latency.py) (lists of (onset, detection) datetimes in; per-event latency days, distribution summary — median / p90 / max — and a `meets_target` flag against the catalogue 28-day target. The library only computes the latency; identifying drift events upstream via CUSUM / Page-Hinkley / sequential testing is the caller's responsibility).
+
 **Limitations**
 
 > Requires stable reference benchmarks that don't drift with the model. Small drift signals are hidden by consultation case-mix variation. Attribution of detected drift to model changes vs environmental changes is often ambiguous.

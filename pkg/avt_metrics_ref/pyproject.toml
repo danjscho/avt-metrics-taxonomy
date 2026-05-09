@@ -1,7 +1,7 @@
 [project]
 name = "avt-metrics-ref"
-version = "0.2.0"
-description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Covers the TP.ASR cluster and the TP.SN Reference-Based Text Similarity family."
+version = "0.3.0"
+description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Covers the TP.ASR cluster, the TP.SN Reference-Based Text Similarity family, and the GV computational-kernel subset (uptime, degradation-detection latency)."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }

@@ -219,6 +219,8 @@ Percentage operational. NAS: ≥99.5% during consultation hours.
 A = (T_operational - T_down) / T_operational × 100. Include degraded: A_eff = (T_op - T_down - T_degraded) / T_op × 100.
 ```
 
+**Reference implementation:** [`avt_metrics_ref.system_availability`](https://github.com/danjscho/avt-metrics-taxonomy/blob/reference-library-pilot/pkg/avt_metrics_ref/avt_metrics_ref/gv/uptime.py) (operational/down/optional-degraded minutes in; raw availability + effective availability + NAS-band classification out, `meets-target` / `below-target` / `escalation` against the 99.5% target / 99.0% pause threshold; thresholds configurable for local calibration).
+
 **Limitations**
 
 > Binary misses degraded performance.
