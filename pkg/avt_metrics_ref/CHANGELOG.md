@@ -18,6 +18,17 @@ The package follows SemVer. Versioning conventions:
   from the package SemVer because the catalogue and the package release
   on different cadences.
 
+## 0.4.1 (2026-05-09)
+
+**Phase 10 of plan-reference-library: README polish + worked example.**
+
+No public API change. Documentation + regression-test additions only:
+
+- `README.md` rewritten: pilot-only TP.ASR coverage table replaced with the full 15-metric coverage table across TP.ASR / TP.SN / TP.WB / HL.HF / IO.FE / GV; "deliberately out of scope" section enumerates what's missing and why; install section documents the `[bertscore]` extra; new "Worked example: assurance dashboard slice" section composes every implemented metric on a synthetic week of AVT events to produce a per-deployment governance report.
+- `tests/test_readme_worked_example.py` — 8 pinned regression tests for the worked example. If the README's expected output changes (because a function's classification bands move, or the synthetic dataset is edited), the test fails and the diff makes the change deliberate.
+
+Package version 0.4.0 → 0.4.1 (docs + regression tests; no behaviour change).
+
 ## 0.4.0 (2026-05-09)
 
 **Phases 7-9 of plan-reference-library: HL telemetry triplet + TP.WB-2 + IO.FE-1.**

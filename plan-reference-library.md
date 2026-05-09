@@ -19,6 +19,10 @@ Original phases archived for reference:
 - **Phase 4** (v0.3.1) — `check_reference_implementation_links` audit slice validates cross-link targets exist under `pkg/avt_metrics_ref/`.
 - **Phase 5** (v0.3.1) — per-package CHANGELOG with the package-vs-catalogue versioning convention written down.
 - **Phase 6** (v0.3.1) — 8-pair synthetic golden corpus + 7 pinned regression tests.
+- **Phase 7** (v0.4.0) — HL.HF Tier 1 telemetry triplet (HL.HF-1 / -3a / -3b).
+- **Phase 8** (v0.4.0) — TP.WB-2 Integration Error Rate.
+- **Phase 9** (v0.4.0) — IO.FE-1 Deployment Equity Index.
+- **Phase 10** (v0.4.1) — README rewrite with full 15-metric coverage table, scope statement, and worked composed example. 8 pinned regression tests for the example.
 
 ---
 

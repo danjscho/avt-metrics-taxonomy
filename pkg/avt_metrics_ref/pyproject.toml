@@ -1,6 +1,6 @@
 [project]
 name = "avt-metrics-ref"
-version = "0.4.0"
+version = "0.4.1"
 description = "Reference implementations of metrics from the AVT Metrics Taxonomy (prototype-for-discussion). Covers the TP.ASR cluster, the TP.SN Reference-Based Text Similarity family, the TP.WB computational subset, the HL.HF Tier 1 telemetry triplet, the GV computational-kernel subset, and the IO Demographic Equity Disaggregation family."
 readme = "README.md"
 requires-python = ">=3.10"
