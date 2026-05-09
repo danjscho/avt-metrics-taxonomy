@@ -1,0 +1,23 @@
+name: Framing / structural feedback
+description: The catalogue's framing, principle wording, dimension structure, or scope is unclear, miscalibrated, or otherwise wrong-shaped.
+title: "[feedback] <short description>"
+labels: ["framing", "needs-triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Use this for higher-level concerns: the [Outcomes Boundary](https://danjscho.github.io/avt-metrics-taxonomy/outcomes-boundary/), the [Calibration & Context principle](https://danjscho.github.io/avt-metrics-taxonomy/calibration-and-context/), the dimension model (Family / Layer of Defence / AI-Substrate / Applicability), the prototype-status framing, or the standards-mapping selection. Use the **Factual error** template for specific in-metric mistakes.
+
+  - type: textarea
+    id: concern
+    attributes:
+      label: What's the concern?
+      description: What looks wrong, missing, or miscalibrated about the catalogue's shape rather than its content?
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternative
+    attributes:
+      label: Alternative framing (optional)
+      description: How should it be different? Sketches, links to comparable taxonomies, pointers to literature all welcome.

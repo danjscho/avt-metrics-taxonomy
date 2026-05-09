@@ -15,7 +15,12 @@
 **What this means for you as a reader.**
 
 - **Verify before you use.** A specific claim, a citation, a threshold number, a code snippet — if it's load-bearing for what you're doing, check it against the cited source. Don't trust the taxonomy on individual specifics until you've checked.
-- **Flag errors when you spot them.** This is the most useful thing a reader can do. Feedback on factual errors is genuinely welcome — it makes the next version more accurate. Open an issue at <https://github.com/danjscho/avt-metrics-taxonomy/issues> with what's wrong and (if you have it) what the correct version is.
+- **Flag errors when you spot them.** This is the most useful thing a reader can do. Feedback on factual errors is genuinely welcome — it makes the next version more accurate. Open an issue at <https://github.com/danjscho/avt-metrics-taxonomy/issues/new/choose> and pick the template that matches what you've found:
+    - **Factual error or confabulation** — a specific claim, citation, threshold, or formula in a metric body looks wrong or unsupported.
+    - **Tier disagreement** — a metric is at the wrong priority tier for a particular deployment context.
+    - **Missing metric / gap** — an assurance question or measurement is missing from the catalogue.
+    - **Broken link / dead citation / site bug** — link target is broken, cited URL is dead, or the site renders incorrectly.
+    - **Framing / structural feedback** — the catalogue's principles, dimensions, or scope feel wrong-shaped.
 - **Read the round-trip review files in `archive/v3.9-reviews/`.** They document the kinds of errors that have already been caught. The pattern of errors there is informative about what to look for elsewhere — if "wrong DOI" and "mis-paraphrased finding" came up multiple times in round-2, they almost certainly remain elsewhere undetected.
 - **Treat the structural shape as more reliable than the specifics.** The cluster structure, the responsible-actor split, the assurance-question taxonomy, the tier-tier-tier framing — these survived multiple structural reviews. The specific metric prose, citations, and numbers are where AI-introduced errors are most likely.
 
