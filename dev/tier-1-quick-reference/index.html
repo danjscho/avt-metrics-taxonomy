@@ -94,7 +94,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.5.10.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.5.11.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="../changelog/" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4430,6 +4430,7 @@
 </ul>
 <h3 id="tier-1-by-responsible-actor">Tier 1 by Responsible Actor<a class="headerlink" href="#tier-1-by-responsible-actor" title="Permanent link">&para;</a></h3>
 <h4 id="deployer">Deployer<a class="headerlink" href="#deployer" title="Permanent link">&para;</a></h4>
+<p><strong>TP · Audio Capture &amp; Environment</strong> <em>(Technical Pipeline)</em></p>
 <table>
 <thead>
 <tr>
@@ -4444,6 +4445,18 @@
 <td>🚪</td>
 <td>Basic pre-deployment hardware check. No AVT should go live without confirming capture hardware meets minimum specifications.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>TP · Summarisation / NLP</strong> <em>(Technical Pipeline)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/summarisation-nlp/#tp-sn-5"><code>TP.SN-5</code> <strong>Hallucination Rate</strong></a> ⚠️</td>
 <td>🔄</td>
@@ -4464,6 +4477,18 @@
 <td>🔄</td>
 <td>Safety-critical: certainty inflation creates false diagnostic confidence in the record.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>TP · Downstream Write-back</strong> <em>(Technical Pipeline)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/downstream-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a></td>
 <td>🚪</td>
@@ -4485,6 +4510,23 @@
 <td>Safety-critical pre-deployment test. Overwriting existing safety-critical data is a patient safety event.</td>
 </tr>
 <tr>
+<td><a href="../groups/downstream-write-back/#tp-wb-8"><code>TP.WB-8</code> <strong>PRSB Semantic Completeness</strong></a> <em>(new in v5.3)</em></td>
+<td>📡</td>
+<td>Proportion of PRSB-mandatory information elements present in AVT-generated output, stratified by applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>HL · Human Factors &amp; Workflow</strong> <em>(Human Layer)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td><a href="../groups/human-factors-workflow/#hl-hf-1"><code>HL.HF-1</code> <strong>Edit Rate (% Notes Edited)</strong></a></td>
 <td>📡</td>
 <td>Primary continuous complacency indicator. NAS Day Zero SPI. The single most important human factors metric — trajectory reveals automation bias before incidents occur.</td>
@@ -4499,6 +4541,52 @@
 <td>📡</td>
 <td>The tail of very-fast approvals (&lt;5 seconds for complex notes) is the safety-critical population. Distribution analysis detects rubber-stamping patterns.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>IO · Patient Experience</strong> <em>(Impact &amp; Outcomes)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../groups/patient-experience/#io-px-1"><code>IO.PX-1</code> <strong>Patient Opt-Out Rate</strong></a></td>
+<td>📡</td>
+<td>Low-burden continuous monitoring. Rising rates signal trust issues. Demographic disaggregation reveals consent model equity.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>IO · Fairness &amp; Equity</strong> <em>(Impact &amp; Outcomes)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../groups/fairness-equity/#io-fe-1"><code>IO.FE-1</code> <strong>Deployment Equity Index</strong></a> <em>(promoted v5.3)</em></td>
+<td>📡</td>
+<td>Deployment equity disaggregated by site, setting, and demographic axes. Complements cluster-level disaggregated metrics.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GV · Safety &amp; Governance</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/safety-governance/#gv-sg-9"><code>GV.SG-9</code> <strong>Safety Performance Indicators with Thresholds (DSCMS)</strong></a></td>
 <td>📡</td>
@@ -4515,10 +4603,27 @@
 <td>The honest governance metric. Every deployer will accumulate it; making it visible prevents governance theatre.</td>
 </tr>
 <tr>
-<td><a href="../groups/patient-experience/#io-px-1"><code>IO.PX-1</code> <strong>Patient Opt-Out Rate</strong></a></td>
+<td><a href="../groups/safety-governance/#gv-sg-14"><code>GV.SG-14</code> <strong>Near-Miss Reporting Rate</strong></a></td>
 <td>📡</td>
-<td>Low-burden continuous monitoring. Rising rates signal trust issues. Demographic disaggregation reveals consent model equity.</td>
+<td>Essential leading indicator — the early warning system that LFPSE is the lagging indicator of.</td>
 </tr>
+<tr>
+<td><a href="../groups/safety-governance/#gv-sg-17"><code>GV.SG-17</code> <strong>Hazard Log Completeness</strong></a></td>
+<td>📡</td>
+<td>Regulatory requirement under DCB0129. Compliance obligation, not a recommendation.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GV · Operational</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/operational/#gv-op-1"><code>GV.OP-1</code> <strong>Documentation Time per Consultation</strong></a></td>
 <td>📡</td>
@@ -4529,16 +4634,18 @@
 <td>📡</td>
 <td>Selective adoption patterns (avoiding AVT for complex cases) reveal practical system boundaries and are diagnostically valuable.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Privacy &amp; Data Governance</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
 <tr>
-<td><a href="../groups/safety-governance/#gv-sg-14"><code>GV.SG-14</code> <strong>Near-Miss Reporting Rate</strong></a></td>
-<td>📡</td>
-<td>Essential leading indicator — the early warning system that LFPSE is the lagging indicator of.</td>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
 </tr>
-<tr>
-<td><a href="../groups/safety-governance/#gv-sg-17"><code>GV.SG-17</code> <strong>Hazard Log Completeness</strong></a></td>
-<td>📡</td>
-<td>Regulatory requirement under DCB0129. Compliance obligation, not a recommendation.</td>
-</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/privacy-data-governance/#gv-pd-1"><code>GV.PD-1</code> <strong>Audio Retention Compliance</strong></a></td>
 <td>📡</td>
@@ -4565,15 +4672,76 @@
 <td>Legal compliance requirement. Must be tested before go-live to understand erasure scope and limitations.</td>
 </tr>
 <tr>
+<td><a href="../groups/privacy-data-governance/#gv-pd-2"><code>GV.PD-2</code> <strong>Audio Time-to-Deletion</strong></a></td>
+<td>📡</td>
+<td>NHSE IG guidance March 2026 requires deletion after summary sign-off. Must verify deletion in primary storage, caches, and backups.</td>
+</tr>
+<tr>
+<td><a href="../groups/privacy-data-governance/#gv-pd-3"><code>GV.PD-3</code> <strong>Transcript Retention Compliance</strong></a></td>
+<td>📡</td>
+<td>Higher-risk than audio (structured, searchable, readily consumable). Explicit retention policy required; compliance measurable continuously.</td>
+</tr>
+<tr>
+<td><a href="../groups/privacy-data-governance/#gv-pd-16"><code>GV.PD-16</code> <strong>Decommissioning Data Handling Compliance</strong></a> <em>(new in v4.1)</em></td>
+<td>🚪</td>
+<td>End-of-life data handling per the deployer-vendor contract. Limitation-layer infrastructure that bounds damage at retirement.</td>
+</tr>
+<tr>
+<td><a href="../groups/privacy-data-governance/#gv-pd-13"><code>GV.PD-13</code> <strong>Privacy Notice Currency &amp; Completeness</strong></a> <em>(new in v5.3)</em></td>
+<td>🚪</td>
+<td>Each public-facing privacy notice must include an AVT-specific section with lawful basis, controller/processor relationship, retention, and any model-training-use disclosure. NHSE IG Attestation family.</td>
+</tr>
+<tr>
+<td><a href="../groups/privacy-data-governance/#gv-pd-18"><code>GV.PD-18</code> <strong>Information Asset Register Completeness</strong></a> <em>(new in v5.4)</em></td>
+<td>🚪</td>
+<td>AVT system listed in the IAR with named Information Asset Owner, lawful basis, retention, sub-processor list, and risk classification.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GV · Training &amp; Competency</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
+<tr>
 <td><a href="../groups/training-competency/#gv-tc-1"><code>GV.TC-1</code> <strong>Clinician Training Completion Rate</strong></a></td>
 <td>📡</td>
 <td>Governance requirement. No clinician should use AVT without completing required training — binary compliance, 100% target.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Vendor Transparency &amp; Contractual</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/vendor-transparency-contractual/#gv-vt-7"><code>GV.VT-7</code> <strong>Sub-Processor Transparency</strong></a></td>
 <td>📡</td>
 <td>Legal compliance requirement under UK GDPR Article 28. Must be assessed at procurement and monitored for changes.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · NHS Compliance &amp; Regulatory</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/nhs-compliance-regulatory/#gv-cr-4"><code>GV.CR-4</code> <strong>AVT Supplier Registry Listing Verification</strong></a></td>
 <td>🚪</td>
@@ -4610,31 +4778,6 @@
 <td>Every AI-generated entry must carry the mandatory SNOMED suffix. Non-compliance breaks downstream audit and safety investigation.</td>
 </tr>
 <tr>
-<td><a href="../groups/privacy-data-governance/#gv-pd-2"><code>GV.PD-2</code> <strong>Audio Time-to-Deletion</strong></a></td>
-<td>📡</td>
-<td>NHSE IG guidance March 2026 requires deletion after summary sign-off. Must verify deletion in primary storage, caches, and backups.</td>
-</tr>
-<tr>
-<td><a href="../groups/privacy-data-governance/#gv-pd-3"><code>GV.PD-3</code> <strong>Transcript Retention Compliance</strong></a></td>
-<td>📡</td>
-<td>Higher-risk than audio (structured, searchable, readily consumable). Explicit retention policy required; compliance measurable continuously.</td>
-</tr>
-<tr>
-<td><a href="../groups/privacy-data-governance/#gv-pd-16"><code>GV.PD-16</code> <strong>Decommissioning Data Handling Compliance</strong></a> <em>(new in v4.1)</em></td>
-<td>🚪</td>
-<td>End-of-life data handling per the deployer-vendor contract. Limitation-layer infrastructure that bounds damage at retirement.</td>
-</tr>
-<tr>
-<td><a href="../groups/privacy-data-governance/#gv-pd-13"><code>GV.PD-13</code> <strong>Privacy Notice Currency &amp; Completeness</strong></a> <em>(new in v5.3)</em></td>
-<td>🚪</td>
-<td>Each public-facing privacy notice must include an AVT-specific section with lawful basis, controller/processor relationship, retention, and any model-training-use disclosure. NHSE IG Attestation family.</td>
-</tr>
-<tr>
-<td><a href="../groups/privacy-data-governance/#gv-pd-18"><code>GV.PD-18</code> <strong>Information Asset Register Completeness</strong></a> <em>(new in v5.4)</em></td>
-<td>🚪</td>
-<td>AVT system listed in the IAR with named Information Asset Owner, lawful basis, retention, sub-processor list, and risk classification.</td>
-</tr>
-<tr>
 <td><a href="../groups/nhs-compliance-regulatory/#gv-cr-14"><code>GV.CR-14</code> <strong>Consultation-Type Appropriateness Assessment</strong></a> <em>(new in v5.3)</em></td>
 <td>🚪</td>
 <td>Documented assessment of which consultation types (safeguarding, mental health, paediatrics, intimate exams, end-of-life) AVT is appropriate for vs requires carve-outs. Caldicott Guardian sign-off.</td>
@@ -4644,19 +4787,10 @@
 <td>📡</td>
 <td>Named board committee or executive director with AI oversight in formal remit, quarterly minimum cadence, escalation path. CQC well-led inspection point.</td>
 </tr>
-<tr>
-<td><a href="../groups/fairness-equity/#io-fe-1"><code>IO.FE-1</code> <strong>Deployment Equity Index</strong></a> <em>(promoted v5.3)</em></td>
-<td>📡</td>
-<td>Deployment equity disaggregated by site, setting, and demographic axes. Complements cluster-level disaggregated metrics.</td>
-</tr>
-<tr>
-<td><a href="../groups/downstream-write-back/#tp-wb-8"><code>TP.WB-8</code> <strong>PRSB Semantic Completeness</strong></a> <em>(new in v5.3)</em></td>
-<td>📡</td>
-<td>Proportion of PRSB-mandatory information elements present in AVT-generated output, stratified by applicable PRSB standard (CIS, Outpatient Letter, Discharge, etc.).</td>
-</tr>
 </tbody>
 </table>
 <h4 id="vendor">Vendor<a class="headerlink" href="#vendor" title="Permanent link">&para;</a></h4>
+<p><strong>TP · ASR / Transcription</strong> <em>(Technical Pipeline)</em></p>
 <table>
 <thead>
 <tr>
@@ -4676,6 +4810,18 @@
 <td>🚪</td>
 <td>Safety-critical and underspecified by current vendor reporting. Should be a Day Zero acceptance criterion.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>TP · Summarisation / NLP</strong> <em>(Technical Pipeline)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/summarisation-nlp/#tp-sn-5"><code>TP.SN-5</code> <strong>Hallucination Rate</strong></a> ⚠️</td>
 <td>🔄</td>
@@ -4696,11 +4842,35 @@
 <td>🔄</td>
 <td>Certainty inflation creates false diagnostic confidence in the record.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>TP · Clinical Coding</strong> <em>(Technical Pipeline)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/clinical-coding/#tp-cc-6"><code>TP.CC-6</code> <strong>Code Hallucination Rate</strong></a></td>
 <td>📡</td>
 <td>Zero-tolerance metric. Any non-zero rate indicates architectural failure in generation constraints.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>TP · Downstream Write-back</strong> <em>(Technical Pipeline)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/downstream-write-back/#tp-wb-1"><code>TP.WB-1</code> <strong>Write-back Fidelity</strong></a></td>
 <td>🚪</td>
@@ -4721,16 +4891,52 @@
 <td>🚪</td>
 <td>Overwriting existing safety-critical data is a patient safety event.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Safety &amp; Governance</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/safety-governance/#gv-sg-1"><code>GV.SG-1</code> <strong>Model Version Tracking</strong></a></td>
 <td>📡</td>
 <td>Foundation for all continuous assurance. Without knowing which model version produced which output, no performance change is interpretable.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Operational</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/operational/#gv-op-5"><code>GV.OP-5</code> <strong>System Availability / Uptime</strong></a></td>
 <td>📡</td>
 <td>Standard SLA monitoring. NAS Day Zero SPI (≥99.5%).</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Privacy &amp; Data Governance</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/privacy-data-governance/#gv-pd-1"><code>GV.PD-1</code> <strong>Audio Retention Compliance</strong></a></td>
 <td>📡</td>
@@ -4751,6 +4957,18 @@
 <td>🚪</td>
 <td>Vendor must demonstrate erasure scope before go-live.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · Vendor Transparency &amp; Contractual</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/vendor-transparency-contractual/#gv-vt-1"><code>GV.VT-1</code> <strong>Model Change Notification Compliance</strong></a></td>
 <td>📡</td>
@@ -4786,6 +5004,18 @@
 <td>📡</td>
 <td>Notice period before product retirement, feature withdrawal, integration withdrawal.</td>
 </tr>
+</tbody>
+</table>
+<p><strong>GV · NHS Compliance &amp; Regulatory</strong> <em>(System Governance)</em></p>
+<table>
+<thead>
+<tr>
+<th>Metric</th>
+<th>Cadence</th>
+<th>Why this tier</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><a href="../groups/nhs-compliance-regulatory/#gv-cr-11"><code>GV.CR-11</code> <strong>Medical Device Classification Documentation</strong></a> <em>(new in v5.3)</em></td>
 <td>🚪</td>
@@ -4794,6 +5024,7 @@
 </tbody>
 </table>
 <h4 id="vendor-deployer-national-body">Vendor + Deployer + National Body<a class="headerlink" href="#vendor-deployer-national-body" title="Permanent link">&para;</a></h4>
+<p><strong>ES · Meta-Evaluation</strong> <em>(Evaluation Science)</em></p>
 <table>
 <thead>
 <tr>
@@ -4811,6 +5042,7 @@
 </tbody>
 </table>
 <h4 id="vendor-national-body">Vendor + National Body<a class="headerlink" href="#vendor-national-body" title="Permanent link">&para;</a></h4>
+<p><strong>TP · ASR / Transcription</strong> <em>(Technical Pipeline)</em></p>
 <table>
 <thead>
 <tr>
@@ -4828,6 +5060,7 @@
 </tbody>
 </table>
 <h4 id="regional-icb-national-body">Regional (ICB) + National Body<a class="headerlink" href="#regional-icb-national-body" title="Permanent link">&para;</a></h4>
+<p><strong>GV · Safety &amp; Governance</strong> <em>(System Governance)</em></p>
 <table>
 <thead>
 <tr>

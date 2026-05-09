@@ -92,7 +92,7 @@
           <div class="md-banner__inner md-grid md-typeset">
             
             
-  <strong>AI-coauthored prototype for discussion — v5.5.10.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
+  <strong>AI-coauthored prototype for discussion — v5.5.11.</strong> Substantial portions of this taxonomy were drafted with AI assistance and human-reviewed; <strong>specific claims, citations, and threshold numbers may still contain confabulations or factual errors</strong> despite review. Keep this front of mind, verify before use, and please flag anything that looks wrong — feedback on errors is genuinely welcome. This is shared to provoke conversation, not as a settled standard or procurement gate. See the
   <a href="../prototype-status/" style="color: inherit; text-decoration: underline;">prototype status</a> page for what you're invited to do (and what you shouldn't), the
   <a href="./" style="color: inherit; text-decoration: underline;">changelog</a> for recent changes, and the
   <a href="../gaps/" style="color: inherit; text-decoration: underline;">roadmap</a> for what's pending.
@@ -4193,6 +4193,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v5511-2026-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.5.11 (2026-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v5510-2026-05-09" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -5109,6 +5120,17 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#v5511-2026-05-09" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        v5.5.11 (2026-05-09)
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#v5510-2026-05-09" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6003,6 +6025,23 @@
 
 
 <h1 id="changelog">Changelog<a class="headerlink" href="#changelog" title="Permanent link">&para;</a></h1>
+<h2 id="v5511-2026-05-09">v5.5.11 (2026-05-09)<a class="headerlink" href="#v5511-2026-05-09" title="Permanent link">&para;</a></h2>
+<p><strong>Patch release: reader-feedback wiring + Tier 1 quick-reference structural breaks. No metric content edits.</strong></p>
+<p>Three reader-experience fixes surfaced after live testing:</p>
+<ol>
+<li><strong>GitHub issue templates</strong> — five issue-form templates at <code>.github/ISSUE_TEMPLATE/</code> so reporting a problem produces a structured submission rather than a blank issue: factual error / confabulation, tier disagreement, missing metric / gap, broken link / dead citation / site bug, framing / structural feedback. Each template captures the metadata reviewers actually need (ref-ID, what the catalogue says, what the source says, suggested fix). The factual-error template also asks the reader to tick a prototype-status acknowledgement so error reports are framed as "improving the artefact" rather than "this is broken policy."</li>
+<li><strong>"Spotted an error?" footer on every group page</strong> — each rendered group page now ends with a links block pointing directly at the five issue templates. Source side: a single <code>_FEEDBACK_FOOTER</code> string appended at build time via the new <code>_add_feedback_footer</code> pass; no per-metric edits needed. Closes the loop between the prototype-status framing and the actual one-click reporting flow.</li>
+<li><strong>Prototype-status page</strong> — replaced the bare <code>/issues</code> URL with a <code>/issues/new/choose</code> link plus a five-bullet list of what each template is for. Same wiring as the per-page footer; reduces friction for readers who land on the prototype-status page first.</li>
+</ol>
+<p>Plus a Tier 1 Quick Reference structural break:</p>
+<ul>
+<li><strong>Per-actor tables now subdivide by cluster/group at build time</strong> — new <code>regroup_tier1_tables_by_cluster</code> pass walks each per-actor table on the rendered Tier 1 quick reference, groups rows by their metric's <code>cluster · group</code>, and emits one mini-table per group under a bolded sub-header (e.g. <em>TP · ASR / Transcription</em> / <em>GV · Privacy &amp; Data Governance</em>). Long actor blocks (Deployer has 43 entries) now scan in cluster-sized chunks instead of as one wall-of-rows. The source <code>_tier-1-quick-reference.md</code> is unchanged — the regrouping happens in <code>taxonomy/build_site.py</code> after <code>link_tier1_quickref</code> has injected the per-row ref-IDs.</li>
+</ul>
+<p>And a small home-page rendering fix:</p>
+<ul>
+<li><strong>"Three priority tiers" block on the home page</strong> — the three tier lines used soft line-breaks, which Markdown collapses to one paragraph. Converted to a proper bulleted list so each tier renders on its own line.</li>
+</ul>
+<p><strong>Counts unchanged</strong>: 236 metrics / 58-99-79 tiers.</p>
 <h2 id="v5510-2026-05-09">v5.5.10 (2026-05-09)<a class="headerlink" href="#v5510-2026-05-09" title="Permanent link">&para;</a></h2>
 <p><strong>Patch release: live-derived applicability counts on the contents page.</strong></p>
 <p>The contents page's "Browse by applicability" tip block had hard-coded counts (48 AVT-Specific / 77 AVT-Contextualised / 89 General Healthcare AI) baked into <code>_inject_contents_applicability_row</code> in <code>taxonomy/build_site.py</code>. Those numbers were the v3.x baseline and had drifted with every metric mint since. Live counts at v5.5.x are 50 / 79 / 107 — the count surface elsewhere on the site (<code>_applicability.md</code> summary table, <code>crosscuts/by-applicability/*.md</code> page intros) was already correct, but this one inject-helper was stale.</p>
