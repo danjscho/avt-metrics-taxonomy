@@ -1,5 +1,13 @@
 # Changelog
 
+## v5.5.13 (2026-05-11)
+
+**Patch release: title renamed to "Prototype AVT Metrics Taxonomy" ahead of public launch. No metric content edits.**
+
+- All reader-facing titles (site nav/browser tab via `mkdocs.yml`, markdown headings, citation block) now lead with "Prototype" to make the artefact's status immediately visible.
+
+**Counts unchanged**: 236 metrics / 58-99-79 tiers.
+
 ## v5.5.12 (2026-05-09)
 
 **Patch release: small home-page tier-block tweak. No metric content edits.**
