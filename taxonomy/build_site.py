@@ -1950,7 +1950,7 @@ def _landing_page(header_body: str) -> str:
     avt_specific = app_counts.get("AVT-Specific", 0)
     avt_contextualised = app_counts.get("AVT-Contextualised", 0)
     general = app_counts.get("General Healthcare AI", 0)
-    return f"""# AVT Metrics Taxonomy
+    return f"""# Prototype AVT Metrics Taxonomy
 
 !!! warning "Draft - not yet stakeholder-approved"
     Shared openly for early feedback. Tier assignments, gap analysis, and
@@ -2061,7 +2061,7 @@ Machine-readable and archival exports of the taxonomy, regenerated on every rele
 
 Cite the taxonomy as:
 
-> AVT Metrics Taxonomy {version} (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
+> Prototype AVT Metrics Taxonomy {version} (2026). Schofield, D. Healthcare metrics taxonomy for assuring Ambient Voice Technology. https://danjscho.github.io/avt-metrics-taxonomy/
 
 For a specific metric, use its reference ID (e.g. `TP.AC-1`) - these are stable across versions. Individual metric pages carry anchor links of the form `/groups/<group>/#tp-ac-1` suitable for deep citation.
 

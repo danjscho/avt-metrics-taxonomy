@@ -1,4 +1,4 @@
-# AVT Metrics Taxonomy
+# Prototype AVT Metrics Taxonomy
 
 A healthcare metrics taxonomy for assuring Ambient Voice Technology (AVT) systems from an NHS perspective.
 
@@ -145,7 +145,7 @@ See [CHANGELOG.md](CHANGELOG.md) for full per-release notes including all earlie
 
 Until the prototype reaches a settled state, please cite as:
 
-> Schofield, D. (2026). *AVT Metrics Taxonomy v5.5.12* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
+> Schofield, D. (2026). *Prototype AVT Metrics Taxonomy v5.5.12* [prototype-for-discussion]. Licensed under CC BY 4.0. Retrieved from https://danjscho.github.io/avt-metrics-taxonomy/
 
 Note: prototype status means content / tier assignments / cross-references may change in response to feedback. Cite the specific version (e.g. v5.5.12) so subsequent readers can reproduce what you read, and please flag the prototype status when citing in academic work — pasting numbers into contracts or treating any specific metric as policy is out of scope until the artefact is settled.
 

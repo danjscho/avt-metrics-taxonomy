@@ -1,5 +1,5 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/squidfunk/mkdocs-material/master/docs/schema.json
-site_name: AVT Metrics Taxonomy
+site_name: Prototype AVT Metrics Taxonomy
 site_description: Healthcare metrics taxonomy for assuring Ambient Voice
   Technology in NHS and comparable settings
 site_url: https://danjscho.github.io/avt-metrics-taxonomy/

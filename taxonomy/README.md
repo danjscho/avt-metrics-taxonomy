@@ -1,4 +1,4 @@
-# AVT Metrics Taxonomy — Repository Guide
+# Prototype AVT Metrics Taxonomy — Repository Guide
 
 This is the contributor / developer guide. For the reader-facing description of what the taxonomy *is*, see [`../README.md`](../README.md). For session-level guidance to Claude Code working in this repo, see [`../CLAUDE.md`](../CLAUDE.md).
 
